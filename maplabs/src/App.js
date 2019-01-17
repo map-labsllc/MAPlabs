@@ -1,27 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import firebase from 'firebase'
+import ReduxThunk from 'redux-thunk'
+import Router from './router'
+import reducers from './reducers'
 class App extends Component {
+  componentWillMount() {
+
+    // make new web proj in firebase
+    var config = {
+      apiKey: "AIzaSyAUOCnEKUCOCZcRgBc1y9sWC-AuHgEa7aw",
+      authDomain: "map-labs123.firebaseapp.com",
+      databaseURL: "https://map-labs123.firebaseio.com",
+      projectId: "map-labs123",
+      storageBucket: "",
+      messagingSenderId: "666788418297"
+    }
+    firebase.initializeApp(config)
+  }
+
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <Provider store={ store }>
+          <Router />
+      </Provider>
+    )
   }
 }
 
