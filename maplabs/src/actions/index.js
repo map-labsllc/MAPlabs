@@ -1,4 +1,11 @@
 import firebase from 'firebase'
+// import { EMAIL_CHANGED,
+//  PASSWORD_CHANGED,
+//  LOGIN_USER_SUCCESS,
+//  LOGIN_USER_FAIL,
+//  LOGIN_USER
+//  }from './types'
+
 export const FIRSTNAME_CHANGED = 'firstName_changed'
 export const LASTNAME_CHANGED = 'lastName_changed'
 export const ADDRESS_CHANGED = 'address_changed'
@@ -80,7 +87,7 @@ export const signUpUser = (firstName, lastName, email, password) => {
             if (user) {
               body.token = user.uid
 
-            
+
             }
           })
           dispatch({type: SIGNUP})

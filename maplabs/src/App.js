@@ -5,6 +5,9 @@ import firebase from 'firebase'
 import ReduxThunk from 'redux-thunk'
 import Router from './router'
 import reducers from './reducers'
+import createBrowserHistory from "history/createBrowserHistory";
+
+// const history = createBrowserHistory()
 class App extends Component {
   componentWillMount() {
 
@@ -17,10 +20,13 @@ class App extends Component {
       storageBucket: "",
       messagingSenderId: "666788418297"
     }
-    firebase.initializeApp(config)
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config);
+  }
   }
 
   render() {
+
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
     return (
       <Provider store={ store }>

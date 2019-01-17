@@ -3,6 +3,6 @@
    "rules": {
      "semi": ["error","never"],
      "space-in-parens": ["error", "always"],
-     "eslint no-restricted-imports": ["error", "fs"]
+     "eslint no-restricted-imports": ["error", "never"]
      }
 }
