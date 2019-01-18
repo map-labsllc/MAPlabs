@@ -6,6 +6,7 @@
     "firebase": "^5.7.3",
     "history": "^4.7.2",
     "react": "^16.7.0",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
