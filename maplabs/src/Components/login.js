@@ -59,16 +59,16 @@ class Login extends Component {
           placeholder='example@email.com'
           autoCapitalize="none"
           autoCorrect={ false }
-          onChangeText={ this.onEmailChange.bind(this) }
-          value={ this.props.email}/>
+          onChange={ this.onEmailChange.bind(this) }
+          value={ this.props.email.value}/>
         <div style={styles.passwordTextStyles}>Password</div>
         <input style={styles.textInputStyles}
-          secureTextEntry
+          type= 'password'
           placeholder='password'
           autoCorrect={ false }
           autoCapitalize="none"
-          onChangeText={ this.onPasswordChange.bind(this) }
-          value={ this.props.password }
+          onChange={ this.onPasswordChange.bind(this) }
+          value={ this.props.password.value }
         />
         { this.renderError() }
         { this.renderButton()}
@@ -91,11 +91,11 @@ class Login extends Component {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'white',
+      backgroundColor: 'grey',
     },
     text:{
       fontWeight:'bold',
-      color:'white',
+      color:'black',
       paddingTop:10
     },
     textInputStyles: {
