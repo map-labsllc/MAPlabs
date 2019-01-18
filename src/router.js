@@ -1,23 +1,26 @@
 import React from 'react'
-import { Route,BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Login from './Components/login'
 import SignUp from './Components/SignUp'
+import SplashPage from './Components/SplashPage'
 import Action from './actions'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 class RouterComponent extends React.Component {
   render() {
-    return(
+    return (
 
-        <Router style={{paddingTop: 10}}>
+      <Router style={{ paddingTop: 10 }}>
 
-      <Switch>
-              <Route key='login' component={Login} title='please login' initial/>
-              <Route key='signUp' component={SignUp} title='please signUp'/>
-      </Switch>
+        <Switch>
+          <Route path='/' component={SplashPage} initial />
+          <Route path='/login' component={Login} title='please login' />
+          <Route path='/signUp' component={SignUp} title='please signUp' />
 
-        </Router>
+        </Switch>
+
+      </Router>
 
     )
   }
