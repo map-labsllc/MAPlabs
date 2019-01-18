@@ -35,8 +35,8 @@ class Login extends Component {
 
   renderButton() {
     return (
-      <div style={styles.loginButtonStyle} onPress={ this.onButtonPress.bind(this)}>
-        <div style={styles.loginTextStyles}>Login</div>
+      <div style={styles.loginButtonStyle} >
+        <button style={styles.loginTextStyles} onclick={ this.onButtonPress.bind(this)} > Login</button>
       </div>
     )
   }
