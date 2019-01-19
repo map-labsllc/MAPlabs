@@ -7,14 +7,16 @@ import {
  } from './constants';
 
 /*
-  answersRD: {
+  transitionsRD: {
     isLoading: true,
     errorDB: false,
     errorMessage: '',
     questions: {
-      1: [ 'answer one', 'answer two' ],
-      2: [ 'this is a narrative, so only one answer' ],
-    },
+      52: [ { from: 'here', to: 'there' },
+            { form: 'good', to: 'bad' } ],
+      76: [ { from: 'north', to: 'south' },
+            { form: 'east', to: 'west' } ],
+    }
   }
 */
 
@@ -26,21 +28,21 @@ const initialState = {
 }
 
 /* ***********************************************
-   getAnswers()
-   Get array of answers strings for a given question_code
+   getTranstions()
+   Get array of transitions for a given question_code
 
    param store -- state of the reduser
    param question_code -- integer
 
-   return array of answer strings or empty array
+   return array of transitions or empty array
 ************************************************** */
-export const getAnswers = (state, question_code) =>
+export const getTransitions = (state, question_code) =>
   state.questions[question_code] || []
 
  /* ***********************************************
-    answersRD
+    transitionsRD
  ************************************************** */
- export const answersRD = (state = initialState, action) => {
+ export const transitionsRD = (state = initialState, action) => {
 
   const { type, payload } = action
 
@@ -49,27 +51,31 @@ export const getAnswers = (state, question_code) =>
     // Reset the reducer to initial state, could be
     //   used when switching users.
     case LOADING:
-      console.log("answersRD::LOADING");
+      console.log("transitionsRD::LOADING");
       return initialState;
 
-    // Payload:
-    //  {
-    //    1: [ 'answer one', 'answer two' ],
-    //    2: [ 'this is a narrative, so only one answer' ],
+    // Payload :
+    // {
+    //    52: [ { from: 'here', to: 'there' },
+    //          { form: 'good', to: 'bad' } ],
+    //    76: [ { from: 'north', to: 'south' },
+    //          { form: 'east', to: 'west' } ],
     //  }
     case LOAD:
-      console.log("answersRD::LOAD");
+      console.log("transitionsRD::LOAD");
       return {
         ...state,
         isLoading: false,
         questions: payload,
       };
 
-    // Payload: { question_code: 6, answers: ["one", "two"] }
+    // Payload
+    //   { question_code: 6,
+    //     transitons: [ { from: 'here', to: 'there' }, { ... } ] }
     case UPDATE:
-      console.log("answersRD::UPDATE");
+      console.log("transitionsRD::UPDATE");
       const newQuestions = { ...state.questions };
-      newQuestions[payload.question_code] = payload.answers
+      newQuestions[payload.question_code] = payload.transitions
       return {
         ...state,
         questions: newQuestions,
@@ -77,7 +83,7 @@ export const getAnswers = (state, question_code) =>
 
     // Fetch error
     case ERROR_DB:
-      console.log("answersRD::ERROR_DB");
+      console.log("transitionsRD::ERROR_DB");
       return {
         ...state,
         isLoading: false,
@@ -85,7 +91,8 @@ export const getAnswers = (state, question_code) =>
         errorMessage: payload.errorMessage,
       }
 
-
+      // Payload contains object w/
+      //   key:value pairs of (Question#): (array of transitions)
       case NO_OP:
         console.log("answersRD::NO_OP")
         return state
@@ -95,4 +102,4 @@ export const getAnswers = (state, question_code) =>
    }
  }
 
- export default answersRD
+ export default transitionsRD

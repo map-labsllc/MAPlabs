@@ -1,9 +1,14 @@
 import React from 'react'
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
 
-import { loadAllAnswersAC } from '../store/answers/actions'
-import { getAnswers, setAnswers } from '../store/answers/reducer'
+import {
+  loadAllQuestionsAC,
+  updateQuestionAC,
+  persistQuestionAC } from '../store/answers/actions'
+import {
+  getAnswers,
+  setAnswers } from '../store/answers/reducer'
 
 // export default class NavBar extends React.Component {
 class NavBar extends React.Component {
@@ -14,17 +19,31 @@ class NavBar extends React.Component {
     const { dispatch } = this.props;
 
     // asynch calls to load from db
-    dispatch(loadAllAnswersAC());
+    dispatch(loadAllQuestionsAC());
     // dispatch(loadAllTransitionsAC());
     // dispatch(loadAllStaticdataAC());
   }
 
+  onclick = (e) => {
+    console.log("onClick()");
+    if (!this.props.isLoading) {
+      const q = 11
+      const a = ["11", "11"]
+      this.props.dispatch(updateQuestionAC(q, a))
+      this.props.dispatch(persistQuestionAC(q, a))
+      // The following fails since getAnswers() pulls from store before the updateAC has completed
+      // this.props.dispatch(persistQuestionAC(q, getAnswers(this.props.answersRD, q)))
+    }
+  }
+
   render() {
+    console.log("NavBar::render");
     return (
       <Navbar>
       <p>Status: {this.props.isLoading ? "loading" : "loaded"}</p>
       <p>Answers: {JSON.stringify(this.props.answers)}</p>
       <p>AnswersRD: {JSON.stringify(this.props.answersRD)}</p>
+      <Button onClick={this.onclick}>buton</Button>
       <Navbar.Header>
         <Navbar.Brand>
           <a href="#home">M.A.P.Labs</a>
@@ -67,13 +86,11 @@ const styles = {
 
 // Wrap NavBar in container to get access to dispatch
 const mapStateToProps = state => {
-  if (!state.answersRD.isLoading) {
-    setAnswers(state, 2, ["one", "two"])
-  }
   return {
     isLoading: state.answersRD.isLoading,
-    answers: getAnswers(state, 2),
+    answers: getAnswers(state.answersRD, 2),
     answersRD: state.answersRD,
+    state
   }
 }
 

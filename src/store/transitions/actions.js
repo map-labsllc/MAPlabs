@@ -11,35 +11,35 @@ const USER_ID = 1
 
 /* *****************************************************
    updateQuestionAC()
-   Update answers for a question in state.
-   Will replace any other answers for the question.
+   Update trasnstions for a question in state.
+   Will replace any other transitions for the question.
    Call persistQuestionAC() to save to database.
 
    quesion_code - integer
-   answers - array of answer strings
+   transitions - array of transitions [{ "from": "here", "to: there" }, {... }]
 ******************************************************** */
-export const updateQuestionAC = (question_code, answers) => {
+export const updateQuestionAC = (question_code, transitions) => {
   return {
     type: UPDATE,
-    payload: { question_code, answers }
+    payload: { question_code, transitions }
   }
 }
 
 /* *****************************************************
    loadAllQuestionsAC()
-   Load user's persisted answers for all questions
+   Load user's persisted transitions
    Called by NavBar::onComponentDidMount()
 ******************************************************** */
-export const loadAllQuestionsAC = () => {
-  console.log("loadAllQuestionsAC()")
+export const loadAllTransitionsAC = () => {
+  console.log("loadAllTransitionsAC()")
 
   return dispatch => {
     dispatch({ type: LOADING })
-    return fetch(`${URL}/answers/${USER_ID}`)
+    return fetch(`${URL}/transitions/${USER_ID}`)
       .then(response => response.json())
-      .then((answers) => {
-        console.log("answers", answers)
-        return dispatch({ type: LOAD, payload: answers })
+      .then((transitions) => {
+        console.log("transitions", transitions)
+        return dispatch({ type: LOAD, payload: transitions })
       })
       .catch((error) => {
         console.log("FETCH ERROR", error);
@@ -50,24 +50,24 @@ export const loadAllQuestionsAC = () => {
 
 /* *****************************************************
    persistQuestionAC()
-   Persists answers for a question.
+   Persists transitions for a question.
 
-   Warning: The following fails b/c store isn't updated before getAnswers() is
-            called. You need to pass the "answers" to persistQuestionAC().
-     this.props.dispatch(updateQuestionAC(question_code, answers))
-     this.props.dispatch(persistQuestionAC(question_code, getAnswers(this.props.answersRD, question_code))) // BROKEN
+   Warning: The following fails b/c store isn't updated before getTransitions() is
+            called. You need to pass the "transitons" to persistQuestionAC().
+     this.props.dispatch(updateQuestionAC(question_code, transitions))
+     this.props.dispatch(persistQuestionAC(question_code, getTransitions(this.props.transitionsRD, question_code))) // BROKEN
 
    quesion_code - integer
-   answers - array of answer strings
+   transitions - array of transitions
 ******************************************************** */
-export const persistQuestionAC = (question_code, answers) => {
+export const persistQuestionAC = (question_code, transitions) => {
   console.log(`>> persistQuestionAC(${question_code})`)
-  console.log("persisting: ", answers);
+  console.log("persisting: ", transitions);
 
   return dispatch => {
-    return fetch(`${URL}/answers/${USER_ID}/${question_code}`, {
+    return fetch(`${URL}/transitions/${USER_ID}/${question_code}`, {
         method: 'POST',
-        body: JSON.stringify({ answers }),
+        body: JSON.stringify({ transitions }),
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
