@@ -14,9 +14,9 @@ class RouterComponent extends React.Component {
         <Router style={{paddingTop: 10}}>
 
       <Switch>
+              <Route key='Navbar' component={NavBar} />
               <Route key='login' component={Login} title='please login' initial/>
               <Route key='signUp' component={SignUp} title='please signUp'/>
-              <Route key='Navbar' component={NavBar} />
       </Switch>
 
         </Router>
