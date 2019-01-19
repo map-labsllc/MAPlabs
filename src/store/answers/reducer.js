@@ -42,9 +42,9 @@ export const getAnswers = (state, question_code) =>
  ************************************************** */
  export const answersRD = (state = initialState, action) => {
 
-  const { payload } = action
+  const { type, payload } = action
 
-  switch(action.type) {
+  switch(type) {
 
     // Reset the reducer to initial state, could be
     //   used when switching users.
@@ -52,8 +52,11 @@ export const getAnswers = (state, question_code) =>
       console.log("answersRD::LOADING");
       return initialState;
 
-    // Payload contains object w/
-    //   key:value pairs of (Question#): (array or answer strings)
+    // Payload:
+    //  {
+    //    1: [ 'answer one', 'answer two' ],
+    //    2: [ 'this is a narrative, so only one answer' ],
+    //  }
     case LOAD:
       console.log("answersRD::LOAD");
       return {
@@ -62,7 +65,7 @@ export const getAnswers = (state, question_code) =>
         questions: payload,
       };
 
-    // Payload { question_code: 6, answers: ["one", "two"] }
+    // Payload: { question_code: 6, answers: ["one", "two"] }
     case UPDATE:
       console.log("answersRD::UPDATE");
       const newQuestions = { ...state.questions };
@@ -72,6 +75,7 @@ export const getAnswers = (state, question_code) =>
         questions: newQuestions,
       };
 
+    // Fetch error
     case ERROR_DB:
       console.log("answersRD::ERROR_DB");
       return {
@@ -81,8 +85,7 @@ export const getAnswers = (state, question_code) =>
         errorMessage: payload.errorMessage,
       }
 
-      // Payload contains object w/
-      //   key:value pairs of (Question#): (array or answer strings)
+
       case NO_OP:
         console.log("answersRD::NO_OP")
         return state
