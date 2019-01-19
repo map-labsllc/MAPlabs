@@ -44,6 +44,7 @@ class NavBar extends React.Component {
       <p>Answers: {JSON.stringify(this.props.answers)}</p>
       <p>AnswersRD: {JSON.stringify(this.props.answersRD)}</p>
       <Button onClick={this.onclick}>buton</Button>
+
       <Navbar.Header>
         <Navbar.Brand>
           <a href="#home">M.A.P.Labs</a>
@@ -82,8 +83,6 @@ const styles = {
   NavBar
 }
 
-// ==================================================================
-
 // Wrap NavBar in container to get access to dispatch
 const mapStateToProps = state => {
   return {
@@ -102,3 +101,4 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
   )(NavBar)
+

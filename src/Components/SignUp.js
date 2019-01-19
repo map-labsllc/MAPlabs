@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { firstNameChanged, lastNameChanged, emailChanged, passwordChanged, loginUser, signUpUser } from '../actions'
+import { firstNameChanged, lastNameChanged, emailChanged, passwordChanged, loginUser, signUpUser } from '../store/actions'
 
 
 //
@@ -23,6 +23,8 @@ class SignUp extends Component {
   }
 
   onEmailChange(text) {
+
+    console.log('type of string', typeof text,text);
     this.props.emailChanged(text)
   }
 
@@ -51,7 +53,7 @@ class SignUp extends Component {
 
   renderButton() {
     return (
-      <button style={styles.signUpButtonStyle} onPress={ this.onButtonPress.bind(this)}>
+      <button style={styles.signUpButtonStyle} onClick={ this.onButtonPress.bind(this)}>
         <p style={styles.signUpTextStyles}>Sign Up</p>
       </button>
     )
@@ -73,36 +75,33 @@ class SignUp extends Component {
           style={textInputStyles}
           placeholder='John'
           autoCapitalize="none"
-          autoCorrect={ false }
-          onChangeText={ this.onFirstNameChanged.bind(this) }
-          value={ this.props.first_name }/>
+          onChange={ this.onFirstNameChanged.bind(this) }
+          value={ this.props.first_name.value }/>
 
         <p style={emailTextStyles}>Last Name</p>
         <input
           style={textInputStyles}
           placeholder='Doe'
           autoCapitalize="none"
-          autoCorrect={ false }
-          onChangeText={ this.onLastNameChanged.bind(this) }
-          value={ this.props.last_name }/>
+
+          onChange={ this.onLastNameChanged.bind(this) }
+          value={ this.props.last_name.value }/>
 
         <p style={emailTextStyles}>Email</p>
         <input
           style={textInputStyles}
           placeholder='example@email.com'
           autoCapitalize="none"
-          autoCorrect={ false }
-          onChangeText={ this.onEmailChange.bind(this) }
-          value={ this.props.email}/>
+          onChange={ this.onEmailChange.bind(this) }
+          value={ this.props.email.target }/>
 
         <p style={passwordTextStyles}>Password</p>
         <input style={textInputStyles}
-          secureTextEntry
           placeholder='password'
-          autoCorrect={ false }
+          type= 'password'
           autoCapitalize="none"
-          onChangeText={ this.onPasswordChange.bind(this) }
-          value={ this.props.password }
+          onChange={ this.onPasswordChange.bind(this) }
+          value={ this.props.password.target }
         />
 
 
