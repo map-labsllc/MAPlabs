@@ -22,8 +22,7 @@ const initialState = {
   isLoading: true,
   errorDB: false,
   errorMessage: '',
-  questions: {}, // { 1:  [ 'question 1 answer', 'second answer for question' ],
-                 //   37: [ 'this is narrative 37, so only one answer' ], }
+  questions: {},
 }
 
 /* ***********************************************
