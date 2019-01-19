@@ -1,11 +1,30 @@
 import React from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
+import { connect } from 'react-redux';
 
-export default class NavBar extends React.Component {
+import { loadAllAnswersAC } from '../store/answers/actions'
+import { getAnswers, setAnswers } from '../store/answers/reducer'
 
-  render(){
+// export default class NavBar extends React.Component {
+class NavBar extends React.Component {
+
+  // load static data and user's previous saved responses from db
+  componentDidMount() {
+    console.log("NavBar::componentDidMount()");
+    const { dispatch } = this.props;
+
+    // asynch calls to load from db
+    dispatch(loadAllAnswersAC());
+    // dispatch(loadAllTransitionsAC());
+    // dispatch(loadAllStaticdataAC());
+  }
+
+  render() {
     return (
       <Navbar>
+      <p>Status: {this.props.isLoading ? "loading" : "loaded"}</p>
+      <p>Answers: {JSON.stringify(this.props.answers)}</p>
+      <p>AnswersRD: {JSON.stringify(this.props.answersRD)}</p>
       <Navbar.Header>
         <Navbar.Brand>
           <a href="#home">M.A.P.Labs</a>
@@ -43,3 +62,26 @@ export default class NavBar extends React.Component {
 const styles = {
   NavBar
 }
+
+// ==================================================================
+
+// Wrap NavBar in container to get access to dispatch
+const mapStateToProps = state => {
+  if (!state.answersRD.isLoading) {
+    setAnswers(state, 2, ["one", "two"])
+  }
+  return {
+    isLoading: state.answersRD.isLoading,
+    answers: getAnswers(state, 2),
+    answersRD: state.answersRD,
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(NavBar)
