@@ -26,12 +26,12 @@ export const updateQuestionAC = (question_code, answers) => {
 }
 
 /* *****************************************************
-   loadAllAnswersAC()
-   Load user's persisted answers
+   loadAllQuestionsAC()
+   Load user's persisted answers for all questions
    Called by NavBar::onComponentDidMount()
 ******************************************************** */
-export const loadAllAnswersAC = () => {
-  console.log("loadAnswersAC()")
+export const loadAllQuestionsAC = () => {
+  console.log("loadAllQuestionsAC()")
 
   return dispatch => {
     dispatch({ type: LOADING })

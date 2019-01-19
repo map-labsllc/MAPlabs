@@ -3,7 +3,7 @@ import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-boots
 import { connect } from 'react-redux';
 
 import {
-  loadAllAnswersAC,
+  loadAllQuestionsAC,
   updateQuestionAC,
   persistQuestionAC } from '../store/answers/actions'
 import {
@@ -19,7 +19,7 @@ class NavBar extends React.Component {
     const { dispatch } = this.props;
 
     // asynch calls to load from db
-    dispatch(loadAllAnswersAC());
+    dispatch(loadAllQuestionsAC());
     // dispatch(loadAllTransitionsAC());
     // dispatch(loadAllStaticdataAC());
   }
