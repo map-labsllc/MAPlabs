@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { emailChanged, passwordChanged, loginUser, signUp } from '../actions/'
+import { emailChanged, passwordChanged, loginUser, signUp } from '../store/actions/'
 
 class Login extends Component {
   constructor(props) {
@@ -78,7 +78,9 @@ class Login extends Component {
           onPress={this.props.signUp}
           underlayColor='#fff'>
 
-          <p style={{color:'#982D38',fontSize: 30,fontWeight:'700', borderColor:'#982D37',borderRadius:2,borderWidth:2,backgroundColor:'white'}}>SIGN UP</p>
+          <p
+            style={{color:'#982D38',fontSize: 30,fontWeight:'700', borderColor:'#982D37' ,borderRadius:2, borderWidth:2, backgroundColor:'white'}}>SIGN UP
+          </p>
         </div>
         </div>
       </div>

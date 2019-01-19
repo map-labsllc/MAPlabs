@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux'
 import firebase from 'firebase'
 import ReduxThunk from 'redux-thunk'
 import Router from './router'
-import reducers from './reducers'
+import reducers from './store/reducers'
 import createBrowserHistory from "history/createBrowserHistory";
 
 // const history = createBrowserHistory()
