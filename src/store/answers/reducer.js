@@ -1,7 +1,9 @@
 import {
   LOADING,
   LOAD,
+  UPDATE,
   ERROR_DB,
+  NO_OP,
  } from './constants';
 
 /*
@@ -28,33 +30,20 @@ const initialState = {
    getAnswers()
    Get array of answers strings for a given question_code
 
-   param store -- global state
+   param store -- state of the reduser
    param question_code -- integer
 
    return array of answer strings or empty array
 ************************************************** */
 export const getAnswers = (state, question_code) =>
-  state.answersRD.questions[question_code] || []
-
-/* ***********************************************
-   setAnswers()
-
-   param state -- global state
-   param question_code -- integer
-   param answers -- array of answer strings
-
-   return undefined
-************************************************** */
-export const setAnswers = (state, question_code, answers) => {
-  state.answersRD.questions[question_code] = answers
-  return;
-}
-
+  state.questions[question_code] || []
 
  /* ***********************************************
     answersRD
  ************************************************** */
  export const answersRD = (state = initialState, action) => {
+
+  const { payload } = action
 
   switch(action.type) {
 
@@ -74,6 +63,16 @@ export const setAnswers = (state, question_code, answers) => {
         questions: action.payload,
       };
 
+    // Payload { question_code: 6, answers: ["one", "two"] }
+    case UPDATE:
+      console.log("answersRD::UPDATE");
+      const newQuestions = { ...state.questions };
+      newQuestions[payload.question_code] = payload.answers
+      return {
+        ...state,
+        questions: newQuestions,
+      };
+
     case ERROR_DB:
       console.log("answersRD::ERROR_DB");
       return {
@@ -83,8 +82,14 @@ export const setAnswers = (state, question_code, answers) => {
         errorMessage: action.payload.errorMessage,
       }
 
+      // Payload contains object w/
+      //   key:value pairs of (Question#): (array or answer strings)
+      case NO_OP:
+        console.log("answersRD::NO_OP")
+        return state
+
     default:
-      return state;
+      return state
    }
  }
 
