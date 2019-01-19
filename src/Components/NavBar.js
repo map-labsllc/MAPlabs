@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import {
   loadAllAnswersAC,
-  updateAnswersAC,
+  updateQuestionAC,
   persistQuestionAC } from '../store/answers/actions'
 import {
   getAnswers,
@@ -29,7 +29,7 @@ class NavBar extends React.Component {
     if (!this.props.isLoading) {
       const q = 11
       const a = ["11", "11"]
-      this.props.dispatch(updateAnswersAC(q, a))
+      this.props.dispatch(updateQuestionAC(q, a))
       this.props.dispatch(persistQuestionAC(q, a))
       // The following fails since getAnswers() pulls from store before the updateAC has completed
       // this.props.dispatch(persistQuestionAC(q, getAnswers(this.props.answersRD, q)))

@@ -60,7 +60,7 @@ export const getAnswers = (state, question_code) =>
       return {
         ...state,
         isLoading: false,
-        questions: action.payload,
+        questions: payload,
       };
 
     // Payload { question_code: 6, answers: ["one", "two"] }
@@ -79,7 +79,7 @@ export const getAnswers = (state, question_code) =>
         ...state,
         isLoading: false,
         errorDB: true,
-        errorMessage: action.payload.errorMessage,
+        errorMessage: payload.errorMessage,
       }
 
       // Payload contains object w/

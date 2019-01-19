@@ -10,7 +10,7 @@ const URL = "http://localhost:3001"
 const USER_ID = 1
 
 /* *****************************************************
-   updateAnswersAC()
+   updateQuestionAC()
    Update answers for a question in state.
    Will replace any other answers for the question.
    Call persistQuestionAC() to save to database.
@@ -18,7 +18,7 @@ const USER_ID = 1
    quesion_code - integer
    answers - array of answer strings
 ******************************************************** */
-export const updateAnswersAC = (question_code, answers) => {
+export const updateQuestionAC = (question_code, answers) => {
   return {
     type: UPDATE,
     payload: { question_code, answers }
@@ -54,7 +54,7 @@ export const loadAllAnswersAC = () => {
 
    Warning: The following fails b/c store isn't updated before getAnswers() is
             called. You need to pass the "answers" to persistQuestionAC().
-     this.props.dispatch(updateAnswersAC(question_code, answers))
+     this.props.dispatch(updateQuestionAC(question_code, answers))
      this.props.dispatch(persistQuestionAC(question_code, getAnswers(this.props.answersRD, question_code))) // BROKEN
 
    quesion_code - integer
