@@ -9,7 +9,7 @@ import {
 /*
   answersRD: {
     isLoading: true,
-    errorDB: false,
+    isError: false,
     errorMessage: '',
     questions: {
       1: [ 'answer one', 'answer two' ],
@@ -20,7 +20,7 @@ import {
 
 const initialState = {
   isLoading: true,
-  errorDB: false,
+  isError: false,
   errorMessage: '',
   questions: {},
 }
@@ -81,7 +81,7 @@ export const getAnswers = (state, question_code) =>
       return {
         ...state,
         isLoading: false,
-        errorDB: true,
+        isError: true,
         errorMessage: payload || "no error message provided",
       }
 
