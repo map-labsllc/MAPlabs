@@ -3,19 +3,20 @@ import { Route,BrowserRouter as Router, Switch } from 'react-router-dom'
 import Login from './Components/login'
 import SignUp from './Components/SignUp'
 import NavBar from './Components/NavBar'
-import Narrative from './Components/Narrative'
-import lifeDescriptorQuestion from './Components/lifeDescriptor'
 import Action from './store/actions'
+import lifeDescriptorQuestion from './Components/lifeDescriptor'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import EdTest from './Components/EdTest'
 class RouterComponent extends React.Component {
   render() {
     return(
-      <Narrative question="What about..?" answer="What abt what?" />
+      <EdTest />
     )
   }
 }
+
 // class RouterComponent extends React.Component {
 //   render() {
 //     return(
@@ -30,6 +31,7 @@ class RouterComponent extends React.Component {
 //     )
 //   }
 // }
+
 const mapDispatchToProps = dispatch => bindActionCreators({
   // header
 
