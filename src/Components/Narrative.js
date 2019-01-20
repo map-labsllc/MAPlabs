@@ -19,6 +19,10 @@ import {
 ***************************************************** */
 export default class Narrative extends React.Component {
 
+  state = {
+    isDirty: false,
+  }
+
   // load the textarea with previousAnswer
   componentDidMount = () => {
     console.log("Narrative::componentDidMount()");
@@ -27,15 +31,10 @@ export default class Narrative extends React.Component {
     if (previousAnswer) elem.value = previousAnswer
   }
 
-  // change the text of the save button
-  setSaveButtonText = (newText) => {
-    document.getElementById('save-button').innerText = newText
-  }
-
-  // When textarea changes update the Save button to indicate control is dirty
+  // set isDirty
   onChange = (e) => {
-    console.log("Narrative::onChange");
-    this.setSaveButtonText("Save")
+    // console.log("Narrative::onChange");
+    this.setState({ isDirty: true })
   }
 
   // Send newAnswer value back to Container to persist
@@ -45,37 +44,36 @@ export default class Narrative extends React.Component {
     e.preventDefault()
     const value = e.target.answer.value.trim()
     console.log("value: ", value)
-    this.setSaveButtonText("----")
+    this.setState({ isDirty: false })
     // this.props.onSaveCB(value)
   }
 
   // render!
   render() {
+    // console.log("Narrative::render()")
 
     // initialize
-    console.log("Narrative::render()")
     const { question, previousAnswer, onSaveCB } = this.props
+    const { isDirty } = this.state
 
     return (
       <Form
         onSubmit={this.onSubmit}
-        name = "narrative-form"
         id = "narrative-form"
       >
-        <FormGroup controlId="formControlsTextarea">
+        <FormGroup>
           <ControlLabel>{question}</ControlLabel>
           <FormControl
             componentClass = "textarea"
             onChange = {this.onChange}
             placeholder = "Please enter an answer and click < Save >"
-            name = "answer"
             id = "answer"
             autoFocus />
         </FormGroup>
-        <Button type = "submit" name = "save-button" id = "save-button">----</Button>
+        <Button type = "submit" id = "save-button">{((isDirty) ? "Save" : "----")}</Button>
       </Form>
     )
   }
 }
 
-// export default Narrative  // neccessary for functional version
+// export default Narrative  // only neccessary for functional version
