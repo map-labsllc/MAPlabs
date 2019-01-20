@@ -2,6 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import NarrativeCT from '../Containers/NarrativeCT'
+import {
+  loadAllAnswersAC,
+  updateAnswersAC,
+  persistAnswersAC } from '../store/answers/actions'
+import {
+  loadAllTransitionsAC,
+  updateTransitionsAC,
+  persistTransitionsAC } from '../store/transitions/actions'
+import { loadAllStaticdataAC } from '../store/staticdata/actions'
 
 import {
   Button,
@@ -17,60 +26,42 @@ class EdTest extends React.Component {
     ready: false,
   }
 
-  // load the textarea with previousAnswer
+  // load user data
   componentDidMount = () => {
-    // console.log("Narrative::componentDidMount()");
-    // const { previousAnswer } = this.props
-    // const elem = document.getElementById('answer')
-    // if (previousAnswer) elem.value = previousAnswer
+    const { dispatch } = this.props;
+    dispatch(loadAllAnswersAC());
+    dispatch(loadAllTransitionsAC());
+    dispatch(loadAllStaticdataAC());
   }
 
-  // set isDirty
-  onChange = (e) => {
-    // console.log("Narrative::onChange");
-    // this.setState({ isDirty: true })
-  }
-
-  // Send newAnswer value back to Container to persist
-  //   and update Save button to indicate control is no longer dirty
-  onSubmit = (e) => {
-    // console.log("Narrative::onclickSave");
-    // e.preventDefault()
-    // const value = e.target.answer.value.trim()
-    // console.log("value: ", value)
-    // this.setState({ isDirty: false })
-    // // this.props.onSaveCB(value)
-  }
 
   // render!
   render() {
 
-    // <Button type = "button" id = "save-button">Load</Button>
-    return (
-      <Form>
-        <Button>Open</Button>
-        <p>  </p>
-        {this.state.ready &&
-          <NarrativeCT question_code = "50" question="When did you...?" previousAnswer="My answer is..." />
-        }
+    const isLoading = this.props.isLoading
 
-      </Form>
+    return (
+      <>
+        <p>{((isLoading) ? "loading...." : ""  )}</p>
+        {!isLoading && (
+          <>
+            <NarrativeCT question_code = "50" question="50 question...?" />
+            <hr/>
+            <NarrativeCT question_code = "51" question="51 question...?" />
+            <hr/>
+            <NarrativeCT question_code = "52" question="52 question...?" />
+          </>
+        )}
+      </>
     )
   }
 }
-// <NarrativeCT question_code = "50" question="When did you...?" previousAnswer="My answer is..." />
 
-// <Button>Open</Button>
-
-// {(state.ready &&
-//   <NarrativeCT question_code = "50" question="When did you...?" previousAnswer="My answer is..." />)}
-
-// Wrap in container to get access to store
+// Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {
   console.log("--- state: ", state);
   return {
-    isLoading: state.transitionsRD.isLoading,
-    state
+    isLoading: state.answersRD.isLoading && state.transitionsRD.isLoading,
   }
 }
 
