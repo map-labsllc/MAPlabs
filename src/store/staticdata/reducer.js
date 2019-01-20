@@ -9,7 +9,7 @@ import {
 /*
   staticdataRD: {  // loaded with fetch call to a file
     isLoading: true,
-    errorDB: false,
+    isError: false,
     errorMessage: '',
 
     beliefs: [ 'belief1', 'belief2', ],
@@ -32,7 +32,7 @@ import {
 
 const initialState = {
   isLoading: true,
-  errorDB: false,
+  isError: false,
   errorMessage: '',
   beliefs: [],
   strengths: [],
@@ -83,7 +83,7 @@ const initialState = {
       return {
         ...state,
         isLoading: false,
-        errorDB: true,
+        isError: true,
         errorMessage: payload || "no error message provided",
       }
 

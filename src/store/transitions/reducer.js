@@ -9,7 +9,7 @@ import {
 /*
   transitionsRD: {
     isLoading: true,
-    errorDB: false,
+    isError: false,
     errorMessage: '',
     questions: {
       52: [ { from: 'here', to: 'there' },
@@ -22,7 +22,7 @@ import {
 
 const initialState = {
   isLoading: true,
-  errorDB: false,
+  isError: false,
   errorMessage: '',
   questions: {},
 }
@@ -87,7 +87,7 @@ export const getTransitions = (state, question_code) =>
       return {
         ...state,
         isLoading: false,
-        errorDB: true,
+        isError: true,
         errorMessage: payload || "no error message provided",
       }
 
