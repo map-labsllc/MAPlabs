@@ -67,6 +67,15 @@ const initialState = {
         strengths: payload.strengths,
         lifedescrs: payload.lifedescrs,
       };
+    // case LOAD:
+    //   console.log("staticdataRD::LOAD");
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     beliefs: payload.beliefs,
+    //     strengths: payload.strengths,
+    //     lifedescrs: payload.lifedescrs,
+    //   };
 
     // Fetch error
     case ERROR_DB:
