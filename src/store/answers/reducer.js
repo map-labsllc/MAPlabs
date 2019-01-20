@@ -1,9 +1,9 @@
 import {
-  LOADING,
-  LOAD,
-  UPDATE,
-  ERROR_DB,
-  NO_OP,
+  ANSWERS_LOADING,
+  ANSWERS_LOAD,
+  ANSWERS_UPDATE,
+  ANSWERS_ERROR_DB,
+  ANSWERS_NO_OP,
  } from './constants';
 
 /*
@@ -48,7 +48,7 @@ export const getAnswers = (state, question_code) =>
 
     // Reset the reducer to initial state, could be
     //   used when switching users.
-    case LOADING:
+    case ANSWERS_LOADING:
       console.log("answersRD::LOADING");
       return initialState;
 
@@ -57,7 +57,7 @@ export const getAnswers = (state, question_code) =>
     //    1: [ 'answer one', 'answer two' ],
     //    2: [ 'this is a narrative, so only one answer' ],
     //  }
-    case LOAD:
+    case ANSWERS_LOAD:
       console.log("answersRD::LOAD");
       return {
         ...state,
@@ -66,7 +66,7 @@ export const getAnswers = (state, question_code) =>
       };
 
     // Payload: { question_code: 6, answers: ["one", "two"] }
-    case UPDATE:
+    case ANSWERS_UPDATE:
       console.log("answersRD::UPDATE");
       const newQuestions = { ...state.questions };
       newQuestions[payload.question_code] = payload.answers
@@ -76,7 +76,7 @@ export const getAnswers = (state, question_code) =>
       };
 
     // Fetch error
-    case ERROR_DB:
+    case ANSWERS_ERROR_DB:
       console.log("answersRD::ERROR_DB");
       return {
         ...state,
@@ -86,7 +86,7 @@ export const getAnswers = (state, question_code) =>
       }
 
       // no operation, AC didn't change stat
-      case NO_OP:
+      case ANSWERS_NO_OP:
         console.log("answersRD::NO_OP")
         return state
 

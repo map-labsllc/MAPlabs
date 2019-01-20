@@ -1,9 +1,9 @@
 import {
-  LOADING,
-  LOAD,
-  ERROR_DB,
-  UPDATE,
-  NO_OP,
+  ANSWERS_LOADING,
+  ANSWERS_LOAD,
+  ANSWERS_ERROR_DB,
+  ANSWERS_UPDATE,
+  ANSWERS_NO_OP,
 } from './constants'
 
 const URL = "http://localhost:3001"
@@ -20,7 +20,7 @@ const USER_ID = 1
 ******************************************************** */
 export const updateQuestionAC = (question_code, answers) => {
   return {
-    type: UPDATE,
+    type: ANSWERS_UPDATE,
     payload: { question_code, answers }
   }
 }
@@ -34,16 +34,16 @@ export const loadAllQuestionsAC = () => {
   console.log("loadAllQuestionsAC()")
 
   return dispatch => {
-    dispatch({ type: LOADING })
+    dispatch({ type: ANSWERS_LOADING })
     return fetch(`${URL}/answers/${USER_ID}`)
       .then(response => response.json())
       .then((answers) => {
         console.log("answers", answers)
-        return dispatch({ type: LOAD, payload: answers })
+        return dispatch({ type: ANSWERS_LOAD, payload: answers })
       })
       .catch((error) => {
         console.log("FETCH ERROR", error);
-        return dispatch({ type: ERROR_DB, payload: error })
+        return dispatch({ type: ANSWERS_ERROR_DB, payload: error })
       });
   }
 }
@@ -76,11 +76,11 @@ export const persistQuestionAC = (question_code, answers) => {
       .then(response => response.json())
       .then((message) => {
         console.log("post response message", message)
-        return dispatch( { type: NO_OP })
+        return dispatch( { type: ANSWERS_NO_OP })
       })
       .catch((error) => {
         console.log("POST ERROR", error);
-        return dispatch( { type: ERROR_DB, payload: error } )
+        return dispatch( { type: ANSWERS_ERROR_DB, payload: error } )
       });
   }
 }
