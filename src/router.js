@@ -11,18 +11,14 @@ import { bindActionCreators } from 'redux'
 class RouterComponent extends React.Component {
   render() {
     return(
-
-        <Router style={{paddingTop: 10}}>
-
-      <Switch>
-        <Route path='/' component={NavBar} />
-        <Route path='/' component={lifeDescriptorQuestion} />
-        <Route path='/login' component={Login} title='please login' initial/>
-        <Route path='/signUp' component={SignUp} title='please signUp'/>
-      </Switch>
-
-        </Router>
-
+      <Router style={{paddingTop: 10}}>
+        <Switch>
+          <Route path='/' component={NavBar} />
+          <Route path='/' component={lifeDescriptorQuestion} />
+          <Route path='/login' component={Login} title='please login' initial/>
+          <Route path='/signUp' component={SignUp} title='please signUp'/>
+        </Switch>
+      </Router>
     )
   }
 
