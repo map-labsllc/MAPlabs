@@ -82,10 +82,10 @@ export const getAnswers = (state, question_code) =>
         ...state,
         isLoading: false,
         errorDB: true,
-        errorMessage: payload.errorMessage,
+        errorMessage: payload || "no error message provided",
       }
 
-
+      // no operation, AC didn't change stat
       case NO_OP:
         console.log("answersRD::NO_OP")
         return state

@@ -88,11 +88,10 @@ export const getTransitions = (state, question_code) =>
         ...state,
         isLoading: false,
         errorDB: true,
-        errorMessage: payload.errorMessage,
+        errorMessage: payload || "no error message provided",
       }
 
-      // Payload contains object w/
-      //   key:value pairs of (Question#): (array of transitions)
+      // no operation, AC didn't change stat
       case NO_OP:
         console.log("answersRD::NO_OP")
         return state
