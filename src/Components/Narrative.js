@@ -13,9 +13,10 @@ import {
 
    Displays a single question and multi-line textarea.
 
-   question -- string withe the question
-   previousAnswer -- string with the previous answer
-   onSaveCB(newAnswer) -- callback when user clicks to save the control
+   props:
+     question -- string with the question
+     previousAnswer -- string with the previous answer
+     onSaveCB(newAnswer) -- callback when user clicks Save 
 ***************************************************** */
 export default class Narrative extends React.Component {
 
@@ -27,6 +28,7 @@ export default class Narrative extends React.Component {
   componentDidMount = () => {
     console.log("Narrative::componentDidMount()");
     const { previousAnswer } = this.props
+    console.log("-- previousAnswer: ", previousAnswer);
     const elem = document.getElementById('answer')
     if (previousAnswer) elem.value = previousAnswer
   }
