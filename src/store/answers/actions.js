@@ -38,7 +38,7 @@ export const loadAllAnswersAC = () => {
     return fetch(`${URL}/answers/${USER_ID}`)
       .then(response => response.json())
       .then((answers) => {
-        console.log("answers", answers)
+        // console.log("answers", answers)
         return dispatch({ type: ANSWERS_LOAD, payload: answers })
       })
       .catch((error) => {
@@ -53,15 +53,16 @@ export const loadAllAnswersAC = () => {
    Persists answers for a question.
 
    Warning: The following fails b/c store isn't updated before getAnswers() is
-            called. You need to pass the "answers" to persistQuestionAC().
-     this.props.dispatch(updateQuestionAC(question_code, answers))
-     this.props.dispatch(persistQuestionAC(question_code, getAnswers(this.props.answersRD, question_code))) // BROKEN
+            called. You need to pass "answers" directly to persistQuestionAC().
+
+     this.props.dispatch(updateAnswersAC(question_code, answers))
+     // BROKEN: this.props.dispatch(persistAnswersAC(question_code, getAnswers(this.props.answersRD, question_code)))
 
    quesion_code - integer
    answers - array of answer strings
 ******************************************************** */
 export const persistAnswersAC = (question_code, answers) => {
-  console.log(`>> persistAnswersAC(${question_code})`)
+  console.log(`persistAnswersAC(${question_code})`)
   console.log("persisting: ", answers);
 
   return dispatch => {
