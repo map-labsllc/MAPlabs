@@ -76,7 +76,7 @@ export const persistQuestionAC = (question_code, answers) => {
       .then(response => response.json())
       .then((message) => {
         console.log("post response message", message)
-        return dispatch( { type: NO_OP, payload: message })
+        return dispatch( { type: NO_OP })
       })
       .catch((error) => {
         console.log("POST ERROR", error);
