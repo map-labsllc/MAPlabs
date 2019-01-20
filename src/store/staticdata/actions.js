@@ -7,16 +7,26 @@ import {
 
 const URL = "http://localhost:3001"
 
-function loadstatic(dispatch, section) {
+// JSON filenames are used as the keys when building state, therefore
+// don't change them as other code relies on these names.
+const BELIEFS_FN = 'beliefs'
+const LIFEDESCRS_FN = 'lifedescrs'
+const STRENGTHS_FN = 'strengths'
+
+/* *****************************************************
+   loadstaticJSON()
+
+   Async function to
+
+   dispatch
+   jsonFileName
+******************************************************** */
+function loadstaticJSON(dispatch, section) {
   return fetch(`${URL}/${section}.json`)
     .then(response => response.json())
-    .then((data) => {
-      console.log(section, data)
-      const payload = {}
-      payload.sectionName = section
-      payload[section] = data
-      // return dispatch({ type: LOAD, payload })
-      return { section, data }
+    .then((jsonData) => {
+      // console.log(section, jsonData)
+      return { section, jsonData }
     })
     .catch((error) => {
       console.log("FETCH ERROR", error);
@@ -26,6 +36,7 @@ function loadstatic(dispatch, section) {
 
 /* *****************************************************
    loadAllStaticdataAC()
+
    Load all staticdata from the son files in the backend /public directory.
    Called by NavBar::onComponentDidMount()
 ******************************************************** */
@@ -35,52 +46,20 @@ export const loadAllStaticdataAC = () => {
   return dispatch => {
     dispatch({ type: STATICDATA_LOADING })
 
-    const p1 = loadstatic(dispatch, 'beliefs')
-    const p2 = loadstatic(dispatch, 'lifedescrs')
-    const p3 = loadstatic(dispatch, 'strengths')
-
-    // const p1 = fetch(`${URL}/lifedescrs.json`)
-    //   .then(response => response.json())
-    //   .then((lifedescrs) => {
-    //     console.log("lifedescrs", lifedescrs)
-    //     return dispatch({ type: LOAD, payload: { lifedescrs } })
-    //   })
-    //   .catch((error) => {
-    //     console.log("FETCH ERROR", error);
-    //     return dispatch({ type: ERROR_DB, payload: error })
-    //   });
-    //
-    // const p2 = fetch(`${URL}/beliefs.json`)
-    //   .then(response => response.json())
-    //   .then((beliefs) => {
-    //     console.log("beliefs", beliefs)
-    //     return dispatch({ type: LOAD, payload: { beliefs } })
-    //   })
-    //   .catch((error) => {
-    //     console.log("FETCH ERROR", error);
-    //     return dispatch({ type: ERROR_DB, payload: error })
-    //   });
-    //
-    // const p3 = fetch(`${URL}/strengths.json`)
-    //   .then(response => response.json())
-    //   .then((strengths) => {
-    //     console.log("strengths", strengths)
-    //     return dispatch({ type: LOAD, payload: { strengths } })
-    //   })
-    //   .catch((error) => {
-    //     console.log("FETCH ERROR", error);
-    //     return dispatch({ type: ERROR_DB, payload: error })
-    //   });
+    const p1 = loadstaticJSON(dispatch, BELIEFS_FN)
+    const p2 = loadstaticJSON(dispatch, LIFEDESCRS_FN)
+    const p3 = loadstaticJSON(dispatch, STRENGTHS_FN)
 
     return Promise.all([p1, p2, p3])
       .then(result => {
-        console.log(" ");
-        console.log("Promise.all: ", result);
-        const payload = {
-          beliefs: result[0].data,
-          lifedescrs: result[1].data,
-          strengths: result[2].data,
-        }
+        // console.log(" ");
+        // console.log("Promise.all: ", result);
+
+        const payload = {}
+        payload[result[0].section] = result[0].jsonData
+        payload[result[1].section] = result[1].jsonData
+        payload[result[2].section] = result[2].jsonData
+
         dispatch({ type: STATICDATA_LOAD, payload })
       })
       .catch((error) => {
