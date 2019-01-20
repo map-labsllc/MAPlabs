@@ -1,16 +1,16 @@
 import {
-  LOADING,
-  LOAD,
-  ERROR_DB,
-  UPDATE,
-  NO_OP,
+  TRANSITIONS_LOADING,
+  TRANSITIONS_LOAD,
+  TRANSITIONS_ERROR_DB,
+  TRANSITIONS_UPDATE,
+  TRANSITIONS_NO_OP,
 } from './constants'
 
 const URL = "http://localhost:3001"
 const USER_ID = 1
 
 /* *****************************************************
-   updateQuestionAC()
+   updateTransitionsAC()
    Update trasnstions for a question in state.
    Will replace any other transitions for the question.
    Call persistQuestionAC() to save to database.
@@ -18,9 +18,9 @@ const USER_ID = 1
    quesion_code - integer
    transitions - array of transitions [{ "from": "here", "to: there" }, {... }]
 ******************************************************** */
-export const updateQuestionAC = (question_code, transitions) => {
+export const updateTransitionsAC = (question_code, transitions) => {
   return {
-    type: UPDATE,
+    type: TRANSITIONS_UPDATE,
     payload: { question_code, transitions }
   }
 }
@@ -34,22 +34,22 @@ export const loadAllTransitionsAC = () => {
   console.log("loadAllTransitionsAC()")
 
   return dispatch => {
-    dispatch({ type: LOADING })
+    dispatch({ type: TRANSITIONS_LOADING })
     return fetch(`${URL}/transitions/${USER_ID}`)
       .then(response => response.json())
       .then((transitions) => {
         console.log("transitions", transitions)
-        return dispatch({ type: LOAD, payload: transitions })
+        return dispatch({ type: TRANSITIONS_LOAD, payload: transitions })
       })
       .catch((error) => {
         console.log("FETCH ERROR", error);
-        return dispatch({ type: ERROR_DB, payload: error })
+        return dispatch({ type: TRANSITIONS_ERROR_DB, payload: error })
       });
   }
 }
 
 /* *****************************************************
-   persistQuestionAC()
+   persistTransitionsAC()
    Persists transitions for a question.
 
    Warning: The following fails b/c store isn't updated before getTransitions() is
@@ -60,7 +60,7 @@ export const loadAllTransitionsAC = () => {
    quesion_code - integer
    transitions - array of transitions
 ******************************************************** */
-export const persistQuestionAC = (question_code, transitions) => {
+export const persistTransitionsAC = (question_code, transitions) => {
   console.log(`>> persistQuestionAC(${question_code})`)
   console.log("persisting: ", transitions);
 
@@ -76,11 +76,11 @@ export const persistQuestionAC = (question_code, transitions) => {
       .then(response => response.json())
       .then((message) => {
         console.log("post response message", message)
-        return dispatch( { type: NO_OP })
+        return dispatch( { type: TRANSITIONS_NO_OP })
       })
       .catch((error) => {
         console.log("POST ERROR", error);
-        return dispatch( { type: ERROR_DB, payload: error } )
+        return dispatch( { type: TRANSITIONS_ERROR_DB, payload: error } )
       });
   }
 }

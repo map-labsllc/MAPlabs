@@ -1,5 +1,5 @@
 
-export const LOADING  = "LOADING"
-export const LOAD     = "LOAD"
-export const ERROR_DB = "ERROR_DB"
-export const NO_OP    = "NO_OP"
+export const STATICDATA_LOADING  = "STATICDATA_LOADING"
+export const STATICDATA_LOAD     = "STATICDATA_LOAD"
+export const STATICDATA_ERROR_DB = "STATICDATA_ERROR_DB"
+export const STATICDATA_NO_OP    = "STATICDATA_NO_OP"

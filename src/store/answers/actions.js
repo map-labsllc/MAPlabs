@@ -10,7 +10,7 @@ const URL = "http://localhost:3001"
 const USER_ID = 1
 
 /* *****************************************************
-   updateQuestionAC()
+   updateAnswersAC()
    Update answers for a question in state.
    Will replace any other answers for the question.
    Call persistQuestionAC() to save to database.
@@ -18,7 +18,7 @@ const USER_ID = 1
    quesion_code - integer
    answers - array of answer strings
 ******************************************************** */
-export const updateQuestionAC = (question_code, answers) => {
+export const updateAnswersAC = (question_code, answers) => {
   return {
     type: ANSWERS_UPDATE,
     payload: { question_code, answers }
@@ -26,12 +26,12 @@ export const updateQuestionAC = (question_code, answers) => {
 }
 
 /* *****************************************************
-   loadAllQuestionsAC()
+   loadAllAnswersAC()
    Load user's persisted answers for all questions
    Called by NavBar::onComponentDidMount()
 ******************************************************** */
-export const loadAllQuestionsAC = () => {
-  console.log("loadAllQuestionsAC()")
+export const loadAllAnswersAC = () => {
+  console.log("loadAllAnswersAC()")
 
   return dispatch => {
     dispatch({ type: ANSWERS_LOADING })
@@ -49,7 +49,7 @@ export const loadAllQuestionsAC = () => {
 }
 
 /* *****************************************************
-   persistQuestionAC()
+   persistAnswersAC()
    Persists answers for a question.
 
    Warning: The following fails b/c store isn't updated before getAnswers() is
@@ -60,8 +60,8 @@ export const loadAllQuestionsAC = () => {
    quesion_code - integer
    answers - array of answer strings
 ******************************************************** */
-export const persistQuestionAC = (question_code, answers) => {
-  console.log(`>> persistQuestionAC(${question_code})`)
+export const persistAnswersAC = (question_code, answers) => {
+  console.log(`>> persistAnswersAC(${question_code})`)
   console.log("persisting: ", answers);
 
   return dispatch => {

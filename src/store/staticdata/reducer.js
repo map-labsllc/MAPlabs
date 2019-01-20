@@ -1,9 +1,9 @@
 import {
-  LOADING,
-  LOAD,
-  UPDATE,
-  ERROR_DB,
-  NO_OP,
+  STATICDATA_LOADING,
+  STATICDATA_LOAD,
+  STATICDATA_UPDATE,
+  STATICDATA_ERROR_DB,
+  STATICDATA_NO_OP,
  } from './constants';
 
 /*
@@ -49,7 +49,7 @@ const initialState = {
   switch(type) {
 
     // Reset the reducer to initial state
-    case LOADING:
+    case STATICDATA_LOADING:
       console.log("staticdataRD::LOADING");
       return initialState;
 
@@ -58,7 +58,7 @@ const initialState = {
     //    1: [ 'answer one', 'answer two' ],
     //    2: [ 'this is a narrative, so only one answer' ],
     //  }
-    case LOAD:
+    case STATICDATA_LOAD:
       console.log("staticdataRD::LOAD");
       return {
         ...state,
@@ -78,7 +78,7 @@ const initialState = {
     //   };
 
     // Fetch error
-    case ERROR_DB:
+    case STATICDATA_ERROR_DB:
       console.log("staticdataRD::ERROR_DB");
       return {
         ...state,
@@ -88,7 +88,7 @@ const initialState = {
       }
 
       // no operation, AC didn't change stat
-      case NO_OP:
+      case STATICDATA_NO_OP:
         console.log("staticdataRD::NO_OP")
         return state
 
