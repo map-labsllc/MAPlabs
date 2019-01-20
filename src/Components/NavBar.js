@@ -7,11 +7,14 @@ import { connect } from 'react-redux';
 //   updateQuestionAC,
 //   persistQuestionAC } from '../store/answers/actions'
 // import { getAnswers } from '../store/answers/reducer'
+
 // import {
 //   loadAllTransitionsAC,
 //   updateQuestionAC,
 //   persistQuestionAC } from '../store/transitions/actions'
 // import { getTransitions } from '../store/transitions/reducer'
+
+import { loadAllStaticdataAC } from '../store/staticdata/actions'
 
 // export default class NavBar extends React.Component {
 class NavBar extends React.Component {
@@ -24,7 +27,7 @@ class NavBar extends React.Component {
     // asynch calls to load from db
     // dispatch(loadAllQuestionsAC());
     // dispatch(loadAllTransitionsAC());
-    // dispatch(loadAllStaticdataAC());
+    dispatch(loadAllStaticdataAC());
   }
 
   onclick = (e) => {
