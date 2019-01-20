@@ -2,13 +2,16 @@ import React from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-bootstrap'
 import { connect } from 'react-redux';
 
-import {
-  loadAllQuestionsAC,
-  updateQuestionAC,
-  persistQuestionAC } from '../store/answers/actions'
-import {
-  getAnswers,
-  setAnswers } from '../store/answers/reducer'
+// import {
+//   loadAllQuestionsAC,
+//   updateQuestionAC,
+//   persistQuestionAC } from '../store/answers/actions'
+// import { getAnswers } from '../store/answers/reducer'
+// import {
+//   loadAllTransitionsAC,
+//   updateQuestionAC,
+//   persistQuestionAC } from '../store/transitions/actions'
+// import { getTransitions } from '../store/transitions/reducer'
 
 // export default class NavBar extends React.Component {
 class NavBar extends React.Component {
@@ -19,7 +22,7 @@ class NavBar extends React.Component {
     const { dispatch } = this.props;
 
     // asynch calls to load from db
-    dispatch(loadAllQuestionsAC());
+    // dispatch(loadAllQuestionsAC());
     // dispatch(loadAllTransitionsAC());
     // dispatch(loadAllStaticdataAC());
   }
@@ -27,10 +30,16 @@ class NavBar extends React.Component {
   onclick = (e) => {
     console.log("onClick()");
     if (!this.props.isLoading) {
-      const q = 11
-      const a = ["11", "11"]
-      this.props.dispatch(updateQuestionAC(q, a))
-      this.props.dispatch(persistQuestionAC(q, a))
+
+      // const q = 4
+      // const t = [{ from: 'a', to: 'b'},{from: 'up', to: 'down' }]
+      // this.props.dispatch(updateQuestionAC(q, t))
+      // this.props.dispatch(persistQuestionAC(q, t))
+
+      // const q = 11
+      // const a = ["11", "11"]
+      // this.props.dispatch(updateQuestionAC(q, a))
+      // this.props.dispatch(persistQuestionAC(q, a))
       // The following fails since getAnswers() pulls from store before the updateAC has completed
       // this.props.dispatch(persistQuestionAC(q, getAnswers(this.props.answersRD, q)))
     }
@@ -40,10 +49,15 @@ class NavBar extends React.Component {
     console.log("NavBar::render");
     return (
       <Navbar>
-      <p>Status: {this.props.isLoading ? "loading" : "loaded"}</p>
+
+      {/*<p>Status: {this.props.isLoading ? "loading" : "loaded"}</p>
+      <p>transition: {JSON.stringify(this.props.transitions)}</p>
+      <p>transitionsRD: {JSON.stringify(this.props.transitionsRD)}</p>*/}
+
+      {/*<p>Status: {this.props.isLoading ? "loading" : "loaded"}</p>
       <p>Answers: {JSON.stringify(this.props.answers)}</p>
-      <p>AnswersRD: {JSON.stringify(this.props.answersRD)}</p>
-      <Button onClick={this.onclick}>buton</Button>
+      <p>AnswersRD: {JSON.stringify(this.props.answersRD)}</p>*/}
+      <Button onClick={this.onclick}>button</Button>
 
       <Navbar.Header>
         <Navbar.Brand>
@@ -85,13 +99,30 @@ const styles = {
 
 // Wrap NavBar in container to get access to dispatch
 const mapStateToProps = state => {
+  console.log("--- state: ", state);
   return {
-    isLoading: state.answersRD.isLoading,
-    answers: getAnswers(state.answersRD, 2),
-    answersRD: state.answersRD,
-    state
+
   }
 }
+
+// const mapStateToProps = state => {
+//   console.log("--- state: ", state);
+//   return {
+//     isLoading: state.transitionsRD.isLoading,
+//     transitions: getTransitions(state.transitionsRD, 2),
+//     transitionsRD: state.transitionsRD,
+//     state
+//   }
+// }
+
+// const mapStateToProps = state => {
+//   return {
+//     isLoading: state.answersRD.isLoading,
+//     answers: getAnswers(state.answersRD, 2),
+//     answersRD: state.answersRD,
+//     state
+//   }
+// }
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
@@ -101,4 +132,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
   )(NavBar)
-
