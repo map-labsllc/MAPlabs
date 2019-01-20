@@ -27,10 +27,11 @@ const initialState = {
 
 /* ***********************************************
    getAnswers()
+
    Get array of answers strings for a given question_code
 
-   param store -- state of the reduser
-   param question_code -- integer
+   state -- answersRD (this reducer, not the entire store)
+   question_code -- integer
 
    return array of answer strings or empty array
 ************************************************** */
