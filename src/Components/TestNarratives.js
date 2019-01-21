@@ -2,10 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import NarrativeCT from '../Containers/NarrativeCT'
-import {
-  loadAllAnswersAC } from '../store/answers/actions'
-import {
-  loadAllTransitionsAC } from '../store/transitions/actions'
+import { loadAllAnswersAC } from '../store/answers/actions'
+import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
 
 import {
@@ -52,32 +50,12 @@ class TestNarratives extends React.Component {
     )
   }
 }
-//   render() {
-//
-//     const isLoading = this.props.isLoading
-//
-//     return (
-//       <>
-//         <p>{((isLoading) ? "loading...." : ""  )}</p>
-//         {!isLoading && (
-//           <>
-//             <NarrativeCT question_code = "50" question="Narrative 50 question" />
-//             <hr/>
-//             <NarrativeCT question_code = "51" question="Narrative 51 question" />
-//             <hr/>
-//             <NarrativeCT question_code = "52" question="Narrative 52 question" />
-//           </>
-//         )}
-//       </>
-//     )
-//   }
-// }
 
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {
   console.log("--- state: ", state);
   return {
-    isLoading: state.answersRD.isLoading && state.transitionsRD.isLoading,
+    isLoading: state.answersRD.isLoading || state.transitionsRD.isLoading,
   }
 }
 
