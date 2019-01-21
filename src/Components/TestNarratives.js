@@ -45,11 +45,11 @@ class TestNarratives extends React.Component {
         <p>{((isLoading) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
-            <NarrativeCT question_code = "50" question="50 question...?" />
+            <NarrativeCT question_code = "50" question="50 narrative question...?" />
             <hr/>
-            <NarrativeCT question_code = "51" question="51 question...?" />
+            <NarrativeCT question_code = "51" question="51 narrative question...?" />
             <hr/>
-            <NarrativeCT question_code = "52" question="52 question...?" />
+            <NarrativeCT question_code = "52" question="52 narrative question...?" />
           </>
         )}
       </>
