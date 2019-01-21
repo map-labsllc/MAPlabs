@@ -66,9 +66,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateAnswersAC(question_code, [newAnswer]))
     dispatch(persistAnswersAC(question_code, [newAnswer]))
   }
-  // voteUpCB: (post) => dispatch(voteUpAC(post)),
-  // voteDownCB: (post) => dispatch(voteDownAC(post)),
-  // addCommentCB: (comment) => dispatch(addCommentAC(comment)),
 })
 
 export default connect(
