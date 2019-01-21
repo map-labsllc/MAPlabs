@@ -45,17 +45,37 @@ class TestNarratives extends React.Component {
         <p>{((isLoading) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
-            <NarrativeCT question_code = "50" question="Narrative 50 question" />
+            <NarrativeCT question={{ code: 50, text: "Narrative 50 question" }} />
             <hr/>
-            <NarrativeCT question_code = "51" question="Narrative 51 question" />
+            <NarrativeCT question={{ code: 51, text: "Narrative 51 question" }} />
             <hr/>
-            <NarrativeCT question_code = "52" question="Narrative 52 question" />
+            <NarrativeCT question={{ code: 52, text: "Narrative 52 question" }} />
           </>
         )}
       </>
     )
   }
 }
+//   render() {
+//
+//     const isLoading = this.props.isLoading
+//
+//     return (
+//       <>
+//         <p>{((isLoading) ? "loading...." : ""  )}</p>
+//         {!isLoading && (
+//           <>
+//             <NarrativeCT question_code = "50" question="Narrative 50 question" />
+//             <hr/>
+//             <NarrativeCT question_code = "51" question="Narrative 51 question" />
+//             <hr/>
+//             <NarrativeCT question_code = "52" question="Narrative 52 question" />
+//           </>
+//         )}
+//       </>
+//     )
+//   }
+// }
 
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {

@@ -45,11 +45,11 @@ class TestShortAnswers extends React.Component {
         <p>{((isLoading) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
-            <ShortAnswersCT question_code = "40" question="ShortAnswers 40 question" />
+            <ShortAnswersCT question = {{ code: 40, text: "ShortAnswers 40 question" }} />
             <hr/>
-            <ShortAnswersCT question_code = "41" question="ShortAnswers 41 question" />
+            <ShortAnswersCT question = {{ code: 41, text: "ShortAnswers 41 question" }} />
             <hr/>
-            <ShortAnswersCT question_code = "42" question="ShortAnswers 42 question" />
+            <ShortAnswersCT question = {{ code: 42, text: "ShortAnswers 42 question" }} />
           </>
         )}
       </>

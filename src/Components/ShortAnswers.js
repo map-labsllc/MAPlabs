@@ -17,8 +17,7 @@ import {
      -- Save button
 
    props:
-     question_code -- integer
-     question -- string with the question
+     question -- { code: 50, text: "Question 50" }
      previousAnswers -- array of strings of previous answers
      onSaveCB(newAnswer) -- callback for when user clicks Save
 ***************************************************** */
@@ -33,7 +32,7 @@ export default class ShortAnswers extends React.Component {
 
   // set isDirty and control answer field
   onChange = (e) => {
-    console.log("ShortAnswers::onChange(), e: ", e.target.value);
+    // console.log("ShortAnswers::onChange(), e: ", e.target.value);
     this.setState({
       isDirty: true,
       answers: [e.target.value],
@@ -58,7 +57,7 @@ export default class ShortAnswers extends React.Component {
     // const value = e.target.answer.value.trim()
     // console.log("value: ", value)
     this.setState({ isDirty: false })
-    this.props.onSaveCB(this.props.question_code, this.state.answers)
+    this.props.onSaveCB(this.props.question.code, this.state.answers)
   }
 
   // render!
@@ -75,7 +74,7 @@ export default class ShortAnswers extends React.Component {
         onSubmit={this.onSubmit}
       >
         <FormGroup>
-          <ControlLabel>&nbsp;&nbsp;{question}</ControlLabel>
+          <ControlLabel>&nbsp;&nbsp;{question.text}</ControlLabel>
           <FormControl
             componentClass = "textarea"
             onChange = {this.onChange}
