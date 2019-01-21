@@ -11,43 +11,42 @@ import {
 /* **************************************************
    Narrative component
 
-   Displays a single question and multi-line textarea.
+   Displays a single question with multi-line textarea and Save button.
 
    props:
+     question_code -- integer
      question -- string with the question
      previousAnswer -- string with the previous answer
-     onSaveCB(newAnswer) -- callback when user clicks Save 
+     onSaveCB(newAnswer) -- callback for when user clicks Save
 ***************************************************** */
 export default class Narrative extends React.Component {
 
   state = {
     isDirty: false,
+
+    // controlled component
+    answer: this.props.previousAnswer,
   }
 
-  // load the textarea with previousAnswer
-  componentDidMount = () => {
-    console.log("Narrative::componentDidMount()");
-    const { previousAnswer } = this.props
-    console.log("-- previousAnswer: ", previousAnswer);
-    const elem = document.getElementById('answer')
-    if (previousAnswer) elem.value = previousAnswer
-  }
-
-  // set isDirty
+  // set isDirty and control answer field
   onChange = (e) => {
-    // console.log("Narrative::onChange");
-    this.setState({ isDirty: true })
+    console.log("Narrative::onChange(), e: ", e.target.value);
+    this.setState({
+      answer: e.target.value,
+      isDirty: true,
+    })
   }
 
   // Send newAnswer value back to Container to persist
   //   and update Save button to indicate control is no longer dirty
   onSubmit = (e) => {
-    console.log("Narrative::onclickSave");
+    console.log(`Narrative::onclickSave(): ${this.state.answer}`);
+    console.log("state: ", this.state);
     e.preventDefault()
-    const value = e.target.answer.value.trim()
-    console.log("value: ", value)
+    // const value = e.target.answer.value.trim()
+    // console.log("value: ", value)
     this.setState({ isDirty: false })
-    // this.props.onSaveCB(value)
+    this.props.onSaveCB(this.props.question_code, this.state.answer)
   }
 
   // render!
@@ -55,8 +54,8 @@ export default class Narrative extends React.Component {
     // console.log("Narrative::render()")
 
     // initialize
-    const { question, previousAnswer, onSaveCB } = this.props
-    const { isDirty } = this.state
+    const { question, onSaveCB } = this.props
+    const { isDirty, answer } = this.state
 
     return (
       <Form
@@ -64,13 +63,14 @@ export default class Narrative extends React.Component {
         id = "narrative-form"
       >
         <FormGroup>
-          <ControlLabel>{question}</ControlLabel>
+          <ControlLabel>&nbsp;&nbsp;{question}</ControlLabel>
           <FormControl
             componentClass = "textarea"
             onChange = {this.onChange}
+            value = {answer}
             placeholder = "Please enter an answer and click < Save >"
             id = "answer"
-            autoFocus />
+          />
         </FormGroup>
         <Button type = "submit" id = "save-button">{((isDirty) ? "Save" : "----")}</Button>
       </Form>
