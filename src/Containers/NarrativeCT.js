@@ -6,19 +6,6 @@ import {
   persistAnswersAC } from '../store/answers/actions'
 
 /* *****************************************
-   onSave()
-
-   Save the new answer to store and persist it.
-
-   question_code -- integer
-   newAnswer -- string
-******************************************** */
-// const onSave = (question_code, newAnswer) => {
-//   console.log(`NarrativeCT::onSave(${question_code}, ${newAnswer})`);
-//
-// }
-
-/* *****************************************
    mapStateToProps()
 
    passedProps:
