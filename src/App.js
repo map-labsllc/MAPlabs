@@ -8,10 +8,6 @@ import Router from './router'
 import reducers from './store/reducers'
 import createBrowserHistory from "history/createBrowserHistory";
 
-// TODO: this isn't loading the .env
-require('dotenv').config()
-console.log('process.env: ', process.env);
-
 // const history = createBrowserHistory()
 class App extends Component {
   componentWillMount() {

@@ -7,7 +7,7 @@ import {
 } from './constants'
 
 const URL = "http://localhost:3001"
-// const URL = process.env.DB_URL
+// const URL = process.env.REACT_APP_DB_URL
 const USER_ID = 1
 
 /* *****************************************************
