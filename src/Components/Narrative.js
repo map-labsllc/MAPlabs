@@ -1,5 +1,4 @@
 import React from 'react';
-//import { connect } from 'react-redux';
 import {
   Button,
   ControlLabel,
@@ -11,7 +10,9 @@ import {
 /* **************************************************
    Narrative component
 
-   Displays a single question with multi-line textarea and Save button.
+   Displays a single question with:
+     -- multi-line textarea
+     -- Save button
 
    props:
      question_code -- integer
@@ -32,8 +33,8 @@ export default class Narrative extends React.Component {
   onChange = (e) => {
     console.log("Narrative::onChange(), e: ", e.target.value);
     this.setState({
-      answer: e.target.value,
       isDirty: true,
+      answer: e.target.value,
     })
   }
 
