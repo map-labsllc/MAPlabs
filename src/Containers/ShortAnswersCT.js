@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Narrative from '../Components/Narrative'
+import ShortAnswers from '../Components/ShortAnswers'
 import { getAnswers } from '../store/answers/reducer'
 import {
   updateAnswersAC,
@@ -13,7 +13,7 @@ import {
      question -- the question string
 ******************************************** */
 const mapStateToProps = (state, passedProps) => {
-  console.log("NarrativeCT::mapStateToProps()");
+  console.log("ShortAnswersCT::mapStateToProps()");
 
   // get and validate question_code and question
   let { question_code, question } = passedProps
@@ -21,17 +21,15 @@ const mapStateToProps = (state, passedProps) => {
   if (!question_code) throw new Error("missing or non-integer question code: ", passedProps.question_code)
   console.log("question: ", question);
 
-  // find previous answer,
-  //   Note: getAnswers() returns an array but narrative should have at most one answer
+  // find previous answers,
   const answers = getAnswers(state.answersRD, question_code)
   console.log(`getAnswers(${question_code}): `, answers);
-  if (1 < answers.length) throw new Error("more than one narrative answer: ", passedProps.question_code, answers)
-  const previousAnswer = answers[0] || ''
+  const previousAnswers = answers
 
   return {
     question_code,
     question,
-    previousAnswer,
+    previousAnswers,
   }
 }
 
@@ -43,19 +41,19 @@ const mapDispatchToProps = dispatch => ({
   /* *****************************************
      onSaveCB()
 
-     Save the new answer to store and persist it.
+     Save the new answers to store and persist them.
 
      question_code -- integer
-     newAnswer -- string
+     newAnswers -- array of strings
   ******************************************** */
-  onSaveCB: (question_code, newAnswer) => {
-    console.log(`NarrativeCT::onSave(${question_code}, ${newAnswer})`);
-    dispatch(updateAnswersAC(question_code, [newAnswer]))
-    dispatch(persistAnswersAC(question_code, [newAnswer]))
+  onSaveCB: (question_code, newAnswers) => {
+    console.log(`ShortAnswersCT::onSave(${question_code}, ${newAnswers})`);
+    dispatch(updateAnswersAC(question_code, newAnswers))
+    dispatch(persistAnswersAC(question_code, newAnswers))
   }
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Narrative)
+)(ShortAnswers)

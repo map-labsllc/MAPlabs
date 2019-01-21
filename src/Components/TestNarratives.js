@@ -20,7 +20,7 @@ import {
 /* **************************************************
    Used to test components during development
 ***************************************************** */
-class EdTest extends React.Component {
+class TestNarratives extends React.Component {
 
   state = {
     ready: false,
@@ -45,11 +45,11 @@ class EdTest extends React.Component {
         <p>{((isLoading) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
-            <NarrativeCT question_code = "50" question="50 question...?" />
+            <NarrativeCT question_code = "50" question="Narrative 50 question" />
             <hr/>
-            <NarrativeCT question_code = "51" question="51 question...?" />
+            <NarrativeCT question_code = "51" question="Narrative 51 question" />
             <hr/>
-            <NarrativeCT question_code = "52" question="52 question...?" />
+            <NarrativeCT question_code = "52" question="Narrative 52 question" />
           </>
         )}
       </>
@@ -72,4 +72,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(EdTest)
+  )(TestNarratives)

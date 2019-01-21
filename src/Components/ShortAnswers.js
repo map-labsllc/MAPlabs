@@ -8,46 +8,57 @@ import {
 } from 'react-bootstrap';
 
 /* **************************************************
-   Narrative component
+   ShortAnswers component
 
    Displays a single question with:
-     -- multi-line textarea
+     -- Add button to add a new space for a short answer
+     -- Input field for each short answer
+     -- Trashcan next to each Input field
      -- Save button
 
    props:
      question_code -- integer
      question -- string with the question
-     previousAnswer -- string with the previous answer
+     previousAnswers -- array of strings of previous answers
      onSaveCB(newAnswer) -- callback for when user clicks Save
 ***************************************************** */
-export default class Narrative extends React.Component {
+export default class ShortAnswers extends React.Component {
 
   state = {
     isDirty: false,
 
     // controlled component
-    answer: this.props.previousAnswer,
+    answers: this.props.previousAnswers,
   }
 
   // set isDirty and control answer field
   onChange = (e) => {
-    console.log("Narrative::onChange(), e: ", e.target.value);
+    console.log("ShortAnswers::onChange(), e: ", e.target.value);
     this.setState({
       isDirty: true,
-      answer: e.target.value,
+      answers: [e.target.value],
     })
   }
 
-  // Send newAnswer value back to Container to persist
+  // set isDirty and control answer field
+  onBlur = (e) => {
+    console.log("ShortAnswers::onBlur(), e: ", e.target.value);
+    // this.setState({
+    //   isDirty: true,
+    //   answers: [e.target.value],
+    // })
+  }
+
+  // Send newAnswers array back to Container to persist
   //   and update Save button to indicate control is no longer dirty
   onSubmit = (e) => {
-    console.log(`Narrative::onclickSave(): ${this.state.answer}`);
-    console.log("state: ", this.state);
+    console.log(`ShortAnswers::onclickSave(): ${this.state.answers}`);
+    console.log("ShortAnswers::state: ", this.state);
     e.preventDefault()
     // const value = e.target.answer.value.trim()
     // console.log("value: ", value)
     this.setState({ isDirty: false })
-    this.props.onSaveCB(this.props.question_code, this.state.answer)
+    this.props.onSaveCB(this.props.question_code, this.state.answers)
   }
 
   // render!
@@ -56,27 +67,27 @@ export default class Narrative extends React.Component {
 
     // initialize
     const { question, onSaveCB } = this.props
-    const { isDirty, answer } = this.state
+    const { isDirty, answers } = this.state
+    const answer = answers[0] || ''
 
     return (
       <Form
         onSubmit={this.onSubmit}
-        id = "narrative-form"
       >
         <FormGroup>
           <ControlLabel>&nbsp;&nbsp;{question}</ControlLabel>
           <FormControl
             componentClass = "textarea"
             onChange = {this.onChange}
+            onBlur = {this.onBlur}
             value = {answer}
             placeholder = "Please enter an answer and click < Save >"
-            id = "answer"
           />
         </FormGroup>
-        <Button type = "submit" id = "save-button">{((isDirty) ? "Save" : "----")}</Button>
+        <Button type = "submit">{((isDirty) ? "Save" : "----")}</Button>
       </Form>
     )
   }
 }
 
-// export default Narrative  // only neccessary for functional version
+// export default ShortAnswers  // only neccessary for functional version
