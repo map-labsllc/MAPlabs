@@ -1,6 +1,6 @@
 
-export const LOADING  = "LOADING"
-export const LOAD     = "LOAD"
-export const ERROR_DB = "ERROR_DB"
-export const UPDATE   = "UPDATE"
-export const NO_OP    = "NO_OP"
+export const TRANSITIONS_LOADING  = "TRANSITIONS_LOADING"
+export const TRANSITIONS_LOAD     = "TRANSITIONS_LOAD"
+export const TRANSITIONS_ERROR_DB = "TRANSITIONS_ERROR_DB"
+export const TRANSITIONS_UPDATE   = "TRANSITIONS_UPDATE"
+export const TRANSITIONS_NO_OP    = "TRANSITIONS_NO_OP"

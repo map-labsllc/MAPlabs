@@ -1,15 +1,15 @@
 import {
-  LOADING,
-  LOAD,
-  UPDATE,
-  ERROR_DB,
-  NO_OP,
+  TRANSITIONS_LOADING,
+  TRANSITIONS_LOAD,
+  TRANSITIONS_UPDATE,
+  TRANSITIONS_ERROR_DB,
+  TRANSITIONS_NO_OP,
  } from './constants';
 
 /*
   transitionsRD: {
     isLoading: true,
-    errorDB: false,
+    isError: false,
     errorMessage: '',
     questions: {
       52: [ { from: 'here', to: 'there' },
@@ -22,7 +22,7 @@ import {
 
 const initialState = {
   isLoading: true,
-  errorDB: false,
+  isError: false,
   errorMessage: '',
   questions: {},
 }
@@ -50,7 +50,7 @@ export const getTransitions = (state, question_code) =>
 
     // Reset the reducer to initial state, could be
     //   used when switching users.
-    case LOADING:
+    case TRANSITIONS_LOADING:
       console.log("transitionsRD::LOADING");
       return initialState;
 
@@ -61,7 +61,7 @@ export const getTransitions = (state, question_code) =>
     //    76: [ { from: 'north', to: 'south' },
     //          { form: 'east', to: 'west' } ],
     //  }
-    case LOAD:
+    case TRANSITIONS_LOAD:
       console.log("transitionsRD::LOAD");
       return {
         ...state,
@@ -72,7 +72,7 @@ export const getTransitions = (state, question_code) =>
     // Payload
     //   { question_code: 6,
     //     transitons: [ { from: 'here', to: 'there' }, { ... } ] }
-    case UPDATE:
+    case TRANSITIONS_UPDATE:
       console.log("transitionsRD::UPDATE");
       const newQuestions = { ...state.questions };
       newQuestions[payload.question_code] = payload.transitions
@@ -82,18 +82,17 @@ export const getTransitions = (state, question_code) =>
       };
 
     // Fetch error
-    case ERROR_DB:
+    case TRANSITIONS_ERROR_DB:
       console.log("transitionsRD::ERROR_DB");
       return {
         ...state,
         isLoading: false,
-        errorDB: true,
-        errorMessage: payload.errorMessage,
+        isError: true,
+        errorMessage: payload || "no error message provided",
       }
 
-      // Payload contains object w/
-      //   key:value pairs of (Question#): (array of transitions)
-      case NO_OP:
+      // no operation, AC didn't change stat
+      case TRANSITIONS_NO_OP:
         console.log("answersRD::NO_OP")
         return state
 

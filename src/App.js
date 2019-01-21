@@ -3,9 +3,14 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import firebase from 'firebase'
 import ReduxThunk from 'redux-thunk'
+import { createLogger } from 'redux-logger';
 import Router from './router'
 import reducers from './store/reducers'
 import createBrowserHistory from "history/createBrowserHistory";
+
+// TODO: this isn't loading the .env
+require('dotenv').config()
+console.log('process.env: ', process.env);
 
 // const history = createBrowserHistory()
 class App extends Component {
@@ -22,12 +27,22 @@ class App extends Component {
     }
     if (!firebase.apps.length) {
       firebase.initializeApp(config);
-  }
+    }
   }
 
   render() {
 
-    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
+    const middleware = [ ReduxThunk ]
+    if (process.env.NODE_ENV !== 'production') {
+      middleware.push(createLogger()) // log actions and pre and post store state
+    }
+
+    const store = createStore(
+      reducers,
+      {}, // no intiial state
+      applyMiddleware(...middleware)
+    )
+
     return (
       <Provider store={ store }>
           <Router />
