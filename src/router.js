@@ -8,14 +8,14 @@ import lifeDescriptorQuestion from './Components/lifeDescriptor'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-// import TestNarratives from './Components/TestNarratives'
+import TestNarratives from './Components/TestNarratives'
 import TestShortAnswers from './Components/TestShortAnswers'
 class RouterComponent extends React.Component {
   render() {
     return(
-      <TestShortAnswers />
+      <TestNarratives />
     )
-      // <TestNarratives />
+    // <TestShortAnswers />
   }
 }
 
