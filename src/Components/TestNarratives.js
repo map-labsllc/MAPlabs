@@ -20,7 +20,7 @@ import {
 /* **************************************************
    Used to test components during development
 ***************************************************** */
-class EdTest extends React.Component {
+class TestNarratives extends React.Component {
 
   state = {
     ready: false,
@@ -72,4 +72,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(EdTest)
+  )(TestNarratives)
