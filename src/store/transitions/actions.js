@@ -11,6 +11,7 @@ const USER_ID = 1
 
 /* *****************************************************
    updateTransitionsAC()
+
    Update trasnstions for a question in state.
    Will replace any other transitions for the question.
    Call persistTransitionsAC() to save to database.
@@ -27,15 +28,20 @@ export const updateTransitionsAC = (question_code, transitions) => {
 
 /* *****************************************************
    loadAllTransitionsAC()
+
    Load user's persisted transitions
    Called by NavBar::onComponentDidMount()
+
+   userId -- integer
 ******************************************************** */
-export const loadAllTransitionsAC = () => {
+export const loadAllTransitionsAC = (userId) => {
   console.log("loadAllTransitionsAC()")
+
+  userId = USER_ID
 
   return dispatch => {
     dispatch({ type: TRANSITIONS_LOADING })
-    return fetch(`${URL}/transitions/${USER_ID}`)
+    return fetch(`${URL}/transitions/${userId}`)
       .then(response => response.json())
       .then((transitions) => {
         // console.log("transitions", transitions)
@@ -58,15 +64,18 @@ export const loadAllTransitionsAC = () => {
      this.props.dispatch(updateTransitionsAC(question_code, transitions))
      // BROKEN: this.props.dispatch(persistTransitionsAC(question_code, getTransitions(this.props.transitionsRD, question_code)))
 
+   userId -- integer
    quesion_code - integer
    transitions - array of transitions
 ******************************************************** */
-export const persistTransitionsAC = (question_code, transitions) => {
+export const persistTransitionsAC = (userId, question_code, transitions) => {
   console.log(`>> persistTransitionsAC(${question_code})`)
   console.log("persisting: ", transitions);
 
+  userId = USER_ID
+
   return dispatch => {
-    return fetch(`${URL}/transitions/${USER_ID}/${question_code}`, {
+    return fetch(`${URL}/transitions/${userId}/${question_code}`, {
         method: 'POST',
         body: JSON.stringify({ transitions }),
         headers: {
