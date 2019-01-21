@@ -3,13 +3,9 @@ import { connect } from 'react-redux';
 
 import NarrativeCT from '../Containers/NarrativeCT'
 import {
-  loadAllAnswersAC,
-  updateAnswersAC,
-  persistAnswersAC } from '../store/answers/actions'
+  loadAllAnswersAC } from '../store/answers/actions'
 import {
-  loadAllTransitionsAC,
-  updateTransitionsAC,
-  persistTransitionsAC } from '../store/transitions/actions'
+  loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
 
 import {
