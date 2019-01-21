@@ -9,25 +9,20 @@ import {
    mapStateToProps()
 
    passedProps:
-     question_code -- "50"  // needs to be converted to integer
-     question -- the question string
+     question -- { code: 50, text: "question 50" }
 ******************************************** */
 const mapStateToProps = (state, passedProps) => {
   console.log("ShortAnswersCT::mapStateToProps()");
 
-  // get and validate question_code and question
-  let { question_code, question } = passedProps
-  question_code = parseInt(question_code, 10)
-  if (!question_code) throw new Error("missing or non-integer question code: ", passedProps.question_code)
-  console.log("question: ", question);
+  const { question } = passedProps
+  if (!question.code) throw new Error("missing question code: ", passedProps.question_code)
 
   // find previous answers,
-  const answers = getAnswers(state.answersRD, question_code)
-  console.log(`getAnswers(${question_code}): `, answers);
+  const answers = getAnswers(state.answersRD, question.code)
+  console.log(`getAnswers(${question.code}): `, answers);
   const previousAnswers = answers
 
   return {
-    question_code,
     question,
     previousAnswers,
   }

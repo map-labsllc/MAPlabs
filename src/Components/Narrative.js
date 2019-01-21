@@ -15,8 +15,7 @@ import {
      -- Save button
 
    props:
-     question_code -- integer
-     question -- string with the question
+     question -- { code: 50, text: "Question 50" }
      previousAnswer -- string with the previous answer
      onSaveCB(newAnswer) -- callback for when user clicks Save
 ***************************************************** */
@@ -47,7 +46,7 @@ export default class Narrative extends React.Component {
     // const value = e.target.answer.value.trim()
     // console.log("value: ", value)
     this.setState({ isDirty: false })
-    this.props.onSaveCB(this.props.question_code, this.state.answer)
+    this.props.onSaveCB(this.props.question.code, this.state.answer)
   }
 
   // render!
@@ -64,7 +63,7 @@ export default class Narrative extends React.Component {
         id = "narrative-form"
       >
         <FormGroup>
-          <ControlLabel>&nbsp;&nbsp;{question}</ControlLabel>
+          <ControlLabel>&nbsp;&nbsp;{question.text}</ControlLabel>
           <FormControl
             componentClass = "textarea"
             onChange = {this.onChange}
