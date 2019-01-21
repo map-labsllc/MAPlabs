@@ -2,10 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ShortAnswersCT from '../Containers/ShortAnswersCT'
-import {
-  loadAllAnswersAC } from '../store/answers/actions'
-import {
-  loadAllTransitionsAC } from '../store/transitions/actions'
+import { loadAllAnswersAC } from '../store/answers/actions'
+import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
 
 import {
@@ -57,7 +55,7 @@ class TestShortAnswers extends React.Component {
 const mapStateToProps = state => {
   console.log("--- state: ", state);
   return {
-    isLoading: state.answersRD.isLoading && state.transitionsRD.isLoading,
+    isLoading: state.answersRD.isLoading || state.transitionsRD.isLoading,
   }
 }
 

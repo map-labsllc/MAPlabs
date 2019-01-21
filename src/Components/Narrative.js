@@ -58,10 +58,7 @@ export default class Narrative extends React.Component {
     const { isDirty, answer } = this.state
 
     return (
-      <Form
-        onSubmit={this.onSubmit}
-        id = "narrative-form"
-      >
+      <Form onSubmit={this.onSubmit} >
         <FormGroup>
           <ControlLabel>&nbsp;&nbsp;{question.text}</ControlLabel>
           <FormControl
@@ -69,10 +66,9 @@ export default class Narrative extends React.Component {
             onChange = {this.onChange}
             value = {answer}
             placeholder = "Please enter an answer and click < Save >"
-            id = "answer"
           />
         </FormGroup>
-        <Button type = "submit" id = "save-button">{((isDirty) ? "Save" : "----")}</Button>
+        <Button type = "submit">{((isDirty) ? "Save" : "----")}</Button>
       </Form>
     )
   }
