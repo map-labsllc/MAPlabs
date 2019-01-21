@@ -46,7 +46,7 @@ const mapDispatchToProps = dispatch => ({
   onSaveCB: (question_code, newAnswer) => {
     console.log(`NarrativeCT::onSave(${question_code}, ${newAnswer})`);
     dispatch(updateAnswersAC(question_code, [newAnswer]))
-    dispatch(persistAnswersAC(question_code, [newAnswer]))
+    dispatch(persistAnswersAC(-1, question_code, [newAnswer]))
   }
 })
 

@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => ({
   onSaveCB: (question_code, newAnswers) => {
     console.log(`ShortAnswersCT::onSave(${question_code}, ${newAnswers})`);
     dispatch(updateAnswersAC(question_code, newAnswers))
-    dispatch(persistAnswersAC(question_code, newAnswers))
+    dispatch(persistAnswersAC(-1, question_code, newAnswers))
   }
 })
 
