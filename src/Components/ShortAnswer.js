@@ -45,15 +45,12 @@ export default class ShortAnswer extends React.Component {
     console.log("ShortAnswer::onBlur(), e: ", e.target.value);
     const { saveAnswerCB, id } = this.props
     const { isDirty } = this.state
-    if (isDirty)
+    if (isDirty) {
       saveAnswerCB(id, e.target.value)
-
-    // TODO: test that this is true
-    // probably don't need this since parent state will drive a recreation
-    // with isDirty reinitialized to false
-    // this.setState({
-    //   isDirty: false,
-    // })
+      this.setState({
+        isDirty: false,
+      })
+    }
   }
 
   // pass to parent to delete
@@ -68,8 +65,7 @@ export default class ShortAnswer extends React.Component {
     console.log("ShortAnswer::render()")
 
     // initialize
-    let { answer } = this.state
-    answer = answer || 'empty'
+    let { answer, isDirty } = this.state
 
     return (
       <Form inline onSubmit={this.onSubmit}>
@@ -83,6 +79,7 @@ export default class ShortAnswer extends React.Component {
             value = {answer}
             placeholder = "Please enter an answer"
           />
+          {` `}{(isDirty ? 'dirty' : '')}
         </FormGroup>
       </Form>
     )

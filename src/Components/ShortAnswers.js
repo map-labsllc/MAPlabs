@@ -31,72 +31,70 @@ export default class ShortAnswers extends React.Component {
 
   state = {
     isDirty: false,
-
     answers: this.props.previousAnswers,
   }
 
+  // tell parent to save the array of answers
   saveAnswer = (idx, newAnswer) => {
     console.log(`ShortAnswers::saveAnswer(${idx}, ${newAnswer})`);
-    console.log("TODO: add code to make it happen!");
+
+    const { onSaveCB } = this.props
+    const { answers } = this.state
+
+    const newAnswers = [...answers]
+    newAnswers[idx] = newAnswer
+    onSaveCB(newAnswers)
   }
 
-  deleteAnswer = (idx) => {
-    console.log(`ShortAnswers::deleteAnswer(${idx})`);
-    console.log("TODO: add code to make it happen!");
+  // delete answer from state::answers
+  deleteAnswer = (idxToDelete) => {
+    console.log(`ShortAnswers::deleteAnswer(${idxToDelete})`);
+    const { answers } = this.state
+
+    // this.setState({ answers: answers.filter((answer, idx) => idx !== idxToDelete) })
+    const newAnswers = answers.filter((answer, idx) => idx !== idxToDelete)
+    console.log("newAnswers: ", newAnswers);
+    this.setState({ answers: newAnswers })
   }
 
-  // // set isDirty and control answer field
-  // onChange = (e) => {
-  //   // console.log("ShortAnswers::onChange(), e: ", e.target.value);
-  //   this.setState({
-  //     isDirty: true,
-  //     answers: [e.target.value],
-  //   })
-  // }
-  //
-  // // set isDirty and control answer field
-  // onBlur = (e) => {
-  //   console.log("ShortAnswers::onBlur(), e: ", e.target.value);
-  //   // this.setState({
-  //   //   isDirty: true,
-  //   //   answers: [e.target.value],
-  //   // })
-  // }
-  //
-  // // Send newAnswers array back to Container to persist
-  // //   and update Save button to indicate control is no longer dirty
-  // onSubmit = (e) => {
-  //   console.log(`ShortAnswers::onclickSave(): ${this.state.answers}`);
-  //   console.log("ShortAnswers::state: ", this.state);
-  //   e.preventDefault()
-  //   // const value = e.target.answer.value.trim()
-  //   // console.log("value: ", value)
-  //   this.setState({ isDirty: false })
-  //   this.props.onSaveCB(this.props.question.code, this.state.answers)
-  // }
+  // add an empty answer to state::answers
+  onclickAdd = () => {
+    console.log(`ShortAnswers::onclickAdd()`);
+    const { answers } = this.state
+
+    const newAnswers = answers.concat('')
+    console.log("newAnswers: ", newAnswers);
+    this.setState({ answers: newAnswers })
+    // this.setState({ answers: answers.concat('empty') })
+  }
+
+  // have parent persist the answers
+  onclickSave = () => {
+    console.log(`ShortAnswers::onclickSave()`);
+    const { answers } = this.stat
+    const { onSaveCB } = this.props
+
+    onSaveCB(answers)
+  }
 
   // render!
   render() {
     console.log("ShortAnswers::render()")
 
-    // initialize
-    // const { question, onSaveCB } = this.props
-    // const { isDirty, answers } = this.state
-    // const answer = answers[0] || ''
-
-    const { question } = this.props
+    const { question, doesHandlePersistence } = this.props
     const { answers } = this.state
 
     return (
       <>
         <h3>{question.text}</h3>
-        {answers.map((answer, idx) =>
+        {answers.map((answer, idx) => 
           <ShortAnswer key={idx} id={idx} previousAnswer={answer} saveAnswerCB={this.saveAnswer} deleteAnswerCB={this.deleteAnswer}></ShortAnswer>
         )}
-        <Button>Add answer</Button>
+        <Button type="button" onClick={this.onclickAdd}>Add answer</Button>
+        {doesHandlePersistence.value && (
+          <Button type="button" onClick={this.onclickSave}>Save</Button>
+        )}
       </>
     )
   }
 }
-
-// export default ShortAnswers  // only neccessary for functional version

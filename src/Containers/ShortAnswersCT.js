@@ -49,17 +49,62 @@ const mapDispatchToProps = (dispatch, passedProps) => ({
      question_code -- integer
      newAnswers -- array of strings
   ******************************************** */
-  onSaveCB: (question_code, newAnswers) => {
-    console.log(`ShortAnswersCT::onSave(${question_code}, ${newAnswers})`);
+  onSaveCB: (newAnswers) => {
+    console.log(`ShortAnswersCT::onSave(${newAnswers})`);
+
+    const { question } = passedProps
+
+    const filteredAnswers = newAnswers.filter((newAnswer) => {
+      return newAnswer.trim().length
+    })
 
     // save to store
-    dispatch(updateAnswersAC(question_code, newAnswers))
+    dispatch(updateAnswersAC(question.code, filteredAnswers))
 
     // optionally persist
     const { doesHandlePersistence } = passedProps
     if (doesHandlePersistence.value)
-      dispatch(persistAnswersAC(-1, question_code, newAnswers))
+      dispatch(persistAnswersAC(-1, question.code, filteredAnswers))
+
+    // // save to store
+    // dispatch(updateAnswersAC(question_code, newAnswers))
+    //
+    // // optionally persist
+    // const { doesHandlePersistence } = passedProps
+    // if (doesHandlePersistence.value)
+    //   dispatch(persistAnswersAC(-1, question_code, newAnswers))
   }
+  // /* *****************************************
+  //    onSaveCB()
+  //
+  //    Save the new answers to store and persist them.
+  //
+  //    question_code -- integer
+  //    newAnswers -- array of strings
+  // ******************************************** */
+  // onSaveCB: (question_code, newAnswers) => {
+  //   console.log(`ShortAnswersCT::onSave(${question_code}, ${newAnswers})`);
+  //
+  //   const filteredAnswers = newAnswers.filter((newAnswer) => {
+  //     return newAnswer.trim().length
+  //   })
+  //
+  //   // save to store
+  //   dispatch(updateAnswersAC(question_code, filteredAnswers))
+  //
+  //   // optionally persist
+  //   const { doesHandlePersistence } = passedProps
+  //   if (doesHandlePersistence.value)
+  //     dispatch(persistAnswersAC(-1, question_code, filteredAnswers))
+  //
+  //   // // save to store
+  //   // dispatch(updateAnswersAC(question_code, newAnswers))
+  //   //
+  //   // // optionally persist
+  //   // const { doesHandlePersistence } = passedProps
+  //   // if (doesHandlePersistence.value)
+  //   //   dispatch(persistAnswersAC(-1, question_code, newAnswers))
+  // }
 })
 
 export default connect(

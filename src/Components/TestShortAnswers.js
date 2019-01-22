@@ -41,7 +41,7 @@ class TestShortAnswers extends React.Component {
           <>
             <ShortAnswersCT
               question = {{ code: 40, text: "ShortAnswers 40 question" }}
-              doesHandlePersistence = {{ value: true }}
+              doesHandlePersistence = {{ value: false }}
             />
             <hr/>
             <ShortAnswersCT
