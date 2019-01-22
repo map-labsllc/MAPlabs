@@ -17,7 +17,6 @@ const STRENGTHS_FN = 'strengths'
 
    Async function to
 
-   dispatch
    jsonFileName
 ******************************************************** */
 function loadstaticJSON(section) {
