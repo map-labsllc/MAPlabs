@@ -16,7 +16,7 @@ import {
 
     strengths: [ 'strength1', 'strength2', ],
 
-    lifedescs:   // sort-order set when loaded from db
+    lifedescrs:   // sort-order set when loaded from db
       [
         { descr: 'My life # feel full of meaning',
           a: 'does',
