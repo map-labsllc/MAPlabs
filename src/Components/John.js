@@ -57,9 +57,10 @@ class TestShortAnswers extends React.Component {
                 <p>{((isLoading) ? "loading...." : "")}</p>
                 {!isLoading && (
                     <>
-
                         <ModalShortAnswer handleShow={this.handleShow}
-                            handleClose={this.handleClose} />
+                            handleClose={this.handleClose}
+                            show={this.state.show}
+                        />
 
 
                         <hr />
