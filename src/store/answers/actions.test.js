@@ -19,7 +19,8 @@ import {
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
 const ANSWERS = ['ANSWERS']
-const userId = 1
+const USERID = 1
+const URL = `${process.env.REACT_APP_DB_URL}/answers/${USERID}`
 
 describe('async actions', () => {
   afterEach(() => {
@@ -28,29 +29,27 @@ describe('async actions', () => {
 
   describe('loadAllAnswersAC', () => {
     it('creates ANSWERS_LOAD when fetching answers was successful', async () => {
-        fetchMock.get(`${process.env.REACT_APP_DB_URL}/answers/${userId}`, ANSWERS)
+        fetchMock.get(URL, ANSWERS)
         const expectedActions = [
             { type: ANSWERS_LOADING },
             { type: ANSWERS_LOAD, payload: ANSWERS }
         ]
         const store = mockStore({ questions: {} })
 
-        await store.dispatch(loadAllAnswersAC(userId))
+        await store.dispatch(loadAllAnswersAC(USERID))
 
         expect(store.getActions()).toEqual(expectedActions)
     }),
     it('creates ANSWERS_ERROR_DB when fetching answers was not successful', async () => {
         const error = new Error('Fetch failed')
-        fetchMock.get(`${process.env.REACT_APP_DB_URL}/answers/${userId}`, {
-            throws: error
-        })
+        fetchMock.get(URL, { throws: error })
         const expectedActions = [
             { type: ANSWERS_LOADING },
             { type: ANSWERS_ERROR_DB, payload: error }
         ]
         const store = mockStore({ questions: {} })
 
-        await store.dispatch(loadAllAnswersAC(userId))
+        await store.dispatch(loadAllAnswersAC(USERID))
 
         expect(store.getActions()).toEqual(expectedActions)
     })
