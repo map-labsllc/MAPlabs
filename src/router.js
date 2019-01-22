@@ -5,6 +5,7 @@ import SignUp from './Components/SignUp'
 import SplashPage from './Components/SplashPage'
 import NavBar from './Components/NavBar'
 import Action from './store/actions'
+import QuestionsList from './Components/questionsList'
 import lifeDescriptorQuestion from './Components/lifeDescriptor'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -17,7 +18,7 @@ class RouterComponent extends React.Component {
       <Router style={{ paddingTop: 10 }}>
 
         <Switch>
-          <Route path='/' component={SplashPage} initial />
+          <Route path='/' component={QuestionsList} initial />
           <Route path='/login' component={Login} title='please login' />
           <Route path='/signUp' component={SignUp} title='please signUp' />
 
