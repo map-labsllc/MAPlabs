@@ -19,8 +19,8 @@ import {
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
 const ANSWERS = ['ANSWERS']
-const USERID = 1
-const URL = `${process.env.REACT_APP_DB_URL}/answers/${USERID}`
+const ID = 1
+const URL = `${process.env.REACT_APP_DB_URL}/answers/${ID}`
 
 describe('async actions', () => {
   afterEach(() => {
@@ -34,9 +34,9 @@ describe('async actions', () => {
             { type: ANSWERS_LOADING },
             { type: ANSWERS_LOAD, payload: ANSWERS }
         ]
-        const store = mockStore({ questions: {} })
+        const store = mockStore()
 
-        await store.dispatch(loadAllAnswersAC(USERID))
+        await store.dispatch(loadAllAnswersAC(ID))
 
         expect(store.getActions()).toEqual(expectedActions)
     }),
@@ -47,9 +47,34 @@ describe('async actions', () => {
             { type: ANSWERS_LOADING },
             { type: ANSWERS_ERROR_DB, payload: error }
         ]
-        const store = mockStore({ questions: {} })
+        const store = mockStore()
 
-        await store.dispatch(loadAllAnswersAC(USERID))
+        await store.dispatch(loadAllAnswersAC(ID))
+
+        expect(store.getActions()).toEqual(expectedActions)
+    })
+  }),
+  describe('persistAnswersAC', () => {
+    it('creates ANSWERS_NO_OP when posting answers was successful', async () => {
+        fetchMock.post(`${URL}/${ID}`, ANSWERS)
+        const expectedActions = [
+            { type: ANSWERS_NO_OP }
+        ]
+        const store = mockStore()
+
+        await store.dispatch(persistAnswersAC(ID, ID, ANSWERS))
+
+        expect(store.getActions()).toEqual(expectedActions)
+    }),
+    it('creates ANSWERS_ERROR_DB when fetching answers was not successful', async () => {
+        const error = new Error('Fetch failed')
+        fetchMock.post(`${URL}/${ID}`, { throws: error })
+        const expectedActions = [
+            { type: ANSWERS_ERROR_DB, payload: error }
+        ]
+        const store = mockStore()
+
+        await store.dispatch(persistAnswersAC(ID, ID, ANSWERS))
 
         expect(store.getActions()).toEqual(expectedActions)
     })
