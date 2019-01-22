@@ -13,9 +13,9 @@ import TestShortAnswers from './Components/TestShortAnswers'
 class RouterComponent extends React.Component {
   render() {
     return(
-      <TestNarratives />
+      <TestShortAnswers />
     )
-    // <TestShortAnswers />
+    // <TestNarratives />
   }
 }
 

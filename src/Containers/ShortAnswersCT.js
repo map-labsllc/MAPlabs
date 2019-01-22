@@ -42,15 +42,15 @@ const mapStateToProps = (state, passedProps) => {
 const mapDispatchToProps = (dispatch, passedProps) => ({
 
   /* *****************************************
-     onSaveCB()
+     onPersistCB()
 
      Save the new answers to store and persist them.
 
      question_code -- integer
      newAnswers -- array of strings
   ******************************************** */
-  onSaveCB: (newAnswers) => {
-    console.log(`ShortAnswersCT::onSave(${newAnswers})`);
+  onPersistCB: (newAnswers) => {
+    console.log(`ShortAnswersCT::onPersistCB(${newAnswers})`);
 
     const { question } = passedProps
 
@@ -63,48 +63,32 @@ const mapDispatchToProps = (dispatch, passedProps) => ({
 
     // optionally persist
     const { doesHandlePersistence } = passedProps
-    if (doesHandlePersistence.value)
+    if (doesHandlePersistence.value) {
+      console.log('persisting...');
       dispatch(persistAnswersAC(-1, question.code, filteredAnswers))
+    }
+  },
 
-    // // save to store
-    // dispatch(updateAnswersAC(question_code, newAnswers))
-    //
-    // // optionally persist
-    // const { doesHandlePersistence } = passedProps
-    // if (doesHandlePersistence.value)
-    //   dispatch(persistAnswersAC(-1, question_code, newAnswers))
+  /* *****************************************
+     onUpdateStoreCB()
+
+     Save the new answers to store.  Does NOT persist.
+
+     question_code -- integer
+     newAnswers -- array of strings
+  ******************************************** */
+  onUpdateStoreCB: (newAnswers) => {
+    console.log(`ShortAnswersCT::onUpdateCB(${newAnswers})`);
+
+    const { question } = passedProps
+
+    const filteredAnswers = newAnswers.filter((newAnswer) => {
+      return newAnswer.trim().length
+    })
+
+    // save to store
+    dispatch(updateAnswersAC(question.code, filteredAnswers))
   }
-  // /* *****************************************
-  //    onSaveCB()
-  //
-  //    Save the new answers to store and persist them.
-  //
-  //    question_code -- integer
-  //    newAnswers -- array of strings
-  // ******************************************** */
-  // onSaveCB: (question_code, newAnswers) => {
-  //   console.log(`ShortAnswersCT::onSave(${question_code}, ${newAnswers})`);
-  //
-  //   const filteredAnswers = newAnswers.filter((newAnswer) => {
-  //     return newAnswer.trim().length
-  //   })
-  //
-  //   // save to store
-  //   dispatch(updateAnswersAC(question_code, filteredAnswers))
-  //
-  //   // optionally persist
-  //   const { doesHandlePersistence } = passedProps
-  //   if (doesHandlePersistence.value)
-  //     dispatch(persistAnswersAC(-1, question_code, filteredAnswers))
-  //
-  //   // // save to store
-  //   // dispatch(updateAnswersAC(question_code, newAnswers))
-  //   //
-  //   // // optionally persist
-  //   // const { doesHandlePersistence } = passedProps
-  //   // if (doesHandlePersistence.value)
-  //   //   dispatch(persistAnswersAC(-1, question_code, newAnswers))
-  // }
 })
 
 export default connect(

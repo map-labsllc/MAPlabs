@@ -13,8 +13,7 @@ import ShortAnswer from './ShortAnswer'
 
    Displays a single question with:
      -- Add button to add a new space for a short answer
-     -- Input field for each short answer
-     -- Trashcan next to each Input field
+     -- <ShortAnswer> for each answer
      -- Save button
 
    state:
@@ -24,7 +23,8 @@ import ShortAnswer from './ShortAnswer'
    props:
      question -- { code: 50, text: "Question 50" }
      previousAnswers -- [] or array of strings of previous answers
-     onSaveCB(newAnswers) -- callback for when user clicks Save
+     onUpdateStoreCB(newAnswers) -- callback to update the store
+     onPersistCB(newAnswers) -- callback for when user clicks Save, updates store and persists
      doesHandlePesistence -- { value: true }
 ***************************************************** */
 export default class ShortAnswers extends React.Component {
@@ -34,16 +34,17 @@ export default class ShortAnswers extends React.Component {
     answers: this.props.previousAnswers,
   }
 
-  // tell parent to save the array of answers
+  // tell parent to save the array of answers to store
   saveAnswer = (idx, newAnswer) => {
     console.log(`ShortAnswers::saveAnswer(${idx}, ${newAnswer})`);
 
-    const { onSaveCB } = this.props
+    const { onUpdateStoreCB } = this.props
     const { answers } = this.state
 
     const newAnswers = [...answers]
     newAnswers[idx] = newAnswer
-    onSaveCB(newAnswers)
+    onUpdateStoreCB(newAnswers)
+    this.setState({answers: newAnswers})
   }
 
   // delete answer from state::answers
@@ -65,16 +66,15 @@ export default class ShortAnswers extends React.Component {
     const newAnswers = answers.concat('')
     console.log("newAnswers: ", newAnswers);
     this.setState({ answers: newAnswers })
-    // this.setState({ answers: answers.concat('empty') })
   }
 
-  // have parent persist the answers
+  // tell parent to persist the answers
   onclickSave = () => {
     console.log(`ShortAnswers::onclickSave()`);
-    const { answers } = this.stat
-    const { onSaveCB } = this.props
+    const { answers } = this.state
+    const { onPersistCB } = this.props
 
-    onSaveCB(answers)
+    onPersistCB(answers)
   }
 
   // render!
@@ -87,7 +87,7 @@ export default class ShortAnswers extends React.Component {
     return (
       <>
         <h3>{question.text}</h3>
-        {answers.map((answer, idx) => 
+        {answers.map((answer, idx) =>
           <ShortAnswer key={idx} id={idx} previousAnswer={answer} saveAnswerCB={this.saveAnswer} deleteAnswerCB={this.deleteAnswer}></ShortAnswer>
         )}
         <Button type="button" onClick={this.onclickAdd}>Add answer</Button>
