@@ -8,7 +8,6 @@ import {
 
 const URL = "http://localhost:3001"
 // const URL = process.env.REACT_APP_DB_URL
-const USER_ID = 1
 
 /* *****************************************************
    updateAnswersAC()
@@ -37,8 +36,6 @@ export const updateAnswersAC = (question_code, answers) => {
 ******************************************************** */
 export const loadAllAnswersAC = (userId) => {
   console.log("loadAllAnswersAC()")
-
-  userId = USER_ID
 
   return dispatch => {
     dispatch({ type: ANSWERS_LOADING })

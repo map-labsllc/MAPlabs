@@ -7,7 +7,6 @@ import {
 } from './constants'
 
 const URL = "http://localhost:3001"
-const USER_ID = 1
 
 /* *****************************************************
    updateTransitionsAC()
@@ -36,8 +35,6 @@ export const updateTransitionsAC = (question_code, transitions) => {
 ******************************************************** */
 export const loadAllTransitionsAC = (userId) => {
   console.log("loadAllTransitionsAC()")
-
-  userId = USER_ID
 
   return dispatch => {
     dispatch({ type: TRANSITIONS_LOADING })
