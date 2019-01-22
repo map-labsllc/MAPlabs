@@ -39,11 +39,20 @@ class TestShortAnswers extends React.Component {
         <p>{((isLoading) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
-            <ShortAnswersCT question = {{ code: 40, text: "ShortAnswers 40 question" }} />
+            <ShortAnswersCT
+              question = {{ code: 40, text: "ShortAnswers 40 question" }}
+              doesHandlePersistence = {{ value: false }}
+            />
             <hr/>
-            <ShortAnswersCT question = {{ code: 41, text: "ShortAnswers 41 question" }} />
+            <ShortAnswersCT
+              question = {{ code: 41, text: "ShortAnswers 41 question" }}
+              doesHandlePersistence = {{ value: true }}
+            />
             <hr/>
-            <ShortAnswersCT question = {{ code: 42, text: "ShortAnswers 42 question" }} />
+            <ShortAnswersCT
+              question = {{ code: 42, text: "ShortAnswers 42 question" }}
+              doesHandlePersistence = {{ value: true }}
+            />
           </>
         )}
       </>
