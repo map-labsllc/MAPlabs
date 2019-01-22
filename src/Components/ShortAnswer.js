@@ -17,7 +17,7 @@ import {
      -- Delete button
 
    props:
-     id -- integer id for the question (currently the idx into the array of answers in parent)
+     id -- integer id for the question (poorman's UUID)
      previousAnswer -- string of previous answer
      saveAnswerCB(newAnswer) -- callback for when user moves off on the field
      deleteAnswerCB -- callback when user clicks the Delete button
@@ -66,6 +66,7 @@ export default class ShortAnswer extends React.Component {
 
     // initialize
     let { answer, isDirty } = this.state
+    const { id } = this.props
 
     return (
       <Form inline onSubmit={this.onSubmit}>
@@ -79,7 +80,7 @@ export default class ShortAnswer extends React.Component {
             value = {answer}
             placeholder = "Please enter an answer"
           />
-          {` `}{(isDirty ? 'dirty' : '')}
+          {` `}{id}{` `}{(isDirty ? 'dirty' : '')}
         </FormGroup>
       </Form>
     )

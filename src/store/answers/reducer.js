@@ -3,6 +3,7 @@ import {
   ANSWERS_LOAD,
   ANSWERS_UPDATE,
   ANSWERS_ERROR_DB,
+  ANSWERS_PERSIST,
   ANSWERS_NO_OP,
  } from './constants';
 
@@ -86,9 +87,9 @@ export const getAnswers = (state, question_code) =>
         errorMessage: payload || "no error message provided",
       }
 
-      // no operation, AC didn't change stat
-      case ANSWERS_NO_OP:
-        console.log("answersRD::NO_OP")
+      // answers for a question were persisted
+      case ANSWERS_PERSIST:
+        console.log("answersRD::PERSIST")
         return state
 
     default:
