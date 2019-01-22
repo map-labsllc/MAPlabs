@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import Narrative from '../Components/Narrative'
+import { getUser } from '../store/user/reducer'
 import { getAnswers } from '../store/answers/reducer'
 import {
   updateAnswersAC,
@@ -17,7 +18,10 @@ const mapStateToProps = (state, passedProps) => {
   const { question } = passedProps
   if (!question.code) throw new Error("missing question code: ", passedProps.question_code)
 
-  // find previous answer
+  // get userId
+  const userId = getUser(state.userRD).user_id
+
+  // find previous answer, if any
   //   Note: getAnswers() returns an array but narrative should have at most one answer
   const answers = getAnswers(state.answersRD, question.code)
   console.log(`getAnswers(${question.code}): `, answers);
@@ -25,6 +29,7 @@ const mapStateToProps = (state, passedProps) => {
   const previousAnswer = answers[0] || ''
 
   return {
+    userId,
     question,
     previousAnswer,
   }
@@ -32,21 +37,24 @@ const mapStateToProps = (state, passedProps) => {
 
 /* *****************************************
    mapDispatchToProps()
+
+   passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, passedProps) => ({
 
   /* *****************************************
-     onSaveCB()
+     onPersistCB()
 
      Save the new answer to store and persist it.
 
-     question_code -- integer
+     userId -- integer
      newAnswer -- string
   ******************************************** */
-  onSaveCB: (question_code, newAnswer) => {
-    console.log(`NarrativeCT::onSave(${question_code}, ${newAnswer})`);
-    dispatch(updateAnswersAC(question_code, [newAnswer]))
-    dispatch(persistAnswersAC(-1, question_code, [newAnswer]))
+  onPersistCB: (userId, newAnswer) => {
+    const { question } = passedProps
+    console.log(`NarrativeCT::onPersistCB(${question.code}, ${newAnswer})`);
+    dispatch(updateAnswersAC(question.code, [newAnswer]))
+    dispatch(persistAnswersAC(userId, question.code, [newAnswer]))
   }
 })
 

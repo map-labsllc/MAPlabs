@@ -72,8 +72,6 @@ export const persistTransitionsAC = (userId, question_code, transitions) => {
   console.log(`>> persistTransitionsAC(${question_code})`)
   console.log("persisting: ", transitions);
 
-  userId = USER_ID
-
   return dispatch => {
     return fetch(`${URL}/transitions/${userId}/${question_code}`, {
         method: 'POST',

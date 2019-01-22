@@ -21,6 +21,7 @@ import ShortAnswer from './ShortAnswer'
        new blank entries (it allows us to be in control of the focus).
 
    props:
+     userId -- integer
      question -- { code: 50, text: "Question 50" }
      previousAnswers -- [] or array of strings of previous answers
      onUpdateStoreCB(newAnswers) -- callback to update the store
@@ -72,9 +73,9 @@ export default class ShortAnswers extends React.Component {
   onclickSave = () => {
     console.log(`ShortAnswers::onclickSave()`);
     const { answers } = this.state
-    const { onPersistCB } = this.props
+    const { onPersistCB, userId } = this.props
 
-    onPersistCB(answers)
+    onPersistCB(userId, answers)
   }
 
   // render!
@@ -92,7 +93,10 @@ export default class ShortAnswers extends React.Component {
         )}
         <Button type="button" onClick={this.onclickAdd}>Add answer</Button>
         {doesHandlePersistence.value && (
-          <Button type="button" onClick={this.onclickSave}>Save</Button>
+          <>
+            {' '}
+            <Button type="button" onClick={this.onclickSave}>Save</Button>
+          </>
         )}
       </>
     )

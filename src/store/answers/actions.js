@@ -74,8 +74,6 @@ export const persistAnswersAC = (userId, question_code, answers) => {
   console.log(`persistAnswersAC(${question_code})`)
   console.log("persisting: ", answers);
 
-  userId = USER_ID
-
   return dispatch => {
     return fetch(`${URL}/answers/${userId}/${question_code}`, {
         method: 'POST',

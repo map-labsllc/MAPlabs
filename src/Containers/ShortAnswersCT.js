@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import ShortAnswers from '../Components/ShortAnswers'
+import { getUser } from '../store/user/reducer'
 import { getAnswers } from '../store/answers/reducer'
 import {
   updateAnswersAC,
@@ -20,14 +21,19 @@ const mapStateToProps = (state, passedProps) => {
     doesHandlePersistence
   } = passedProps
 
+  // validation
   if (!question.code) throw new Error("missing question code: ", passedProps.question_code)
 
-  // find previous answers
+  // get userId
+  const userId = getUser(state.userRD).user_id
+
+  // get previous answers, if any
   const answers = getAnswers(state.answersRD, question.code)
   console.log(`getAnswers(${question.code}): `, answers);
   const previousAnswers = answers
 
   return {
+    userId,
     question,
     previousAnswers,
     doesHandlePersistence,
@@ -46,10 +52,10 @@ const mapDispatchToProps = (dispatch, passedProps) => ({
 
      Save the new answers to store and persist them.
 
-     question_code -- integer
+     userId -- integer
      newAnswers -- array of strings
   ******************************************** */
-  onPersistCB: (newAnswers) => {
+  onPersistCB: (userId, newAnswers) => {
     console.log(`ShortAnswersCT::onPersistCB(${newAnswers})`);
 
     const { question } = passedProps
@@ -65,7 +71,7 @@ const mapDispatchToProps = (dispatch, passedProps) => ({
     const { doesHandlePersistence } = passedProps
     if (doesHandlePersistence.value) {
       console.log('persisting...');
-      dispatch(persistAnswersAC(-1, question.code, filteredAnswers))
+      dispatch(persistAnswersAC(userId, question.code, filteredAnswers))
     }
   },
 
@@ -74,7 +80,6 @@ const mapDispatchToProps = (dispatch, passedProps) => ({
 
      Save the new answers to store.  Does NOT persist.
 
-     question_code -- integer
      newAnswers -- array of strings
   ******************************************** */
   onUpdateStoreCB: (newAnswers) => {
