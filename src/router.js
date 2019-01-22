@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux'
 
 import TestNarratives from './Components/TestNarratives'
 import TestShortAnswers from './Components/TestShortAnswers'
+
 class RouterComponent extends React.Component {
   render() {
     return(
@@ -24,12 +25,13 @@ class RouterComponent extends React.Component {
 //     return(
 //       <Router style={{paddingTop: 10}}>
 //         <Switch>
-//           <Route path='/' component={Narrative} question="What about..?" answer="What abt what?" />
+//           <Route path='/' component={NavBar} />
 //           <Route path='/LDs' component={lifeDescriptorQuestion} />
 //           <Route path='/login' component={Login} title='please login' initial/>
 //           <Route path='/signUp' component={SignUp} title='please signUp'/>
 //         </Switch>
 //       </Router>
+//       // <Route path='/' component={Narrative} question="What about..?" answer="What abt what?" />
 //     )
 //   }
 // }
