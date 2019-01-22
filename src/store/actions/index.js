@@ -1,10 +1,4 @@
 import firebase from 'firebase'
-// import { EMAIL_CHANGED,
-//  PASSWORD_CHANGED,
-//  LOGIN_USER_SUCCESS,
-//  LOGIN_USER_FAIL,
-//  LOGIN_USER
-//  }from './types'
 
 export const FIRSTNAME_CHANGED = 'firstName_changed'
 export const LASTNAME_CHANGED = 'lastName_changed'
@@ -15,7 +9,7 @@ export const LOGIN_USER_SUCCESS = 'login_user_success'
 export const LOGIN_USER_FAIL = 'login_user_fail'
 export const LOGIN_USER = 'login_user'
 export const SIGNUP = 'signup'
-
+export const LOAD_LIFE_DESCRIPTORS = 'load_life_descriptors'
 
 export const firstNameChanged = (text) => {
   return {
@@ -54,6 +48,7 @@ export const passwordChanged = (text) => {
 
 export const loginUser = ({ email, password }) => {
   return async (dispatch) => {
+    console.log(dispatch)
     dispatch({ type: LOGIN_USER })
 
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -69,6 +64,7 @@ export const loginUser = ({ email, password }) => {
 
 export const signUp = () => {
   return async (dispatch) => {
+    console.log(dispatch,'signup')
     dispatch.signUp()
   }
 }
@@ -85,6 +81,7 @@ export const signUpUser = (firstName, lastName, email, password) => {
           .then(user => loginUserSuccess(dispatch, user))
           firebase.auth().onAuthStateChanged((user) => {
             if (user) {
+              console.log('in here duuuuuude')
               body.token = user.uid
 
 
@@ -93,6 +90,13 @@ export const signUpUser = (firstName, lastName, email, password) => {
           dispatch({type: SIGNUP})
   }
 }
+//
+// export const loadLifeDescriptorsAC = () => {
+//   console.log('action!!!');
+//   dispatch({
+//     type: LOAD_LIFE_DESCRIPTORS
+//   })
+// }
 
 const loginUserFail = (dispatch) => {
   dispatch({
