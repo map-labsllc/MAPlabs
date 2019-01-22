@@ -1,8 +1,7 @@
 import {
   STATICDATA_LOADING,
   STATICDATA_LOAD,
-  STATICDATA_ERROR_DB,
-  STATICDATA_NO_OP,
+  STATICDATA_ERROR_DB
 } from './constants'
 
 const URL = "http://localhost:3001"
@@ -21,7 +20,7 @@ const STRENGTHS_FN = 'strengths'
    dispatch
    jsonFileName
 ******************************************************** */
-function loadstaticJSON(dispatch, section) {
+function loadstaticJSON(section) {
   return fetch(`${URL}/${section}.json`)
     .then(response => response.json())
     .then((jsonData) => {
@@ -30,7 +29,7 @@ function loadstaticJSON(dispatch, section) {
     })
     .catch((error) => {
       console.log("FETCH ERROR", error);
-      return dispatch({ type: STATICDATA_ERROR_DB, payload: error })
+      return Promise.reject(error)
     });
 }
 
