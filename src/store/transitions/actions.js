@@ -3,7 +3,7 @@ import {
   TRANSITIONS_LOAD,
   TRANSITIONS_ERROR_DB,
   TRANSITIONS_UPDATE,
-  TRANSITIONS_NO_OP,
+  TRANSITIONS_PERSIST,
 } from './constants'
 
 const URL = "http://localhost:3001"
@@ -81,7 +81,7 @@ export const persistTransitionsAC = (userId, question_code, transitions) => {
       .then(response => response.json())
       .then((message) => {
         console.log("post response message", message)
-        return dispatch( { type: TRANSITIONS_NO_OP })
+        return dispatch( { type: TRANSITIONS_PERSIST })
       })
       .catch((error) => {
         console.log("POST ERROR", error);

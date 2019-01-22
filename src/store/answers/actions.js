@@ -3,7 +3,7 @@ import {
   ANSWERS_LOAD,
   ANSWERS_ERROR_DB,
   ANSWERS_UPDATE,
-  ANSWERS_NO_OP,
+  ANSWERS_PERSIST,
 } from './constants'
 
 const URL = "http://localhost:3001"
@@ -83,7 +83,7 @@ export const persistAnswersAC = (userId, question_code, answers) => {
       .then(response => response.json())
       .then((message) => {
         console.log("post response message", message)
-        return dispatch( { type: ANSWERS_NO_OP })
+        return dispatch( { type: ANSWERS_PERSIST })
       })
       .catch((error) => {
         console.log("POST ERROR", error);
