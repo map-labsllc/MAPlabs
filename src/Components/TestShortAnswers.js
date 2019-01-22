@@ -5,6 +5,7 @@ import ShortAnswersCT from '../Containers/ShortAnswersCT'
 import { loadAllAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
+import { getUser } from '../store/user/reducer'
 
 import {
   Button,
@@ -22,9 +23,9 @@ class TestShortAnswers extends React.Component {
 
   // load user data
   componentDidMount = () => {
-    const { dispatch } = this.props;
-    dispatch(loadAllAnswersAC());
-    dispatch(loadAllTransitionsAC());
+    const { dispatch, userId } = this.props;
+    dispatch(loadAllAnswersAC(userId));
+    dispatch(loadAllTransitionsAC(userId));
     dispatch(loadAllStaticdataAC());
   }
 
@@ -62,9 +63,9 @@ class TestShortAnswers extends React.Component {
 
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {
-  console.log("--- state: ", state);
   return {
     isLoading: state.answersRD.isLoading || state.transitionsRD.isLoading,
+    userId: getUser(state.userRD).user_id,
   }
 }
 

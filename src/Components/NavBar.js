@@ -5,17 +5,18 @@ import { connect } from 'react-redux';
 import { loadAllAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
+import { getUser } from '../store/user/reducer'
 
 // export default class NavBar extends React.Component {
 class NavBar extends React.Component {
 
   componentDidMount() {
     console.log("NavBar::componentDidMount()");
-    const { dispatch } = this.props;
+    const { dispatch, userId } = this.props;
 
     // asynch calls to load user and static from db
-    dispatch(loadAllAnswersAC());
-    dispatch(loadAllTransitionsAC());
+    dispatch(loadAllAnswersAC(userId));
+    dispatch(loadAllTransitionsAC(userId));
     dispatch(loadAllStaticdataAC());
   }
 
@@ -63,7 +64,9 @@ const styles = {
    Wrap NavBar in container to get access to dispatch
 *********************************************************** */
 const mapStateToProps = state => {
-  return { }
+  return {
+    userId: getUser(state.userRD).user_id,
+  }
 }
 const mapDispatchToProps = dispatch => ({
   dispatch,
