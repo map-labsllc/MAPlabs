@@ -1,19 +1,19 @@
 import React from 'react'
-import { ListGroupItem, ButtonGroup, Button } from 'react-bootstrap'
+import { ListGroupItem, ButtonGroup, Button, } from 'react-bootstrap'
 
  const lifeDescriptorQuestion = ({data}) => {
-
-
-
-   const handleClick = (event) => {
-    if(event.variant === '') event.ref.variant = 'success'
-    return false
-  }
+console.log('ASDFGHJKLQWERTYUIOP', data)
+  //
+  // let  variant = ''
+  //  const handleClick = () => {
+  //   if(variant === '') variant = 'success'
+  //   else{variant = ''}
+  // }
   const renderButton = (children) => {
     return (
       <ButtonGroup>
-        <Button variant='' onClick={handleClick()}>{children.a}</Button>
-        <Button variant = ''>{children.b}</Button>
+        <Button variant="outline-success" >{children.a}</Button>
+        <Button >{children.b}</Button>
       </ButtonGroup>
     )
   }

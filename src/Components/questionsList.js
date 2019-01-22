@@ -10,20 +10,34 @@ import { loadAllStaticdataAC } from '../store/staticdata/actions'
 
 
  class QuestionsList extends Component {
+  //  this.splittingArray = this.splittingArray.bind(this)
    async  componentDidMount(){
     const { dispatch, userId } = this.props;
        await dispatch(loadAllAnswersAC(userId));
        await dispatch(loadAllTransitionsAC(userId));
        await dispatch(loadAllStaticdataAC())
   }
+  splittingArray(arr) {
+    var size = 10;
+    var arrayOfArrays = [];
+    for (var i=0; i<arr.length; i+=size) {
+        arrayOfArrays.push(arr.slice(i,i+size));
+    }
+    console.log('qwertyuihgfdcsfghj::::',arrayOfArrays)
+    return arrayOfArrays
+  }
 
   render(){
     const { lifeDescriptors,isLoading } = this.props
     console.log('LERROOYYYYYYYYY JENKINNNSSSSSS',lifeDescriptors);
-    let list =   lifeDescriptors.map((element) => (
+    let pages = this.splittingArray(lifeDescriptors)
 
-       <LifeDescriptor data= { element }/>
+    let list =   pages.map((element) => (
+      element.map(ele =>(
+        <LifeDescriptor data= { ele }/>
+
       ))
+    ))
     return(
       <>
         <p>{((isLoading) ? "loading...." : ""  )}</p>
