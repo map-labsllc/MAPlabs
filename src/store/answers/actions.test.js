@@ -28,17 +28,31 @@ describe('async actions', () => {
 
   describe('loadAllAnswersAC', () => {
     it('creates ANSWERS_LOAD when fetching answers was successful', async () => {
+        fetchMock.get(`${process.env.REACT_APP_DB_URL}/answers/${userId}`, ANSWERS)
         const expectedActions = [
-          { type: ANSWERS_LOADING },
-          { type: ANSWERS_LOAD, payload: ANSWERS }
+            { type: ANSWERS_LOADING },
+            { type: ANSWERS_LOAD, payload: ANSWERS }
         ]
         const store = mockStore({ questions: {} })
-    
-        fetchMock.get(`${process.env.REACT_APP_DB_URL}/answers/${userId}`, ANSWERS)
-    
+
         await store.dispatch(loadAllAnswersAC(userId))
-    
+
         expect(store.getActions()).toEqual(expectedActions)
-      })
+    }),
+    it('creates ANSWERS_ERROR_DB when fetching answers was not successful', async () => {
+        const error = new Error('Fetch failed')
+        fetchMock.get(`${process.env.REACT_APP_DB_URL}/answers/${userId}`, {
+            throws: error
+        })
+        const expectedActions = [
+            { type: ANSWERS_LOADING },
+            { type: ANSWERS_ERROR_DB, payload: error }
+        ]
+        const store = mockStore({ questions: {} })
+
+        await store.dispatch(loadAllAnswersAC(userId))
+
+        expect(store.getActions()).toEqual(expectedActions)
+    })
   })
 })
