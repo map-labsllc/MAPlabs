@@ -1,5 +1,5 @@
 {
-   "extends": "eslint:recommended",
+   "extends": "react-app",
    "rules": {
      "semi": ["error","never"],
      "space-in-parens": ["error", "always"],
