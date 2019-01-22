@@ -21,7 +21,7 @@ const STRENGTHS_FN = 'strengths'
    dispatch
    jsonFileName
 ******************************************************** */
-function loadstaticJSON(dispatch, section) {
+export function loadstaticJSON(dispatch, section) {
   return fetch(`${URL}/${section}.json`)
     .then(response => response.json())
     .then((jsonData) => {
