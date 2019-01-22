@@ -1,22 +1,26 @@
 import React from 'react'
-import { Route,BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Login from './Components/login'
 import SignUp from './Components/SignUp'
+import SplashPage from './Components/SplashPage'
 import NavBar from './Components/NavBar'
 import Action from './store/actions'
 import lifeDescriptorQuestion from './Components/lifeDescriptor'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-
 import TestNarratives from './Components/TestNarratives'
 import TestShortAnswers from './Components/TestShortAnswers'
 
+import John from './Components/John'
+
 class RouterComponent extends React.Component {
   render() {
-    return(
-      <TestShortAnswers />
+    return (
+      <John />
+      // <TestNarratives />
+      // <TestShortAnswers />
     )
-    // <TestNarratives />
+
   }
 }
 
