@@ -10,7 +10,7 @@ import {
     isLoading: true,
     isError: false,
     errorMessage: '',
-    currUser: {
+    user: {
       user_id: 1,
       fname: "Sandy",
       lname: "Harrison",
@@ -19,6 +19,7 @@ import {
       login_token: "DFDS34543GD",
       mod_complete: 0,
       sec_complete: 0,
+      created_at: 2019-01-15 04:00:00-07
      },
   }
 */
