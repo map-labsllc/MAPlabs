@@ -10,23 +10,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import TestNarratives from './Components/TestNarratives'
 import TestShortAnswers from './Components/TestShortAnswers'
+import John from './Components/John'
 class RouterComponent extends React.Component {
   render() {
     return (
-
-      <Router style={{ paddingTop: 10 }}>
-
-        <Switch>
-          <Route path='/' component={SplashPage} initial />
-          <Route path='/login' component={Login} title='please login' />
-          <Route path='/signUp' component={SignUp} title='please signUp' />
-
-        </Switch>
-
-      </Router>
-
+      <John />
+      // <TestNarratives />
+      // <TestShortAnswers />
     )
-    // <TestNarratives />
+
   }
 }
 
