@@ -45,24 +45,27 @@ const mapStateToProps = (state, passedProps) => {
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = (dispatch, passedProps) => ({
+const mapDispatchToProps = (dispatch, passedProps) => {
+
+  // helper function
+  function filterOutBlanks(answers) {
+    return answers.filter(answer => answer.trim().length)
+  }
 
   /* *****************************************
-     onPersistCB()
+     onPersist()
 
      Save the new answers to store and persist them.
 
      userId -- integer
      newAnswers -- array of strings
   ******************************************** */
-  onPersistCB: (userId, newAnswers) => {
-    console.log(`ShortAnswersCT::onPersistCB(${newAnswers})`);
+  function onPersist(userId, newAnswers) {
+    console.log(`ShortAnswersCT::onPersist(${newAnswers})`);
 
     const { question } = passedProps
 
-    const filteredAnswers = newAnswers.filter((newAnswer) => {
-      return newAnswer.trim().length
-    })
+    const filteredAnswers = filterOutBlanks(newAnswers)
 
     // save to store
     dispatch(updateAnswersAC(question.code, filteredAnswers))
@@ -70,31 +73,90 @@ const mapDispatchToProps = (dispatch, passedProps) => ({
     // optionally persist
     const { doesHandlePersistence } = passedProps
     if (doesHandlePersistence.value) {
-      console.log('persisting...');
       dispatch(persistAnswersAC(userId, question.code, filteredAnswers))
     }
-  },
+  }
 
   /* *****************************************
-     onUpdateStoreCB()
+     onUpdateStore()
 
      Save the new answers to store.  Does NOT persist.
 
      newAnswers -- array of strings
   ******************************************** */
-  onUpdateStoreCB: (newAnswers) => {
-    console.log(`ShortAnswersCT::onUpdateCB(${newAnswers})`);
+  function onUpdateStore(newAnswers) {
+    console.log(`ShortAnswersCT::onUpdate(${newAnswers})`);
 
     const { question } = passedProps
 
-    const filteredAnswers = newAnswers.filter((newAnswer) => {
-      return newAnswer.trim().length
-    })
-
     // save to store
-    dispatch(updateAnswersAC(question.code, filteredAnswers))
+    dispatch(updateAnswersAC(question.code, filterOutBlanks(newAnswers)))
   }
-})
+
+  /* *****************************************
+     The props being passed down
+  ******************************************** */
+  return {
+    onPersistCB: onPersist,
+    onUpdateStoreCB: onUpdateStore,
+  }
+
+}
+// /* *****************************************
+//    mapDispatchToProps()
+//
+//    passedProps -- see mapStateToProps above
+// ******************************************** */
+// const mapDispatchToProps = (dispatch, passedProps) => ({
+//
+//   /* *****************************************
+//      onPersistCB()
+//
+//      Save the new answers to store and persist them.
+//
+//      userId -- integer
+//      newAnswers -- array of strings
+//   ******************************************** */
+//   onPersistCB: (userId, newAnswers) => {
+//     console.log(`ShortAnswersCT::onPersistCB(${newAnswers})`);
+//
+//     const { question } = passedProps
+//
+//     const filteredAnswers = newAnswers.filter((newAnswer) => {
+//       return newAnswer.trim().length
+//     })
+//
+//     // save to store
+//     dispatch(updateAnswersAC(question.code, filteredAnswers))
+//
+//     // optionally persist
+//     const { doesHandlePersistence } = passedProps
+//     if (doesHandlePersistence.value) {
+//       console.log('persisting...');
+//       dispatch(persistAnswersAC(userId, question.code, filteredAnswers))
+//     }
+//   },
+//
+//   /* *****************************************
+//      onUpdateStoreCB()
+//
+//      Save the new answers to store.  Does NOT persist.
+//
+//      newAnswers -- array of strings
+//   ******************************************** */
+//   onUpdateStoreCB: (newAnswers) => {
+//     console.log(`ShortAnswersCT::onUpdateCB(${newAnswers})`);
+//
+//     const { question } = passedProps
+//
+//     const filteredAnswers = newAnswers.filter((newAnswer) => {
+//       return newAnswer.trim().length
+//     })
+//
+//     // save to store
+//     dispatch(updateAnswersAC(question.code, filteredAnswers))
+//   }
+// })
 
 export default connect(
   mapStateToProps,

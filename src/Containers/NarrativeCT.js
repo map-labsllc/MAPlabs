@@ -40,23 +40,27 @@ const mapStateToProps = (state, passedProps) => {
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = (dispatch, passedProps) => ({
+const mapDispatchToProps = (dispatch, passedProps) => {
 
   /* *****************************************
-     onPersistCB()
+  onPersistCB()
 
-     Save the new answer to store and persist it.
+  Save the new answer to store and persist it.
 
-     userId -- integer
-     newAnswer -- string
+  userId -- integer
+  newAnswer -- string
   ******************************************** */
-  onPersistCB: (userId, newAnswer) => {
+  function onPersist(userId, newAnswer) {
     const { question } = passedProps
-    console.log(`NarrativeCT::onPersistCB(${question.code}, ${newAnswer})`);
+    console.log(`NarrativeCT::onPersist(${question.code}, ${newAnswer})`);
     dispatch(updateAnswersAC(question.code, [newAnswer]))
     dispatch(persistAnswersAC(userId, question.code, [newAnswer]))
   }
-})
+
+  return {
+    onPersistCB: onPersist,
+  }
+}
 
 export default connect(
   mapStateToProps,
