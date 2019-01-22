@@ -11,20 +11,20 @@ import {
 import { loadAllStaticdataAC } from './actions'
 
 const middlewares = [ thunk ]
-const mockStore = configureMockStore(middlewares)
+const mockStore = configureMockStore( middlewares )
 const URL = `end:.json`
 const DATA = { section: 'TEST', jsonData: ['TEST']}
 const BELIEFS_FN = 'beliefs'
 const LIFEDESCRS_FN = 'lifedescrs'
 const STRENGTHS_FN = 'strengths'
 
-describe('async actions', () => {
-  afterEach(() => {
+describe( 'async actions', () => {
+  afterEach( () => {
     fetchMock.restore()
-  })
-  describe('loadAllStaticdataAC', () => {
-    it('creates STATICDATA_LOAD when fetching was successful', async () => {
-        fetchMock.get(URL, DATA.jsonData)
+  } )
+  describe( 'loadAllStaticdataAC', () => {
+    it( 'creates STATICDATA_LOAD when fetching was successful', async () => {
+        fetchMock.get( URL, DATA.jsonData )
         const expectedActions = [
             { type: STATICDATA_LOADING },
             { type: STATICDATA_LOAD, payload: {
@@ -35,9 +35,9 @@ describe('async actions', () => {
         ]
         const store = mockStore()
 
-        await store.dispatch(loadAllStaticdataAC())
+        await store.dispatch( loadAllStaticdataAC() )
 
-        expect(store.getActions()).toEqual(expectedActions)
+        expect( store.getActions() ).toEqual( expectedActions )
     }),
     it('creates STATICDATA_ERROR_DB when fetching was not successful', async () => {
         const error = new Error('Fetch failed')
