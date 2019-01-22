@@ -6,13 +6,11 @@ import {
     ANSWERS_LOADING,
     ANSWERS_LOAD,
     ANSWERS_ERROR_DB,
-    ANSWERS_UPDATE,
-    ANSWERS_NO_OP,
+    ANSWERS_NO_OP
 } from './constants'
 
 import { 
     loadAllAnswersAC, 
-    updatedAnswersAC, 
     persistAnswersAC
 } from './actions'
 
