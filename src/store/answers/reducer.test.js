@@ -1,4 +1,3 @@
-import { answersRD } from './reducer'
 import {
     ANSWERS_LOADING,
     ANSWERS_LOAD,
@@ -7,6 +6,8 @@ import {
     ANSWERS_NO_OP,
   } from './constants'
 
+import { answersRD } from './reducer'
+  
 const PAYLOAD = { question_code: 'code', answers: 'answers'}
 
 describe('answers reducer', () => {
