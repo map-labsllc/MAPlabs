@@ -21,7 +21,7 @@ const STRENGTHS_FN = 'strengths'
    dispatch
    jsonFileName
 ******************************************************** */
-export function loadstaticJSON(dispatch, section) {
+function loadstaticJSON(section) {
   return fetch(`${URL}/${section}.json`)
     .then(response => response.json())
     .then((jsonData) => {
@@ -30,7 +30,7 @@ export function loadstaticJSON(dispatch, section) {
     })
     .catch((error) => {
       console.log("FETCH ERROR", error);
-      return dispatch({ type: STATICDATA_ERROR_DB, payload: error })
+      return Promise.reject(error)
     });
 }
 
