@@ -1,8 +1,7 @@
 import {
   STATICDATA_LOADING,
   STATICDATA_LOAD,
-  STATICDATA_ERROR_DB,
-  STATICDATA_NO_OP,
+  STATICDATA_ERROR_DB
 } from './constants'
 
 const URL = "http://localhost:3001"
