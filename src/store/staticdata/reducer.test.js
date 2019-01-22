@@ -31,17 +31,18 @@ describe('static data reducer', () => {
         expect(staticdataRD(undefined, {
             type: STATICDATA_LOAD,
             payload: PAYLOAD
-        })).toEqual(Object.assign(INITIAL_STATE, {...PAYLOAD, isLoading: false}))
+        })).toEqual({...INITIAL_STATE, ...PAYLOAD, isLoading: false})
     }),
     it('sets isError to true, isLoading to false, errorMessage to payload on STATICDATA_ERROR_DB', () => {
-        expect(staticdataRD(INITIAL_STATE, {
+        expect(staticdataRD(undefined, {
             type: STATICDATA_ERROR_DB,
             payload: PAYLOAD
-        })).toEqual(Object.assign(INITIAL_STATE, {
+        })).toEqual({
+            ...INITIAL_STATE, 
             isLoading: false,
             isError: true,
-            errorMessage: PAYLOAD,
-        }))
+            errorMessage: PAYLOAD
+        })
     }),
     it('returns passed in state on STATICDATA_NO_OP', () => {
         expect(staticdataRD(PAYLOAD, {type: STATICDATA_NO_OP})).toEqual(PAYLOAD)
