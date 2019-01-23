@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button, Pager } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import ShortAnswersCT from '../Containers/ShortAnswersCT'
 
 const ModalShortAnswer = ({ handleShow, handleClose, show }) => {
@@ -10,8 +10,9 @@ const ModalShortAnswer = ({ handleShow, handleClose, show }) => {
                 <Modal.Header closeButton>
                     <Modal.Title style={style.header}>Compare your “current situation” statement to your “future desired situation” statement.</Modal.Title>
                 </Modal.Header>
-                <Modal.Body style={style.body}>
+                <Modal.Body >
                     <ShortAnswersCT
+                        style={style.body}
                         question={{ code: 40, text: "ShortAnswers 40 question" }}
                         doesHandlePersistence={{ value: false }}
                     />
@@ -28,7 +29,7 @@ const ModalShortAnswer = ({ handleShow, handleClose, show }) => {
 
 const style = {
     header: {
-        font: "bold",
+        fontWeight: "1",
     },
     body: {
         fontSize: "20px",
@@ -37,7 +38,6 @@ const style = {
         float: "left",
     },
     complete: {
-        display: "flex",
         justifyContent: "center",
     },
     next: {
