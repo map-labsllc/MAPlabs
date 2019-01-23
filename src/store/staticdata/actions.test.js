@@ -15,7 +15,7 @@ const mockStore = configureMockStore( middlewares )
 const URL = `end:.json`
 const DATA = { section: 'TEST', jsonData: ['TEST']}
 const BELIEFS_FN = 'beliefs'
-const LIFEDESCRS_FN = 'lifedescrs'
+const LIFEDESCRIPTIONS_FN = 'lifeDescriptions'
 const STRENGTHS_FN = 'strengths'
 
 describe( 'async actions', () => {
@@ -29,7 +29,7 @@ describe( 'async actions', () => {
             { type: STATICDATA_LOADING },
             { type: STATICDATA_LOAD, payload: {
                 [BELIEFS_FN]: DATA.jsonData,
-                [LIFEDESCRS_FN]: DATA.jsonData,
+                [LIFEDESCRIPTIONS_FN]: DATA.jsonData,
                 [STRENGTHS_FN]: DATA.jsonData
             }}
         ]
@@ -48,7 +48,7 @@ describe( 'async actions', () => {
         ]
         const store = mockStore()
 
-        await store.dispatch(loadAllStaticdataAC())        
+        await store.dispatch(loadAllStaticdataAC())
 
         expect(store.getActions()).toEqual(expectedActions)
     })

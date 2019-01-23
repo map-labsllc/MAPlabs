@@ -1,7 +1,7 @@
 import {
   STATICDATA_LOADING,
   STATICDATA_LOAD,
-  STATICDATA_ERROR_DB
+  STATICDATA_ERROR_DB,
 } from './constants'
 
 const URL = "http://localhost:3001"
@@ -9,15 +9,16 @@ const URL = "http://localhost:3001"
 // JSON filenames are used as the keys when building state, therefore
 // don't change them as other code relies on these names.
 const BELIEFS_FN = 'beliefs'
-const LIFEDESCRS_FN = 'lifedescrs'
+const LIFEDESCRIPTIONS_FN = 'lifeDescriptions'
 const STRENGTHS_FN = 'strengths'
 
 /* *****************************************************
    loadstaticJSON()
 
-   Async function to
+   Async function to load a JSON file
 
-   jsonFileName
+   dispatch
+   section -- this is both the section of the reducer object and the JSON filename
 ******************************************************** */
 function loadstaticJSON( section ) {
   return fetch( `${URL}/${section}.json` )
@@ -35,7 +36,7 @@ function loadstaticJSON( section ) {
 /* *****************************************************
    loadAllStaticdataAC()
 
-   Load all staticdata from the son files in the backend /public directory.
+   Load all staticdata from the json files in the backend /public directory.
    Called by NavBar::onComponentDidMount()
 ******************************************************** */
 export const loadAllStaticdataAC = () => {
@@ -45,7 +46,7 @@ export const loadAllStaticdataAC = () => {
     dispatch( { type: STATICDATA_LOADING } )
 
     const p1 = loadstaticJSON( BELIEFS_FN )
-    const p2 = loadstaticJSON( LIFEDESCRS_FN )
+    const p2 = loadstaticJSON( LIFEDESCRIPTIONS_FN )
     const p3 = loadstaticJSON( STRENGTHS_FN )
 
     return Promise.all( [p1, p2, p3] )
