@@ -38,7 +38,8 @@ const style = {
         float: "left",
     },
     complete: {
-        justifyContent: "center",
+        marginLeft: "auto",
+        marginRight: "175px"
     },
     next: {
         float: "right",
