@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import Questions from '../Components/Questions'
 import { getUser } from '../store/user/reducer'
+import { getAnswers } from '../store/answers/reducer'
 import {
   persistAnswersAC } from '../store/answers/actions'
 
@@ -21,14 +22,20 @@ const mapStateToProps = (state, passedProps) => {
   // validation
   if (!questions.length) throw new Error("no questions passed to QuestionsCT")
 
-  // get userId
+  // get props to pass
   const userId = getUser(state.userRD).user_id
+  const answersRD = state.answersRD
 
   return {
     userId,
     questions,
+    answersRD,
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 /* *****************************************
    mapDispatchToProps()
@@ -45,8 +52,8 @@ const mapDispatchToProps = (dispatch, passedProps) => {
   function onCloseModal() {
     console.log(`QuestionsCT::onCloseModal()`);
 
-    // do the stuff
-
+    const { onCloseModalCB } = passedProps
+    onCloseModalCB()
   }
 
   /* *****************************************
@@ -54,11 +61,12 @@ const mapDispatchToProps = (dispatch, passedProps) => {
 
      Persist a question from the Store
   ******************************************** */
-  function onPersistQuestion() {
+  function onPersistQuestion(userId, question, answersRD) {
     console.log(`QuestionsCT::onPersistQuestion()`);
 
-    // do the stuff
+    const answers = getAnswers(answersRD, question.code)
 
+    dispatch(persistAnswersAC(userId, question.code, answers))
   }
 
   /* *****************************************

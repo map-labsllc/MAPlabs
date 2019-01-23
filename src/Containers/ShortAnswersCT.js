@@ -40,6 +40,10 @@ const mapStateToProps = (state, passedProps) => {
   }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 /* *****************************************
    mapDispatchToProps()
 
@@ -55,12 +59,20 @@ const mapDispatchToProps = (dispatch, passedProps) => {
   /* *****************************************
      onPersist()
 
-     Save the new answers to store and persist them.
+     Save the new answers to store and persist.  Only called when
+       ShortAnswers is handling its own persistence and has a Save button.
+
 
      userId -- integer
      newAnswers -- array of strings
   ******************************************** */
   function onPersist(userId, newAnswers) {
+
+    // TODO: Since the child will have already called onPersist() this
+    //       method should not take newAnswers as a param and simply
+    //       get the answers out of the Store and persist them.
+    //       See NOTEs below.
+
     console.log(`ShortAnswersCT::onPersist(${newAnswers})`);
 
     const { question } = passedProps
