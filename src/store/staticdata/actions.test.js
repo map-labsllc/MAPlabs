@@ -38,19 +38,19 @@ describe( 'async actions', () => {
         await store.dispatch( loadAllStaticdataAC() )
 
         expect( store.getActions() ).toEqual( expectedActions )
-    }),
-    it('creates STATICDATA_ERROR_DB when fetching was not successful', async () => {
-        const error = new Error('Fetch failed')
-        fetchMock.get(URL, { throws: error })
+    } )
+    it( 'creates STATICDATA_ERROR_DB when fetching was not successful', async () => {
+        const error = new Error( 'Fetch failed' )
+        fetchMock.get( URL, { throws: error } )
         const expectedActions = [
             { type: STATICDATA_LOADING },
             { type: STATICDATA_ERROR_DB, payload: error }
         ]
         const store = mockStore()
 
-        await store.dispatch(loadAllStaticdataAC())
+        await store.dispatch( loadAllStaticdataAC() )
 
-        expect(store.getActions()).toEqual(expectedActions)
-    })
-  })
-})
+        expect( store.getActions() ).toEqual( expectedActions )
+    } )
+  } )
+} )
