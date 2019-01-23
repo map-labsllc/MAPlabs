@@ -11,7 +11,7 @@ const URL = "http://localhost:3001"
 /* *****************************************************
    updateTransitionsAC()
 
-   Update transitions for a question in state.
+   Update trasnstions for a question in state.
    Will replace any other transitions for the question.
    Call persistTransitionsAC() to save to database.
 

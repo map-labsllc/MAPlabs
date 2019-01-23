@@ -3,6 +3,7 @@ import {
   STATICDATA_LOAD,
   STATICDATA_UPDATE,
   STATICDATA_ERROR_DB,
+  STATICDATA_NO_OP,
  } from './constants';
 
 /*
@@ -15,13 +16,13 @@ import {
 
     strengths: [ 'strength1', 'strength2', ],
 
-    lifeDescriptions:  // sort-order set when loaded from db
+    lifedescrs:   // sort-order set when loaded from db
       [
-        { description: 'My life # feel full of meaning',
+        { descr: 'My life # feel full of meaning',
           a: 'does',
           b: 'does not'
         },
-        { description: 'I # feel happy',
+        { descr: 'I # feel happy',
           a: 'often',
           b: 'rarely'
         },
@@ -35,7 +36,7 @@ const initialState = {
   errorMessage: '',
   beliefs: [],
   strengths: [],
-  lifeDescriptions: [],
+  lifedescrs: [],
 }
 
  /* ***********************************************
@@ -52,7 +53,11 @@ const initialState = {
       console.log("staticdataRD::LOADING");
       return initialState;
 
-    // payload has beliefs, strengths, and lifeDescriptions JSON file contents
+    // Payload:
+    //  {
+    //    1: [ 'answer one', 'answer two' ],
+    //    2: [ 'this is a narrative, so only one answer' ],
+    //  }
     case STATICDATA_LOAD:
       console.log("staticdataRD::LOAD");
       return {
@@ -60,9 +65,17 @@ const initialState = {
         isLoading: false,
         beliefs: payload.beliefs,
         strengths: payload.strengths,
-        lifeDescriptions: payload.lifeDescriptions,
+        lifedescrs: payload.lifedescrs,
       };
-
+    // case LOAD:
+    //   console.log("staticdataRD::LOAD");
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     beliefs: payload.beliefs,
+    //     strengths: payload.strengths,
+    //     lifedescrs: payload.lifedescrs,
+    //   };
 
     // Fetch error
     case STATICDATA_ERROR_DB:
@@ -73,6 +86,11 @@ const initialState = {
         isError: true,
         errorMessage: payload || "no error message provided",
       }
+
+      // no operation, AC didn't change stat
+      case STATICDATA_NO_OP:
+        console.log("staticdataRD::NO_OP")
+        return state
 
     default:
       return state

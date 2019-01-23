@@ -50,16 +50,12 @@ export default class ShortAnswers extends React.Component {
   stripKeys = (answersWithKeys) => answersWithKeys.map(answerWithKey => answerWithKey.text)
 
   // add keys
-  // addKeys = (answers) => answers.map(answer => ({ key: this.getUUID() , text: answer}))
-  addKeys = (answers) => answers.map((answer) => {
-    console.log("addKeys: ", answer);
-    return { key: this.getUUID() , text: answer}
-  })
+  addKeys = (answers) => answers.map(answer => ({ key: this.getUUID() , text: answer}))
   // -------------------------------------------------------
 
   state = {
     isDirty: false,
-    answers: this.props.previousAnswers,
+    // answers: this.props.previousAnswers,
     answersWithKeys: this.addKeys(this.props.previousAnswers)
   }
 
@@ -113,11 +109,6 @@ export default class ShortAnswers extends React.Component {
 
     const { question, doesHandlePersistence } = this.props
     const { answersWithKeys } = this.state
-
-    console.log("answersWithKeys", answersWithKeys);
-    console.log("this.props.previousAnswers", this.props.previousAnswers);
-    console.log("this.state.answers", this.state.answers);
-
 
     return (
       <>

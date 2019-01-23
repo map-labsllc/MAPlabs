@@ -9,8 +9,8 @@ import {
     ANSWERS_PERSIST
 } from './constants'
 
-import {
-    loadAllAnswersAC,
+import { 
+    loadAllAnswersAC, 
     persistAnswersAC
 } from './actions'
 
