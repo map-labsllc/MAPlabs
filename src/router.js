@@ -11,14 +11,19 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import TestNarratives from './Components/TestNarratives'
 import TestShortAnswers from './Components/TestShortAnswers'
+import Modal from './Components/Modal'
+import ModulesPage from './Components/modulesPage'
+import John from './Components/John'
+
 class RouterComponent extends React.Component {
   render() {
     return (
 
+
       <Router style={{ paddingTop: 10 }}>
 
         <Switch>
-          <Route path='/' component={QuestionsList} initial />
+          <Route path='/' component={ModulesPage} initial />
           <Route path='/login' component={Login} title='please login' />
           <Route path='/signUp' component={SignUp} title='please signUp' />
 
@@ -26,8 +31,9 @@ class RouterComponent extends React.Component {
 
       </Router>
 
+
     )
-    // <TestNarratives />
+
   }
 }
 
@@ -36,12 +42,13 @@ class RouterComponent extends React.Component {
 //     return(
 //       <Router style={{paddingTop: 10}}>
 //         <Switch>
-//           <Route path='/' component={Narrative} question="What about..?" answer="What abt what?" />
+//           <Route path='/' component={NavBar} />
 //           <Route path='/LDs' component={lifeDescriptorQuestion} />
 //           <Route path='/login' component={Login} title='please login' initial/>
 //           <Route path='/signUp' component={SignUp} title='please signUp'/>
 //         </Switch>
 //       </Router>
+//       // <Route path='/' component={Narrative} question="What about..?" answer="What abt what?" />
 //     )
 //   }
 // }

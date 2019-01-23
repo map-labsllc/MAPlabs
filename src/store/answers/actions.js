@@ -3,12 +3,11 @@ import {
   ANSWERS_LOAD,
   ANSWERS_ERROR_DB,
   ANSWERS_UPDATE,
-  ANSWERS_NO_OP,
+  ANSWERS_PERSIST,
 } from './constants'
 
 const URL = "http://localhost:3001"
 // const URL = process.env.REACT_APP_DB_URL
-const USER_ID = 1
 
 /* *****************************************************
    updateAnswersAC()
@@ -37,8 +36,6 @@ export const updateAnswersAC = (question_code, answers) => {
 ******************************************************** */
 export const loadAllAnswersAC = (userId) => {
   console.log("loadAllAnswersAC()")
-
-  userId = USER_ID
 
   return dispatch => {
     dispatch({ type: ANSWERS_LOADING })
@@ -74,8 +71,6 @@ export const persistAnswersAC = (userId, question_code, answers) => {
   console.log(`persistAnswersAC(${question_code})`)
   console.log("persisting: ", answers);
 
-  userId = USER_ID
-
   return dispatch => {
     return fetch(`${URL}/answers/${userId}/${question_code}`, {
         method: 'POST',
@@ -88,7 +83,7 @@ export const persistAnswersAC = (userId, question_code, answers) => {
       .then(response => response.json())
       .then((message) => {
         console.log("post response message", message)
-        return dispatch( { type: ANSWERS_NO_OP })
+        return dispatch( { type: ANSWERS_PERSIST })
       })
       .catch((error) => {
         console.log("POST ERROR", error);

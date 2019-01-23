@@ -2,6 +2,7 @@ import {
   TRANSITIONS_LOADING,
   TRANSITIONS_LOAD,
   TRANSITIONS_UPDATE,
+  TRANSITIONS_PERSIST,
   TRANSITIONS_ERROR_DB,
   TRANSITIONS_NO_OP,
  } from './constants';
@@ -91,9 +92,9 @@ export const getTransitions = (state, question_code) =>
         errorMessage: payload || "no error message provided",
       }
 
-      // no operation, AC didn't change stat
-      case TRANSITIONS_NO_OP:
-        console.log("answersRD::NO_OP")
+      // transitions for a question were persisted
+      case TRANSITIONS_PERSIST:
+        console.log("transitionsRD::PERSIST")
         return state
 
     default:

@@ -29,11 +29,11 @@ import { loadAllStaticdataAC } from '../store/staticdata/actions'
 
   render(){
     const { lifeDescriptors,isLoading } = this.props
-    console.log('LERROOYYYYYYYYY JENKINNNSSSSSS',lifeDescriptors);
+    console.log('LERROOYYYYYYYYY JENKINNNSSSSSS',this.props);
     let pages = this.splittingArray(lifeDescriptors)
 
     let list =   pages.map((element) => (
-      element.map(ele =>(
+      element.forEach(ele =>(
         <LifeDescriptor data= { ele }/>
 
       ))
@@ -57,7 +57,7 @@ const mapStateToProps = state => {
   return {
     isLoading: state.answersRD.isLoading || state.staticdataRD.isLoading,
     userId: 1,
-    lifeDescriptors: state.staticdataRD.lifedescrs
+    lifeDescriptors: state.staticdataRD.lifeDescriptions
   }
 }
 

@@ -1,8 +1,7 @@
 import {
   STATICDATA_LOADING,
   STATICDATA_LOAD,
-  STATICDATA_ERROR_DB,
-  STATICDATA_NO_OP,
+  STATICDATA_ERROR_DB
 } from './constants'
 
 const URL = "http://localhost:3001"
@@ -18,20 +17,19 @@ const STRENGTHS_FN = 'strengths'
 
    Async function to
 
-   dispatch
    jsonFileName
 ******************************************************** */
-function loadstaticJSON(dispatch, section) {
-  return fetch(`${URL}/${section}.json`)
-    .then(response => response.json())
-    .then((jsonData) => {
+function loadstaticJSON( section ) {
+  return fetch( `${URL}/${section}.json` )
+    .then( response => response.json() )
+    .then( ( jsonData ) => {
       // console.log(section, jsonData)
       return { section, jsonData }
-    })
-    .catch((error) => {
-      console.log("FETCH ERROR", error);
-      return dispatch({ type: STATICDATA_ERROR_DB, payload: error })
-    });
+    } )
+    .catch( ( error ) => {
+      console.log( "FETCH ERROR", error )
+      return Promise.reject( error )
+    } )
 }
 
 /* *****************************************************
@@ -41,17 +39,17 @@ function loadstaticJSON(dispatch, section) {
    Called by NavBar::onComponentDidMount()
 ******************************************************** */
 export const loadAllStaticdataAC = () => {
-  console.log("loadAC()")
+  console.log( "loadAC()" )
 
   return dispatch => {
-    dispatch({ type: STATICDATA_LOADING })
+    dispatch( { type: STATICDATA_LOADING } )
 
-    const p1 = loadstaticJSON(dispatch, BELIEFS_FN)
-    const p2 = loadstaticJSON(dispatch, LIFEDESCRS_FN)
-    const p3 = loadstaticJSON(dispatch, STRENGTHS_FN)
+    const p1 = loadstaticJSON( BELIEFS_FN )
+    const p2 = loadstaticJSON( LIFEDESCRS_FN )
+    const p3 = loadstaticJSON( STRENGTHS_FN )
 
-    return Promise.all([p1, p2, p3])
-      .then(result => {
+    return Promise.all( [p1, p2, p3] )
+      .then( result => {
         // console.log(" ");
         // console.log("Promise.all: ", result);
 
@@ -60,11 +58,11 @@ export const loadAllStaticdataAC = () => {
         payload[result[1].section] = result[1].jsonData
         payload[result[2].section] = result[2].jsonData
 
-        dispatch({ type: STATICDATA_LOAD, payload })
-      })
-      .catch((error) => {
-        console.log("PROMISE.ALL ERROR", error);
-        return dispatch({ type: STATICDATA_ERROR_DB, payload: error })
+        return dispatch( { type: STATICDATA_LOAD, payload } )
+      } )
+      .catch( ( error ) => {
+        console.log( "PROMISE.ALL ERROR", error )
+        return dispatch( { type: STATICDATA_ERROR_DB, payload: error } )
       });
   }
 }

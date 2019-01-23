@@ -3,11 +3,10 @@ import {
   TRANSITIONS_LOAD,
   TRANSITIONS_ERROR_DB,
   TRANSITIONS_UPDATE,
-  TRANSITIONS_NO_OP,
+  TRANSITIONS_PERSIST,
 } from './constants'
 
 const URL = "http://localhost:3001"
-const USER_ID = 1
 
 /* *****************************************************
    updateTransitionsAC()
@@ -36,8 +35,6 @@ export const updateTransitionsAC = (question_code, transitions) => {
 ******************************************************** */
 export const loadAllTransitionsAC = (userId) => {
   console.log("loadAllTransitionsAC()")
-
-  userId = USER_ID
 
   return dispatch => {
     dispatch({ type: TRANSITIONS_LOADING })
@@ -72,8 +69,6 @@ export const persistTransitionsAC = (userId, question_code, transitions) => {
   console.log(`>> persistTransitionsAC(${question_code})`)
   console.log("persisting: ", transitions);
 
-  userId = USER_ID
-
   return dispatch => {
     return fetch(`${URL}/transitions/${userId}/${question_code}`, {
         method: 'POST',
@@ -86,7 +81,7 @@ export const persistTransitionsAC = (userId, question_code, transitions) => {
       .then(response => response.json())
       .then((message) => {
         console.log("post response message", message)
-        return dispatch( { type: TRANSITIONS_NO_OP })
+        return dispatch( { type: TRANSITIONS_PERSIST })
       })
       .catch((error) => {
         console.log("POST ERROR", error);
