@@ -6,7 +6,7 @@ import {
   TRANSITIONS_PERSIST,
 } from './constants'
 
-const URL = "http://localhost:3001"
+const URL = process.env.REACT_APP_DB_URL
 
 /* *****************************************************
    updateTransitionsAC()
@@ -18,7 +18,7 @@ const URL = "http://localhost:3001"
    quesion_code - integer
    transitions - array of transitions [{ "from": "here", "to: there" }, {... }]
 ******************************************************** */
-export const updateTransitionsAC = (question_code, transitions) => {
+export const updateTransitionsAC = ( question_code, transitions ) => {
   return {
     type: TRANSITIONS_UPDATE,
     payload: { question_code, transitions }
@@ -33,21 +33,21 @@ export const updateTransitionsAC = (question_code, transitions) => {
 
    userId -- integer
 ******************************************************** */
-export const loadAllTransitionsAC = (userId) => {
-  console.log("loadAllTransitionsAC()")
+export const loadAllTransitionsAC = ( userId ) => {
+  console.log( "loadAllTransitionsAC()" )
 
   return dispatch => {
-    dispatch({ type: TRANSITIONS_LOADING })
-    return fetch(`${URL}/transitions/${userId}`)
-      .then(response => response.json())
-      .then((transitions) => {
+    dispatch( { type: TRANSITIONS_LOADING } )
+    return fetch( `${URL}/transitions/${userId}` )
+      .then( response => response.json() )
+      .then( ( transitions ) => {
         // console.log("transitions", transitions)
-        return dispatch({ type: TRANSITIONS_LOAD, payload: transitions })
-      })
-      .catch((error) => {
-        console.log("FETCH ERROR", error);
-        return dispatch({ type: TRANSITIONS_ERROR_DB, payload: error })
-      });
+        return dispatch( { type: TRANSITIONS_LOAD, payload: transitions } )
+      } )
+      .catch( ( error ) => {
+        console.log( "FETCH ERROR", error )
+        return dispatch( { type: TRANSITIONS_ERROR_DB, payload: error } )
+      } )
   }
 }
 
@@ -65,27 +65,27 @@ export const loadAllTransitionsAC = (userId) => {
    quesion_code - integer
    transitions - array of transitions
 ******************************************************** */
-export const persistTransitionsAC = (userId, question_code, transitions) => {
-  console.log(`>> persistTransitionsAC(${question_code})`)
-  console.log("persisting: ", transitions);
+export const persistTransitionsAC = ( userId, question_code, transitions ) => {
+  console.log( `>> persistTransitionsAC(${question_code})` )
+  console.log( "persisting: ", transitions )
 
   return dispatch => {
-    return fetch(`${URL}/transitions/${userId}/${question_code}`, {
+    return fetch( `${URL}/transitions/${userId}/${question_code}`, {
         method: 'POST',
-        body: JSON.stringify({ transitions }),
+        body: JSON.stringify( { transitions } ),
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-      })
-      .then(response => response.json())
-      .then((message) => {
-        console.log("post response message", message)
-        return dispatch( { type: TRANSITIONS_PERSIST })
-      })
-      .catch((error) => {
-        console.log("POST ERROR", error);
+      } )
+      .then( response => response.json() )
+      .then( ( message ) => {
+        console.log( "post response message", message )
+        return dispatch( { type: TRANSITIONS_PERSIST } )
+      } )
+      .catch( ( error ) => {
+        console.log( "POST ERROR", error )
         return dispatch( { type: TRANSITIONS_ERROR_DB, payload: error } )
-      });
+      } )
   }
 }
