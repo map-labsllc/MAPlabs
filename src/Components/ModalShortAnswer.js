@@ -12,7 +12,6 @@ const ModalShortAnswer = ({ handleShow, handleClose, show }) => {
                 </Modal.Header>
                 <Modal.Body >
                     <ShortAnswersCT
-                        style={style.body}
                         question={{ code: 40, text: "ShortAnswers 40 question" }}
                         doesHandlePersistence={{ value: false }}
                     />
@@ -30,9 +29,7 @@ const ModalShortAnswer = ({ handleShow, handleClose, show }) => {
 const style = {
     header: {
         fontWeight: "1",
-    },
-    body: {
-        fontSize: "20px",
+        fontSize: "25px",
     },
     previous: {
         float: "left",
