@@ -4,7 +4,7 @@ const SplashPage = () => {
     return (
         <div>
             <h3 className="text-center">Welcome to MAPMaker</h3>
-            <h5 className="text-center">tag line</h5>
+            <h5 className="text-center">The Science of Meaning and Purpose</h5>
             <img className="img-responsive center-block" src="https://placebear.com/g/300/300" />
             <ButtonToolbar style={style.buttonStyles} className='text-center'>
                 <Button>Sign Up</Button>
