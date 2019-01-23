@@ -31,6 +31,7 @@ export default class ShortAnswer extends React.Component {
     answer: this.props.previousAnswer,
   }
 
+  // **************************************************
   // set isDirty and control answer field
   onChange = (e) => {
     // console.log("ShortAnswer::onChange(), e: ", e.target.value);
@@ -40,6 +41,7 @@ export default class ShortAnswer extends React.Component {
     })
   }
 
+  // **************************************************
   // pass to parent to save value and clear isDirty
   onBlur = (e) => {
     console.log("ShortAnswer::onBlur(), e: ", e.target.value);
@@ -53,6 +55,7 @@ export default class ShortAnswer extends React.Component {
     }
   }
 
+  // **************************************************
   // pass to parent to delete
   onclickDelete = () => {
     console.log("ShortAnswer::onclickDelete()");
@@ -60,6 +63,7 @@ export default class ShortAnswer extends React.Component {
     deleteAnswerCB(id)
   }
 
+  // **************************************************
   // render!
   render() {
     console.log("ShortAnswer::render()")
