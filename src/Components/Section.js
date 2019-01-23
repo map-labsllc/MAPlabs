@@ -11,57 +11,32 @@ import {
 } from 'react-bootstrap';
 
 /* **************************************************
-   Popup component
+   Section
 
-   Shows / hides a complex interactive component.
+   Shows / hides a section depending on user's curr_module / curr_section
 
    props:
-     title -- title of this set of questions
-     questions -- [ { code: 50, text: "question 50" }, { ... }
+     moduleNum -- integer, the module this section is in (1-based)
+     sectionNum -- integer, the section (1-based)
+     user -- the complete user object to check the furthest mod/sec they've gotten to
+     title -- title of the section
 ***************************************************** */
-export default class Popup extends React.Component {
+export default class Section extends React.Component {
+
+  canUserView = (user, moduleNum, sectionNum) => {
+    return (   user.curr_module <= curr_module 
+            && user.curr_section <= curr_section)
+  }
 
   state = {
-    isVisible: false,
+    isVisible: canUserView(this.props.user, this.props.moduleNum, this.props.sectionNum),
   }
 
-  // **************************************************
-  // Show the complex interactive component
-  onclickStart = () => {
-    console.log("Popup::onclickStart()");
-    this.setState({ isVisible: true })
-  }
 
-  // **************************************************
-  // Hide the complex interactive component
-  onCloseModal = () => {
-    console.log("Popup::onCloseModal()");
-    this.setState({ isVisible: false })
-  }
 
-  // **************************************************
-  // render!
-  // render() {
-  //   console.log("Popup::render()")
-  //
-  //   let { isVisible } = this.state
-  //   let { title, questions } = this.props
-  //
-  //   return (
-  //     <>
-  //       <h1>{title}</h1>
-  //
-  //         <QuestionsCT
-  //           questions = {questions}
-  //           onCloseModalCB = {this.onCloseModal}
-  //         />
-  //
-  //
-  //     </>
-  //   )
-  // }
+
   render() {
-    console.log("Popup::render()")
+    console.log("Section::render()")
 
     let { isVisible } = this.state
     let { title, questions } = this.props
