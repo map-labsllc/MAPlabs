@@ -7,14 +7,14 @@ import {
 
 import { staticdataRD } from './reducer'
 
-const PAYLOAD = { beliefs: '', strengths: '', lifedescrs: '' }
+const PAYLOAD = { beliefs: '', strengths: '', lifeDescriptions: '' }
 const INITIAL_STATE = {
     isLoading: true,
     isError: false,
     errorMessage: '',
     beliefs: [],
     strengths: [],
-    lifedescrs: [], 
+    lifeDescriptions: [],
 }
 
 describe('static data reducer', () => {
@@ -27,7 +27,7 @@ describe('static data reducer', () => {
     it('returns initial state on STATICDATA_LOADING', () => {
         expect(staticdataRD(undefined, {type: STATICDATA_LOADING})).toEqual(INITIAL_STATE)
     }),
-    it('sets isLoading to false and sets beliefs, strengths, lifedescrs to payload on STATICDATA_LOAD', () => {
+    it('sets isLoading to false and sets beliefs, strengths, lifeDescriptions to payload on STATICDATA_LOAD', () => {
         expect(staticdataRD(undefined, {
             type: STATICDATA_LOAD,
             payload: PAYLOAD
@@ -38,7 +38,7 @@ describe('static data reducer', () => {
             type: STATICDATA_ERROR_DB,
             payload: PAYLOAD
         })).toEqual({
-            ...INITIAL_STATE, 
+            ...INITIAL_STATE,
             isLoading: false,
             isError: true,
             errorMessage: PAYLOAD
@@ -47,4 +47,4 @@ describe('static data reducer', () => {
     it('returns passed in state on STATICDATA_NO_OP', () => {
         expect(staticdataRD(PAYLOAD, {type: STATICDATA_NO_OP})).toEqual(PAYLOAD)
     })
-})  
+})
