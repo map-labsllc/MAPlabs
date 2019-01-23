@@ -4,6 +4,7 @@ import {
   TRANSITIONS_UPDATE,
   TRANSITIONS_PERSIST,
   TRANSITIONS_ERROR_DB,
+  TRANSITIONS_NO_OP,
  } from './constants';
 
 /*
