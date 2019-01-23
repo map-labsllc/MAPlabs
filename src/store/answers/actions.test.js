@@ -6,11 +6,10 @@ import {
     ANSWERS_LOADING,
     ANSWERS_LOAD,
     ANSWERS_ERROR_DB,
-    ANSWERS_NO_OP
 } from './constants'
 
-import { 
-    loadAllAnswersAC, 
+import {
+    loadAllAnswersAC,
     persistAnswersAC
 } from './actions'
 
