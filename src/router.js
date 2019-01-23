@@ -17,9 +17,9 @@ import John from './Components/John'
 class RouterComponent extends React.Component {
   render() {
     return (
-      <TestShortAnswers />
+      <TestQuestions />
     )
-    // <TestQuestions />
+    // <TestShortAnswers />
     // <John />
     // <TestNarratives />
   }
