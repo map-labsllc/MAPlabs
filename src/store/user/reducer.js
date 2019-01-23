@@ -47,7 +47,7 @@ const initialState = {
 
    return -- user object
 ************************************************** */
-
+//This should be replaced with directly mapping state.user to props in container //components
 export const getUser = (state) => state.user
 
 

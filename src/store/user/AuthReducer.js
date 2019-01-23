@@ -1,15 +1,12 @@
 import {
-  LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL,
-  LOGIN_USER,
-} from '../actions/types'
-
-import {
   FIRSTNAME_CHANGED,
   LASTNAME_CHANGED,
   EMAIL_CHANGED,
-  PASSWORD_CHANGED
-} from '../actions'
+  PASSWORD_CHANGED,
+  LOGIN_USER,
+  LOGIN_USER_FAIL,
+  LOGIN_USER_SUCCESS
+} from './constants'
 
 import INITIAL_STATE from './seeds'
 
