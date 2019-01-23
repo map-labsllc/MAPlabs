@@ -1,9 +1,10 @@
-
-
-
-
-const INITIAL_STATE = {
-  lifeDecriptors: {
+export default {
+  first_name: '',
+  last_name: '',
+  email: '',
+  password: '',
+  lifeDecriptors : [
+  {
     "order": 1,
     "descr": "My life # feel full of meaning",
     "a": "does",
@@ -304,14 +305,9 @@ const INITIAL_STATE = {
     "b": "do not"
   }
 ],
-isLoading: false
-}
-export default (state = INITIAL_STATE, action) => {
-  
-  switch(action.payload){
-    case LOAD_LIFE_DESCRIPTORS:
-    return { ...state, ...INITIAL_STATE,isLoading:true, lifeDecriptors: action.payload }
-    default: return state
 
-  }
+  user: null,
+  error: '',
+  loading: false,
+
 }
