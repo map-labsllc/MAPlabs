@@ -68,9 +68,15 @@ const mapDispatchToProps = (dispatch, passedProps) => {
     const filteredAnswers = filterOutBlanks(newAnswers)
 
     // save to store
+    //   NOTE: updateAnswersAC()) isn't necc. as ShortAnswers would have
+    //         already called OnUpdateStore() after onBlur() from the last
+    //         text field.
     dispatch(updateAnswersAC(question.code, filteredAnswers))
 
     // optionally persist
+    //   NOTE: ShortAnswers would only call this CB if it was displaying
+    //         a Save button because doesHandlePersistence.value was true.
+    //         So this test shouldn't be necc.
     const { doesHandlePersistence } = passedProps
     if (doesHandlePersistence.value) {
       dispatch(persistAnswersAC(userId, question.code, filteredAnswers))
@@ -102,61 +108,6 @@ const mapDispatchToProps = (dispatch, passedProps) => {
   }
 
 }
-// /* *****************************************
-//    mapDispatchToProps()
-//
-//    passedProps -- see mapStateToProps above
-// ******************************************** */
-// const mapDispatchToProps = (dispatch, passedProps) => ({
-//
-//   /* *****************************************
-//      onPersistCB()
-//
-//      Save the new answers to store and persist them.
-//
-//      userId -- integer
-//      newAnswers -- array of strings
-//   ******************************************** */
-//   onPersistCB: (userId, newAnswers) => {
-//     console.log(`ShortAnswersCT::onPersistCB(${newAnswers})`);
-//
-//     const { question } = passedProps
-//
-//     const filteredAnswers = newAnswers.filter((newAnswer) => {
-//       return newAnswer.trim().length
-//     })
-//
-//     // save to store
-//     dispatch(updateAnswersAC(question.code, filteredAnswers))
-//
-//     // optionally persist
-//     const { doesHandlePersistence } = passedProps
-//     if (doesHandlePersistence.value) {
-//       console.log('persisting...');
-//       dispatch(persistAnswersAC(userId, question.code, filteredAnswers))
-//     }
-//   },
-//
-//   /* *****************************************
-//      onUpdateStoreCB()
-//
-//      Save the new answers to store.  Does NOT persist.
-//
-//      newAnswers -- array of strings
-//   ******************************************** */
-//   onUpdateStoreCB: (newAnswers) => {
-//     console.log(`ShortAnswersCT::onUpdateCB(${newAnswers})`);
-//
-//     const { question } = passedProps
-//
-//     const filteredAnswers = newAnswers.filter((newAnswer) => {
-//       return newAnswer.trim().length
-//     })
-//
-//     // save to store
-//     dispatch(updateAnswersAC(question.code, filteredAnswers))
-//   }
-// })
 
 export default connect(
   mapStateToProps,
