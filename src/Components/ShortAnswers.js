@@ -86,7 +86,7 @@ export default class ShortAnswers extends React.Component {
 
     const { onUpdateStoreCB } = this.props
     const { answersWithKeys } = this.state
-    
+
     const newAnswersWithKeys = answersWithKeys.filter((answerWithKey) =>
       keyToDelete !== answerWithKey.key)
 
@@ -131,7 +131,8 @@ export default class ShortAnswers extends React.Component {
 
     return (
       <>
-        <h3>{question.text}</h3>
+        <p> </p>
+        <h4>--- Question: {question.text} ---</h4>
         {answersWithKeys.map((answerWithKey) =>
           <ShortAnswer
             key={answerWithKey.key}

@@ -48,9 +48,9 @@ class TestPopup extends React.Component {
         <p>{((isLoading) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
-            <Popup title = "Series One" questions = {questions1} />
+            <Popup title = "Section One" questions = {questions1} />
             <hr />
-            <Popup title = "Series Two" questions = {questions2} />
+            <Popup title = "Section Two" questions = {questions2} />
           </>
         )}
       </>
