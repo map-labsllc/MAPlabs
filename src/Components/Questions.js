@@ -86,8 +86,6 @@ export default class Questions extends React.Component {
     this.setState({ currIdx: currIdx + 1})
   }
 
-  // ******************************************
-  // render!
   render() {
     console.log("ShortAnswers::render()")
 
@@ -96,21 +94,24 @@ export default class Questions extends React.Component {
 
     const currQuestion = questions[currIdx]
 
+    // NOTE: The <div key = {idx}> tag is used to suppress React warning about
+    //       elements needing a unique key.
     return (
       <>
         <Button type="button" onClick={this.onclickLeft}>Left</Button>{' '}
-        <Button type="button" onClick={this.onclickRight}>Right</Button>{' ... '}
+        <Button type="button" onClick={this.onclickRight}>Right</Button>{' ...... '}
         <Button type="button" onClick={this.onclickClose}>Close</Button>
-        <hr/>{' '}{' '}{' '}
+
         {questions.map((question, idx) => (
-          <>
+          <div key = {idx}>
             {(idx === currIdx) && (
               <ShortAnswersCT
+                key = {idx}
                 question = {question}
                 doesHandlePersistence = {{ value: false }}
               />
             )}
-          </>
+          </div>
         ))}
       </>
     )
