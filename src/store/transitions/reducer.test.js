@@ -40,7 +40,7 @@ describe( 'answers reducer', () => {
             questions: PAYLOAD,  
         } )
     } )
-    it( 'sets payload.answers to payload.question_code on TRANSITIONS_UPDATE', () => {
+    it( 'sets payload.transitions to payload.question_code on TRANSITIONS_UPDATE', () => {
         expect( transitionsRD( undefined, {
             type: TRANSITIONS_UPDATE,
             payload: PAYLOAD
