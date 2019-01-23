@@ -2,8 +2,7 @@ import {
     ANSWERS_LOADING,
     ANSWERS_LOAD,
     ANSWERS_ERROR_DB,
-    ANSWERS_UPDATE,
-    ANSWERS_NO_OP,
+    ANSWERS_UPDATE
   } from './constants'
 
 import { answersRD } from './reducer'
@@ -62,8 +61,5 @@ describe( 'answers reducer', () => {
             errorMessage: PAYLOAD,
             questions: {},  
         } )
-    } )
-    it( 'returns passed in state on ANSWERS_NO_OP', () => {
-        expect( answersRD( PAYLOAD, {type: ANSWERS_NO_OP} ) ).toEqual( PAYLOAD )
     } )
 } )

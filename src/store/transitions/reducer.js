@@ -4,7 +4,7 @@ import {
   TRANSITIONS_UPDATE,
   TRANSITIONS_PERSIST,
   TRANSITIONS_ERROR_DB,
- } from './constants';
+ } from './constants'
 
 /*
   transitionsRD: {
@@ -36,23 +36,23 @@ const initialState = {
 
    return array of transitions or empty array
 ************************************************** */
-export const getTransitions = (state, question_code) =>
+export const getTransitions = ( state, question_code ) =>
   state.questions[question_code] || []
 
  /* ***********************************************
     transitionsRD
  ************************************************** */
- export const transitionsRD = (state = initialState, action) => {
+ export const transitionsRD = ( state = initialState, action ) => {
 
   const { type, payload } = action
 
-  switch(type) {
+  switch( type ) {
 
     // Reset the reducer to initial state, could be
     //   used when switching users.
     case TRANSITIONS_LOADING:
-      console.log("transitionsRD::LOADING");
-      return initialState;
+      console.log( "transitionsRD::LOADING" )
+      return initialState
 
     // Payload :
     // {
@@ -62,28 +62,28 @@ export const getTransitions = (state, question_code) =>
     //          { form: 'east', to: 'west' } ],
     //  }
     case TRANSITIONS_LOAD:
-      console.log("transitionsRD::LOAD");
+      console.log( "transitionsRD::LOAD" )
       return {
         ...state,
         isLoading: false,
         questions: payload,
-      };
+      }
 
     // Payload
     //   { question_code: 6,
     //     transitons: [ { from: 'here', to: 'there' }, { ... } ] }
     case TRANSITIONS_UPDATE:
-      console.log("transitionsRD::UPDATE");
-      const newQuestions = { ...state.questions };
+      console.log( "transitionsRD::UPDATE" )
+      const newQuestions = { ...state.questions }
       newQuestions[payload.question_code] = payload.transitions
       return {
         ...state,
         questions: newQuestions,
-      };
+      }
 
     // Fetch error
     case TRANSITIONS_ERROR_DB:
-      console.log("transitionsRD::ERROR_DB");
+      console.log( "transitionsRD::ERROR_DB" )
       return {
         ...state,
         isLoading: false,
@@ -93,7 +93,7 @@ export const getTransitions = (state, question_code) =>
 
       // transitions for a question were persisted
       case TRANSITIONS_PERSIST:
-        console.log("transitionsRD::PERSIST")
+        console.log( "transitionsRD::PERSIST" )
         return state
 
     default:

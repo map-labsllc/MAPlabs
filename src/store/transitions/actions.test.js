@@ -64,7 +64,7 @@ describe( 'async actions', () => {
     
             expect( store.getActions() ).toEqual( expectedActions )
         } )
-        it( 'creates ANSWERS_ERROR_DB when posting answers was not successful', async () => {
+        it( 'creates TRANSITIONS_ERROR_DB when posting answers was not successful', async () => {
             const error = new Error( 'Fetch failed' )
             fetchMock.post( `${URL}/${ID}`, { throws: error } )
             const expectedActions = [
