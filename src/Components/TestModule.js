@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Module from '../Components/Module'
+import Section from '../Components/Section'
 import { loadAllAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
@@ -39,7 +40,10 @@ class TestModule extends React.Component {
         <p>{((isLoading) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
-            <Module moduleNum = "1" moduleTitle = "Module 1"/>
+            <Module moduleNum = "1" moduleTitle = "Module 1">
+              <Section moduleNum = "1" sectionNum = "1" sectionTitle = "Section One" />
+              <Section moduleNum = "1" sectionNum = "2" sectionTitle = "Section Two" />
+            </Module>
           </>
         )}
       </>
