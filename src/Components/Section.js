@@ -46,7 +46,7 @@ export default class Section extends React.Component {
     const questions1 = [
       { code: 40, text: "ShortAnswers 40 question" },
       { code: 41, text: "ShortAnswers 41 question" },
-      { code: 41, text: "ShortAnswers 42 question" },
+      { code: 42, text: "ShortAnswers 42 question" },
     ]
 
 
