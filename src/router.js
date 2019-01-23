@@ -12,13 +12,15 @@ import { bindActionCreators } from 'redux'
 import TestNarratives from './Components/TestNarratives'
 import TestShortAnswers from './Components/TestShortAnswers'
 import TestQuestions from './Components/TestQuestions'
+import TestPopup from './Components/TestPopup'
 import John from './Components/John'
 
 class RouterComponent extends React.Component {
   render() {
     return (
-      <TestQuestions />
+      <TestPopup />
     )
+    // <TestQuestions />
     // <TestShortAnswers />
     // <John />
     // <TestNarratives />
