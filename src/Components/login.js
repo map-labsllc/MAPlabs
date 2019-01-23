@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { emailChanged, passwordChanged, loginUser, signUp } from '../store/actions/'
+import { emailChanged, passwordChanged, loginUser, signUp } from '../store/user/actions'
 
 class Login extends Component {
   constructor(props) {

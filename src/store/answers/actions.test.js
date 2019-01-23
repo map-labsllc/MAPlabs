@@ -6,6 +6,7 @@ import {
     ANSWERS_LOADING,
     ANSWERS_LOAD,
     ANSWERS_ERROR_DB,
+    ANSWERS_PERSIST
 } from './constants'
 
 import {
@@ -52,10 +53,10 @@ describe('async actions', () => {
     })
   }),
   describe('persistAnswersAC', () => {
-    it('creates ANSWERS_NO_OP when posting answers was successful', async () => {
+    it('creates ANSWERS_PERSIST when posting answers was successful', async () => {
         fetchMock.post(`${URL}/${ID}`, ANSWERS)
         const expectedActions = [
-            { type: ANSWERS_NO_OP }
+            { type: ANSWERS_PERSIST }
         ]
         const store = mockStore()
 
