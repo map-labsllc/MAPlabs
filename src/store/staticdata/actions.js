@@ -46,7 +46,7 @@ export const loadAllStaticdataAC = () => {
     dispatch( { type: STATICDATA_LOADING } )
 
     const p1 = loadstaticJSON( BELIEFS_FN )
-    const p2 = loadstaticJSON( LIFEDESCRS_FN )
+    const p2 = loadstaticJSON( LIFEDESCRIPTIONS_FN )
     const p3 = loadstaticJSON( STRENGTHS_FN )
 
     return Promise.all( [p1, p2, p3] )
