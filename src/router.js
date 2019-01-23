@@ -8,19 +8,20 @@ import Action from '../src/store/user/actions'
 import lifeDescriptorQuestion from './Components/lifeDescriptor'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+
 import TestNarratives from './Components/TestNarratives'
 import TestShortAnswers from './Components/TestShortAnswers'
-
+import TestQuestions from './Components/TestQuestions'
 import John from './Components/John'
 
 class RouterComponent extends React.Component {
   render() {
     return (
-      <John />
-      // <TestNarratives />
-      // <TestShortAnswers />
+      <TestShortAnswers />
     )
-
+    // <TestQuestions />
+    // <John />
+    // <TestNarratives />
   }
 }
 
