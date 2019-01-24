@@ -58,7 +58,7 @@ export default class Section extends React.Component {
         )}
         {isVisible && (
           <>
-            <Popup title = {sectionTitle} excercise = {excercise} />
+            <Popup sectionTitle = {sectionTitle} excercise = {excercise} />
           </>
         )}
       <p> </p>
