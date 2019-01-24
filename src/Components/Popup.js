@@ -28,15 +28,15 @@ export default class Popup extends React.Component {
   // **************************************************
   // Show the complex interactive component
   onclickStart = () => {
-    console.log("Popup::onclickStart()");
-    this.setState({ isVisible: true })
+    console.log( "Popup::onclickStart()" )
+    this.setState( { isVisible: true } )
   }
 
   // **************************************************
   // Hide the complex interactive component
   onCloseModal = () => {
     console.log("Popup::onCloseModal()");
-    this.setState({ isVisible: false })
+    this.setState( { isVisible: false } )
   }
 
   // **************************************************
@@ -46,16 +46,17 @@ export default class Popup extends React.Component {
 
     let { isVisible } = this.state
     let { title, excercise } = this.props
+    const excerciseWithOnCloseCB = React.cloneElement( excercise ,{onCloseModalCB: this.onCloseModal } )
 
     return (
       <>
-        <h3><u>Popup</u>: {title}</h3>
+        <h3><i>Popup</i>: {title}</h3>
         {!isVisible && (
           <Button type = "button" onClick = {this.onclickStart}>Start</Button>
         )}
         {isVisible && (
           <>
-          {excercise}
+          {excerciseWithOnCloseCB}
           </>
         )}
       </>
