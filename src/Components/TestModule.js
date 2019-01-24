@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
 import Module from '../Components/Module'
 import Section from '../Components/Section'
@@ -13,7 +13,7 @@ import { getUser } from '../store/user/reducer'
 import {
   Button,
   Form,
-} from 'react-bootstrap';
+} from 'react-bootstrap'
 
 /* **************************************************
    Used to test components during development
@@ -26,10 +26,10 @@ class TestModule extends React.Component {
 
   // load user data
   componentDidMount = () => {
-    const { dispatch, userId } = this.props;
-    dispatch(loadAllAnswersAC(userId));
-    dispatch(loadAllTransitionsAC(userId));
-    dispatch(loadAllStaticdataAC());
+    const { dispatch, userId } = this.props
+    dispatch( loadAllAnswersAC( userId ) )
+    dispatch( loadAllTransitionsAC( userId ) )
+    dispatch( loadAllStaticdataAC() )
   }
 
 
@@ -80,7 +80,7 @@ class TestModule extends React.Component {
 
     return (
       <>
-        <p>{((isLoading) ? "loading...." : ""  )}</p>
+        <p>{( ( isLoading ) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
             <Module moduleNum = "1" moduleTitle = "Module 1" moduleDescription = "Description of the module here...">
@@ -103,15 +103,15 @@ class TestModule extends React.Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.answersRD.isLoading || state.transitionsRD.isLoading,
-    userId: getUser(state.userRD).user_id,
+    userId: getUser( state.userRD ).user_id,
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ( {
   dispatch,
-})
+} )
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(TestModule)
+  )( TestModule )

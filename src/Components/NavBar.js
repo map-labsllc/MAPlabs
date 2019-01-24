@@ -1,55 +1,55 @@
 import React from 'react'
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-bootstrap'
-import { connect } from 'react-redux';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
+import { connect } from 'react-redux'
 
 import { loadAllAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
-import { getUser } from '../store/user/reducer'
 
 // export default class NavBar extends React.Component {
 class NavBar extends React.Component {
 
   componentDidMount() {
-    console.log("NavBar::componentDidMount()");
-    const { dispatch, userId } = this.props;
+    console.log( "NavBar::componentDidMount()" )
+    const { dispatch, user } = this.props
 
     // asynch calls to load user and static from db
-    dispatch(loadAllAnswersAC(userId));
-    dispatch(loadAllTransitionsAC(userId));
-    dispatch(loadAllStaticdataAC());
+    dispatch( loadAllAnswersAC( user.userId ) )
+    dispatch( loadAllTransitionsAC( user.userId ) )
+    dispatch( loadAllStaticdataAC() )
   }
 
   render() {
-    console.log("NavBar::render");
+    console.log( "NavBar::render" )
     return (
+      this.props.user &&
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#home">M.A.P.Labs</a>
+            <a href="/splash">M.A.P.Labs</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavItem eventKey={1} href="#">
+          <NavItem eventKey={1} href="#module1">
             Module 1
           </NavItem>
-          <NavItem eventKey={2} href="#">
+          <NavItem eventKey={2} href="#module2">
             Module 2
           </NavItem>
-          <NavItem eventKey={2} href="#">
+          <NavItem eventKey={3} href="#module3">
             Module 3
           </NavItem>
-          <NavItem eventKey={2} href="#">
+          <NavItem eventKey={4} href="#module4">
             Module 4
           </NavItem>
-          <NavItem eventKey={2} href="#">
+          <NavItem eventKey={5} href="#module5">
             Module 5
           </NavItem>
-          <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-            <MenuItem eventKey={3.1}>Dashboard</MenuItem>
-            <MenuItem eventKey={3.2}>Account info</MenuItem>
+          <NavDropdown eventKey={6} title={this.props.user.fname} id="basic-nav-dropdown">
+            <MenuItem eventKey={6.1}>Dashboard</MenuItem>
+            <MenuItem eventKey={6.2}>Account info</MenuItem>
             <MenuItem divider />
-            <MenuItem eventKey={3.4}>Log out</MenuItem>
+            <MenuItem eventKey={6.4}>Log out</MenuItem>
           </NavDropdown>
         </Nav>
       </Navbar>
@@ -57,22 +57,20 @@ class NavBar extends React.Component {
   }
 }
 
-const styles = {
-  NavBar
-}
 /* ********************************************************
    Wrap NavBar in container to get access to dispatch
 *********************************************************** */
 const mapStateToProps = state => {
+  const { user } = state.userRD
   return {
-    userId: getUser(state.userRD).user_id,
+    user
   }
 }
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ( {
   dispatch,
-})
+} )
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(NavBar)
+  )( NavBar )

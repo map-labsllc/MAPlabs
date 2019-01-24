@@ -6,7 +6,7 @@ import ReduxThunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import Router from './router'
 import reducers from './store/reducers'
-import createBrowserHistory from "history/createBrowserHistory"
+import NavBar from './Components/NavBar'
 
 // const history = createBrowserHistory()
 class App extends Component {
@@ -41,6 +41,7 @@ class App extends Component {
 
     return (
       <Provider store={ store }>
+          <NavBar />
           <Router />
       </Provider>
     )
