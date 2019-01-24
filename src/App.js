@@ -41,7 +41,7 @@ class App extends Component {
 
     return (
       <Provider store={ store }>
-          <NavBar />
+          
           <Router />
       </Provider>
     )
