@@ -22,26 +22,27 @@ class NavBar extends React.Component {
   render() {
     console.log( "NavBar::render" )
     return (
+      this.props.user &&
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#home">M.A.P.Labs</a>
+            <a href="#splash">M.A.P.Labs</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavItem eventKey={1} href="#">
+          <NavItem eventKey={1} href="#module1">
             Module 1
           </NavItem>
-          <NavItem eventKey={2} href="#">
+          <NavItem eventKey={2} href="#module2">
             Module 2
           </NavItem>
-          <NavItem eventKey={3} href="#">
+          <NavItem eventKey={3} href="#module3">
             Module 3
           </NavItem>
-          <NavItem eventKey={4} href="#">
+          <NavItem eventKey={4} href="#module4">
             Module 4
           </NavItem>
-          <NavItem eventKey={5} href="#">
+          <NavItem eventKey={5} href="#module5">
             Module 5
           </NavItem>
           <NavDropdown eventKey={6} title={this.props.user.fname} id="basic-nav-dropdown">

@@ -8,7 +8,7 @@ export default class RouterComponent extends React.Component {
     return (
       <Router style={{ paddingTop: 10 }}>
         <Switch>
-          <Route path='/#home' component={SplashPage} initial/>
+          <Route path={['/', '/#splash']} component={SplashPage} initial />
         </Switch>
       </Router>
     )

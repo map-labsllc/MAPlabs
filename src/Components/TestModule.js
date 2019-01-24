@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
 import Module from '../Components/Module'
 import Section from '../Components/Section'
@@ -13,7 +13,7 @@ import { getUser } from '../store/user/reducer'
 import {
   Button,
   Form,
-} from 'react-bootstrap';
+} from 'react-bootstrap'
 
 /* **************************************************
    Used to test components during development
@@ -26,10 +26,10 @@ class TestModule extends React.Component {
 
   // load user data
   componentDidMount = () => {
-    const { dispatch, userId } = this.props;
-    dispatch(loadAllAnswersAC(userId));
-    dispatch(loadAllTransitionsAC(userId));
-    dispatch(loadAllStaticdataAC());
+    const { dispatch, userId } = this.props
+    dispatch( loadAllAnswersAC( userId ) )
+    dispatch( loadAllTransitionsAC( userId ) )
+    dispatch( loadAllStaticdataAC() )
   }
 
 
@@ -58,13 +58,13 @@ class TestModule extends React.Component {
 
   ]
 
-  excercise110 = (<NarrativeCT question={{ code: 110, text: "Reflect on your current situation", instructions: "** This will be replaced with the LifeDescriptors component" }} />)
-  excercise120 = (<NarrativeCT question={{ code: 120, text: "Current Situation Descriptor", instructions: "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your current state of mind, state of being, and general assessment of your current condition today as you begin MAPmaker." }} />)
-  excercise130 = (<NarrativeCT question={{ code: 130, text: "Imagine your Future Desired Situation", instructions: "** This will be replaced with the LifeDescriptors component" }} />)
-  excercise140 = (<NarrativeCT question={{ code: 140, text: "Future Desired Situation Description", instructions: "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your future desired state of being as you begin MAPmaker. Create this description in your own image capturing how you want to feel, what you will think of your future situation, what will be good and bad, and how you would describe your future self to your current self. " }} />)
-  excercise150 = (<QuestionsCT questions = {this.questions150}/>)
-  excercise160 = (<QuestionsCT questions = {this.questions160}/>)
-  excercise170 = (<QuestionsCT questions = {this.questions170}/>)
+  excercise110 = ( <NarrativeCT question={{ code: 110, text: "Reflect on your current situation", instructions: "** This will be replaced with the LifeDescriptors component" }} /> )
+  excercise120 = ( <NarrativeCT question={{ code: 120, text: "Current Situation Descriptor", instructions: "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your current state of mind, state of being, and general assessment of your current condition today as you begin MAPmaker." }} /> )
+  excercise130 = ( <NarrativeCT question={{ code: 130, text: "Imagine your Future Desired Situation", instructions: "** This will be replaced with the LifeDescriptors component" }} /> )
+  excercise140 = ( <NarrativeCT question={{ code: 140, text: "Future Desired Situation Description", instructions: "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your future desired state of being as you begin MAPmaker. Create this description in your own image capturing how you want to feel, what you will think of your future situation, what will be good and bad, and how you would describe your future self to your current self. " }} /> )
+  excercise150 = ( <QuestionsCT questions = {this.questions150}/> )
+  excercise160 = ( <QuestionsCT questions = {this.questions160}/> )
+  excercise170 = ( <QuestionsCT questions = {this.questions170}/> )
 
 
 
@@ -75,7 +75,7 @@ class TestModule extends React.Component {
 
     return (
       <>
-        <p>{((isLoading) ? "loading...." : ""  )}</p>
+        <p>{( ( isLoading ) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
             <Module moduleNum = "1" moduleTitle = "Module 1" moduleDescrition = "Descriuoption of the module here...">
@@ -98,15 +98,15 @@ class TestModule extends React.Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.answersRD.isLoading || state.transitionsRD.isLoading,
-    userId: getUser(state.userRD).user_id,
+    userId: getUser( state.userRD ).user_id,
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ( {
   dispatch,
-})
+} )
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(TestModule)
+  )( TestModule )
