@@ -5,28 +5,24 @@ import SignUp from './Components/SignUp'
 import SplashPage from './Components/SplashPage'
 import NavBar from './Components/NavBar'
 import QuestionsList from './Components/questionsList'
-
 import Action from '../src/store/user/actions'
-
 import lifeDescriptorQuestion from './Components/lifeDescriptor'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-
 import TestNarratives from './Components/TestNarratives'
 import TestShortAnswers from './Components/TestShortAnswers'
-
 import Modal from './Components/Modal'
 import ModulesPage from './Components/modulesPage'
-
 import TestQuestions from './Components/TestQuestions'
 import TestPopup from './Components/TestPopup'
-
+import TestModule from './Components/TestModule'
 import John from './Components/John'
 
 class RouterComponent extends React.Component {
   render() {
     console.log('hello');
     return (
+
 
 
 
@@ -42,7 +38,9 @@ class RouterComponent extends React.Component {
       </Router>
 
 
+
     )
+    // <TestPopup />
     // <TestQuestions />
     // <TestShortAnswers />
     // <John />

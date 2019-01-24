@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionsCT from '../Containers/QuestionsCT'
+import Popup from '../Components/Popup'
 import {
   Button,
   Checkbox,
@@ -16,45 +16,56 @@ import {
    Shows / hides a section depending on user's curr_module / curr_section
 
    props:
-     moduleNum -- integer, the module this section is in (1-based)
-     sectionNum -- integer, the section (1-based)
+     moduleNum -- integer in a string, the module this section is in (1-based)
+     sectionNum -- integer in a string, the section (1-based)
      user -- the complete user object to check the furthest mod/sec they've gotten to
-     title -- title of the section
+     sectionTitle -- title of the section
 ***************************************************** */
 export default class Section extends React.Component {
 
+  // check that user has gotten up to this module and section
   canUserView = (user, moduleNum, sectionNum) => {
-    return (   user.curr_module <= curr_module 
-            && user.curr_section <= curr_section)
+    return true;
+
+
+    // if (moduleNum < user.curr_module) return true
+    // if (user.curr_module < moduleNum) return false
+    // return user.curr_section <= sectionNum
   }
 
   state = {
-    isVisible: canUserView(this.props.user, this.props.moduleNum, this.props.sectionNum),
+    isVisible: this.canUserView(
+      this.props.user,
+      this.props.moduleNum,
+      this.props.sectionNum),
   }
-
-
-
 
   render() {
     console.log("Section::render()")
 
+    const questions1 = [
+      { code: 40, text: "ShortAnswers 40 question" },
+      { code: 41, text: "ShortAnswers 41 question" },
+      { code: 41, text: "ShortAnswers 42 question" },
+    ]
+
+
     let { isVisible } = this.state
-    let { title, questions } = this.props
+    let { sectionTitle } = this.props
 
     return (
       <>
-        <h1>{title}</h1>
+        <p> </p>
+        <h2>SECTION: {sectionTitle}</h2>
         {!isVisible && (
-          <Button type = "button" onClick = {this.onclickStart}>Start</Button>
+          <p>not available yet</p>
         )}
         {isVisible && (
           <>
-          <QuestionsCT
-            questions = {questions}
-            onCloseModalCB = {this.onCloseModal}
-          />
+            <Popup title = {sectionTitle} questions = {questions1} />
           </>
         )}
+      <p> </p>
       </>
     )
   }
