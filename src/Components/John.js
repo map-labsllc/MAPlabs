@@ -19,8 +19,8 @@ import ModalShortAnswer from './ModalShortAnswer';
    Used to test components during development
 ***************************************************** */
 class TestShortAnswers extends React.Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
         //sets up close open and state without modal
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -57,9 +57,10 @@ class TestShortAnswers extends React.Component {
                 <p>{((isLoading) ? "loading...." : "")}</p>
                 {!isLoading && (
                     <>
-
                         <ModalShortAnswer handleShow={this.handleShow}
-                            handleClose={this.handleClose} />
+                            handleClose={this.handleClose}
+                            show={this.state.show}
+                        />
 
 
                         <hr />

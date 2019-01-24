@@ -18,10 +18,21 @@ import TestPopup from './Components/TestPopup'
 import TestModule from './Components/TestModule'
 import John from './Components/John'
 
+import { S } from 'xmlchars/xml/1.0/ed5';
+
+
 class RouterComponent extends React.Component {
   render() {
     console.log('hello');
     return (
+
+      //<SplashPage />
+
+      //<John />
+      // <TestNarratives />
+      // <TestShortAnswers />
+    )
+
 
 
 
