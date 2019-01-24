@@ -11,12 +11,16 @@ import {
 
    passedProps:
      question -- { code: 50, text: "question 50" }
+     instructions -- string with instructions, can be an empty string for no instructions
 ******************************************** */
 const mapStateToProps = (state, passedProps) => {
   console.log("NarrativeCT::mapStateToProps()");
 
-  const { question } = passedProps
+  const { question, instructions } = passedProps
   if (!question.code) throw new Error("missing question code: ", passedProps.question_code)
+
+  console.log('****************************************');
+  console.log("instructions CT:", instructions);
 
   // get userId
   const userId = getUser(state.userRD).user_id
@@ -31,6 +35,7 @@ const mapStateToProps = (state, passedProps) => {
   return {
     userId,
     question,
+    instructions,
     previousAnswer,
   }
 }
