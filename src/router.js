@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import SplashPage from './Components/SplashPage'
 import Login from './Components/login'
-import
 export default class RouterComponent extends React.Component {
   render() {
 
@@ -10,8 +9,8 @@ export default class RouterComponent extends React.Component {
       return (
         <Router style={{ paddingTop: 10 }}>
           <Switch>
-            <Route path={['/', '/#splash']} component={SplashPage} initial />
-            <Route path = { 'login' } component = { Login }/>
+            <Route exact path={['/', '/splash']} component={SplashPage} initial />
+            <Route exact path ='/login' component = { Login }/>
           </Switch>
         </Router>
       )
