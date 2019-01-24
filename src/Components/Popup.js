@@ -17,7 +17,6 @@ import {
 
    props:
      title -- title of this set of questions
-     questions -- [ { code: 50, text: "question 50" }, { ... }
      exercise -- component user will interact with
 ***************************************************** */
 export default class Popup extends React.Component {
@@ -46,9 +45,7 @@ export default class Popup extends React.Component {
     console.log("Popup::render()")
 
     let { isVisible } = this.state
-    let { title, questions, excercise } = this.props
-
-
+    let { title, excercise } = this.props
 
     return (
       <>

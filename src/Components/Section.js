@@ -45,13 +45,6 @@ export default class Section extends React.Component {
   render() {
     console.log("Section::render()")
 
-    const questions1 = [
-      { code: 40, text: "ShortAnswers 40 question" },
-      { code: 41, text: "ShortAnswers 41 question" },
-      { code: 42, text: "ShortAnswers 42 question" },
-    ]
-
-
     let { isVisible } = this.state
     let { sectionTitle, excercise } = this.props
 
@@ -64,7 +57,7 @@ export default class Section extends React.Component {
         )}
         {isVisible && (
           <>
-            <Popup title = {sectionTitle} questions = {questions1} excercise = {excercise} />
+            <Popup title = {sectionTitle} excercise = {excercise} />
           </>
         )}
       <p> </p>
