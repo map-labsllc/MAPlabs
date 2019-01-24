@@ -42,8 +42,8 @@ class TestModule extends React.Component {
     { code: 42, text: "ShortAnswers 42 question" },
   ]
 
-  excercise1 = (<QuestionsCT questions = {this.questions1} onCloseModalCB = "unk" />)
-  excercise2 = (<QuestionsCT questions = {this.questions2} onCloseModalCB = "unk" />)
+  excercise1 = (<QuestionsCT questions = {this.questions1}/>)
+  excercise2 = (<QuestionsCT questions = {this.questions2}/>)
   excercise3 = (<NarrativeCT question={{ code: 50, text: "Narrative 50 question" }} />)
 
   // render!
@@ -60,6 +60,7 @@ class TestModule extends React.Component {
               <Section moduleNum = "1" sectionNum = "1" sectionTitle = "Section One" excercise = {this.excercise1} />
               <Section moduleNum = "1" sectionNum = "2" sectionTitle = "Section Two" excercise = {this.excercise2} />
               <Section moduleNum = "1" sectionNum = "3" sectionTitle = "Section Three" excercise = {this.excercise3} />
+              <Section moduleNum = "1" sectionNum = "4" sectionTitle = "Section Four" excercise = {this.excercise3} />
             </Module>
           </>
         )}
