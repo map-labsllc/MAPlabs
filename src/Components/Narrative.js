@@ -17,6 +17,7 @@ import {
    props:
      userId -- integer
      question -- { code: 50, text: "Question 50" }
+     intructions -- addtional input
      previousAnswer -- string with the previous answer
      onPersistCB(newAnswer) -- callback for when user clicks Save
 ***************************************************** */

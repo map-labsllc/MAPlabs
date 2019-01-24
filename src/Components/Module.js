@@ -21,19 +21,15 @@ import {
      children -- the Section components to display
 ***************************************************** */
 export default class Module extends React.Component {
-  
+
   render() {
     console.log("Module::render()")
 
     let { moduleNum, moduleTitle, children } = this.props
 
-    console.log('-----------------------------------------');
-    console.log("children", children);
-    console.log('-----------------------------------------');
-
     return (
       <>
-        <h1>Module: {moduleNum} - {moduleTitle}</h1>
+        <h3>Module: {moduleNum} - {moduleTitle}</h3>
         {children}
         <p> </p>
       </>
