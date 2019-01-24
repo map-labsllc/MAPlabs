@@ -41,18 +41,21 @@ export default class ModalX extends React.Component {
 
     return (
       <Modal show={isVisible} onHide={onModalClosingCB}>
+
         <Modal.Header style={style.header} closeButton>
           <Modal.Title style={style.header}>{sectionTitle}</Modal.Title>
         </Modal.Header>
+
         <Modal.Body>
           <>
           {exercise}
           </>
         </Modal.Body>
+
         <Modal.Footer style={style.footer}>
-          <Button style={style.previous}>Previous</Button>
+          {/*<Button style={style.previous}>Previous</Button>
           <Button style={style.complete}>Complete</Button>
-          <Button style={style.next}>Next</Button>
+          <Button style={style.next}>Next</Button>*/}
         </Modal.Footer>
       </Modal>
     )
