@@ -4,20 +4,30 @@ import Login from './Components/login'
 import SignUp from './Components/SignUp'
 import SplashPage from './Components/SplashPage'
 import NavBar from './Components/NavBar'
-import Action from './store/actions'
 import QuestionsList from './Components/questionsList'
+
+import Action from '../src/store/user/actions'
+
 import lifeDescriptorQuestion from './Components/lifeDescriptor'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+
 import TestNarratives from './Components/TestNarratives'
 import TestShortAnswers from './Components/TestShortAnswers'
+
 import Modal from './Components/Modal'
 import ModulesPage from './Components/modulesPage'
+
+import TestQuestions from './Components/TestQuestions'
+import TestPopup from './Components/TestPopup'
+
 import John from './Components/John'
 
 class RouterComponent extends React.Component {
   render() {
+    console.log('hello');
     return (
+
 
 
       <Router style={{ paddingTop: 10 }}>
@@ -33,7 +43,10 @@ class RouterComponent extends React.Component {
 
 
     )
-
+    // <TestQuestions />
+    // <TestShortAnswers />
+    // <John />
+    // <TestNarratives />
   }
 }
 
@@ -53,9 +66,9 @@ class RouterComponent extends React.Component {
 //   }
 // }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
+const mapDispatchToProps = dispatch => bindActionCreators( {
   // header
 
-}, dispatch)
+}, dispatch )
 
-export default connect(null, mapDispatchToProps)(RouterComponent)
+export default connect( null, mapDispatchToProps)( RouterComponent )

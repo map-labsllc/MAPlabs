@@ -19,8 +19,7 @@ import { ListGroupItem, ButtonGroup, Button, } from 'react-bootstrap'
   }
 
 
-
-  let structured = data.descr.split( '#' )
+  let structured = data.description.split( '#' )
   let first = structured[0]
   let second = structured[1]
 

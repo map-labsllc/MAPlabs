@@ -17,8 +17,8 @@ import {
       email: "tharrison@gmail.com",
       login_service_id: 1,
       login_token: "DFDS34543GD",
-      mod_complete: 0,
-      sec_complete: 0,
+      curr_module: 1,
+      curr_section: 1,
       created_at: 2019-01-15 04:00:00-07
      },
   }
@@ -47,7 +47,7 @@ const initialState = {
 
    return -- user object
 ************************************************** */
-
+//This should be replaced with directly mapping state.user to props in container //components
 export const getUser = (state) => state.user
 
 

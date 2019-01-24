@@ -15,7 +15,7 @@ const mockStore = configureMockStore( middlewares )
 const URL = `end:.json`
 const DATA = { section: 'TEST', jsonData: ['TEST']}
 const BELIEFS_FN = 'beliefs'
-const LIFEDESCRS_FN = 'lifedescrs'
+const LIFEDESCRIPTIONS_FN = 'lifeDescriptions'
 const STRENGTHS_FN = 'strengths'
 
 describe( 'async actions', () => {
@@ -29,7 +29,7 @@ describe( 'async actions', () => {
             { type: STATICDATA_LOADING },
             { type: STATICDATA_LOAD, payload: {
                 [BELIEFS_FN]: DATA.jsonData,
-                [LIFEDESCRS_FN]: DATA.jsonData,
+                [LIFEDESCRIPTIONS_FN]: DATA.jsonData,
                 [STRENGTHS_FN]: DATA.jsonData
             }}
         ]
@@ -38,19 +38,19 @@ describe( 'async actions', () => {
         await store.dispatch( loadAllStaticdataAC() )
 
         expect( store.getActions() ).toEqual( expectedActions )
-    }),
-    it('creates STATICDATA_ERROR_DB when fetching was not successful', async () => {
-        const error = new Error('Fetch failed')
-        fetchMock.get(URL, { throws: error })
+    } )
+    it( 'creates STATICDATA_ERROR_DB when fetching was not successful', async () => {
+        const error = new Error( 'Fetch failed' )
+        fetchMock.get( URL, { throws: error } )
         const expectedActions = [
             { type: STATICDATA_LOADING },
             { type: STATICDATA_ERROR_DB, payload: error }
         ]
         const store = mockStore()
 
-        await store.dispatch(loadAllStaticdataAC())        
+        await store.dispatch( loadAllStaticdataAC() )
 
-        expect(store.getActions()).toEqual(expectedActions)
-    })
-  })
-})
+        expect( store.getActions() ).toEqual( expectedActions )
+    } )
+  } )
+} )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Modal from './Modal'
 import QuestionsList from './questionsList'
+import NavBar from './NavBar'
 export default class ModulesPage extends Component {
   constructor( props ) {
     super( props )
@@ -27,6 +28,7 @@ export default class ModulesPage extends Component {
     return(
 
       <div>
+      <NavBar/>
         <Modal
           show = { this.state.show }
           data = { <QuestionsList/> }
