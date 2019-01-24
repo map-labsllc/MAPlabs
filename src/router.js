@@ -11,10 +11,12 @@ import { bindActionCreators } from 'redux'
 import TestNarratives from './Components/TestNarratives'
 import TestShortAnswers from './Components/TestShortAnswers'
 import John from './Components/John'
+import { S } from 'xmlchars/xml/1.0/ed5';
 class RouterComponent extends React.Component {
   render() {
     return (
-      <John />
+      <SplashPage />
+      // <John />
       // <TestNarratives />
       // <TestShortAnswers />
     )
