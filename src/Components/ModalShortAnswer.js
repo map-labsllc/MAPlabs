@@ -5,7 +5,7 @@ import ShortAnswersCT from '../Containers/ShortAnswersCT'
 const ModalShortAnswer = ({ handleShow, handleClose, show }) => {
     return (
         <div>
-            <Button bsStyle="primary" bsSize="large" onClick={handleShow} show={show}>Short Answers</Button>
+            <Button style={style.complete} bsStyle="primary" bsSize="large" onClick={handleShow} show={show}>Short Answers</Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header style={style.header} closeButton>
                     <Modal.Title style={style.header}>Compare your “current situation” statement to your “future desired situation” statement.</Modal.Title>
@@ -30,32 +30,33 @@ const style = {
     header: {
         fontWeight: "1",
         fontSize: "25px",
-        backgroundColor: "#255F9A",
-        color: "white",
+        backgroundColor: "#25274D",
+        color: "#AAABB8",
     },
     previous: {
         float: "left",
-        backgroundColor: "#191919",
-        color: "white",
-        borderColor: "white",
+        backgroundColor: "#29648A",
+        color: "#AAABB8",
+        borderColor: "#AAABB8",
     },
     complete: {
         marginLeft: "auto",
         marginRight: "175px",
-        backgroundColor: "#0C9B99",
-        color: "white",
+        backgroundColor: "#2E9CCA",
+        color: "black",
+        borderColor: "black",
     },
     body: {
         backgroundColor: "#036FD5",
     },
     footer: {
-        backgroundColor: "#255F9A",
+        backgroundColor: "#25274D",
     },
     next: {
         float: "right",
-        backgroundColor: "#191919",
-        color: "white",
-        borderColor: "white",
+        backgroundColor: "#29648A",
+        color: "#AAABB8",
+        borderColor: "#AAABB8",
     }
 }
 export default ModalShortAnswer

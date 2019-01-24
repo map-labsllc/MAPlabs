@@ -12,11 +12,13 @@ import TestNarratives from './Components/TestNarratives'
 import TestShortAnswers from './Components/TestShortAnswers'
 import John from './Components/John'
 import { S } from 'xmlchars/xml/1.0/ed5';
+import ModalShortAnswer from './Components/ModalShortAnswer';
 class RouterComponent extends React.Component {
   render() {
     return (
-      <SplashPage />
-      // <John />
+      //<SplashPage />
+
+      <John />
       // <TestNarratives />
       // <TestShortAnswers />
     )
