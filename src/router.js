@@ -23,41 +23,37 @@ import { S } from 'xmlchars/xml/1.0/ed5';
 
 class RouterComponent extends React.Component {
   render() {
-    console.log('hello');
+    console.log('hello')
     return (
 
       //<SplashPage />
 
-      //<John />
+      // <John />
       // <TestNarratives />
-      // <TestShortAnswers />
-    // )
 
-
-
-
-
-      <Router style={{ paddingTop: 10 }}>
-
-        <Switch>
-          <Route path='/' component={ModulesPage} initial />
-          <Route path='/login' component={Login} title='please login' />
-          <Route path='/signUp' component={SignUp} title='please signUp' />
-
-        </Switch>
-
-      </Router>
-
-
-
+      <TestShortAnswers />
     )
-    // <TestPopup />
-    // <TestQuestions />
-    // <TestShortAnswers />
-    // <John />
-    // <TestNarratives />
+
+
+
   }
 }
+// <Router style={{ paddingTop: 10 }}>
+
+//   <Switch>
+//     <Route path='/' component={ModulesPage} initial />
+//     <Route path='/login' component={Login} title='please login' />
+//     <Route path='/signUp' component={SignUp} title='please signUp' />
+
+//   </Switch>
+
+// </Router >
+// // <TestPopup />
+// <TestQuestions />
+// <TestShortAnswers />
+// <John />
+// <TestNarratives />
+
 
 // class RouterComponent extends React.Component {
 //   render() {
@@ -75,9 +71,9 @@ class RouterComponent extends React.Component {
 //   }
 // }
 
-const mapDispatchToProps = dispatch => bindActionCreators( {
+const mapDispatchToProps = dispatch => bindActionCreators({
   // header
 
-}, dispatch )
+}, dispatch)
 
-export default connect( null, mapDispatchToProps)( RouterComponent )
+export default connect(null, mapDispatchToProps)(RouterComponent)

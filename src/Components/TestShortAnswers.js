@@ -6,6 +6,7 @@ import { loadAllAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
 import { getUser } from '../store/user/reducer'
+import ModalShortAnswer from './ModalShortAnswer'
 
 import {
   Button,
@@ -16,9 +17,15 @@ import {
    Used to test components during development
 ***************************************************** */
 class TestShortAnswers extends React.Component {
-
-  state = {
-    ready: false,
+  constructor(props) {
+    super(props);
+    //sets up close open and state without modal
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.state = {
+      ready: false,
+      show: false,
+    }
   }
 
   // load user data
@@ -28,7 +35,14 @@ class TestShortAnswers extends React.Component {
     dispatch(loadAllTransitionsAC(userId));
     dispatch(loadAllStaticdataAC());
   }
+  //close and open modal
+  handleClose() {
+    this.setState({ show: false });
+  }
 
+  handleShow() {
+    this.setState({ show: true });
+  }
 
   // render!
   render() {
@@ -37,23 +51,27 @@ class TestShortAnswers extends React.Component {
 
     return (
       <>
-        <p>{((isLoading) ? "loading...." : ""  )}</p>
+        <p>{((isLoading) ? "loading...." : "")}</p>
         {!isLoading && (
           <>
-            <ShortAnswersCT
-              question = {{ code: 40, text: "ShortAnswers 40 question" }}
-              doesHandlePersistence = {{ value: false }}
+            <ModalShortAnswer handleShow={this.handleShow}
+              handleClose={this.handleClose}
+              show={this.state.show}
             />
-            <hr/>
-            <ShortAnswersCT
-              question = {{ code: 41, text: "ShortAnswers 41 question" }}
-              doesHandlePersistence = {{ value: true }}
+            {/* <ShortAnswersCT
+              question={{ code: 40, text: "ShortAnswers 40 question" }}
+              doesHandlePersistence={{ value: false }}
             />
-            <hr/>
+            <hr />
             <ShortAnswersCT
-              question = {{ code: 42, text: "ShortAnswers 42 question" }}
-              doesHandlePersistence = {{ value: true }}
+              question={{ code: 41, text: "ShortAnswers 41 question" }}
+              doesHandlePersistence={{ value: true }}
             />
+            <hr />
+            <ShortAnswersCT
+              question={{ code: 42, text: "ShortAnswers 42 question" }}
+              doesHandlePersistence={{ value: true }} */}
+            {/* /> */}
           </>
         )}
       </>
@@ -74,6 +92,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(TestShortAnswers)
+  mapStateToProps,
+  mapDispatchToProps
+)(TestShortAnswers)

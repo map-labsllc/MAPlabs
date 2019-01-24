@@ -63,7 +63,7 @@ class TestShortAnswers extends React.Component {
                         />
 
 
-                        <hr />
+                        {/* <hr />
                         <ShortAnswersCT
                             question={{ code: 41, text: "ShortAnswers 41 question" }}
                             doesHandlePersistence={{ value: true }}
@@ -77,7 +77,7 @@ class TestShortAnswers extends React.Component {
                         <hr />
                         <NarrativeCT question={{ code: 51, text: "Narrative 51 question" }} />
                         <hr />
-                        <NarrativeCT question={{ code: 52, text: "Narrative 52 question" }} />
+                        <NarrativeCT question={{ code: 52, text: "Narrative 52 question" }} /> */}
                     </>
                 )}
             </>
