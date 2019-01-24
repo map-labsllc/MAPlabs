@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-bootstrap'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
 import { loadAllAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
@@ -11,17 +11,17 @@ import { getUser } from '../store/user/reducer'
 class NavBar extends React.Component {
 
   componentDidMount() {
-    console.log("NavBar::componentDidMount()");
-    const { dispatch, userId } = this.props;
+    console.log( "NavBar::componentDidMount()" )
+    const { dispatch, userId } = this.props
 
     // asynch calls to load user and static from db
-    dispatch(loadAllAnswersAC(userId));
-    dispatch(loadAllTransitionsAC(userId));
-    dispatch(loadAllStaticdataAC());
+    dispatch( loadAllAnswersAC( userId ) )
+    dispatch( loadAllTransitionsAC( userId ) )
+    dispatch( loadAllStaticdataAC() )
   }
 
   render() {
-    console.log("NavBar::render");
+    console.log( "NavBar::render" )
     return (
       <Navbar>
         <Navbar.Header>
@@ -36,20 +36,20 @@ class NavBar extends React.Component {
           <NavItem eventKey={2} href="#">
             Module 2
           </NavItem>
-          <NavItem eventKey={2} href="#">
+          <NavItem eventKey={3} href="#">
             Module 3
           </NavItem>
-          <NavItem eventKey={2} href="#">
+          <NavItem eventKey={4} href="#">
             Module 4
           </NavItem>
-          <NavItem eventKey={2} href="#">
+          <NavItem eventKey={5} href="#">
             Module 5
           </NavItem>
-          <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-            <MenuItem eventKey={3.1}>Dashboard</MenuItem>
-            <MenuItem eventKey={3.2}>Account info</MenuItem>
+          <NavDropdown eventKey={6} title="Dropdown" id="basic-nav-dropdown">
+            <MenuItem eventKey={6.1}>Dashboard</MenuItem>
+            <MenuItem eventKey={6.2}>Account info</MenuItem>
             <MenuItem divider />
-            <MenuItem eventKey={3.4}>Log out</MenuItem>
+            <MenuItem eventKey={6.4}>Log out</MenuItem>
           </NavDropdown>
         </Nav>
       </Navbar>
@@ -65,14 +65,14 @@ const styles = {
 *********************************************************** */
 const mapStateToProps = state => {
   return {
-    userId: getUser(state.userRD).user_id,
+    userId: getUser( state.userRD ).user_id,
   }
 }
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ( {
   dispatch,
-})
+} )
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(NavBar)
+  )( NavBar )
