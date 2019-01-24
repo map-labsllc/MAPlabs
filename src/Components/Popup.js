@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionsCT from '../Containers/QuestionsCT'
+import ModalX from './ModalX'
 import {
   Button,
   Checkbox,
@@ -33,10 +33,24 @@ export default class Popup extends React.Component {
   }
 
   // **************************************************
-  // Hide the complex interactive component
+  // CB from the <exercise> when its close/save button is clicked
   onCloseModal = () => {
     console.log("Popup::onCloseModal()");
     this.setState( { isVisible: false } )
+  }
+
+
+  // **************************************************
+  // CB from <Modal>
+  onModalClosing = () => {
+    console.log("Popup::onModalClosing()");
+    this.setState( { isVisible: false } )
+  }
+  // **************************************************
+  // CB from <Modal>
+  onModalOpening = () => {
+    console.log("Popup::onModalOpening()");
+    // this.setState( { isVisible: false } )
   }
 
   // **************************************************
@@ -46,6 +60,8 @@ export default class Popup extends React.Component {
 
     let { isVisible } = this.state
     let { sectionTitle, excercise } = this.props
+
+    // link the <excersise> to this/Popup Component
     const excerciseWithOnCloseCB = React.cloneElement( excercise, { onCloseModalCB: this.onCloseModal } )
 
     return (
@@ -56,7 +72,13 @@ export default class Popup extends React.Component {
         )}
         {isVisible && (
           <>
-          {excerciseWithOnCloseCB}
+          <ModalX
+            sectionTitle = {sectionTitle}
+            exercise = {excerciseWithOnCloseCB}
+            isVisible = {this.state.isVisible}
+            onModalOpeningCB = {this.onModalOpening}
+            onModalClosingCB = {this.onModalClosing}
+          />
           </>
         )}
       </>
@@ -64,18 +86,20 @@ export default class Popup extends React.Component {
   }
 }
 
+
+// WORKING CODE pre-modal
+// May need to pass a prop to Popup to decide if the excercise should be wrapped
+//   in a Modal or appear flat.
+
 // return (
 //   <>
-//     <h3>POPUP: {title}</h3>
+//     <h6><i>..Popup controller manages starting a section..</i></h6>
 //     {!isVisible && (
 //       <Button type = "button" onClick = {this.onclickStart}>Start</Button>
 //     )}
 //     {isVisible && (
 //       <>
-//       <QuestionsCT
-//         questions = {questions}
-//         onCloseModalCB = {this.onCloseModal}
-//       />
+//       {excerciseWithOnCloseCB}
 //       </>
 //     )}
 //   </>
