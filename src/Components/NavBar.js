@@ -31,20 +31,20 @@ class NavBar extends React.Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavItem eventKey={1} href="#module1">
-          <NavLink to="/module1">Module 1</NavLink>
+          <NavItem eventKey={1} >
+          <NavLink to="/modules/1">Module 1</NavLink>
           </NavItem>
-          <NavItem eventKey={2} href="#module2">
-            <NavLink to="/module2">Module 2</NavLink>
+          <NavItem eventKey={2} >
+            <NavLink to="/modules/2">Module 2</NavLink>
           </NavItem>
-          <NavItem eventKey={3} href="#module3">
-            <NavLink to="/module3">Module 3</NavLink>
+          <NavItem eventKey={3} >
+            <NavLink to="/modules/3">Module 3</NavLink>
           </NavItem>
-          <NavItem eventKey={4} href="#module4">
-            <NavLink to="/module4">Module 4</NavLink>
+          <NavItem eventKey={4} >
+            <NavLink to="/modules/4">Module 4</NavLink>
           </NavItem>
-          <NavItem eventKey={5} href="#module5">
-            <NavLink to="/module5">Module 5</NavLink>
+          <NavItem eventKey={5} >
+            <NavLink to="/modules/5">Module 5</NavLink>
           </NavItem>
           <NavDropdown eventKey={6} title={this.props.user.fname} id="basic-nav-dropdown">
             <MenuItem eventKey={6.1}>Dashboard</MenuItem>
