@@ -20,6 +20,7 @@ import {
      instructions -- can be empty string
      previousAnswer -- string with the previous answer
      onPersistCB(newAnswer) -- callback for when user clicks Save
+     onCloseModalCB -- call to close the modal this control resides in
 ***************************************************** */
 export default class Narrative extends React.Component {
 
@@ -30,6 +31,7 @@ export default class Narrative extends React.Component {
     answer: this.props.previousAnswer,
   }
 
+  /* ******************************************************** */
   // set isDirty and control answer field
   onChange = (e) => {
     console.log("Narrative::onChange(), e: ", e.target.value);
@@ -39,22 +41,45 @@ export default class Narrative extends React.Component {
     })
   }
 
+  /* ******************************************************** */
+  // update store and persist the value as user could be clicking outside Modal and shitting it down
+  onBlur = () => {
+    console.log("Narrative::onBlur()");
+    this.updateAndPersist()
+  }
+
+  /* ******************************************************** */
+  // helper, update the store and persist
+  updateAndPersist = () => {
+    console.log("state: ", this.state);
+
+    this.setState({ isDirty: false })
+
+    const { onPersistCB, onCloseModalCB, userId } = this.props
+    const { answer } = this.state
+
+    onPersistCB(userId, answer)
+    onCloseModalCB()
+  }
+
+  /* ******************************************************** */
   // Send newAnswer value back to Container to persist
   //   and update Save button to indicate control is no longer dirty
   onSubmit = (e) => {
     console.log(`Narrative::onclickSave(): ${this.state.answer}`);
     console.log("state: ", this.state);
     e.preventDefault()
-    // const value = e.target.answer.value.trim()
-    // console.log("value: ", value)
-    this.setState({ isDirty: false })
-
-    const { onPersistCB, question, userId } = this.props
-    const { answer } = this.state
-
-    onPersistCB(userId, answer)
+    this.updateAndPersist()
+    // this.setState({ isDirty: false })
+    //
+    // const { onPersistCB, onCloseModalCB, question, userId } = this.props
+    // const { answer } = this.state
+    //
+    // onPersistCB(userId, answer)
+    // onCloseModalCB()
   }
 
+  /* ******************************************************** */
   // render!
   render() {
     // console.log("Narrative::render()")
@@ -73,11 +98,12 @@ export default class Narrative extends React.Component {
           <FormControl
             componentClass = "textarea"
             onChange = {this.onChange}
+            onBlur = {this.onBlur}
             value = {answer}
-            placeholder = "Please enter an answer and click < Save >"
+            placeholder = "Please enter an answer and click Close"
           />
         </FormGroup>
-        <Button type = "submit">{((isDirty) ? "Save" : "----")}</Button>
+        <Button type = "submit">Close</Button>
       </Form>
     )
   }
