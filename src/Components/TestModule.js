@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Module from '../Components/Module'
+import Section from '../Components/Section'
+import QuestionsCT from '../Containers/QuestionsCT'
+import NarrativeCT from '../Containers/NarrativeCT'
 import { loadAllAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
@@ -29,6 +32,20 @@ class TestModule extends React.Component {
     dispatch(loadAllStaticdataAC());
   }
 
+  questions1 = [
+    { code: 40, text: "ShortAnswers 40 question" },
+    { code: 41, text: "ShortAnswers 41 question" },
+    { code: 42, text: "ShortAnswers 42 question" },
+  ]
+  questions2 = [
+    { code: 41, text: "ShortAnswers 41 question" },
+    { code: 42, text: "ShortAnswers 42 question" },
+  ]
+
+  excercise1 = (<QuestionsCT questions = {this.questions1}/>)
+  excercise2 = (<QuestionsCT questions = {this.questions2}/>)
+  excercise3 = (<NarrativeCT question={{ code: 50, text: "Narrative 50 question" }} />)
+
   // render!
   render() {
 
@@ -39,7 +56,12 @@ class TestModule extends React.Component {
         <p>{((isLoading) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
-            <Module moduleNum = "1" moduleTitle = "Module 1"/>
+            <Module moduleNum = "1" moduleTitle = "Module 1">
+              <Section moduleNum = "1" sectionNum = "1" sectionTitle = "Section One" excercise = {this.excercise1} />
+              <Section moduleNum = "1" sectionNum = "2" sectionTitle = "Section Two" excercise = {this.excercise2} />
+              <Section moduleNum = "1" sectionNum = "3" sectionTitle = "Section Three" excercise = {this.excercise3} />
+              <Section moduleNum = "1" sectionNum = "4" sectionTitle = "Section Four" excercise = {this.excercise3} />
+            </Module>
           </>
         )}
       </>

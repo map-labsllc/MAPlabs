@@ -17,7 +17,7 @@ import {
 
    props:
      title -- title of this set of questions
-     questions -- [ { code: 50, text: "question 50" }, { ... }
+     exercise -- component user will interact with
 ***************************************************** */
 export default class Popup extends React.Component {
 
@@ -28,15 +28,15 @@ export default class Popup extends React.Component {
   // **************************************************
   // Show the complex interactive component
   onclickStart = () => {
-    console.log("Popup::onclickStart()");
-    this.setState({ isVisible: true })
+    console.log( "Popup::onclickStart()" )
+    this.setState( { isVisible: true } )
   }
 
   // **************************************************
   // Hide the complex interactive component
   onCloseModal = () => {
     console.log("Popup::onCloseModal()");
-    this.setState({ isVisible: false })
+    this.setState( { isVisible: false } )
   }
 
   // **************************************************
@@ -45,23 +45,38 @@ export default class Popup extends React.Component {
     console.log("Popup::render()")
 
     let { isVisible } = this.state
-    let { title, questions } = this.props
+    let { title, excercise } = this.props
+    const excerciseWithOnCloseCB = React.cloneElement( excercise ,{onCloseModalCB: this.onCloseModal } )
 
     return (
       <>
-        <h3>POPUP: {title}</h3>
+        <h3><i>Popup</i>: {title}</h3>
         {!isVisible && (
           <Button type = "button" onClick = {this.onclickStart}>Start</Button>
         )}
         {isVisible && (
           <>
-          <QuestionsCT
-            questions = {questions}
-            onCloseModalCB = {this.onCloseModal}
-          />
+          {excerciseWithOnCloseCB}
           </>
         )}
       </>
     )
   }
 }
+
+// return (
+//   <>
+//     <h3>POPUP: {title}</h3>
+//     {!isVisible && (
+//       <Button type = "button" onClick = {this.onclickStart}>Start</Button>
+//     )}
+//     {isVisible && (
+//       <>
+//       <QuestionsCT
+//         questions = {questions}
+//         onCloseModalCB = {this.onCloseModal}
+//       />
+//       </>
+//     )}
+//   </>
+// )

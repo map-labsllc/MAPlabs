@@ -20,6 +20,7 @@ import {
      sectionNum -- integer in a string, the section (1-based)
      user -- the complete user object to check the furthest mod/sec they've gotten to
      sectionTitle -- title of the section
+     exercise -- component user will interact with
 ***************************************************** */
 export default class Section extends React.Component {
 
@@ -27,6 +28,7 @@ export default class Section extends React.Component {
   canUserView = (user, moduleNum, sectionNum) => {
     return true;
 
+    // TODO: get code below working
 
     // if (moduleNum < user.curr_module) return true
     // if (user.curr_module < moduleNum) return false
@@ -43,26 +45,20 @@ export default class Section extends React.Component {
   render() {
     console.log("Section::render()")
 
-    const questions1 = [
-      { code: 40, text: "ShortAnswers 40 question" },
-      { code: 41, text: "ShortAnswers 41 question" },
-      { code: 41, text: "ShortAnswers 42 question" },
-    ]
-
-
     let { isVisible } = this.state
-    let { sectionTitle } = this.props
+    let { sectionTitle, excercise } = this.props
 
     return (
       <>
-        <p> </p>
-        <h2>SECTION: {sectionTitle}</h2>
+        <p>.</p>
+        <p>-----------------------------------------</p>
+        <h2><u>Section</u>: {sectionTitle}</h2>
         {!isVisible && (
           <p>not available yet</p>
         )}
         {isVisible && (
           <>
-            <Popup title = {sectionTitle} questions = {questions1} />
+            <Popup title = {sectionTitle} excercise = {excercise} />
           </>
         )}
       <p> </p>

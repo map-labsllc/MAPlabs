@@ -18,20 +18,27 @@ import {
    props:
      moduleNum -- integer, the module number
      moduleTitle -- title of the Module
+     children -- the Section components to display
 ***************************************************** */
 export default class Module extends React.Component {
-
+  
   render() {
     console.log("Module::render()")
 
-    let { moduleNum, moduleTitle } = this.props
+    let { moduleNum, moduleTitle, children } = this.props
+
+    console.log('-----------------------------------------');
+    console.log("children", children);
+    console.log('-----------------------------------------');
 
     return (
       <>
         <h1>Module: {moduleNum} - {moduleTitle}</h1>
-        <Section moduleNum = {moduleNum} sectionNum = "1" sectionTitle = "Section One" />
+        {children}
         <p> </p>
       </>
     )
   }
 }
+
+// <Section moduleNum = {moduleNum} sectionNum = "1" sectionTitle = "Section One" />
