@@ -18,9 +18,10 @@ import {
    props:
      moduleNum -- integer, the module number
      moduleTitle -- title of the Module
+     children -- the Section components to display
 ***************************************************** */
 export default class Module extends React.Component {
-
+  
   render() {
     console.log("Module::render()")
 
