@@ -49,7 +49,7 @@ export default class Popup extends React.Component {
 
     return (
       <>
-        <h3>POPUP: {title}</h3>
+        <h3><u>Popup</u>: {title}</h3>
         {!isVisible && (
           <Button type = "button" onClick = {this.onclickStart}>Start</Button>
         )}

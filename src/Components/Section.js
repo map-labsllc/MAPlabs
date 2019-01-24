@@ -50,8 +50,9 @@ export default class Section extends React.Component {
 
     return (
       <>
-        <p> </p>
-        <h2>SECTION: {sectionTitle}</h2>
+        <p>.</p>
+        <p>-----------------------------------------</p>
+        <h2><u>Section</u>: {sectionTitle}</h2>
         {!isVisible && (
           <p>not available yet</p>
         )}
