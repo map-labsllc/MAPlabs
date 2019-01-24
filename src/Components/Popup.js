@@ -46,11 +46,11 @@ export default class Popup extends React.Component {
 
     let { isVisible } = this.state
     let { title, excercise } = this.props
-    const excerciseWithOnCloseCB = React.cloneElement( excercise ,{onCloseModalCB: this.onCloseModal } )
+    const excerciseWithOnCloseCB = React.cloneElement( excercise, { onCloseModalCB: this.onCloseModal } )
 
     return (
       <>
-        <h3><i>Popup</i>: {title}</h3>
+        <h6><i>Popup</i>: {title}</h6>
         {!isVisible && (
           <Button type = "button" onClick = {this.onclickStart}>Start</Button>
         )}

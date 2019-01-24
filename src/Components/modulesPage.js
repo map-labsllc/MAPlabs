@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import NavBar from './NavBar'
+
 import Modal from './Modal'
 import QuestionsList from './questionsList'
-import NavBar from './NavBar'
+import TestModule from './TestModule'
+
 export default class ModulesPage extends Component {
   constructor( props ) {
     super( props )
@@ -35,6 +38,8 @@ export default class ModulesPage extends Component {
           handleShow = { this.handleShow }
           handleClose = { this.handleClose }
         />
+        <p>.</p>
+        <TestModule/>
       </div>
     )
   }
