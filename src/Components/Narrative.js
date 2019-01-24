@@ -17,7 +17,7 @@ import {
    props:
      userId -- integer
      question -- { code: 50, text: "Question 50" }
-     intructions -- addtional input
+     instructions -- can be empty string
      previousAnswer -- string with the previous answer
      onPersistCB(newAnswer) -- callback for when user clicks Save
 ***************************************************** */
@@ -60,12 +60,15 @@ export default class Narrative extends React.Component {
     // console.log("Narrative::render()")
 
     // initialize
-    const { question } = this.props
+    const { question, instructions } = this.props
     const { isDirty, answer } = this.state
 
     return (
       <Form onSubmit={this.onSubmit} >
         <FormGroup>
+          {instructions && (
+            <p>..Narrative instructions: <i>{instructions}</i></p>
+          )}
           <ControlLabel>&nbsp;&nbsp;{question.text}</ControlLabel>
           <FormControl
             componentClass = "textarea"

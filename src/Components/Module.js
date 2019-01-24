@@ -18,6 +18,7 @@ import {
    props:
      moduleNum -- integer, the module number
      moduleTitle -- title of the Module
+     moduleDescription -- could be many lines, is we need paragraphs then will need to set innerHTML
      children -- the Section components to display
 ***************************************************** */
 export default class Module extends React.Component {
@@ -25,11 +26,12 @@ export default class Module extends React.Component {
   render() {
     console.log("Module::render()")
 
-    let { moduleNum, moduleTitle, children } = this.props
+    let { moduleNum, moduleTitle, moduleDescription, children } = this.props
 
     return (
       <>
         <h3>Module: {moduleNum} - {moduleTitle}</h3>
+        <p><i>Module Description: {moduleDescription}</i></p>
         {children}
         <p> </p>
       </>

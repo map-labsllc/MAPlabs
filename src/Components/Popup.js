@@ -16,7 +16,7 @@ import {
    Shows / hides a complex interactive component.
 
    props:
-     title -- title of this set of questions
+     sectionTitle -- title of the section for resdisplay if we do a modal below this
      exercise -- component user will interact with
 ***************************************************** */
 export default class Popup extends React.Component {
@@ -45,12 +45,12 @@ export default class Popup extends React.Component {
     console.log("Popup::render()")
 
     let { isVisible } = this.state
-    let { title, excercise } = this.props
+    let { sectionTitle, excercise } = this.props
     const excerciseWithOnCloseCB = React.cloneElement( excercise, { onCloseModalCB: this.onCloseModal } )
 
     return (
       <>
-        <h6><i>Popup</i>: {title}</h6>
+        <h6><i>..Popup controller manages starting a section..</i></h6>
         {!isVisible && (
           <Button type = "button" onClick = {this.onclickStart}>Start</Button>
         )}

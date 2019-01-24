@@ -45,8 +45,8 @@ class TestModule extends React.Component {
   questions160 = [
     { code: 151, text: "Thoughts/Attitudes" },
     { code: 152, text: "Behaviors/Actions" },
-    { code: 152, text: "Goals" },
-    { code: 152, text: "Commitments" },
+    { code: 153, text: "Goals" },
+    { code: 154, text: "Commitments" },
   ]
 
   questions170 = [
@@ -58,13 +58,18 @@ class TestModule extends React.Component {
 
   ]
 
-  excercise110 = ( <NarrativeCT question={{ code: 110, text: "Reflect on your current situation", instructions: "** This will be replaced with the LifeDescriptors component" }} /> )
-  excercise120 = ( <NarrativeCT question={{ code: 120, text: "Current Situation Descriptor", instructions: "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your current state of mind, state of being, and general assessment of your current condition today as you begin MAPmaker." }} /> )
-  excercise130 = ( <NarrativeCT question={{ code: 130, text: "Imagine your Future Desired Situation", instructions: "** This will be replaced with the LifeDescriptors component" }} /> )
-  excercise140 = ( <NarrativeCT question={{ code: 140, text: "Future Desired Situation Description", instructions: "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your future desired state of being as you begin MAPmaker. Create this description in your own image capturing how you want to feel, what you will think of your future situation, what will be good and bad, and how you would describe your future self to your current self. " }} /> )
-  excercise150 = ( <QuestionsCT questions = {this.questions150}/> )
-  excercise160 = ( <QuestionsCT questions = {this.questions160}/> )
-  excercise170 = ( <QuestionsCT questions = {this.questions170}/> )
+  excercise110 = (<NarrativeCT question={ { code: 110, text: "Reflect on your current situation" } }
+                               instructions = "** This Narrative will be replaced with the LifeDescriptors component" />)
+  excercise120 = (<NarrativeCT question={{ code: 120, text: "Current Situation Descriptor" } }
+                               instructions = "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your current state of mind, state of being, and general assessment of your current condition today as you begin MAPmaker." />)
+  excercise130 = (<NarrativeCT question={{ code: 130, text: "Imagine your Future Desired Situation" } }
+                               instructions = "** This Narrative will be replaced with the LifeDescriptors component"  />)
+  excercise140 = (<NarrativeCT question={{ code: 140, text: "Future Desired Situation Description" } }
+                               instructions = "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your future desired state of being as you begin MAPmaker. Create this description in your own image capturing how you want to feel, what you will think of your future situation, what will be good and bad, and how you would describe your future self to your current self. " />)
+
+  excercise150 = (<QuestionsCT questions = {this.questions150}/>)
+  excercise160 = (<QuestionsCT questions = {this.questions160}/>)
+  excercise170 = (<QuestionsCT questions = {this.questions170}/>)
 
 
 
@@ -78,7 +83,7 @@ class TestModule extends React.Component {
         <p>{( ( isLoading ) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
-            <Module moduleNum = "1" moduleTitle = "Module 1" moduleDescrition = "Descriuoption of the module here...">
+            <Module moduleNum = "1" moduleTitle = "Module 1" moduleDescription = "Description of the module here...">
               <Section moduleNum = "1" sectionNum = "110" sectionTitle = "Reflect on your current situation" excercise = {this.excercise110} />
               <Section moduleNum = "1" sectionNum = "120" sectionTitle = "Current Situation Descriptor" excercise = {this.excercise120} />
               <Section moduleNum = "1" sectionNum = "130" sectionTitle = "Imagine your Future Desired Situation" excercise = {this.excercise130} />
