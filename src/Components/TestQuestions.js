@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ShortAnswersCT from '../Containers/ShortAnswersCT'
+import QuestionsCT from '../Containers/QuestionsCT'
 import { loadAllAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
@@ -15,7 +15,7 @@ import {
 /* **************************************************
    Used to test components during development
 ***************************************************** */
-class TestShortAnswers extends React.Component {
+class TestQuestions extends React.Component {
 
   state = {
     ready: false,
@@ -29,30 +29,32 @@ class TestShortAnswers extends React.Component {
     dispatch(loadAllStaticdataAC());
   }
 
+  // use clicked in child to close the modal
+  onCloseModal = () => {
+    console.log("TestQuestions::onCloseModal()");
+
+    // do the stuff
+  }
 
   // render!
   render() {
 
     const isLoading = this.props.isLoading
 
+    const questions = [
+      { code: 40, text: "ShortAnswers 40 question" },
+      { code: 41, text: "ShortAnswers 41 question" },
+      { code: 42, text: "ShortAnswers 42 question" },
+    ]
+
     return (
       <>
         <p>{((isLoading) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
-            <ShortAnswersCT
-              question = {{ code: 40, text: "ShortAnswers 40 question" }}
-              doesHandlePersistence = {{ value: false }}
-            />
-            <hr/>
-            <ShortAnswersCT
-              question = {{ code: 41, text: "ShortAnswers 41 question" }}
-              doesHandlePersistence = {{ value: true }}
-            />
-            <hr/>
-            <ShortAnswersCT
-              question = {{ code: 42, text: "ShortAnswers 42 question" }}
-              doesHandlePersistence = {{ value: true }}
+            <QuestionsCT
+              questions = {questions}
+              onCloseModalCB = {this.onCloseModal}
             />
           </>
         )}
@@ -76,4 +78,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(TestShortAnswers)
+  )(TestQuestions)

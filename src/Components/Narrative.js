@@ -15,9 +15,11 @@ import {
      -- Save button
 
    props:
+     userId -- integer
      question -- { code: 50, text: "Question 50" }
+     intructions -- addtional input
      previousAnswer -- string with the previous answer
-     onSaveCB(newAnswer) -- callback for when user clicks Save
+     onPersistCB(newAnswer) -- callback for when user clicks Save
 ***************************************************** */
 export default class Narrative extends React.Component {
 
@@ -46,7 +48,11 @@ export default class Narrative extends React.Component {
     // const value = e.target.answer.value.trim()
     // console.log("value: ", value)
     this.setState({ isDirty: false })
-    this.props.onSaveCB(this.props.question.code, this.state.answer)
+
+    const { onPersistCB, question, userId } = this.props
+    const { answer } = this.state
+
+    onPersistCB(userId, answer)
   }
 
   // render!
@@ -54,7 +60,7 @@ export default class Narrative extends React.Component {
     // console.log("Narrative::render()")
 
     // initialize
-    const { question, onSaveCB } = this.props
+    const { question } = this.props
     const { isDirty, answer } = this.state
 
     return (
@@ -73,5 +79,3 @@ export default class Narrative extends React.Component {
     )
   }
 }
-
-// export default Narrative  // only neccessary for functional version

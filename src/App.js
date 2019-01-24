@@ -3,10 +3,10 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import firebase from 'firebase'
 import ReduxThunk from 'redux-thunk'
-import { createLogger } from 'redux-logger';
+import { createLogger } from 'redux-logger'
 import Router from './router'
 import reducers from './store/reducers'
-import createBrowserHistory from "history/createBrowserHistory";
+import createBrowserHistory from "history/createBrowserHistory"
 
 // const history = createBrowserHistory()
 class App extends Component {
@@ -21,22 +21,22 @@ class App extends Component {
       storageBucket: "",
       messagingSenderId: "666788418297"
     }
-    if (!firebase.apps.length) {
-      firebase.initializeApp(config);
+    if ( !firebase.apps.length ) {
+      firebase.initializeApp( config )
     }
   }
 
   render() {
 
     const middleware = [ ReduxThunk ]
-    if (process.env.NODE_ENV !== 'production') {
-      middleware.push(createLogger()) // log actions and pre and post store state
+    if ( process.env.NODE_ENV === 'development' ) {
+      middleware.push( createLogger() ) // log actions and pre and post store state
     }
 
     const store = createStore(
       reducers,
       {}, // no intiial state
-      applyMiddleware(...middleware)
+      applyMiddleware( ...middleware )
     )
 
     return (
@@ -47,4 +47,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

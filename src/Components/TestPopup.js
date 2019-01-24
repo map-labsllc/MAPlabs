@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ShortAnswersCT from '../Containers/ShortAnswersCT'
+import Popup from '../Components/Popup'
 import { loadAllAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
@@ -15,7 +15,7 @@ import {
 /* **************************************************
    Used to test components during development
 ***************************************************** */
-class TestShortAnswers extends React.Component {
+class TestPopup extends React.Component {
 
   state = {
     ready: false,
@@ -29,31 +29,28 @@ class TestShortAnswers extends React.Component {
     dispatch(loadAllStaticdataAC());
   }
 
-
   // render!
   render() {
 
     const isLoading = this.props.isLoading
+
+    const questions1 = [
+      { code: 40, text: "ShortAnswers 40 question" },
+      { code: 41, text: "ShortAnswers 41 question" },
+    ]
+    const questions2 = [
+
+      { code: 42, text: "ShortAnswers 42 question" },
+    ]
 
     return (
       <>
         <p>{((isLoading) ? "loading...." : ""  )}</p>
         {!isLoading && (
           <>
-            <ShortAnswersCT
-              question = {{ code: 40, text: "ShortAnswers 40 question" }}
-              doesHandlePersistence = {{ value: false }}
-            />
-            <hr/>
-            <ShortAnswersCT
-              question = {{ code: 41, text: "ShortAnswers 41 question" }}
-              doesHandlePersistence = {{ value: true }}
-            />
-            <hr/>
-            <ShortAnswersCT
-              question = {{ code: 42, text: "ShortAnswers 42 question" }}
-              doesHandlePersistence = {{ value: true }}
-            />
+            <Popup title = "Section One" questions = {questions1} />
+            <hr />
+            <Popup title = "Section Two" questions = {questions2} />
           </>
         )}
       </>
@@ -76,4 +73,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(TestShortAnswers)
+  )(TestPopup)

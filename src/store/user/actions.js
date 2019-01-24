@@ -1,15 +1,15 @@
 import firebase from 'firebase'
 
-export const FIRSTNAME_CHANGED = 'firstName_changed'
-export const LASTNAME_CHANGED = 'lastName_changed'
-export const ADDRESS_CHANGED = 'address_changed'
-export const EMAIL_CHANGED = 'email_changed'
-export const PASSWORD_CHANGED = 'password_changed'
-export const LOGIN_USER_SUCCESS = 'login_user_success'
-export const LOGIN_USER_FAIL = 'login_user_fail'
-export const LOGIN_USER = 'login_user'
-export const SIGNUP = 'signup'
-export const LOAD_LIFE_DESCRIPTORS = 'load_life_descriptors'
+import {
+  FIRSTNAME_CHANGED,
+  LASTNAME_CHANGED,
+  EMAIL_CHANGED,
+  PASSWORD_CHANGED,
+  LOGIN_USER,
+  SIGNUP,
+  LOGIN_USER_FAIL,
+  LOGIN_USER_SUCCESS
+} from './constants'
 
 export const firstNameChanged = (text) => {
   return {
@@ -21,13 +21,6 @@ export const firstNameChanged = (text) => {
 export const lastNameChanged = (text) => {
   return {
     type: LASTNAME_CHANGED,
-    payload: text
-  }
-}
-
-export const addressChanged = (text) => {
-  return {
-    type: ADDRESS_CHANGED,
     payload: text
   }
 }

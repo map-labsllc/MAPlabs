@@ -60,3 +60,4 @@ const style = {
     }
 }
 export default ModalShortAnswer
+
