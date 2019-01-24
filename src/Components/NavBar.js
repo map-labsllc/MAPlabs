@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 import { connect } from 'react-redux'
-
+import { NavLink } from 'react-router-dom'
 import { loadAllAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
@@ -23,27 +23,28 @@ class NavBar extends React.Component {
     console.log( "NavBar::render" )
     return (
       this.props.user &&
-      <Navbar>
+
+      <Navbar style ={styles.body}>
         <Navbar.Header>
           <Navbar.Brand>
             <a href="/splash">M.A.P.Labs</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavItem eventKey={1} href="#module1">
-            Module 1
+          <NavItem eventKey={1} >
+          <NavLink to="/modules/1">Module 1</NavLink>
           </NavItem>
-          <NavItem eventKey={2} href="#module2">
-            Module 2
+          <NavItem eventKey={2} >
+            <NavLink to="/modules/2">Module 2</NavLink>
           </NavItem>
-          <NavItem eventKey={3} href="#module3">
-            Module 3
+          <NavItem eventKey={3} >
+            <NavLink to="/modules/3">Module 3</NavLink>
           </NavItem>
-          <NavItem eventKey={4} href="#module4">
-            Module 4
+          <NavItem eventKey={4} >
+            <NavLink to="/modules/4">Module 4</NavLink>
           </NavItem>
-          <NavItem eventKey={5} href="#module5">
-            Module 5
+          <NavItem eventKey={5} >
+            <NavLink to="/modules/5">Module 5</NavLink>
           </NavItem>
           <NavDropdown eventKey={6} title={this.props.user.fname} id="basic-nav-dropdown">
             <MenuItem eventKey={6.1}>Dashboard</MenuItem>
@@ -57,6 +58,11 @@ class NavBar extends React.Component {
   }
 }
 
+const styles = {
+  body: {
+    margin:'0em'
+  }
+}
 /* ********************************************************
    Wrap NavBar in container to get access to dispatch
 *********************************************************** */

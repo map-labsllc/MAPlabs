@@ -21,7 +21,8 @@ const style = {
     title: {
         color: "#AAABB8",
         fontFamily: "Veranda",
-        fontSize: "5em"
+        fontSize: "5em",
+        marginTop:"0em"
     },
     subtitle: {
         color: "#29648A",

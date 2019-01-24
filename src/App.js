@@ -3,8 +3,9 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import firebase from 'firebase'
 import ReduxThunk from 'redux-thunk'
+import { BrowserRouter as Router} from 'react-router-dom'
 import { createLogger } from 'redux-logger'
-import Router from './router'
+import Routes from './router'
 import reducers from './store/reducers'
 import NavBar from './Components/NavBar'
 
@@ -40,10 +41,12 @@ class App extends Component {
     )
 
     return (
-      <Provider store={ store }>
-          <NavBar />
-          <Router />
-      </Provider>
+      <Router>
+        <Provider store={ store }>
+            <NavBar/>
+              <Routes />
+        </Provider>
+      </Router>
     )
   }
 }
