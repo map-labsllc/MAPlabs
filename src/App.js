@@ -29,7 +29,7 @@ class App extends Component {
   render() {
 
     const middleware = [ ReduxThunk ]
-    if ( process.env.NODE_ENV !== 'production' ) {
+    if ( process.env.NODE_ENV === 'development' ) {
       middleware.push( createLogger() ) // log actions and pre and post store state
     }
 
