@@ -36,7 +36,7 @@ class Login extends Component {
   renderButton() {
     return (
       <div style={styles.loginButtonStyle} >
-        <button style={styles.loginTextStyles} onclick={ this.onButtonPress.bind(this)} > Login</button>
+        <button style={styles.loginTextStyles} onClick={ this.onButtonPress.bind(this)} > Login</button>
       </div>
     )
   }
@@ -59,7 +59,7 @@ class Login extends Component {
           placeholder='example@email.com'
           autoCapitalize="none"
           autoCorrect={ false }
-          onChange={ this.onEmailChange.bind(this) }
+          onChange={ this.onEmailChange.bind( this ) }
           value={ this.props.email.value}/>
         <div style={styles.passwordTextStyles}>Password</div>
         <input style={styles.textInputStyles}
@@ -67,7 +67,7 @@ class Login extends Component {
           placeholder='password'
           autoCorrect={ false }
           autoCapitalize="none"
-          onChange={ this.onPasswordChange.bind(this) }
+          onChange={ this.onPasswordChange.bind( this ) }
           value={ this.props.password.value }
         />
         { this.renderError() }
@@ -76,11 +76,16 @@ class Login extends Component {
         <p style={styles.text}>Create one for FREE</p>
         <div
           onPress={this.props.signUp}
-          underlayColor='#fff'>
+          underlayColor='#fff'
+          href= '/signup'
+          >
 
-          <p
+          <button
+          
+            underlayColor='#fff'
+            href= '/signup'
             style={{color:'#982D38',fontSize: 30,fontWeight:'700', borderColor:'#982D37' ,borderRadius:2, borderWidth:2, backgroundColor:'white'}}>SIGN UP
-          </p>
+          </button>
         </div>
         </div>
       </div>
