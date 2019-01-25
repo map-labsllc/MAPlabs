@@ -27,7 +27,7 @@ class NavBar extends React.Component {
       <Navbar style ={styles.body}>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/">M.A.P.Labs</a>
+            <NavLink to="/">M.A.P.Labs</NavLink>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
