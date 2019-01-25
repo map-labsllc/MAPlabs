@@ -32,26 +32,19 @@ export default class Questions extends React.Component {
   state = {
     currIdx: 0,
   }
-
-  // ******************************************
-  // getCurrQuestion = () => {
-  //   const { questions } = this.props
-  //   const { currIdx } = this.state
-  //   return questions[currIdx]
-  // }
-
+  
   // ******************************************
   // persist the current question before moving off of it
   persistCurrent = () => {
     const { userId, questions, answersRD, onPersistQuestionCB } = this.props
     const { currIdx } = this.state
-    onPersistQuestionCB(userId, questions[currIdx], answersRD)
+    onPersistQuestionCB( userId, questions[currIdx], answersRD )
   }
 
   // ******************************************
   // called when close button is clicked
   onclickClose = () => {
-    console.log("Questions::onclickClose()")
+    console.log( "Questions::onclickClose()" )
 
     const { onCloseModalCB } = this.props
 
@@ -62,37 +55,35 @@ export default class Questions extends React.Component {
   // ******************************************
   // called when left button clicked
   onclickLeft = () => {
-    console.log("Questions::onclicLeft()")
+    console.log( "Questions::onclicLeft()" )
 
     const { currIdx } = this.state
 
-    if (currIdx === 0) return
+    if ( currIdx === 0 ) return
 
     this.persistCurrent()
-    this.setState({ currIdx: currIdx - 1 })
+    this.setState( { currIdx: currIdx - 1 } )
   }
 
   // ******************************************
   // called when right button clicked
   onclickRight = () => {
-    console.log("Questions::onclickRight()")
+    console.log( "Questions::onclickRight()" )
 
     const { currIdx } = this.state
     const { questions } = this.props
 
-    if (currIdx === (questions.length - 1)) return
+    if ( currIdx === ( questions.length - 1 ) ) return
 
     this.persistCurrent()
-    this.setState({ currIdx: currIdx + 1})
+    this.setState( { currIdx: currIdx + 1} )
   }
 
   render() {
-    console.log("ShortAnswers::render()")
+    console.log( "ShortAnswers::render()" )
 
     const { questions } = this.props
     const { currIdx } = this.state
-
-    const currQuestion = questions[currIdx]
 
     // NOTE: The <div key = {idx}> tag is used to suppress React warning about
     //       elements needing a unique key.
@@ -102,9 +93,9 @@ export default class Questions extends React.Component {
         <Button type="button" onClick={this.onclickRight}>Right</Button>{' ...... '}
         <Button type="button" onClick={this.onclickClose}>Close</Button>
 
-        {questions.map((question, idx) => (
+        { questions.map( ( question, idx ) => (
           <div key = {idx}>
-            {(idx === currIdx) && (
+            {( idx === currIdx ) && (
               <ShortAnswersCT
                 key = {idx}
                 question = {question}
@@ -112,7 +103,7 @@ export default class Questions extends React.Component {
               />
             )}
           </div>
-        ))}
+        ) ) }
       </>
     )
   }
