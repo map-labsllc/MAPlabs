@@ -9,6 +9,7 @@ import {
   FormControl,
   FormGroup,
 } from 'react-bootstrap';
+import '../CSS/Section.css'
 
 /* **************************************************
    Popup component
@@ -28,15 +29,15 @@ export default class Popup extends React.Component {
   // **************************************************
   // Show the complex interactive component
   onclickStart = () => {
-    console.log( "Popup::onclickStart()" )
-    this.setState( { isVisible: true } )
+    console.log("Popup::onclickStart()")
+    this.setState({ isVisible: true })
   }
 
   // **************************************************
   // CB from the <exercise> when its close/save button is clicked
   onCloseModal = () => {
     console.log("Popup::onCloseModal()");
-    this.setState( { isVisible: false } )
+    this.setState({ isVisible: false })
   }
 
 
@@ -44,7 +45,7 @@ export default class Popup extends React.Component {
   // CB from <Modal>
   onModalClosing = () => {
     console.log("Popup::onModalClosing()");
-    this.setState( { isVisible: false } )
+    this.setState({ isVisible: false })
   }
   // **************************************************
   // CB from <Modal>
@@ -62,21 +63,21 @@ export default class Popup extends React.Component {
     let { sectionTitle, excercise } = this.props
 
     // link the <excersise> to this/Popup Component
-    const excerciseWithOnCloseCB = React.cloneElement( excercise, { onCloseModalCB: this.onCloseModal } )
+    const excerciseWithOnCloseCB = React.cloneElement(excercise, { onCloseModalCB: this.onCloseModal })
 
     return (
       <>
         <h6><i>..Popup controller manages starting a section..</i></h6>
         {!isVisible && (
-          <Button type = "button" onClick = {this.onclickStart}>Start</Button>
+          <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
         )}
 
         <ModalX
-          sectionTitle = {sectionTitle}
-          exercise = {excerciseWithOnCloseCB}
-          isVisible = {this.state.isVisible}
-          onModalOpeningCB = {this.onModalOpening}
-          onModalClosingCB = {this.onModalClosing}
+          sectionTitle={sectionTitle}
+          exercise={excerciseWithOnCloseCB}
+          isVisible={this.state.isVisible}
+          onModalOpeningCB={this.onModalOpening}
+          onModalClosingCB={this.onModalClosing}
         />
       </>
     )

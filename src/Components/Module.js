@@ -9,6 +9,7 @@ import {
   FormControl,
   FormGroup,
 } from 'react-bootstrap';
+import '../CSS/Section.css'
 
 /* **************************************************
    Module
@@ -30,13 +31,22 @@ export default class Module extends React.Component {
 
     return (
       <>
-        <h3>Module: {moduleNum} - {moduleTitle}</h3>
-        <p><i>Module Description: {moduleDescription}</i></p>
-        {children}
-        <p> </p>
+        <div className="text-center">
+          <h3>Module: {moduleNum} - {moduleTitle}</h3>
+          <p><i>Module Description: {moduleDescription}</i></p>
+        </div>
+        <div className="centering">
+          {children}
+        </div>
       </>
     )
   }
 }
 
 // <Section moduleNum = {moduleNum} sectionNum = "1" sectionTitle = "Section One" />
+// <>
+{/* <h3>Module: {moduleNum} - {moduleTitle}</h3>
+<p><i>Module Description: {moduleDescription}</i></p>
+{children}
+<p> </p> */}
+//</>

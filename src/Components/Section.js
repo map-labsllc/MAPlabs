@@ -8,7 +8,10 @@ import {
   Form,
   FormControl,
   FormGroup,
+  PanelGroup,
+  Panel
 } from 'react-bootstrap';
+import '../CSS/Section.css'
 
 /* **************************************************
    Section
@@ -40,6 +43,8 @@ export default class Section extends React.Component {
       this.props.user,
       this.props.moduleNum,
       this.props.sectionNum),
+    open: true,
+    ActiveKey: "1"
   }
 
   render() {
@@ -49,20 +54,31 @@ export default class Section extends React.Component {
     let { sectionTitle, excercise } = this.props
 
     return (
-      <>
-        <p>.</p>
-        <p>-----------------------------------------</p>
-        <h4><u>Section</u>: {sectionTitle}</h4>
-        {!isVisible && (
-          <p>not available yet</p>
-        )}
-        {isVisible && (
-          <>
-            <Popup sectionTitle = {sectionTitle} excercise = {excercise} />
-          </>
-        )}
-      <p> </p>
-      </>
+      <div>
+        <Panel bsStyle='primary'>
+          <Panel.Heading className="sectionHeader">
+            <Panel.Title><div className="text-center"><u>Section</u>: {sectionTitle}</div></Panel.Title>
+          </Panel.Heading>
+          <Panel.Body className="sectionBody">
+            <Popup sectionTitle={sectionTitle} excercise={excercise} />
+          </Panel.Body>
+        </Panel>
+      </div >
     )
   }
 }
+
+//      <>
+{/* <p>.</p>
+<p>-----------------------------------------</p>
+<h4><u>Section</u>: {sectionTitle}</h4>
+{!isVisible && (
+  <p>not available yet</p>
+)}
+{isVisible && (
+  <>
+    <Popup sectionTitle = {sectionTitle} excercise = {excercise} />
+  </>
+)}
+<p> </p>
+</> */}
