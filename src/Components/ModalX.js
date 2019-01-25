@@ -46,17 +46,11 @@ export default class ModalX extends React.Component {
           <Modal.Title style={style.header}>{sectionTitle}</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body style={style.body}>
           <>
-          {exercise}
+            {exercise}
           </>
         </Modal.Body>
-
-        <Modal.Footer style={style.footer}>
-          {/*<Button style={style.previous}>Previous</Button>
-          <Button style={style.complete}>Complete</Button>
-          <Button style={style.next}>Next</Button>*/}
-        </Modal.Footer>
       </Modal>
     )
   }
@@ -68,35 +62,35 @@ export default class ModalX extends React.Component {
 
 
 const style = {
-    header: {
-        fontWeight: "1",
-        fontSize: "25px",
-        backgroundColor: "#25274D",
-        color: "#AAABB8",
-    },
-    previous: {
-        float: "left",
-        backgroundColor: "#29648A",
-        color: "#AAABB8",
-        borderColor: "#AAABB8",
-    },
-    complete: {
-        marginLeft: "auto",
-        marginRight: "175px",
-        backgroundColor: "#2E9CCA",
-        color: "black",
-        borderColor: "black",
-    },
-    body: {
-        backgroundColor: "#036FD5",
-    },
-    footer: {
-        backgroundColor: "#25274D",
-    },
-    next: {
-        float: "right",
-        backgroundColor: "#29648A",
-        color: "#AAABB8",
-        borderColor: "#AAABB8",
-    }
+  header: {
+    fontWeight: "1",
+    fontSize: "25px",
+    backgroundColor: "#25274D",
+    color: "#AAABB8",
+  },
+  previous: {
+    float: "left",
+    backgroundColor: "#29648A",
+    color: "#AAABB8",
+    borderColor: "#AAABB8",
+  },
+  complete: {
+    marginLeft: "auto",
+    marginRight: "175px",
+    backgroundColor: "#2E9CCA",
+    color: "black",
+    borderColor: "black",
+  },
+  body: {
+    backgroundColor: "#AAABB8",
+  },
+  footer: {
+    backgroundColor: "#25274D",
+  },
+  next: {
+    float: "right",
+    backgroundColor: "#29648A",
+    color: "#AAABB8",
+    borderColor: "#AAABB8",
+  }
 }
