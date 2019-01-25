@@ -7,6 +7,7 @@ import {
   FormGroup,
 } from 'react-bootstrap'
 import Transition from './Transition'
+import '../CSS/ModalNavButtons.css'
 
 /* **************************************************
    Transitions component
@@ -33,30 +34,30 @@ export default class Transitions extends React.Component {
 
   // get new UUID
   getUUID = () => {
-    console.log( "Transitions::getUUID() returning ", this.uuid + 1 )
+    console.log("Transitions::getUUID() returning ", this.uuid + 1)
     return this.uuid++
   }
 
   // make a new transitionWithKey
-  getNewTransitionWithKey = ( transition ) => ( {
+  getNewTransitionWithKey = (transition) => ({
     key: this.getUUID(),
     transition,
-  } )
+  })
 
   // strip keys
-  stripKeys = ( transitionsWithKeys ) => transitionsWithKeys.map( transitionWithKey => transitionWithKey.transition )
+  stripKeys = (transitionsWithKeys) => transitionsWithKeys.map(transitionWithKey => transitionWithKey.transition)
 
   // add keys
   // addKeys = (transitions) => transitions.map(transition => ({ key: this.getUUID() , transition}))
-  addKeys = ( transitions ) => transitions.map( ( transition ) => {
-    console.log( "addKeys: ", transition )
-    return { key: this.getUUID() , transition}
-  } )
+  addKeys = (transitions) => transitions.map((transition) => {
+    console.log("addKeys: ", transition)
+    return { key: this.getUUID(), transition }
+  })
   // -------------------------------------------------------
 
   state = {
     isDirty: false,
-    transitionsWithKeys: this.addKeys( this.props.previousTransitions )
+    transitionsWithKeys: this.addKeys(this.props.previousTransitions)
   }
 
   // **********************************************
@@ -67,56 +68,56 @@ export default class Transitions extends React.Component {
     const { onUpdateStoreCB } = this.props
     const { transitionsWithKeys } = this.state
 
-    const newTransitionsWithKeys = transitionsWithKeys.map( transitionWithKey =>
-      ( transitionWithKey.key === key ) ? { key: key, transition: newTransition } : transitionWithKey )
+    const newTransitionsWithKeys = transitionsWithKeys.map(transitionWithKey =>
+      (transitionWithKey.key === key) ? { key: key, transition: newTransition } : transitionWithKey)
 
-    onUpdateStoreCB( this.stripKeys( newTransitionsWithKeys ) )
-    this.setState( { transitionsWithKeys: newTransitionsWithKeys } )
+    onUpdateStoreCB(this.stripKeys(newTransitionsWithKeys))
+    this.setState({ transitionsWithKeys: newTransitionsWithKeys })
   }
 
   // **********************************************
   // delete transition from state::transitions and
   //   tell parent to update array of transitions to store
-  deleteTransition = ( keyToDelete ) => {
-    console.log( `Transitions::deleteTransition(${keyToDelete})` )
+  deleteTransition = (keyToDelete) => {
+    console.log(`Transitions::deleteTransition(${keyToDelete})`)
 
     const { onUpdateStoreCB } = this.props
     const { transitionsWithKeys } = this.state
 
-    const newTransitionsWithKeys = transitionsWithKeys.filter( ( transitionWithKey ) =>
-      keyToDelete !== transitionWithKey.key )
+    const newTransitionsWithKeys = transitionsWithKeys.filter((transitionWithKey) =>
+      keyToDelete !== transitionWithKey.key)
 
-    onUpdateStoreCB( this.stripKeys( newTransitionsWithKeys ) )
-    this.setState( { transitionsWithKeys: newTransitionsWithKeys } )
+    onUpdateStoreCB(this.stripKeys(newTransitionsWithKeys))
+    this.setState({ transitionsWithKeys: newTransitionsWithKeys })
   }
 
   // **********************************************
   // add an empty transition to state::transitions
   onclickAdd = () => {
-    console.log( `Transitions::onclickAdd()` )
+    console.log(`Transitions::onclickAdd()`)
     const { transitionsWithKeys } = this.state
 
-    const newTransitionsWithKeys = transitionsWithKeys.concat( this.getNewTransitionWithKey( { from: '', to:'' } ) )
-    console.log( "newTransitionsWithKeys: ", newTransitionsWithKeys )
-    this.setState( { transitionsWithKeys: newTransitionsWithKeys } )
+    const newTransitionsWithKeys = transitionsWithKeys.concat(this.getNewTransitionWithKey({ from: '', to: '' }))
+    console.log("newTransitionsWithKeys: ", newTransitionsWithKeys)
+    this.setState({ transitionsWithKeys: newTransitionsWithKeys })
   }
 
   // **********************************************
   // render!
   render() {
-    console.log( "Transitions::render()" )
+    console.log("Transitions::render()")
 
     const { question } = this.props
     const { transitionsWithKeys } = this.state
 
-    console.log( "transitionsWithKeys", transitionsWithKeys )
-    console.log( "this.props.previousTransitions", this.props.previousTransitions )
+    console.log("transitionsWithKeys", transitionsWithKeys)
+    console.log("this.props.previousTransitions", this.props.previousTransitions)
 
     return (
       <>
         <p> </p>
         <h4>--- Question: {question.text} ---</h4>
-        {transitionsWithKeys.map( ( transitionWithKey ) =>
+        {transitionsWithKeys.map((transitionWithKey) =>
           <Transition
             key={transitionWithKey.key}
             id={transitionWithKey.key}
@@ -126,7 +127,8 @@ export default class Transitions extends React.Component {
           >
           </Transition>
         )}
-        <Button type="button" onClick={this.onclickAdd}>Add transition</Button>
+        <br />
+        <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add transition</Button>
       </>
     )
   }

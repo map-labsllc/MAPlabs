@@ -7,6 +7,7 @@ import {
   Form,
   FormControl,
   FormGroup,
+  Glyphicon,
 } from 'react-bootstrap'
 
 /* **************************************************
@@ -32,6 +33,7 @@ export default class Transition extends React.Component {
   }
 
   // **************************************************
+
   // set isDirty and update state with new transition.from
   onChangeFrom = ( e ) => {
     // console.log("Transition::onChangeFrom(), e: ", e.target.value);
@@ -39,10 +41,10 @@ export default class Transition extends React.Component {
     const newTransition = { ...this.state.transition }
     newTransition.from = e.target.value
 
-    this.setState( {
+    this.setState({
       isDirty: true,
       transition: newTransition,
-    } )
+    })
   }
 
   // **************************************************
@@ -50,13 +52,13 @@ export default class Transition extends React.Component {
   onChangeTo = ( e ) => {
     // console.log("Transition::onChangeTo(), e: ", e.target.value);
 
-    const newTransition = {...this.state.transition}
+    const newTransition = { ...this.state.transition }
     newTransition.to = e.target.value
 
-    this.setState( {
+    this.setState({
       isDirty: true,
       transition: newTransition,
-    } )
+    })
   }
 
 
@@ -69,23 +71,24 @@ export default class Transition extends React.Component {
     if ( isDirty ) {
       updateTransitionCB( id, transition )
       this.setState( {
+
         isDirty: false,
-      } )
+      })
     }
   }
 
   // **************************************************
   // pass to parent to delete
   onclickDelete = () => {
-    console.log( "Transition::onclickDelete()" )
+    console.log("Transition::onclickDelete()")
     const { deleteTransitionCB, id } = this.props
-    deleteTransitionCB( id )
+    deleteTransitionCB(id)
   }
 
   // **************************************************
   // render!
   render() {
-    console.log( "Transition::render()" )
+    console.log("Transition::render()")
 
     // initialize
     let { transition, isDirty } = this.state
@@ -94,23 +97,25 @@ export default class Transition extends React.Component {
     return (
       <Form inline onSubmit={this.onSubmit}>
         <FormGroup>
-          <Button type = "button" onClick={this.onclickDelete}>del</Button>
-          {' '}
+
           <FormControl
-            type = "text"
-            onChange = {this.onChangeFrom}
-            onBlur = {this.onBlur}
-            value = {transition.from}
-            placeholder = "Please enter a from"
+            type="text"
+            onChange={this.onChangeFrom}
+            onBlur={this.onBlur}
+            value={transition.from}
+            placeholder="Please enter a from"
           />
+
+          <Glyphicon glyph="arrow-right"></Glyphicon>
           <FormControl
-            type = "text"
-            onChange = {this.onChangeTo}
-            onBlur = {this.onBlur}
-            value = {transition.to}
-            placeholder = "Please enter a to"
+            type="text"
+            onChange={this.onChangeTo}
+            onBlur={this.onBlur}
+            value={transition.to}
+            placeholder="Please enter a to"
           />
-          {` `}{id}{` `}{( isDirty ? 'dirty' : '' )}
+
+          <Button type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
         </FormGroup>
       </Form>
     )
