@@ -14,8 +14,8 @@ class NavBar extends React.Component {
     const { dispatch, user } = this.props
 
     // asynch calls to load user and static from db
-    dispatch( loadAllAnswersAC( user.userId ) )
-    dispatch( loadAllTransitionsAC( user.userId ) )
+    dispatch( loadAllAnswersAC( user.user_id ) )
+    dispatch( loadAllTransitionsAC( user.user_id ) )
     dispatch( loadAllStaticdataAC() )
   }
 
