@@ -8,6 +8,10 @@ import {
   FormGroup,
 } from 'react-bootstrap';
 import ShortAnswersCT from '../Containers/ShortAnswersCT'
+import TransitionsCT from '../Containers/TransitionsCT'
+import {
+  QUESTION_TYPE_SHORT_ANSWERS,
+  QUESTION_TYPE_TRANSITIONS} from '../constants.js'
 
 /* **************************************************
    Questions component
@@ -22,8 +26,9 @@ import ShortAnswersCT from '../Containers/ShortAnswersCT'
 
    props:
      userId -- integer
+     questionType -- enum from constants.js
      questions -- [ { code: 50, text: "question 50" }, { ... }
-     answersRD -- reducer to be passed back up in onPersistQuestionCB()
+     RD -- reducer to be passed back up in onPersistQuestionCB()
      onPersistQuestionCB -- call to have parent CT persist a question from Store
      onCloseModalCB -- call to close the modal this control resides in
 ***************************************************** */
@@ -32,13 +37,14 @@ export default class Questions extends React.Component {
   state = {
     currIdx: 0,
   }
-  
+
   // ******************************************
   // persist the current question before moving off of it
   persistCurrent = () => {
-    const { userId, questions, answersRD, onPersistQuestionCB } = this.props
+    const { userId, questionType, questions, RD, onPersistQuestionCB } = this.props
     const { currIdx } = this.state
-    onPersistQuestionCB( userId, questions[currIdx], answersRD )
+
+    onPersistQuestionCB( userId, questionType, questions[currIdx], RD )
   }
 
   // ******************************************
@@ -79,11 +85,15 @@ export default class Questions extends React.Component {
     this.setState( { currIdx: currIdx + 1} )
   }
 
+  // ******************************************
   render() {
     console.log( "ShortAnswers::render()" )
 
-    const { questions } = this.props
+    const { questionType, questions } = this.props
     const { currIdx } = this.state
+
+    console.log('**********************************');
+    console.log('questionType: ', questionType)
 
     // NOTE: The <div key = {idx}> tag is used to suppress React warning about
     //       elements needing a unique key.
@@ -95,11 +105,17 @@ export default class Questions extends React.Component {
 
         { questions.map( ( question, idx ) => (
           <div key = {idx}>
-            {( idx === currIdx ) && (
+            {( idx === currIdx ) && ( questionType === QUESTION_TYPE_SHORT_ANSWERS ) && (
               <ShortAnswersCT
                 key = {idx}
                 question = {question}
                 doesHandlePersistence = {{ value: false }}
+              />
+            )}
+            {( idx === currIdx ) && ( questionType === QUESTION_TYPE_TRANSITIONS ) && (
+              <TransitionsCT
+                key = {idx}
+                question = {question}
               />
             )}
           </div>
@@ -108,3 +124,11 @@ export default class Questions extends React.Component {
     )
   }
 }
+
+// {( idx === currIdx ) && ( questionType === QUESTION_TYPE_TRANSITIONS ) && (
+//   <ShortAnswersCT
+//     key = {idx}
+//     question = {question}
+//     doesHandlePersistence = {{ value: false }}
+//   />
+// )}
