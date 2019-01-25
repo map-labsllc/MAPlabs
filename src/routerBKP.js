@@ -1,3 +1,4 @@
+import React from 'react'
 import SplashPage from './Components/SplashPage'
 import Login from './Components/login'
 import SignUp from './Components/SignUp'
