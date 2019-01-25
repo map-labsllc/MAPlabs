@@ -11,7 +11,9 @@ import ShortAnswersCT from '../Containers/ShortAnswersCT'
 import TransitionsCT from '../Containers/TransitionsCT'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
-  QUESTION_TYPE_TRANSITIONS} from '../constants.js'
+  QUESTION_TYPE_TRANSITIONS
+} from '../constants.js'
+import '../CSS/ModalNavButtons.css'
 
 /* **************************************************
    Questions component
@@ -44,13 +46,13 @@ export default class Questions extends React.Component {
     const { userId, questionType, questions, RD, onPersistQuestionCB } = this.props
     const { currIdx } = this.state
 
-    onPersistQuestionCB( userId, questionType, questions[currIdx], RD )
+    onPersistQuestionCB(userId, questionType, questions[currIdx], RD)
   }
 
   // ******************************************
   // called when close button is clicked
   onclickClose = () => {
-    console.log( "Questions::onclickClose()" )
+    console.log("Questions::onclickClose()")
 
     const { onCloseModalCB } = this.props
 
@@ -61,33 +63,33 @@ export default class Questions extends React.Component {
   // ******************************************
   // called when left button clicked
   onclickLeft = () => {
-    console.log( "Questions::onclicLeft()" )
+    console.log("Questions::onclicLeft()")
 
     const { currIdx } = this.state
 
-    if ( currIdx === 0 ) return
+    if (currIdx === 0) return
 
     this.persistCurrent()
-    this.setState( { currIdx: currIdx - 1 } )
+    this.setState({ currIdx: currIdx - 1 })
   }
 
   // ******************************************
   // called when right button clicked
   onclickRight = () => {
-    console.log( "Questions::onclickRight()" )
+    console.log("Questions::onclickRight()")
 
     const { currIdx } = this.state
     const { questions } = this.props
 
-    if ( currIdx === ( questions.length - 1 ) ) return
+    if (currIdx === (questions.length - 1)) return
 
     this.persistCurrent()
-    this.setState( { currIdx: currIdx + 1} )
+    this.setState({ currIdx: currIdx + 1 })
   }
 
   // ******************************************
   render() {
-    console.log( "ShortAnswers::render()" )
+    console.log("ShortAnswers::render()")
 
     const { questionType, questions } = this.props
     const { currIdx } = this.state
@@ -99,27 +101,31 @@ export default class Questions extends React.Component {
     //       elements needing a unique key.
     return (
       <>
-        <Button type="button" onClick={this.onclickLeft}>Left</Button>{' '}
-        <Button type="button" onClick={this.onclickRight}>Right</Button>{' ...... '}
-        <Button type="button" onClick={this.onclickClose}>Close</Button>
-
-        { questions.map( ( question, idx ) => (
-          <div key = {idx}>
-            {( idx === currIdx ) && ( questionType === QUESTION_TYPE_SHORT_ANSWERS ) && (
+        <div className="bgButton">
+          <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>{' '}
+          <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
+        </div>
+        {questions.map((question, idx) => (
+          <div key={idx}>
+            {(idx === currIdx) && (questionType === QUESTION_TYPE_SHORT_ANSWERS) && (
               <ShortAnswersCT
-                key = {idx}
-                question = {question}
-                doesHandlePersistence = {{ value: false }}
+                key={idx}
+                question={question}
+                doesHandlePersistence={{ value: false }}
               />
             )}
-            {( idx === currIdx ) && ( questionType === QUESTION_TYPE_TRANSITIONS ) && (
+            {(idx === currIdx) && (questionType === QUESTION_TYPE_TRANSITIONS) && (
               <TransitionsCT
-                key = {idx}
-                question = {question}
+                key={idx}
+                question={question}
               />
             )}
           </div>
-        ) ) }
+        ))}
+        <br />
+        <div className="text-center">
+          <Button className="closeButton" type="button" onClick={this.onclickClose}>Close</Button>
+        </div>
       </>
     )
   }
