@@ -7,6 +7,7 @@ import {
   Form,
   FormControl,
   FormGroup,
+  Glyphicon
 } from 'react-bootstrap';
 
 /* **************************************************
@@ -75,16 +76,17 @@ export default class ShortAnswer extends React.Component {
     return (
       <Form inline onSubmit={this.onSubmit}>
         <FormGroup>
-          <Button type = "button" onClick={this.onclickDelete}>del</Button>
-          {' '}
+
           <FormControl
-            type = "text"
-            onChange = {this.onChange}
-            onBlur = {this.onBlur}
-            value = {answer}
-            placeholder = "Please enter an answer"
+            type="text"
+            onChange={this.onChange}
+            onBlur={this.onBlur}
+            value={answer}
+            placeholder="Please enter an answer"
+            bsSize="medium"
           />
-          {` `}{id}{` `}{(isDirty ? 'dirty' : '')}
+
+          <Button type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
         </FormGroup>
       </Form>
     )

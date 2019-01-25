@@ -14,8 +14,8 @@ class NavBar extends React.Component {
     const { dispatch, user } = this.props
 
     // asynch calls to load user and static from db
-    dispatch( loadAllAnswersAC( user.userId ) )
-    dispatch( loadAllTransitionsAC( user.userId ) )
+    dispatch( loadAllAnswersAC( user.user_id ) )
+    dispatch( loadAllTransitionsAC( user.user_id ) )
     dispatch( loadAllStaticdataAC() )
   }
 
@@ -27,23 +27,23 @@ class NavBar extends React.Component {
       <Navbar style ={styles.body}>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/splash">M.A.P.Labs</a>
+            <NavLink to="/">M.A.P.Labs</NavLink>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          <NavItem eventKey={1} >
-          <NavLink to="/modules/1">Module 1</NavLink>
+          <NavItem style={styles.navItem} componentClass='span' eventKey={1} >
+            <NavLink to="/modules/1">Module 1</NavLink>
           </NavItem>
-          <NavItem eventKey={2} >
+          <NavItem style={styles.navItem} componentClass='span' eventKey={2} >
             <NavLink to="/modules/2">Module 2</NavLink>
           </NavItem>
-          <NavItem eventKey={3} >
+          <NavItem style={styles.navItem} componentClass='span' eventKey={3} >
             <NavLink to="/modules/3">Module 3</NavLink>
           </NavItem>
-          <NavItem eventKey={4} >
+          <NavItem style={styles.navItem} componentClass='span' eventKey={4} >
             <NavLink to="/modules/4">Module 4</NavLink>
           </NavItem>
-          <NavItem eventKey={5} >
+          <NavItem style={styles.navItem} componentClass='span' eventKey={5} >
             <NavLink to="/modules/5">Module 5</NavLink>
           </NavItem>
           <NavDropdown eventKey={6} title={this.props.user.fname} id="basic-nav-dropdown">
@@ -61,8 +61,13 @@ class NavBar extends React.Component {
 const styles = {
   body: {
     margin:'0em'
+  },
+  navItem: {
+      'padding': '15px',
+      'display': 'inline-block',
+      'lineHeight': '20px'
+    }
   }
-}
 /* ********************************************************
    Wrap NavBar in container to get access to dispatch
 *********************************************************** */

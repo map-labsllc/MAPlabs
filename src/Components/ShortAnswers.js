@@ -7,6 +7,7 @@ import {
   FormGroup,
 } from 'react-bootstrap';
 import ShortAnswer from './ShortAnswer'
+import '../CSS/ModalNavButtons.css'
 
 /* **************************************************
    ShortAnswers component
@@ -53,7 +54,7 @@ export default class ShortAnswers extends React.Component {
   // addKeys = (answers) => answers.map(answer => ({ key: this.getUUID() , text: answer}))
   addKeys = (answers) => answers.map((answer) => {
     console.log("addKeys: ", answer);
-    return { key: this.getUUID() , text: answer}
+    return { key: this.getUUID(), text: answer }
   })
   // -------------------------------------------------------
 
@@ -143,7 +144,7 @@ export default class ShortAnswers extends React.Component {
           >
           </ShortAnswer>
         )}
-        <Button type="button" onClick={this.onclickAdd}>Add answer</Button>
+        <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
         {doesHandlePersistence.value && (
           <>
             {' '}
