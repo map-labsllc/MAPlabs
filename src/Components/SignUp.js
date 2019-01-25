@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { firstNameChanged, lastNameChanged, emailChanged, passwordChanged, loginUser, signUpUser } from '../store/user/actions'
 
@@ -6,41 +6,45 @@ import { firstNameChanged, lastNameChanged, emailChanged, passwordChanged, login
 //
 
 class SignUp extends Component {
-  constructor(props) {
+  constructor( props ) {
+    super( )
 
-    super(props)
-
+    this.onButtonPress.bind( this )
+    this.onPasswordChange.bind( this )
+    this.onFirstNameChanged.bind( this )
+    this.onLastNameChanged.bind( this )
+    this.onEmailChange.bind( this )
   }
 
 
-  onFirstNameChanged(text) {
-    console.log('text', text);
-    this.props.firstNameChanged(text)
+  onFirstNameChanged( text ) {
+    console.log( 'text', text )
+    this.props.firstNameChanged( text )
   }
 
-  onLastNameChanged(text) {
-    this.props.lastNameChanged(text)
+  onLastNameChanged( text ) {
+    this.props.lastNameChanged( text )
   }
 
-  onEmailChange(text) {
+  onEmailChange( text ) {
 
-    console.log('type of string', typeof text,text);
-    this.props.emailChanged(text)
+    console.log( 'type of string', typeof text,text )
+    this.props.emailChanged( text )
   }
 
-  onPasswordChange(text) {
-    this.props.passwordChanged(text)
+  onPasswordChange( text ) {
+    this.props.passwordChanged( text )
   }
 
   onButtonPress() {
     // const {first_name, last_name, email, password} = this.props
     // console.log('firstName',this.props.first_name);
-    console.log('this.props.first_name', this.props.first_name);
-    this.props.signUpUser(this.props.first_name, this.props.last_name, this.props.email, this.props.password)
+    console.log( 'this.props.first_name', this.props )
+    this.props.signUpUser( this.props.first_name, this.props.last_name, this.props.email, this.props.password )
   }
 
   renderError() {
-    if (this.props.error) {
+    if ( this.props.error ) {
       return (
         <div>
           <p style={ styles.errorTextStyle }>
@@ -53,7 +57,7 @@ class SignUp extends Component {
 
   renderButton() {
     return (
-      <button style={styles.signUpButtonStyle} onClick={ this.onButtonPress.bind(this)}>
+      <button style={styles.signUpButtonStyle} onClick={ this.onButtonPress}>
         <p style={styles.signUpTextStyles}>Sign Up</p>
       </button>
     )
@@ -63,7 +67,7 @@ class SignUp extends Component {
 
   render() {
     const { viewStyles, textInputStyles, emailTextStyles, passwordTextStyles,
-            signUpTextStyles, signUpButtonStyle } = styles;
+            signUpTextStyles, signUpButtonStyle } = styles
 
     return (
       <div style={viewStyles}>
@@ -75,8 +79,8 @@ class SignUp extends Component {
           style={textInputStyles}
           placeholder='John'
           autoCapitalize="none"
-          onChange={ this.onFirstNameChanged.bind(this) }
-          value={ this.props.first_name.value }/>
+          onChange={ this.onFirstNameChanged}
+          value={ this.props.first_name }/>
 
         <p style={emailTextStyles}>Last Name</p>
         <input
@@ -84,7 +88,7 @@ class SignUp extends Component {
           placeholder='Doe'
           autoCapitalize="none"
 
-          onChange={ this.onLastNameChanged.bind(this) }
+          onChange={ this.onLastNameChanged}
           value={ this.props.last_name.value }/>
 
         <p style={emailTextStyles}>Email</p>
@@ -92,15 +96,15 @@ class SignUp extends Component {
           style={textInputStyles}
           placeholder='example@email.com'
           autoCapitalize="none"
-          onChange={ this.onEmailChange.bind(this) }
-          value={ this.props.email.target }/>
+          onChange={ this.onEmailChange }
+          value={ this.props.email.value }/>
 
         <p style={passwordTextStyles}>Password</p>
         <input style={textInputStyles}
           placeholder='password'
           type= 'password'
           autoCapitalize="none"
-          onChange={ this.onPasswordChange.bind(this) }
+          onChange={ this.onPasswordChange }
           value={ this.props.password.target }
         />
 
@@ -169,7 +173,7 @@ const styles = {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps( state ) {
   return {
     first_name : state.auth.first_name,
     last_name : state.auth.last_name,
@@ -179,6 +183,6 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {
+export default connect( mapStateToProps, {
   firstNameChanged, lastNameChanged, emailChanged, passwordChanged, loginUser, signUpUser
-})(SignUp)
+} )( SignUp )
