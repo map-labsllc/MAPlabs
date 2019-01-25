@@ -30,9 +30,9 @@ class TestModule extends React.Component {
   // load user data
   componentDidMount = () => {
     const { dispatch, userId } = this.props
-    // dispatch( loadAllAnswersAC( userId ) )
-    // dispatch( loadAllTransitionsAC( userId ) )
-    // dispatch( loadAllStaticdataAC() )
+    dispatch( loadAllAnswersAC( userId ) )
+    dispatch( loadAllTransitionsAC( userId ) )
+    dispatch( loadAllStaticdataAC() )
   }
 
 
