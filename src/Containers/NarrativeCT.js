@@ -20,15 +20,13 @@ const mapStateToProps = ( state, passedProps ) => {
   const { question, instructions, onCloseModalCB } = passedProps
   if ( !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
-  console.log( '****************************************' )
-  console.log( "instructions CT:", instructions )
-
   // get userId
   const userId = getUser( state.userRD ).user_id
 
   // find previous answer, if any
-  //   Note: getAnswers(  ) returns an array but narrative should have at most one answer
-  const answers = getAnswers( state.answersRD, question.code )
+  //   Note: getAnswers() returns an array but narrative should have at most one answer
+  // const answers = getAnswers( state.answersRD, question.code )
+  const answers = state.answersRD.questions[question.code] || []
   console.log( `getAnswers( ${question.code} ): `, answers )
   if ( 1 < answers.length ) throw new Error( "more than one narrative answer: ", passedProps.question_code, answers )
   const previousAnswer = answers[0] || ''
