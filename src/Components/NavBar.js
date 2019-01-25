@@ -27,7 +27,7 @@ class NavBar extends React.Component {
       <Navbar style ={styles.body}>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="/splash">M.A.P.Labs</a>
+            <a href="/">M.A.P.Labs</a>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
@@ -65,7 +65,7 @@ const styles = {
   navItem: {
       'padding': '15px',
       'display': 'inline-block',
-      'line-height': '20px'
+      'lineHeight': '20px'
     }
   }
 /* ********************************************************
