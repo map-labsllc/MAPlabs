@@ -9,6 +9,9 @@ import { loadAllAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
 import { getUser } from '../store/user/reducer'
+import {
+  QUESTION_TYPE_SHORT_ANSWERS,
+  QUESTION_TYPE_TRANSITIONS} from '../constants.js'
 
 import {
   Button,
@@ -55,7 +58,6 @@ class TestModule extends React.Component {
     { code: 163, text: "What changes would you like to see in your relationships?" },
     { code: 164, text: "What changes would you like to see in your life’s work (your vocation)?" },
     { code: 165, text: "What changes would you like to see in your avocational pursuits?" },
-
   ]
 
   excercise110 = (<NarrativeCT question={ { code: 110, text: "Reflect on your current situation" } }
@@ -70,14 +72,35 @@ class TestModule extends React.Component {
   excercise140 = (<NarrativeCT question={{ code: 140, text: "Future Desired Situation Description" } }
                                instructions = "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your future desired state of being as you begin MAPmaker. Create this description in your own image capturing how you want to feel, what you will think of your future situation, what will be good and bad, and how you would describe your future self to your current self. " />)
 
-  excercise150 = (<QuestionsCT questions = {this.questions150}/>)
-  excercise160 = (<QuestionsCT questions = {this.questions160}/>)
-  excercise170 = (<QuestionsCT questions = {this.questions170}/>)
+  excercise150 = (<QuestionsCT
+    questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+    questions = {this.questions150}/>)
+
+  excercise160 = (<QuestionsCT
+    questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+    questions = {this.questions160}/>)
+
+  excercise170 = (<QuestionsCT
+    questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+    questions = {this.questions170}/>)
+
+
+
+
+
+  questions1 = [
+    { code: 30 , text: "From -> to" },
+  ]
+  excercise1 = ( <QuestionsCT
+    questionType = {QUESTION_TYPE_TRANSITIONS}
+    questions = {this.questions1}/> )
 
 
 
   // render!
   render() {
+    console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+    console.log("QUESTION_TYPE_SHORT_ANSWERS", QUESTION_TYPE_SHORT_ANSWERS);
 
     const isLoading = this.props.isLoading
 
@@ -87,12 +110,15 @@ class TestModule extends React.Component {
         {!isLoading && (
           <>
             <Module moduleNum = "1" moduleTitle = "Module 1" moduleDescription = "Description of the module here...">
+
+              <Section moduleNum = "1" sectionNum = "1" sectionTitle = "From To" excercise = {this.excercise1} />
+
               <Section moduleNum = "1" sectionNum = "110" sectionTitle = "Reflect on your current situation" excercise = {this.excercise110} />
-              <Section moduleNum = "1" sectionNum = "120" sectionTitle = "Current Situation Descriptor" excercise = {this.excercise120} />
+              {/*<Section moduleNum = "1" sectionNum = "120" sectionTitle = "Current Situation Descriptor" excercise = {this.excercise120} />
               <Section moduleNum = "1" sectionNum = "130" sectionTitle = "Imagine your Future Desired Situation" excercise = {this.excercise130} />
               <Section moduleNum = "1" sectionNum = "140" sectionTitle = "Future Desired Situation Description" excercise = {this.excercise140} />
               <Section moduleNum = "1" sectionNum = "150" sectionTitle = "Compare your “current situation” statement to your “future desired situation” statement" excercise = {this.excercise150} />
-              <Section moduleNum = "1" sectionNum = "160" sectionTitle = "Breaking and building" excercise = {this.excercise160} />
+              <Section moduleNum = "1" sectionNum = "160" sectionTitle = "Breaking and building" excercise = {this.excercise160} />*/}
               <Section moduleNum = "1" sectionNum = "170" sectionTitle = "Tie these reflections to the course" excercise = {this.excercise170} />
             </Module>
           </>
@@ -105,7 +131,7 @@ class TestModule extends React.Component {
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {
   return {
-    isLoading: state.answersRD.isLoading || state.transitionsRD.isLoading,
+    isLoading: state.answersRD.isLoading || state.transitionsRD.isLoading || state.staticdataRD.isLoading,
     userId: getUser( state.userRD ).user_id,
   }
 }
