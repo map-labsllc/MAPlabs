@@ -62,8 +62,8 @@ export default class Transitions extends React.Component {
 
   // **********************************************
   // tell parent to update array of transitions to store
-  saveTransition = (key, newTransition) => {
-    console.log(`Transitions::saveTransition(${key}, ${newTransition})`)
+  updateTransition = ( key, newTransition ) => {
+    console.log( `Transitions::updateTransition(${key}, ${newTransition})` )
 
     const { onUpdateStoreCB } = this.props
     const { transitionsWithKeys } = this.state
@@ -122,7 +122,7 @@ export default class Transitions extends React.Component {
             key={transitionWithKey.key}
             id={transitionWithKey.key}
             previousTransition={transitionWithKey.transition}
-            saveTransitionCB={this.saveTransition}
+            updateTransitionCB={this.updateTransition}
             deleteTransitionCB={this.deleteTransition}
           >
           </Transition>
