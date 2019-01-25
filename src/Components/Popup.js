@@ -70,21 +70,38 @@ export default class Popup extends React.Component {
         {!isVisible && (
           <Button type = "button" onClick = {this.onclickStart}>Start</Button>
         )}
-        {isVisible && (
-          <>
-          <ModalX
-            sectionTitle = {sectionTitle}
-            exercise = {excerciseWithOnCloseCB}
-            isVisible = {this.state.isVisible}
-            onModalOpeningCB = {this.onModalOpening}
-            onModalClosingCB = {this.onModalClosing}
-          />
-          </>
-        )}
+
+        <ModalX
+          sectionTitle = {sectionTitle}
+          exercise = {excerciseWithOnCloseCB}
+          isVisible = {this.state.isVisible}
+          onModalOpeningCB = {this.onModalOpening}
+          onModalClosingCB = {this.onModalClosing}
+        />
       </>
     )
   }
 }
+
+// return (
+//   <>
+//     <h6><i>..Popup controller manages starting a section..</i></h6>
+//     {!isVisible && (
+//       <Button type = "button" onClick = {this.onclickStart}>Start</Button>
+//     )}
+//     {isVisible && (
+//       <>
+//       <ModalX
+//         sectionTitle = {sectionTitle}
+//         exercise = {excerciseWithOnCloseCB}
+//         isVisible = {this.state.isVisible}
+//         onModalOpeningCB = {this.onModalOpening}
+//         onModalClosingCB = {this.onModalClosing}
+//       />
+//       </>
+//     )}
+//   </>
+// )
 
 
 // WORKING CODE pre-modal
