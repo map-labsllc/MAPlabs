@@ -19,7 +19,7 @@ import {
    props:
      id -- integer id for the question (poorman's UUID)
      previousTransition -- previous transition
-     saveTransitionCB(newTransition) -- callback for when user moves off on the field
+     updateTransitionCB(newTransition) -- callback for when user moves off on the field
      deleteTransitionCB -- callback when user clicks the Delete button
 ***************************************************** */
 export default class Transition extends React.Component {
@@ -32,7 +32,7 @@ export default class Transition extends React.Component {
   }
 
   // **************************************************
-  // set isDirty and control transition from field
+  // set isDirty and update state with new transition.from
   onChangeFrom = ( e ) => {
     // console.log("Transition::onChangeFrom(), e: ", e.target.value);
 
@@ -46,7 +46,7 @@ export default class Transition extends React.Component {
   }
 
   // **************************************************
-  // set isDirty and control transition to field
+  // set isDirty and update state with new transition.to
   onChangeTo = ( e ) => {
     // console.log("Transition::onChangeTo(), e: ", e.target.value);
 
@@ -61,13 +61,13 @@ export default class Transition extends React.Component {
 
 
   // **************************************************
-  // pass to parent to save value and clear isDirty
+  // pass to parent to update value and clear isDirty
   onBlur = ( e ) => {
     console.log( "Transition::onBlur(), e: ", e.target.value )
-    const { saveTransitionCB, id } = this.props
+    const { updateTransitionCB, id } = this.props
     const { isDirty, transition } = this.state
     if ( isDirty ) {
-      saveTransitionCB( id, transition )
+      updateTransitionCB( id, transition )
       this.setState( {
         isDirty: false,
       } )
