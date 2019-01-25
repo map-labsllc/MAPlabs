@@ -3,26 +3,26 @@ import { connect } from 'react-redux'
 import { emailChanged, passwordChanged, loginUser, signUp } from '../store/user/actions'
 
 class Login extends Component {
-  constructor(props) {
-    super(props)
+  constructor( props ) {
+    super( props )
   }
 
-  onEmailChange(text) {
-    this.props.emailChanged(text)
+  onEmailChange( text ) {
+    this.props.emailChanged( text )
   }
 
-  onPasswordChange(text) {
-    this.props.passwordChanged(text)
+  onPasswordChange( text ) {
+    this.props.passwordChanged( text )
   }
 
   onButtonPress() {
     const { email, password } = this.props
 
-    this.props.loginUser({ email, password })
+    this.props.loginUser( { email, password } )
   }
 
   renderError() {
-    if (this.props.error) {
+    if ( this.props.error ) {
       return (
         <div>
           <p style={ styles.errorTextStyle }>
@@ -36,7 +36,7 @@ class Login extends Component {
   renderButton() {
     return (
       <div style={styles.loginButtonStyle} >
-        <button style={styles.loginTextStyles} onClick={ this.onButtonPress.bind(this)} > Login</button>
+        <button style={styles.loginTextStyles} onClick={ this.onButtonPress.bind( this )} > Login</button>
       </div>
     )
   }
@@ -81,7 +81,7 @@ class Login extends Component {
           >
 
           <button
-          
+
             underlayColor='#fff'
             href= '/signup'
             style={{color:'#982D38',fontSize: 30,fontWeight:'700', borderColor:'#982D37' ,borderRadius:2, borderWidth:2, backgroundColor:'white'}}>SIGN UP
@@ -177,11 +177,11 @@ class Login extends Component {
     }
   }
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ( { auth } ) => {
   const { email, password, error, loading } = auth
   return { email, password, error, loading }
 }
 
-export default connect(mapStateToProps, {
+export default connect( mapStateToProps, {
   emailChanged, passwordChanged, loginUser, signUp
-})(Login)
+} )( Login )
