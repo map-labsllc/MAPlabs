@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup,Button } from 'react-bootstrap'
 import LifeDescriptor from './lifeDescriptor'
-// import excersizes from '../store/reducers/exercizes'
 import Arrows from './Arrows'
+import { getUser } from '../store/user/reducer'
 import { loadAllAnswersAC } from '../store/answers/actions'
+import { getAnswers } from '../store/answers/reducer'
+import {
+  updateAnswersAC,
+  persistAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
 // import { getUser } from '../store/users/reducer'
@@ -21,17 +25,19 @@ import * as actions from '../store/staticdata/actions'
        persistingArray: []
      }
    }
-   componentDidMount = async ( ) => {
-
-       const { dispatch, userId } = this.props
-       try {
-         await dispatch( loadAllAnswersAC( userId ) )
-         await dispatch( loadAllTransitionsAC( userId ) )
-         await dispatch( loadAllStaticdataAC() )
-       } catch ( error ) {
-         console.error( error )
-       }
-     }
+  //  componentDidMount = async ( ) => {
+   //
+  //      const { dispatch, userId } = this.props
+  //      try {
+  //
+  //        await dispatch( loadAllAnswersAC( userId ) )
+  //        await dispatch( loadAllTransitionsAC( userId ) )
+  //        await dispatch( loadAllStaticdataAC() )
+  //
+  //      } catch ( error ) {
+  //        console.error( error )
+  //      }
+  //    }
 
    previousSlide= ( arr ) => e => {
      const lastIndex = arr.length
@@ -71,23 +77,17 @@ import * as actions from '../store/staticdata/actions'
   }
 
   addToPersistingArray =( field1, action, field2 ) =>  {
-    const {
-      addToPersistingArray
-    } = this.props
+
     console.log( 'addToPersisting>>>>>' )
       const sentence = field1 + action + field2
-      // const newPersistingArray = [...persistant_array]
 
-      addToPersistingArray( sentence )
-      // this.setState( {persistingArray: newPersistingArray} )
-      // console.log( this.props.persistant_array )
+
+      this.setState( {persistingArray: [...this.state.persistingArray,sentence]} )
+      console.log( this.state.persistingArray )
   }
   render(){
-    console.log( this.props.persistant_array )
-    const { lifeDescriptors,isLoading } = this.props
-    console.log( 'LERROOYYYYYYYYY JENKINNNSSSSSS',this.props )
+    const { lifeDescriptors,isLoading,userId, onPersistCB,onCloseModalCB } = this.props
     let pages = this.splittingArray( lifeDescriptors )
-
     let list = pages.map( ( element ) => (
       element.map( ele =>(
         <LifeDescriptor
@@ -97,46 +97,61 @@ import * as actions from '../store/staticdata/actions'
 
       ) )
     ) )
-    return(
-      <>
-        <p>{( ( isLoading ) ? "loading...." : ""  )}</p>
-        {!isLoading && (
-          <>
+      return(
+        <>
+          <p>{( ( isLoading ) ? "loading...." : ""  )}</p>
+          {!isLoading && (
+            <>
 
-          { list[this.state.page] }
-          <Arrows
-          direction="left"
-          clickFunction={ this.previousSlide( pages ) }
-          glyph="&#9664;"
-
-          />
-          <Arrows
-           direction="right"
-           clickFunction={ this.nextSlide( pages ) }
-           glyph="&#9654;"
-
-           />
-          </>
-        )}
-      </>
-    )
+            { list[this.state.page] }
+            <Arrows
+            direction="left"
+            clickFunction={ this.previousSlide( pages ) }
+            glyph="&#9664;"
+            />
+            <Arrows
+             direction="right"
+             clickFunction={ this.nextSlide( pages ) }
+             glyph="&#9654;"
+             />
+             <Button
+              onClick= {()=>{
+                onPersistCB( userId,this.state.persistingArray )
+                onCloseModalCB()
+             }}>Close</Button>
+            </>
+          )}
+        </>
+      )
+    }
   }
-}
 
 
 // Wrap in container to get access to store and dispatch
-const mapStateToProps = state => {
+const mapStateToProps = ( state,passedProps ) => {
   console.log( 'ststetet', state )
+  const {question,instructions,onCloseModalCB} = passedProps
   return {
     isLoading: state.answersRD.isLoading || state.staticdataRD.isLoading,
-    userId: 1,
+    userId: getUser( state.userRD ).user_id,
+    question,
+    instructions,
+    onCloseModalCB,
     lifeDescriptors: state.staticdataRD.lifeDescriptions,
     persistant_array: state.persistant_array
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators( actions, dispatch )
+const mapDispatchToProps = ( dispatch,passedProps ) => {
+  const onPersist = ( userId, lifeDescriptionsArray ) => {
+    const {question} = passedProps
+  
+    dispatch( updateAnswersAC( question.code, lifeDescriptionsArray ) )
+    dispatch( persistAnswersAC( userId, question.code, lifeDescriptionsArray ) )
+  }
+  return {
+    onPersistCB: onPersist
+  }
 }
 
 export default connect(

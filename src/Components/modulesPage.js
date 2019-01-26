@@ -28,10 +28,12 @@ export default class ModulesPage extends Component {
     return(
 
       <div>
-    
+
         <Modal
           show = { this.state.show }
-          data = { <QuestionsList/> }
+          data = { <QuestionsList
+                      
+                      /> }
           handleShow = { this.handleShow }
           handleClose = { this.handleClose }
         />
