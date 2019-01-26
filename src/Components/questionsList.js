@@ -9,11 +9,8 @@ import { loadAllAnswersAC } from '../store/answers/actions'
 import { getAnswers } from '../store/answers/reducer'
 import {
   updateAnswersAC,
-  persistAnswersAC } from '../store/answers/actions'
-import { loadAllTransitionsAC } from '../store/transitions/actions'
-import { loadAllStaticdataAC } from '../store/staticdata/actions'
-// import { getUser } from '../store/users/reducer'
-import * as actions from '../store/staticdata/actions'
+  persistAnswersAC
+ } from '../store/answers/actions'
 
 
  class QuestionsList extends Component {
@@ -22,23 +19,16 @@ import * as actions from '../store/staticdata/actions'
      this.state= {
        currentIndex:0,
        page: 0,
-       persistingArray: []
+       selections:[],
+       persistingArray: [],
+       clickedA:"link",
+       clickedB:"link"
      }
    }
-  //  componentDidMount = async ( ) => {
-   //
-  //      const { dispatch, userId } = this.props
-  //      try {
-  //
-  //        await dispatch( loadAllAnswersAC( userId ) )
-  //        await dispatch( loadAllTransitionsAC( userId ) )
-  //        await dispatch( loadAllStaticdataAC() )
-  //
-  //      } catch ( error ) {
-  //        console.error( error )
-  //      }
-  //    }
 
+   checkSelections=()=> {
+
+   }
    previousSlide= ( arr ) => e => {
      const lastIndex = arr.length
      const {currentIndex} = this.state
@@ -53,7 +43,7 @@ import * as actions from '../store/staticdata/actions'
 
    }
 
-  nextSlide = ( arr ) => e => {
+   nextSlide = ( arr ) => e => {
    const lastIndex = arr.length
    const { currentIndex } = this.state
    const shouldResetIndex = currentIndex === lastIndex
@@ -64,7 +54,7 @@ import * as actions from '../store/staticdata/actions'
      currentIndex: index,
      page
    } )
- }
+  }
 
   splittingArray= ( arr ) => {
     var size = 5
@@ -76,22 +66,49 @@ import * as actions from '../store/staticdata/actions'
     return arrayOfArrays
   }
 
-  addToPersistingArray =( field1, action, field2 ) =>  {
 
-    console.log( 'addToPersisting>>>>>' )
+  addToPersistingArray =( field1, action, field2,cb ) =>  {
+
       const sentence = field1 + action + field2
-
 
       this.setState( {persistingArray: [...this.state.persistingArray,sentence]} )
       console.log( this.state.persistingArray )
   }
+
   render(){
+
     const { lifeDescriptors,isLoading,userId, onPersistCB,onCloseModalCB } = this.props
     let pages = this.splittingArray( lifeDescriptors )
     let list = pages.map( ( element ) => (
-      element.map( ele =>(
+      element.map( ( ele,i ) =>(
+
         <LifeDescriptor
+          key={i}
           data= { ele }
+          showCheckedA= {
+            (  )=> {
+              const newArr = this.state.selections
+              newArr[i]= "a"
+
+             this.setState( {
+               clickedA:'success',
+               selections:newArr
+             } )
+             console.log( 'ed says put a title', newArr )
+            }}
+          showCheckedB= {
+            ( )=> {
+              const newArr = this.state.selections
+              newArr[i]= "b"
+              this.setState( {
+               clickedB:'success',
+               selections: newArr
+              } )
+              console.log( 'ed says put a title', newArr )
+            }
+          }
+          checkedA= {this.state.clickedA}
+          checkedB= {this.state.clickedB}
           addingData = { this.addToPersistingArray }
         />
 
