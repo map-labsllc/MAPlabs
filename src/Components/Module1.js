@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Module from '../Components/Module'
 import Section from '../Components/Section'
 import QuestionsCT from '../Containers/QuestionsCT'
+import QuestionsList from './questionsList'
 import NarrativeCT from '../Containers/NarrativeCT'
 import { loadAllAnswersAC } from '../store/answers/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
@@ -38,15 +39,23 @@ class TestModule extends React.Component {
   // Define questions and excercises for Module 1
   // ---------------------------------------------------------------------
 
+
+  // <QuestionsList />
+
   // -------------------------
   // Replace with Lifedescriptors
   // 2C-F
   exercise_110 = (
-    <NarrativeCT
+    <QuestionsList
       question = { { code: 110, text: "Reflect on your current situation" } }
-      promptQuestionCode = "0"
-       instructions = "** This Narrative will be replaced with the LifeDescriptors component"
+      instructions = "Complete sentences that are important to you."
     /> )
+  // exercise_110 = (
+  //   <NarrativeCT
+  //     question = { { code: 110, text: "Reflect on your current situation" } }
+  //     promptQuestionCode = "0"
+  //      instructions = "** This Narrative will be replaced with the LifeDescriptors component"
+  //   /> )
 
 
   // -------------------------

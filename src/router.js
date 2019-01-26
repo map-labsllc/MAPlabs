@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import TestModule from './Components/TestModule'
+import Module1 from './Components/Module1'
 import SplashPage from './Components/SplashPage'
 import Login from './Components/login'
 import SignUp from './Components/SignUp'
@@ -12,8 +12,9 @@ export default class RouterComponent extends React.Component {
         <Switch>
           <Route exact path='/' component={ SplashPage }/>
           <Route exact path ='/login' component = { Login }/>
+          <Route exact path ='/module/1' component = { Module1 }/>
+          <Route exact path ='/module/2' component = { Module1 }/>
           <Route exact path ='/signup' component = { SignUp }/>
-          <Route exact path ='/modules/1' component = { TestModule }/>
         </Switch>
       )
     }

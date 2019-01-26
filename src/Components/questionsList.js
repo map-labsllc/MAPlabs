@@ -126,6 +126,9 @@ import * as actions from '../store/staticdata/actions'
     }
   }
 
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = ( state,passedProps ) => {
@@ -142,10 +145,14 @@ const mapStateToProps = ( state,passedProps ) => {
   }
 }
 
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
 const mapDispatchToProps = ( dispatch,passedProps ) => {
   const onPersist = ( userId, lifeDescriptionsArray ) => {
     const {question} = passedProps
-  
+
     dispatch( updateAnswersAC( question.code, lifeDescriptionsArray ) )
     dispatch( persistAnswersAC( userId, question.code, lifeDescriptionsArray ) )
   }
