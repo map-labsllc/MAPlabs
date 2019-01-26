@@ -6,6 +6,7 @@ import {
   FormControl,
   FormGroup,
 } from 'react-bootstrap'
+import Prompts from './Prompts'
 
 /* **************************************************
    Narrative component
@@ -79,26 +80,30 @@ export default class Narrative extends React.Component {
     // console.log("Narrative::render()")
 
     // initialize
-    const { question, instructions } = this.props
+    const { question, prompts, instructions } = this.props
     const { answer } = this.state
 
     return (
-      <Form onSubmit={this.onSubmit} >
-        <FormGroup>
-          {instructions && (
-            <p>..Narrative instructions: <i>{instructions}</i></p>
-          )}
-          <ControlLabel>&nbsp;&nbsp;{question.text}</ControlLabel>
-          <FormControl
-            componentClass = "textarea"
-            onChange = {this.onChange}
-            onBlur = {this.onBlur}
-            value = {answer}
-            placeholder = "Please enter an answer and click Close"
-          />
-        </FormGroup>
-        <Button type = "submit">Close</Button>
-      </Form>
+      <>
+        <Prompts prompts = {prompts}/>
+
+        <Form onSubmit={this.onSubmit} >
+          <FormGroup>
+            {instructions && (
+              <p>..Narrative instructions: <i>{instructions}</i></p>
+            )}
+            <ControlLabel>&nbsp;&nbsp;{question.text}</ControlLabel>
+            <FormControl
+              componentClass = "textarea"
+              onChange = {this.onChange}
+              onBlur = {this.onBlur}
+              value = {answer}
+              placeholder = "Please enter an answer and click Close"
+            />
+          </FormGroup>
+          <Button type = "submit">Close</Button>
+        </Form>
+      </>
     )
   }
 }

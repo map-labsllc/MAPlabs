@@ -10,8 +10,8 @@ import {
    mapStateToProps()
 
    passedProps:
-    promptQuestionCode -- integer, 0 or questionCode to use to grab previousAnswers
-                          from answersRD to display as a prompt for the Narrative
+    promptQuestionCode -- { questionCode: 123 } -- Object with 0 or questionCode to
+      use as prompts for this Narrative.  questionCode must be a quesiton in answerRD.
     question -- { code: 50, text: "question 50" }
     instructions -- string with instructions, can be an empty string for no instructions
     onCloseModalCB -- call to close the modal
@@ -25,11 +25,10 @@ const mapStateToProps = ( state, passedProps ) => {
   // get userId
   const userId = getUser( state.userRD ).user_id
 
-  // find prompts
-  const prompts = []
-  const promptQuestionCodeNumeric = parseInt( promptQuestionCode, 10 )
-  if (promptQuestionCodeNumeric) {
-    prompts = getAnswers( state.answersRD, promptQuestionCodeNumeric )
+  // find prompts, if any
+  let prompts = []
+  if ( promptQuestionCode.questionCode ) {
+    prompts = getAnswers( state.answersRD, promptQuestionCode.questionCode )
   }
   console.log("Prompts for narrative: ", prompts);
 
@@ -44,6 +43,7 @@ const mapStateToProps = ( state, passedProps ) => {
   return {
     userId,
     question,
+    prompts,
     instructions,
     previousAnswer,
     onCloseModalCB,
