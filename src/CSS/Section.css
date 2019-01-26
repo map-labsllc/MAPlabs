@@ -1,0 +1,17 @@
+.centering{
+  text-align: center;
+  margin-left:20em;
+  margin-right:20em;
+}
+.sectionHeader{
+  background-color: #29648A;
+}
+.sectionBody{
+  background-color: #25274D;
+  color:white;
+}
+.startButton{
+  background-color: #2E9CCA;
+  color: black;
+  border-color: black;
+}

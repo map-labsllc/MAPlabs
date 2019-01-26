@@ -101,30 +101,32 @@ export default class Questions extends React.Component {
     //       elements needing a unique key.
     return (
       <>
-        <div className="bgButton">
-          <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>{' '}
-          <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
+        <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>
+        <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
+        <div className="text-center">
+          {questions.map((question, idx) => (
+            <div key={idx}>
+              {(idx === currIdx) && (questionType === QUESTION_TYPE_SHORT_ANSWERS) && (
+                <ShortAnswersCT
+                  key={idx}
+                  question={question}
+                  doesHandlePersistence={{ value: false }}
+                />
+              )}
+              {(idx === currIdx) && (questionType === QUESTION_TYPE_TRANSITIONS) && (
+                <TransitionsCT
+                  key={idx}
+                  question={question}
+                />
+              )}
+            </div>
+          ))}
         </div>
-        {questions.map((question, idx) => (
-          <div key={idx}>
-            {(idx === currIdx) && (questionType === QUESTION_TYPE_SHORT_ANSWERS) && (
-              <ShortAnswersCT
-                key={idx}
-                question={question}
-                doesHandlePersistence={{ value: false }}
-              />
-            )}
-            {(idx === currIdx) && (questionType === QUESTION_TYPE_TRANSITIONS) && (
-              <TransitionsCT
-                key={idx}
-                question={question}
-              />
-            )}
-          </div>
-        ))}
         <br />
         <div className="text-center">
+
           <Button className="closeButton" type="button" onClick={this.onclickClose}>Close</Button>
+
         </div>
       </>
     )

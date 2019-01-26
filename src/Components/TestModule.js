@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import LifeDescriptions from '../Components/questionsList'
 import Module from '../Components/Module'
 import Section from '../Components/Section'
 import QuestionsCT from '../Containers/QuestionsCT'
@@ -61,6 +61,7 @@ class TestModule extends React.Component {
     { code: 165, text: "What changes would you like to see in your avocational pursuits?" },
   ]
 
+
   exercise110 = (<NarrativeCT
     question = { { code: 110, text: "Reflect on your current situation" } }
     promptQuestionCode = "0"
@@ -86,16 +87,21 @@ class TestModule extends React.Component {
     />)
 
   exercise150 = (<QuestionsCT
+
     questionType = {QUESTION_TYPE_SHORT_ANSWERS}
-    questions = {this.questions150}/>)
+    questions = {this.questions150}/> )
+
 
   exercise160 = (<QuestionsCT
+
     questionType = {QUESTION_TYPE_SHORT_ANSWERS}
-    questions = {this.questions160}/>)
+    questions = {this.questions160}/> )
+
 
   exercise170 = (<QuestionsCT
+
     questionType = {QUESTION_TYPE_SHORT_ANSWERS}
-    questions = {this.questions170}/>)
+    questions = {this.questions170}/> )
 
   // quick setup of a Transtion question
   questions1 = [
@@ -105,8 +111,21 @@ class TestModule extends React.Component {
     questionType = {QUESTION_TYPE_TRANSITIONS}
     questions = {this.questions1}/> )
 
+
+  exercise25 = (
+    <LifeDescriptions
+      question = {{code: 25,text:"Question25"}}
+      instructions= 'pick what feels best'
+
+    />
+      )
+
   // render!
   render() {
+    console.log( "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" )
+    console.log( "QUESTION_TYPE_SHORT_ANSWERS", QUESTION_TYPE_SHORT_ANSWERS )
+
+
     const isLoading = this.props.isLoading
 
     return (
@@ -116,7 +135,11 @@ class TestModule extends React.Component {
           <>
             <Module moduleNum = "1" moduleTitle = "Module 1" moduleDescription = "Description of the module here...">
 
-              <Section moduleNum = "1" sectionNum = "1" sectionTitle = "From To" exercise = {this.exercise1} />
+
+            <Section moduleNum = "1" sectionNum = "25" sectionTitle = "Current Life Descriptors" excercise = {this.exercise25} />
+
+              <Section moduleNum = "1" sectionNum = "1" sectionTitle = "From To" excercise = {this.excercise1} />
+
 
               <Section moduleNum = "1" sectionNum = "110" sectionTitle = "Reflect on your current situation" exercise = {this.exercise110} />
               {/*<Section moduleNum = "1" sectionNum = "120" sectionTitle = "Current Situation Descriptor" exercise = {this.exercise120} />

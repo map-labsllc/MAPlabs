@@ -1,33 +1,31 @@
 import React from 'react'
 import { ListGroupItem, ButtonGroup, Button, } from 'react-bootstrap'
 
- const lifeDescriptorQuestion = ( { data } ) => {
+ const lifeDescriptorQuestion = ( { data, addingData } ) => {
 
+   let structured = data.description.split( '#' )
+   let first = structured[0]
+   let second = structured[1]
   //
   // let  variant = ''
   //  const handleClick = () => {
   //   if(variant === '') variant = 'success'
   //   else{variant = ''}
   // }
-  const renderButton = ( children ) => {
+  const renderButtons = ( children ) => {
     return (
       <ButtonGroup>
-        <Button variant="outline-success" >{children.a}</Button>
-        <Button >{children.b}</Button>
+        <Button onClick= {() => {addingData( first,children.a,second )}} >{children.a}</Button>
+        <Button onClick= { () => {addingData( first,children.b,second )}} >{children.b}</Button>
       </ButtonGroup>
     )
   }
 
 
-  let structured = data.description.split( '#' )
-  let first = structured[0]
-  let second = structured[1]
-
-
 
   return (
 
-    <ListGroupItem>{ first } { renderButton(data) } { second }</ListGroupItem>
+    <ListGroupItem>{ first } { renderButtons( data ) } { second }</ListGroupItem>
 
 
   )
