@@ -17,6 +17,7 @@ import {
    props:
      userId -- integer
      question -- { code: 50, text: "Question 50" }
+     prompts -- [] or array of strings with short answers saved by previous exercise
      instructions -- can be empty string
      previousAnswer -- string with the previous answer
      onPersistCB(newAnswer) -- callback for when user clicks Save
