@@ -21,8 +21,6 @@ import {
        page: 0,
        selections:[],
        persistingArray: [],
-       clickedA:"link",
-       clickedB:"link"
      }
    }
 
@@ -107,8 +105,8 @@ import {
               console.log( 'ed says put a title', newArr )
             }
           }
-          checkedA= {this.state.clickedA}
-          checkedB= {this.state.clickedB}
+          checkedA= {this.state.selections[i]==='a'}
+          checkedB= {this.state.selections[i]==='b'}
           addingData = { this.addToPersistingArray }
         />
 

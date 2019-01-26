@@ -12,15 +12,22 @@ import { ListGroupItem, ButtonGroup, Button } from 'react-bootstrap'
   //   if(variant === '') variant = 'success'
   //   else{variant = ''}
   // }
-
+  let btnStyleA = ''
+if( checkedA=== true ){
+  btnStyleA= 'success'
+}
+let btnStyleB = ''
+if( checkedB=== true ){
+btnStyleB= 'success'
+}
 
   const renderButtons = ( children ) => {
     return (
       <ButtonGroup>
-        <Button  onClick= {() => { addingData( first,children.a,second,showCheckedA( children.a ) ) }} bsStyle={checkedA} >
+        <Button  onClick= {() => { addingData( first,children.a,second,showCheckedA( children.a ) ) }} bsStyle={btnStyleA} >
           <strong>{children.a}</strong>
         </Button>
-        <Button onClick= { () => {addingData( first,children.b,second,showCheckedB( children.b ) ) }} bsStyle={checkedB} >
+        <Button onClick= { () => {addingData( first,children.b,second,showCheckedB( children.b ) ) }} bsStyle={btnStyleB} >
           <strong>{children.b}</strong>
         </Button>
       </ButtonGroup>
