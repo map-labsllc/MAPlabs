@@ -1,0 +1,26 @@
+
+.closeButton{
+  background-color: #2E9CCA;
+  color: black;
+  border-color: black;
+}
+.previousButton{
+  float: "left";
+  background-color: #29648A;
+  color: black;
+  border-color: black;
+}
+.nextButton{
+  float: right;
+ background-color: #29648A;
+ color: black;
+ border-color: black;
+}
+.bgButtons{
+  background-color: #29648A;
+}
+.addAnswerButton{
+  background-color: #464866;
+  color:#AAABB8;
+  border-color: #AAABB8;
+}

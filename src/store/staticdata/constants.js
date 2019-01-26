@@ -3,3 +3,4 @@ export const STATICDATA_LOADING  = "STATICDATA_LOADING"
 export const STATICDATA_LOAD     = "STATICDATA_LOAD"
 export const STATICDATA_ERROR_DB = "STATICDATA_ERROR_DB"
 export const STATICDATA_NO_OP    = "STATICDATA_NO_OP"
+export const PERSISTANT_ARRAY = 'persistant_array'

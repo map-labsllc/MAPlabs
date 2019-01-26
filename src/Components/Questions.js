@@ -8,6 +8,12 @@ import {
   FormGroup,
 } from 'react-bootstrap';
 import ShortAnswersCT from '../Containers/ShortAnswersCT'
+import TransitionsCT from '../Containers/TransitionsCT'
+import {
+  QUESTION_TYPE_SHORT_ANSWERS,
+  QUESTION_TYPE_TRANSITIONS
+} from '../constants.js'
+import '../CSS/ModalNavButtons.css'
 
 /* **************************************************
    Questions component
@@ -22,8 +28,9 @@ import ShortAnswersCT from '../Containers/ShortAnswersCT'
 
    props:
      userId -- integer
+     questionType -- enum from constants.js
      questions -- [ { code: 50, text: "question 50" }, { ... }
-     answersRD -- reducer to be passed back up in onPersistQuestionCB()
+     RD -- reducer to be passed back up in onPersistQuestionCB()
      onPersistQuestionCB -- call to have parent CT persist a question from Store
      onCloseModalCB -- call to close the modal this control resides in
 ***************************************************** */
@@ -34,18 +41,12 @@ export default class Questions extends React.Component {
   }
 
   // ******************************************
-  // getCurrQuestion = () => {
-  //   const { questions } = this.props
-  //   const { currIdx } = this.state
-  //   return questions[currIdx]
-  // }
-
-  // ******************************************
   // persist the current question before moving off of it
   persistCurrent = () => {
-    const { userId, questions, answersRD, onPersistQuestionCB } = this.props
+    const { userId, questionType, questions, RD, onPersistQuestionCB } = this.props
     const { currIdx } = this.state
-    onPersistQuestionCB(userId, questions[currIdx], answersRD)
+
+    onPersistQuestionCB(userId, questionType, questions[currIdx], RD)
   }
 
   // ******************************************
@@ -83,37 +84,57 @@ export default class Questions extends React.Component {
     if (currIdx === (questions.length - 1)) return
 
     this.persistCurrent()
-    this.setState({ currIdx: currIdx + 1})
+    this.setState({ currIdx: currIdx + 1 })
   }
 
+  // ******************************************
   render() {
     console.log("ShortAnswers::render()")
 
-    const { questions } = this.props
+    const { questionType, questions } = this.props
     const { currIdx } = this.state
 
-    const currQuestion = questions[currIdx]
+    console.log('**********************************');
+    console.log('questionType: ', questionType)
 
     // NOTE: The <div key = {idx}> tag is used to suppress React warning about
     //       elements needing a unique key.
     return (
       <>
-        <Button type="button" onClick={this.onclickLeft}>Left</Button>{' '}
-        <Button type="button" onClick={this.onclickRight}>Right</Button>{' ...... '}
-        <Button type="button" onClick={this.onclickClose}>Close</Button>
-
+        <div className="bgButton">
+          <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>{' '}
+          <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
+        </div>
         {questions.map((question, idx) => (
-          <div key = {idx}>
-            {(idx === currIdx) && (
+          <div key={idx}>
+            {(idx === currIdx) && (questionType === QUESTION_TYPE_SHORT_ANSWERS) && (
               <ShortAnswersCT
-                key = {idx}
-                question = {question}
-                doesHandlePersistence = {{ value: false }}
+                key={idx}
+                question={question}
+                doesHandlePersistence={{ value: false }}
+              />
+            )}
+            {(idx === currIdx) && (questionType === QUESTION_TYPE_TRANSITIONS) && (
+              <TransitionsCT
+                key={idx}
+                question={question}
               />
             )}
           </div>
         ))}
+        <br />
+        <div className="text-center">
+          <Button className="closeButton" type="button" onClick={this.onclickClose}>Close</Button>
+        </div>
       </>
     )
   }
 }
+
+// {( idx === currIdx ) && ( questionType === QUESTION_TYPE_TRANSITIONS ) && (
+//   <ShortAnswersCT
+//     key = {idx}
+//     question = {question}
+//     doesHandlePersistence = {{ value: false }}
+//   />
+// )}

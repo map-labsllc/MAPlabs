@@ -7,6 +7,7 @@ import {
   Form,
   FormControl,
   FormGroup,
+  Glyphicon
 } from 'react-bootstrap';
 
 /* **************************************************
@@ -19,7 +20,7 @@ import {
    props:
      id -- integer id for the question (poorman's UUID)
      previousAnswer -- string of previous answer
-     saveAnswerCB(newAnswer) -- callback for when user moves off on the field
+     updateAnswerCB(newAnswer) -- callback for when user moves off on the field
      deleteAnswerCB -- callback when user clicks the Delete button
 ***************************************************** */
 export default class ShortAnswer extends React.Component {
@@ -42,13 +43,13 @@ export default class ShortAnswer extends React.Component {
   }
 
   // **************************************************
-  // pass to parent to save value and clear isDirty
+  // pass to parent to update value and clear isDirty
   onBlur = (e) => {
     console.log("ShortAnswer::onBlur(), e: ", e.target.value);
-    const { saveAnswerCB, id } = this.props
+    const { updateAnswerCB, id } = this.props
     const { isDirty } = this.state
     if (isDirty) {
-      saveAnswerCB(id, e.target.value)
+      updateAnswerCB(id, e.target.value)
       this.setState({
         isDirty: false,
       })
@@ -75,16 +76,17 @@ export default class ShortAnswer extends React.Component {
     return (
       <Form inline onSubmit={this.onSubmit}>
         <FormGroup>
-          <Button type = "button" onClick={this.onclickDelete}>del</Button>
-          {' '}
+
           <FormControl
-            type = "text"
-            onChange = {this.onChange}
-            onBlur = {this.onBlur}
-            value = {answer}
-            placeholder = "Please enter an answer"
+            type="text"
+            onChange={this.onChange}
+            onBlur={this.onBlur}
+            value={answer}
+            placeholder="Please enter an answer"
+            bsSize="medium"
           />
-          {` `}{id}{` `}{(isDirty ? 'dirty' : '')}
+
+          <Button type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
         </FormGroup>
       </Form>
     )

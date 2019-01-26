@@ -7,6 +7,7 @@ import {
   FormGroup,
 } from 'react-bootstrap';
 import ShortAnswer from './ShortAnswer'
+import '../CSS/ModalNavButtons.css'
 
 /* **************************************************
    ShortAnswers component
@@ -14,7 +15,7 @@ import ShortAnswer from './ShortAnswer'
    Displays a single question with:
      -- Add button to add a new space for a short answer
      -- <ShortAnswer> for each answer
-     -- Save button
+     -- Save button  NOTE: THIS FUNCTIONALITY SHOULD BE REMOVED, component will always be wrapped with Modal
 
    state:
      Manages the list of answers in state to provide better UX when adding
@@ -53,7 +54,7 @@ export default class ShortAnswers extends React.Component {
   // addKeys = (answers) => answers.map(answer => ({ key: this.getUUID() , text: answer}))
   addKeys = (answers) => answers.map((answer) => {
     console.log("addKeys: ", answer);
-    return { key: this.getUUID() , text: answer}
+    return { key: this.getUUID(), text: answer }
   })
   // -------------------------------------------------------
 
@@ -64,9 +65,9 @@ export default class ShortAnswers extends React.Component {
   }
 
   // **********************************************
-  // tell parent to save array of answers to store
-  saveAnswer = (key, newAnswer) => {
-    console.log(`ShortAnswers::saveAnswer(${key}, ${newAnswer})`);
+  // tell parent to update array of answers to store
+  updateAnswer = (key, newAnswer) => {
+    console.log(`ShortAnswers::updateAnswer(${key}, ${newAnswer})`);
 
     const { onUpdateStoreCB } = this.props
     const { answersWithKeys } = this.state
@@ -80,7 +81,7 @@ export default class ShortAnswers extends React.Component {
 
   // **********************************************
   // delete answer from state::answers and
-  //   tell parent to save array of answers to store
+  //   tell parent to update array of answers to store
   deleteAnswer = (keyToDelete) => {
     console.log(`ShortAnswers::deleteAnswer(${keyToDelete})`);
 
@@ -138,12 +139,12 @@ export default class ShortAnswers extends React.Component {
             key={answerWithKey.key}
             id={answerWithKey.key}
             previousAnswer={answerWithKey.text}
-            saveAnswerCB={this.saveAnswer}
+            updateAnswerCB={this.updateAnswer}
             deleteAnswerCB={this.deleteAnswer}
           >
           </ShortAnswer>
         )}
-        <Button type="button" onClick={this.onclickAdd}>Add answer</Button>
+        <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
         {doesHandlePersistence.value && (
           <>
             {' '}

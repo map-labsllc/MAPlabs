@@ -1,5 +1,5 @@
-import React from 'react';
-import QuestionsCT from '../Containers/QuestionsCT'
+import React from 'react'
+import ModalX from './ModalX'
 import {
   Button,
   Checkbox,
@@ -8,7 +8,8 @@ import {
   Form,
   FormControl,
   FormGroup,
-} from 'react-bootstrap';
+} from 'react-bootstrap'
+import '../CSS/Section.css'
 
 /* **************************************************
    Popup component
@@ -28,15 +29,29 @@ export default class Popup extends React.Component {
   // **************************************************
   // Show the complex interactive component
   onclickStart = () => {
-    console.log( "Popup::onclickStart()" )
-    this.setState( { isVisible: true } )
+    console.log("Popup::onclickStart()")
+    this.setState({ isVisible: true })
   }
 
   // **************************************************
-  // Hide the complex interactive component
+  // CB from the <exercise> when its close/save button is clicked
   onCloseModal = () => {
-    console.log("Popup::onCloseModal()");
-    this.setState( { isVisible: false } )
+    console.log("Popup::onCloseModal()")
+    this.setState({ isVisible: false })
+  }
+
+
+  // **************************************************
+  // CB from <Modal>
+  onModalClosing = () => {
+    console.log("Popup::onModalClosing()")
+    // this.setState( { isVisible: false } )
+  }
+  // **************************************************
+  // CB from <Modal>
+  onModalOpening = () => {
+    console.log("Popup::onModalOpening()")
+    // this.setState( { isVisible: false } )
   }
 
   // **************************************************
@@ -45,20 +60,25 @@ export default class Popup extends React.Component {
     console.log("Popup::render()")
 
     let { isVisible } = this.state
-    let { sectionTitle, excercise } = this.props
-    const excerciseWithOnCloseCB = React.cloneElement( excercise, { onCloseModalCB: this.onCloseModal } )
+    let { sectionTitle, exercise } = this.props
+
+    // link the <exersise> to this/Popup Component
+    const exerciseWithOnCloseCB = React.cloneElement(exercise, { onCloseModalCB: this.onCloseModal })
 
     return (
       <>
         <h6><i>..Popup controller manages starting a section..</i></h6>
         {!isVisible && (
-          <Button type = "button" onClick = {this.onclickStart}>Start</Button>
+          <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
         )}
-        {isVisible && (
-          <>
-          {excerciseWithOnCloseCB}
-          </>
-        )}
+
+        <ModalX
+          sectionTitle={sectionTitle}
+          exercise={exerciseWithOnCloseCB}
+          isVisible={this.state.isVisible}
+          onModalOpeningCB={this.onModalOpening}
+          onModalClosingCB={this.onModalClosing}
+        />
       </>
     )
   }
@@ -66,16 +86,38 @@ export default class Popup extends React.Component {
 
 // return (
 //   <>
-//     <h3>POPUP: {title}</h3>
+//     <h6><i>..Popup controller manages starting a section..</i></h6>
 //     {!isVisible && (
 //       <Button type = "button" onClick = {this.onclickStart}>Start</Button>
 //     )}
 //     {isVisible && (
 //       <>
-//       <QuestionsCT
-//         questions = {questions}
-//         onCloseModalCB = {this.onCloseModal}
+//       <ModalX
+//         sectionTitle = {sectionTitle}
+//         exercise = {exerciseWithOnCloseCB}
+//         isVisible = {this.state.isVisible}
+//         onModalOpeningCB = {this.onModalOpening}
+//         onModalClosingCB = {this.onModalClosing}
 //       />
+//       </>
+//     )}
+//   </>
+// )
+
+
+// WORKING CODE pre-modal
+// May need to pass a prop to Popup to decide if the exercise should be wrapped
+//   in a Modal or appear flat.
+
+// return (
+//   <>
+//     <h6><i>..Popup controller manages starting a section..</i></h6>
+//     {!isVisible && (
+//       <Button type = "button" onClick = {this.onclickStart}>Start</Button>
+//     )}
+//     {isVisible && (
+//       <>
+//       {exerciseWithOnCloseCB}
 //       </>
 //     )}
 //   </>

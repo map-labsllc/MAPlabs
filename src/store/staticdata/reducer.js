@@ -1,9 +1,9 @@
 import {
   STATICDATA_LOADING,
   STATICDATA_LOAD,
-  STATICDATA_UPDATE,
   STATICDATA_ERROR_DB,
- } from './constants';
+  PERSISTANT_ARRAY
+ } from './constants'
 
 /*
   staticdataRD: {  // loaded with fetch call to a file
@@ -36,37 +36,44 @@ const initialState = {
   beliefs: [],
   strengths: [],
   lifeDescriptions: [],
+  persistant_array: []
 }
 
  /* ***********************************************
     staticdataRD
  ************************************************** */
- export const staticdataRD = (state = initialState, action) => {
+ export const staticdataRD = ( state = initialState, action ) => {
 
   const { type, payload } = action
 
-  switch(type) {
+  switch( type ) {
 
     // Reset the reducer to initial state
     case STATICDATA_LOADING:
-      console.log("staticdataRD::LOADING");
-      return initialState;
+      console.log( "staticdataRD::LOADING" )
+      return initialState
 
     // payload has beliefs, strengths, and lifeDescriptions JSON file contents
     case STATICDATA_LOAD:
-      console.log("staticdataRD::LOAD");
+      console.log( "staticdataRD::LOAD" )
       return {
         ...state,
         isLoading: false,
         beliefs: payload.beliefs,
         strengths: payload.strengths,
         lifeDescriptions: payload.lifeDescriptions,
-      };
+      }
+    case PERSISTANT_ARRAY:
+    console.log( 'persisted to the array', payload )
+      return {
+        ...state,
+        persistant_array: [...state.persistant_array, payload]
+      }
 
 
     // Fetch error
     case STATICDATA_ERROR_DB:
-      console.log("staticdataRD::ERROR_DB");
+      console.log( "staticdataRD::ERROR_DB" )
       return {
         ...state,
         isLoading: false,

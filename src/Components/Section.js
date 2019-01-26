@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import Popup from '../Components/Popup'
 import {
   Button,
@@ -8,8 +8,9 @@ import {
   Form,
   FormControl,
   FormGroup,
-} from 'react-bootstrap';
-
+  Panel,
+} from 'react-bootstrap'
+import '../CSS/Section.css'
 /* **************************************************
    Section
 
@@ -26,7 +27,7 @@ export default class Section extends React.Component {
 
   // check that user has gotten up to this module and section
   canUserView = (user, moduleNum, sectionNum) => {
-    return true;
+    return true
 
     // TODO: get code below working
 
@@ -46,23 +47,34 @@ export default class Section extends React.Component {
     console.log("Section::render()")
 
     let { isVisible } = this.state
-    let { sectionTitle, excercise } = this.props
+    let { sectionTitle, exercise } = this.props
 
     return (
-      <>
-        <p>.</p>
-        <p>-----------------------------------------</p>
-        <h4><u>Section</u>: {sectionTitle}</h4>
-        {!isVisible && (
-          <p>not available yet</p>
-        )}
-        {isVisible && (
-          <>
-            <Popup sectionTitle = {sectionTitle} excercise = {excercise} />
-          </>
-        )}
-      <p> </p>
-      </>
+      <div>
+        <Panel bsStyle='primary'>
+          <Panel.Heading className="sectionHeader">
+            <Panel.Title><div className="text-center"><u>Section</u>: {sectionTitle}</div></Panel.Title>
+          </Panel.Heading>
+          <Panel.Body className="sectionBody">
+            <Popup sectionTitle={sectionTitle} exercise={exercise} />
+          </Panel.Body>
+        </Panel>
+      </div >
     )
   }
 }
+//  <>
+//         <p>.</p>
+//         <p>-----------------------------------------</p>
+//         <h4><u>Section</u>: {sectionTitle}</h4>
+//         {!isVisible && (
+//           <p>not available yet</p>
+//         )}
+//         {isVisible && (
+//           <>
+//             <Popup sectionTitle = {sectionTitle} exercise = {exercise} />
+//           </>
+//         )}
+//       <p> </p>
+//       </>
+
