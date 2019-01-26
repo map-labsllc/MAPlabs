@@ -46,7 +46,7 @@ export default class Section extends React.Component {
     console.log("Section::render()")
 
     let { isVisible } = this.state
-    let { sectionTitle, excercise } = this.props
+    let { sectionTitle, exercise } = this.props
 
     return (
       <>
@@ -58,7 +58,7 @@ export default class Section extends React.Component {
         )}
         {isVisible && (
           <>
-            <Popup sectionTitle = {sectionTitle} excercise = {excercise} />
+            <Popup sectionTitle = {sectionTitle} exercise = {exercise} />
           </>
         )}
       <p> </p>

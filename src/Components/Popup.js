@@ -44,7 +44,7 @@ export default class Popup extends React.Component {
   // CB from <Modal>
   onModalClosing = () => {
     console.log("Popup::onModalClosing()");
-    this.setState( { isVisible: false } )
+    // this.setState( { isVisible: false } )
   }
   // **************************************************
   // CB from <Modal>
@@ -59,10 +59,10 @@ export default class Popup extends React.Component {
     console.log("Popup::render()")
 
     let { isVisible } = this.state
-    let { sectionTitle, excercise } = this.props
+    let { sectionTitle, exercise } = this.props
 
-    // link the <excersise> to this/Popup Component
-    const excerciseWithOnCloseCB = React.cloneElement( excercise, { onCloseModalCB: this.onCloseModal } )
+    // link the <exersise> to this/Popup Component
+    const exerciseWithOnCloseCB = React.cloneElement( exercise, { onCloseModalCB: this.onCloseModal } )
 
     return (
       <>
@@ -73,7 +73,7 @@ export default class Popup extends React.Component {
 
         <ModalX
           sectionTitle = {sectionTitle}
-          exercise = {excerciseWithOnCloseCB}
+          exercise = {exerciseWithOnCloseCB}
           isVisible = {this.state.isVisible}
           onModalOpeningCB = {this.onModalOpening}
           onModalClosingCB = {this.onModalClosing}
@@ -93,7 +93,7 @@ export default class Popup extends React.Component {
 //       <>
 //       <ModalX
 //         sectionTitle = {sectionTitle}
-//         exercise = {excerciseWithOnCloseCB}
+//         exercise = {exerciseWithOnCloseCB}
 //         isVisible = {this.state.isVisible}
 //         onModalOpeningCB = {this.onModalOpening}
 //         onModalClosingCB = {this.onModalClosing}
@@ -105,7 +105,7 @@ export default class Popup extends React.Component {
 
 
 // WORKING CODE pre-modal
-// May need to pass a prop to Popup to decide if the excercise should be wrapped
+// May need to pass a prop to Popup to decide if the exercise should be wrapped
 //   in a Modal or appear flat.
 
 // return (
@@ -116,7 +116,7 @@ export default class Popup extends React.Component {
 //     )}
 //     {isVisible && (
 //       <>
-//       {excerciseWithOnCloseCB}
+//       {exerciseWithOnCloseCB}
 //       </>
 //     )}
 //   </>

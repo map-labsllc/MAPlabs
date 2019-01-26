@@ -14,7 +14,7 @@ import {
 /* **************************************************
    Modal component
 
-   Renders a modal with an excercise in it.  Parent controls visibility with isVisble prop
+   Renders a modal with an exercise in it.  Parent controls visibility with isVisble prop
 
    props:
      sectionTitle -- title of the section for resdisplay if we do a modal below this
