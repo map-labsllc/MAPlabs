@@ -12,6 +12,7 @@ import {
   persistAnswersAC
  } from '../store/answers/actions'
 
+const NUM_PER_PAGE = 5
 
  class QuestionsList extends Component {
    constructor( props ){
@@ -55,7 +56,7 @@ import {
   }
 
   splittingArray= ( arr ) => {
-    var size = 5
+    var size = NUM_PER_PAGE
     var arrayOfArrays = []
     for ( var i=0; i<arr.length; i+=size ) {
         arrayOfArrays.push( arr.slice( i,i+size ) )
@@ -73,20 +74,32 @@ import {
       console.log( this.state.persistingArray )
   }
 
+  buildingCongruentSentence = ( lifedescriptor, aOrB )=> {
+
+      let structured = lifedescriptor.description.split( '#' )
+      let first = structured[0]
+      let second = structured[1]
+      const sentence = first + ( aOrB === 'a' ? lifedescriptor.a : lifedescriptor.b ) + second
+      return sentence
+
+
+  }
   render(){
 
     const { lifeDescriptors,isLoading,userId, onPersistCB,onCloseModalCB } = this.props
-    let pages = this.splittingArray( lifeDescriptors )
-    let list = pages.map( ( element ) => (
-      element.map( ( ele,i ) =>(
 
+    let pages = this.splittingArray( lifeDescriptors )
+    let list = pages.map( ( element, pageNum ) => (
+      element.map( ( ele,i ) =>{
+        const idxLifedescriptions = i + pageNum * NUM_PER_PAGE
+        return(
         <LifeDescriptor
-          key={i}
+          key={idxLifedescriptions}
           data= { ele }
           showCheckedA= {
             (  )=> {
               const newArr = this.state.selections
-              newArr[i]= "a"
+              newArr[idxLifedescriptions]= "a"
 
              this.setState( {
                clickedA:'success',
@@ -97,7 +110,7 @@ import {
           showCheckedB= {
             ( )=> {
               const newArr = this.state.selections
-              newArr[i]= "b"
+              newArr[idxLifedescriptions]= "b"
               this.setState( {
                clickedB:'success',
                selections: newArr
@@ -105,12 +118,12 @@ import {
               console.log( 'ed says put a title', newArr )
             }
           }
-          checkedA= {this.state.selections[i]==='a'}
-          checkedB= {this.state.selections[i]==='b'}
+          checkedA= {this.state.selections[idxLifedescriptions]==='a'}
+          checkedB= {this.state.selections[idxLifedescriptions]==='b'}
           addingData = { this.addToPersistingArray }
         />
 
-      ) )
+      )} )
     ) )
       return(
         <>
@@ -140,7 +153,16 @@ import {
                  <Col sm={12}md={12} lg={12} align='bottom'>
                    <Button
                     onClick= {()=>{
-                      onPersistCB( userId,this.state.persistingArray )
+                      const sentences = []
+                      console.log( "this.state.selections",this.state.selections )
+                      for( let i= 0 ; i < lifeDescriptors.length; i++ ){
+                        if( this.state.selections[i] ){
+                          let sentence = this.buildingCongruentSentence( lifeDescriptors[i], this.state.selections[i] )
+                          sentences.push( sentence )
+                          console.log( 'hello world',sentences )
+                        }
+                      }
+                      onPersistCB( userId,sentences )
                       onCloseModalCB()
                    }}>Close</Button>
                  </Col>
@@ -159,7 +181,7 @@ import {
 
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = ( state,passedProps ) => {
-  console.log( 'ststetet', state )
+  console.log( 'state', state )
   const {question,instructions,onCloseModalCB} = passedProps
   return {
     isLoading: state.answersRD.isLoading || state.staticdataRD.isLoading,
