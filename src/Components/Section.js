@@ -8,8 +8,9 @@ import {
   Form,
   FormControl,
   FormGroup,
+  Panel,
 } from 'react-bootstrap'
-
+import '../CSS/Section.css'
 /* **************************************************
    Section
 
@@ -25,7 +26,7 @@ import {
 export default class Section extends React.Component {
 
   // check that user has gotten up to this module and section
-  canUserView = ( user, moduleNum, sectionNum ) => {
+  canUserView = (user, moduleNum, sectionNum) => {
     return true
 
     // TODO: get code below working
@@ -39,30 +40,41 @@ export default class Section extends React.Component {
     isVisible: this.canUserView(
       this.props.user,
       this.props.moduleNum,
-      this.props.sectionNum ),
+      this.props.sectionNum),
   }
 
   render() {
-    console.log( "Section::render()" )
+    console.log("Section::render()")
 
     let { isVisible } = this.state
     let { sectionTitle, exercise } = this.props
 
     return (
-      <>
-        <p>.</p>
-        <p>-----------------------------------------</p>
-        <h4><u>Section</u>: {sectionTitle}</h4>
-        {!isVisible && (
-          <p>not available yet</p>
-        )}
-        {isVisible && (
-          <>
-            <Popup sectionTitle = {sectionTitle} exercise = {exercise} />
-          </>
-        )}
-      <p> </p>
-      </>
+      <div>
+        <Panel bsStyle='primary'>
+          <Panel.Heading className="sectionHeader">
+            <Panel.Title><div className="text-center"><u>Section</u>: {sectionTitle}</div></Panel.Title>
+          </Panel.Heading>
+          <Panel.Body className="sectionBody">
+            <Popup sectionTitle={sectionTitle} exercise={exercise} />
+          </Panel.Body>
+        </Panel>
+      </div >
     )
   }
 }
+//  <>
+//         <p>.</p>
+//         <p>-----------------------------------------</p>
+//         <h4><u>Section</u>: {sectionTitle}</h4>
+//         {!isVisible && (
+//           <p>not available yet</p>
+//         )}
+//         {isVisible && (
+//           <>
+//             <Popup sectionTitle = {sectionTitle} exercise = {exercise} />
+//           </>
+//         )}
+//       <p> </p>
+//       </>
+
