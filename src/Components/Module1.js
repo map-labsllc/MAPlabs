@@ -22,7 +22,7 @@ import {
 /* **************************************************
    Used to test components during development
 ***************************************************** */
-class TestModule extends React.Component {
+class Module1 extends React.Component {
 
   state = {
     ready: false,
@@ -40,8 +40,6 @@ class TestModule extends React.Component {
   // ---------------------------------------------------------------------
 
 
-  // <QuestionsList />
-
   // -------------------------
   // Replace with Lifedescriptors
   // 2C-F
@@ -50,12 +48,6 @@ class TestModule extends React.Component {
       question = { { code: 110, text: "Reflect on your current situation" } }
       instructions = "Complete sentences that are important to you."
     /> )
-  // exercise_110 = (
-  //   <NarrativeCT
-  //     question = { { code: 110, text: "Reflect on your current situation" } }
-  //     promptQuestionCode = "0"
-  //      instructions = "** This Narrative will be replaced with the LifeDescriptors component"
-  //   /> )
 
 
   // -------------------------
@@ -78,6 +70,7 @@ class TestModule extends React.Component {
       instructions = "** This Narrative will be replaced with the LifeDescriptors component"
     /> )
 
+
   // -------------------------
   // 3E
   exercise_140 = (
@@ -91,7 +84,7 @@ class TestModule extends React.Component {
   // -------------------------
   // 4A
   questions_150 = [
-    { code: 141, text: "List the most important overarching themes that impact how meaningful and purposeful your life is. " },
+    { code: 141, text: "List the most important overarching themes that impact how meaningful and purposeful your life is." },
     { code: 142, text: "Which core feelings and experiences are most important to providing you with personal senses of the meaning in your life?" },
     { code: 143, text: "Name some things beyond yourself that you could serve if you lived with more of your core feelings and experiences" },
     { code: 144, text: "List the areas of personal growth that will enable your life to be more filled with the core feelings and experiences you desire" },
@@ -136,19 +129,7 @@ class TestModule extends React.Component {
     /> )
 
 
-
-    // -------------------------
-  // quick setup of a Transtion question
-  questions_1 = [
-    { code: 30 , text: "From -> to" },
-  ]
-  exercise_1 = (
-    <QuestionsCT
-      questionType = {QUESTION_TYPE_TRANSITIONS}
-      questions = {this.questions_1}
-    /> )
-
-
+  /* *********************************************************** */
   // render!
   render() {
     const isLoading = this.props.isLoading
@@ -161,7 +142,7 @@ class TestModule extends React.Component {
             <Module
               moduleNum = "1"
               moduleTitle = "Module 1"
-              moduleDescription = "Description of the module here..."
+              moduleDescription = "Your Meanings and Motivations"
             >
               <Section
                 moduleNum = "1"
@@ -213,6 +194,10 @@ class TestModule extends React.Component {
   }
 }
 
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {
   return {
@@ -221,6 +206,10 @@ const mapStateToProps = state => {
   }
 }
 
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+
 const mapDispatchToProps = dispatch => ( {
   dispatch,
 } )
@@ -228,4 +217,4 @@ const mapDispatchToProps = dispatch => ( {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )( TestModule )
+  )( Module1 )
