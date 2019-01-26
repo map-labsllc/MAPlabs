@@ -25,9 +25,6 @@ const NUM_PER_PAGE = 5
      }
    }
 
-   checkSelections=()=> {
-
-   }
    previousSlide= ( arr ) => e => {
      const lastIndex = arr.length
      const {currentIndex} = this.state
@@ -40,20 +37,20 @@ const NUM_PER_PAGE = 5
        page
      } )
 
-   }
+    }
 
    nextSlide = ( arr ) => e => {
-   const lastIndex = arr.length
-   const { currentIndex } = this.state
-   const shouldResetIndex = currentIndex === lastIndex
-   const index =  shouldResetIndex ? 0 : currentIndex + 1
-   const page = this.state.page < lastIndex - 1 ? this.state.page + 1 : 0
+     const lastIndex = arr.length
+     const { currentIndex } = this.state
+     const shouldResetIndex = currentIndex === lastIndex
+     const index =  shouldResetIndex ? 0 : currentIndex + 1
+     const page = this.state.page < lastIndex - 1 ? this.state.page + 1 : 0
 
-   this.setState( {
-     currentIndex: index,
-     page
-   } )
-  }
+     this.setState( {
+       currentIndex: index,
+       page
+     } )
+    }
 
   splittingArray= ( arr ) => {
     var size = NUM_PER_PAGE
@@ -93,35 +90,33 @@ const NUM_PER_PAGE = 5
       element.map( ( ele,i ) =>{
         const idxLifedescriptions = i + pageNum * NUM_PER_PAGE
         return(
-        <LifeDescriptor
-          key={idxLifedescriptions}
-          data= { ele }
-          showCheckedA= {
-            (  )=> {
-              const newArr = this.state.selections
-              newArr[idxLifedescriptions]= "a"
-
-             this.setState( {
-               clickedA:'success',
-               selections:newArr
-             } )
-             console.log( 'ed says put a title', newArr )
-            }}
-          showCheckedB= {
-            ( )=> {
-              const newArr = this.state.selections
-              newArr[idxLifedescriptions]= "b"
-              this.setState( {
-               clickedB:'success',
-               selections: newArr
-              } )
-              console.log( 'ed says put a title', newArr )
+          <LifeDescriptor
+            key={idxLifedescriptions}
+            data= { ele }
+            showCheckedA= {
+              (  )=> {
+                const newArr = this.state.selections
+                newArr[idxLifedescriptions]= "a"
+               this.setState( {
+                 clickedA:'success',
+                 selections:newArr
+               } )
+              }}
+            showCheckedB= {
+              ( )=> {
+                const newArr = this.state.selections
+                newArr[idxLifedescriptions]= "b"
+                this.setState( {
+                 clickedB:'success',
+                 selections: newArr
+                } )
+                console.log( 'ed says put a title', newArr )
+              }
             }
-          }
-          checkedA= {this.state.selections[idxLifedescriptions]==='a'}
-          checkedB= {this.state.selections[idxLifedescriptions]==='b'}
-          addingData = { this.addToPersistingArray }
-        />
+            checkedA= {this.state.selections[idxLifedescriptions]==='a'}
+            checkedB= {this.state.selections[idxLifedescriptions]==='b'}
+            addingData = { this.addToPersistingArray }
+          />
 
       )} )
     ) )
@@ -154,12 +149,12 @@ const NUM_PER_PAGE = 5
                    <Button
                     onClick= {()=>{
                       const sentences = []
-                      console.log( "this.state.selections",this.state.selections )
+
                       for( let i= 0 ; i < lifeDescriptors.length; i++ ){
                         if( this.state.selections[i] ){
                           let sentence = this.buildingCongruentSentence( lifeDescriptors[i], this.state.selections[i] )
                           sentences.push( sentence )
-                          console.log( 'hello world',sentences )
+
                         }
                       }
                       onPersistCB( userId,sentences )
