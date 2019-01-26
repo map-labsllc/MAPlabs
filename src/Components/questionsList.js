@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { ListGroup,Button } from 'react-bootstrap'
+import { ListGroup,Button,Grid, Row, Col } from 'react-bootstrap'
 import LifeDescriptor from './lifeDescriptor'
 import Arrows from './Arrows'
 import { getUser } from '../store/user/reducer'
@@ -67,7 +67,7 @@ import * as actions from '../store/staticdata/actions'
  }
 
   splittingArray= ( arr ) => {
-    var size = 10
+    var size = 5
     var arrayOfArrays = []
     for ( var i=0; i<arr.length; i+=size ) {
         arrayOfArrays.push( arr.slice( i,i+size ) )
@@ -104,21 +104,33 @@ import * as actions from '../store/staticdata/actions'
             <>
 
             { list[this.state.page] }
-            <Arrows
-            direction="left"
-            clickFunction={ this.previousSlide( pages ) }
-            glyph="&#9664;"
-            />
-            <Arrows
-             direction="right"
-             clickFunction={ this.nextSlide( pages ) }
-             glyph="&#9654;"
-             />
-             <Button
-              onClick= {()=>{
-                onPersistCB( userId,this.state.persistingArray )
-                onCloseModalCB()
-             }}>Close</Button>
+            <Grid>
+              <Row>
+                <Col sm={6} md={6} lg={6} >
+                  <Arrows
+                    direction="left"
+                    clickFunction={ this.previousSlide( pages ) }
+                    glyph="arrow-left"
+                  />
+                </Col>
+                <Col sm={6} md={6}lg={6} >
+                  <Arrows
+                     direction="right"
+                     clickFunction={ this.nextSlide( pages ) }
+                     glyph="arrow-right"
+                   />
+                 </Col>
+               </Row>
+               <Row>
+                 <Col sm={12}md={12} lg={12} align='bottom'>
+                   <Button
+                    onClick= {()=>{
+                      onPersistCB( userId,this.state.persistingArray )
+                      onCloseModalCB()
+                   }}>Close</Button>
+                 </Col>
+               </Row>
+              </Grid>
             </>
           )}
         </>

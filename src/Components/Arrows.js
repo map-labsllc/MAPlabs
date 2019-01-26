@@ -1,10 +1,12 @@
 import React from 'react'
-
+import { Glyphicon, Button } from 'react-bootstrap'
 const Arrows = ( { direction, clickFunction, glyph } ) => (
-  <div
+  <Button
     className = {`slide-arrow ${direction}`}
     onClick = {clickFunction}>
-    {glyph}
-  </div>
+    <Glyphicon
+      glyph={glyph}
+    />
+  </Button>
 )
 export default Arrows
