@@ -30,6 +30,8 @@ export default class Module extends React.Component {
 
     return (
       <>
+        <Col lg={3} md={2}></Col>
+        <Col lg={6} md={8} sm={12}></Col>
         <div className="text-center">
           <h3>Module: {moduleNum} - {moduleTitle}</h3>
           <p><i>Module Description: {moduleDescription}</i></p>
@@ -37,6 +39,7 @@ export default class Module extends React.Component {
         <div className="centering">
           {children}
         </div>
+        <Col lg={3} md={2}></Col>
       </>
     )
   }
