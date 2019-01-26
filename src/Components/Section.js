@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import Popup from '../Components/Popup'
 import {
   Button,
@@ -8,7 +8,7 @@ import {
   Form,
   FormControl,
   FormGroup,
-} from 'react-bootstrap';
+} from 'react-bootstrap'
 
 /* **************************************************
    Section
@@ -25,8 +25,8 @@ import {
 export default class Section extends React.Component {
 
   // check that user has gotten up to this module and section
-  canUserView = (user, moduleNum, sectionNum) => {
-    return true;
+  canUserView = ( user, moduleNum, sectionNum ) => {
+    return true
 
     // TODO: get code below working
 
@@ -39,11 +39,11 @@ export default class Section extends React.Component {
     isVisible: this.canUserView(
       this.props.user,
       this.props.moduleNum,
-      this.props.sectionNum),
+      this.props.sectionNum ),
   }
 
   render() {
-    console.log("Section::render()")
+    console.log( "Section::render()" )
 
     let { isVisible } = this.state
     let { sectionTitle, exercise } = this.props

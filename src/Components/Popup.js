@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import ModalX from './ModalX'
 import {
   Button,
@@ -8,7 +8,7 @@ import {
   Form,
   FormControl,
   FormGroup,
-} from 'react-bootstrap';
+} from 'react-bootstrap'
 
 /* **************************************************
    Popup component
@@ -35,7 +35,7 @@ export default class Popup extends React.Component {
   // **************************************************
   // CB from the <exercise> when its close/save button is clicked
   onCloseModal = () => {
-    console.log("Popup::onCloseModal()");
+    console.log( "Popup::onCloseModal()" )
     this.setState( { isVisible: false } )
   }
 
@@ -43,20 +43,20 @@ export default class Popup extends React.Component {
   // **************************************************
   // CB from <Modal>
   onModalClosing = () => {
-    console.log("Popup::onModalClosing()");
+    console.log( "Popup::onModalClosing()" )
     // this.setState( { isVisible: false } )
   }
   // **************************************************
   // CB from <Modal>
   onModalOpening = () => {
-    console.log("Popup::onModalOpening()");
+    console.log( "Popup::onModalOpening()" )
     // this.setState( { isVisible: false } )
   }
 
   // **************************************************
   // render!
   render() {
-    console.log("Popup::render()")
+    console.log( "Popup::render()" )
 
     let { isVisible } = this.state
     let { sectionTitle, exercise } = this.props
