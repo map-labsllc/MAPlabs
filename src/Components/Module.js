@@ -16,7 +16,7 @@ import {
    Shows a module
 
    props:
-     moduleNum -- integer, the module number
+     moduleNum -- { value: 2 }, the module number
      moduleTitle -- title of the Module
      moduleDescription -- could be many lines, is we need paragraphs then will need to set innerHTML
      children -- the Section components to display
@@ -31,7 +31,7 @@ export default class Module extends React.Component {
     return (
       <>
         <div className="text-center">
-          <h3>Module: {moduleNum} - {moduleTitle}</h3>
+          <h3>Module: {moduleNum.value} - {moduleTitle}</h3>
           <p><i>Module Description: {moduleDescription}</i></p>
         </div>
         <div className="centering">

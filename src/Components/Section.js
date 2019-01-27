@@ -17,23 +17,19 @@ import '../CSS/Section.css'
    Shows / hides a section depending on user's curr_module / curr_section
 
    props:
-     moduleNum -- integer in a string, the module this section is in (1-based)
-     sectionNum -- integer in a string, the section (1-based)
      user -- the complete user object to check the furthest mod/sec they've gotten to
+     moduleNum -- { value: 2 }, the module this section is in (1-based)
+     sectionNum -- { value: 3 }, the section (1-based)
      sectionTitle -- title of the section
      exercise -- component user will interact with
 ***************************************************** */
 export default class Section extends React.Component {
 
   // check that user has gotten up to this module and section
-  canUserView = (user, moduleNum, sectionNum) => {
-    return true
-
-    // TODO: get code below working
-
-    // if (moduleNum < user.curr_module) return true
-    // if (user.curr_module < moduleNum) return false
-    // return user.curr_section <= sectionNum
+  canUserView = ( user, moduleNum, sectionNum ) => {
+    if (moduleNum.value < user.curr_module) return true
+    if (user.curr_module < moduleNum.value) return false
+    return sectionNum.value <= user.curr_section
   }
 
   state = {
@@ -55,9 +51,14 @@ export default class Section extends React.Component {
           <Panel.Heading className="sectionHeader">
             <Panel.Title><div className="text-center"><u>Section</u>: {sectionTitle}</div></Panel.Title>
           </Panel.Heading>
-          <Panel.Body className="sectionBody">
-            <Popup sectionTitle={sectionTitle} exercise={exercise} />
-          </Panel.Body>
+          {isVisible && (
+            <Panel.Body className="sectionBody">
+              <Popup sectionTitle={sectionTitle} exercise={exercise} />
+            </Panel.Body>
+          )}
+          {!isVisible && (
+            <p>not availble yet</p>
+          )}
         </Panel>
       </div >
     )
@@ -77,4 +78,3 @@ export default class Section extends React.Component {
 //         )}
 //       <p> </p>
 //       </>
-

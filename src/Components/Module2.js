@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Module from '../Components/Module'
-import Section from '../Components/Section'
+import SectionCT from '../Containers/SectionCT'
 import QuestionsCT from '../Containers/QuestionsCT'
 import QuestionsList from './questionsList'
 import NarrativeCT from '../Containers/NarrativeCT'
@@ -135,49 +135,49 @@ class Module2 extends React.Component {
         {!isLoading && (
           <>
             <Module
-              moduleNum = "2"
+              moduleNum = { { value: 2 } }
               moduleTitle = "Module 2"
               moduleDescription = "Social Context"
             >
-              <Section
-                moduleNum = "2"
-                sectionNum = "210"
+              <SectionCT
+                moduleNum = { { value: 2 } }
+                sectionNum = { { value: 210 } }
                 sectionTitle = "Contextual Influences I"
                 exercise = {this.exercise_210}
               />
-              <Section
-                moduleNum = "2"
-                sectionNum = "220"
+              <SectionCT
+                moduleNum = { { value: 2 } }
+                sectionNum = { { value: 220 } }
                 sectionTitle = "Contextual Influences II"
                 exercise = {this.exercise_220}
               />
-              <Section
-                moduleNum = "2"
-                sectionNum = "230"
+              <SectionCT
+                moduleNum = { { value: 2 } }
+                sectionNum = { { value: 230 } }
                 sectionTitle = "Contextual Influences III"
                 exercise = {this.exercise_230}
               />
-              <Section
-                moduleNum = "2"
-                sectionNum = "240"
+              <SectionCT
+                moduleNum = { { value: 2 } }
+                sectionNum = { { value: 240 } }
                 sectionTitle = "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement"
                 exercise = {this.exercise_240}
               />
-              <Section
-                moduleNum = "2"
-                sectionNum = "250"
+              <SectionCT
+                moduleNum = { { value: 2 } }
+                sectionNum = { { value: 250 } }
                 sectionTitle = "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement"
                 exercise = {this.exercise_250}
               />
-              <Section
-                moduleNum = "2"
-                sectionNum = "260"
+              <SectionCT
+                moduleNum = { { value: 2 } }
+                sectionNum = { { value: 260 } }
                 sectionTitle = "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement"
                 exercise = {this.exercise_260}
               />
-              <Section
-                moduleNum = "2"
-                sectionNum = "270"
+              <SectionCT
+                moduleNum = { { value: 2 } }
+                sectionNum = { { value: 270 } }
                 sectionTitle = "Breaking and building"
                 exercise = {this.exercise_270}
               />
