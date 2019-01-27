@@ -17,7 +17,7 @@ import {
     onCloseModalCB -- call to close the modal
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
-  console.log(  "NarrativeCT::mapStateToProps(  )"  )
+  console.log( "NarrativeCT::mapStateToProps()" )
 
   const { promptQuestionCode, question, instructions, onCloseModalCB } = passedProps
   if ( !question.code ) throw new Error( "missing question code: ", passedProps.question_code )

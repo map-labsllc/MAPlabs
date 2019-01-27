@@ -35,8 +35,8 @@ const initialState = {
     email: "tharrison@gmail.com",
     login_service_id: 1,
     login_token: "DFDS34543GD",
-    mod_complete: 0,
-    sec_complete: 0,
+    curr_module: 1,
+    curr_section: 120,
    },
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Module from '../Components/Module'
-import Section from '../Components/Section'
+import SectionCT from '../Containers/SectionCT'
 import QuestionsCT from '../Containers/QuestionsCT'
 import QuestionsList from './questionsList'
 import NarrativeCT from '../Containers/NarrativeCT'
@@ -140,49 +140,49 @@ class Module1 extends React.Component {
         {!isLoading && (
           <>
             <Module
-              moduleNum = "1"
+              moduleNum = { { value: 1 } }
               moduleTitle = "Module 1"
               moduleDescription = "Your Meanings and Motivations"
             >
-              <Section
-                moduleNum = "1"
-                sectionNum = "110"
+              <SectionCT
+                moduleNum = { { value: 1 } }
+                sectionNum = { { value: 110 } }
                 sectionTitle = "Reflect on your current situation"
                 exercise = {this.exercise_110}
               />
-              <Section
-                moduleNum = "1"
-                sectionNum = "120"
+              <SectionCT
+                moduleNum = { { value: 1 } }
+                sectionNum = { { value: 120 } }
                 sectionTitle = "Current Situation Descriptor"
                 exercise = {this.exercise_120}
               />
-              <Section
-                moduleNum = "1"
-                sectionNum = "130"
+              <SectionCT
+                moduleNum = { { value: 1 } }
+                sectionNum = { { value: 130 } }
                 sectionTitle = "Imagine your Future Desired Situation"
                 exercise = {this.exercise_130}
               />
-              <Section
-                moduleNum = "1"
-                sectionNum = "140"
+              <SectionCT
+                moduleNum = { { value: 1 } }
+                sectionNum = { { value: 140 } }
                 sectionTitle = "Future Desired Situation Description"
                 exercise = {this.exercise_140}
               />
-              <Section
-                moduleNum = "1"
-                sectionNum = "150"
+              <SectionCT
+                moduleNum = { { value: 1 } }
+                sectionNum = { { value: 150 } }
                 sectionTitle = "Compare your “current situation” statement to your “future desired situation” statement"
                 exercise = {this.exercise_150}
               />
-              <Section
-                moduleNum = "1"
-                sectionNum = "160"
+              <SectionCT
+                moduleNum = { { value: 1 } }
+                sectionNum = { { value: 160 } }
                 sectionTitle = "Breaking and building"
                 exercise = {this.exercise_160}
               />
-              <Section
-                moduleNum = "1"
-                sectionNum = "170"
+              <SectionCT
+                moduleNum = { { value: 1 } }
+                sectionNum = { { value: 170 } }
                 sectionTitle = "Tie these reflections to the course"
                 exercise = {this.exercise_170}
               />
