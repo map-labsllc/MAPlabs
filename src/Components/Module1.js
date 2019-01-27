@@ -141,8 +141,8 @@ class Module1 extends React.Component {
           <>
             <Module
               moduleNum = { 1 }
-              moduleTitle = "Module 1"
-              moduleDescription = "Your Meanings and Motivations"
+              moduleTitle = "Your Current Status and Future Goals"
+              moduleDescription = "You will gain clarity on the current status of your search for meaning and purpose, and use insights to articulate what you hope to achieve in the future."
             >
               <SectionCT
                 moduleNum = { 1 }

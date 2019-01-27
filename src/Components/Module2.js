@@ -136,8 +136,8 @@ class Module2 extends React.Component {
           <>
             <Module
               moduleNum = { 2 }
-              moduleTitle = "Module 2"
-              moduleDescription = "Social Context"
+              moduleTitle = "Your Social Context"
+              moduleDescription = "You will explore your social context and how it shapes your life. You will be able to specify the most influential aspects of this context, reflect critically on them, and differentiate supporting influences from inhibiting ones."
             >
               <SectionCT
                 moduleNum = { 2 }
