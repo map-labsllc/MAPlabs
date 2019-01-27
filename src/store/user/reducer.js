@@ -18,7 +18,7 @@ import {
       login_service_id: 1,
       login_token: "DFDS34543GD",
       curr_module: 1,
-      curr_section: 1,
+      curr_section: 120,
       created_at: 2019-01-15 04:00:00-07
      },
   }
