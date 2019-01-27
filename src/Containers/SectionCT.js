@@ -12,7 +12,7 @@ import { getUser } from '../store/user/reducer'
      exercise -- component user will interact with
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
-  console.log( "SectionCT::mapStateToProps()" )
+  console.log( `SectionCT::mapStateToProps()` )
 
   const { moduleNum, sectionNum, sectionTitle, exercise } = passedProps
 
