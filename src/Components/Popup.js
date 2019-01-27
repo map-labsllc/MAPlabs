@@ -17,6 +17,8 @@ import '../CSS/Section.css'
    Shows / hides a complex interactive component.
 
    props:
+     moduleNum -- integer
+     sectionNum -- integer
      sectionTitle -- title of the section for resdisplay if we do a modal below this
      exercise -- component user will interact with
 ***************************************************** */
@@ -29,41 +31,43 @@ export default class Popup extends React.Component {
   // **************************************************
   // Show the complex interactive component
   onclickStart = () => {
-    console.log("Popup::onclickStart()")
-    this.setState({ isVisible: true })
+    console.log( "Popup::onclickStart()" )
+    this.setState( { isVisible: true } )
   }
 
   // **************************************************
   // CB from the <exercise> when its close/save button is clicked
   onCloseModal = () => {
-    console.log("Popup::onCloseModal()")
-    this.setState({ isVisible: false })
+    console.log( "Popup::onCloseModal()" )
+    this.setState( { isVisible: false } )
   }
-
 
   // **************************************************
   // CB from <Modal>
   onModalClosing = () => {
-    console.log("Popup::onModalClosing()")
+    console.log( "Popup::onModalClosing()" )
     // this.setState( { isVisible: false } )
   }
   // **************************************************
   // CB from <Modal>
   onModalOpening = () => {
-    console.log("Popup::onModalOpening()")
-    // this.setState( { isVisible: false } )
+    console.log( "Popup::onModalOpening()" )
   }
 
   // **************************************************
   // render!
   render() {
-    console.log("Popup::render()")
+    console.log( "Popup::render()" )
 
     let { isVisible } = this.state
     let { sectionTitle, exercise } = this.props
 
-    // link the <exersise> to this/Popup Component
-    const exerciseWithOnCloseCB = React.cloneElement(exercise, { onCloseModalCB: this.onCloseModal })
+    // Link the <exersise> to this instance of the Popup Component.
+    //   Allows excercise to tell us that it's done and we should hide the modal
+    const exerciseWithOnCloseCB = React.cloneElement(
+      exercise,
+      { onCloseModalCB: this.onCloseModal }
+    )
 
     return (
       <>
