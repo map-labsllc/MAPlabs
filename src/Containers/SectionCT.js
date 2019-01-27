@@ -6,8 +6,8 @@ import { getUser } from '../store/user/reducer'
    mapStateToProps()
 
    passedProps:
-     moduleNum -- { value: 2 }, the module this section is in (1-based)
-     sectionNum -- { value: 3 }, the section (1-based)
+     moduleNum -- integer, the module this section is in (1-based)
+     sectionNum -- integer, the section (1-based)
      sectionTitle -- title of the section
      exercise -- component user will interact with
 ******************************************** */

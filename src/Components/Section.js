@@ -1,5 +1,5 @@
 import React from 'react'
-import Popup from '../Components/Popup'
+import PopupCT from '../Containers/PopupCT'
 import {
   Button,
   Checkbox,
@@ -10,7 +10,9 @@ import {
   FormGroup,
   Panel,
 } from 'react-bootstrap'
+import { sectionLoadingAC } from '../store/user/actions'
 import '../CSS/Section.css'
+
 /* **************************************************
    Section
 
@@ -39,6 +41,11 @@ export default class Section extends React.Component {
       this.props.sectionNum ),
   }
 
+  componentDidMount = () => {
+    const { dispatch, moduleNum, sectionNum } = this.props
+    dispatch( sectionLoadingAC( moduleNum, sectionNum ) )
+  }
+
   render() {
     console.log( "Section::render()" )
 
@@ -55,7 +62,7 @@ export default class Section extends React.Component {
           {isVisible && (
             <Panel.Body className="sectionBody">
 
-              <Popup moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
+              <PopupCT moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
             </Panel.Body>
           )}
 

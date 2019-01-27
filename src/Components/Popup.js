@@ -10,6 +10,7 @@ import {
   FormGroup,
 } from 'react-bootstrap'
 import '../CSS/Section.css'
+import { sectionCompletedAC } from '../store/user/actions'
 
 /* **************************************************
    Popup component
@@ -17,6 +18,7 @@ import '../CSS/Section.css'
    Shows / hides a complex interactive component.
 
    props:
+     user -- user object
      moduleNum -- integer
      sectionNum -- integer
      sectionTitle -- title of the section for resdisplay if we do a modal below this
@@ -40,7 +42,8 @@ export default class Popup extends React.Component {
   onCloseModal = () => {
     console.log( "Popup::onCloseModal()" )
 
-    const { moduleNum, sectionNum } = this.props
+    const { dispatch, user, moduleNum, sectionNum } = this.props
+    dispatch( sectionCompletedAC( user, moduleNum, sectionNum ) )
 
     this.setState( { isVisible: false } )
   }
