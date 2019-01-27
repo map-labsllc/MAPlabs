@@ -51,12 +51,14 @@ export default class Section extends React.Component {
           <Panel.Heading className="sectionHeader">
             <Panel.Title><div className="text-center">{sectionTitle}</div></Panel.Title>
           </Panel.Heading>
+
           {isVisible && (
             <Panel.Body className="sectionBody">
 
               <Popup moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
             </Panel.Body>
           )}
+
           {!isVisible && (
             <p>not availble yet</p>
           )}
