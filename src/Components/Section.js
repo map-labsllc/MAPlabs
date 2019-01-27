@@ -43,18 +43,18 @@ export default class Section extends React.Component {
     console.log( "Section::render()" )
 
     let { isVisible } = this.state
-    let { sectionTitle, exercise } = this.props
+    let { moduleNum, sectionNum, sectionTitle, exercise } = this.props
 
     return (
       <div>
         <Panel bsStyle='primary'>
           <Panel.Heading className="sectionHeader">
-            <Panel.Title><div className="text-center"><u>Section</u>: {sectionTitle}</div></Panel.Title>
+            <Panel.Title><div className="text-center">{sectionTitle}</div></Panel.Title>
           </Panel.Heading>
           {isVisible && (
             <Panel.Body className="sectionBody">
-              <Popup sectionTitle={sectionTitle} exercise={exercise} />
-              {/*<Popup moduleNum={moduleNum.value} sectionNum={sectionNum.value} sectionTitle={sectionTitle} exercise={exercise} />*/}
+
+              <Popup moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
             </Panel.Body>
           )}
           {!isVisible && (
