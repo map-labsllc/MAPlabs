@@ -43,7 +43,7 @@ function loadstaticJSON( section ) {
 export const loadAllStaticdataAC = () => {
   console.log( "loadAC()" )
 
-  return dispatch => {
+  return async dispatch => {
     dispatch( { type: STATICDATA_LOADING } )
 
     const p1 = loadstaticJSON( BELIEFS_FN )

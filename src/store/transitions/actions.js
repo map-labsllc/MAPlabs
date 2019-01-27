@@ -37,7 +37,7 @@ export const updateTransitionsAC = ( question_code, transitions ) => {
 export const loadAllTransitionsAC = ( userId ) => {
   console.log( "loadAllTransitionsAC()" )
 
-  return dispatch => {
+  return async dispatch => {
     dispatch( { type: TRANSITIONS_LOADING } )
     return fetch( `${URL}/transitions/${userId}` )
       .then( response => response.json() )
@@ -70,7 +70,7 @@ export const persistTransitionsAC = ( userId, question_code, transitions ) => {
   console.log( `>> persistTransitionsAC(${question_code})` )
   console.log( "persisting: ", transitions )
 
-  return dispatch => {
+  return async dispatch => {
     return fetch( `${URL}/transitions/${userId}/${question_code}`, {
         method: 'POST',
         body: JSON.stringify( { transitions } ),
