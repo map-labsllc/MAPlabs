@@ -2,8 +2,10 @@
 // need to mege with the user info coming from login
 
 import {
-
- } from './constants'
+  USER_UPDATE_CURR_SECTION,
+  USER_UPDATE_CURR_SECTION_NO_CHANGE,
+  USER_UPDATE_ERROR,
+} from './constants'
 
 /*
   userRD: {
@@ -59,6 +61,20 @@ export const getUser = ( state ) => state.user
   const { type, payload } = action
 
   switch( type ) {
+
+    case USER_UPDATE_CURR_SECTION:
+      const { moduleNum, sectionNum } = payload
+      return {
+        ...state,
+        curr_module: moduleNum,
+        curr_section: sectionNum,
+      }
+
+    case USER_UPDATE_CURR_SECTION_NO_CHANGE:
+      return state
+
+    case USER_UPDATE_ERROR:
+      return state
 
     default:
       return state

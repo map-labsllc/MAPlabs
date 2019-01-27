@@ -8,8 +8,73 @@ import {
   LOGIN_USER,
   SIGNUP,
   LOGIN_USER_FAIL,
-  LOGIN_USER_SUCCESS
+  LOGIN_USER_SUCCESS,
+
+  USER_UPDATE_CURR_SECTION,
+  USER_UPDATE_CURR_SECTION_NO_CHANGE,
+  USER_UPDATE_ERROR,
 } from './constants'
+
+const URL = "http://localhost:3001"
+// const URL = process.env.REACT_APP_DB_URL
+// http PATCH localhost:3001/users/1 curr_module=2 curr_section=1
+
+sectionLoadingAC
+
+/* ************************************************
+    sectionCompletedAC
+
+    Called when Popup is closed.  If section completed is the user's current
+      section (ie, the furthest they've comleted) then advance the user's
+      curr_module and curr_section.
+
+*************************************************** */
+export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
+  console.log( `---- userRD::sectionCompletedAC(${user.fname}, ${moduleNum}, ${sectionNum})` )
+
+  return async dispatch => {
+
+    // don't advance the user's current module and section
+    console.log( "---- starting" )
+    if ( user.curr_module !== moduleNum || user.curr_section !== sectionNum ) {
+      console.log( "---- no change" )
+      return dispatch ( {
+        type: USER_UPDATE_CURR_SECTION_NO_CHANGE,
+        payload: {  }
+      } )
+    }
+
+    // advance the user's current module and section
+    console.log("---- fetching");
+    const body = {
+      curr_module: user.curr_module,
+      curr_section: user.curr_section,
+    }
+    return fetch( `${URL}/users/${user.user_id}`, {
+        method: 'PATCH',
+        body: JSON.stringify( body ),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      } )
+      .then( response => response.json() )
+      .then( message => {
+        console.log( "---- success" )
+        return dispatch ( {
+          type: USER_UPDATE_CURR_SECTION,
+          payload: { moduleNum, sectionNum }
+        } )
+      } )
+      .catch( ( error ) => {
+        console.log( "---- error" )
+        console.log( "-- FETCH ERROR", error )
+        return dispatch( {
+          type: USER_UPDATE_ERROR,
+          payload: error } )
+      } )
+  }
+}
 
 export const firstNameChanged = ( text ) => {
   return {
