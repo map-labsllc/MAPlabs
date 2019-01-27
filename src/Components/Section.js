@@ -34,12 +34,12 @@ export default class Section extends React.Component {
     return sectionNum <= user.curr_section
   }
 
-  state = {
-    isVisible: this.canUserView(
-      this.props.user,
-      this.props.moduleNum,
-      this.props.sectionNum ),
-  }
+  // state = {
+  //   isVisible: this.canUserView(
+  //     this.props.user,
+  //     this.props.moduleNum,
+  //     this.props.sectionNum ),
+  // }
 
   componentDidMount = () => {
     const { dispatch, moduleNum, sectionNum } = this.props
@@ -49,8 +49,9 @@ export default class Section extends React.Component {
   render() {
     console.log( "Section::render()" )
 
-    let { isVisible } = this.state
-    let { moduleNum, sectionNum, sectionTitle, exercise } = this.props
+    // let { isVisible } = this.state
+    let { user, moduleNum, sectionNum, sectionTitle, exercise } = this.props
+    const isVisible = this.canUserView(user, moduleNum, sectionNum)
 
     return (
       <div>
