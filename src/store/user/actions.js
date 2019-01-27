@@ -10,16 +10,32 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER_SUCCESS,
 
+  USER_ADD_SECTION,
   USER_UPDATE_CURR_SECTION,
   USER_UPDATE_CURR_SECTION_NO_CHANGE,
   USER_UPDATE_ERROR,
+
 } from './constants'
 
 const URL = "http://localhost:3001"
 // const URL = process.env.REACT_APP_DB_URL
 // http PATCH localhost:3001/users/1 curr_module=2 curr_section=1
 
-sectionLoadingAC
+/* ************************************************
+    sectionLoadingAC
+
+    Called by Section's as they mount.  Builds an array of the order of
+      modules and sections to help enforce that user moves forward one
+      section at a time.
+*************************************************** */
+export const sectionLoadingAC = ( moduleNum, sectionNum ) => {
+  console.log( `---- userRD::sectionLoadingAC(${moduleNum}, ${sectionNum})` )
+
+  return {
+    type: USER_ADD_SECTION,
+    payload: { moduleNum, sectionNum },
+  }
+}
 
 /* ************************************************
     sectionCompletedAC
@@ -40,11 +56,12 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
       console.log( "---- no change" )
       return dispatch ( {
         type: USER_UPDATE_CURR_SECTION_NO_CHANGE,
-        payload: {  }
+        payload: { }
       } )
     }
 
-    // advance the user's current module and section
+    // advance the user's furthest module and section because they just
+    //   completed their furthest section
     console.log("---- fetching");
     const body = {
       curr_module: user.curr_module,
