@@ -33,8 +33,8 @@ export default class Module extends React.Component {
         <Col lg={3} md={2}></Col>
         <Col lg={6} md={8} sm={12}></Col>
         <div className="text-center">
-          <h3>Module: {moduleNum} - {moduleTitle}</h3>
-          <p><i>Module Description: {moduleDescription}</i></p>
+          <h3>{moduleTitle}</h3>
+          <p>{moduleDescription}</p>
         </div>
         <div className="centering">
           {children}
