@@ -39,6 +39,9 @@ export default class Popup extends React.Component {
   // CB from the <exercise> when its close/save button is clicked
   onCloseModal = () => {
     console.log( "Popup::onCloseModal()" )
+
+    const { moduleNum, sectionNum } = this.props
+
     this.setState( { isVisible: false } )
   }
 
@@ -71,7 +74,6 @@ export default class Popup extends React.Component {
 
     return (
       <>
-        <h6><i>..Popup controller manages starting a section..</i></h6>
         {!isVisible && (
           <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
         )}
