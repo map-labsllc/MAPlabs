@@ -34,15 +34,11 @@ export default class Section extends React.Component {
     return sectionNum <= user.curr_section
   }
 
-  // state = {
-  //   isVisible: this.canUserView(
-  //     this.props.user,
-  //     this.props.moduleNum,
-  //     this.props.sectionNum ),
-  // }
-
   componentDidMount = () => {
     const { dispatch, moduleNum, sectionNum } = this.props
+    
+    // let the userRD know about this section so it can help move
+    //   user to the next moduleNum/sectionNum as they complete sections
     dispatch( sectionLoadingAC( moduleNum, sectionNum ) )
   }
 
