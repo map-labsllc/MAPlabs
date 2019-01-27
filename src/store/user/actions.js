@@ -17,6 +17,8 @@ import {
 
 } from './constants'
 
+import { getNextModuleSection } from './reducer'
+
 const URL = "http://localhost:3001"
 // const URL = process.env.REACT_APP_DB_URL
 // http PATCH localhost:3001/users/1 curr_module=2 curr_section=1
@@ -48,7 +50,7 @@ export const sectionLoadingAC = ( moduleNum, sectionNum ) => {
 export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
   console.log( `---- userRD::sectionCompletedAC(${user.fname}, ${moduleNum}, ${sectionNum})` )
 
-  return async dispatch => {
+  return async ( dispatch, getState ) => {
 
     // don't advance the user's current module and section
     console.log( "---- starting" )
@@ -62,10 +64,21 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
 
     // advance the user's furthest module and section because they just
     //   completed their furthest section
-    console.log("---- fetching");
+    const nextModuleSectionObj = getNextModuleSection( getState().userRD, user.curr_module, user.curr_section )
+    console.log( "---- nextModuleSectionObj:", nextModuleSectionObj )
+
+    // udate it immediately
+    dispatch ( {
+      type: USER_UPDATE_CURR_SECTION,
+      payload: {
+        moduleNum: nextModuleSectionObj.moduleNum,
+        sectionNum: nextModuleSectionObj.sectionNum }
+    } )
+
+    console.log( "---- fetching" )
     const body = {
-      curr_module: user.curr_module,
-      curr_section: user.curr_section,
+      curr_module: nextModuleSectionObj.moduleNum,
+      curr_section: nextModuleSectionObj.sectionNum,
     }
     return fetch( `${URL}/users/${user.user_id}`, {
         method: 'PATCH',
@@ -77,11 +90,13 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
       } )
       .then( response => response.json() )
       .then( message => {
-        console.log( "---- success" )
-        return dispatch ( {
-          type: USER_UPDATE_CURR_SECTION,
-          payload: { moduleNum, sectionNum }
-        } )
+        console.log( "---- success perisisting to db" )
+        // return dispatch ( {
+        //   type: USER_UPDATE_CURR_SECTION,
+        //   payload: {
+        //     moduleNum: nextModuleSectionObj.moduleNum,
+        //     sectionNum: nextModuleSectionObj.sectionNum }
+        // } )
       } )
       .catch( ( error ) => {
         console.log( "---- error" )
@@ -93,6 +108,10 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
   }
 }
 
+
+/* ************************************************
+
+*************************************************** */
 export const firstNameChanged = ( text ) => {
   return {
     type: FIRSTNAME_CHANGED,
