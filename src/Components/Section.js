@@ -27,8 +27,8 @@ export default class Section extends React.Component {
 
   // check that user has gotten up to this module and section
   canUserView = ( user, moduleNum, sectionNum ) => {
-    if (moduleNum < user.curr_module) return true
-    if (user.curr_module < moduleNum) return false
+    if ( moduleNum < user.curr_module ) return true
+    if ( user.curr_module < moduleNum ) return false
     return sectionNum <= user.curr_section
   }
 
@@ -36,11 +36,11 @@ export default class Section extends React.Component {
     isVisible: this.canUserView(
       this.props.user,
       this.props.moduleNum,
-      this.props.sectionNum),
+      this.props.sectionNum ),
   }
 
   render() {
-    console.log("Section::render()")
+    console.log( "Section::render()" )
 
     let { isVisible } = this.state
     let { sectionTitle, exercise } = this.props
