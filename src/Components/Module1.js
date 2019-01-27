@@ -30,10 +30,10 @@ class Module1 extends React.Component {
 
   // load user data
   componentDidMount = () => {
-    const { dispatch, userId } = this.props
-    dispatch( loadAllAnswersAC( userId ) )
-    dispatch( loadAllTransitionsAC( userId ) )
-    dispatch( loadAllStaticdataAC() )
+    // const { dispatch, userId } = this.props
+    // dispatch( loadAllAnswersAC( userId ) )
+    // dispatch( loadAllTransitionsAC( userId ) )
+    // dispatch( loadAllStaticdataAC() )
   }
 
   // Define questions and excercises for Module 1
@@ -140,49 +140,49 @@ class Module1 extends React.Component {
         {!isLoading && (
           <>
             <Module
-              moduleNum = { { value: 1 } }
+              moduleNum = { 1 }
               moduleTitle = "Module 1"
               moduleDescription = "Your Meanings and Motivations"
             >
               <SectionCT
-                moduleNum = { { value: 1 } }
-                sectionNum = { { value: 110 } }
+                moduleNum = { 1 }
+                sectionNum = { 110 }
                 sectionTitle = "Reflect on your current situation"
                 exercise = {this.exercise_110}
               />
               <SectionCT
-                moduleNum = { { value: 1 } }
-                sectionNum = { { value: 120 } }
+                moduleNum = { 1 }
+                sectionNum = { 120 }
                 sectionTitle = "Current Situation Descriptor"
                 exercise = {this.exercise_120}
               />
               <SectionCT
-                moduleNum = { { value: 1 } }
-                sectionNum = { { value: 130 } }
+                moduleNum = { 1 }
+                sectionNum = { 130 }
                 sectionTitle = "Imagine your Future Desired Situation"
                 exercise = {this.exercise_130}
               />
               <SectionCT
-                moduleNum = { { value: 1 } }
-                sectionNum = { { value: 140 } }
+                moduleNum = { 1 }
+                sectionNum = { 140 }
                 sectionTitle = "Future Desired Situation Description"
                 exercise = {this.exercise_140}
               />
               <SectionCT
-                moduleNum = { { value: 1 } }
-                sectionNum = { { value: 150 } }
+                moduleNum = { 1 }
+                sectionNum = { 150 }
                 sectionTitle = "Compare your “current situation” statement to your “future desired situation” statement"
                 exercise = {this.exercise_150}
               />
               <SectionCT
-                moduleNum = { { value: 1 } }
-                sectionNum = { { value: 160 } }
+                moduleNum = { 1 }
+                sectionNum = { 160 }
                 sectionTitle = "Breaking and building"
                 exercise = {this.exercise_160}
               />
               <SectionCT
-                moduleNum = { { value: 1 } }
-                sectionNum = { { value: 170 } }
+                moduleNum = { 1 }
+                sectionNum = { 170 }
                 sectionTitle = "Tie these reflections to the course"
                 exercise = {this.exercise_170}
               />

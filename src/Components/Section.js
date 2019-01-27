@@ -18,8 +18,8 @@ import '../CSS/Section.css'
 
    props:
      user -- the complete user object to check the furthest mod/sec they've gotten to
-     moduleNum -- { value: 2 }, the module this section is in (1-based)
-     sectionNum -- { value: 3 }, the section (1-based)
+     moduleNum -- integer, the module this section is in (1-based)
+     sectionNum -- integer, the section
      sectionTitle -- title of the section
      exercise -- component user will interact with
 ***************************************************** */
@@ -27,9 +27,9 @@ export default class Section extends React.Component {
 
   // check that user has gotten up to this module and section
   canUserView = ( user, moduleNum, sectionNum ) => {
-    if (moduleNum.value < user.curr_module) return true
-    if (user.curr_module < moduleNum.value) return false
-    return sectionNum.value <= user.curr_section
+    if (moduleNum < user.curr_module) return true
+    if (user.curr_module < moduleNum) return false
+    return sectionNum <= user.curr_section
   }
 
   state = {
@@ -54,6 +54,7 @@ export default class Section extends React.Component {
           {isVisible && (
             <Panel.Body className="sectionBody">
               <Popup sectionTitle={sectionTitle} exercise={exercise} />
+              {/*<Popup moduleNum={moduleNum.value} sectionNum={sectionNum.value} sectionTitle={sectionTitle} exercise={exercise} />*/}
             </Panel.Body>
           )}
           {!isVisible && (
