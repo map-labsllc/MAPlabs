@@ -3,11 +3,12 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import firebase from 'firebase'
 import ReduxThunk from 'redux-thunk'
-import { BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { createLogger } from 'redux-logger'
 import Routes from './router'
 import reducers from './store/reducers'
 import NavBar from './Components/NavBar'
+import Footer from './Components/Footer'
 
 // const history = createBrowserHistory()
 class App extends Component {
@@ -22,29 +23,30 @@ class App extends Component {
       storageBucket: "",
       messagingSenderId: "666788418297"
     }
-    if ( !firebase.apps.length ) {
-      firebase.initializeApp( config )
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config)
     }
   }
 
   render() {
 
-    const middleware = [ ReduxThunk ]
-    if ( process.env.NODE_ENV === 'development' ) {
-      middleware.push( createLogger() ) // log actions and pre and post store state
+    const middleware = [ReduxThunk]
+    if (process.env.NODE_ENV === 'development') {
+      middleware.push(createLogger()) // log actions and pre and post store state
     }
 
     const store = createStore(
       reducers,
       {}, // no intiial state
-      applyMiddleware( ...middleware )
+      applyMiddleware(...middleware)
     )
 
     return (
       <Router>
-        <Provider store={ store }>
-            <NavBar/>
-              <Routes />
+        <Provider store={store}>
+          <NavBar />
+          <Routes />
+          <Footer />
         </Provider>
       </Router>
     )
