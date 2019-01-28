@@ -24,19 +24,8 @@ import {
 ***************************************************** */
 class Module2 extends React.Component {
 
-  state = {
-    ready: false,
-  }
 
-  // load user data
-  componentDidMount = () => {
-    // const { dispatch, userId } = this.props
-    // dispatch( loadAllAnswersAC( userId ) )
-    // dispatch( loadAllTransitionsAC( userId ) )
-    // dispatch( loadAllStaticdataAC() )
-  }
-
-  // Define questions and excercises for Module 1
+  // Define questions and excercises for Module 3
   // ---------------------------------------------------------------------
 
 
