@@ -81,7 +81,7 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
       curr_module: nextModuleSectionObj.moduleNum,
       curr_section: nextModuleSectionObj.sectionNum,
     }
-    console.log( "---- fetching body: ", JSON.stringify(body) )
+    console.log( "---- fetching body: ", JSON.stringify( body ) )
     return fetch( `${URL}/users/${user.user_id}`, {
         method: 'PATCH',
         body: JSON.stringify( body ),
@@ -90,15 +90,18 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
           Accept: 'application/json',
         },
       } )
-      .then( response => response.json() )
+      .then( response => {
+        if (!response.ok) {
+          console.log( "---- error" )
+          console.log( "-- FETCH ERROR 1" )
+          return dispatch( {
+            type: USER_UPDATE_ERROR,
+            payload: "error" } )
+        }
+        return response.json()
+      })
       .then( message => {
         console.log( "---- success perisisting to db" )
-        // return dispatch ( {
-        //   type: USER_UPDATE_CURR_SECTION,
-        //   payload: {
-        //     moduleNum: nextModuleSectionObj.moduleNum,
-        //     sectionNum: nextModuleSectionObj.sectionNum }
-        // } )
       } )
       .catch( ( error ) => {
         console.log( "---- error" )
@@ -109,6 +112,62 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
       } )
   }
 }
+// export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
+//   console.log( `---- userRD::sectionCompletedAC(${user.fname}, ${moduleNum}, ${sectionNum})` )
+//
+//   return async ( dispatch, getState ) => {
+//
+//     // don't advance the user's current module and section
+//     console.log( "---- starting" )
+//     if ( user.curr_section !== 0 ) {
+//       if ( user.curr_module !== moduleNum || user.curr_section !== sectionNum ) {
+//         console.log( "---- no change" )
+//         return dispatch ( {
+//           type: USER_UPDATE_CURR_SECTION_NO_CHANGE,
+//           payload: { }
+//         } )
+//       }
+//     }
+//
+//     // advance the user's furthest module and section because they just
+//     //   completed their furthest section
+//     const nextModuleSectionObj = getNextModuleSection( getState().userRD, user.curr_module, user.curr_section )
+//     console.log( "---- nextModuleSectionObj:", nextModuleSectionObj )
+//
+//     // udate it immediately
+//     dispatch ( {
+//       type: USER_UPDATE_CURR_SECTION,
+//       payload: {
+//         moduleNum: nextModuleSectionObj.moduleNum,
+//         sectionNum: nextModuleSectionObj.sectionNum }
+//     } )
+//
+//     const body = {
+//       curr_module: nextModuleSectionObj.moduleNum,
+//       curr_section: nextModuleSectionObj.sectionNum,
+//     }
+//     console.log( "---- fetching body: ", JSON.stringify( body ) )
+//     return fetch( `${URL}/users/${user.user_id}`, {
+//         method: 'PATCH',
+//         body: JSON.stringify( body ),
+//         headers: {
+//           'Content-Type': 'application/json',
+//           Accept: 'application/json',
+//         },
+//       } )
+//       .then( response => response.json() )
+//       .then( message => {
+//         console.log( "---- success perisisting to db" )
+//       } )
+//       .catch( ( error ) => {
+//         console.log( "---- error" )
+//         console.log( "-- FETCH ERROR", error )
+//         return dispatch( {
+//           type: USER_UPDATE_ERROR,
+//           payload: error } )
+//       } )
+//   }
+// }
 
 
 /* ************************************************
