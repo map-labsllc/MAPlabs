@@ -54,12 +54,14 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
 
     // don't advance the user's current module and section
     console.log( "---- starting" )
-    if ( user.curr_module !== moduleNum || user.curr_section !== sectionNum ) {
-      console.log( "---- no change" )
-      return dispatch ( {
-        type: USER_UPDATE_CURR_SECTION_NO_CHANGE,
-        payload: { }
-      } )
+    if ( user.curr_section !== 0 ) {
+      if ( user.curr_module !== moduleNum || user.curr_section !== sectionNum ) {
+        console.log( "---- no change" )
+        return dispatch ( {
+          type: USER_UPDATE_CURR_SECTION_NO_CHANGE,
+          payload: { }
+        } )
+      }
     }
 
     // advance the user's furthest module and section because they just
@@ -75,11 +77,11 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
         sectionNum: nextModuleSectionObj.sectionNum }
     } )
 
-    console.log( "---- fetching" )
     const body = {
       curr_module: nextModuleSectionObj.moduleNum,
       curr_section: nextModuleSectionObj.sectionNum,
     }
+    console.log( "---- fetching body: ", JSON.stringify(body) )
     return fetch( `${URL}/users/${user.user_id}`, {
         method: 'PATCH',
         body: JSON.stringify( body ),

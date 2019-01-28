@@ -20,6 +20,7 @@ import '../CSS/Section.css'
 
    props:
      user -- the complete user object to check the furthest mod/sec they've gotten to
+     isVisible -- is the user able to view this section yet?
      moduleNum -- integer, the module this section is in (1-based)
      sectionNum -- integer, the section
      sectionTitle -- title of the section
@@ -28,15 +29,15 @@ import '../CSS/Section.css'
 export default class Section extends React.Component {
 
   // check that user has gotten up to this module and section
-  canUserView = ( user, moduleNum, sectionNum ) => {
-    if ( moduleNum < user.curr_module ) return true
-    if ( user.curr_module < moduleNum ) return false
-    return sectionNum <= user.curr_section
-  }
+  // canUserView = ( user, moduleNum, sectionNum ) => {
+  //   if ( moduleNum < user.curr_module ) return true
+  //   if ( user.curr_module < moduleNum ) return false
+  //   return sectionNum <= user.curr_section
+  // }
 
   componentDidMount = () => {
     const { dispatch, moduleNum, sectionNum } = this.props
-    
+
     // let the userRD know about this section so it can help move
     //   user to the next moduleNum/sectionNum as they complete sections
     dispatch( sectionLoadingAC( moduleNum, sectionNum ) )
@@ -46,8 +47,8 @@ export default class Section extends React.Component {
     console.log( "Section::render()" )
 
     // let { isVisible } = this.state
-    let { user, moduleNum, sectionNum, sectionTitle, exercise } = this.props
-    const isVisible = this.canUserView(user, moduleNum, sectionNum)
+    let { user, isVisible, moduleNum, sectionNum, sectionTitle, exercise } = this.props
+    // const isVisible = this.canUserView(user, moduleNum, sectionNum)
 
     return (
       <div>

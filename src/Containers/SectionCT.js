@@ -1,6 +1,32 @@
 import { connect } from 'react-redux'
 import Section from '../Components/Section'
-import { getUser } from '../store/user/reducer'
+import {
+  getUser,
+  isFirstSection } from '../store/user/reducer'
+
+
+/* *****************************************
+   canUserView()
+
+   check that user has gotten up to this module and section
+******************************************** */
+const canUserView = ( state, moduleNum, sectionNum ) => {
+
+  const user = getUser( state.userRD )
+
+  console.log('----------------------------------------');
+  console.log('----------------------------------------');
+  console.log('----------------------------------------');
+  console.log(`moduleNum: ${moduleNum}, sectionNum: ${sectionNum}, user.curr_module: ${user.curr_module}, user.curr_section: ${user.curr_section}`);
+
+  if ( moduleNum < user.curr_module ) return true
+  if ( user.curr_module < moduleNum ) return false
+
+  if ( user.curr_section === 0 ) {
+    return ( isFirstSection( state.userRD, moduleNum, sectionNum ) )
+  }
+  return sectionNum <= user.curr_section
+}
 
 /* *****************************************
    mapStateToProps()
@@ -21,6 +47,7 @@ const mapStateToProps = ( state, passedProps ) => {
 
   return {
     user,
+    isVisible: canUserView( state, moduleNum, sectionNum ),
     moduleNum,
     sectionNum,
     sectionTitle,

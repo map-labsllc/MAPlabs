@@ -57,6 +57,24 @@ const initialState = {
 ************************************************** */
 export const getUser = ( state ) => state.user
 
+
+/* ***********************************************
+   isFirstSection()
+
+   Check if sectionNum is first section in moduleNum
+
+   return -- t/f
+************************************************** */
+export const isFirstSection = ( state, moduleNum, sectionNum ) => {
+  console.log( 'userRD::isFirstSection()' )
+  if ( !state.orderOfSections[moduleNum] ) {
+    console.log( 'userRD::isFirstSection(), short circuit, unk moduleNum:', moduleNum )
+    return false
+  }
+  return state.orderOfSections[moduleNum].indexOf( sectionNum ) === 0
+}
+
+
 /* ***********************************************
    getNextModuleSection()
 
@@ -65,11 +83,18 @@ export const getUser = ( state ) => state.user
    return -- { moduleNum, sectionNum }
 ************************************************** */
 export const getNextModuleSection = ( state, currModuleNum, currSectionNum ) => {
-  console.log(`userRD::getNextModuleSection()`);
+  console.log( `userRD::getNextModuleSection()` );
 
   const { orderOfSections } = state
   const sections = orderOfSections[currModuleNum]
-  const idx = sections.indexOf(currSectionNum)
+
+  // Properly set currSectionNum to the first section if it was 0.
+  //   It was set to 0 when moving forward from last Module at which time
+  //   we didn't know the first section number of the next module.
+  if ( currSectionNum === 0 )
+    currSectionNum = sections[0]
+
+  const idx = sections.indexOf( currSectionNum )
 
   let newModuleNum = currModuleNum
   let newSectionNum = 0
@@ -114,7 +139,6 @@ export const userRD = ( state = initialState, action ) => {
         user: newUser,
       }
     }
-
 
     case USER_UPDATE_CURR_SECTION_NO_CHANGE:
       return state
