@@ -7,7 +7,9 @@ import { persistAnswersAC } from '../store/answers/actions'
 import { persistTransitionsAC } from '../store/transitions/actions'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
-  QUESTION_TYPE_TRANSITIONS} from '../constants.js'
+  QUESTION_TYPE_TRANSITIONS,
+  QUESTION_TYPE_BRACKET,
+} from '../constants.js'
 
 /* *****************************************
    mapStateToProps()
@@ -47,6 +49,13 @@ const mapStateToProps = ( state, passedProps ) => {
         questions,
         RD: state.transitionsRD,
       }
+    case QUESTION_TYPE_BRACKET:
+      return {
+        userId,
+        questionType,
+        questions,
+        RD: state.answersRD,
+      }
     default:
       throw new Error( 'ERROR unkown QUESTION_TYPE' )
   }
@@ -85,15 +94,12 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
     switch ( questionType ) {
       case QUESTION_TYPE_SHORT_ANSWERS:
-        console.log('======= *** ======');
-        console.log("RD:", RD);
+      case QUESTION_TYPE_BRACKET:
         const answers = getAnswers( RD, question.code )
         dispatch( persistAnswersAC( userId, question.code, answers ) )
         return
 
       case QUESTION_TYPE_TRANSITIONS:
-        console.log('======= *** ======');
-        console.log("RD:", RD);
         const transitions = getTransitions( RD, question.code )
         dispatch( persistTransitionsAC( userId, question.code, transitions ) )
         return

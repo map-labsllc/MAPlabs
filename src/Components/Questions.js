@@ -11,7 +11,8 @@ import ShortAnswersCT from '../Containers/ShortAnswersCT'
 import TransitionsCT from '../Containers/TransitionsCT'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
-  QUESTION_TYPE_TRANSITIONS
+  QUESTION_TYPE_TRANSITIONS,
+  QUESTION_TYPE_BRACKET,
 } from '../constants.js'
 import '../CSS/ModalNavButtons.css'
 
@@ -106,7 +107,9 @@ export default class Questions extends React.Component {
           <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
         </div>
         {questions.map((question, idx) => (
+
           <div key={idx}>
+
             {(idx === currIdx) && (questionType === QUESTION_TYPE_SHORT_ANSWERS) && (
               <ShortAnswersCT
                 key={idx}
@@ -114,12 +117,26 @@ export default class Questions extends React.Component {
                 doesHandlePersistence={{ value: false }}
               />
             )}
+
             {(idx === currIdx) && (questionType === QUESTION_TYPE_TRANSITIONS) && (
               <TransitionsCT
                 key={idx}
                 question={question}
               />
             )}
+            
+            {/* Change to BracketCT */}
+            {(idx === currIdx) && (questionType === QUESTION_TYPE_BRACKET) && (
+              /* NOTE: promptQuestionCode was added to a normal question obj when
+                         setting up data in Module#.js.  Need to extract it here. */
+              <TransitionsCT
+                key={idx}
+                promptQuestionCode={question.promptCode}
+                question={question}
+              />
+
+            )}
+
           </div>
         ))}
         <br />
