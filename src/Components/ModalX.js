@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import QuestionsCT from '../Containers/QuestionsCT'
 import {
   Button,
@@ -9,7 +9,7 @@ import {
   FormControl,
   FormGroup,
   Modal,
-} from 'react-bootstrap';
+} from 'react-bootstrap'
 
 /* **************************************************
    Modal component
@@ -28,8 +28,8 @@ export default class ModalX extends React.Component {
   // **************************************************
   // render!
   render() {
-    console.log("Modal::render()");
-    console.log("props: ", this.props);
+    console.log( "Modal::render()" )
+    console.log( "props: ", this.props )
 
     const {
       sectionTitle,
@@ -42,7 +42,7 @@ export default class ModalX extends React.Component {
     return (
       <Modal show={isVisible} onHide={onModalClosingCB}>
 
-        <Modal.Header style={style.header} closeButton>
+        <Modal.Header style={style.header} >
           <Modal.Title style={style.header}>{sectionTitle}</Modal.Title>
         </Modal.Header>
 

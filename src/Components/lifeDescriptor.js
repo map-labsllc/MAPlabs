@@ -1,7 +1,7 @@
 import React from 'react'
-import { ListGroupItem, ButtonGroup, Button, } from 'react-bootstrap'
+import { ListGroupItem, ButtonGroup, Button } from 'react-bootstrap'
 
- const lifeDescriptorQuestion = ( { data, addingData } ) => {
+ const lifeDescriptorQuestion = ( { data, addingData,checkedA, checkedB, showCheckedA,showCheckedB } ) => {
 
    let structured = data.description.split( '#' )
    let first = structured[0]
@@ -12,11 +12,24 @@ import { ListGroupItem, ButtonGroup, Button, } from 'react-bootstrap'
   //   if(variant === '') variant = 'success'
   //   else{variant = ''}
   // }
+  let btnStyleA = ''
+if( checkedA=== true ){
+  btnStyleA= 'success'
+}
+let btnStyleB = ''
+if( checkedB=== true ){
+btnStyleB= 'success'
+}
+
   const renderButtons = ( children ) => {
     return (
       <ButtonGroup>
-        <Button onClick= {() => {addingData( first,children.a,second )}} >{children.a}</Button>
-        <Button onClick= { () => {addingData( first,children.b,second )}} >{children.b}</Button>
+        <Button  onClick= {() => { addingData( first,children.a,second,showCheckedA( children.a ) ) }} bsStyle={btnStyleA} >
+          <strong>{children.a}</strong>
+        </Button>
+        <Button onClick= { () => {addingData( first,children.b,second,showCheckedB( children.b ) ) }} bsStyle={btnStyleB} >
+          <strong>{children.b}</strong>
+        </Button>
       </ButtonGroup>
     )
   }
@@ -25,7 +38,9 @@ import { ListGroupItem, ButtonGroup, Button, } from 'react-bootstrap'
 
   return (
 
-    <ListGroupItem>{ first } { renderButtons( data ) } { second }</ListGroupItem>
+    <ListGroupItem >
+      { first } { renderButtons( data ) } { second }
+    </ListGroupItem>
 
 
   )
