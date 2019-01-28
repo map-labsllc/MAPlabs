@@ -13,7 +13,10 @@ import {
     isLoading: true,
     isError: false,
     errorMessage: '',
-    orderOfSections: [],   // [ { module: 1, section: 110 }, { module: 1, section: 120 }, { module: 2, section: 210 } ]
+    orderOfSections: {
+      1: [110, 120, 130],
+      2: [210, 220, 230, 240],
+    }
     user: {
       user_id: 1,
       fname: "Sandy",
@@ -41,7 +44,7 @@ const initialState = {
     login_service_id: 1,
     login_token: "DFDS34543GD",
     curr_module: 1,
-    curr_section: 120,
+    curr_section: 160,
    },
 }
 
@@ -62,22 +65,32 @@ export const getUser = ( state ) => state.user
    return -- { moduleNum, sectionNum }
 ************************************************** */
 export const getNextModuleSection = ( state, currModuleNum, currSectionNum ) => {
-  console.log('--------------------------------------------');
-  console.log('--------------------------------------------');
-  console.log('--------------------------------------------');
-
   console.log(`userRD::getNextModuleSection()`);
 
   const { orderOfSections } = state
+  const sections = orderOfSections[currModuleNum]
+  const idx = sections.indexOf(currSectionNum)
 
-  const idx = orderOfSections.findIndex(moduleAndSection =>
-    moduleAndSection.moduleNum === currModuleNum && moduleAndSection.sectionNum === currSectionNum)
+  let newModuleNum = currModuleNum
+  let newSectionNum = 0
+  if ( idx < sections.length - 1 ) {
+    newSectionNum = sections[idx + 1]
+  } else {
+    newModuleNum = currModuleNum + 1
+    newSectionNum = 0
+  }
+  return {
+    moduleNum: newModuleNum,
+    sectionNum: newSectionNum,
+  }
+  // const idx = orderOfSections.findIndex(moduleAndSection =>
+  //   moduleAndSection.moduleNum === currModuleNum && moduleAndSection.sectionNum === currSectionNum)
 
-  console.log('found index: ', idx);
-  console.log('orderOfSections[idx]: ', orderOfSections[idx]);
-  console.log('orderOfSections[idx+1]: ', orderOfSections[idx + 1]);
+  // console.log('found index: ', idx);
+  // console.log('orderOfSections[idx]: ', orderOfSections[idx]);
+  // console.log('orderOfSections[idx+1]: ', orderOfSections[idx + 1]);
   // TODO: move to next module if at the end of the array
-  return orderOfSections[idx + 1]
+  //return orderOfSections[idx + 1]
 }
 
 /* ***********************************************
@@ -111,7 +124,12 @@ export const userRD = ( state = initialState, action ) => {
 
     case USER_ADD_SECTION: {
       const { moduleNum, sectionNum } = payload
-      const newOrderOfSections = [ ...state.orderOfSections, { moduleNum, sectionNum } ]
+
+      const newOrderOfSections = { ...state.orderOfSections }
+      const sections = newOrderOfSections[moduleNum] || []
+      if ( !sections.includes( sectionNum ) ) sections.push(sectionNum)
+      newOrderOfSections[moduleNum] = sections
+
       return  {
         ...state,
         orderOfSections: newOrderOfSections,
