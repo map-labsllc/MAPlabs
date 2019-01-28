@@ -30,10 +30,10 @@ class Module2 extends React.Component {
 
   // load user data
   componentDidMount = () => {
-    const { dispatch, userId } = this.props
-    dispatch( loadAllAnswersAC( userId ) )
-    dispatch( loadAllTransitionsAC( userId ) )
-    dispatch( loadAllStaticdataAC() )
+    // const { dispatch, userId } = this.props
+    // dispatch( loadAllAnswersAC( userId ) )
+    // dispatch( loadAllTransitionsAC( userId ) )
+    // dispatch( loadAllStaticdataAC() )
   }
 
   // Define questions and excercises for Module 1
@@ -135,49 +135,49 @@ class Module2 extends React.Component {
         {!isLoading && (
           <>
             <Module
-              moduleNum = { { value: 2 } }
-              moduleTitle = "Module 2"
-              moduleDescription = "Social Context"
+              moduleNum = { 2 }
+              moduleTitle = "Your Social Context"
+              moduleDescription = "You will explore your social context and how it shapes your life. You will be able to specify the most influential aspects of this context, reflect critically on them, and differentiate supporting influences from inhibiting ones."
             >
               <SectionCT
-                moduleNum = { { value: 2 } }
-                sectionNum = { { value: 210 } }
+                moduleNum = { 2 }
+                sectionNum = { 210 }
                 sectionTitle = "Contextual Influences I"
                 exercise = {this.exercise_210}
               />
               <SectionCT
-                moduleNum = { { value: 2 } }
-                sectionNum = { { value: 220 } }
+                moduleNum = { 2 }
+                sectionNum = { 220 }
                 sectionTitle = "Contextual Influences II"
                 exercise = {this.exercise_220}
               />
               <SectionCT
-                moduleNum = { { value: 2 } }
-                sectionNum = { { value: 230 } }
+                moduleNum = { 2 }
+                sectionNum = { 230 }
                 sectionTitle = "Contextual Influences III"
                 exercise = {this.exercise_230}
               />
               <SectionCT
-                moduleNum = { { value: 2 } }
-                sectionNum = { { value: 240 } }
+                moduleNum = { 2 }
+                sectionNum = { 240 }
                 sectionTitle = "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement"
                 exercise = {this.exercise_240}
               />
               <SectionCT
-                moduleNum = { { value: 2 } }
-                sectionNum = { { value: 250 } }
+                moduleNum = { 2 }
+                sectionNum = { 250 }
                 sectionTitle = "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement"
                 exercise = {this.exercise_250}
               />
               <SectionCT
-                moduleNum = { { value: 2 } }
-                sectionNum = { { value: 260 } }
+                moduleNum = { 2 }
+                sectionNum = { 260 }
                 sectionTitle = "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement"
                 exercise = {this.exercise_260}
               />
               <SectionCT
-                moduleNum = { { value: 2 } }
-                sectionNum = { { value: 270 } }
+                moduleNum = { 2 }
+                sectionNum = { 270 }
                 sectionTitle = "Breaking and building"
                 exercise = {this.exercise_270}
               />

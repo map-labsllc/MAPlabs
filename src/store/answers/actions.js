@@ -37,7 +37,7 @@ export const updateAnswersAC = ( question_code, answers ) => {
 export const loadAllAnswersAC = ( userId ) => {
   console.log( "loadAllAnswersAC()" )
 
-  return dispatch => {
+  return async dispatch => {
     dispatch( { type: ANSWERS_LOADING } )
     return fetch( `${URL}/answers/${userId}` )
       .then( response => response.json() )
@@ -71,7 +71,7 @@ export const persistAnswersAC = ( userId, question_code, answers ) => {
   console.log( `persistAnswersAC(${question_code})` )
   console.log( "persisting: ", answers )
 
-  return dispatch => {
+  return async dispatch => {
     return fetch( `${URL}/answers/${userId}/${question_code}`, {
         method: 'POST',
         body: JSON.stringify( { answers } ),

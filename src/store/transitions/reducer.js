@@ -39,10 +39,11 @@ const initialState = {
 export const getTransitions = ( state, question_code ) =>
   state.questions[question_code] || []
 
- /* ***********************************************
-    transitionsRD
- ************************************************** */
- export const transitionsRD = ( state = initialState, action ) => {
+
+/* ***********************************************
+  transitionsRD
+************************************************** */
+export const transitionsRD = ( state = initialState, action ) => {
 
   const { type, payload } = action
 

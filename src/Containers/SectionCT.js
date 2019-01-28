@@ -1,18 +1,44 @@
 import { connect } from 'react-redux'
 import Section from '../Components/Section'
-import { getUser } from '../store/user/reducer'
+import {
+  getUser,
+  isFirstSection } from '../store/user/reducer'
+
+
+/* *****************************************
+   canUserView()
+
+   check that user has gotten up to this module and section
+******************************************** */
+const canUserView = ( state, moduleNum, sectionNum ) => {
+
+  const user = getUser( state.userRD )
+
+  console.log('----------------------------------------');
+  console.log('----------------------------------------');
+  console.log('----------------------------------------');
+  console.log(`moduleNum: ${moduleNum}, sectionNum: ${sectionNum}, user.curr_module: ${user.curr_module}, user.curr_section: ${user.curr_section}`);
+
+  if ( moduleNum < user.curr_module ) return true
+  if ( user.curr_module < moduleNum ) return false
+
+  if ( user.curr_section === 0 ) {
+    return ( isFirstSection( state.userRD, moduleNum, sectionNum ) )
+  }
+  return sectionNum <= user.curr_section
+}
 
 /* *****************************************
    mapStateToProps()
 
    passedProps:
-     moduleNum -- { value: 2 }, the module this section is in (1-based)
-     sectionNum -- { value: 3 }, the section (1-based)
+     moduleNum -- integer, the module this section is in (1-based)
+     sectionNum -- integer, the section (1-based)
      sectionTitle -- title of the section
      exercise -- component user will interact with
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
-  console.log( "SectionCT::mapStateToProps()" )
+  console.log( `SectionCT::mapStateToProps()` )
 
   const { moduleNum, sectionNum, sectionTitle, exercise } = passedProps
 
@@ -21,6 +47,7 @@ const mapStateToProps = ( state, passedProps ) => {
 
   return {
     user,
+    isVisible: canUserView( state, moduleNum, sectionNum ),
     moduleNum,
     sectionNum,
     sectionTitle,

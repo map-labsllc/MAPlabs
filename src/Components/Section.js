@@ -1,5 +1,5 @@
 import React from 'react'
-import Popup from '../Components/Popup'
+import PopupCT from '../Containers/PopupCT'
 import {
   Button,
   Checkbox,
@@ -10,7 +10,9 @@ import {
   FormGroup,
   Panel,
 } from 'react-bootstrap'
+import { sectionLoadingAC } from '../store/user/actions'
 import '../CSS/Section.css'
+
 /* **************************************************
    Section
 
@@ -18,44 +20,50 @@ import '../CSS/Section.css'
 
    props:
      user -- the complete user object to check the furthest mod/sec they've gotten to
-     moduleNum -- { value: 2 }, the module this section is in (1-based)
-     sectionNum -- { value: 3 }, the section (1-based)
+     isVisible -- is the user able to view this section yet?
+     moduleNum -- integer, the module this section is in (1-based)
+     sectionNum -- integer, the section
      sectionTitle -- title of the section
      exercise -- component user will interact with
 ***************************************************** */
 export default class Section extends React.Component {
 
   // check that user has gotten up to this module and section
-  canUserView = ( user, moduleNum, sectionNum ) => {
-    if (moduleNum.value < user.curr_module) return true
-    if (user.curr_module < moduleNum.value) return false
-    return sectionNum.value <= user.curr_section
-  }
+  // canUserView = ( user, moduleNum, sectionNum ) => {
+  //   if ( moduleNum < user.curr_module ) return true
+  //   if ( user.curr_module < moduleNum ) return false
+  //   return sectionNum <= user.curr_section
+  // }
 
-  state = {
-    isVisible: this.canUserView(
-      this.props.user,
-      this.props.moduleNum,
-      this.props.sectionNum),
+  componentDidMount = () => {
+    const { dispatch, moduleNum, sectionNum } = this.props
+
+    // let the userRD know about this section so it can help move
+    //   user to the next moduleNum/sectionNum as they complete sections
+    dispatch( sectionLoadingAC( moduleNum, sectionNum ) )
   }
 
   render() {
-    console.log("Section::render()")
+    console.log( "Section::render()" )
 
-    let { isVisible } = this.state
-    let { sectionTitle, exercise } = this.props
+    // let { isVisible } = this.state
+    let { user, isVisible, moduleNum, sectionNum, sectionTitle, exercise } = this.props
+    // const isVisible = this.canUserView(user, moduleNum, sectionNum)
 
     return (
       <div>
         <Panel bsStyle='primary'>
           <Panel.Heading className="sectionHeader">
-            <Panel.Title><div className="text-center"><u>Section</u>: {sectionTitle}</div></Panel.Title>
+            <Panel.Title><div className="text-center">{sectionTitle}</div></Panel.Title>
           </Panel.Heading>
+
           {isVisible && (
             <Panel.Body className="sectionBody">
-              <Popup sectionTitle={sectionTitle} exercise={exercise} />
+
+              <PopupCT moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
             </Panel.Body>
           )}
+
           {!isVisible && (
             <p>not availble yet</p>
           )}
