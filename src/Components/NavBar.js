@@ -10,21 +10,21 @@ import { loadAllStaticdataAC } from '../store/staticdata/actions'
 class NavBar extends React.Component {
 
   componentDidMount() {
-    console.log( "NavBar::componentDidMount()" )
+    console.log("NavBar::componentDidMount()")
     const { dispatch, user } = this.props
 
     // asynch calls to load user and static from db
-    dispatch( loadAllAnswersAC( user.user_id ) )
-    dispatch( loadAllTransitionsAC( user.user_id ) )
-    dispatch( loadAllStaticdataAC() )
+    dispatch(loadAllAnswersAC(user.user_id))
+    dispatch(loadAllTransitionsAC(user.user_id))
+    dispatch(loadAllStaticdataAC())
   }
 
   render() {
-    console.log( "NavBar::render" )
+    console.log("NavBar::render")
     return (
       this.props.user &&
 
-      <Navbar style ={styles.body}>
+      <Navbar style={styles.body} fixedTop>
         <Navbar.Header>
           <Navbar.Brand>
             <NavLink to="/">M.A.P.Labs</NavLink>
@@ -60,14 +60,14 @@ class NavBar extends React.Component {
 
 const styles = {
   body: {
-    margin:'0em'
+    margin: '0em'
   },
   navItem: {
-      'padding': '15px',
-      'display': 'inline-block',
-      'lineHeight': '20px'
-    }
+    'padding': '15px',
+    'display': 'inline-block',
+    'lineHeight': '20px'
   }
+}
 /* ********************************************************
    Wrap NavBar in container to get access to dispatch
 *********************************************************** */
@@ -77,11 +77,11 @@ const mapStateToProps = state => {
     user
   }
 }
-const mapDispatchToProps = dispatch => ( {
+const mapDispatchToProps = dispatch => ({
   dispatch,
-} )
+})
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )( NavBar )
+  mapStateToProps,
+  mapDispatchToProps
+)(NavBar)

@@ -5,9 +5,11 @@ import {
   Form,
   FormControl,
   FormGroup,
+  Col
 } from 'react-bootstrap';
 import ShortAnswer from './ShortAnswer'
 import '../CSS/ModalNavButtons.css'
+import '../CSS/Section.css'
 
 /* **************************************************
    ShortAnswers component
@@ -132,25 +134,28 @@ export default class ShortAnswers extends React.Component {
 
     return (
       <>
-        <p> </p>
-        <h4>--- Question: {question.text} ---</h4>
-        {answersWithKeys.map((answerWithKey) =>
-          <ShortAnswer
-            key={answerWithKey.key}
-            id={answerWithKey.key}
-            previousAnswer={answerWithKey.text}
-            updateAnswerCB={this.updateAnswer}
-            deleteAnswerCB={this.deleteAnswer}
-          >
-          </ShortAnswer>
-        )}
-        <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
-        {doesHandlePersistence.value && (
-          <>
-            {' '}
-            <Button type="button" onClick={this.onclickSave}>Save</Button>
-          </>
-        )}
+
+        <div className="centering">
+          <h4>---{question.text}---</h4>
+          {answersWithKeys.map((answerWithKey) =>
+            <ShortAnswer
+              key={answerWithKey.key}
+              id={answerWithKey.key}
+              previousAnswer={answerWithKey.text}
+              updateAnswerCB={this.updateAnswer}
+              deleteAnswerCB={this.deleteAnswer}
+            >
+            </ShortAnswer>
+          )}
+          <br></br>
+          <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
+          {doesHandlePersistence.value && (
+            <>
+              {' '}
+              <Button type="button" onClick={this.onclickSave}>Save</Button>
+            </>
+          )}
+        </div>
       </>
     )
   }

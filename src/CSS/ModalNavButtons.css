@@ -24,3 +24,10 @@
   color:#AAABB8;
   border-color: #AAABB8;
 }
+.complete{
+  margin-left: auto;
+  margin-right: 175px;
+  background-color: #2E9CCA;
+  color: black;
+  border-color: black;
+}
