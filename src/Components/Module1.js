@@ -50,14 +50,18 @@ class Module1 extends React.Component {
 
 
   // -------------------------
-  // Replace with Lifedescriptors
   // 3B-D
   exercise_130 = (
-    <NarrativeCT
+    <QuestionsList
       question = { { code: 130, text: "Imagine your Future Desired Situation" } }
-      promptQuestionCode = { { questionCode: 0 } }
-      instructions = "** This Narrative will be replaced with the LifeDescriptors component"
+      instructions = "Complete sentences that are important to you."
     /> )
+  // exercise_130 = (
+  //   <NarrativeCT
+  //     question = { { code: 130, text: "Imagine your Future Desired Situation" } }
+  //     promptQuestionCode = { { questionCode: 0 } }
+  //     instructions = "** This Narrative will be replaced with the LifeDescriptors component"
+  //   /> )
 
 
   // -------------------------
