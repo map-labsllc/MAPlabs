@@ -33,6 +33,9 @@ export default class Module extends React.Component {
         <Col lg={3} md={2}></Col>
         <Col lg={6} md={8} sm={12}></Col>
         <div className="text-center">
+          <br />
+          <br />
+          <br />
           <h3>{moduleTitle}</h3>
           <p style={style.descript}>{moduleDescription}</p>
         </div>
