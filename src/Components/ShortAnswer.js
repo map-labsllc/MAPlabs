@@ -9,6 +9,7 @@ import {
   FormGroup,
   Glyphicon
 } from 'react-bootstrap';
+import '../CSS/Section.css'
 
 /* **************************************************
    ShortAnswer component
@@ -91,9 +92,11 @@ export default class ShortAnswer extends React.Component {
             onBlur={this.onBlur}
             value={answer}
             placeholder="Please enter an answer"
+            bsSize="large"
           />
-
+          <text>     </text>
           <Button type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
+
         </FormGroup>
       </Form>
     )

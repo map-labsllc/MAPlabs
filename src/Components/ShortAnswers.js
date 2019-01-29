@@ -5,9 +5,11 @@ import {
   Form,
   FormControl,
   FormGroup,
+  Col
 } from 'react-bootstrap';
 import ShortAnswer from './ShortAnswer'
 import '../CSS/ModalNavButtons.css'
+import '../CSS/Section.css'
 
 /* **************************************************
    ShortAnswers component
@@ -164,6 +166,7 @@ export default class ShortAnswers extends React.Component {
           >
           </ShortAnswer>
         )}
+        <br></br>
         <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
         {doesHandlePersistence.value && (
           <>
