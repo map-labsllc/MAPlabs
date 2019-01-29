@@ -24,6 +24,7 @@ const props = {
 
 describe('<Bracket />', () => {
     let stub 
+    
     beforeAll(() => {
         stub = sinon.stub(console, 'error')
         stub.throwsArg(0)
@@ -48,6 +49,16 @@ describe('<Bracket />', () => {
         const wrapper = shallow(<Bracket {...props}/>)
         expect(wrapper.find('.prompts').children()).to.have.lengthOf(2)
     })
-    //it handles clicks on prompts and renders a new prompt in the place of the one that was not clicked
-    //
+    it('handles clicks on prompts and renders a new prompt in the place of the one that was not clicked',  () => {
+        const wrapper = shallow(<Bracket {...props}/>)
+        const prompts = wrapper.find('.prompts')
+        
+        let firstChild = prompts.children()[0]
+        let secondChild = prompts.children()[1]
+        //simulate click on first child 
+        //check that new second child does not equal old second child
+        //check that first child is still first child 
+        expect(wrapper.find('.prompts').children()).to.have.lengthOf(2)
+
+    })
 })
