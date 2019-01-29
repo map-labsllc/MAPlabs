@@ -14,10 +14,10 @@ const shallow = Enzyme.shallow
 const { expect } = chai 
 
 const props = {
-    prompts: ['PropTypes.arrayOf(PropTypes.string).isRequired'],
+    prompts: ['Rich/Poor', 'Happy/Sad', 'Love/Hate'],
     question: {
         code: Math.random(),
-        text: 'PropTypes.string.isRequired'
+        text: 'How do you feel?'
     },
     onUpdateStoreCB: () => {}
 }
@@ -43,5 +43,9 @@ describe('<Bracket />', () => {
         expect(() => shallow(<Bracket 
                                 prompts={props.prompts} 
                                 question={props.question}/>)).to.throw('Warning: Failed prop type: The prop `onUpdateStoreCB` is marked as required')
+    })
+    it('renders all prompts',  () => {
+        const wrapper = shallow(<Bracket {...props}/>)
+        wrapper.find.to.equal(props.prompts.length)
     })
 })
