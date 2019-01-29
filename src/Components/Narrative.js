@@ -21,7 +21,8 @@ import Prompts from './Prompts'
      prompts -- [] or array of strings with short answers saved by previous exercise
      instructions -- can be empty string
      previousAnswer -- string with the previous answer
-     onPersistCB(newAnswer) -- callback for when user clicks Save
+     isDynamic -- undefined or true
+                  rendering static version in Popup or dynamic verison in Modal     onPersistCB(newAnswer) -- callback for when user clicks Save
      onCloseModalCB -- call to close the modal this control resides in
 ***************************************************** */
 export default class Narrative extends React.Component {
@@ -80,12 +81,18 @@ export default class Narrative extends React.Component {
     // console.log("Narrative::render()")
 
     // initialize
-    const { question, prompts, instructions } = this.props
+    const { question, prompts, instructions, isDynamic } = this.props
     const { answer } = this.state
+
+    if (!isDynamic) {
+      return (
+        <p>Previous answer: {answer}</p>
+      )
+    }
 
     return (
       <>
-        <Prompts prompts={prompts} />
+        <Prompts prompts = {prompts}/>
 
         <Form onSubmit={this.onSubmit} >
           <FormGroup>

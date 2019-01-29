@@ -28,6 +28,8 @@ import '../CSS/Section.css'
      question -- { code: 50, text: "Question 50" }
      previousAnswers -- [] or array of strings of previous answers
      doesHandlePesistence -- { value: true }
+     isDynamic -- undefined or true
+                  rendering static version in Popup or dynamic verison in Modal
      onUpdateStoreCB(newAnswers) -- callback to update the store
      onPersistCB(newAnswers) -- callback for when user clicks Save, updates store and persists
 ***************************************************** */
@@ -124,38 +126,54 @@ export default class ShortAnswers extends React.Component {
   render() {
     console.log("ShortAnswers::render()")
 
-    const { question, doesHandlePersistence } = this.props
+    const { question, isDynamic, doesHandlePersistence } = this.props
     const { answersWithKeys } = this.state
 
     console.log("answersWithKeys", answersWithKeys);
     console.log("this.props.previousAnswers", this.props.previousAnswers);
     console.log("this.state.answers", this.state.answers);
 
+    if (!isDynamic) {
+      return (
+        <>
+          {answersWithKeys.map((answerWithKey) =>
+              <ShortAnswer
+                key={answerWithKey.key}
+                id={answerWithKey.key}
+                previousAnswer={answerWithKey.text}
+                updateAnswerCB={this.updateAnswer}
+                deleteAnswerCB={this.deleteAnswer}
+                isDynamic={isDynamic}
+              >
+              </ShortAnswer>
+          )}
+        </>
+      )
+    }
 
     return (
       <>
-
-        <div className="centering">
-          <h4>---{question.text}---</h4>
-          {answersWithKeys.map((answerWithKey) =>
-            <ShortAnswer
-              key={answerWithKey.key}
-              id={answerWithKey.key}
-              previousAnswer={answerWithKey.text}
-              updateAnswerCB={this.updateAnswer}
-              deleteAnswerCB={this.deleteAnswer}
-            >
-            </ShortAnswer>
-          )}
-          <br></br>
-          <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
-          {doesHandlePersistence.value && (
-            <>
-              {' '}
-              <Button type="button" onClick={this.onclickSave}>Save</Button>
-            </>
-          )}
-        </div>
+        <p> </p>
+        <h4>{question.text}</h4>
+        {answersWithKeys.map((answerWithKey) =>
+          <ShortAnswer
+            key={answerWithKey.key}
+            id={answerWithKey.key}
+            previousAnswer={answerWithKey.text}
+            updateAnswerCB={this.updateAnswer}
+            deleteAnswerCB={this.deleteAnswer}
+            isDynamic={isDynamic}
+          >
+          </ShortAnswer>
+        )}
+        <br></br>
+        <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
+        {doesHandlePersistence.value && (
+          <>
+            {' '}
+            <Button type="button" onClick={this.onclickSave}>Save</Button>
+          </>
+        )}
       </>
     )
   }

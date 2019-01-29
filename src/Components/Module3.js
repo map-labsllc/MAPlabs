@@ -90,6 +90,12 @@ class Module3 extends React.Component {
                 sectionTitle = "Deep Desires"
                 exercise = {this.exercise_310}
               />
+              <SectionCT
+                moduleNum = { 3 }
+                sectionNum = { 330 }
+                sectionTitle = "Make tradeoffs within each category"
+                exercise = {this.exercise_320}
+              />
             </Module>
           </>
         )}

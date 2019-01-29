@@ -24,8 +24,8 @@ import {
       email: "tharrison@gmail.com",
       login_service_id: 1,
       login_token: "DFDS34543GD",
-      curr_module: 1,
-      curr_section: 120,
+      curr_module: 2,
+      curr_section: 0,
       created_at: 2019-01-15 04:00:00-07
      },
   }
@@ -43,8 +43,8 @@ const initialState = {
     email: "tharrison@gmail.com",
     login_service_id: 1,
     login_token: "DFDS34543GD",
-    curr_module: 3,
-    curr_section: 310,
+    curr_module: 1,
+    curr_section: 170,
    },
 }
 
@@ -82,11 +82,19 @@ export const isFirstSection = ( state, moduleNum, sectionNum ) => {
 
    return -- { moduleNum, sectionNum }
 ************************************************** */
-export const getNextModuleSection = ( state, currModuleNum, currSectionNum ) => {
-  console.log( `userRD::getNextModuleSection()` );
-
-  const { orderOfSections } = state
+export const getNextModuleSection = ( userRD, currModuleNum, currSectionNum ) => {
+  console.log( `userRD::getNextModuleSection(state, ${currModuleNum}, ${currSectionNum})` );
+  const { orderOfSections } = userRD
+  console.log("orderOfSections: ", orderOfSections)
   const sections = orderOfSections[currModuleNum]
+  console.log("sections: ", sections)
+
+  // TODO: Crashing when current is at 2,0 and we're closing modals in module 1
+  // if (userRD.user.curr_module !== currModuleNum) {
+  //   return {
+  //
+  //   }
+  // }
 
   // Properly set currSectionNum to the first section if it was 0.
   //   It was set to 0 when moving forward from last Module at which time
