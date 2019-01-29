@@ -152,7 +152,9 @@ export default class ShortAnswers extends React.Component {
           {doesHandlePersistence.value && (
             <>
               {' '}
-              <Button type="button" onClick={this.onclickSave}>Save</Button>
+              <div className="text-center">
+                <Button type="button" onClick={this.onclickSave}>Save</Button>
+              </div>
             </>
           )}
         </div>

@@ -102,10 +102,19 @@ export default class Narrative extends React.Component {
               bsSize="large"
             />
           </FormGroup>
-          <Button type="submit">Close</Button>
-
+          <div>
+            <Button type="submit" style={style.closeButton}>Close</Button>
+          </div>
         </Form>
       </>
     )
+  }
+}
+const style = {
+  closeButton: {
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "center",
+
   }
 }
