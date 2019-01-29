@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import Popup from '../Components/Popup'
-import { getUser } from '../store/user/reducer'
+import Popup from './Popup'
+import { getUser } from '../../store/user/reducer'
 
 /* *****************************************
    mapStateToProps()

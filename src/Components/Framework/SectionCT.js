@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import Section from '../Components/Section'
+import Section from './Section'
 import {
   getUser,
-  isFirstSection } from '../store/user/reducer'
+  isFirstSection } from '../../store/user/reducer'
 
 
 /* *****************************************
