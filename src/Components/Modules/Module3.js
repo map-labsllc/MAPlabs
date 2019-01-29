@@ -1,20 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import Module from '../Components/Module'
-import SectionCT from '../Containers/SectionCT'
-import QuestionsCT from '../Containers/QuestionsCT'
-import QuestionsList from './questionsList'
-import NarrativeCT from '../Containers/NarrativeCT'
-import { loadAllAnswersAC } from '../store/answers/actions'
-import { loadAllTransitionsAC } from '../store/transitions/actions'
-import { loadAllStaticdataAC } from '../store/staticdata/actions'
-import { getUser } from '../store/user/reducer'
+import Module from '../Framework/Module'
+import SectionCT from '../Framework/SectionCT'
+import QuestionsCT from '../Framework/QuestionsCT'
+import QuestionsList from '../Exercises/questionsList'
+import NarrativeCT from '../Exercises/NarrativeCT'
+import { loadAllAnswersAC } from '../../store/answers/actions'
+import { loadAllTransitionsAC } from '../../store/transitions/actions'
+import { loadAllStaticdataAC } from '../../store/staticdata/actions'
+import { getUser } from '../../store/user/reducer'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
   QUESTION_TYPE_BRACKET,
-} from '../constants.js'
+} from '../../constants.js'
 
 import {
   Button,

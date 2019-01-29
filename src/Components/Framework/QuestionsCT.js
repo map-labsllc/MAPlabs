@@ -1,15 +1,15 @@
 import { connect } from 'react-redux'
-import Questions from '../Components/Questions'
-import { getUser } from '../store/user/reducer'
-import { getAnswers } from '../store/answers/reducer'
-import { getTransitions } from '../store/transitions/reducer'
-import { persistAnswersAC } from '../store/answers/actions'
-import { persistTransitionsAC } from '../store/transitions/actions'
+import Questions from './Questions'
+import { getUser } from '../../store/user/reducer'
+import { getAnswers } from '../../store/answers/reducer'
+import { getTransitions } from '../../store/transitions/reducer'
+import { persistAnswersAC } from '../../store/answers/actions'
+import { persistTransitionsAC } from '../../store/transitions/actions'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
   QUESTION_TYPE_BRACKET,
-} from '../constants.js'
+} from '../../constants.js'
 
 /* *****************************************
    mapStateToProps()
