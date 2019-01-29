@@ -35,7 +35,7 @@ class Module2 extends React.Component {
   exercise_210 = (
     <NarrativeCT
       question = { { code: 210, text: "List all of your contextual influences" } }
-      promptQuestionCode = { { questioncode: 0 } }
+      promptQuestionCode = { 0 }
       instructions = "Choose influences in your life, their beliefs / values, and if they are supporrtive or inhibiting."
     /> )
 
@@ -46,7 +46,7 @@ class Module2 extends React.Component {
   exercise_220 = (
     <NarrativeCT
       question = { { code: 220, text: "Rank your influences" } }
-      promptQuestionCode = { { questioncode: 0 } }
+      promptQuestionCode = { 0 }
       instructions = ""
     /> )
 
@@ -57,7 +57,7 @@ class Module2 extends React.Component {
   exercise_230 = (
     <NarrativeCT
       question = { { code: 230, text: "Relating Your Values and Beliefs to Those of Your Influences" } }
-      promptQuestionCode = { { questioncode: 0 } }
+      promptQuestionCode = { 0 }
       instructions = "Based on what you have written, fill in the blanks of the statement below for each of your top 5-10 'supportive' and 'inhibiting' influences."
     /> )
 
@@ -67,7 +67,7 @@ class Module2 extends React.Component {
   exercise_240 = (
     <NarrativeCT
       question = { { code: 240, text: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement" } }
-      promptQuestionCode = { { questionCode: 0 } }
+      promptQuestionCode = { 0 }
       instructions = ""
     /> )
 

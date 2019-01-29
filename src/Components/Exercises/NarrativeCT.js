@@ -10,7 +10,7 @@ import {
    mapStateToProps()
 
    passedProps:
-    promptQuestionCode -- { questionCode: 123 } -- Object with 0 or questionCode to
+    promptQuestionCode -- integer -- Object with 0 or questionCode to
       use as prompts for this Narrative.  questionCode must be a quesiton in answerRD.
     question -- { code: 50, text: "question 50" }
     instructions -- string with instructions, can be an empty string for no instructions
@@ -28,8 +28,8 @@ const mapStateToProps = ( state, passedProps ) => {
 
   // find prompts, if any
   let prompts = []
-  if ( promptQuestionCode.questionCode ) {
-    prompts = getAnswers( state.answersRD, promptQuestionCode.questionCode )
+  if ( promptQuestionCode ) {
+    prompts = getAnswers( state.answersRD, promptQuestionCode )
   }
   console.log("Prompts for narrative: ", prompts);
 
