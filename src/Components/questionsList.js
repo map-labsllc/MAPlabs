@@ -118,139 +118,87 @@ class QuestionsList extends Component {
             addingData={this.addToPersistingArray}
           />
 
-<<<<<<< HEAD
         )
       })
     ))
+
+    /* *************************************** */
+    if (!isDynamic) {
+      const sentences = []
+      const { lifeDescriptors } = this.props
+      for (let i = 0; i < lifeDescriptors.length; i++) {
+        if (this.state.selections[i]) {
+          let sentence = this.buildingCongruentSentence(lifeDescriptors[i], this.state.selections[i])
+          sentences.push(sentence)
+        }
+      }
+
+      return (
+        <>
+          {sentences.map((sentence, idx) => (
+            <p key={idx}>{sentence.text}</p>
+          ))}
+        </>
+      )
+    }
+
     return (
       <>
         <p>{((isLoading) ? "loading...." : "")}</p>
         {!isLoading && (
           <>
+            <p>{((isLoading) ? "loading...." : "")}</p>
+            {!isLoading && (
+              <>
 
-            {list[this.state.page]}
-            <br />
-            <Arrows
-              direction="left"
-              clickFunction={this.previousSlide(pages)}
-              glyph="arrow-left"
-              className="previousButton"
-            />
-            <Button
-              className="closeButton"
-              onClick={() => {
-                const sentences = []
+                {list[this.state.page]}
+                <br />
+                <Arrows
+                  direction="left"
+                  clickFunction={this.previousSlide(pages)}
+                  glyph="arrow-left"
+                  className="previousButton"
+                />
+                <Button
+                  className="closeButton"
+                  onClick={() => {
+                    const sentences = []
 
-                for (let i = 0; i < lifeDescriptors.length; i++) {
-                  if (this.state.selections[i]) {
-                    let sentence = this.buildingCongruentSentence(lifeDescriptors[i], this.state.selections[i])
-                    sentences.push(sentence)
+                    for (let i = 0; i < lifeDescriptors.length; i++) {
+                      if (this.state.selections[i]) {
+                        let sentence = this.buildingCongruentSentence(lifeDescriptors[i], this.state.selections[i])
+                        sentences.push(sentence)
 
-                  }
-                }
-                onPersistCB(userId, sentences)
-                onCloseModalCB()
-              }}>Close</Button>
-            <Arrows
-              className="nextButton"
-              direction="right"
-              clickFunction={this.nextSlide(pages)}
-              glyph="arrow-right"
-            />
+                      }
+                    }
+                    onPersistCB(userId, sentences)
+                    onCloseModalCB()
+                  }}>Close</Button>
+                <Arrows
+                  className="nextButton"
+                  direction="right"
+                  clickFunction={this.nextSlide(pages)}
+                  glyph="arrow-right"
+                />
+              </>
+            )}
           </>
+
         )}
       </>
     )
-=======
-      )} )
-    ) )
-
-      /* *************************************** */
-      if (!isDynamic) {
-        const sentences = []
-        const { lifeDescriptors } = this.props
-        for( let i= 0 ; i < lifeDescriptors.length; i++ ){
-          if( this.state.selections[i] ){
-            let sentence = this.buildingCongruentSentence( lifeDescriptors[i], this.state.selections[i] )
-            sentences.push( sentence )
-          }
-        }
-
-        return (
-          <>
-          {sentences.map((sentence, idx) => (
-            <p key={idx}>{sentence.text}</p>
-          ))}
-          </>
-        )
-      }
-
-      return(
-        <>
-          <p>{( ( isLoading ) ? "loading...." : ""  )}</p>
-          {!isLoading && (
-            <>
-
-            { list[this.state.page] }
-            <Grid>
-              <Row>
-                <Col sm={6} md={6} lg={6} >
-                  <Arrows
-                    direction="left"
-                    clickFunction={ this.previousSlide( pages ) }
-                    glyph="arrow-left"
-                  />
-                </Col>
-                <Col sm={6} md={6}lg={6} >
-                  <Arrows
-                     direction="right"
-                     clickFunction={ this.nextSlide( pages ) }
-                     glyph="arrow-right"
-                   />
-                 </Col>
-               </Row>
-               <Row>
-                 <Col sm={12}md={12} lg={12} align='bottom'>
-                   <Button
-                    onClick= {()=>{
-                      const sentences = []
-
-                      for( let i= 0 ; i < lifeDescriptors.length; i++ ){
-                        if( this.state.selections[i] ){
-                          let sentence = this.buildingCongruentSentence( lifeDescriptors[i], this.state.selections[i] )
-                          sentences.push( sentence )
-
-                        }
-                      }
-                      onPersistCB( userId,sentences )
-                      onCloseModalCB()
-                   }}>Close</Button>
-                 </Col>
-               </Row>
-              </Grid>
-            </>
-          )}
-        </>
-      )
-    }
->>>>>>> dd6fd3198bc1bc3c545d4ca49dfc896ec040d4bb
   }
 }
+
 
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
 // Wrap in container to get access to store and dispatch
-<<<<<<< HEAD
 const mapStateToProps = (state, passedProps) => {
   console.log('state', state)
-  const { question, instructions, onCloseModalCB } = passedProps
-=======
-const mapStateToProps = ( state,passedProps ) => {
-  console.log( 'state', state )
-  const {isDynamic, question,instructions,onCloseModalCB} = passedProps
->>>>>>> dd6fd3198bc1bc3c545d4ca49dfc896ec040d4bb
+  const { isDynamic, question, instructions, onCloseModalCB } = passedProps
   return {
     isLoading: state.answersRD.isLoading || state.staticdataRD.isLoading,
     userId: getUser(state.userRD).user_id,
