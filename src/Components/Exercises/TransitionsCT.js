@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import Transitions from '../Components/Transitions'
-import { getUser } from '../store/user/reducer'
-import { getTransitions } from '../store/transitions/reducer'
-import { updateTransitionsAC } from '../store/transitions/actions'
+import Transitions from './Transitions'
+import { getUser } from '../../store/user/reducer'
+import { getTransitions } from '../../store/transitions/reducer'
+import { updateTransitionsAC } from '../../store/transitions/actions'
 
 /* *****************************************
    mapStateToProps()

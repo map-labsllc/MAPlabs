@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
-import Narrative from '../Components/Narrative'
-import { getUser } from '../store/user/reducer'
-import { getAnswers } from '../store/answers/reducer'
+import Narrative from './Narrative'
+import { getUser } from '../../store/user/reducer'
+import { getAnswers } from '../../store/answers/reducer'
 import {
   updateAnswersAC,
-  persistAnswersAC } from '../store/answers/actions'
+  persistAnswersAC } from '../../store/answers/actions'
 
 /* *****************************************
    mapStateToProps()
