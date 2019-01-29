@@ -20,6 +20,8 @@ import {
    props:
      id -- integer id for the question (poorman's UUID)
      previousAnswer -- string of previous answer
+     isDynamic -- undefined or true
+                  rendering static version in Popup or dynamic verison in Modal
      updateAnswerCB(newAnswer) -- callback for when user moves off on the field
      deleteAnswerCB -- callback when user clicks the Delete button
 ***************************************************** */
@@ -71,7 +73,13 @@ export default class ShortAnswer extends React.Component {
 
     // initialize
     let { answer, isDirty } = this.state
-    const { id } = this.props
+    const { id, isDynamic } = this.props
+
+    if (!isDynamic) {
+      return (
+        <p>{answer}</p>
+      )
+    }
 
     return (
       <Form inline onSubmit={this.onSubmit}>

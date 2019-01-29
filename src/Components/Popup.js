@@ -72,13 +72,17 @@ export default class Popup extends React.Component {
     //   Allows excercise to tell us that it's done and we should hide the modal
     const exerciseWithOnCloseCB = React.cloneElement(
       exercise,
-      { onCloseModalCB: this.onCloseModal }
+      { onCloseModalCB: this.onCloseModal,
+        isDynamic: true }
     )
 
     return (
       <>
         {!isVisible && (
-          <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
+          <>
+            {exercise}
+            <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
+          </>
         )}
 
         <ModalX

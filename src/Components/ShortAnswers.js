@@ -26,6 +26,8 @@ import '../CSS/ModalNavButtons.css'
      question -- { code: 50, text: "Question 50" }
      previousAnswers -- [] or array of strings of previous answers
      doesHandlePesistence -- { value: true }
+     isDynamic -- undefined or true
+                  rendering static version in Popup or dynamic verison in Modal
      onUpdateStoreCB(newAnswers) -- callback to update the store
      onPersistCB(newAnswers) -- callback for when user clicks Save, updates store and persists
 ***************************************************** */
@@ -122,18 +124,35 @@ export default class ShortAnswers extends React.Component {
   render() {
     console.log("ShortAnswers::render()")
 
-    const { question, doesHandlePersistence } = this.props
+    const { question, isDynamic, doesHandlePersistence } = this.props
     const { answersWithKeys } = this.state
 
     console.log("answersWithKeys", answersWithKeys);
     console.log("this.props.previousAnswers", this.props.previousAnswers);
     console.log("this.state.answers", this.state.answers);
 
+    if (!isDynamic) {
+      return (
+        <>
+          {answersWithKeys.map((answerWithKey) =>
+              <ShortAnswer
+                key={answerWithKey.key}
+                id={answerWithKey.key}
+                previousAnswer={answerWithKey.text}
+                updateAnswerCB={this.updateAnswer}
+                deleteAnswerCB={this.deleteAnswer}
+                isDynamic={isDynamic}
+              >
+              </ShortAnswer>
+          )}
+        </>
+      )
+    }
 
     return (
       <>
         <p> </p>
-        <h4>--- Question: {question.text} ---</h4>
+        <h4>{question.text}</h4>
         {answersWithKeys.map((answerWithKey) =>
           <ShortAnswer
             key={answerWithKey.key}
@@ -141,6 +160,7 @@ export default class ShortAnswers extends React.Component {
             previousAnswer={answerWithKey.text}
             updateAnswerCB={this.updateAnswer}
             deleteAnswerCB={this.deleteAnswer}
+            isDynamic={isDynamic}
           >
           </ShortAnswer>
         )}

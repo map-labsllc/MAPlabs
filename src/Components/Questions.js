@@ -32,6 +32,8 @@ import '../CSS/ModalNavButtons.css'
      questionType -- enum from constants.js
      questions -- [ { code: 50, text: "question 50" }, { ... }
      RD -- reducer to be passed back up in onPersistQuestionCB()
+     isDynamic -- undefined or true
+                  rendering static version in Popup or dynamic verison in Modal
      onPersistQuestionCB -- call to have parent CT persist a question from Store
      onCloseModalCB -- call to close the modal this control resides in
 ***************************************************** */
@@ -92,11 +94,21 @@ export default class Questions extends React.Component {
   render() {
     console.log("ShortAnswers::render()")
 
-    const { questionType, questions } = this.props
+    const { questionType, questions, isDynamic } = this.props
     const { currIdx } = this.state
 
     console.log('**********************************');
     console.log('questionType: ', questionType)
+
+    if (!isDynamic) {
+      return (
+        <>
+          {questions.map((question, idx) => (
+            <p key={idx}>{question.text}</p>
+          ))}
+        </>
+      )
+    }
 
     // NOTE: The <div key = {idx}> tag is used to suppress React warning about
     //       elements needing a unique key.
@@ -114,6 +126,7 @@ export default class Questions extends React.Component {
               <ShortAnswersCT
                 key={idx}
                 question={question}
+                isDynamic={isDynamic}
                 doesHandlePersistence={{ value: false }}
               />
             )}
@@ -122,9 +135,10 @@ export default class Questions extends React.Component {
               <TransitionsCT
                 key={idx}
                 question={question}
+                isDynamic={isDynamic}
               />
             )}
-            
+
             {/* Change to BracketCT */}
             {(idx === currIdx) && (questionType === QUESTION_TYPE_BRACKET) && (
               /* NOTE: promptQuestionCode was added to a normal question obj when
@@ -133,6 +147,7 @@ export default class Questions extends React.Component {
                 key={idx}
                 promptQuestionCode={question.promptCode}
                 question={question}
+                isDynamic={isDynamic}
               />
 
             )}
@@ -147,11 +162,3 @@ export default class Questions extends React.Component {
     )
   }
 }
-
-// {( idx === currIdx ) && ( questionType === QUESTION_TYPE_TRANSITIONS ) && (
-//   <ShortAnswersCT
-//     key = {idx}
-//     question = {question}
-//     doesHandlePersistence = {{ value: false }}
-//   />
-// )}

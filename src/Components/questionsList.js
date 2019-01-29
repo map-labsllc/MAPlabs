@@ -79,11 +79,10 @@ const NUM_PER_PAGE = 5
       const sentence = first + ( aOrB === 'a' ? lifedescriptor.a : lifedescriptor.b ) + second
       return sentence
 
-
   }
   render(){
 
-    const { lifeDescriptors,isLoading,userId, onPersistCB,onCloseModalCB } = this.props
+    const { isDynamic, lifeDescriptors,isLoading,userId, onPersistCB,onCloseModalCB } = this.props
 
     let pages = this.splittingArray( lifeDescriptors )
     let list = pages.map( ( element, pageNum ) => (
@@ -120,6 +119,27 @@ const NUM_PER_PAGE = 5
 
       )} )
     ) )
+
+      /* *************************************** */
+      if (!isDynamic) {
+        const sentences = []
+        const { lifeDescriptors } = this.props
+        for( let i= 0 ; i < lifeDescriptors.length; i++ ){
+          if( this.state.selections[i] ){
+            let sentence = this.buildingCongruentSentence( lifeDescriptors[i], this.state.selections[i] )
+            sentences.push( sentence )
+          }
+        }
+
+        return (
+          <>
+          {sentences.map((sentence, idx) => (
+            <p key={idx}>{sentence.text}</p>
+          ))}
+          </>
+        )
+      }
+
       return(
         <>
           <p>{( ( isLoading ) ? "loading...." : ""  )}</p>
@@ -177,12 +197,13 @@ const NUM_PER_PAGE = 5
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = ( state,passedProps ) => {
   console.log( 'state', state )
-  const {question,instructions,onCloseModalCB} = passedProps
+  const {isDynamic, question,instructions,onCloseModalCB} = passedProps
   return {
     isLoading: state.answersRD.isLoading || state.staticdataRD.isLoading,
     userId: getUser( state.userRD ).user_id,
     question,
     instructions,
+    isDynamic,
     onCloseModalCB,
     lifeDescriptors: state.staticdataRD.lifeDescriptions,
     persistant_array: state.persistant_array
