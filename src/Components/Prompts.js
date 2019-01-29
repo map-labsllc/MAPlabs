@@ -1,10 +1,5 @@
 import React from 'react'
 import {
-  Button,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
 } from 'react-bootstrap'
 
 /* **************************************************
@@ -15,7 +10,7 @@ import {
    props:
      prompts -- [] or array a short string prompts
 ***************************************************** */
-const Prompts = ( props ) => {
+const Prompts = (props) => {
   const { prompts } = props
   if (!prompts.length) return null
   return (

@@ -1,13 +1,7 @@
 import React from 'react'
-import QuestionsCT from '../Containers/QuestionsCT'
+//import QuestionsCT from '../Containers/QuestionsCT'
 import {
-  Button,
-  Checkbox,
-  Col,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
+
   Modal,
 } from 'react-bootstrap'
 

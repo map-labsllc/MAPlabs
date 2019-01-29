@@ -1,11 +1,6 @@
 import React from 'react';
 import {
   Button,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
-  Col
 } from 'react-bootstrap';
 import ShortAnswer from './ShortAnswer'
 import '../CSS/ModalNavButtons.css'
@@ -137,15 +132,15 @@ export default class ShortAnswers extends React.Component {
       return (
         <>
           {answersWithKeys.map((answerWithKey) =>
-              <ShortAnswer
-                key={answerWithKey.key}
-                id={answerWithKey.key}
-                previousAnswer={answerWithKey.text}
-                updateAnswerCB={this.updateAnswer}
-                deleteAnswerCB={this.deleteAnswer}
-                isDynamic={isDynamic}
-              >
-              </ShortAnswer>
+            <ShortAnswer
+              key={answerWithKey.key}
+              id={answerWithKey.key}
+              previousAnswer={answerWithKey.text}
+              updateAnswerCB={this.updateAnswer}
+              deleteAnswerCB={this.deleteAnswer}
+              isDynamic={isDynamic}
+            >
+            </ShortAnswer>
           )}
         </>
       )

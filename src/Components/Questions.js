@@ -2,10 +2,6 @@ import React from 'react'
 
 import {
   Button,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
 } from 'react-bootstrap';
 import ShortAnswersCT from '../Containers/ShortAnswersCT'
 import TransitionsCT from '../Containers/TransitionsCT'

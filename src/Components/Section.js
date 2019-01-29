@@ -1,13 +1,6 @@
 import React from 'react'
 import PopupCT from '../Containers/PopupCT'
 import {
-  Button,
-  Checkbox,
-  Col,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
   Panel,
 } from 'react-bootstrap'
 import { sectionLoadingAC } from '../store/user/actions'
@@ -40,11 +33,11 @@ export default class Section extends React.Component {
 
     // let the userRD know about this section so it can help move
     //   user to the next moduleNum/sectionNum as they complete sections
-    dispatch( sectionLoadingAC( moduleNum, sectionNum ) )
+    dispatch(sectionLoadingAC(moduleNum, sectionNum))
   }
 
   render() {
-    console.log( "Section::render()" )
+    console.log("Section::render()")
 
     // let { isVisible } = this.state
     let { user, isVisible, moduleNum, sectionNum, sectionTitle, exercise } = this.props
