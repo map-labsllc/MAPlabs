@@ -11,4 +11,5 @@ Bracket.propTypes = {
         code: PropTypes.number.isRequired, 
         text: PropTypes.string.isRequired
     }).isRequired,
+    onUpdateStoreCB: PropTypes.func.isRequired
 }
