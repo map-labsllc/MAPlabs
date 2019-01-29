@@ -20,7 +20,6 @@ import Transition from './Transition'
        new blank entries (it allows us to be in control of the focus).
 
    props:
-     userId -- integer
      question -- { code: 50, text: "Question 50" }
      previousTransitions -- [] or array of strings of previous transitions
      isDynamic -- undefined or true

@@ -62,7 +62,6 @@ export default class ShortAnswers extends React.Component {
 
   state = {
     isDirty: false,
-    answers: this.props.previousAnswers,
     answersWithKeys: this.addKeys(this.props.previousAnswers)
   }
 
