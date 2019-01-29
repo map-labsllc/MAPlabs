@@ -19,6 +19,8 @@ import Transition from './Transition'
      userId -- integer
      question -- { code: 50, text: "Question 50" }
      previousTransitions -- [] or array of strings of previous transitions
+     isDynamic -- undefined or true
+                  rendering static version in Popup or dynamic verison in Modal
      onUpdateStoreCB(newTransitions) -- callback to update the store
 ***************************************************** */
 export default class Transitions extends React.Component {
@@ -102,21 +104,40 @@ export default class Transitions extends React.Component {
   render() {
     console.log("Transitions::render()")
 
-    const { question } = this.props
+    const { question, isDynamic } = this.props
     const { transitionsWithKeys } = this.state
 
     console.log("transitionsWithKeys", transitionsWithKeys)
     console.log("this.props.previousTransitions", this.props.previousTransitions)
 
+    if (!isDynamic) {
+      return (
+        <>
+          {transitionsWithKeys.map((transitionWithKey) =>
+            <Transition
+              key={transitionWithKey.key}
+              id={transitionWithKey.key}
+              previousTransition={transitionWithKey.transition}
+              isDynamic={isDynamic}
+              updateTransitionCB={this.updateTransition}
+              deleteTransitionCB={this.deleteTransition}
+            >
+            </Transition>
+          )}
+        </>
+      )
+    }
+
     return (
       <>
         <p> </p>
-        <h4>--- Question: {question.text} ---</h4>
+        <h4>{question.text}</h4>
         {transitionsWithKeys.map((transitionWithKey) =>
           <Transition
             key={transitionWithKey.key}
             id={transitionWithKey.key}
             previousTransition={transitionWithKey.transition}
+            isDynamic={isDynamic}
             updateTransitionCB={this.updateTransition}
             deleteTransitionCB={this.deleteTransition}
           >

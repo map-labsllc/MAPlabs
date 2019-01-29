@@ -9,6 +9,8 @@ import { updateTransitionsAC } from '../store/transitions/actions'
 
    passedProps:
      question -- { code: 50, text: "question 50" }
+     isDynamic -- undefined or true
+                  rendering static version in Popup or dynamic verison in Modal
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
   console.log( "TransitionsCT::mapStateToProps()" )
@@ -73,8 +75,10 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   /* *****************************************
      The props being passed down
   ******************************************** */
+  const { isDynamic } = passedProps
   return {
     onUpdateStoreCB: onUpdateStore,
+    isDynamic,
   }
 
 }

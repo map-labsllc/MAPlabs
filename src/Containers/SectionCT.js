@@ -14,10 +14,10 @@ const canUserView = ( state, moduleNum, sectionNum ) => {
 
   const user = getUser( state.userRD )
 
-  console.log('----------------------------------------');
-  console.log('----------------------------------------');
-  console.log('----------------------------------------');
-  console.log(`moduleNum: ${moduleNum}, sectionNum: ${sectionNum}, user.curr_module: ${user.curr_module}, user.curr_section: ${user.curr_section}`);
+  // console.log('----------------------------------------');
+  // console.log('----------------------------------------');
+  // console.log('----------------------------------------');
+  // console.log(`moduleNum: ${moduleNum}, sectionNum: ${sectionNum}, user.curr_module: ${user.curr_module}, user.curr_section: ${user.curr_section}`);
 
   if ( moduleNum < user.curr_module ) return true
   if ( user.curr_module < moduleNum ) return false

@@ -32,7 +32,6 @@ export default class ModalX extends React.Component {
       onModalOpeningCB,
       onModalClosingCB } = this.props
 
-
     return (
       <Modal show={isVisible} onHide={onModalClosingCB} bsSize="large">
 

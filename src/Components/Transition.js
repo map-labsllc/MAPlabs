@@ -16,6 +16,8 @@ import {
    props:
      id -- integer id for the question (poorman's UUID)
      previousTransition -- previous transition
+     isDynamic -- undefined or true
+                  rendering static version in Popup or dynamic verison in Modal
      updateTransitionCB(newTransition) -- callback for when user moves off on the field
      deleteTransitionCB -- callback when user clicks the Delete button
 ***************************************************** */
@@ -86,7 +88,13 @@ export default class Transition extends React.Component {
 
     // initialize
     let { transition, isDirty } = this.state
-    const { id } = this.props
+    const { id, isDynamic } = this.props
+
+    if (!isDynamic) {
+      return (
+        <p>{transition.from} -> {transition.to}</p>
+      )
+    }
 
     return (
       <Form inline onSubmit={this.onSubmit}>

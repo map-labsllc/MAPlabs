@@ -7,7 +7,9 @@ import { persistAnswersAC } from '../store/answers/actions'
 import { persistTransitionsAC } from '../store/transitions/actions'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
-  QUESTION_TYPE_TRANSITIONS} from '../constants.js'
+  QUESTION_TYPE_TRANSITIONS,
+  QUESTION_TYPE_BRACKET,
+} from '../constants.js'
 
 /* *****************************************
    mapStateToProps()
@@ -15,6 +17,8 @@ import {
    passedProps:
      questionType -- from constants.js, handle ShortAnswers, Transitions, etx
      questions -- [ { code: 50, text: "question 50" }, { ... }
+     isDynamic -- undefined or true
+                  rendering static version in Popup or dynamic verison in Modal
      onCloseModalCB -- call to close the modal this control resides in
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
@@ -23,6 +27,7 @@ const mapStateToProps = ( state, passedProps ) => {
   const {
     questionType,
     questions,
+    isDynamic,
   } = passedProps
 
   // validation
@@ -39,6 +44,7 @@ const mapStateToProps = ( state, passedProps ) => {
         questionType,
         questions,
         RD: state.answersRD,
+        isDynamic,
       }
     case QUESTION_TYPE_TRANSITIONS:
       return {
@@ -46,6 +52,15 @@ const mapStateToProps = ( state, passedProps ) => {
         questionType,
         questions,
         RD: state.transitionsRD,
+        isDynamic,
+      }
+    case QUESTION_TYPE_BRACKET:
+      return {
+        userId,
+        questionType,
+        questions,
+        RD: state.answersRD,
+        isDynamic,
       }
     default:
       throw new Error( 'ERROR unkown QUESTION_TYPE' )
@@ -85,15 +100,12 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
     switch ( questionType ) {
       case QUESTION_TYPE_SHORT_ANSWERS:
-        console.log('======= *** ======');
-        console.log("RD:", RD);
+      case QUESTION_TYPE_BRACKET:
         const answers = getAnswers( RD, question.code )
         dispatch( persistAnswersAC( userId, question.code, answers ) )
         return
 
       case QUESTION_TYPE_TRANSITIONS:
-        console.log('======= *** ======');
-        console.log("RD:", RD);
         const transitions = getTransitions( RD, question.code )
         dispatch( persistTransitionsAC( userId, question.code, transitions ) )
         return

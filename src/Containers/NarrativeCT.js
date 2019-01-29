@@ -14,12 +14,13 @@ import {
       use as prompts for this Narrative.  questionCode must be a quesiton in answerRD.
     question -- { code: 50, text: "question 50" }
     instructions -- string with instructions, can be an empty string for no instructions
+    isDynamic -- undefined or true
+                 rendering static version in Popup or dynamic verison in Modal
     onCloseModalCB -- call to close the modal
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
   console.log( "NarrativeCT::mapStateToProps()" )
-
-  const { promptQuestionCode, question, instructions, onCloseModalCB } = passedProps
+  const { promptQuestionCode, question, instructions, isDynamic, onCloseModalCB } = passedProps
   if ( !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
   // get userId
@@ -46,6 +47,7 @@ const mapStateToProps = ( state, passedProps ) => {
     prompts,
     instructions,
     previousAnswer,
+    isDynamic,
     onCloseModalCB,
   }
 }

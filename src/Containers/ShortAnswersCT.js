@@ -11,6 +11,8 @@ import {
 
    passedProps:
      question -- { code: 50, text: "question 50" }
+     isDynamic -- undefined or true
+                  rendering static version in Popup or dynamic verison in Modal
      doesHandlePersistence -- { value: true } // will this container persist data or not
 ******************************************** */
 const mapStateToProps = (state, passedProps) => {
@@ -18,6 +20,7 @@ const mapStateToProps = (state, passedProps) => {
 
   const {
     question,
+    isDynamic,
     doesHandlePersistence
   } = passedProps
 
@@ -36,6 +39,7 @@ const mapStateToProps = (state, passedProps) => {
     userId,
     question,
     previousAnswers,
+    isDynamic,
     doesHandlePersistence,
   }
 }
