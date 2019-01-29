@@ -1,7 +1,7 @@
 import React from 'react'
-import SplashPage from './Components/SplashPage'
-import Login from './Components/login'
-import SignUp from './Components/SignUp'
+import SplashPage from './Startup/SplashPage'
+import Login from './Components/Startup/login'
+import SignUp from './Components/Startup/SignUp'
 import ModulesPage from './Components/modulesPage'
 import TestModule from './Components/TestModule'
 
