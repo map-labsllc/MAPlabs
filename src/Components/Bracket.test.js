@@ -44,8 +44,10 @@ describe('<Bracket />', () => {
                                 prompts={props.prompts} 
                                 question={props.question}/>)).to.throw('Warning: Failed prop type: The prop `onUpdateStoreCB` is marked as required')
     })
-    it('renders all prompts',  () => {
+    it('renders two prompts at a time in an element with prompts class',  () => {
         const wrapper = shallow(<Bracket {...props}/>)
-        wrapper.find.to.equal(props.prompts.length)
+        expect(wrapper.find('.prompts').children()).to.have.lengthOf(2)
     })
+    //it handles clicks on prompts and renders a new prompt in the place of the one that was not clicked
+    //
 })
