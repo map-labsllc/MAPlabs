@@ -2,12 +2,6 @@ import React from 'react'
 import ModalX from './ModalX'
 import {
   Button,
-  Checkbox,
-  Col,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
 } from 'react-bootstrap'
 import '../CSS/Section.css'
 import { sectionCompletedAC } from '../store/user/actions'
@@ -33,37 +27,37 @@ export default class Popup extends React.Component {
   // **************************************************
   // Show the complex interactive component
   onclickStart = () => {
-    console.log( "Popup::onclickStart()" )
-    this.setState( { isVisible: true } )
+    console.log("Popup::onclickStart()")
+    this.setState({ isVisible: true })
   }
 
   // **************************************************
   // CB from the <exercise> when its close/save button is clicked
   onCloseModal = () => {
-    console.log( "Popup::onCloseModal()" )
+    console.log("Popup::onCloseModal()")
 
     const { dispatch, user, moduleNum, sectionNum } = this.props
-    dispatch( sectionCompletedAC( user, moduleNum, sectionNum ) )
+    dispatch(sectionCompletedAC(user, moduleNum, sectionNum))
 
-    this.setState( { isVisible: false } )
+    this.setState({ isVisible: false })
   }
 
   // **************************************************
   // CB from <Modal>
   onModalClosing = () => {
-    console.log( "Popup::onModalClosing()" )
+    console.log("Popup::onModalClosing()")
     // this.setState( { isVisible: false } )
   }
   // **************************************************
   // CB from <Modal>
   onModalOpening = () => {
-    console.log( "Popup::onModalOpening()" )
+    console.log("Popup::onModalOpening()")
   }
 
   // **************************************************
   // render!
   render() {
-    console.log( "Popup::render()" )
+    console.log("Popup::render()")
 
     let { isVisible } = this.state
     let { sectionTitle, exercise } = this.props

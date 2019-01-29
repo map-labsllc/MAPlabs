@@ -1,13 +1,6 @@
 import React from 'react';
-import Section from '../Components/Section'
+
 import {
-  Button,
-  Checkbox,
-  Col,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
 } from 'react-bootstrap';
 
 /* **************************************************
@@ -54,7 +47,7 @@ const style = {
   top: {
     marginTop: "5%",
     marginLeft: "auto",
-    marginRight: "auto"
+    marginRight: "auto",
   }
 }
 

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { ListGroup, Button, Grid, Row, Col } from 'react-bootstrap'
+//import { bindActionCreators } from 'redux'
+import { Button } from 'react-bootstrap'
 import LifeDescriptor from './lifeDescriptor'
 import Arrows from './Arrows'
 import { getUser } from '../store/user/reducer'
-import { loadAllAnswersAC } from '../store/answers/actions'
-import { getAnswers } from '../store/answers/reducer'
+//import { loadAllAnswersAC } from '../store/answers/actions'
+//import { getAnswers } from '../store/answers/reducer'
 import {
   updateAnswersAC,
   persistAnswersAC
