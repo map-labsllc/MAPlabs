@@ -49,7 +49,8 @@ const style = {
     button: {
         borderColor: "black",
         backgroundColor: "#2E9CCA",
-        color: "white"
+        color: "white",
+        opacity: "0.75"
     },
     background: {
         backgroundImage: 'url("https://wallpapercave.com/wp/wp2632153.jpg")',
