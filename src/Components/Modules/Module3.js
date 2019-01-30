@@ -15,6 +15,7 @@ import {
   QUESTION_TYPE_TRANSITIONS,
   QUESTION_TYPE_BRACKET,
 } from '../../constants.js'
+import MODULE_3_INTRODUCTION from './Module3Introduction'
 
 import {
   Button,
@@ -80,7 +81,7 @@ class Module3 extends React.Component {
             <Module
               moduleNum = { 3 }
               moduleTitle = "Personal Desires"
-              moduleDescription = "Desire plays an important role in well-being. In Module 3 we will focus on differentiating between inauthentic desires, which we appropriate from the influences and distractions around us, and our authentic ones, which we source from our deepest selves. "
+              moduleDescription = { MODULE_3_INTRODUCTION }
             >
               <SectionCT
                 moduleNum = { 3 }

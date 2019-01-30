@@ -129,7 +129,7 @@ class Module1 extends React.Component {
             <Module
               moduleNum = { 1 }
               moduleTitle = "Your Meanings and Motivations "
-              moduleDescription = {MODULE_1_INTRODUCTION}
+              moduleDescription = { MODULE_1_INTRODUCTION }
             >
               <SectionCT
                 moduleNum = { 1 }
