@@ -31,7 +31,7 @@ const mapStateToProps = ( state, passedProps ) => {
   if ( promptQuestionCode ) {
     prompts = getAnswers( state.answersRD, promptQuestionCode )
   }
-  console.log("Prompts for narrative: ", prompts);
+  // console.log("Prompts for narrative: ", prompts);
 
   // find previous answer, if any
   //   Note: getAnswers() returns an array but narrative should have at most one answer
