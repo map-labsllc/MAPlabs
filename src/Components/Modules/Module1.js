@@ -13,7 +13,17 @@ import { getUser } from '../../store/user/reducer'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS} from '../../constants.js'
-import MODULE_1_INTRODUCTION from './Module1Introduction'
+
+import {
+  MOD_1_DESC,
+  QUES_110_DESC,
+  QUES_120_DESC,
+  QUES_130_DESC,
+  QUES_140_DESC,
+  QUES_150_DESC,
+  QUES_160_DESC,
+  QUES_170_DESC,
+ } from './Module1Text'
 
 import {
   Button,
@@ -43,7 +53,7 @@ class Module1 extends React.Component {
   // 2F
   exercise_120 = (
     <NarrativeCT
-      question = { { code: 120, text: "Current Situation Descriptor" } }
+      question = { { code: 120, text: "Describe your current situation" } }
       promptQuestionCode = { 110 }
       instructions = "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your current state of mind, state of being, and general assessment of your current condition today as you begin MAPmaker."
     /> )
@@ -53,7 +63,7 @@ class Module1 extends React.Component {
   // 3B-D
   exercise_130 = (
     <QuestionsList
-      question = { { code: 130, text: "Imagine your Future Desired Situation" } }
+      question = { { code: 130, text: "Imagine your future desired situation" } }
       instructions = "Complete sentences that are important to you."
     /> )
 
@@ -62,7 +72,7 @@ class Module1 extends React.Component {
   // 3E
   exercise_140 = (
     <NarrativeCT
-      question = { { code: 140, text: "Future Desired Situation Description" } }
+      question = { { code: 140, text: "Describe your future situation" } }
       promptQuestionCode = { 130 }
       instructions = "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your future desired state of being as you begin MAPmaker. Create this description in your own image capturing how you want to feel, what you will think of your future situation, what will be good and bad, and how you would describe your future self to your current self. "
     /> )
@@ -71,12 +81,12 @@ class Module1 extends React.Component {
   // -------------------------
   // 4A
   questions_150 = [
-    { code: 141, text: "List the most important overarching themes that impact how meaningful and purposeful your life is." },
-    { code: 142, text: "Which core feelings and experiences are most important to providing you with personal senses of the meaning in your life?" },
-    { code: 143, text: "Name some things beyond yourself that you could serve if you lived with more of your core feelings and experiences" },
-    { code: 144, text: "List the areas of personal growth that will enable your life to be more filled with the core feelings and experiences you desire" },
-    { code: 145, text: "List which relationships that you either currently have or need to develop in the future (to any influence, such as people, groups, practices, experiences, etc.) are most important to supporting your life being lived with more of your core feelings and experiences" },
-    { code: 146, text: "List any areas of engagement or mastery (either in your life’s work or avocationally) that would provide you with more of your core feelings and experiences" },
+    { code: 151, text: "List the most important overarching themes that impact how meaningful and purposeful your life is." },
+    { code: 152, text: "Which core feelings and experiences are most important to providing you with personal senses of the meaning in your life?" },
+    { code: 153, text: "Name some things beyond yourself that you could serve if you lived with more of your core feelings and experiences" },
+    { code: 154, text: "List the areas of personal growth that will enable your life to be more filled with the core feelings and experiences you desire" },
+    { code: 155, text: "List which relationships that you either currently have or need to develop in the future (to any influence, such as people, groups, practices, experiences, etc.) are most important to supporting your life being lived with more of your core feelings and experiences" },
+    { code: 156, text: "List any areas of engagement or mastery (either in your life’s work or avocationally) that would provide you with more of your core feelings and experiences" },
   ]
   exercise_150 = (
     <QuestionsCT
@@ -88,10 +98,10 @@ class Module1 extends React.Component {
   // -------------------------
   // 4B
   questions_160 = [
-    { code: 151, text: "Thoughts/Attitudes" },
-    { code: 152, text: "Behaviors/Actions" },
-    { code: 153, text: "Goals" },
-    { code: 154, text: "Commitments" },
+    { code: 161, text: "Thoughts/Attitudes" },
+    { code: 162, text: "Behaviors/Actions" },
+    { code: 163, text: "Goals" },
+    { code: 164, text: "Commitments" },
   ]
   exercise_160 = (
     <QuestionsCT
@@ -103,11 +113,11 @@ class Module1 extends React.Component {
   // -------------------------
   // 5A
   questions_170 = [
-    { code: 161, text: "What changes would you like to see in your everyday life?" },
-    { code: 162, text: "What changes would you like to see in your personal growth?" },
-    { code: 163, text: "What changes would you like to see in your relationships?" },
-    { code: 164, text: "What changes would you like to see in your life’s work (your vocation)?" },
-    { code: 165, text: "What changes would you like to see in your avocational pursuits?" },
+    { code: 171, text: "What changes would you like to see in your everyday life?" },
+    { code: 172, text: "What changes would you like to see in your personal growth?" },
+    { code: 173, text: "What changes would you like to see in your relationships?" },
+    { code: 174, text: "What changes would you like to see in your life’s work (your vocation)?" },
+    { code: 175, text: "What changes would you like to see in your avocational pursuits?" },
   ]
   exercise_170 = (
     <QuestionsCT
@@ -129,7 +139,7 @@ class Module1 extends React.Component {
             <Module
               moduleNum = { 1 }
               moduleTitle = "Your Meanings and Motivations "
-              moduleDescription = { MODULE_1_INTRODUCTION }
+              moduleDescription = { MOD_1_DESC }
             >
               <SectionCT
                 moduleNum = { 1 }
@@ -140,25 +150,25 @@ class Module1 extends React.Component {
               <SectionCT
                 moduleNum = { 1 }
                 sectionNum = { 120 }
-                sectionTitle = "Current Situation Descriptor"
+                sectionTitle = "Describe your current situation"
                 exercise = {this.exercise_120}
               />
               <SectionCT
                 moduleNum = { 1 }
                 sectionNum = { 130 }
-                sectionTitle = "Imagine your Future Desired Situation"
+                sectionTitle = "Imagine your future desired situation"
                 exercise = {this.exercise_130}
               />
               <SectionCT
                 moduleNum = { 1 }
                 sectionNum = { 140 }
-                sectionTitle = "Future Desired Situation Description"
+                sectionTitle = "Describe your future situation"
                 exercise = {this.exercise_140}
               />
               <SectionCT
                 moduleNum = { 1 }
                 sectionNum = { 150 }
-                sectionTitle = "Compare your “current situation” statement to your “future desired situation” statement"
+                sectionTitle = "Compare your 'current situation' statement to your 'future desired situation' statement"
                 exercise = {this.exercise_150}
               />
               <SectionCT
