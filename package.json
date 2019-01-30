@@ -36,8 +36,12 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-enzyme": "^1.0.0-beta.1",
     "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.8.0",
     "fetch-mock": "^7.3.0",
-    "redux-mock-store": "^1.5.3"
+    "redux-mock-store": "^1.5.3",
+    "sinon": "^7.2.3"
   }
 }
