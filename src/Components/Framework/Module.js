@@ -1,5 +1,6 @@
 import React from 'react';
 import Section from './Section'
+import ShowMoreLess from '../Utils/ShowMoreLess'
 import {
   Button,
   Checkbox,
@@ -33,8 +34,17 @@ export default class Module extends React.Component {
         <Col lg={3} md={2}></Col>
         <Col lg={6} md={8} sm={12}></Col>
         <div className="text-center">
+          <p>...... spacer ......</p>
+          <p>...... spacer ......</p>
           <h3>{moduleTitle}</h3>
-          <p>{moduleDescription}</p>
+          <p>...... spacer ......</p>
+          <p>...... spacer ......</p>
+          <ShowMoreLess
+            lines={5}
+          >
+            <span dangerouslySetInnerHTML={ { __html: moduleDescription } } />
+          </ShowMoreLess>
+          <p>...... spacer ......</p>
         </div>
         <div className="centering">
           {children}
@@ -42,6 +52,7 @@ export default class Module extends React.Component {
         <Col lg={3} md={2}></Col>
       </>
     )
+    // {moduleDescription}
   }
 }
 
