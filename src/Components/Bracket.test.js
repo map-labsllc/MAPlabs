@@ -19,7 +19,7 @@ const props = {
         code: Math.floor( Math.random() * 100 ),
         text: 'How do you feel?'
     },
-    onUpdateStoreCB: () => {}
+    onUpdateStoreCB: sinon.spy()
 }
 
 describe( '<Bracket />', () => {
@@ -90,5 +90,13 @@ describe( '<Bracket />', () => {
         expect( wrapper.find( '.prompts' ).childAt( 0 ).text() ).to.equal( props.prompts[1] )
         //expect second child is third prompt
         expect( wrapper.find( '.prompts' ).childAt( 1 ).text() ).to.equal( props.prompts[2] )
+    } )
+    it( 'invokes onUpdateStoreCB with the clicked propmpt when prompts length is two and a prompt is clicked',  () => {
+        const wrapper = shallow( <Bracket {...props} prompts={props.prompts.slice( 1 )}/> )
+        
+        wrapper.find( '.prompts' ).childAt( 0 ).simulate( "click", {} )
+        
+        expect( props.onUpdateStoreCB.callCount ).to.equal( 1 )
+        expect( props.onUpdateStoreCB.calledWith( props.prompts[1] ) ).to.be.true
     } )
 } )

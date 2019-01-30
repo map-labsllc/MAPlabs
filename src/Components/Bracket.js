@@ -15,7 +15,7 @@ export default class Bracket extends React.Component {
 
     promptClick = index => e => {
         if ( this.state.prompts.length === 2 ) {
-            return this.updateStore( this.state.prompts[index] )
+            return this.updateStore( this.state.prompts[index === 1 ? 0 : 1] )
         }
 
         const newPrompts = this.state.prompts.slice()
