@@ -26,8 +26,6 @@ import {
 ***************************************************** */
 class Module3 extends React.Component {
 
-
-
   // Define questions and excercises for Module 3
   // ---------------------------------------------------------------------
 

@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import Transitions from './Transitions'
-import { getUser } from '../../store/user/reducer'
 import { getTransitions } from '../../store/transitions/reducer'
 import { updateTransitionsAC } from '../../store/transitions/actions'
 
@@ -22,19 +21,14 @@ const mapStateToProps = ( state, passedProps ) => {
   // validation
   if ( !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
-  // get userId
-  const userId = getUser( state.userRD ).user_id
-
   // get previous transitions, if any
   const transitions = getTransitions( state.transitionsRD, question.code )
   console.log( `getTransitions(${question.code}): `, transitions )
   const previousTransitions = transitions
 
-  console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-  console.log('>>>>>>>>>>>>> TransitionsCT::previousTransitions: ', previousTransitions);
+  console.log('TransitionsCT::previousTransitions: ', previousTransitions);
 
   return {
-    userId,
     question,
     previousTransitions,
   }
