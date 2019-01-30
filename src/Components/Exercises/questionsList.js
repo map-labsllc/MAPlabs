@@ -125,9 +125,15 @@ class QuestionsList extends Component {
     // Static version of the exercise
     // ------------------------------
     if (!isDynamic) {
-      const { description } = this.props
+      const { previousAnswers } = this.props
       return (
-        <p>Need to show persisted values</p>
+        <>
+          <p>Previus answers:</p>
+          {previousAnswers.map((previousAnswer, idx) =>
+            <p key={idx}>- {previousAnswer}</p>
+          )}
+          <p>.</p>
+        </>
       )
 
       // const sentences = []
@@ -146,7 +152,7 @@ class QuestionsList extends Component {
       //     ))}
       //   </>
       // )
-      
+
     }
 
     // Dynamic ersion of the exercise
@@ -201,6 +207,12 @@ class QuestionsList extends Component {
 const mapStateToProps = ( state, passedProps ) => {
   console.log( 'state', state )
   const { isDynamic, description, question, instructions, onCloseModalCB } = passedProps
+
+  // find previous answers, if any, to display when static
+  let previousAnswers = []
+  if (!isDynamic)
+    previousAnswers = getAnswers( state.answersRD, question.code )
+
   return {
     isLoading: state.answersRD.isLoading || state.staticdataRD.isLoading,
     userId: getUser( state.userRD ).user_id,
@@ -208,6 +220,7 @@ const mapStateToProps = ( state, passedProps ) => {
     question,
     instructions,
     isDynamic,
+    previousAnswers,
     onCloseModalCB,
     lifeDescriptors: state.staticdataRD.lifeDescriptions,
     persistant_array: state.persistant_array
