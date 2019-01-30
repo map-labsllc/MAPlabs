@@ -70,15 +70,22 @@ export default class Popup extends React.Component {
     let { sectionTitle, exercise } = this.props
 
     // Link the <exersise> to this instance of the Popup Component.
-    //   Allows excercise to tell us that it's done and we should hide the modal
-    const exerciseWithOnCloseCB = React.cloneElement(
+    //   - onCloseModalCB() is called when exercise completes to tell us to close ModalX
+    //   - isDynamic flag directs exercise to go live and take user input.  This flag
+    //       doesn't exist (is undefined) in <exercise>.
+    const exerciseDynamic = React.cloneElement(
       exercise,
       { onCloseModalCB: this.onCloseModal,
         isDynamic: true }
     )
 
+    // By default <exercise> does not have the isDynamic prop and will
+    //   render itself in a static format for display in <Popup>.
+    //   The assignment below is only to emphasize this fact.
+    const exerciseStatic = exercise
+
     // get the exercise's descrition
-    const { description } = exercise.props
+    const { description } = exerciseStatic.props
 
     return (
       <>
@@ -90,14 +97,14 @@ export default class Popup extends React.Component {
             <p>.</p>
             <p>xx seperator between description and the static exercise xxxx</p>
             <p>.</p>
-            {exercise}
+            {exerciseStatic}
             <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
           </>
         )}
 
         <ModalX
           sectionTitle={sectionTitle}
-          exercise={exerciseWithOnCloseCB}
+          exercise={exerciseDynamic}
           isVisible={this.state.isVisible}
           onModalOpeningCB={this.onModalOpening}
           onModalClosingCB={this.onModalClosing}
