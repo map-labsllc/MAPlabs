@@ -28,8 +28,8 @@ export default class ModalX extends React.Component {
   // **************************************************
   // render!
   render() {
-    console.log( "Modal::render()" )
-    console.log( "props: ", this.props )
+    console.log("Modal::render()")
+    console.log("props: ", this.props)
 
     const {
       sectionTitle,
@@ -39,7 +39,7 @@ export default class ModalX extends React.Component {
       onModalClosingCB } = this.props
 
     return (
-      <Modal show={isVisible} onHide={onModalClosingCB}>
+      <Modal show={isVisible} onHide={onModalClosingCB} bsSize="large">
 
         <Modal.Header style={style.header} >
           <Modal.Title style={style.header}>{sectionTitle}</Modal.Title>
