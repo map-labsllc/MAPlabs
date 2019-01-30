@@ -48,6 +48,7 @@ describe( '<Bracket />', () => {
     it( 'renders question.text in a p with id question.code',  () => {
         const wrapper = shallow( <Bracket {...props}/> )
         expect( wrapper.find( 'p#question' + props.question.code ) ).to.have.lengthOf( 1 )
+        expect( wrapper.find( 'p#question' + props.question.code ).text() ).to.equal( props.question.text )   
     } )
     it( 'renders two children in a p with prompts class',  () => {
         const wrapper = shallow( <Bracket {...props}/> )
@@ -61,16 +62,16 @@ describe( '<Bracket />', () => {
         const secondChild = prompts.childAt( 1 )
 
         //check initial values of children
-        expect( firstChild ).to.have.value( props.prompts[0] )
-        expect( secondChild ).to.have.value( props.prompts[1] )
+        expect( firstChild.text() ).to.equal( props.prompts[0] )
+        expect( secondChild.text() ).to.equal( props.prompts[1] )
         
         //click first child 
         firstChild.simulate( "click", {} )
 
         //expect first child is still first child 
-        expect( wrapper.find( '.prompts' ).childAt( 0 ) ).to.have.value( props.prompts[0] )
+        expect( wrapper.find( '.prompts' ).childAt( 0 ).text() ).to.equal( props.prompts[0] )
         //expect second child third prompt
-        expect( wrapper.find( '.prompts' ).childAt( 1 ) ).to.have.value( props.prompts[2] )
+        expect( wrapper.find( '.prompts' ).childAt( 1 ).text() ).to.equal( props.prompts[2] )
     } )
     it( 'handles click on second prompt and re-renders with second prompt in place of first, and new prompt in place of second',  () => {
         const wrapper = shallow( <Bracket {...props}/> )
@@ -80,14 +81,14 @@ describe( '<Bracket />', () => {
         const secondChild = prompts.childAt( 1 )
 
         //check initial values of children
-        expect( firstChild ).to.have.value( props.prompts[0] )
-        expect( secondChild ).to.have.value( props.prompts[1] )
+        expect( firstChild.text() ).to.equal( props.prompts[0] )
+        expect( secondChild.text() ).to.equal( props.prompts[1] )
         
         secondChild.simulate( "click", {} )
 
         //expect first child is prior second child
-        expect( wrapper.find( '.prompts' ).childAt( 0 ) ).to.have.value( props.prompts[1] )
+        expect( wrapper.find( '.prompts' ).childAt( 0 ).text() ).to.equal( props.prompts[1] )
         //expect second child is third prompt
-        expect( wrapper.find( '.prompts' ).childAt( 1 ) ).to.have.value( props.prompts[2] )
+        expect( wrapper.find( '.prompts' ).childAt( 1 ).text() ).to.equal( props.prompts[2] )
     } )
 } )

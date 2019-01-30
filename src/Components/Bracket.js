@@ -36,11 +36,11 @@ export default class Bracket extends React.Component {
                     <span
                         id='prompt1' 
                         onClick={this.promptClick( 1 )}
-                        value={this.state.prompts[0]}>{this.state.prompts[0]}</span>
+                        >{this.state.prompts[0]}</span>
                     <span 
                         id='prompt2'
                         onClick={this.promptClick( 0 )}
-                        value={this.state.prompts[1]}>{this.state.prompts[1]}</span>
+                        >{this.state.prompts[1]}</span>
                 </p>
             </div>
         )
