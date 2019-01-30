@@ -9,6 +9,7 @@ import {
   FormControl,
   FormGroup,
 } from 'react-bootstrap'
+import ShowMoreLess from '../Utils/ShowMoreLess'
 import '../../CSS/Section.css'
 import { sectionCompletedAC } from '../../store/user/actions'
 
@@ -76,10 +77,19 @@ export default class Popup extends React.Component {
         isDynamic: true }
     )
 
+    // get the exercise's descrition
+    const { description } = exercise.props
+
     return (
       <>
         {!isVisible && (
           <>
+            <ShowMoreLess lines={ 3 } >
+              <span dangerouslySetInnerHTML={ { __html: description } } />
+            </ShowMoreLess>
+            <p>.</p>
+            <p>xx seperator between description and the static exercise xxxx</p>
+            <p>.</p>
             {exercise}
             <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
           </>
