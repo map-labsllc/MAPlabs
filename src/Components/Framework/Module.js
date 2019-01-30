@@ -33,13 +33,57 @@ export default class Module extends React.Component {
       <>
         <div style={style.top} >
           <h2 className="text-center">{moduleTitle}</h2>
-          <p style={style.descript}>{moduleDescription}</p>
+          {/*<p style={style.descript}>{moduleDescription}</p>*/}
+          <div style={style.descript}>
+            <ShowMoreLess
+              lines={5}
+            >
+              <span dangerouslySetInnerHTML={ { __html: moduleDescription } } />
+            </ShowMoreLess>
+          </div>
+
         </div>
         <div className="centering">
           {children}
         </div>
       </>
     )
+
+
+        // return (
+        //   <>
+        //     <Col lg={3} md={2}></Col>
+        //     <Col lg={6} md={8} sm={12}></Col>
+        //     <div className="text-center">
+        //       <p>...... spacer ......</p>
+        //       <p>...... spacer ......</p>
+        //       <h3>{moduleTitle}</h3>
+        //       <p>...... spacer ......</p>
+        //       <p>...... spacer ......</p>
+        //       <ShowMoreLess
+        //         lines={5}
+        //       >
+        //         <span dangerouslySetInnerHTML={ { __html: moduleDescription } } />
+        //       </ShowMoreLess>
+        //       <p>...... spacer ......</p>
+        //     </div>
+        //     <div className="centering">
+        //       {children}
+        //     </div>
+        //     <Col lg={3} md={2}></Col>
+        //   </>
+        // )
+    // return (
+    //   <>
+    //     <div style={style.top} >
+    //       <h2 className="text-center">{moduleTitle}</h2>
+    //       <p style={style.descript}>{moduleDescription}</p>
+    //     </div>
+    //     <div className="centering">
+    //       {children}
+    //     </div>
+    //   </>
+    // )
     // {moduleDescription}
   }
 }
