@@ -60,7 +60,7 @@ describe('<Bracket />', () => {
         const firstChild = prompts.childAt(0)
         const secondChild = prompts.childAt(1)
 
-        //check expected values of children
+        //check initial values of children
         expect(firstChild).to.have.value(props.prompts[0])
         expect(secondChild).to.have.value(props.prompts[1])
         
@@ -79,11 +79,10 @@ describe('<Bracket />', () => {
         const firstChild = prompts.childAt(0)
         const secondChild = prompts.childAt(1)
 
-        //check expected values of children
+        //check initial values of children
         expect(firstChild).to.have.value(props.prompts[0])
         expect(secondChild).to.have.value(props.prompts[1])
         
-        //click first child 
         secondChild.simulate("click", {})
 
         //expect first child is prior second child
