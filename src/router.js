@@ -11,16 +11,16 @@ import SignUp from './Components/Startup/SignUp'
 
 export default class RouterComponent extends React.Component {
   render() {
-      return (
-        <Switch>
-          <Route exact path='/' component={ SplashPage }/>
-          <Route exact path='/startpage' component={ StartPage }/>
-          <Route exact path ='/login' component = { Login }/>
-          <Route exact path ='/modules/1' component = { Module1 }/>
-          <Route exact path ='/modules/2' component = { Module2 }/>
-          <Route exact path ='/modules/3' component = { Module3 }/>
-          <Route exact path ='/signup' component = { SignUp }/>
-        </Switch>
-      )
-    }
+    return (
+      <Switch>
+        <Route exact path='/' component={ SplashPage }/>
+        <Route exact path='/startpage' component={ StartPage }/>
+        <Route exact path ='/login' component = { Login }/>
+        <Route exact path ='/modules/1' component = { Module1 }/>
+        <Route exact path ='/modules/2' component = { Module2 }/>
+        <Route exact path ='/modules/3' component = { Module3 }/>
+        <Route exact path ='/signup' component = { SignUp }/>
+      </Switch>
+    )
   }
+}
