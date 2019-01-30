@@ -45,6 +45,7 @@ class Module1 extends React.Component {
   exercise_110 = (
     <QuestionsList
       question = { { code: 110, text: "Reflect on your current situation" } }
+      description = { QUES_110_DESC }
       instructions = "Complete sentences that are important to you."
     /> )
 

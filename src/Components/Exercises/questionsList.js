@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ListGroup, Button, Grid, Row, Col } from 'react-bootstrap'
+import ShowMoreLess from '../Utils/ShowMoreLess'
 import LifeDescriptor from './lifeDescriptor'
 import Arrows from './Arrows'
 import { getUser } from '../../store/user/reducer'
@@ -121,26 +122,37 @@ class QuestionsList extends Component {
       })
     ))
 
-    /* *************************************** */
+    // Static version of the exercise
+    // ------------------------------
     if (!isDynamic) {
-      const sentences = []
-      const { lifeDescriptors } = this.props
-      for (let i = 0; i < lifeDescriptors.length; i++) {
-        if (this.state.selections[i]) {
-          let sentence = this.buildingCongruentSentence(lifeDescriptors[i], this.state.selections[i])
-          sentences.push(sentence)
-        }
-      }
-
+      const { description } = this.props
       return (
-        <>
-          {sentences.map((sentence, idx) => (
-            <p key={idx}>{sentence.text}</p>
-          ))}
-        </>
+        <ShowMoreLess
+          lines={ 3 }
+        >
+          <span dangerouslySetInnerHTML={ { __html: description } } />
+        </ShowMoreLess>
       )
+      // const sentences = []
+      // const { lifeDescriptors } = this.props
+      // for (let i = 0; i < lifeDescriptors.length; i++) {
+      //   if (this.state.selections[i]) {
+      //     let sentence = this.buildingCongruentSentence(lifeDescriptors[i], this.state.selections[i])
+      //     sentences.push(sentence)
+      //   }
+      // }
+      //
+      // return (
+      //   <>
+      //     {sentences.map((sentence, idx) => (
+      //       <p key={idx}>{sentence.text}</p>
+      //     ))}
+      //   </>
+      // )
     }
 
+    // Dynamic ersion of the exercise
+    // ------------------------------
     return (
       <>
         <p>{((isLoading) ? "loading...." : "")}</p>
@@ -188,12 +200,13 @@ class QuestionsList extends Component {
 ////////////////////////////////////////////////////////////////
 
 // Wrap in container to get access to store and dispatch
-const mapStateToProps = (state, passedProps) => {
-  console.log('state', state)
-  const { isDynamic, question, instructions, onCloseModalCB } = passedProps
+const mapStateToProps = ( state, passedProps ) => {
+  console.log( 'state', state )
+  const { isDynamic, description, question, instructions, onCloseModalCB } = passedProps
   return {
     isLoading: state.answersRD.isLoading || state.staticdataRD.isLoading,
-    userId: getUser(state.userRD).user_id,
+    userId: getUser( state.userRD ).user_id,
+    description,
     question,
     instructions,
     isDynamic,
