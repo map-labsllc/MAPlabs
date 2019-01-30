@@ -13,6 +13,7 @@ import { getUser } from '../../store/user/reducer'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS} from '../../constants.js'
+import MODULE_1_INTRODUCTION from './Module1Introduction'
 
 import {
   Button,
@@ -27,7 +28,6 @@ class Module1 extends React.Component {
 
   // Define questions and excercises for Module 1
   // ---------------------------------------------------------------------
-
 
   // -------------------------
   // Replace with Lifedescriptors
@@ -128,8 +128,8 @@ class Module1 extends React.Component {
           <>
             <Module
               moduleNum = { 1 }
-              moduleTitle = "Your Current Status and Future Goals"
-              moduleDescription = "You will gain clarity on the current status of your search for meaning and purpose, and use insights to articulate what you hope to achieve in the future."
+              moduleTitle = "Your Meanings and Motivations "
+              moduleDescription = {MODULE_1_INTRODUCTION}
             >
               <SectionCT
                 moduleNum = { 1 }
