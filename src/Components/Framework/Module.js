@@ -1,5 +1,6 @@
 import React from 'react';
 import Section from './Section'
+import ShowMoreLess from '../Utils/ShowMoreLess'
 import {
   Button,
   Checkbox,
@@ -39,6 +40,7 @@ export default class Module extends React.Component {
         </div>
       </>
     )
+    // {moduleDescription}
   }
 }
 

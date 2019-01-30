@@ -123,7 +123,7 @@ export default class ShortAnswers extends React.Component {
   render() {
     console.log("ShortAnswers::render()")
 
-    const { question, isDynamic, doesHandlePersistence } = this.props
+    const { question, isDynamic } = this.props
     const { answersWithKeys } = this.state
 
     console.log("answersWithKeys", answersWithKeys);
@@ -164,12 +164,6 @@ export default class ShortAnswers extends React.Component {
           </ShortAnswer>
         )}
         <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
-        {doesHandlePersistence.value && (
-          <>
-            {' '}
-            <Button type="button" onClick={this.onclickSave}>Save</Button>
-          </>
-        )}
       </>
     )
   }

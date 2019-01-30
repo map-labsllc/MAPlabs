@@ -13,6 +13,7 @@ import { getUser } from '../../store/user/reducer'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS} from '../../constants.js'
+import MODULE_2_INTRODUCTION from './Module2Introduction'
 
 import {
   Button,
@@ -126,7 +127,7 @@ class Module2 extends React.Component {
             <Module
               moduleNum = { 2 }
               moduleTitle = "Your Social Context"
-              moduleDescription = "You will explore your social context and how it shapes your life. You will be able to specify the most influential aspects of this context, reflect critically on them, and differentiate supporting influences from inhibiting ones."
+              moduleDescription = { MODULE_2_INTRODUCTION }
             >
               <SectionCT
                 moduleNum = { 2 }
