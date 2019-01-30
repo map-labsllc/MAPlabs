@@ -30,15 +30,15 @@ export default class Module extends React.Component {
     let { moduleNum, moduleTitle, moduleDescription, children } = this.props
 
     return (
-      <>
+      <div style={style.background}>
         <div style={style.top} >
           <h2 className="text-center">{moduleTitle}</h2>
           <p style={style.descript}>{moduleDescription}</p>
         </div>
-        <div className="centering">
+        <div className="centering container-fluid" style={style.textContain}>
           {children}
         </div>
-      </>
+      </div>
     )
     // {moduleDescription}
   }
@@ -52,8 +52,16 @@ const style = {
   },
   top: {
     marginTop: "5%",
-    marginLeft: "auto",
-    marginRight: "auto",
+    //width: "80%",
+    //marginLeft: "auto",
+    //marginRight: "auto",
+  },
+  background: {
+    backgroundColor: "#AEC6EF",
+    paddingTop: "1em",
+  },
+  textContain: {
+    backgroundColor: "white"
   }
 }
 

@@ -26,7 +26,7 @@ const SplashPage = () => {
         </div >
     )
 }
-//<img className="img-responsive center-block" src="https://scontent-dfw5-2.cdninstagram.com/vp/9f0a7c7aa18b83e0d11bf81408c5cbb3/5CF94F3C/t51.2885-15/sh0.08/e35/s750x750/46038013_203180027229315_5370813539263890085_n.jpg?_nc_ht=scontent-dfw5-2.cdninstagram.com" alt="homepage img" />
+
 const style = {
     title: {
         color: "#29648A",
@@ -64,7 +64,7 @@ const style = {
         backgroundSize: "cover",
         marginTop: "2%",
         padding: "6px",
-        color: "#AAABB8"
+        color: "#AAABB8",
     },
     textMargin: {
 

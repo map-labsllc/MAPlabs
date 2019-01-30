@@ -40,18 +40,18 @@ export default class Section extends React.Component {
 
     // let the userRD know about this section so it can help move
     //   user to the next moduleNum/sectionNum as they complete sections
-    dispatch( sectionLoadingAC( moduleNum, sectionNum ) )
+    dispatch(sectionLoadingAC(moduleNum, sectionNum))
   }
 
   render() {
-    console.log( "Section::render()" )
+    console.log("Section::render()")
 
     // let { isVisible } = this.state
     let { user, isVisible, moduleNum, sectionNum, sectionTitle, exercise } = this.props
     // const isVisible = this.canUserView(user, moduleNum, sectionNum)
 
     return (
-      <div>
+      <div className="background">
         <Panel bsStyle='primary'>
           <Panel.Heading className="sectionHeader">
             <Panel.Title><div className="text-center">{sectionTitle}</div></Panel.Title>
