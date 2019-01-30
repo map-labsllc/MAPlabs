@@ -130,6 +130,7 @@ export default class ShortAnswers extends React.Component {
     console.log("this.props.previousAnswers", this.props.previousAnswers);
     console.log("this.state.answers", this.state.answers);
 
+    // render static version in <Popup>
     if (!isDynamic) {
       return (
         <>
@@ -148,6 +149,7 @@ export default class ShortAnswers extends React.Component {
       )
     }
 
+    // render dynamic version in <ModalX>
     return (
       <>
         <p> </p>

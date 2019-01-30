@@ -90,6 +90,8 @@ export default class Questions extends React.Component {
     this.setState({ currIdx: currIdx + 1 })
   }
 
+
+
   // ******************************************
   render() {
     console.log("ShortAnswers::render()")
@@ -100,16 +102,61 @@ export default class Questions extends React.Component {
     console.log('**********************************');
     console.log('questionType: ', questionType)
 
+
+
+    // ******************************************
+    // render static version in <Popup>
     if (!isDynamic) {
       return (
         <>
           {questions.map((question, idx) => (
-            <p key={idx}>{question.text}</p>
+            <div key={idx}>
+              <p><b>{question.text}</b></p>
+
+              {(questionType === QUESTION_TYPE_SHORT_ANSWERS) && (
+                <ShortAnswersCT
+                  key={idx}
+                  question={question}
+                  isDynamic={isDynamic}
+                  doesHandlePersistence={{ value: false }}
+                />
+              )}
+
+              {(questionType === QUESTION_TYPE_TRANSITIONS) && (
+                <TransitionsCT
+                  key={idx}
+                  question={question}
+                  isDynamic={isDynamic}
+                />
+              )}
+
+              {/* Change to BracketCT */}
+              {(questionType === QUESTION_TYPE_BRACKET) && (
+                /* NOTE: promptQuestionCode was added to a normal question obj when
+                           setting up data in Module#.js.  Need to extract it here. */
+                <TransitionsCT
+                  key={idx}
+                  promptQuestionCode={question.promptCode}
+                  question={question}
+                  isDynamic={isDynamic}
+                />
+
+              )}
+
+
+            </div>
+
+
+
           ))}
         </>
       )
     }
 
+
+
+    // ******************************************
+    // render dynamic verison in <ModalX>
     // NOTE: The <div key = {idx}> tag is used to suppress React warning about
     //       elements needing a unique key.
     return (
