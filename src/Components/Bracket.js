@@ -17,7 +17,7 @@ export default class Bracket extends React.Component {
         if (this.state.prompts.length === 2) {
             return this.updateStore(this.state.prompts[index])
         }
-        
+
         const newPrompts = this.state.prompts.slice()
         
         newPrompts.splice(index, 1)
@@ -33,10 +33,12 @@ export default class Bracket extends React.Component {
             <div>
                 <p id={'question' + code}>{text}</p>
                 <p className='prompts'>
-                    <span 
+                    <span
+                        id='prompt1' 
                         onClick={this.promptClick(1)}
                         value={this.state.prompts[0]}>{this.state.prompts[0]}</span>
                     <span 
+                        id='prompt2'
                         onClick={this.promptClick(0)}
                         value={this.state.prompts[1]}>{this.state.prompts[1]}</span>
                 </p>
