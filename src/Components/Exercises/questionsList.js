@@ -127,12 +127,9 @@ class QuestionsList extends Component {
     if (!isDynamic) {
       const { description } = this.props
       return (
-        <ShowMoreLess
-          lines={ 3 }
-        >
-          <span dangerouslySetInnerHTML={ { __html: description } } />
-        </ShowMoreLess>
+        <p>Need to show persisted values</p>
       )
+
       // const sentences = []
       // const { lifeDescriptors } = this.props
       // for (let i = 0; i < lifeDescriptors.length; i++) {
@@ -149,6 +146,7 @@ class QuestionsList extends Component {
       //     ))}
       //   </>
       // )
+      
     }
 
     // Dynamic ersion of the exercise

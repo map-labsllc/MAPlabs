@@ -56,6 +56,7 @@ class Module1 extends React.Component {
     <NarrativeCT
       question = { { code: 120, text: "Describe your current situation" } }
       promptQuestionCode = { 110 }
+      description = { QUES_120_DESC }
       instructions = "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your current state of mind, state of being, and general assessment of your current condition today as you begin MAPmaker."
     /> )
 
@@ -65,6 +66,7 @@ class Module1 extends React.Component {
   exercise_130 = (
     <QuestionsList
       question = { { code: 130, text: "Imagine your future desired situation" } }
+      description = { QUES_130_DESC }
       instructions = "Complete sentences that are important to you."
     /> )
 
@@ -75,6 +77,7 @@ class Module1 extends React.Component {
     <NarrativeCT
       question = { { code: 140, text: "Describe your future situation" } }
       promptQuestionCode = { 130 }
+      description = { QUES_140_DESC }
       instructions = "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your future desired state of being as you begin MAPmaker. Create this description in your own image capturing how you want to feel, what you will think of your future situation, what will be good and bad, and how you would describe your future self to your current self. "
     /> )
 
@@ -92,6 +95,7 @@ class Module1 extends React.Component {
   exercise_150 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      description = { QUES_150_DESC }
       questions = {this.questions_150}
     /> )
 
@@ -107,6 +111,7 @@ class Module1 extends React.Component {
   exercise_160 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_TRANSITIONS}
+      description = { QUES_160_DESC }
       questions = {this.questions_160}
     /> )
 
@@ -123,6 +128,7 @@ class Module1 extends React.Component {
   exercise_170 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      description = { QUES_170_DESC }
       questions = {this.questions_170}
     /> )
 
