@@ -372,7 +372,7 @@ export default class Truncate extends Component {
     console.log('children.toString(): ', children && children.toString())
 
 
-    const showDangerousHTML = typeof text === 'string'
+    // const showDangerousHTML = typeof text === 'string'
 
     return (
       <span {...spanProps} ref={(targetEl) => { this.elements.target = targetEl; }}>
