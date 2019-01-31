@@ -84,7 +84,10 @@ class Module3 extends React.Component {
     <QuestionsCT
     questionType = {QUESTION_TYPE_BRACKET}
     description = {QUES_330_DESC}
-    questions = {[{ promptCode: 330, code: 330, text: "Make tradeoffs between each category." }]}
+    questions = {[{ promptCode: 330, 
+      code: 330, 
+      promptCodes: this.questions_320.reduce( ( acc, question ) => ( [...acc, {code: question.promptCode, text: question.text}] ), [] ), 
+      text: "Make tradeoffs between each category." }]}
   /> )
 
   // -------------------------

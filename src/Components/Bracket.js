@@ -14,7 +14,9 @@ export default class Bracket extends React.Component {
     }
 
     updateStore = prompts => {
-        this.props.onUpdateStoreCB( this.props.userId, this.props.question.promptCode, prompts )
+        const promptsToDispatch = this.props.question.code === 330 ? prompts.map( prompt => prompt.slice( 0, prompt.indexOf( ':' ) ) ) : prompts
+
+        this.props.onUpdateStoreCB( this.props.userId, this.props.question.promptCode, promptsToDispatch )
     }
 
     promptClick = index => e => {
