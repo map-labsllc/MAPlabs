@@ -90,8 +90,8 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
           Accept: 'application/json',
         },
       } )
-      .then( response => {
-        if (!response.ok) {
+      .then( response => { 
+        if ( !response.ok ) {
           console.log( "---- error" )
           console.log( "-- FETCH ERROR 1" )
           return dispatch( {
@@ -99,7 +99,7 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
             payload: "error" } )
         }
         return response.json()
-      })
+      } )
       .then( message => {
         console.log( "---- success perisisting to db" )
       } )
