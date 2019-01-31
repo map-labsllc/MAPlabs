@@ -7,6 +7,7 @@ import {
   FormGroup,
 } from 'react-bootstrap'
 import Prompts from '../Framework/Prompts'
+import '../../CSS/ModalNavButtons.css'
 
 /* **************************************************
    Narrative component
@@ -107,8 +108,8 @@ export default class Narrative extends React.Component {
               placeholder="Please enter an answer and click Close"
             />
           </FormGroup>
-          <div>
-            <Button type="submit" style={style.closeButton}>Close</Button>
+          <div className="text-center">
+            <Button className="closeButton" type="submit" style={style.closeButton}>Close</Button>
           </div>
         </Form>
       </>
@@ -117,8 +118,7 @@ export default class Narrative extends React.Component {
 }
 const style = {
   closeButton: {
-    display: "flex",
-    justifyContent: "center",
-    alignContent: "center",
+    marginRight: "auto",
+    marginLeft: "auto",
   }
 }

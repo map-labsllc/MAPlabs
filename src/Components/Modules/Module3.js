@@ -81,12 +81,14 @@ class Module3 extends React.Component {
   // Replaced with enhanced Bracketing component that takes an array of promptCodes
   // Module 3: 4A
   exercise_330 = (
-    <NarrativeCT
-      question = { { code: 330, text: "Make tradeoffs between each category." } }
-      promptQuestionCode = { 0 }
-      description = { QUES_330_DESC }
-      instructions = "THIS NEEDS TO BE REPLACED WITH BRACKETING USING AN ARRAY OF PROMPTS."
-    /> )
+    <QuestionsCT
+    questionType = {QUESTION_TYPE_BRACKET}
+    description = {QUES_330_DESC}
+    questions = {[{ promptCode: 330, 
+      code: 330, 
+      promptCodes: this.questions_320.reduce( ( acc, question ) => ( [...acc, {code: question.promptCode, text: question.text}] ), [] ), 
+      text: "Make tradeoffs between each category." }]}
+  /> )
 
   // -------------------------
   // Module 3: 4B

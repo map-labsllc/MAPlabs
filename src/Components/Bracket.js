@@ -7,19 +7,21 @@ export default class Bracket extends React.Component {
         this.state = {
             prompts: props.prompts ? 
                      Array.isArray( props.prompts ) ?
-                     props.prompts : 
+                     props.prompts.filter( prompt => prompt ) : 
                      [props.prompts] :
-                     []
+                     [],
         }
     }
 
+
+
     updateStore = prompts => {
-        this.props.onUpdateStoreCB( this.props.userId, this.props.question.promptCode, prompts )
+        const promptsToDispatch = this.props.question.code === 330 ? prompts.map( prompt => prompt.slice( 0, prompt.indexOf( ':' ) ).trim() ) : prompts
+
+        this.props.onUpdateStoreCB( this.props.userId, this.props.question.promptCode, promptsToDispatch )
     }
 
     promptClick = index => e => {
-        if ( this.state.prompts.length === 1 ) return
-
         const newPrompts = this.state.prompts.slice()
         
         newPrompts.splice( index, 1 )
@@ -54,9 +56,9 @@ export default class Bracket extends React.Component {
                  Click 'Next' to continue the exercise, or 'Close' to save your work.   
                 </p> )
             }
-            </div> : <span>{this.state.prompts.map( ( prompt, index ) => (
+            </div> : <span>{this.props.prompts ? this.props.prompts.map( ( prompt, index ) => (
                 <p key={index}>{prompt}</p>
-            ) )}</span>
+            ) ) : ''}</span>
         )
     } 
 } 

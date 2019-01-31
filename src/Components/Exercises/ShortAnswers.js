@@ -66,6 +66,14 @@ export default class ShortAnswers extends React.Component {
   }
 
   // **********************************************
+  componentDidMount = () => {
+    // add an initial blank entry if there are no previous entries
+    const { previousAnswers } = this.props
+    if (previousAnswers.length === 0) this.onclickAdd()
+  }
+
+
+  // **********************************************
   // tell parent to update array of answers to store
   updateAnswer = (key, newAnswer) => {
     console.log(`ShortAnswers::updateAnswer(${key}, ${newAnswer})`);
@@ -154,17 +162,19 @@ export default class ShortAnswers extends React.Component {
       <>
         <p> </p>
         <h4>{question.text}</h4>
-        {answersWithKeys.map((answerWithKey) =>
-          <ShortAnswer
-            key={answerWithKey.key}
-            id={answerWithKey.key}
-            previousAnswer={answerWithKey.text}
-            updateAnswerCB={this.updateAnswer}
-            deleteAnswerCB={this.deleteAnswer}
-            isDynamic={isDynamic}
-          >
-          </ShortAnswer>
-        )}
+        <div className="text-center">
+          {answersWithKeys.map((answerWithKey) =>
+            <ShortAnswer
+              key={answerWithKey.key}
+              id={answerWithKey.key}
+              previousAnswer={answerWithKey.text}
+              updateAnswerCB={this.updateAnswer}
+              deleteAnswerCB={this.deleteAnswer}
+              isDynamic={isDynamic}
+            >
+            </ShortAnswer>
+          )}
+        </div>
         <hr />
         <div className="text-center">
           <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
