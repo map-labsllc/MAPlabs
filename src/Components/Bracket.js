@@ -50,7 +50,7 @@ export default class Bracket extends React.Component {
                         >{this.state.prompts[1]}</button> 
                     
                 </p> : 
-                ( this.state.prompts.length > 0 && <p>You choose: {this.state.prompts[0]}. 
+                ( this.state.prompts.length > 0 && <p>You desire: {this.state.prompts[0]}. 
                  Click 'Next' to continue the exercise, or 'Close' to save your work.   
                 </p> )
             }
