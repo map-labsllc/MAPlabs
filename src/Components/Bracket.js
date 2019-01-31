@@ -65,7 +65,9 @@ Bracket.propTypes = {
     prompts: PropTypes.arrayOf( PropTypes.string ).isRequired,
     question: PropTypes.shape( {
         code: PropTypes.number.isRequired, 
-        text: PropTypes.string.isRequired
+        text: PropTypes.string.isRequired,
+        promptCode: PropTypes.number.isRequired
     } ).isRequired,
-    onUpdateStoreCB: PropTypes.func.isRequired
+    onUpdateStoreCB: PropTypes.func.isRequired,
+    userId: PropTypes.number.isRequired
 }

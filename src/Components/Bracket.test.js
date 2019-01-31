@@ -17,12 +17,14 @@ const props = {
     prompts: ['Rich/Poor', 'Happy/Sad', 'Love/Hate'],
     question: {
         code: Math.floor( Math.random() * 100 ),
-        text: 'How do you feel?'
+        text: 'How do you feel?',
+        promptCode: Math.floor( Math.random() * 100 )
     },
-    onUpdateStoreCB: sinon.spy()
+    onUpdateStoreCB: sinon.spy(),
+    userId: 1
 }
 
-describe( '<Bracket />', () => {
+describe( '<Bracket /> with isDynamic=true', () => {
     let stub 
     
     beforeAll( () => {
@@ -31,6 +33,7 @@ describe( '<Bracket />', () => {
     } )
     afterEach( () => {
         stub.resetHistory()
+        props.onUpdateStoreCB.resetHistory()
     } ) 
 
     it( 'requires a prompts prop', () => {
@@ -45,17 +48,23 @@ describe( '<Bracket />', () => {
                                 prompts={props.prompts} 
                                 question={props.question}/> ) ).to.throw( 'Warning: Failed prop type: The prop `onUpdateStoreCB` is marked as required' )
     } )
+    it( 'requires a userId prop', () => {
+        expect( () => shallow( <Bracket 
+                                prompts={props.prompts} 
+                                question={props.question}
+                                onUpdateStoreCB={props.onUpdateStoreCB}/> ) ).to.throw( 'Warning: Failed prop type: The prop `userId` is marked as required' )
+    } )
     it( 'renders question.text in a p with id question.code',  () => {
-        const wrapper = shallow( <Bracket {...props}/> )
+        const wrapper = shallow( <Bracket {...props} isDynamic={true}/> )
         expect( wrapper.find( 'p#question' + props.question.code ) ).to.have.lengthOf( 1 )
         expect( wrapper.find( 'p#question' + props.question.code ).text() ).to.equal( props.question.text )   
     } )
-    it( 'renders two children in a p with prompts class',  () => {
-        const wrapper = shallow( <Bracket {...props}/> )
+    it( 'renders two children in a p with prompts class if isDynamic',  () => {
+        const wrapper = shallow( <Bracket {...props} isDynamic={true}/> )
         expect( wrapper.find( 'p.prompts' ).children() ).to.have.lengthOf( 2 )
     } )
     it( 'handles click on first prompt and re-renders with second prompt replaced',  () => {
-        const wrapper = shallow( <Bracket {...props}/> )
+        const wrapper = shallow( <Bracket {...props } isDynamic={true}/> )
         const prompts = wrapper.find( '.prompts' )
         
         const firstChild = prompts.childAt( 0 )
@@ -74,7 +83,7 @@ describe( '<Bracket />', () => {
         expect( wrapper.find( '.prompts' ).childAt( 1 ).text() ).to.equal( props.prompts[2] )
     } )
     it( 'handles click on second prompt and re-renders with second prompt in place of first, and new prompt in place of second',  () => {
-        const wrapper = shallow( <Bracket {...props}/> )
+        const wrapper = shallow( <Bracket {...props} isDynamic={true}/> )
         const prompts = wrapper.find( '.prompts' )
         
         const firstChild = prompts.childAt( 0 )
@@ -91,12 +100,12 @@ describe( '<Bracket />', () => {
         //expect second child is third prompt
         expect( wrapper.find( '.prompts' ).childAt( 1 ).text() ).to.equal( props.prompts[2] )
     } )
-    it( 'invokes onUpdateStoreCB with the clicked propmpt when prompts length is two and a prompt is clicked',  () => {
-        const wrapper = shallow( <Bracket {...props} prompts={props.prompts.slice( 1 )}/> )
+    it( 'invokes onUpdateStoreCB with the userId, promptCode, prompts when a prompt is clicked',  () => {
+        const wrapper = shallow( <Bracket {...props} isDynamic={true} prompts={props.prompts.slice( 1 )}/> )
         
         wrapper.find( '.prompts' ).childAt( 0 ).simulate( "click", {} )
         
         expect( props.onUpdateStoreCB.callCount ).to.equal( 1 )
-        expect( props.onUpdateStoreCB.calledWith( props.prompts[1] ) ).to.be.true
+        expect( props.onUpdateStoreCB.calledWith( props.userId, props.question.promptCode, [props.prompts[1]] ) ).to.be.true
     } )
 } )
