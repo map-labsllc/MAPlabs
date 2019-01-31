@@ -11,9 +11,11 @@ export default class ContextualInfluences extends Component{
 
 
   render(){
+    const { name, question } = this.props
     return(
       <div className="container">
-      {'this.props.group'}
+      { name }
+      { question }
       <Form onSubmit={'blajsdflakshdf'}>
         <FormGroup>
           <Form.Label>Name</Form.Label>
