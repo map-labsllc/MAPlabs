@@ -59,8 +59,9 @@ export default class Section extends React.Component {
 
           {isVisible && (
             <Panel.Body className="sectionBody">
-
-              <PopupCT moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
+              <div className="container-fluid contain">
+                <PopupCT moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
+              </div>
             </Panel.Body>
           )}
 

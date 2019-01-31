@@ -134,15 +134,15 @@ export default class ShortAnswers extends React.Component {
       return (
         <>
           {answersWithKeys.map((answerWithKey) =>
-              <ShortAnswer
-                key={answerWithKey.key}
-                id={answerWithKey.key}
-                previousAnswer={answerWithKey.text}
-                updateAnswerCB={this.updateAnswer}
-                deleteAnswerCB={this.deleteAnswer}
-                isDynamic={isDynamic}
-              >
-              </ShortAnswer>
+            <ShortAnswer
+              key={answerWithKey.key}
+              id={answerWithKey.key}
+              previousAnswer={answerWithKey.text}
+              updateAnswerCB={this.updateAnswer}
+              deleteAnswerCB={this.deleteAnswer}
+              isDynamic={isDynamic}
+            >
+            </ShortAnswer>
           )}
         </>
       )
@@ -163,7 +163,11 @@ export default class ShortAnswers extends React.Component {
           >
           </ShortAnswer>
         )}
-        <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
+        <hr />
+        <div className="text-center">
+          <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
+        </div>
+        <hr />
       </>
     )
   }
