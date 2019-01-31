@@ -5,20 +5,18 @@ export default class Bracket extends React.Component {
     constructor( props ) {
         super( props )
         this.state = {
-            prompts: this.props.prompts.slice()
+            prompts: props.prompts ? props.prompts.slice() : ['', '']
         }
     }
 
     updateStore = prompt => {
-        this.props.onUpdateStoreCB( prompt )
+        this.props.onUpdateStoreCB( this.props.userId, this.props.question.code, prompt )
     }
 
     promptClick = index => e => {
-        if ( this.state.prompts.length === 2 ) {
-            return this.updateStore( this.state.prompts[index === 1 ? 0 : 1] )
-        }
-
         const newPrompts = this.state.prompts.slice()
+
+        this.updateStore( this.state.prompts[index === 1 ? 0 : 1] )
         
         newPrompts.splice( index, 1 )
 
