@@ -14,6 +14,8 @@ export default class Bracket extends React.Component {
         }
     }
 
+
+
     updateStore = prompts => {
         const promptsToDispatch = this.props.question.code === 330 ? prompts.map( prompt => prompt.slice( 0, prompt.indexOf( ':' ) ).trim() ) : prompts
 
@@ -55,9 +57,9 @@ export default class Bracket extends React.Component {
                  Click 'Next' to continue the exercise, or 'Close' to save your work.   
                 </p> )
             }
-            </div> : <span>{this.state.prompts.map( ( prompt, index ) => (
+            </div> : <span>{this.props.prompts ? this.props.prompts.map( ( prompt, index ) => (
                 <p key={index}>{prompt}</p>
-            ) )}</span>
+            ) ) : ''}</span>
         )
     } 
 } 
