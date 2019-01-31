@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Form,FormControl,FormGroup } from 'react-bootsterap'
+import { Form,FormControl,FormGroup } from 'react-bootstrap'
+import Beliefs from './valuesAndBeliefs'
 
 export default class ContextualInfluences extends Component{
   constructor( props ){
@@ -11,12 +12,13 @@ export default class ContextualInfluences extends Component{
 
 
   render(){
-    const { name, question } = this.props
+    const { group } = this.props
+
     return(
       <div className="container">
-      { name }
-      { question }
-      <Form onSubmit={'blajsdflakshdf'}>
+      { group ? group.name : "" }
+      { group ? group.text : "" }
+      <Form >
         <FormGroup>
           <Form.Label>Name</Form.Label>
           <FormControl
@@ -28,9 +30,13 @@ export default class ContextualInfluences extends Component{
             as="select"
             placeholder="happy"
           >
-          {'<option>add data here to map over options</option>'}
+          {
+            Beliefs.map( item =>(
+              <option value={ item}>{item}</option>
+             ) )
+          }
           </FormControl>
-          <Form.Label> Beliefs </Form.Label>
+          <Form.Label> "Beliefs" </Form.Label>
             <FormControl as ='select'>
               <option value="Supportive">"Supportive"</option>
               <option value="Inhibiting">"Inhibiting"</option>
