@@ -61,6 +61,13 @@ export default class Transitions extends React.Component {
   }
 
   // **********************************************
+  componentDidMount = () => {
+    // add an initial blank entry if there are no previous entries
+    const { previousTransitions } = this.props
+    if (previousTransitions.length === 0) this.onclickAdd()
+  }
+
+  // **********************************************
   // tell parent to update array of transitions to store
   updateTransition = ( key, newTransition ) => {
     console.log( `Transitions::updateTransition(${key}, ${newTransition})` )
@@ -130,6 +137,8 @@ export default class Transitions extends React.Component {
         </>
       )
     }
+
+    //
 
     return (
       <>

@@ -66,6 +66,14 @@ export default class ShortAnswers extends React.Component {
   }
 
   // **********************************************
+  componentDidMount = () => {
+    // add an initial blank entry if there are no previous entries
+    const { previousAnswers } = this.props
+    if (previousAnswers.length === 0) this.onclickAdd()
+  }
+
+
+  // **********************************************
   // tell parent to update array of answers to store
   updateAnswer = (key, newAnswer) => {
     console.log(`ShortAnswers::updateAnswer(${key}, ${newAnswer})`);
