@@ -134,8 +134,9 @@ export default class Transitions extends React.Component {
 
     return (
       <>
-        <p> </p>
-        <h4>{question.text}</h4>
+        <div className="text-center">
+          <h4>{question.text}</h4>
+        </div>
         {transitionsWithKeys.map((transitionWithKey) =>
           <Transition
             key={transitionWithKey.key}

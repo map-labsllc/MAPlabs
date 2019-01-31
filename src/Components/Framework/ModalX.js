@@ -68,6 +68,7 @@ const style = {
     borderRadius: "10px",
     paddingTop: "5px",
     paddingBottom: "5px",
+    margin: "1%",
   },
   header: {
     fontWeight: "1",

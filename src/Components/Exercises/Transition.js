@@ -102,9 +102,9 @@ export default class Transition extends React.Component {
 
     return (
       <Form inline onSubmit={this.onSubmit}>
-        <div className="text-center">
+        <div className="text-center" style={style.size}>
           <FormGroup>
-            {' '}
+            {'From this '}
             <FormControl
               type="text"
               onChange={this.onChangeFrom}
@@ -112,6 +112,7 @@ export default class Transition extends React.Component {
               value={transition.from}
               placeholder="Please enter a from"
             />
+            {' to '}
             <FormControl
               type="text"
               onChange={this.onChangeTo}
@@ -120,9 +121,15 @@ export default class Transition extends React.Component {
               placeholder="Please enter a to"
             />
           </FormGroup>
+          {" "}
           <Button type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
         </div>
       </Form>
     )
+  }
+}
+const style = {
+  size: {
+    fontSize: "18pt",
   }
 }
