@@ -162,17 +162,19 @@ export default class ShortAnswers extends React.Component {
       <>
         <p> </p>
         <h4>{question.text}</h4>
-        {answersWithKeys.map((answerWithKey) =>
-          <ShortAnswer
-            key={answerWithKey.key}
-            id={answerWithKey.key}
-            previousAnswer={answerWithKey.text}
-            updateAnswerCB={this.updateAnswer}
-            deleteAnswerCB={this.deleteAnswer}
-            isDynamic={isDynamic}
-          >
-          </ShortAnswer>
-        )}
+        <div className="text-center">
+          {answersWithKeys.map((answerWithKey) =>
+            <ShortAnswer
+              key={answerWithKey.key}
+              id={answerWithKey.key}
+              previousAnswer={answerWithKey.text}
+              updateAnswerCB={this.updateAnswer}
+              deleteAnswerCB={this.deleteAnswer}
+              isDynamic={isDynamic}
+            >
+            </ShortAnswer>
+          )}
+        </div>
         <hr />
         <div className="text-center">
           <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
