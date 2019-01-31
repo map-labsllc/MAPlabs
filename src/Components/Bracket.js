@@ -7,20 +7,22 @@ export default class Bracket extends React.Component {
         this.state = {
             prompts: props.prompts ? 
                      Array.isArray( props.prompts ) ?
-                     props.prompts : 
+                     props.prompts.filter( prompt => prompt ) : 
                      [props.prompts] :
-                     []
+                     [],
+            madeFinalStoreUpdate: false,
         }
     }
 
     updateStore = prompts => {
-        const promptsToDispatch = this.props.question.code === 330 ? prompts.map( prompt => prompt.slice( 0, prompt.indexOf( ':' ) ) ) : prompts
+        const promptsToDispatch = this.props.question.code === 330 ? prompts.map( prompt => prompt.slice( 0, prompt.indexOf( ':' ) ).trim() ) : prompts
 
         this.props.onUpdateStoreCB( this.props.userId, this.props.question.promptCode, promptsToDispatch )
+        if ( prompts.length === 1 ) {this.setState( {...this.state, madeFinalStoreUpdate: true} )}
     }
 
     promptClick = index => e => {
-        if ( this.state.prompts.length === 1 ) return
+        if ( this.state.madeFinalStoreUpdate ) return
 
         const newPrompts = this.state.prompts.slice()
         
