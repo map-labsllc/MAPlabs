@@ -5,20 +5,26 @@ export default class Bracket extends React.Component {
     constructor( props ) {
         super( props )
         this.state = {
-            prompts: props.prompts ? props.prompts.slice() : ['', '']
+            prompts: props.prompts ? 
+                     Array.isArray( props.prompts ) ?
+                     props.prompts : 
+                     [props.prompts] :
+                     ['', '']
         }
     }
 
-    updateStore = prompt => {
-        this.props.onUpdateStoreCB( this.props.userId, this.props.question.code, prompt )
+    updateStore = prompts => {
+        this.props.onUpdateStoreCB( this.props.userId, this.props.question.promptCode, prompts )
     }
 
     promptClick = index => e => {
-        const newPrompts = this.state.prompts.slice()
+        if ( this.state.prompts.length === 1 ) return
 
-        this.updateStore( this.state.prompts[index === 1 ? 0 : 1] )
+        const newPrompts = this.state.prompts.slice()
         
         newPrompts.splice( index, 1 )
+
+        this.updateStore( newPrompts )
 
         return this.setState( {
             prompts: newPrompts 
@@ -26,8 +32,8 @@ export default class Bracket extends React.Component {
     }
 
     render() {
-        const { question: { code, text } } = this.props
-        return (
+        const { question: { code, text }, isDynamic } = this.props
+        return ( isDynamic ? 
             <div>
                 <p id={'question' + code}>{text}</p>
                 <p className='prompts'>
@@ -40,7 +46,9 @@ export default class Bracket extends React.Component {
                         onClick={this.promptClick( 0 )}
                         >{this.state.prompts[1]}</span>
                 </p>
-            </div>
+            </div> : <span>{this.state.prompts.map( ( prompt, index ) => (
+                <p key={index}>{prompt} <br></br></p>
+            ) )}</span>
         )
     } 
 } 

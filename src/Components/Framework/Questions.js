@@ -6,7 +6,7 @@ import {
   Form,
   FormControl,
   FormGroup,
-} from 'react-bootstrap';
+} from 'react-bootstrap'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 import TransitionsCT from '../Exercises/TransitionsCT'
 import {
@@ -15,6 +15,7 @@ import {
   QUESTION_TYPE_BRACKET,
 } from '../../constants.js'
 import '../../CSS/ModalNavButtons.css'
+import BracketContainer from '../BracketContainer'
 
 /* **************************************************
    Questions component
@@ -49,13 +50,13 @@ export default class Questions extends React.Component {
     const { userId, questionType, questions, RD, onPersistQuestionCB } = this.props
     const { currIdx } = this.state
 
-    onPersistQuestionCB(userId, questionType, questions[currIdx], RD)
+    onPersistQuestionCB( userId, questionType, questions[currIdx], RD )
   }
 
   // ******************************************
   // called when close button is clicked
   onclickClose = () => {
-    console.log("Questions::onclickClose()")
+    console.log( "Questions::onclickClose()" )
 
     const { onCloseModalCB } = this.props
 
@@ -66,54 +67,54 @@ export default class Questions extends React.Component {
   // ******************************************
   // called when left button clicked
   onclickLeft = () => {
-    console.log("Questions::onclicLeft()")
+    console.log( "Questions::onclicLeft()" )
 
     const { currIdx } = this.state
 
-    if (currIdx === 0) return
+    if ( currIdx === 0 ) return
 
     this.persistCurrent()
-    this.setState({ currIdx: currIdx - 1 })
+    this.setState( { currIdx: currIdx - 1 } )
   }
 
   // ******************************************
   // called when right button clicked
   onclickRight = () => {
-    console.log("Questions::onclickRight()")
+    console.log( "Questions::onclickRight()" )
 
     const { currIdx } = this.state
     const { questions } = this.props
 
-    if (currIdx === (questions.length - 1)) return
+    if ( currIdx === ( questions.length - 1 ) ) return
 
     this.persistCurrent()
-    this.setState({ currIdx: currIdx + 1 })
+    this.setState( { currIdx: currIdx + 1 } )
   }
 
 
 
   // ******************************************
   render() {
-    console.log("ShortAnswers::render()")
+    console.log( "ShortAnswers::render()" )
 
     const { questionType, questions, isDynamic } = this.props
     const { currIdx } = this.state
 
-    console.log('**********************************');
-    console.log('questionType: ', questionType)
+    console.log( '**********************************' )
+    console.log( 'questionType: ', questionType )
 
 
 
     // ******************************************
     // render static version in <Popup>
-    if (!isDynamic) {
+    if ( !isDynamic ) {
       return (
         <>
-          {questions.map((question, idx) => (
+          {questions.map( ( question, idx ) => (
             <div key={idx}>
               <p><b>{question.text}</b></p>
 
-              {(questionType === QUESTION_TYPE_SHORT_ANSWERS) && (
+              {( questionType === QUESTION_TYPE_SHORT_ANSWERS ) && (
                 <ShortAnswersCT
                   key={idx}
                   question={question}
@@ -122,7 +123,7 @@ export default class Questions extends React.Component {
                 />
               )}
 
-              {(questionType === QUESTION_TYPE_TRANSITIONS) && (
+              {( questionType === QUESTION_TYPE_TRANSITIONS ) && (
                 <TransitionsCT
                   key={idx}
                   question={question}
@@ -131,16 +132,14 @@ export default class Questions extends React.Component {
               )}
 
               {/* Change to BracketCT */}
-              {(questionType === QUESTION_TYPE_BRACKET) && (
+              {( questionType === QUESTION_TYPE_BRACKET ) && (
                 /* NOTE: promptQuestionCode was added to a normal question obj when
                            setting up data in Module#.js.  Need to extract it here. */
-                <TransitionsCT
+                <BracketContainer
                   key={idx}
-                  promptQuestionCode={question.promptCode}
                   question={question}
                   isDynamic={isDynamic}
                 />
-
               )}
 
 
@@ -148,7 +147,7 @@ export default class Questions extends React.Component {
 
 
 
-          ))}
+          ) )}
         </>
       )
     }
@@ -162,11 +161,11 @@ export default class Questions extends React.Component {
     return (
       <>
 
-        {questions.map((question, idx) => (
+        {questions.map( ( question, idx ) => (
 
           <div key={idx}>
 
-            {(idx === currIdx) && (questionType === QUESTION_TYPE_SHORT_ANSWERS) && (
+            {( idx === currIdx ) && ( questionType === QUESTION_TYPE_SHORT_ANSWERS ) && (
               <ShortAnswersCT
                 key={idx}
                 question={question}
@@ -175,7 +174,7 @@ export default class Questions extends React.Component {
               />
             )}
 
-            {(idx === currIdx) && (questionType === QUESTION_TYPE_TRANSITIONS) && (
+            {( idx === currIdx ) && ( questionType === QUESTION_TYPE_TRANSITIONS ) && (
               <TransitionsCT
                 key={idx}
                 question={question}
@@ -184,12 +183,11 @@ export default class Questions extends React.Component {
             )}
 
             {/* Change to BracketCT */}
-            {(idx === currIdx) && (questionType === QUESTION_TYPE_BRACKET) && (
+            {( idx === currIdx ) && ( questionType === QUESTION_TYPE_BRACKET ) && (
               /* NOTE: promptQuestionCode was added to a normal question obj when
                          setting up data in Module#.js.  Need to extract it here. */
-              <TransitionsCT
+              <BracketContainer
                 key={idx}
-                promptQuestionCode={question.promptCode}
                 question={question}
                 isDynamic={isDynamic}
               />
@@ -197,7 +195,7 @@ export default class Questions extends React.Component {
             )}
 
           </div>
-        ))}
+        ) )}
         <br />
         <div className="bgButton text-center">
           <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>{' '}
