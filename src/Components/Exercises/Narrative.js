@@ -36,41 +36,41 @@ export default class Narrative extends React.Component {
 
   /* ******************************************************** */
   // set isDirty and controlled answer field
-  onChange = (e) => {
-    console.log("Narrative::onChange(), e: ", e.target.value)
-    this.setState({
+  onChange = ( e ) => {
+    console.log( "Narrative::onChange(), e: ", e.target.value )
+    this.setState( {
       isDirty: true,
       answer: e.target.value,
-    })
+    } )
   }
 
   /* ******************************************************** */
   // update store and persist the value as user could be clicking outside Modal and shitting it down
   onBlur = () => {
-    console.log("Narrative::onBlur()")
+    console.log( "Narrative::onBlur()" )
     this.updateAndPersist()
   }
 
   /* ******************************************************** */
   // helper, update the store and persist
   updateAndPersist = () => {
-    console.log("state: ", this.state)
+    console.log( "state: ", this.state )
 
-    this.setState({ isDirty: false })
+    this.setState( { isDirty: false } )
 
     const { onPersistCB, onCloseModalCB, userId } = this.props
     const { answer } = this.state
 
-    onPersistCB(userId, answer)
+    onPersistCB( userId, answer )
     onCloseModalCB()
   }
 
   /* ******************************************************** */
   // Send newAnswer value back to Container to persist
   //   and update Save button to indicate control is no longer dirty
-  onSubmit = (e) => {
-    console.log(`Narrative::onclickSave(): ${this.state.answer}`)
-    console.log("state: ", this.state)
+  onSubmit = ( e ) => {
+    console.log( `Narrative::onclickSave(): ${this.state.answer}` )
+    console.log( "state: ", this.state )
     e.preventDefault()
     this.updateAndPersist()
   }
@@ -84,7 +84,7 @@ export default class Narrative extends React.Component {
     const { question, prompts, instructions, isDynamic } = this.props
     const { answer } = this.state
 
-    if (!isDynamic) {
+    if ( !isDynamic ) {
       return (
         <p><i>{answer}</i></p>
       )
