@@ -41,7 +41,7 @@ class Module1 extends React.Component {
 
   // -------------------------
   // Replace with Lifedescriptors
-  // 2C-F
+  // Module 1: 2C-F
   exercise_110 = (
     <QuestionsList
       question = { { code: 110, text: "Reflect on your current situation" } }
@@ -51,7 +51,7 @@ class Module1 extends React.Component {
 
 
   // -------------------------
-  // 2F
+  // Module 1: 2F
   exercise_120 = (
     <NarrativeCT
       question = { { code: 120, text: "Describe your current situation" } }
@@ -62,7 +62,7 @@ class Module1 extends React.Component {
 
 
   // -------------------------
-  // 3B-D
+  // Module 1: 3B-D
   exercise_130 = (
     <QuestionsList
       question = { { code: 130, text: "Imagine your future desired situation" } }
@@ -72,7 +72,7 @@ class Module1 extends React.Component {
 
 
   // -------------------------
-  // 3E
+  // Module 1: 3E
   exercise_140 = (
     <NarrativeCT
       question = { { code: 140, text: "Describe your future situation" } }
@@ -83,14 +83,14 @@ class Module1 extends React.Component {
 
 
   // -------------------------
-  // 4A
+  // Module 1: 4A
   questions_150 = [
     { code: 151, text: "List the most important overarching themes that impact how meaningful and purposeful your life is." },
     { code: 152, text: "Which core feelings and experiences are most important to providing you with personal senses of the meaning in your life?" },
-    { code: 153, text: "Name some things beyond yourself that you could serve if you lived with more of your core feelings and experiences" },
-    { code: 154, text: "List the areas of personal growth that will enable your life to be more filled with the core feelings and experiences you desire" },
-    { code: 155, text: "List which relationships that you either currently have or need to develop in the future (to any influence, such as people, groups, practices, experiences, etc.) are most important to supporting your life being lived with more of your core feelings and experiences" },
-    { code: 156, text: "List any areas of engagement or mastery (either in your life’s work or avocationally) that would provide you with more of your core feelings and experiences" },
+    { code: 153, text: "Name some things beyond yourself that you could serve if you lived with more of your core feelings and experiences." },
+    { code: 154, text: "List the areas of personal growth that will enable your life to be more filled with the core feelings and experiences you desire." },
+    { code: 155, text: "List which relationships that you either currently have or need to develop in the future (to any influence, such as people, groups, practices, experiences, etc.) are most important to supporting your life being lived with more of your core feelings and experiences." },
+    { code: 156, text: "List any areas of engagement or mastery (either in your life’s work or avocationally) that would provide you with more of your core feelings and experiences." },
   ]
   exercise_150 = (
     <QuestionsCT
@@ -101,7 +101,7 @@ class Module1 extends React.Component {
 
 
   // -------------------------
-  // 4B
+  // Module 1: 4B
   questions_160 = [
     { code: 161, text: "Thoughts/Attitudes" },
     { code: 162, text: "Behaviors/Actions" },
@@ -117,7 +117,7 @@ class Module1 extends React.Component {
 
 
   // -------------------------
-  // 5A
+  // Module 1: 5A
   questions_170 = [
     { code: 171, text: "What changes would you like to see in your everyday life?" },
     { code: 172, text: "What changes would you like to see in your personal growth?" },
