@@ -135,15 +135,15 @@ export default class ShortAnswers extends React.Component {
       return (
         <>
           {answersWithKeys.map((answerWithKey) =>
-              <ShortAnswer
-                key={answerWithKey.key}
-                id={answerWithKey.key}
-                previousAnswer={answerWithKey.text}
-                updateAnswerCB={this.updateAnswer}
-                deleteAnswerCB={this.deleteAnswer}
-                isDynamic={isDynamic}
-              >
-              </ShortAnswer>
+            <ShortAnswer
+              key={answerWithKey.key}
+              id={answerWithKey.key}
+              previousAnswer={answerWithKey.text}
+              updateAnswerCB={this.updateAnswer}
+              deleteAnswerCB={this.deleteAnswer}
+              isDynamic={isDynamic}
+            >
+            </ShortAnswer>
           )}
         </>
       )
