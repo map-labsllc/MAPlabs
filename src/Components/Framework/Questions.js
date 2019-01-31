@@ -31,12 +31,13 @@ import BracketContainer from '../BracketContainer'
    props:
      userId -- integer
      questionType -- enum from constants.js
-     questions -- [ { code: 50, text: "question 50" }, { ... }
+     subComponents -- array of React components to work with a single question 
      RD -- reducer to be passed back up in onPersistQuestionCB()
      isDynamic -- undefined or true
                   rendering static version in Popup or dynamic verison in Modal
      onPersistQuestionCB -- call to have parent CT persist a question from Store
      onCloseModalCB -- call to close the modal this control resides in
+
 ***************************************************** */
 export default class Questions extends React.Component {
 
@@ -47,10 +48,10 @@ export default class Questions extends React.Component {
   // ******************************************
   // persist the current question before moving off of it
   persistCurrent = () => {
-    const { userId, questionType, questions, RD, onPersistQuestionCB } = this.props
+    const { userId, questionType, subComponents, RD, onPersistQuestionCB } = this.props
     const { currIdx } = this.state
 
-    onPersistQuestionCB( userId, questionType, questions[currIdx], RD )
+    onPersistQuestionCB( userId, questionType, subComponents[currIdx].props.question, RD )
   }
 
   // ******************************************
@@ -83,9 +84,9 @@ export default class Questions extends React.Component {
     console.log( "Questions::onclickRight()" )
 
     const { currIdx } = this.state
-    const { questions } = this.props
+    const { subComponents } = this.props
 
-    if ( currIdx === ( questions.length - 1 ) ) return
+    if ( currIdx === ( subComponents.length - 1 ) ) return
 
     this.persistCurrent()
     this.setState( { currIdx: currIdx + 1 } )
@@ -97,7 +98,7 @@ export default class Questions extends React.Component {
   render() {
     console.log( "ShortAnswers::render()" )
 
-    const { subComponents, questionType, questions, isDynamic } = this.props
+    const { subComponents, questionType, isDynamic } = this.props
     const { currIdx } = this.state
 
     console.log( '**********************************' )
@@ -126,20 +127,60 @@ export default class Questions extends React.Component {
     // render dynamic verison in <ModalX>
     // NOTE: The <div key = {idx}> tag is used to suppress React warning about
     //       elements needing a unique key.
-    if (isDynamic && subComponents) {
+    if ( isDynamic && subComponents ) {
+      const subComponentsWithIsDynamic = subComponents.map( ( subComponent ) => {
+        return React.cloneElement(
+          subComponent,
+          {
+            isDynamic: "true"
+          }
+        )
+      } )
+// {subComponent}
+// <p>filler</p>
+// subComponentsWithIsDynamic
+//
+// {subComponents.map( ( subComponent, idx ) => (
+//   <div key={idx}>
+//     {(idx === currIdx) && (
+//       {subComponent}
+//     )}
+//   </div>
+// ) )}
+
+// WORKS
+// {subComponentsWithIsDynamic.map( ( subComponent, idx ) => (
+//   <div key={idx}>
+//     {subComponent}
+//   </div>
+// ) )}
+
+      // const testDirect = (
+      //   <ShortAnswersCT
+      //     key={101}
+      //     question={{code: 101, text: "directly created"}}
+      //     isDynamic={isDynamic}
+      //   />
+      // )
+      // {testDirect}
+
       return (
         <>
-          {subComponents.map( ( subComponent, idx ) => (
+          {subComponentsWithIsDynamic.map( ( subComponent, idx ) => (
             <div key={idx}>
-              {subComponent}
+              {( idx === currIdx ) && (
+                <div>
+                  {subComponent}
+                </div>
+              )}
             </div>
           ) )}
+
           <br />
+
           <div className="bgButton text-center">
             <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>{' '}
-
             <Button className="closeButton" type="button" onClick={this.onclickClose}>Close</Button>
-
             <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
           </div>
         </>

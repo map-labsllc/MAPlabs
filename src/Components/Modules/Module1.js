@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 import Module from '../Framework/Module'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
+
 import QuestionsList from '../Exercises/questionsList'
+import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 
@@ -37,37 +39,6 @@ class Module1 extends React.Component {
 
   // Define questions and excercises for Module 1
   // ---------------------------------------------------------------------
-
-  // -------------------------
-  // TEST
-  questions_100 = [
-    { code: 101, text: "TEST original 1" },
-    { code: 102, text: "TEST original 2" },
-  ]
-
-
-  shortAnswers_101 = (
-    <ShortAnswersCT
-      key={101}
-      question={ { code: 101, text: "TEST new 1" } }
-    />
-  )
-  shortAnswers_102 = (
-    <ShortAnswersCT
-      key={102}
-      question={ { code: 102, text: "TEST new 2" } }
-    />
-  )
-
-  exercise_100 = (
-    <QuestionsCT
-      questionType = {QUESTION_TYPE_SHORT_ANSWERS}
-      description = { "Test passing question subcomponent as prop" }
-      questions = {this.questions_100}
-
-      subComponents = { [ this.shortAnswers_101, this.shortAnswers_102 ] }
-    /> )
-
 
 
   // -------------------------
@@ -114,53 +85,58 @@ class Module1 extends React.Component {
 
   // -------------------------
   // Module 1: 4A
-  questions_150 = [
-    { code: 151, text: "List the most important overarching themes that impact how meaningful and purposeful your life is." },
-    { code: 152, text: "Which core feelings and experiences are most important to providing you with personal senses of the meaning in your life?" },
-    { code: 153, text: "Name some things beyond yourself that you could serve if you lived with more of your core feelings and experiences." },
-    { code: 154, text: "List the areas of personal growth that will enable your life to be more filled with the core feelings and experiences you desire." },
-    { code: 155, text: "List which relationships that you either currently have or need to develop in the future (to any influence, such as people, groups, practices, experiences, etc.) are most important to supporting your life being lived with more of your core feelings and experiences." },
-    { code: 156, text: "List any areas of engagement or mastery (either in your life’s work or avocationally) that would provide you with more of your core feelings and experiences." },
+
+  shortAnswers_150 = [
+    <ShortAnswersCT question = { { code: 151, text: "List the most important overarching themes that impact how meaningful and purposeful your life is." } } />,
+    <ShortAnswersCT question = { { code: 152, text: "Which core feelings and experiences are most important to providing you with personal senses of the meaning in your life?" } } />,
+    <ShortAnswersCT question = { { code: 153, text: "Name some things beyond yourself that you could serve if you lived with more of your core feelings and experiences." } } />,
+    <ShortAnswersCT question = { { code: 154, text: "List the areas of personal growth that will enable your life to be more filled with the core feelings and experiences you desire." } } />,
+    <ShortAnswersCT question = { { code: 155, text: "List which relationships that you either currently have or need to develop in the future (to any influence, such as people, groups, practices, experiences, etc.) are most important to supporting your life being lived with more of your core feelings and experiences." } } />,
+    <ShortAnswersCT question = { { code: 156, text: "List any areas of engagement or mastery (either in your life’s work or avocationally) that would provide you with more of your core feelings and experiences." } } />,
   ]
   exercise_150 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
       description = { QUES_150_DESC }
-      questions = {this.questions_150}
+      subComponents = {this.shortAnswers_150}
     /> )
 
 
   // -------------------------
   // Module 1: 4B
-  questions_160 = [
-    { code: 161, text: "Thoughts/Attitudes" },
-    { code: 162, text: "Behaviors/Actions" },
-    { code: 163, text: "Goals" },
-    { code: 164, text: "Commitments" },
+
+  transitions_160 = [
+    <TransitionsCT question = { { code: 161, text: "Thoughts/Attitudes" } } />,
+    <TransitionsCT question = { { code: 162, text: "Behaviors/Actions" } } />,
+    <TransitionsCT question = { { code: 163, text: "Goals" } } />,
+    <TransitionsCT question = { { code: 164, text: "Commitments" } } />,
   ]
   exercise_160 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_TRANSITIONS}
       description = { QUES_160_DESC }
-      questions = {this.questions_160}
+      subComponents = {this.transitions_160}
     /> )
 
 
   // -------------------------
   // Module 1: 5A
-  questions_170 = [
-    { code: 171, text: "What changes would you like to see in your everyday life?" },
-    { code: 172, text: "What changes would you like to see in your personal growth?" },
-    { code: 173, text: "What changes would you like to see in your relationships?" },
-    { code: 174, text: "What changes would you like to see in your life’s work (your vocation)?" },
-    { code: 175, text: "What changes would you like to see in your avocational pursuits?" },
+
+  shortAnswers_170 = [
+    <ShortAnswersCT question={ { code: 171, text: "What changes would you like to see in your everyday life?" } } />,
+    <ShortAnswersCT question={ { code: 172, text: "What changes would you like to see in your personal growth?" } } />,
+    <ShortAnswersCT question={ { code: 173, text: "What changes would you like to see in your relationships?" } } />,
+    <ShortAnswersCT question={ { code: 174, text: "What changes would you like to see in your life’s work (your vocation)?" } } />,
+    <ShortAnswersCT question={ { code: 175, text: "What changes would you like to see in your avocational pursuits?" } } />,
   ]
   exercise_170 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
       description = { QUES_170_DESC }
-      questions = {this.questions_170}
+      subComponents = { this.shortAnswers_170 }
     /> )
+
+
 
 
   /* *********************************************************** */
@@ -178,14 +154,6 @@ class Module1 extends React.Component {
               moduleTitle = "Your Meanings and Motivations "
               moduleDescription = { MOD_1_DESC }
             >
-
-              <SectionCT
-                moduleNum = { 1 }
-                sectionNum = { 100 }
-                sectionTitle = "Test short answers as prop"
-                exercise = {this.exercise_100}
-              />
-
               <SectionCT
                 moduleNum = { 1 }
                 sectionNum = { 110 }
