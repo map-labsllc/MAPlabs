@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form,FormControl,FormGroup } from 'react-bootstrap'
+import { Form,FormControl,FormGroup, Label } from 'react-bootstrap'
 import Beliefs from './valuesAndBeliefs'
 
 export default class ContextualInfluences extends Component{
@@ -19,15 +19,14 @@ export default class ContextualInfluences extends Component{
       { group ? group.name : "" }
       { group ? group.text : "" }
       <Form >
-        <FormGroup>
-          <Form.Label>Name</Form.Label>
-          <FormControl
+
+          <Label>Name</Label>
+          <input
             type="text"
             placeholder="Jane Doe"
           />
-          <Form.Label> Influence Name </Form.Label>
-          <FormControl
-            as="select"
+          <Label> Influence Name </Label>
+          <select
             placeholder="happy"
           >
           {
@@ -35,13 +34,13 @@ export default class ContextualInfluences extends Component{
               <option value={ item}>{item}</option>
              ) )
           }
-          </FormControl>
-          <Form.Label> "Beliefs" </Form.Label>
-            <FormControl as ='select'>
+          </select>
+          <Label> "Beliefs" </Label>
+            <select as ='select'>
               <option value="Supportive">"Supportive"</option>
               <option value="Inhibiting">"Inhibiting"</option>
-            </FormControl>
-        </FormGroup>
+            </select>
+
       </Form>
       </div>
     )
