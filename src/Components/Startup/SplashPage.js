@@ -12,16 +12,24 @@ const SplashPage = () => {
                 </div>
                 <br />
                 <br />
+
                 <ButtonToolbar style={style.buttonCentering} className='text-center'>
                     <Button style={style.button} href='/signup'>Sign Up</Button>
                     <Button style={style.button} href='/login'>Log In</Button>
                 </ButtonToolbar>
-
+                <br />
                 <br />
                 <div className="container-fluid" style={style.paragraph}>
                     <p style={style.textMargin}>{aboutText}</p>
                 </div>
                 <br />
+                <div className="container-fluid" style={style.paragraph}>
+                    <p style={style.textMargin}>MAPlabs is taking on the largest questions and the latest science in order to help you find deeper meaning and more fulfilling life purpose.
+
+Research finds that up to 75% of us (that’s 3 out of 4 people you know!) lack a well developed sense of life purpose based on personal meaning.  Our ability to find meaning and develop purpose in our ever-changing culture is being challenged as never before. The result:  stress, boredom, anxiety, and lives that lack fulfillment.
+
+But science is helping to identifying new approaches, like focusing not on the symptom of stress, but on its cause, which is often a less-noticed sense of meaninglessness. </p>
+                </div>
             </div>
         </div >
     )
