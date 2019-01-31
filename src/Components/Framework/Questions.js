@@ -97,7 +97,7 @@ export default class Questions extends React.Component {
   render() {
     console.log( "ShortAnswers::render()" )
 
-    const { questionType, questions, isDynamic } = this.props
+    const { subComponents, questionType, questions, isDynamic } = this.props
     const { currIdx } = this.state
 
     console.log( '**********************************' )
@@ -105,106 +105,151 @@ export default class Questions extends React.Component {
 
 
 
+
     // ******************************************
     // render static version in <Popup>
-    if ( !isDynamic ) {
+    if ( !isDynamic && subComponents ) {
       return (
         <>
-          {questions.map( ( question, idx ) => (
+          {subComponents.map( ( subComponent, idx ) => (
             <div key={idx}>
-              <p><b>{question.text}</b></p>
-
-              {( questionType === QUESTION_TYPE_SHORT_ANSWERS ) && (
-                <ShortAnswersCT
-                  key={idx}
-                  question={question}
-                  isDynamic={isDynamic}
-                  doesHandlePersistence={{ value: false }}
-                />
-              )}
-
-              {( questionType === QUESTION_TYPE_TRANSITIONS ) && (
-                <TransitionsCT
-                  key={idx}
-                  question={question}
-                  isDynamic={isDynamic}
-                />
-              )}
-
-              {/* Change to BracketCT */}
-              {( questionType === QUESTION_TYPE_BRACKET ) && (
-                /* NOTE: promptQuestionCode was added to a normal question obj when
-                           setting up data in Module#.js.  Need to extract it here. */
-                <BracketContainer
-                  key={idx}
-                  question={question}
-                  isDynamic={isDynamic}
-                />
-              )}
-
-
+              <p><b>{subComponent.props.question.text}</b></p>
+              {subComponent}
             </div>
-
-
 
           ) )}
         </>
       )
     }
 
-
-
     // ******************************************
     // render dynamic verison in <ModalX>
     // NOTE: The <div key = {idx}> tag is used to suppress React warning about
     //       elements needing a unique key.
-    return (
-      <>
+    if (isDynamic && subComponents) {
+      return (
+        <>
+          {subComponents.map( ( subComponent, idx ) => (
+            <div key={idx}>
+              {subComponent}
+            </div>
+          ) )}
+          <br />
+          <div className="bgButton text-center">
+            <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>{' '}
 
-        {questions.map( ( question, idx ) => (
+            <Button className="closeButton" type="button" onClick={this.onclickClose}>Close</Button>
 
-          <div key={idx}>
-
-            {( idx === currIdx ) && ( questionType === QUESTION_TYPE_SHORT_ANSWERS ) && (
-              <ShortAnswersCT
-                key={idx}
-                question={question}
-                isDynamic={isDynamic}
-                doesHandlePersistence={{ value: false }}
-              />
-            )}
-
-            {( idx === currIdx ) && ( questionType === QUESTION_TYPE_TRANSITIONS ) && (
-              <TransitionsCT
-                key={idx}
-                question={question}
-                isDynamic={isDynamic}
-              />
-            )}
-
-            {/* Change to BracketCT */}
-            {( idx === currIdx ) && ( questionType === QUESTION_TYPE_BRACKET ) && (
-              /* NOTE: promptQuestionCode was added to a normal question obj when
-                         setting up data in Module#.js.  Need to extract it here. */
-              <BracketContainer
-                key={idx}
-                question={question}
-                isDynamic={isDynamic}
-              />
-
-            )}
-
+            <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
           </div>
-        ) )}
-        <br />
-        <div className="bgButton text-center">
-          <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>{' '}
+        </>
+      )
+    }
 
-          <Button className="closeButton" type="button" onClick={this.onclickClose}>Close</Button>
-
-          <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
-        </div>
-      </>
+    return (
+      <p>short circuit</p>
     )
+
+
+
+    // ******************************************
+    // render static version in <Popup>
+    // if ( !isDynamic ) {
+    //   return (
+    //     <>
+    //       {questions.map( ( question, idx ) => (
+    //         <div key={idx}>
+    //           <p><b>{question.text}</b></p>
+    //
+    //           {( questionType === QUESTION_TYPE_SHORT_ANSWERS ) && (
+    //             <ShortAnswersCT
+    //               key={idx}
+    //               question={question}
+    //               isDynamic={isDynamic}
+    //             />
+    //           )}
+    //
+    //           {( questionType === QUESTION_TYPE_TRANSITIONS ) && (
+    //             <TransitionsCT
+    //               key={idx}
+    //               question={question}
+    //               isDynamic={isDynamic}
+    //             />
+    //           )}
+    //
+    //           {/* Change to BracketCT */}
+    //           {( questionType === QUESTION_TYPE_BRACKET ) && (
+    //             /* NOTE: promptQuestionCode was added to a normal question obj when
+    //                        setting up data in Module#.js.  Need to extract it here. */
+    //             <BracketContainer
+    //               key={idx}
+    //               question={question}
+    //               isDynamic={isDynamic}
+    //             />
+    //           )}
+    //
+    //
+    //         </div>
+    //
+    //
+    //
+    //       ) )}
+    //     </>
+    //   )
+    // }
+
+
+
+    // // ******************************************
+    // // render dynamic verison in <ModalX>
+    // // NOTE: The <div key = {idx}> tag is used to suppress React warning about
+    // //       elements needing a unique key.
+    // return (
+    //   <>
+    //
+    //     {questions.map( ( question, idx ) => (
+    //
+    //       <div key={idx}>
+    //
+    //         {( idx === currIdx ) && ( questionType === QUESTION_TYPE_SHORT_ANSWERS ) && (
+    //           <ShortAnswersCT
+    //             key={idx}
+    //             question={question}
+    //             isDynamic={isDynamic}
+    //           />
+    //         )}
+    //
+    //         {( idx === currIdx ) && ( questionType === QUESTION_TYPE_TRANSITIONS ) && (
+    //           <TransitionsCT
+    //             key={idx}
+    //             question={question}
+    //             isDynamic={isDynamic}
+    //           />
+    //         )}
+    //
+    //         {/* Change to BracketCT */}
+    //         {( idx === currIdx ) && ( questionType === QUESTION_TYPE_BRACKET ) && (
+    //           /* NOTE: promptQuestionCode was added to a normal question obj when
+    //                      setting up data in Module#.js.  Need to extract it here. */
+    //           <BracketContainer
+    //             key={idx}
+    //             question={question}
+    //             isDynamic={isDynamic}
+    //           />
+    //
+    //         )}
+    //
+    //       </div>
+    //     ) )}
+    //     <br />
+    //     <div className="bgButton text-center">
+    //       <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>{' '}
+    //
+    //       <Button className="closeButton" type="button" onClick={this.onclickClose}>Close</Button>
+    //
+    //       <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
+    //     </div>
+    //   </>
+    // )
   }
 }

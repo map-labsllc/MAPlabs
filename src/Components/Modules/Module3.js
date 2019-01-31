@@ -39,6 +39,7 @@ class Module3 extends React.Component {
   // Define questions and excercises for Module 3
   // ---------------------------------------------------------------------
 
+
   // -------------------------
   // Module 3: 1A
   questions_310 = [
@@ -80,6 +81,7 @@ class Module3 extends React.Component {
   // -------------------------
   // Replaced with enhanced Bracketing component that takes an array of promptCodes
   // Module 3: 4A
+  // promptCodes_330 = [321, 322, 323, 324, 325, 326, 327, 328]
   exercise_330 = (
     <NarrativeCT
       question = { { code: 330, text: "Make tradeoffs between each category." } }

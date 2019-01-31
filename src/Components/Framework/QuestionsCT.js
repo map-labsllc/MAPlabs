@@ -20,6 +20,8 @@ import {
      isDynamic -- undefined or true
                   rendering static version in Popup or dynamic verison in Modal
      onCloseModalCB -- call to close the modal this control resides in
+
+     subComponents -- array of the Questions subcomponents
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
   console.log( "QuestionsCT::mapStateToProps()" )
@@ -28,6 +30,8 @@ const mapStateToProps = ( state, passedProps ) => {
     questionType,
     questions,
     isDynamic,
+
+    subComponents,
   } = passedProps
 
   // validation
@@ -45,6 +49,8 @@ const mapStateToProps = ( state, passedProps ) => {
         questions,
         RD: state.answersRD,
         isDynamic,
+
+        subComponents,
       }
     case QUESTION_TYPE_TRANSITIONS:
       return {
@@ -53,6 +59,8 @@ const mapStateToProps = ( state, passedProps ) => {
         questions,
         RD: state.transitionsRD,
         isDynamic,
+
+        subComponents,
       }
     case QUESTION_TYPE_BRACKET:
       return {
@@ -61,6 +69,8 @@ const mapStateToProps = ( state, passedProps ) => {
         questions,
         RD: state.answersRD,
         isDynamic,
+
+        subComponents,
       }
     default:
       throw new Error( 'ERROR unkown QUESTION_TYPE' )

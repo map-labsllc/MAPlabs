@@ -6,9 +6,8 @@ import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 import QuestionsList from '../Exercises/questionsList'
 import NarrativeCT from '../Exercises/NarrativeCT'
-import { loadAllAnswersAC } from '../../store/answers/actions'
-import { loadAllTransitionsAC } from '../../store/transitions/actions'
-import { loadAllStaticdataAC } from '../../store/staticdata/actions'
+import ShortAnswersCT from '../Exercises/ShortAnswersCT'
+
 import { getUser } from '../../store/user/reducer'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
@@ -40,7 +39,38 @@ class Module1 extends React.Component {
   // ---------------------------------------------------------------------
 
   // -------------------------
-  // Replace with Lifedescriptors
+  // TEST
+  questions_100 = [
+    { code: 101, text: "TEST original 1" },
+    { code: 102, text: "TEST original 2" },
+  ]
+
+
+  shortAnswers_101 = (
+    <ShortAnswersCT
+      key={101}
+      question={ { code: 101, text: "TEST new 1" } }
+    />
+  )
+  shortAnswers_102 = (
+    <ShortAnswersCT
+      key={102}
+      question={ { code: 102, text: "TEST new 2" } }
+    />
+  )
+
+  exercise_100 = (
+    <QuestionsCT
+      questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      description = { "Test passing question subcomponent as prop" }
+      questions = {this.questions_100}
+
+      subComponents = { [ this.shortAnswers_101, this.shortAnswers_102 ] }
+    /> )
+
+
+
+  // -------------------------
   // Module 1: 2C-F
   exercise_110 = (
     <QuestionsList
@@ -148,6 +178,14 @@ class Module1 extends React.Component {
               moduleTitle = "Your Meanings and Motivations "
               moduleDescription = { MOD_1_DESC }
             >
+
+              <SectionCT
+                moduleNum = { 1 }
+                sectionNum = { 100 }
+                sectionTitle = "Test short answers as prop"
+                exercise = {this.exercise_100}
+              />
+
               <SectionCT
                 moduleNum = { 1 }
                 sectionNum = { 110 }
