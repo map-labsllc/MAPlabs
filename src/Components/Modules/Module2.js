@@ -32,7 +32,7 @@ class Module2 extends React.Component {
 
   // -------------------------
   // Replace with new component
-  // 1A-B
+  // Module 2: 1A-B
   exercise_210 = (
     <NarrativeCT
       question = { { code: 210, text: "List all of your contextual influences" } }
@@ -43,7 +43,7 @@ class Module2 extends React.Component {
 
   // -------------------------
   // May drop this??
-  // 2B
+  // Module 2: 2B
   exercise_220 = (
     <NarrativeCT
       question = { { code: 220, text: "Rank your influences" } }
@@ -54,7 +54,7 @@ class Module2 extends React.Component {
 
   // -------------------------
   // Replace with new component
-  // 3A
+  // Module 2: 3A
   exercise_230 = (
     <NarrativeCT
       question = { { code: 230, text: "Relating Your Values and Beliefs to Those of Your Influences" } }
@@ -64,7 +64,7 @@ class Module2 extends React.Component {
 
 
   // -------------------------
-  // 3B
+  // Module 2: 3B
   exercise_240 = (
     <NarrativeCT
       question = { { code: 240, text: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement" } }
@@ -73,7 +73,7 @@ class Module2 extends React.Component {
     /> )
 
   // -------------------------
-  // 3C
+  // Module 2: 3C
   exercise_250 = (
     <NarrativeCT
       question = { { code: 250, text: "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement" } }
@@ -83,7 +83,7 @@ class Module2 extends React.Component {
 
 
   // -------------------------
-  // 4A
+  // Module 2: 4A
   questions_260 = [
     { code: 261, text: "As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is." },
     { code: 262, text: "Which core values and beliefs are most meaningful to you?" },
@@ -100,7 +100,7 @@ class Module2 extends React.Component {
 
 
   // -------------------------
-  // 4B
+  // Module 2: 4B
   questions_270 = [
     { code: 271, text: "Values and Beliefs" },
     { code: 272, text: "Primary Influences" },
