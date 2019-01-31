@@ -8,7 +8,7 @@ import Arrows from '../Utils/Arrows'
 import { getUser } from '../../store/user/reducer'
 import { loadAllAnswersAC } from '../../store/answers/actions'
 import { getAnswers } from '../../store/answers/reducer'
-import '../../CSS/Section.css'
+import '../../CSS/ModalNavButtons.css'
 import {
   updateAnswersAC,
   persistAnswersAC
@@ -166,39 +166,60 @@ class QuestionsList extends Component {
 
             {list[this.state.page]}
             <br />
-            <Arrows
-              direction="left"
-              clickFunction={this.previousSlide(pages)}
-              glyph="arrow-left"
-              className="previousButton"
-            />
-            <Button
-              className="closeButton"
-              onClick={() => {
-                const sentences = []
+            <div className="container-fluid">
+              <div style={style.left}>
+                <Arrows
+                  direction="left"
+                  clickFunction={this.previousSlide(pages)}
+                  glyph="arrow-left"
+                />
+              </div>
+              <div style={style.center}>
+                <Button
+                  className="closeButton"
+                  onClick={() => {
+                    const sentences = []
 
-                for (let i = 0; i < lifeDescriptors.length; i++) {
-                  if (this.state.selections[i]) {
-                    let sentence = this.buildingCongruentSentence(lifeDescriptors[i], this.state.selections[i])
-                    sentences.push(sentence)
+                    for (let i = 0; i < lifeDescriptors.length; i++) {
+                      if (this.state.selections[i]) {
+                        let sentence = this.buildingCongruentSentence(lifeDescriptors[i], this.state.selections[i])
+                        sentences.push(sentence)
 
-                  }
-                }
-                onPersistCB(userId, sentences)
-                onCloseModalCB()
-              }}>Close</Button>
-            <Arrows
-              className="nextButton"
-              direction="right"
-              clickFunction={this.nextSlide(pages)}
-              glyph="arrow-right"
-            />
+                      }
+                    }
+                    onPersistCB(userId, sentences)
+                    onCloseModalCB()
+                  }}>Close</Button>
+              </div>
+              <div style={style.right}>
+                <Arrows
+                  direction="right"
+                  clickFunction={this.nextSlide(pages)}
+                  glyph="arrow-right"
+                />
+              </div>
+            </div>
           </>
         )}
       </>
     )
   }
 }
+const style = {
+  right: {
+    display: "inline-block",
+    float: "right",
+  },
+  left: {
+    display: "inline-block",
+    float: "left",
+  },
+  center: {
+    display: "inline-block",
+    marginLeft: "42%"
+  }
+}
+
 
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
