@@ -10,7 +10,6 @@ export default class Bracket extends React.Component {
                      props.prompts.filter( prompt => prompt ) : 
                      [props.prompts] :
                      [],
-            madeFinalStoreUpdate: false,
         }
     }
 
