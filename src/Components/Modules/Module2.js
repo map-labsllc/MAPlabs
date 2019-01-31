@@ -13,7 +13,17 @@ import { getUser } from '../../store/user/reducer'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS} from '../../constants.js'
-import MODULE_2_INTRODUCTION from './Module2Introduction'
+import {
+  MOD_2_DESC,
+  QUES_210_DESC,
+  QUES_220_DESC,
+  QUES_230_DESC,
+  QUES_240_DESC,
+  QUES_250_DESC,
+  QUES_260_DESC,
+  QUES_270_DESC,
+  QUES_280_DESC,
+} from './Module2Text'
 
 import {
   Button,
@@ -37,17 +47,30 @@ class Module2 extends React.Component {
     <NarrativeCT
       question = { { code: 210, text: "List all of your contextual influences" } }
       promptQuestionCode = { 0 }
+      description = { QUES_210_DESC }
       instructions = "Choose influences in your life, their beliefs / values, and if they are supporrtive or inhibiting."
     /> )
 
 
   // -------------------------
   // May drop this??
-  // Module 2: 2B
+  // Module 2: 2B part 1
   exercise_220 = (
     <NarrativeCT
-      question = { { code: 220, text: "Rank your influences" } }
+      question = { { code: 220, text: "Rank your supportive influences" } }
       promptQuestionCode = { 0 }
+      description = { QUES_220_DESC }
+      instructions = ""
+    /> )
+
+  // -------------------------
+  // May drop this??
+  // Module 2: 2B part 2
+  exercise_230 = (
+    <NarrativeCT
+      question = { { code: 230, text: "Rank your inhibiting influences" } }
+      promptQuestionCode = { 0 }
+      description = { QUES_230_DESC }
       instructions = ""
     /> )
 
@@ -55,62 +78,66 @@ class Module2 extends React.Component {
   // -------------------------
   // Replace with new component
   // Module 2: 3A
-  exercise_230 = (
+  exercise_240 = (
     <NarrativeCT
-      question = { { code: 230, text: "Relating Your Values and Beliefs to Those of Your Influences" } }
-      promptQuestionCode = { 0 }
-      instructions = "Based on what you have written, fill in the blanks of the statement below for each of your top 5-10 'supportive' and 'inhibiting' influences."
+      question = { { code: 240, text: "Relating Your Values and Beliefs to Those of Your Influences" } }
+      promptQuestionCode = { 0 } // would need to do something here, maybe an array of promptQuestionCodes like in <Bracket>
+      description = { QUES_240_DESC }
+      instructions = ""
     /> )
 
 
   // -------------------------
   // Module 2: 3B
-  exercise_240 = (
+  exercise_250 = (
     <NarrativeCT
       question = { { code: 240, text: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement" } }
       promptQuestionCode = { 0 }
+      description = { QUES_250_DESC }
       instructions = ""
     /> )
 
   // -------------------------
   // Module 2: 3C
-  exercise_250 = (
+  exercise_260 = (
     <NarrativeCT
-      question = { { code: 250, text: "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement" } }
-      promptQuestionCode = { { questioncode: 0 } }
+      question = { { code: 260, text: "Synthesize Your Values and Beliefs into a Self-Inhibiting Statement" } }
+      promptQuestionCode = { 0 }
+      description = { QUES_260_DESC }
       instructions = ""
     /> )
 
-
   // -------------------------
   // Module 2: 4A
-  questions_260 = [
-    { code: 261, text: "As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is." },
-    { code: 262, text: "Which core values and beliefs are most meaningful to you?" },
-    { code: 263, text: "What things beyond yourself could be served if you more intentionally lived by your core values and beliefs?" },
-    { code: 264, text: "What areas of personal growth are needed to fill your life with more of your core values and beliefs?" },
-    { code: 265, text: "Which relationships that you either currently have or need to develop in the future (to any people, groups, practices, experiences, etc.) are most needed to support your core values and beliefs?" },
-    { code: 266, text: "What areas of engagement could your core values and beliefs lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?" },
+  questions_270 = [
+    { code: 271, text: "As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is." },
+    { code: 272, text: "Which core values and beliefs are most meaningful to you?" },
+    { code: 273, text: "What things beyond yourself could be served if you more intentionally lived by your core values and beliefs?" },
+    { code: 274, text: "What areas of personal growth are needed to fill your life with more of your core values and beliefs?" },
+    { code: 275, text: "Which relationships that you either currently have or need to develop in the future (to any people, groups, practices, experiences, etc.) are most needed to support your core values and beliefs?" },
+    { code: 276, text: "What areas of engagement could your core values and beliefs lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?" },
   ]
-  exercise_260 = (
+  exercise_270 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
-      questions = {this.questions_260}
+      questions = {this.questions_270}
+      description = { QUES_270_DESC }
     /> )
 
 
   // -------------------------
   // Module 2: 4B
-  questions_270 = [
-    { code: 271, text: "Values and Beliefs" },
-    { code: 272, text: "Primary Influences" },
-    { code: 273, text: "Relationships" },
-    { code: 274, text: "Commitments" },
+  questions_280 = [
+    { code: 281, text: "Values and Beliefs" },
+    { code: 282, text: "Primary Influences" },
+    { code: 283, text: "Relationships" },
+    { code: 284, text: "Commitments" },
   ]
-  exercise_270 = (
+  exercise_280 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_TRANSITIONS}
-      questions = {this.questions_270}
+      questions = {this.questions_280}
+      description = { QUES_280_DESC }
     /> )
 
 
@@ -127,7 +154,7 @@ class Module2 extends React.Component {
             <Module
               moduleNum = { 2 }
               moduleTitle = "Your Social Context"
-              moduleDescription = { MODULE_2_INTRODUCTION }
+              moduleDescription = { MOD_2_DESC }
             >
               <SectionCT
                 moduleNum = { 2 }
@@ -150,26 +177,34 @@ class Module2 extends React.Component {
               <SectionCT
                 moduleNum = { 2 }
                 sectionNum = { 240 }
-                sectionTitle = "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement"
+                sectionTitle = "Relating Your Values and Beliefs to Those of You Influencers"
                 exercise = {this.exercise_240}
               />
               <SectionCT
                 moduleNum = { 2 }
                 sectionNum = { 250 }
-                sectionTitle = "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement"
+                sectionTitle = "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement"
                 exercise = {this.exercise_250}
               />
               <SectionCT
                 moduleNum = { 2 }
                 sectionNum = { 260 }
-                sectionTitle = "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement"
+                sectionTitle = "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement"
                 exercise = {this.exercise_260}
               />
               <SectionCT
                 moduleNum = { 2 }
                 sectionNum = { 270 }
-                sectionTitle = "Breaking and building"
+                sectionTitle = "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement"
                 exercise = {this.exercise_270}
+              />
+              {/*-------------------------
+              Module 2: 4B*/}
+              <SectionCT
+                moduleNum = { 2 }
+                sectionNum = { 280 }
+                sectionTitle = "Breaking and building"
+                exercise = {this.exercise_280}
               />
             </Module>
           </>

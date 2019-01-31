@@ -24,7 +24,6 @@ import {
   QUES_340_DESC,
   QUES_350_DESC,
   QUES_360_DESC,
-  QUES_370_DESC,
 } from './Module3Text'
 
 import {

@@ -1,1 +1,0 @@
-export default `Welcome to Module 2 of MAPmaker. This week you will examine your social context in order to assess what values and beliefs the people, places and groups in your life possess, and then you will reflect on how these social values and beliefs affect you.`

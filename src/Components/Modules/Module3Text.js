@@ -4,7 +4,7 @@ Desire plays an important role in well-being. In Module 3 we will focus on diffe
 <br><br>
 In Module 1 we differentiated between our current situation, which may have resulted from extrinsic motivations, and our desired future life, which can be built on intrinsic motivations.
 <br><br>
-In Module 2, a primary takeaway was that often our inhibiting values and beliefs make their way into our lives through the relational, social, and cultural influences around us. These “adopted” values and beliefs can make us feel like we desire things (or should, at any rate) that actually lead to our dissatisfying current situation. Often this is because these extrinsic desires are not coming from our authentic, intrinsic values and beliefs.
+In Module 2, a primary takeaway was that often our inhibiting values and beliefs make their way into our lives through the relational, social, and cultural influences around us. These 'adopted' values and beliefs can make us feel like we desire things (or should, at any rate) that actually lead to our dissatisfying current situation. Often this is because these extrinsic desires are not coming from our authentic, intrinsic values and beliefs.
 <br><br>
 In Module 3 we will continue our process by building on the intrinsic values and beliefs that we identified in Module 2 to help lead us to the deepest desires we have for our lives across a battery of life elements.`
 
@@ -45,7 +45,7 @@ This exercise has two main aims.
 <br><br>
 First, and most basically, it allows you to identify and focus on your deepest, most compelling desires, while letting other secondary desires fall to the sidelines. That will be valuable for developing your sense of purpose, since purpose is inherently based on what is most meaningful to you. Seeing what you choose as your most compelling desires, as well as seeing what you don’t choose, can help you to know what you are most striving for among a field of possible options.
 <br><br>
-Second, and more deeply, this exercise will give you an opportunity to be visceral rather than logical or reasonable, to sit in your body and feel your way through what is most important to you. Purpose is not something you reason your way into. The logic you use may very well stem from the unacknowledged expectations of others. Purpose takes root when you find yourself committed to something almost despite the better reasons one could find for taking another path. If the path makes sense to you, it has to make sense on the level of the heart, not just the head. As the philosopher Blaise Pascal wrote, “The heart has reasons which the reason knows not.”
+Second, and more deeply, this exercise will give you an opportunity to be visceral rather than logical or reasonable, to sit in your body and feel your way through what is most important to you. Purpose is not something you reason your way into. The logic you use may very well stem from the unacknowledged expectations of others. Purpose takes root when you find yourself committed to something almost despite the better reasons one could find for taking another path. If the path makes sense to you, it has to make sense on the level of the heart, not just the head. As the philosopher Blaise Pascal wrote, 'The heart has reasons which the reason knows not.'
 <br><br>
 <i>A caveat:<i> when you get down to your last few desires, you may find that they are equally important, and you may want to combine some of them to come up with an optimal final desire. There will be an opportunity for you to make this kind of revision in the last two rounds.`
 
@@ -71,11 +71,6 @@ List which <i>relationships</i> that you either currently have or need to develo
 List any areas of <i>engagement</i> or <i>mastery</i> (either in your life’s work or avocationally) that could express or fulfill your deepest desires.`
 
 
-export const QUES_360_DESC = `In order to create more personal Autonomy, consider which desires are less authentic and need to be “broken from,” and which desires are more authentic and need to be “built toward.” Fill in the following blanks:
-<br><br>
-In order to create a more meaningful life, I want to increase my personal Autonomy by altering my: `
-
-
-export const QUES_370_DESC = `In order to create more personal Autonomy, consider which desires are less authentic and need to be “broken from,” and which desires are more authentic and need to be “built toward.” Fill in the following blanks:
+export const QUES_360_DESC = `In order to create more personal Autonomy, consider which desires are less authentic and need to be 'broken from,' and which desires are more authentic and need to be 'built toward.' Fill in the following blanks:
 <br><br>
 In order to create a more meaningful life, I want to increase my personal Autonomy by altering my: `
