@@ -82,22 +82,25 @@ export default class ShortAnswer extends React.Component {
     }
 
     return (
-      <div className="text-center">
-        <Form inline onSubmit={this.onSubmit}>
-          <FormGroup>
 
-            <FormControl
-              type="text"
-              onChange={this.onChange}
-              onBlur={this.onBlur}
-              value={answer}
-              placeholder="Please enter an answer"
-            />
+      <Form inline onSubmit={this.onSubmit}>
 
-            <Button type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
-          </FormGroup>
-        </Form>
-      </div>
+        <FormGroup>
+
+          <FormControl
+            type="text"
+            onChange={this.onChange}
+            onBlur={this.onBlur}
+            value={answer}
+            placeholder="Please enter an answer"
+          />
+          {"   "}
+          <Button type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
+
+        </FormGroup>
+
+      </Form>
+
     )
   }
 }

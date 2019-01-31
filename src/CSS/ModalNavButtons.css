@@ -1,20 +1,20 @@
 
 .closeButton{
-  background-color: rgb(68, 122, 178);
+  background-color: rgb(68, 157, 235);
   color: black;
   border-color: black;
   align-content: center;
 }
 .previousButton{
   float: left;
-  background-color: #29648A;
-  color: black;
+  background-color: #25274D;
+  color: white;
   border-color: black;
 }
 .nextButton{
   float: right;
- background-color: rgb(178,198,235);
- color: black;
+ background-color: #25274D;
+ color: white;
  border-color: black;
 }
 .bgButtons{
