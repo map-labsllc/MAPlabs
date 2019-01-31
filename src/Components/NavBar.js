@@ -10,17 +10,17 @@ import { loadAllStaticdataAC } from '../store/staticdata/actions'
 class NavBar extends React.Component {
 
   componentDidMount() {
-    console.log("NavBar::componentDidMount()")
+    console.log( "NavBar::componentDidMount()" )
     const { dispatch, user } = this.props
 
     // asynch calls to load user and static from db
-    dispatch(loadAllAnswersAC(user.user_id))
-    dispatch(loadAllTransitionsAC(user.user_id))
-    dispatch(loadAllStaticdataAC())
+    dispatch( loadAllAnswersAC( user.user_id ) )
+    dispatch( loadAllTransitionsAC( user.user_id ) )
+    dispatch( loadAllStaticdataAC() )
   }
 
   render() {
-    console.log("NavBar::render")
+    console.log( "NavBar::render" )
     return (
       this.props.user &&
 
@@ -47,7 +47,7 @@ class NavBar extends React.Component {
             <NavLink to="/modules/5">Module 5</NavLink>
           </NavItem>
           <NavDropdown eventKey={6} title={this.props.user.fname} id="basic-nav-dropdown">
-            <MenuItem eventKey={6.1}>Dashboard</MenuItem>
+            <MenuItem eventKey={6.1}><NavLink to="/dashboard">Dashboard</NavLink></MenuItem>
             <MenuItem eventKey={6.2}>Account info</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={6.4}>Log out</MenuItem>
@@ -77,11 +77,11 @@ const mapStateToProps = state => {
     user
   }
 }
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ( {
   dispatch,
-})
+} )
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NavBar)
+)( NavBar )

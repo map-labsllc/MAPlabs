@@ -20,6 +20,7 @@ export default class RouterComponent extends React.Component {
         <Route exact path ='/modules/2' component = { Module2 }/>
         <Route exact path ='/modules/3' component = { Module3 }/>
         <Route exact path ='/signup' component = { SignUp }/>
+      {/*  <Route exact path ='/dashboard' component = { SignUp }/>*/}
       </Switch>
     )
   }
