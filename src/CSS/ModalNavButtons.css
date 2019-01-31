@@ -1,8 +1,9 @@
 
 .closeButton{
-  background-color: #2E9CCA;
+  background-color: rgb(68, 122, 178);
   color: black;
   border-color: black;
+  align-content: center;
 }
 .previousButton{
   float: left;

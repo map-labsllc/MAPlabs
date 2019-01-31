@@ -10,6 +10,7 @@ import {
   FormGroup,
   Modal,
 } from 'react-bootstrap'
+import '../../CSS/ModalNavButtons.css'
 
 /* **************************************************
    Modal component
@@ -72,7 +73,7 @@ const style = {
     fontWeight: "1",
     fontSize: "25px",
     backgroundColor: "#25274D",
-    color: "#AAABB8",
+    color: "white",
   },
   previous: {
     float: "left",
