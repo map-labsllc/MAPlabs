@@ -9,7 +9,7 @@ export default class Bracket extends React.Component {
                      Array.isArray( props.prompts ) ?
                      props.prompts : 
                      [props.prompts] :
-                     ['', '']
+                     []
         }
     }
 
@@ -36,18 +36,26 @@ export default class Bracket extends React.Component {
         return ( isDynamic ? 
             <div>
                 <p id={'question' + code}>{text}</p>
+                <p>Compare the desires and make a tradeoff between each set of two, choosing one to carry into the next round. 
+                    Click a desire to choose it</p>
+                {this.state.prompts[1] ? 
                 <p className='prompts'>
-                    <span
+                    <button
                         id='prompt1' 
                         onClick={this.promptClick( 1 )}
-                        >{this.state.prompts[0]}</span>
-                    <span 
-                        id='prompt2'
-                        onClick={this.promptClick( 0 )}
-                        >{this.state.prompts[1]}</span>
-                </p>
+                        >{this.state.prompts[0]}</button>
+                        <button 
+                            id='prompt2'
+                            onClick={this.promptClick( 0 )}
+                        >{this.state.prompts[1]}</button> 
+                    
+                </p> : 
+                ( this.state.prompts.length > 0 && <p>You choose: {this.state.prompts[0]}. 
+                 Click 'Next' to continue the exercise, or 'Close' to save your work.   
+                </p> )
+            }
             </div> : <span>{this.state.prompts.map( ( prompt, index ) => (
-                <p key={index}>{prompt} <br></br></p>
+                <p key={index}>{prompt}</p>
             ) )}</span>
         )
     } 
