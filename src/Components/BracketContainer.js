@@ -3,11 +3,9 @@ import Bracket from './Bracket'
 import { connect } from 'react-redux'
 import { persistAnswersAC, updateAnswersAC } from '../store/answers/actions'
 
-const prompts330 = [ "Financial/Material", "Vocation/Career/Life Work", "Social/Community", "Family", "Mental/Educational", "Spiritual/Emotional/Creative", "Physical/Health/Recreational", "Other"]
 function mapStateToProps( state, { question, isDynamic } ) {
     return {
-        prompts: ( isQuestion330( state, question ) ) && ( question.promptCode == 330 ) ? prompts330
-        : state.answersRD.questions[question.promptCode],
+        prompts: question.promptCode === 330 ? get330Prompts( state, question ) : state.answersRD.questions[question.promptCode],
         userId: state.userRD.user.user_id,
         question,
         isDynamic
@@ -23,8 +21,11 @@ function mapDispatchToProps( dispatch ) {
     } 
 }
 
-function isQuestion330( state, question ) {
-    return state.answersRD.questions[question.promptCode] && !state.answersRD.questions[question.promptCode][0]
+function get330Prompts( state, question ) {
+    const existingAnswer = state.answersRD.questions[question.code] && state.answersRD.questions[question.code][0].trim()
+    return question.promptCodes.reduce( ( acc, childQuestion ) =>( [...acc, 
+        state.answersRD.questions[childQuestion.code] && state.answersRD.questions[childQuestion.code][0] ? 
+        `${existingAnswer.includes( childQuestion.text ) ? '(Previous winner)' : ''} ${childQuestion.text}: ${state.answersRD.questions[childQuestion.code]}` : ''] ), [] )
 }
 export default connect(
     mapStateToProps,
