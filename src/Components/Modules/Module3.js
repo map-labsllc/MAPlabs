@@ -15,7 +15,17 @@ import {
   QUESTION_TYPE_TRANSITIONS,
   QUESTION_TYPE_BRACKET,
 } from '../../constants.js'
-import MODULE_3_INTRODUCTION from './Module3Introduction'
+
+import {
+  MOD_3_DESC,
+  QUES_310_DESC,
+  QUES_320_DESC,
+  QUES_330_DESC,
+  QUES_340_DESC,
+  QUES_350_DESC,
+  QUES_360_DESC,
+  QUES_370_DESC,
+} from './Module3Text'
 
 import {
   Button,
@@ -45,6 +55,7 @@ class Module3 extends React.Component {
   exercise_310 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      description = {QUES_310_DESC}
       questions = {this.questions_310}
     /> )
 
@@ -81,7 +92,7 @@ class Module3 extends React.Component {
             <Module
               moduleNum = { 3 }
               moduleTitle = "Personal Desires"
-              moduleDescription = { MODULE_3_INTRODUCTION }
+              moduleDescription = { MOD_3_DESC }
             >
               <SectionCT
                 moduleNum = { 3 }
@@ -91,7 +102,7 @@ class Module3 extends React.Component {
               />
               <SectionCT
                 moduleNum = { 3 }
-                sectionNum = { 330 }
+                sectionNum = { 320 }
                 sectionTitle = "Make tradeoffs within each category"
                 exercise = {this.exercise_320}
               />
