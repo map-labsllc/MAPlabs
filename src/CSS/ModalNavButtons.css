@@ -13,7 +13,7 @@
 }
 .nextButton{
   float: right;
- background-color: #29648A;
+ background-color: rgb(178,198,235);
  color: black;
  border-color: black;
 }
@@ -21,9 +21,9 @@
   background-color: #29648A;
 }
 .addAnswerButton{
-  background-color: #464866;
-  color:#AAABB8;
-  border-color: #AAABB8;
+  background-color: #AAABB8;
+  color:black;
+  border-color: black;
 }
 .complete{
   margin-left: auto;
