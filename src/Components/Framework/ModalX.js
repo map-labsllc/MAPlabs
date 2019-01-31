@@ -46,10 +46,11 @@ export default class ModalX extends React.Component {
         </Modal.Header>
 
         <Modal.Body style={style.body}>
-          <>
+          <div className="container-fluid" style={style.modalContain}>
             {exercise}
-          </>
+          </div>
         </Modal.Body>
+
       </Modal>
     )
   }
@@ -61,6 +62,12 @@ export default class ModalX extends React.Component {
 
 
 const style = {
+  modalContain: {
+    backgroundColor: "white",
+    borderRadius: "10px",
+    paddingTop: "5px",
+    paddingBottom: "5px",
+  },
   header: {
     fontWeight: "1",
     fontSize: "25px",

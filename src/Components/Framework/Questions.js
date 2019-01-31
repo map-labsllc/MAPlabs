@@ -161,10 +161,7 @@ export default class Questions extends React.Component {
     //       elements needing a unique key.
     return (
       <>
-        <div className="bgButton">
-          <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>{' '}
-          <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
-        </div>
+
         {questions.map((question, idx) => (
 
           <div key={idx}>
@@ -202,8 +199,12 @@ export default class Questions extends React.Component {
           </div>
         ))}
         <br />
-        <div className="text-center">
+        <div className="bgButton text-center">
+          <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>{' '}
+
           <Button className="closeButton" type="button" onClick={this.onclickClose}>Close</Button>
+
+          <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
         </div>
       </>
     )

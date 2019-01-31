@@ -8,6 +8,7 @@ import Arrows from './Arrows'
 import { getUser } from '../../store/user/reducer'
 import { loadAllAnswersAC } from '../../store/answers/actions'
 import { getAnswers } from '../../store/answers/reducer'
+import '../../CSS/Section.css'
 import {
   updateAnswersAC,
   persistAnswersAC
@@ -128,11 +129,11 @@ class QuestionsList extends Component {
       const { previousAnswers } = this.props
       return (
         <>
-          <p>Previus answers:</p>
+          <p><strong>Previous answers:</strong></p>
           {previousAnswers.map((previousAnswer, idx) =>
             <p key={idx}>- {previousAnswer}</p>
           )}
-          <p>.</p>
+          <hr className="divider" />
         </>
       )
 
@@ -204,18 +205,18 @@ class QuestionsList extends Component {
 ////////////////////////////////////////////////////////////////
 
 // Wrap in container to get access to store and dispatch
-const mapStateToProps = ( state, passedProps ) => {
-  console.log( 'state', state )
+const mapStateToProps = (state, passedProps) => {
+  console.log('state', state)
   const { isDynamic, description, question, instructions, onCloseModalCB } = passedProps
 
   // find previous answers, if any, to display when static
   let previousAnswers = []
   if (!isDynamic)
-    previousAnswers = getAnswers( state.answersRD, question.code )
+    previousAnswers = getAnswers(state.answersRD, question.code)
 
   return {
     isLoading: state.answersRD.isLoading || state.staticdataRD.isLoading,
-    userId: getUser( state.userRD ).user_id,
+    userId: getUser(state.userRD).user_id,
     description,
     question,
     instructions,

@@ -34,37 +34,37 @@ export default class Popup extends React.Component {
   // **************************************************
   // Show the complex interactive component
   onclickStart = () => {
-    console.log( "Popup::onclickStart()" )
-    this.setState( { isVisible: true } )
+    console.log("Popup::onclickStart()")
+    this.setState({ isVisible: true })
   }
 
   // **************************************************
   // CB from the <exercise> when its close/save button is clicked
   onCloseModal = () => {
-    console.log( "Popup::onCloseModal()" )
+    console.log("Popup::onCloseModal()")
 
     const { dispatch, user, moduleNum, sectionNum } = this.props
-    dispatch( sectionCompletedAC( user, moduleNum, sectionNum ) )
+    dispatch(sectionCompletedAC(user, moduleNum, sectionNum))
 
-    this.setState( { isVisible: false } )
+    this.setState({ isVisible: false })
   }
 
   // **************************************************
   // CB from <Modal>
   onModalClosing = () => {
-    console.log( "Popup::onModalClosing()" )
+    console.log("Popup::onModalClosing()")
     // this.setState( { isVisible: false } )
   }
   // **************************************************
   // CB from <Modal>
   onModalOpening = () => {
-    console.log( "Popup::onModalOpening()" )
+    console.log("Popup::onModalOpening()")
   }
 
   // **************************************************
   // render!
   render() {
-    console.log( "Popup::render()" )
+    console.log("Popup::render()")
 
     let { isVisible } = this.state
     let { sectionTitle, exercise } = this.props
@@ -75,8 +75,10 @@ export default class Popup extends React.Component {
     //       doesn't exist (is undefined) in <exercise>.
     const exerciseDynamic = React.cloneElement(
       exercise,
-      { onCloseModalCB: this.onCloseModal,
-        isDynamic: true }
+      {
+        onCloseModalCB: this.onCloseModal,
+        isDynamic: true
+      }
     )
 
     // By default <exercise> does not have the isDynamic prop and will
@@ -91,12 +93,12 @@ export default class Popup extends React.Component {
       <>
         {!isVisible && (
           <>
-            <ShowMoreLess lines={ 3 } >
-              <span dangerouslySetInnerHTML={ { __html: description } } />
+            <ShowMoreLess lines={3} >
+              <span dangerouslySetInnerHTML={{ __html: description }} />
             </ShowMoreLess>
-            <p>.</p>
-            <p>xx seperator between description and the static exercise xxxx</p>
-            <p>.</p>
+            <br />
+            <hr className="divider" />
+            <br />
             {exerciseStatic}
             <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
           </>
@@ -114,7 +116,7 @@ export default class Popup extends React.Component {
   }
 }
 
-// return (
+        // return (
 //   <>
 //     <h6><i>..Popup controller manages starting a section..</i></h6>
 //     {!isVisible && (

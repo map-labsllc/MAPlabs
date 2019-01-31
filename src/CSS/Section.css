@@ -5,6 +5,8 @@
 }
 .sectionHeader{
   background-color: #29648A;
+  font-family:Helvetica;
+  font-weight: 900;
 }
 .sectionBody{
   background-color: #AAABB8;
@@ -14,4 +16,19 @@
   background-color: #2E9CCA;
   color: black;
   border-color: black;
+}
+.background {
+  box-shadow: 10px 10px 70px 10px  rgb(213, 215, 213);
+}
+.contain{
+  background-color: white;
+  text-align:center;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-right: 2%;
+  padding-left: 2%;
+  border-radius:10px;
+}
+.divider{
+  border-color:rgb(213, 215, 213);
 }
