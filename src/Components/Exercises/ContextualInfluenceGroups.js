@@ -7,13 +7,14 @@ import Influences from './ContextualInfluences'
 
   }
   render(){
-    const { groups } = this.props
+    const { groups, beliefs } = this.props
     return (
       groups.map( group => (
         <div>
-        
+
           <Influences
             key = {group.code}
+            beliefs = {beliefs}
             question={group.text}
             name= {group.name}
           />

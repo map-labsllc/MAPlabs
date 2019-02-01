@@ -3,10 +3,16 @@ import ContextualInfluenceGroups from './ContextualInfluenceGroups'
 import { getUser } from '../../store/user/reducer'
 
 const mapStateToProps = ( state, passedProps ) => {
+
   const {question} = passedProps
-    const user = getUser( state.userRD )
+
+  const user = getUser( state.userRD )
+
+  const beliefs = state.staticdataRD.beliefs
+
   return {
     user,
+    beliefs,
     answers: state.answersRD.questions[question.code]
   }
 }

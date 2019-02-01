@@ -9,6 +9,7 @@ import QuestionsList from '../Exercises/questionsList'
 import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ContextualInfluenceGroups from '../Exercises/ContextualInfluenceGroups'
+import ContextualInfluencesCT from '../Exercises/ContextualInfluencesCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 
 
@@ -61,8 +62,9 @@ class Module2 extends React.Component {
   // -------------------------
   // May drop this??
   // Module 2: 2B part 1
+  // <ContextualInfluenceGroups
   exercise_220 = (
-    <ContextualInfluenceGroups
+    <ContextualInfluencesCT
       groups = {[
         {
           code:2201,

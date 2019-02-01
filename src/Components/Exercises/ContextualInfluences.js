@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form,FormControl,FormGroup, Label } from 'react-bootstrap'
-import Beliefs from './valuesAndBeliefs'
+// import Beliefs from './valuesAndBeliefs'
 
 export default class ContextualInfluences extends Component{
   constructor( props ){
@@ -12,7 +12,9 @@ export default class ContextualInfluences extends Component{
 
 
   render(){
-    const { group } = this.props
+    console.log('beliefs: ', beliefs);
+
+    const { group, beliefs} = this.props
 
     return(
       <div className="container">
@@ -30,7 +32,7 @@ export default class ContextualInfluences extends Component{
             placeholder="happy"
           >
           {
-            Beliefs.map( item =>(
+            beliefs.map( item =>(
               <option value={ item}>{item}</option>
              ) )
           }
