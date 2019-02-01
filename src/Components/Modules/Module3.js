@@ -88,15 +88,15 @@ class Module3 extends React.Component {
   // Replaced with enhanced Bracketing component that takes an array of promptCodes
   // Module 3: 4A
   // promptCodes_330 = [321, 322, 323, 324, 325, 326, 327, 328]
-  exercise_330 = (
-    <QuestionsCT
-    questionType = {QUESTION_TYPE_BRACKET}
-    description = {QUES_330_DESC}
-    questions = {[{ promptCode: 330, 
-      code: 330, 
-      promptCodes: this.questions_320.reduce( ( acc, question ) => ( [...acc, {code: question.promptCode, text: question.text}] ), [] ), 
-      text: "Make tradeoffs between each category." }]}
-  /> )
+  // exercise_330 = (
+  //   <QuestionsCT
+  //   questionType = {QUESTION_TYPE_BRACKET}
+  //   description = {QUES_330_DESC}
+  //   questions = {[{ promptCode: 330,
+  //     code: 330,
+  //     promptCodes: this.questions_320.reduce( ( acc, question ) => ( [...acc, {code: question.promptCode, text: question.text}] ), [] ),
+  //     text: "Make tradeoffs between each category." }]}
+  // /> )
 
   // -------------------------
   // Module 3: 4B
@@ -170,12 +170,12 @@ class Module3 extends React.Component {
                 sectionTitle = "Make tradeoffs within each category"
                 exercise = {this.exercise_320}
               />*/}
-              <SectionCT
+              {/*<SectionCT
                 moduleNum = { 3 }
                 sectionNum = { 330 }
                 sectionTitle = "Make tradeoffs between each category"
                 exercise = {this.exercise_330}
-              />
+              />*/}
               <SectionCT
                 moduleNum = { 3 }
                 sectionNum = { 340 }
