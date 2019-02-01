@@ -103,7 +103,7 @@ export default class Narrative extends React.Component {
             <textarea
               rows="10"
               style={style.contain}
-              autoFocus="true"
+              autoFocus={true}
               placeholder="Please enter an answer and click Close"
               onChange={this.onChange}
               onBlur={this.onBlur}

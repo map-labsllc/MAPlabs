@@ -127,7 +127,7 @@ export default class ShortAnswers extends React.Component {
     console.log("this.state.answers", this.state.answers);
 
     // render static version in <Popup>
-    if ( !isDynamic ) {
+    if (!isDynamic) {
       return (
         <>
           {answersWithKeys.map((answerWithKey) =>
@@ -150,25 +150,31 @@ export default class ShortAnswers extends React.Component {
       <>
         <p> </p>
         <h4>{question.text}</h4>
-        <div className="text-center">
-          {answersWithKeys.map((answerWithKey) =>
-            <ShortAnswer
-              key={answerWithKey.key}
-              id={answerWithKey.key}
-              previousAnswer={answerWithKey.text}
-              updateAnswerCB={this.updateAnswer}
-              deleteAnswerCB={this.deleteAnswer}
-              isDynamic={isDynamic}
-            >
-            </ShortAnswer>
-          )}
-        </div>
+        <br />
+        {answersWithKeys.map((answerWithKey) =>
+          <ShortAnswer
+            key={answerWithKey.key}
+            id={answerWithKey.key}
+            previousAnswer={answerWithKey.text}
+            updateAnswerCB={this.updateAnswer}
+            deleteAnswerCB={this.deleteAnswer}
+            isDynamic={isDynamic}
+          >
+          </ShortAnswer>
+        )}
+
         <hr />
-        <div className="text-center">
+        <div style={style.centering} >
           <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
         </div>
         <hr />
       </>
     )
+  }
+}
+const style = {
+  centering: {
+    marginLeft: "45%",
+    marginRight: "45%",
   }
 }
