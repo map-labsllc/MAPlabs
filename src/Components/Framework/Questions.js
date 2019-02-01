@@ -7,15 +7,9 @@ import {
   FormControl,
   FormGroup,
 } from 'react-bootstrap'
-import ShortAnswersCT from '../Exercises/ShortAnswersCT'
-import TransitionsCT from '../Exercises/TransitionsCT'
-import {
-  QUESTION_TYPE_SHORT_ANSWERS,
-  QUESTION_TYPE_TRANSITIONS,
-  QUESTION_TYPE_BRACKET,
-} from '../../constants.js'
+
 import '../../CSS/ModalNavButtons.css'
-import BracketCT from '../Exercises/BracketCT'
+
 
 /* **************************************************
    Questions component
@@ -133,7 +127,7 @@ export default class Questions extends React.Component {
         return React.cloneElement(
           subComponent,
           {
-            isDynamic: "true"
+            isDynamic: true
           }
         )
       } )
