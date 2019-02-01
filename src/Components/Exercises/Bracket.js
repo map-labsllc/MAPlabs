@@ -32,9 +32,7 @@ export default class Bracket extends React.Component {
   }
 
   updateStore = prompts => {
-    const promptsToDispatch = this.props.question.code === 330 ? prompts.map( prompt => prompt.slice( 0, prompt.indexOf( ':' ) ).trim() ) : prompts
-
-    this.props.onUpdateStoreCB( this.props.question.code, promptsToDispatch )
+    this.props.onUpdateStoreCB( this.props.question.code, prompts )
   }
 
   promptClick = index => e => {
@@ -53,7 +51,6 @@ export default class Bracket extends React.Component {
   render() {
     const { question: { code, text }, isDynamic } = this.props
 
-
     // render static content
     if ( !isDynamic ) {
       return (
@@ -64,7 +61,6 @@ export default class Bracket extends React.Component {
         </>
       )
     }
-
 
     // render dynamic content
     return (
