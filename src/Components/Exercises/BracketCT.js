@@ -10,10 +10,7 @@ import {
    mapStateToProps()
 
    passedProps:
-     promptQuestionCode -- integer, code for the question that created the array of strings to be bracketed.
-       -- OR --
      promptQuestionCodes -- array of questionCodes to load prompts from
-     --------------------------------------
      question -- {
             code: 50,
             text: "Make trade-offs between your Financial/Material desires"
@@ -23,7 +20,7 @@ import {
                   true: render dynamic/interactive verison in Modal
 
 ******************************************** */
-function mapStateToProps( state, { promptQuestionCode, promptQuestionCodes, question, isDynamic } ) {
+function mapStateToProps( state, { promptQuestionCodes, question, isDynamic } ) {
 
   // Get previous answers, if any.
   //   If bracketing finished there will be a single answer.
@@ -32,21 +29,9 @@ function mapStateToProps( state, { promptQuestionCode, promptQuestionCodes, ques
   const previousAnswers = getAnswers( state.answersRD, question.code )
 
   let prompts = []
-  if ( promptQuestionCode ) {
-    prompts = getAnswers( state.answersRD, promptQuestionCode )
-  } else {
-    promptQuestionCodes.forEach( (questionCode) => {
-      console.log(' ');
-      console.log('-----');
-      console.log( "BracketCT::mapToProps forEach questionCode = ", questionCode )
-      console.log( "BracketCT::mapToProps forEach state.answersRD.questions[questionCode] = ", getAnswers( state.answersRD, questionCode ) )
-      prompts = prompts.concat( getAnswers( state.answersRD, questionCode ) )
-      console.log( "BracketCT::mapToProps prompts = ", prompts )
-    } )
-  }
-  console.log( "BracketCT::mapToProps promptQuestionCode = ", promptQuestionCode )
-  console.log( "BracketCT::mapToProps promptQuestionCodes = ", promptQuestionCodes )
-  console.log( "BracketCT::mapToProps prompts = ", prompts )
+  promptQuestionCodes.forEach( (questionCode) => {
+    prompts = prompts.concat( getAnswers( state.answersRD, questionCode ) )
+  } )
 
   return {
     // todo: need to make this generic, can't hard code a question number
@@ -75,13 +60,6 @@ function mapDispatchToProps( dispatch ) {
   }
 }
 
-// todo: don't hard-code question number, make this generic
-// function get330Prompts( state, question ) {
-//   const existingAnswer = state.answersRD.questions[question.code] ? state.answersRD.questions[question.code][0].trim() :""
-//   return question.promptCodes.reduce( ( acc, childQuestion ) =>( [...acc,
-//     state.answersRD.questions[childQuestion.code] && state.answersRD.questions[childQuestion.code][0] ?
-//     `${existingAnswer.includes( childQuestion.text ) ? '(Previous winner)' : ''} ${childQuestion.text}: ${state.answersRD.questions[childQuestion.code]}` : ''] ), [] )
-// }
 
 export default connect(
   mapStateToProps,

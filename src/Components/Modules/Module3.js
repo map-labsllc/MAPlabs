@@ -70,14 +70,14 @@ class Module3 extends React.Component {
   // Module 3: 3A
 
   brackets_320 = [
-    <BracketCT promptQuestionCode = { 311 }  question = { { code: 321, text: "Financial/Material" } } />,
-    <BracketCT promptQuestionCode = { 312 }  question = { { code: 322, text: "Vocation/Career/Life Work" } } />,
-    <BracketCT promptQuestionCode = { 313 }  question = { { code: 323, text: "Social/Community" } } />,
-    <BracketCT promptQuestionCode = { 314 }  question = { { code: 324, text: "Family" } } />,
-    <BracketCT promptQuestionCode = { 315 }  question = { { code: 325, text: "Mental/Educational" } } />,
-    <BracketCT promptQuestionCode = { 316 }  question = { { code: 326, text: "Spiritual/Emotional/Creative" } } />,
-    <BracketCT promptQuestionCode = { 317 }  question = { { code: 327, text: "Physical/Health/Recreational" } } />,
-    <BracketCT promptQuestionCode = { 318 }  question = { { code: 328, text: "Other" } } />,
+    <BracketCT promptQuestionCodes = { [ 311 ] }  question = { { code: 321, text: "Financial/Material" } } />,
+    <BracketCT promptQuestionCodes = { [ 312 ] }  question = { { code: 322, text: "Vocation/Career/Life Work" } } />,
+    <BracketCT promptQuestionCodes = { [ 313 ] }  question = { { code: 323, text: "Social/Community" } } />,
+    <BracketCT promptQuestionCodes = { [ 314 ] }  question = { { code: 324, text: "Family" } } />,
+    <BracketCT promptQuestionCodes = { [ 315 ] }  question = { { code: 325, text: "Mental/Educational" } } />,
+    <BracketCT promptQuestionCodes = { [ 316 ] }  question = { { code: 326, text: "Spiritual/Emotional/Creative" } } />,
+    <BracketCT promptQuestionCodes = { [ 317 ] }  question = { { code: 327, text: "Physical/Health/Recreational" } } />,
+    <BracketCT promptQuestionCodes = { [ 318 ] }  question = { { code: 328, text: "Other" } } />,
   ]
   exercise_320 = (
     <QuestionsCT
