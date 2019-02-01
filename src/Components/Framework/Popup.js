@@ -93,14 +93,16 @@ export default class Popup extends React.Component {
       <>
         {!isVisible && (
           <>
-            <ShowMoreLess lines={3} >
-              <span dangerouslySetInnerHTML={{ __html: description }} />
-            </ShowMoreLess>
-            <br />
-            <hr className="divider" />
-            <br />
-            {exerciseStatic}
-            <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
+            <div style={style.inner}>
+              <ShowMoreLess lines={3} >
+                <span dangerouslySetInnerHTML={{ __html: description }} />
+              </ShowMoreLess>
+              <br />
+              <hr className="divider" />
+              <br />
+              {exerciseStatic}
+              <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
+            </div>
           </>
         )}
 
@@ -113,6 +115,12 @@ export default class Popup extends React.Component {
         />
       </>
     )
+  }
+}
+const style = {
+  inner: {
+    marginLeft: "5%",
+    marginRight: "5%",
   }
 }
 

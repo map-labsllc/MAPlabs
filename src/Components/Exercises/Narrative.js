@@ -37,41 +37,41 @@ export default class Narrative extends React.Component {
 
   /* ******************************************************** */
   // set isDirty and controlled answer field
-  onChange = ( e ) => {
-    console.log( "Narrative::onChange(), e: ", e.target.value )
-    this.setState( {
+  onChange = (e) => {
+    console.log("Narrative::onChange(), e: ", e.target.value)
+    this.setState({
       isDirty: true,
       answer: e.target.value,
-    } )
+    })
   }
 
   /* ******************************************************** */
   // update store and persist the value as user could be clicking outside Modal and shitting it down
   onBlur = () => {
-    console.log( "Narrative::onBlur()" )
+    console.log("Narrative::onBlur()")
     this.updateAndPersist()
   }
 
   /* ******************************************************** */
   // helper, update the store and persist
   updateAndPersist = () => {
-    console.log( "state: ", this.state )
+    console.log("state: ", this.state)
 
-    this.setState( { isDirty: false } )
+    this.setState({ isDirty: false })
 
     const { onPersistCB, onCloseModalCB, userId } = this.props
     const { answer } = this.state
 
-    onPersistCB( userId, answer )
+    onPersistCB(userId, answer)
     onCloseModalCB()
   }
 
   /* ******************************************************** */
   // Send newAnswer value back to Container to persist
   //   and update Save button to indicate control is no longer dirty
-  onSubmit = ( e ) => {
-    console.log( `Narrative::onclickSave(): ${this.state.answer}` )
-    console.log( "state: ", this.state )
+  onSubmit = (e) => {
+    console.log(`Narrative::onclickSave(): ${this.state.answer}`)
+    console.log("state: ", this.state)
     e.preventDefault()
     this.updateAndPersist()
   }
@@ -85,7 +85,7 @@ export default class Narrative extends React.Component {
     const { question, prompts, instructions, isDynamic } = this.props
     const { answer } = this.state
 
-    if ( !isDynamic ) {
+    if (!isDynamic) {
       return (
         <p><i>{answer}</i></p>
       )
@@ -94,28 +94,32 @@ export default class Narrative extends React.Component {
     return (
       <>
         <Prompts prompts={prompts} />
-        <Form onSubmit={this.onSubmit} >
-          <FormGroup>
+        <form onSubmit={this.onSubmit} >
+          <div>
             {instructions && (
-              <p><i>{instructions}</i></p>
+              <h4>{instructions}</h4>
             )}
-            <ControlLabel>&nbsp;&nbsp;{question.text}</ControlLabel>
-            <FormControl
+            <h2>&nbsp;&nbsp;{question.text}</h2>
+            <textarea rows="10" cols="112" autoFocus="true" placeholder="Please enter an answer and click Close" onChange={this.onChange}
+              onBlur={this.onBlur}
+              value={answer}>
+            </textarea>
+          </div>
+          <div className="text-center">
+            <Button className="closeButton" type="submit" style={style.closeButton}>Close</Button>
+          </div>
+        </form>
+      </>
+    )
+  }
+}
+{/* <FormControl
               componentClass="textarea"
               onChange={this.onChange}
               onBlur={this.onBlur}
               value={answer}
               placeholder="Please enter an answer and click Close"
-            />
-          </FormGroup>
-          <div className="text-center">
-            <Button className="closeButton" type="submit" style={style.closeButton}>Close</Button>
-          </div>
-        </Form>
-      </>
-    )
-  }
-}
+            /> */}
 const style = {
   closeButton: {
     marginRight: "auto",
