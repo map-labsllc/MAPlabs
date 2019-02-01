@@ -14,8 +14,8 @@ import {
     isError: false,
     errorMessage: '',
 
-    orderOfSections: {  // this is azy loaded as Module#.js files are loaded and sections are built
-      1: [110, 120, 130],
+    orderOfSections: {     // this is lazy loaded as Module#.js files are loaded and sections are built
+      1: [110, 120, 130],  // FUTURE: shouldn't this be its own reducer?
       2: [210, 220, 230, 240],
     }
     user: {
@@ -71,11 +71,11 @@ export const isFirstSection = ( state, moduleNum, sectionNum ) => {
   console.log( 'userRD::isFirstSection()' )
 
   // We should only be getting inquiries for Modules that have been loaded and thus
-  //   have a key/value pair in orderOfSections
+  //   have a key/value pair in orderOfSections.  However some timing issue
+  //   with loading leads to this being called before the first section loads SOMETIMES!
   if ( !state.orderOfSections[moduleNum] ) {
     console.log( 'userRD::isFirstSection(), short circuit, unk moduleNum:', moduleNum )
-    throw new Error( `ERROR: userRD::isFirstSection(), short circuit, unk moduleNum: ${moduleNum}` )
-    // return false
+    return false
   }
 
   // check if sectionNum is the first entry in array of sections for the module in question
