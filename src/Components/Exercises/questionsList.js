@@ -17,7 +17,7 @@ import {
 const NUM_PER_PAGE = 5
 
 class QuestionsList extends Component {
-  constructor(props) {
+  constructor( props ) {
     super()
     this.state = {
       currentIndex: 0,
@@ -27,58 +27,58 @@ class QuestionsList extends Component {
     }
   }
 
-  previousSlide = (arr) => e => {
+  previousSlide = ( arr ) => e => {
     const lastIndex = arr.length
     const { currentIndex } = this.state
     const shouldResetIndex = currentIndex === 0
     const index = shouldResetIndex ? lastIndex : currentIndex - 1
     const page = this.state.page > 0 ? this.state.page - 1 : lastIndex - 1
 
-    this.setState({
+    this.setState( {
       currentIndex: index,
       page
-    })
+    } )
 
   }
 
-  nextSlide = (arr) => e => {
+  nextSlide = ( arr ) => e => {
     const lastIndex = arr.length
     const { currentIndex } = this.state
     const shouldResetIndex = currentIndex === lastIndex
     const index = shouldResetIndex ? 0 : currentIndex + 1
     const page = this.state.page < lastIndex - 1 ? this.state.page + 1 : 0
 
-    this.setState({
+    this.setState( {
       currentIndex: index,
       page
-    })
+    } )
   }
 
-  splittingArray = (arr) => {
+  splittingArray = ( arr ) => {
     var size = NUM_PER_PAGE
     var arrayOfArrays = []
-    for (var i = 0; i < arr.length; i += size) {
-      arrayOfArrays.push(arr.slice(i, i + size))
+    for ( var i = 0; i < arr.length; i += size ) {
+      arrayOfArrays.push( arr.slice( i, i + size ) )
     }
 
     return arrayOfArrays
   }
 
 
-  addToPersistingArray = (field1, action, field2, cb) => {
+  addToPersistingArray = ( field1, action, field2, cb ) => {
 
     const sentence = field1 + action + field2
 
-    this.setState({ persistingArray: [...this.state.persistingArray, sentence] })
-    console.log(this.state.persistingArray)
+    this.setState( { persistingArray: [...this.state.persistingArray, sentence] } )
+    console.log( this.state.persistingArray )
   }
 
-  buildingCongruentSentence = (lifedescriptor, aOrB) => {
+  buildingCongruentSentence = ( lifedescriptor, aOrB ) => {
 
-    let structured = lifedescriptor.description.split('#')
+    let structured = lifedescriptor.description.split( '#' )
     let first = structured[0]
     let second = structured[1]
-    const sentence = first + (aOrB === 'a' ? lifedescriptor.a : lifedescriptor.b) + second
+    const sentence = first + ( aOrB === 'a' ? lifedescriptor.a : lifedescriptor.b ) + second
     return sentence
 
   }
@@ -86,9 +86,9 @@ class QuestionsList extends Component {
 
     const { isDynamic, lifeDescriptors, isLoading, userId, onPersistCB, onCloseModalCB } = this.props
 
-    let pages = this.splittingArray(lifeDescriptors)
-    let list = pages.map((element, pageNum) => (
-      element.map((ele, i) => {
+    let pages = this.splittingArray( lifeDescriptors )
+    let list = pages.map( ( element, pageNum ) => (
+      element.map( ( ele, i ) => {
         const idxLifedescriptions = i + pageNum * NUM_PER_PAGE
         return (
           <LifeDescriptor
@@ -98,20 +98,20 @@ class QuestionsList extends Component {
               () => {
                 const newArr = this.state.selections
                 newArr[idxLifedescriptions] = "a"
-                this.setState({
+                this.setState( {
                   clickedA: 'success',
                   selections: newArr
-                })
+                } )
               }}
             showCheckedB={
               () => {
                 const newArr = this.state.selections
                 newArr[idxLifedescriptions] = "b"
-                this.setState({
+                this.setState( {
                   clickedB: 'success',
                   selections: newArr
-                })
-                console.log('ed says put a title', newArr)
+                } )
+                console.log( 'ed says put a title', newArr )
               }
             }
             checkedA={this.state.selections[idxLifedescriptions] === 'a'}
@@ -120,17 +120,17 @@ class QuestionsList extends Component {
           />
 
         )
-      })
-    ))
+      } )
+    ) )
 
     // Static version of the exercise
     // ------------------------------
-    if (!isDynamic) {
+    if ( !isDynamic ) {
       const { previousAnswers } = this.props
       return (
         <>
           <p><strong>Previous answers:</strong></p>
-          {previousAnswers.map((previousAnswer, idx) =>
+          {previousAnswers.map( ( previousAnswer, idx ) =>
             <p key={idx}>- {previousAnswer}</p>
           )}
           <hr className="divider" />
@@ -160,7 +160,7 @@ class QuestionsList extends Component {
     // ------------------------------
     return (
       <>
-        <p>{((isLoading) ? "loading...." : "")}</p>
+        <p>{( ( isLoading ) ? "loading...." : "" )}</p>
         {!isLoading && (
           <>
 
@@ -170,7 +170,7 @@ class QuestionsList extends Component {
               <div style={style.left}>
                 <Arrows
                   direction="left"
-                  clickFunction={this.previousSlide(pages)}
+                  clickFunction={this.previousSlide( pages )}
                   glyph="arrow-left"
                 />
               </div>
@@ -180,21 +180,21 @@ class QuestionsList extends Component {
                   onClick={() => {
                     const sentences = []
 
-                    for (let i = 0; i < lifeDescriptors.length; i++) {
-                      if (this.state.selections[i]) {
-                        let sentence = this.buildingCongruentSentence(lifeDescriptors[i], this.state.selections[i])
-                        sentences.push(sentence)
+                    for ( let i = 0; i < lifeDescriptors.length; i++ ) {
+                      if ( this.state.selections[i] ) {
+                        let sentence = this.buildingCongruentSentence( lifeDescriptors[i], this.state.selections[i] )
+                        sentences.push( sentence )
 
                       }
                     }
-                    onPersistCB(userId, sentences)
+                    onPersistCB( userId, sentences )
                     onCloseModalCB()
                   }}>Close</Button>
               </div>
               <div style={style.right}>
                 <Arrows
                   direction="right"
-                  clickFunction={this.nextSlide(pages)}
+                  clickFunction={this.nextSlide( pages )}
                   glyph="arrow-right"
                 />
               </div>
@@ -226,18 +226,18 @@ const style = {
 ////////////////////////////////////////////////////////////////
 
 // Wrap in container to get access to store and dispatch
-const mapStateToProps = (state, passedProps) => {
-  console.log('state', state)
+const mapStateToProps = ( state, passedProps ) => {
+  console.log( 'state', state )
   const { isDynamic, description, question, instructions, onCloseModalCB } = passedProps
 
   // find previous answers, if any, to display when static
   let previousAnswers = []
-  if (!isDynamic)
-    previousAnswers = getAnswers(state.answersRD, question.code)
+  if ( !isDynamic )
+    previousAnswers = getAnswers( state.answersRD, question.code )
 
   return {
     isLoading: state.answersRD.isLoading || state.staticdataRD.isLoading,
-    userId: getUser(state.userRD).user_id,
+    userId: getUser( state.userRD ).user_id,
     description,
     question,
     instructions,
@@ -253,12 +253,12 @@ const mapStateToProps = (state, passedProps) => {
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
-const mapDispatchToProps = (dispatch, passedProps) => {
-  const onPersist = (userId, lifeDescriptionsArray) => {
+const mapDispatchToProps = ( dispatch, passedProps ) => {
+  const onPersist = ( userId, lifeDescriptionsArray ) => {
     const { question } = passedProps
 
-    dispatch(updateAnswersAC(question.code, lifeDescriptionsArray))
-    dispatch(persistAnswersAC(userId, question.code, lifeDescriptionsArray))
+    dispatch( updateAnswersAC( question.code, lifeDescriptionsArray ) )
+    dispatch( persistAnswersAC( userId, question.code, lifeDescriptionsArray ) )
   }
   return {
     onPersistCB: onPersist
@@ -268,4 +268,4 @@ const mapDispatchToProps = (dispatch, passedProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(QuestionsList)
+)( QuestionsList )

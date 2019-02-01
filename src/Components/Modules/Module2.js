@@ -6,6 +6,7 @@ import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 import QuestionsList from '../Exercises/questionsList'
 import NarrativeCT from '../Exercises/NarrativeCT'
+import ContextualInfluenceGroups from '../Exercises/ContextualInfluenceGroups'
 import { loadAllAnswersAC } from '../../store/answers/actions'
 import { loadAllTransitionsAC } from '../../store/transitions/actions'
 import { loadAllStaticdataAC } from '../../store/staticdata/actions'
@@ -56,7 +57,22 @@ class Module2 extends React.Component {
   // May drop this??
   // Module 2: 2B part 1
   exercise_220 = (
-    <NarrativeCT
+    <ContextualInfluenceGroups
+      groups = {[
+        {
+          code:2201,
+          name: "Personal Relationships",
+          text: "These are all the individuals who now or in the past have directly influenced you positively, negatively, or both. (Examples: mother, father, step parents, brothers, sisters, grandparents, aunts, uncles, cousins, teachers, coaches, mentors, religious leaders, neighbors, friends from different eras, parents’ friends, camp counselors, bosses, etc…). Feel free to list these or any other personal relationships that have influenced you."},
+        {
+          code:2202,
+          name: "Social Groups/Ideologies",
+          text:"Ideologies: These are specific groups to which you belong or have belonged, or schools of thought and ideologies to which you have subscribed. These affiliations can be personally chosen or not. (Examples: schools, colleges, teams, religious communities, thought leaders [such as philosophers, theologians, self-help writers, artists, media personalities], youth groups, clubs, fraternities/sororities, civic organizations, volunteer activities, jobs, companies, affinity groups, etc…). Feel free to list these or any other social groups or ideologies that have influenced you." },
+        {
+          code:2203,
+          name:"Wider Communities and Culture Groups",
+          text:"These are also groups to which you belong or have belonged, but the scope is much wider. As a result, the influence may be a bit more indirect. (Examples: cities, towns, states, countries, neighborhoods, ethnicities, genders, socio-economic sectors, educational groups, industries, etc…). Feel free to list these or any other communities or cultural groups that have influenced you."
+        }
+      ]}
       question = { { code: 220, text: "Rank your supportive influences" } }
       promptQuestionCode = { 0 }
       description = { QUES_220_DESC }

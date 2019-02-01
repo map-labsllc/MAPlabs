@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import ContextualInfluenceGroup from './ContextualInfluenceGroup'
+import ContextualInfluenceGroups from './ContextualInfluenceGroups'
 import { getUser } from '../../store/user/reducer'
 
 const mapStateToProps = ( state, passedProps ) => {
@@ -13,9 +13,9 @@ const mapStateToProps = ( state, passedProps ) => {
 
 const mapDispatchToProps = ( dispatch, ) => {
 
-   return dispatch
+   return {dispatch}
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps )( ContextualInfluenceGroup )
+mapDispatchToProps )( ContextualInfluenceGroups )
