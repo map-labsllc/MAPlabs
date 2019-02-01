@@ -34,7 +34,8 @@ import BracketCT from '../Exercises/BracketCT'
      subComponents -- array of React components to work with a single question
      RD -- reducer to be passed back up in onPersistQuestionCB()
      isDynamic -- undefined or true
-                  rendering static version in Popup or dynamic verison in Modal
+                  undefined: render static version in Popup
+                  true: render dynamic/interactive verison in Modal
      onPersistQuestionCB -- call to have parent CT persist a question from Store
      onCloseModalCB -- call to close the modal this control resides in
 

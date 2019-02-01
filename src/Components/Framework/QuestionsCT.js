@@ -16,9 +16,10 @@ import {
 
    passedProps:
      questionType -- from constants.js, handle ShortAnswers, Transitions, etx
-     subComponents -- array of React components to work with a single question 
+     subComponents -- array of React components to work with a single question
      isDynamic -- undefined or true
-                  rendering static version in Popup or dynamic verison in Modal
+                  undefined: render static version in Popup
+                  true: render dynamic/interactive verison in Modal
      onCloseModalCB -- call to close the modal this control resides in
 
 ******************************************** */
@@ -38,6 +39,8 @@ const mapStateToProps = ( state, passedProps ) => {
   // get userId
   const userId = getUser( state.userRD ).user_id
 
+  // Get the reducer based on the question type.
+  //   Future todo: get this specific subcomponent knowledge out of the general <QuestionsCT>
   let RD = null
   switch ( questionType ) {
 
@@ -59,46 +62,9 @@ const mapStateToProps = ( state, passedProps ) => {
     questionType,
     RD,
     isDynamic,
-
     subComponents,
   }
 
-
-  // question types
-  // switch ( questionType ) {
-  //   case QUESTION_TYPE_SHORT_ANSWERS:
-  //     return {
-  //       userId,
-  //       questionType,
-  //       questions,
-  //       RD: state.answersRD,
-  //       isDynamic,
-  //
-  //       subComponents,
-  //     }
-  //   case QUESTION_TYPE_TRANSITIONS:
-  //     return {
-  //       userId,
-  //       questionType,
-  //       questions,
-  //       RD: state.transitionsRD,
-  //       isDynamic,
-  //
-  //       subComponents,
-  //     }
-  //   case QUESTION_TYPE_BRACKET:
-  //     return {
-  //       userId,
-  //       questionType,
-  //       questions,
-  //       RD: state.answersRD,
-  //       isDynamic,
-  //
-  //       subComponents,
-  //     }
-  //   default:
-  //     throw new Error( 'ERROR unkown QUESTION_TYPE' )
-  // }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
