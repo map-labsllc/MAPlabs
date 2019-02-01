@@ -69,14 +69,14 @@ class Module3 extends React.Component {
   // Module 3: 3A
 
   brackets_320 = [
-    <BracketCT question = { { promptCode: 311, code: 321, text: "Financial/Material" } } />,
-    <BracketCT question = { { promptCode: 312, code: 322, text: "Vocation/Career/Life Work" } } />,
-    <BracketCT question = { { promptCode: 313, code: 323, text: "Social/Community" } } />,
-    <BracketCT question = { { promptCode: 314, code: 324, text: "Family" } } />,
-    <BracketCT question = { { promptCode: 315, code: 325, text: "Mental/Educational" } } />,
-    <BracketCT question = { { promptCode: 316, code: 326, text: "Spiritual/Emotional/Creative" } } />,
-    <BracketCT question = { { promptCode: 317, code: 327, text: "Physical/Health/Recreational" } } />,
-    <BracketCT question = { { promptCode: 318, code: 328, text: "Other" } } />,
+    <BracketCT promptQuestionCode = { 311 }  question = { { promptCode: 311, code: 321, text: "Financial/Material" } } />,
+    <BracketCT promptQuestionCode = { 312 }  question = { { promptCode: 312, code: 322, text: "Vocation/Career/Life Work" } } />,
+    <BracketCT promptQuestionCode = { 313 }  question = { { promptCode: 313, code: 323, text: "Social/Community" } } />,
+    <BracketCT promptQuestionCode = { 314 }  question = { { promptCode: 314, code: 324, text: "Family" } } />,
+    <BracketCT promptQuestionCode = { 315 }  question = { { promptCode: 315, code: 325, text: "Mental/Educational" } } />,
+    <BracketCT promptQuestionCode = { 316 }  question = { { promptCode: 316, code: 326, text: "Spiritual/Emotional/Creative" } } />,
+    <BracketCT promptQuestionCode = { 317 }  question = { { promptCode: 317, code: 327, text: "Physical/Health/Recreational" } } />,
+    <BracketCT promptQuestionCode = { 318 }  question = { { promptCode: 318, code: 328, text: "Other" } } />,
   ]
   exercise_320 = (
     <QuestionsCT
@@ -165,12 +165,12 @@ class Module3 extends React.Component {
                 sectionTitle = "Deep Desires"
                 exercise = {this.exercise_310}
               />
-              {/*<SectionCT
+              <SectionCT
                 moduleNum = { 3 }
                 sectionNum = { 320 }
                 sectionTitle = "Make tradeoffs within each category"
                 exercise = {this.exercise_320}
-              />*/}
+              />
               {/*<SectionCT
                 moduleNum = { 3 }
                 sectionNum = { 330 }
