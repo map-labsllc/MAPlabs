@@ -9,6 +9,7 @@ import QuestionsList from '../Exercises/questionsList'
 import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
+import BracketCT from '../Exercises/BracketCT'
 
 import { loadAllAnswersAC } from '../../store/answers/actions'
 import { loadAllTransitionsAC } from '../../store/transitions/actions'
@@ -67,22 +68,22 @@ class Module3 extends React.Component {
   // -------------------------
   // Module 3: 3A
 
-  // brackets_320 = [
-  //   <BracketCT question { promptCode: 311, code: 321, text: "Financial/Material" } } />,
-  //   <BracketCT question { promptCode: 312, code: 322, text: "Vocation/Career/Life Work" } } />,
-  //   <BracketCT question { promptCode: 313, code: 323, text: "Social/Community" } } />,
-  //   <BracketCT question { promptCode: 314, code: 324, text: "Family" } } />,
-  //   <BracketCT question { promptCode: 315, code: 325, text: "Mental/Educational" } } />,
-  //   <BracketCT question { promptCode: 316, code: 326, text: "Spiritual/Emotional/Creative" } } />,
-  //   <BracketCT question { promptCode: 317, code: 327, text: "Physical/Health/Recreational" } } />,
-  //   <BracketCT question { promptCode: 318, code: 328, text: "Other" } } />,
-  // ]
-  // exercise_320 = (
-  //   <QuestionsCT
-  //     questionType = {QUESTION_TYPE_BRACKET}
-  //     description = {QUES_320_DESC}
-  //     subComponents = {this.brackets_320}
-  //   /> )
+  brackets_320 = [
+    <BracketCT question = { { promptCode: 311, code: 321, text: "Financial/Material" } } />,
+    <BracketCT question = { { promptCode: 312, code: 322, text: "Vocation/Career/Life Work" } } />,
+    <BracketCT question = { { promptCode: 313, code: 323, text: "Social/Community" } } />,
+    <BracketCT question = { { promptCode: 314, code: 324, text: "Family" } } />,
+    <BracketCT question = { { promptCode: 315, code: 325, text: "Mental/Educational" } } />,
+    <BracketCT question = { { promptCode: 316, code: 326, text: "Spiritual/Emotional/Creative" } } />,
+    <BracketCT question = { { promptCode: 317, code: 327, text: "Physical/Health/Recreational" } } />,
+    <BracketCT question = { { promptCode: 318, code: 328, text: "Other" } } />,
+  ]
+  exercise_320 = (
+    <QuestionsCT
+      questionType = {QUESTION_TYPE_BRACKET}
+      description = {QUES_320_DESC}
+      subComponents = {this.brackets_320}
+    /> )
 
   // -------------------------
   // Replaced with enhanced Bracketing component that takes an array of promptCodes
