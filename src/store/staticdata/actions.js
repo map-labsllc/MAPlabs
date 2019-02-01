@@ -1,5 +1,5 @@
 import {
-  PERSISTANT_ARRAY,
+  // PERSISTANT_ARRAY,
   STATICDATA_LOADING,
   STATICDATA_LOAD,
   STATICDATA_ERROR_DB,
@@ -69,9 +69,9 @@ export const loadAllStaticdataAC = () => {
   }
 }
 
-export const addToPersistingArray = array => {
- return {
-   type: PERSISTANT_ARRAY,
-   payload: array
- }
-}
+// export const addToPersistingArray = array => {
+//  return {
+//    type: PERSISTANT_ARRAY,
+//    payload: array
+//  }
+// }

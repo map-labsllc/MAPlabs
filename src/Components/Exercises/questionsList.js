@@ -245,7 +245,7 @@ const mapStateToProps = ( state, passedProps ) => {
     previousAnswers,
     onCloseModalCB,
     lifeDescriptors: state.staticdataRD.lifeDescriptions,
-    persistant_array: state.persistant_array
+    // persistant_array: state.persistant_array
   }
 }
 
