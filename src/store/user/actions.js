@@ -19,9 +19,8 @@ import {
 
 import { getNextModuleSection } from './reducer'
 
-const URL = "http://localhost:3001"
-// const URL = process.env.REACT_APP_DB_URL
-// http PATCH localhost:3001/users/1 curr_module=2 curr_section=1
+const URL = process.env.REACT_APP_DB_URL
+
 
 /* ************************************************
     sectionLoadingAC
@@ -90,7 +89,7 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
           Accept: 'application/json',
         },
       } )
-      .then( response => { 
+      .then( response => {
         if ( !response.ok ) {
           console.log( "---- error" )
           console.log( "-- FETCH ERROR 1" )

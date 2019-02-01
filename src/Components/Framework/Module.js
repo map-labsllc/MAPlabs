@@ -32,6 +32,7 @@ export default class Module extends React.Component {
     return (
       <div style={style.background}>
         <div style={style.marginz}>
+          <h2 className="text-center">Module {moduleNum}</h2>
           <h2 className="text-center">{moduleTitle}</h2>
           <ShowMoreLess
             lines={5}

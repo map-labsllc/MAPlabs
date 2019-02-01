@@ -44,7 +44,7 @@ const initialState = {
     login_service_id: 1,
     login_token: "DFDS34543GD",
     curr_module: 4,
-    curr_section: 170,
+    curr_section: 110,
    },
 }
 
