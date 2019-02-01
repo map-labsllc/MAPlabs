@@ -53,6 +53,7 @@ export default class Bracket extends React.Component {
   render() {
     const { question: { code, text }, isDynamic } = this.props
 
+
     // render static content
     if ( !isDynamic ) {
       return (
@@ -63,6 +64,7 @@ export default class Bracket extends React.Component {
         </>
       )
     }
+
 
     // render dynamic content
     return (
