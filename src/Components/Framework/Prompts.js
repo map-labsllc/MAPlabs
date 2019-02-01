@@ -22,7 +22,7 @@ const Prompts = ( props ) => {
     <>
       <p>Prompts:</p>
       {prompts.map((prompt, idx) =>
-        <p key={idx}>- {prompt}</p>
+        <p key={idx}>{prompt}</p>
       )}
       <p>.</p>
     </>
