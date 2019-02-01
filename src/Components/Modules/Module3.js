@@ -4,8 +4,12 @@ import { connect } from 'react-redux'
 import Module from '../Framework/Module'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
+
 import QuestionsList from '../Exercises/questionsList'
+import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
+import ShortAnswersCT from '../Exercises/ShortAnswersCT'
+
 import { loadAllAnswersAC } from '../../store/answers/actions'
 import { loadAllTransitionsAC } from '../../store/transitions/actions'
 import { loadAllStaticdataAC } from '../../store/staticdata/actions'
@@ -39,47 +43,51 @@ class Module3 extends React.Component {
   // Define questions and excercises for Module 3
   // ---------------------------------------------------------------------
 
+
   // -------------------------
   // Module 3: 1A
-  questions_310 = [
-    { code: 311, text: "Financial/Material" },
-    { code: 312, text: "Vocation/Career/Life Work" },
-    { code: 313, text: "Social/Community" },
-    { code: 314, text: "Family" },
-    { code: 315, text: "Mental/Educational" },
-    { code: 316, text: "Spiritual/Emotional/Creative" },
-    { code: 317, text: "Physical/Health/Recreational" },
-    { code: 318, text: "Other" },
+
+  shortAnswers_310 = [
+    <ShortAnswersCT question = { { code: 311, text: "Financial/Material" } } />,
+    <ShortAnswersCT question = { { code: 312, text: "Vocation/Career/Life Work" } } />,
+    <ShortAnswersCT question = { { code: 313, text: "Social/Community" } } />,
+    <ShortAnswersCT question = { { code: 314, text: "Family" } } />,
+    <ShortAnswersCT question = { { code: 315, text: "Mental/Educational" } } />,
+    <ShortAnswersCT question = { { code: 316, text: "Spiritual/Emotional/Creative" } } />,
+    <ShortAnswersCT question = { { code: 317, text: "Physical/Health/Recreational" } } />,
+    <ShortAnswersCT question = { { code: 318, text: "Other" } } />,
   ]
   exercise_310 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
       description = {QUES_310_DESC}
-      questions = {this.questions_310}
+      subComponents = {this.shortAnswers_310}
     /> )
 
   // -------------------------
   // Module 3: 3A
-  questions_320 = [
-    { promptCode: 311, code: 321, text: "Financial/Material" },
-    { promptCode: 312, code: 322, text: "Vocation/Career/Life Work" },
-    { promptCode: 313, code: 323, text: "Social/Community" },
-    { promptCode: 314, code: 324, text: "Family" },
-    { promptCode: 315, code: 325, text: "Mental/Educational" },
-    { promptCode: 316, code: 326, text: "Spiritual/Emotional/Creative" },
-    { promptCode: 317, code: 327, text: "Physical/Health/Recreational" },
-    { promptCode: 318, code: 328, text: "Other" },
-  ]
-  exercise_320 = (
-    <QuestionsCT
-      questionType = {QUESTION_TYPE_BRACKET}
-      description = {QUES_320_DESC}
-      questions = {this.questions_320}
-    /> )
+
+  // brackets_320 = [
+  //   <BracketCT question { promptCode: 311, code: 321, text: "Financial/Material" } } />,
+  //   <BracketCT question { promptCode: 312, code: 322, text: "Vocation/Career/Life Work" } } />,
+  //   <BracketCT question { promptCode: 313, code: 323, text: "Social/Community" } } />,
+  //   <BracketCT question { promptCode: 314, code: 324, text: "Family" } } />,
+  //   <BracketCT question { promptCode: 315, code: 325, text: "Mental/Educational" } } />,
+  //   <BracketCT question { promptCode: 316, code: 326, text: "Spiritual/Emotional/Creative" } } />,
+  //   <BracketCT question { promptCode: 317, code: 327, text: "Physical/Health/Recreational" } } />,
+  //   <BracketCT question { promptCode: 318, code: 328, text: "Other" } } />,
+  // ]
+  // exercise_320 = (
+  //   <QuestionsCT
+  //     questionType = {QUESTION_TYPE_BRACKET}
+  //     description = {QUES_320_DESC}
+  //     subComponents = {this.brackets_320}
+  //   /> )
 
   // -------------------------
   // Replaced with enhanced Bracketing component that takes an array of promptCodes
   // Module 3: 4A
+  // promptCodes_330 = [321, 322, 323, 324, 325, 326, 327, 328]
   exercise_330 = (
     <QuestionsCT
     questionType = {QUESTION_TYPE_BRACKET}
@@ -102,33 +110,35 @@ class Module3 extends React.Component {
 
     // -------------------------
     // Module 3: 5A
-    questions_350 = [
-      { code: 351, text: "List any important themes that you noticed across your 7 categories and in your ultimate choices about which of your desires are most important." },
-      { code: 352, text: "Which desires provide you with the most personal senses of the meaning and “intrinsic” motivation in your life?" },
-      { code: 353, text: "Name some things beyond yourself that you could serve if you lived more authentically  from your deepest and truest desires." },
-      { code: 354, text: "List the areas of personal growth that will enable your life to be more expressive of your desires." },
-      { code: 355, text: "List which relationships that you either currently have or need to develop in the future (to any influence, such as people, groups, practices, experiences, etc.) are most important to supporting your life being lived our of your most authentic desires." },
-      { code: 356, text: "List any areas of engagement or mastery (either in your life’s work or avocationally) that could express or fulfill your deepest desires." },
+
+    shortAnswers_350 = [
+      <ShortAnswersCT question = { { code: 351, text: "List any important themes that you noticed across your 7 categories and in your ultimate choices about which of your desires are most important." } } />,
+      <ShortAnswersCT question = { { code: 352, text: "Which desires provide you with the most personal senses of the meaning and “intrinsic” motivation in your life?" } } />,
+      <ShortAnswersCT question = { { code: 353, text: "Name some things beyond yourself that you could serve if you lived more authentically  from your deepest and truest desires." } } />,
+      <ShortAnswersCT question = { { code: 354, text: "List the areas of personal growth that will enable your life to be more expressive of your desires." } } />,
+      <ShortAnswersCT question = { { code: 355, text: "List which relationships that you either currently have or need to develop in the future (to any influence, such as people, groups, practices, experiences, etc.) are most important to supporting your life being lived our of your most authentic desires." } } />,
+      <ShortAnswersCT question = { { code: 356, text: "List any areas of engagement or mastery (either in your life’s work or avocationally) that could express or fulfill your deepest desires." } } />,
     ]
+
     exercise_350 = (
       <QuestionsCT
         questionType = {QUESTION_TYPE_SHORT_ANSWERS}
         description = { QUES_350_DESC }
-        questions = {this.questions_350}
+        subComponents = {this.shortAnswers_350}
       /> )
 
     // -------------------------
     // Module 3: 5B
-    questions_360 = [
-      { code: 361, text: "Motivations" },
-      { code: 362, text: "Desires" },
-      { code: 363, text: "Commitments" },
+    transitions_360 = [
+      <TransitionsCT question = { { code: 361, text: "Motivations" } } />,
+      <TransitionsCT question = { { code: 362, text: "Desires" } } />,
+      <TransitionsCT question = { { code: 363, text: "Commitments" } } />,
     ]
     exercise_360 = (
       <QuestionsCT
         questionType = {QUESTION_TYPE_TRANSITIONS}
         description = { QUES_360_DESC }
-        questions = {this.questions_360}
+        subComponents = {this.transitions_360}
       /> )
 
 
@@ -154,12 +164,12 @@ class Module3 extends React.Component {
                 sectionTitle = "Deep Desires"
                 exercise = {this.exercise_310}
               />
-              <SectionCT
+              {/*<SectionCT
                 moduleNum = { 3 }
                 sectionNum = { 320 }
                 sectionTitle = "Make tradeoffs within each category"
                 exercise = {this.exercise_320}
-              />
+              />*/}
               <SectionCT
                 moduleNum = { 3 }
                 sectionNum = { 330 }
