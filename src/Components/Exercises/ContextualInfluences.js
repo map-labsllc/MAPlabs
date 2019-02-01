@@ -12,9 +12,9 @@ export default class ContextualInfluences extends Component{
 
 
   render(){
-    console.log('beliefs: ', beliefs);
-
     const { group, beliefs} = this.props
+    console.log( 'beliefs: ', beliefs )
+
 
     return(
       <div className="container">

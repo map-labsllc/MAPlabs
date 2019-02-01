@@ -31,6 +31,9 @@ class NavBar extends React.Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
+        <NavItem style={styles.navItem} componentClass='span' eventKey={0} >
+          <NavLink to="/infopage">Info</NavLink>
+        </NavItem>
           <NavItem style={styles.navItem} componentClass='span' eventKey={1} >
             <NavLink to="/modules/1">Module 1</NavLink>
           </NavItem>
