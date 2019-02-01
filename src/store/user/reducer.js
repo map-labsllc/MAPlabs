@@ -13,7 +13,8 @@ import {
     isLoading: true,
     isError: false,
     errorMessage: '',
-    orderOfSections: {
+
+    orderOfSections: {  // this is azy loaded as Module#.js files are loaded and sections are built
       1: [110, 120, 130],
       2: [210, 220, 230, 240],
     }
@@ -43,8 +44,8 @@ const initialState = {
     email: "tharrison@gmail.com",
     login_service_id: 1,
     login_token: "DFDS34543GD",
-    curr_module: 4,
-    curr_section: 110,
+    curr_module: 1,
+    curr_section: 160,
    },
 }
 
@@ -61,16 +62,23 @@ export const getUser = ( state ) => state.user
 /* ***********************************************
    isFirstSection()
 
-   Check if sectionNum is first section in moduleNum
+   Check if sectionNum is first section in moduleNum.
+     Note: only check when there is
 
    return -- t/f
 ************************************************** */
 export const isFirstSection = ( state, moduleNum, sectionNum ) => {
   console.log( 'userRD::isFirstSection()' )
+
+  // We should only be getting inquiries for Modules that have been loaded and thus
+  //   have a key/value pair in orderOfSections
   if ( !state.orderOfSections[moduleNum] ) {
     console.log( 'userRD::isFirstSection(), short circuit, unk moduleNum:', moduleNum )
-    return false
+    throw new Error( `ERROR: userRD::isFirstSection(), short circuit, unk moduleNum: ${moduleNum}` )
+    // return false
   }
+
+  // check if sectionNum is the first entry in array of sections for the module in question
   return state.orderOfSections[moduleNum].indexOf( sectionNum ) === 0
 }
 
@@ -80,21 +88,20 @@ export const isFirstSection = ( state, moduleNum, sectionNum ) => {
 
    Get the next Module and Section
 
+   userRD -- user reducer
+   currModuleNu -- integer
+   currSectionNum -- integer
+
    return -- { moduleNum, sectionNum }
 ************************************************** */
 export const getNextModuleSection = ( userRD, currModuleNum, currSectionNum ) => {
-  console.log( `userRD::getNextModuleSection(state, ${currModuleNum}, ${currSectionNum})` )
-  const { orderOfSections } = userRD
-  console.log( "orderOfSections: ", orderOfSections )
-  const sections = orderOfSections[currModuleNum]
-  console.log( "sections: ", sections )
 
-  // TODO: Crashing when current is at 2,0 and we're closing modals in module 1
-  // if (userRD.user.curr_module !== currModuleNum) {
-  //   return {
-  //
-  //   }
-  // }
+  const { orderOfSections } = userRD
+  const sections = orderOfSections[currModuleNum]
+
+  console.log( `userRD::getNextModuleSection(state, ${currModuleNum}, ${currSectionNum})` )
+  console.log( "  orderOfSections: ", orderOfSections )
+  console.log( "  sections: ", sections )
 
   // Properly set currSectionNum to the first section if it was 0.
   //   It was set to 0 when moving forward from last Module at which time
@@ -116,14 +123,6 @@ export const getNextModuleSection = ( userRD, currModuleNum, currSectionNum ) =>
     moduleNum: newModuleNum,
     sectionNum: newSectionNum,
   }
-  // const idx = orderOfSections.findIndex(moduleAndSection =>
-  //   moduleAndSection.moduleNum === currModuleNum && moduleAndSection.sectionNum === currSectionNum)
-
-  // console.log('found index: ', idx);
-  // console.log('orderOfSections[idx]: ', orderOfSections[idx]);
-  // console.log('orderOfSections[idx+1]: ', orderOfSections[idx + 1]);
-  // TODO: move to next module if at the end of the array
-  //return orderOfSections[idx + 1]
 }
 
 /* ***********************************************
