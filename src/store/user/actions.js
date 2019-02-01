@@ -123,6 +123,7 @@ export const sectionCompletedAC = ( user, completedModuleNum, completedSectionNu
 
       // persist the new curr_module, curr_section
       persistCurrModuleAndSection( dispatch, user, nextModuleSectionObj.moduleNum, nextModuleSectionObj.sectionNum )
+      return
     }
 
     // DON'T advance the user's current module and section
