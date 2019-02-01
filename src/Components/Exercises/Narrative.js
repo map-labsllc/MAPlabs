@@ -100,10 +100,17 @@ export default class Narrative extends React.Component {
               <h4>{instructions}</h4>
             )}
             <h2>&nbsp;&nbsp;{question.text}</h2>
-            <textarea rows="10" cols="112" autoFocus="true" placeholder="Please enter an answer and click Close" onChange={this.onChange}
+            <textarea
+              rows="10"
+              style={style.contain}
+              autoFocus="true"
+              placeholder="Please enter an answer and click Close"
+              onChange={this.onChange}
               onBlur={this.onBlur}
-              value={answer}>
-            </textarea>
+              value={answer}
+              wrap="hard"
+              display="block"
+            />
           </div>
           <div className="text-center">
             <Button className="closeButton" type="submit" style={style.closeButton}>Close</Button>
@@ -124,5 +131,8 @@ const style = {
   closeButton: {
     marginRight: "auto",
     marginLeft: "auto",
+  },
+  contain: {
+    width: "100%",
   }
 }

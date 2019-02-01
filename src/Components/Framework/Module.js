@@ -39,7 +39,7 @@ export default class Module extends React.Component {
           >
             <span dangerouslySetInnerHTML={{ __html: moduleDescription }} />
           </ShowMoreLess>
-          <div>
+          <div style={style.spacing}>
             {children}
           </div>
         </div>
@@ -61,6 +61,9 @@ const style = {
     borderRadius: "10px",
     boxShadow: "5px 5px 50px 10px grey",
   },
+  spacing: {
+    marginTop: "10%",
+  }
 }
 
 

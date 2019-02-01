@@ -101,7 +101,9 @@ export default class Popup extends React.Component {
               <hr className="divider" />
               <br />
               {exerciseStatic}
-              <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
+              <div className="text-center">
+                <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
+              </div>
             </div>
           </>
         )}
