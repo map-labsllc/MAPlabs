@@ -12,11 +12,11 @@ import { ListGroupItem, ButtonGroup, Button } from 'react-bootstrap'
   //   if(variant === '') variant = 'success'
   //   else{variant = ''}
   // }
-  let btnStyleA = ''
+let btnStyleA = 'link'
 if( checkedA=== true ){
   btnStyleA= 'success'
 }
-let btnStyleB = ''
+let btnStyleB = 'link'
 if( checkedB=== true ){
 btnStyleB= 'success'
 }
