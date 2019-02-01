@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Button, PanelGroup, Panel } from 'react-bootstrap'
+import { Button, PanelGroup, Panel } from 'react-bootstrap'
 
 const StartPage = () => {
   return (
@@ -131,9 +131,9 @@ const style = {
     backgroundColor: "white",
     borderRadius: "10px",
     color: "black",
-    opacity: "0.8",
-    marginLeft: "10%",
-    marginRight: "10%",
+    opacity: "0.85",
+    marginLeft: "15%",
+    marginRight: "15%",
     paddingRight: "1%",
     paddingLeft: "1%",
   }
