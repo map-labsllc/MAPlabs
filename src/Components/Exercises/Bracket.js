@@ -72,14 +72,20 @@ export default class Bracket extends React.Component {
           Click a desire to choose it</p>
         {this.state.prompts[1] ?
           <p className='prompts'>
+
             <button
               id='prompt1'
               onClick={this.promptClick( 1 )}
-              >{this.state.prompts[0]}</button>
-              <button
-                id='prompt2'
-                onClick={this.promptClick( 0 )}
-              >{this.state.prompts[1]}</button>
+            >
+              {this.state.prompts[0]}
+            </button>
+
+            <button
+              id='prompt2'
+              onClick={this.promptClick( 0 )}
+            >
+              {this.state.prompts[1]}
+            </button>
 
           </p>
         :
@@ -97,7 +103,6 @@ Bracket.propTypes = {
   question: PropTypes.shape( {
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-    promptCode: PropTypes.number.isRequired
   } ).isRequired,
   onUpdateStoreCB: PropTypes.func.isRequired,
 }
