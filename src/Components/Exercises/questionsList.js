@@ -129,9 +129,9 @@ class QuestionsList extends Component {
       const { previousAnswers } = this.props
       return (
         <>
-          <p><strong>Previous answers:</strong></p>
+          <p><strong>Previous answers</strong></p>
           {previousAnswers.map( ( previousAnswer, idx ) =>
-            <p key={idx}>- {previousAnswer}</p>
+            <p key={idx}>{previousAnswer}</p>
           )}
           <hr className="divider" />
         </>
