@@ -15,7 +15,7 @@ import {
   QUESTION_TYPE_BRACKET,
 } from '../../constants.js'
 import '../../CSS/ModalNavButtons.css'
-import BracketContainer from '../BracketContainer'
+import BracketCT from '../Exercises/BracketCT'
 
 /* **************************************************
    Questions component
@@ -31,7 +31,7 @@ import BracketContainer from '../BracketContainer'
    props:
      userId -- integer
      questionType -- enum from constants.js
-     subComponents -- array of React components to work with a single question 
+     subComponents -- array of React components to work with a single question
      RD -- reducer to be passed back up in onPersistQuestionCB()
      isDynamic -- undefined or true
                   rendering static version in Popup or dynamic verison in Modal
@@ -222,7 +222,7 @@ export default class Questions extends React.Component {
     //           {( questionType === QUESTION_TYPE_BRACKET ) && (
     //             /* NOTE: promptQuestionCode was added to a normal question obj when
     //                        setting up data in Module#.js.  Need to extract it here. */
-    //             <BracketContainer
+    //             <BracketCT
     //               key={idx}
     //               question={question}
     //               isDynamic={isDynamic}
@@ -272,7 +272,7 @@ export default class Questions extends React.Component {
     //         {( idx === currIdx ) && ( questionType === QUESTION_TYPE_BRACKET ) && (
     //           /* NOTE: promptQuestionCode was added to a normal question obj when
     //                      setting up data in Module#.js.  Need to extract it here. */
-    //           <BracketContainer
+    //           <BracketCT
     //             key={idx}
     //             question={question}
     //             isDynamic={isDynamic}
