@@ -58,11 +58,11 @@ const style = {
     marginRight: "10%",
     marginLeft: "10%",
     marginBottom: "4%",
-    borderRadius: "10px",
+    borderRadius: "15px",
     boxShadow: "5px 5px 50px 10px grey",
   },
   spacing: {
-    marginTop: "10%",
+    marginTop: "5%",
   }
 }
 

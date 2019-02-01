@@ -52,7 +52,7 @@ export default class Section extends React.Component {
 
     return (
       <div className="background">
-        <Panel bsStyle='primary'>
+        <Panel bsStyle='primary' className="panelSpace">
           <Panel.Heading className="sectionHeader">
             <Panel.Title><div className="text-center">{sectionTitle}</div></Panel.Title>
           </Panel.Heading>

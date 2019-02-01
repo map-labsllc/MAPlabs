@@ -19,6 +19,7 @@
 }
 .background {
   box-shadow: 10px 10px 70px 10px  rgb(213, 215, 213);
+  
 }
 .contain{
   background-color: white;
@@ -27,13 +28,16 @@
   padding-bottom: 2%;
   padding-right: 1%;
   padding-left: 1%;
-  margin-top: 1%;
-  margin-bottom: 1%;
+  margin-top: 2%;
+  margin-bottom: 2%;
   margin-right: 3%;
   margin-left: 3%;
-  border-radius:10px;
+  border-radius:20px;
   box-shadow:3px 3px 1px 3px rgb(46, 102, 178);
 }
 .divider{
   border-color:rgb(213, 215, 213);
+}
+.panelSpace{
+  margin-top: 5%;
 }

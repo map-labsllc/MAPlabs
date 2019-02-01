@@ -87,7 +87,7 @@ export default class Narrative extends React.Component {
 
     if (!isDynamic) {
       return (
-        <p><i>{answer}</i></p>
+        <p>{answer}</p>
       )
     }
 
