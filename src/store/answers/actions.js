@@ -6,8 +6,8 @@ import {
   ANSWERS_PERSIST,
 } from './constants'
 
-const URL = "http://localhost:3001"
-// const URL = process.env.REACT_APP_DB_URL
+// const URL = "http://localhost:3001"
+const URL = process.env.REACT_APP_DB_URL
 
 /* *****************************************************
    updateAnswersAC()

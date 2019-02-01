@@ -15,21 +15,20 @@ import '../../CSS/ModalNavButtons.css'
    Displays a single question with:
      -- Add button to add a new space for a short answer
      -- <ShortAnswer> for each answer
-     -- Save button  NOTE: THIS FUNCTIONALITY SHOULD BE REMOVED, component will always be wrapped with Modal
 
    state:
      Manages the list of answers in state to provide better UX when adding
-       new blank entries (it allows us to be in control of the focus).
+       new blank entries.  Future: may want to route this back to Store as
+       State can prevent rerenders from operating correctly if Store is
+       updated by another CT.
 
    props:
-     userId -- integer
      question -- { code: 50, text: "Question 50" }
      previousAnswers -- [] or array of strings of previous answers
-     doesHandlePesistence -- { value: true }
      isDynamic -- undefined or true
-                  rendering static version in Popup or dynamic verison in Modal
+                  undefined: render static version in Popup
+                  true: render dynamic/interactive verison in Modal
      onUpdateStoreCB(newAnswers) -- callback to update the store
-     onPersistCB(newAnswers) -- callback for when user clicks Save, updates store and persists
 ***************************************************** */
 export default class ShortAnswers extends React.Component {
 
@@ -116,17 +115,6 @@ export default class ShortAnswers extends React.Component {
   }
 
   // **********************************************
-  // tell parent to persist the answers
-  onclickSave = () => {
-    console.log(`ShortAnswers::onclickSave()`);
-
-    const { answersWithKeys } = this.state
-    const { onPersistCB, userId } = this.props
-
-    onPersistCB(userId, this.stripKeys(answersWithKeys))
-  }
-
-  // **********************************************
   // render!
   render() {
     console.log("ShortAnswers::render()")
@@ -139,7 +127,7 @@ export default class ShortAnswers extends React.Component {
     console.log("this.state.answers", this.state.answers);
 
     // render static version in <Popup>
-    if (!isDynamic) {
+    if ( !isDynamic ) {
       return (
         <>
           {answersWithKeys.map((answerWithKey) =>

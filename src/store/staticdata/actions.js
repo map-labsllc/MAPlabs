@@ -1,11 +1,11 @@
 import {
-  PERSISTANT_ARRAY,
+  // PERSISTANT_ARRAY,
   STATICDATA_LOADING,
   STATICDATA_LOAD,
   STATICDATA_ERROR_DB,
 } from './constants'
 
-const URL = "http://localhost:3001"
+const URL = process.env.REACT_APP_DB_URL
 
 // JSON filenames are used as the keys when building state, therefore
 // don't change them as other code relies on these names.
@@ -69,9 +69,9 @@ export const loadAllStaticdataAC = () => {
   }
 }
 
-export const addToPersistingArray = array => {
- return {
-   type: PERSISTANT_ARRAY,
-   payload: array
- }
-}
+// export const addToPersistingArray = array => {
+//  return {
+//    type: PERSISTANT_ARRAY,
+//    payload: array
+//  }
+// }

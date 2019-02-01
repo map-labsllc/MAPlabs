@@ -4,8 +4,15 @@ import { connect } from 'react-redux'
 import Module from '../Framework/Module'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
+
 import QuestionsList from '../Exercises/questionsList'
+import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
+import ContextualInfluenceGroups from '../Exercises/ContextualInfluenceGroups'
+import ContextualInfluencesCT from '../Exercises/ContextualInfluencesCT'
+import ShortAnswersCT from '../Exercises/ShortAnswersCT'
+
+
 import { loadAllAnswersAC } from '../../store/answers/actions'
 import { loadAllTransitionsAC } from '../../store/transitions/actions'
 import { loadAllStaticdataAC } from '../../store/staticdata/actions'
@@ -55,8 +62,24 @@ class Module2 extends React.Component {
   // -------------------------
   // May drop this??
   // Module 2: 2B part 1
+  // <ContextualInfluenceGroups
   exercise_220 = (
-    <NarrativeCT
+    <ContextualInfluencesCT
+      groups = {[
+        {
+          code:2201,
+          name: "Personal Relationships",
+          text: "These are all the individuals who now or in the past have directly influenced you positively, negatively, or both. (Examples: mother, father, step parents, brothers, sisters, grandparents, aunts, uncles, cousins, teachers, coaches, mentors, religious leaders, neighbors, friends from different eras, parents’ friends, camp counselors, bosses, etc…). Feel free to list these or any other personal relationships that have influenced you."},
+        {
+          code:2202,
+          name: "Social Groups/Ideologies",
+          text:"Ideologies: These are specific groups to which you belong or have belonged, or schools of thought and ideologies to which you have subscribed. These affiliations can be personally chosen or not. (Examples: schools, colleges, teams, religious communities, thought leaders [such as philosophers, theologians, self-help writers, artists, media personalities], youth groups, clubs, fraternities/sororities, civic organizations, volunteer activities, jobs, companies, affinity groups, etc…). Feel free to list these or any other social groups or ideologies that have influenced you." },
+        {
+          code:2203,
+          name:"Wider Communities and Culture Groups",
+          text:"These are also groups to which you belong or have belonged, but the scope is much wider. As a result, the influence may be a bit more indirect. (Examples: cities, towns, states, countries, neighborhoods, ethnicities, genders, socio-economic sectors, educational groups, industries, etc…). Feel free to list these or any other communities or cultural groups that have influenced you."
+        }
+      ]}
       question = { { code: 220, text: "Rank your supportive influences" } }
       promptQuestionCode = { 0 }
       description = { QUES_220_DESC }
@@ -91,7 +114,7 @@ class Module2 extends React.Component {
   // Module 2: 3B
   exercise_250 = (
     <NarrativeCT
-      question = { { code: 240, text: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement" } }
+      question = { { code: 250, text: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement" } }
       promptQuestionCode = { 0 }
       description = { QUES_250_DESC }
       instructions = ""
@@ -109,34 +132,36 @@ class Module2 extends React.Component {
 
   // -------------------------
   // Module 2: 4A
-  questions_270 = [
-    { code: 271, text: "As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is." },
-    { code: 272, text: "Which core values and beliefs are most meaningful to you?" },
-    { code: 273, text: "What things beyond yourself could be served if you more intentionally lived by your core values and beliefs?" },
-    { code: 274, text: "What areas of personal growth are needed to fill your life with more of your core values and beliefs?" },
-    { code: 275, text: "Which relationships that you either currently have or need to develop in the future (to any people, groups, practices, experiences, etc.) are most needed to support your core values and beliefs?" },
-    { code: 276, text: "What areas of engagement could your core values and beliefs lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?" },
+  shortAnswers_270 = [
+    <ShortAnswersCT question={ { code: 271, text: "As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is." } } />,
+    <ShortAnswersCT question={ { code: 272, text: "Which core values and beliefs are most meaningful to you?" } } />,
+    <ShortAnswersCT question={ { code: 273, text: "What things beyond yourself could be served if you more intentionally lived by your core values and beliefs?" } } />,
+    <ShortAnswersCT question={ { code: 274, text: "What areas of personal growth are needed to fill your life with more of your core values and beliefs?" } } />,
+    <ShortAnswersCT question={ { code: 275, text: "Which relationships that you either currently have or need to develop in the future (to any people, groups, practices, experiences, etc.) are most needed to support your core values and beliefs?" } } />,
+    <ShortAnswersCT question={ { code: 276, text: "What areas of engagement could your core values and beliefs lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?" } } />,
   ]
+
   exercise_270 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
-      questions = {this.questions_270}
+      subComponents = {this.shortAnswers_270}
       description = { QUES_270_DESC }
     /> )
 
 
   // -------------------------
   // Module 2: 4B
-  questions_280 = [
-    { code: 281, text: "Values and Beliefs" },
-    { code: 282, text: "Primary Influences" },
-    { code: 283, text: "Relationships" },
-    { code: 284, text: "Commitments" },
+  transitions_280 = [
+    <TransitionsCT question = { { code: 281, text: "Values and Beliefs" } } />,
+    <TransitionsCT question = { { code: 282, text: "Primary Influences" } } />,
+    <TransitionsCT question = { { code: 283, text: "Relationships" } } />,
+    <TransitionsCT question = { { code: 284, text: "Commitments" } } />,
   ]
+
   exercise_280 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_TRANSITIONS}
-      questions = {this.questions_280}
+      subComponents = {this.transitions_280}
       description = { QUES_280_DESC }
     /> )
 

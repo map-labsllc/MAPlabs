@@ -19,9 +19,8 @@ import {
 
 import { getNextModuleSection } from './reducer'
 
-const URL = "http://localhost:3001"
-// const URL = process.env.REACT_APP_DB_URL
-// http PATCH localhost:3001/users/1 curr_module=2 curr_section=1
+const URL = process.env.REACT_APP_DB_URL
+
 
 /* ************************************************
     sectionLoadingAC
@@ -91,7 +90,7 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
         },
       } )
       .then( response => {
-        if (!response.ok) {
+        if ( !response.ok ) {
           console.log( "---- error" )
           console.log( "-- FETCH ERROR 1" )
           return dispatch( {
@@ -99,7 +98,7 @@ export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
             payload: "error" } )
         }
         return response.json()
-      })
+      } )
       .then( message => {
         console.log( "---- success perisisting to db" )
       } )

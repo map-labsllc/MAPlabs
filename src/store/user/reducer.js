@@ -44,7 +44,7 @@ const initialState = {
     login_service_id: 1,
     login_token: "DFDS34543GD",
     curr_module: 4,
-    curr_section: 170,
+    curr_section: 110,
    },
 }
 
@@ -83,11 +83,11 @@ export const isFirstSection = ( state, moduleNum, sectionNum ) => {
    return -- { moduleNum, sectionNum }
 ************************************************** */
 export const getNextModuleSection = ( userRD, currModuleNum, currSectionNum ) => {
-  console.log( `userRD::getNextModuleSection(state, ${currModuleNum}, ${currSectionNum})` );
+  console.log( `userRD::getNextModuleSection(state, ${currModuleNum}, ${currSectionNum})` )
   const { orderOfSections } = userRD
-  console.log("orderOfSections: ", orderOfSections)
+  console.log( "orderOfSections: ", orderOfSections )
   const sections = orderOfSections[currModuleNum]
-  console.log("sections: ", sections)
+  console.log( "sections: ", sections )
 
   // TODO: Crashing when current is at 2,0 and we're closing modals in module 1
   // if (userRD.user.curr_module !== currModuleNum) {
@@ -159,7 +159,7 @@ export const userRD = ( state = initialState, action ) => {
 
       const newOrderOfSections = { ...state.orderOfSections }
       const sections = newOrderOfSections[moduleNum] || []
-      if ( !sections.includes( sectionNum ) ) sections.push(sectionNum)
+      if ( !sections.includes( sectionNum ) ) sections.push( sectionNum )
       newOrderOfSections[moduleNum] = sections
 
       return  {

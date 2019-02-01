@@ -12,7 +12,8 @@ import {
    passedProps:
      question -- { code: 50, text: "question 50" }
      isDynamic -- undefined or true
-                  rendering static version in Popup or dynamic verison in Modal
+                  undefined: render static version in Popup
+                  true: render dynamic/interactive verison in Modal
 ******************************************** */
 const mapStateToProps = (state, passedProps) => {
   console.log("ShortAnswersCT::mapStateToProps()");
@@ -25,16 +26,12 @@ const mapStateToProps = (state, passedProps) => {
   // validation
   if (!question.code) throw new Error("missing question code: ", passedProps.question_code)
 
-  // get userId
-  const userId = getUser(state.userRD).user_id
-
   // get previous answers, if any
   const answers = getAnswers(state.answersRD, question.code)
   console.log(`getAnswers(${question.code}): `, answers);
   const previousAnswers = answers
 
   return {
-    userId,
     question,
     previousAnswers,
     isDynamic,
