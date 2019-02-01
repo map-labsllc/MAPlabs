@@ -154,6 +154,7 @@ class Module1 extends React.Component {
               moduleTitle = "Your Meanings and Motivations "
               moduleDescription = { MOD_1_DESC }
             >
+              <p>updated</p>
               <SectionCT
                 moduleNum = { 1 }
                 sectionNum = { 110 }
