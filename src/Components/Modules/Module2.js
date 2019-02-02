@@ -73,11 +73,11 @@ class Module2 extends React.Component {
         {
           code:2202,
           name: "Social Groups/Ideologies",
-          text:"Ideologies: These are specific groups to which you belong or have belonged, or schools of thought and ideologies to which you have subscribed. These affiliations can be personally chosen or not. (Examples: schools, colleges, teams, religious communities, thought leaders [such as philosophers, theologians, self-help writers, artists, media personalities], youth groups, clubs, fraternities/sororities, civic organizations, volunteer activities, jobs, companies, affinity groups, etc…). Feel free to list these or any other social groups or ideologies that have influenced you." },
+          text: "Ideologies: These are specific groups to which you belong or have belonged, or schools of thought and ideologies to which you have subscribed. These affiliations can be personally chosen or not. (Examples: schools, colleges, teams, religious communities, thought leaders [such as philosophers, theologians, self-help writers, artists, media personalities], youth groups, clubs, fraternities/sororities, civic organizations, volunteer activities, jobs, companies, affinity groups, etc…). Feel free to list these or any other social groups or ideologies that have influenced you." },
         {
           code:2203,
-          name:"Wider Communities and Culture Groups",
-          text:"These are also groups to which you belong or have belonged, but the scope is much wider. As a result, the influence may be a bit more indirect. (Examples: cities, towns, states, countries, neighborhoods, ethnicities, genders, socio-economic sectors, educational groups, industries, etc…). Feel free to list these or any other communities or cultural groups that have influenced you."
+          name: "Wider Communities and Culture Groups",
+          text: "These are also groups to which you belong or have belonged, but the scope is much wider. As a result, the influence may be a bit more indirect. (Examples: cities, towns, states, countries, neighborhoods, ethnicities, genders, socio-economic sectors, educational groups, industries, etc…). Feel free to list these or any other communities or cultural groups that have influenced you."
         }
       ]}
       question = { { code: 220, text: "Rank your supportive influences" } }
