@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import {
   Button,
   ControlLabel,
@@ -172,6 +173,25 @@ export default class ShortAnswers extends React.Component {
     )
   }
 }
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+ShortAnswers.propTypes = {
+  question: PropTypes.shape( {
+    code: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  } ).isRequired,
+  previousAnswers: PropTypes.array.isRequired,
+  isDynamic: PropTypes.bool,
+  onUpdateAnswerCB: PropTypes.func, // required, injevted by <Popup>
+}
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
 const style = {
   centering: {
     marginLeft: "45%",

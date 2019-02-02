@@ -1,10 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Button,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
 } from 'react-bootstrap'
 import Transition from './Transition'
 import '../../CSS/ModalNavButtons.css'
@@ -139,8 +136,6 @@ export default class Transitions extends React.Component {
       )
     }
 
-    //
-
     return (
       <>
         <div className="text-center">
@@ -166,3 +161,21 @@ export default class Transitions extends React.Component {
     )
   }
 }
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+Transitions.propTypes = {
+  question: PropTypes.shape( {
+    code: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  } ).isRequired,
+  previousTransitions: PropTypes.array.isRequired,
+  isDynamic: PropTypes.bool,
+  onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
+}
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////

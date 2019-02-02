@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import {
   Button,
   ControlLabel,
@@ -62,16 +64,16 @@ export default class Narrative extends React.Component {
     const { onPersistCB, onCloseModalCB, userId } = this.props
     const { answer } = this.state
 
-    onPersistCB(userId, answer)
+    onPersistCB( userId, answer )
     onCloseModalCB()
   }
 
   /* ******************************************************** */
   // Send newAnswer value back to Container to persist
   //   and update Save button to indicate control is no longer dirty
-  onSubmit = (e) => {
-    console.log(`Narrative::onclickSave(): ${this.state.answer}`)
-    console.log("state: ", this.state)
+  onSubmit = ( e ) => {
+    console.log( `Narrative::onclickSave(): ${this.state.answer}` )
+    console.log( "state: ", this.state )
     e.preventDefault()
     this.updateAndPersist()
   }
@@ -85,12 +87,14 @@ export default class Narrative extends React.Component {
     const { question, prompts, instructions, isDynamic } = this.props
     const { answer } = this.state
 
-    if (!isDynamic) {
+    // render static version
+    if ( !isDynamic ) {
       return (
         <p>{answer}</p>
       )
     }
 
+    // render dynamic version
     return (
       <>
         <Prompts prompts={prompts} />
@@ -120,13 +124,27 @@ export default class Narrative extends React.Component {
     )
   }
 }
-{/* <FormControl
-              componentClass="textarea"
-              onChange={this.onChange}
-              onBlur={this.onBlur}
-              value={answer}
-              placeholder="Please enter an answer and click Close"
-            /> */}
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+Narrative.propTypes = {
+  question: PropTypes.shape( {
+    code: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  } ).isRequired,
+  prompts: PropTypes.arrayOf( PropTypes.string ).isRequired,
+  instructions: PropTypes.string.isRequired,
+  previousAnswer: PropTypes.string.isRequired,
+  isDynamic: PropTypes.bool,
+  onCloseModalCB: PropTypes.func,  // this is required but injected by <Popup>
+}
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
 const style = {
   closeButton: {
     marginRight: "auto",
