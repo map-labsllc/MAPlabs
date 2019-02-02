@@ -66,6 +66,7 @@ export default class Questions extends React.Component {
 
     const { currIdx } = this.state
 
+    // already at the start, do nothing
     if ( currIdx === 0 ) return
 
     this.persistCurrent()
@@ -80,6 +81,7 @@ export default class Questions extends React.Component {
     const { currIdx } = this.state
     const { subComponents } = this.props
 
+    // aready at the end, do nothing
     if ( currIdx === ( subComponents.length - 1 ) ) return
 
     this.persistCurrent()
@@ -114,6 +116,12 @@ export default class Questions extends React.Component {
 
     // ******************************************
     // render dynamic verison in <ModalX>
+
+    // TODO:  Yikes, make this more efficient!  Figure out which one will be
+    //        rendered and just do cloneElement() on that one and render it.
+    //        No need to create a new array of all of them.
+    //        Or maybe this won't work because of the key={idx} or maybe
+    //        we don't even need that if we're only rendering a single component.
 
     // inject isDynamic into props so the subCompoent will render its dynamic version
     const subComponentsWithIsDynamic = subComponents.map( ( subComponent ) => {
