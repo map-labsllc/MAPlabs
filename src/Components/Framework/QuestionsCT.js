@@ -89,6 +89,45 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   }
 
   /* *****************************************
+     presistQuestion()
+
+     Helper that actually persists the data to the correct database table
+       depending on the questionType.
+
+     params:
+       question -- { code: 50, text: "The question" }
+
+  ******************************************** */
+  function persistQuestion( question ) {
+    console.log( `QuestionsCT::persistQuestion` )
+
+    return ( dispatch, getStore ) => {
+
+      const state = getStore()
+      const { questionType } = passedProps
+      const userId = getUser( state.userRD ).user_id
+
+      switch ( questionType ) {
+        case QUESTION_TYPE_SHORT_ANSWERS:
+        case QUESTION_TYPE_BRACKET:
+          const answers = getAnswers( state.answersRD, question.code )
+          dispatch( persistAnswersAC( userId, question.code, answers ) )
+          return
+
+        case QUESTION_TYPE_TRANSITIONS:
+          const transitions = getTransitions( state.transitionsRD, question.code )
+          dispatch( persistTransitionsAC( userId, question.code, transitions ) )
+          return
+
+        default:
+          throw new Error( 'ERROR unkown QUESTION_TYPE' )
+      }
+
+      return Promise.resolve()
+    }
+  }
+
+  /* *****************************************
      onPersistQuestion()
 
      Persist a question from the Store
@@ -96,23 +135,23 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   function onPersistQuestion( userId, question, RD ) {
     console.log( `QuestionsCT::onPersistQuestion()` )
 
-    const { questionType } = passedProps
+    dispatch( persistQuestion( question ) )
 
-    switch ( questionType ) {
-      case QUESTION_TYPE_SHORT_ANSWERS:
-      case QUESTION_TYPE_BRACKET:
-        const answers = getAnswers( RD, question.code )
-        dispatch( persistAnswersAC( userId, question.code, answers ) )
-        return
-
-      case QUESTION_TYPE_TRANSITIONS:
-        const transitions = getTransitions( RD, question.code )
-        dispatch( persistTransitionsAC( userId, question.code, transitions ) )
-        return
-
-      default:
-        throw new Error( 'ERROR unkown QUESTION_TYPE' )
-    }
+    // switch ( questionType ) {
+    //   case QUESTION_TYPE_SHORT_ANSWERS:
+    //   case QUESTION_TYPE_BRACKET:
+    //     const answers = getAnswers( RD, question.code )
+    //     dispatch( persistAnswersAC( userId, question.code, answers ) )
+    //     return
+    //
+    //   case QUESTION_TYPE_TRANSITIONS:
+    //     const transitions = getTransitions( RD, question.code )
+    //     dispatch( persistTransitionsAC( userId, question.code, transitions ) )
+    //     return
+    //
+    //   default:
+    //     throw new Error( 'ERROR unkown QUESTION_TYPE' )
+    // }
 
   }
 
