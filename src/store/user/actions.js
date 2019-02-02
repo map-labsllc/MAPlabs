@@ -51,6 +51,7 @@ const persistCurrModuleAndSection = ( dispatch, user, moduleNum, sectionNum ) =>
       if ( !response.ok ) {
         console.log( "---- error" )
         console.log( "-- FETCH ERROR 1" )
+        // TODO: re-test this, doesn't the return just go to the next .then?
         return dispatch( {
           type: USER_UPDATE_ERROR,
           payload: "error" } )
@@ -113,17 +114,17 @@ export const sectionCompletedAC = ( user, completedModuleNum, completedSectionNu
       const nextModuleSectionObj = getNextModuleSection( getState().userRD, user.curr_module, user.curr_section )
       console.log( "---- nextModuleSectionObj advancing to:", nextModuleSectionObj )
 
-      // udate it immediately
-      dispatch ( {
+      // persist the new curr_module, curr_section
+      persistCurrModuleAndSection( dispatch, user, nextModuleSectionObj.moduleNum, nextModuleSectionObj.sectionNum )
+
+      // update store
+      return dispatch ( {
         type: USER_UPDATE_CURR_SECTION,
         payload: {
           moduleNum: nextModuleSectionObj.moduleNum,
           sectionNum: nextModuleSectionObj.sectionNum }
       } )
 
-      // persist the new curr_module, curr_section
-      persistCurrModuleAndSection( dispatch, user, nextModuleSectionObj.moduleNum, nextModuleSectionObj.sectionNum )
-      return
     }
 
     // DON'T advance the user's current module and section
