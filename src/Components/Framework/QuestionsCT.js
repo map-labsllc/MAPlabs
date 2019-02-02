@@ -58,7 +58,6 @@ const mapStateToProps = ( state, passedProps ) => {
 
   return {
     userId,
-    questionType,
     RD,
     isDynamic,
     subComponents,
