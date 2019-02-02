@@ -29,7 +29,6 @@ const mapStateToProps = ( state, passedProps ) => {
   const {
     questionType,
     isDynamic,
-
     subComponents,
   } = passedProps
 
@@ -95,8 +94,10 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
      Persist a question from the Store
   ******************************************** */
-  function onPersistQuestion( userId, questionType, question, RD ) {
+  function onPersistQuestion( userId, question, RD ) {
     console.log( `QuestionsCT::onPersistQuestion()` )
+
+    const { questionType } = passedProps
 
     switch ( questionType ) {
       case QUESTION_TYPE_SHORT_ANSWERS:
