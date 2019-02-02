@@ -9,7 +9,8 @@ import PropTypes from 'prop-types'
    winning short answer.
 
    state:
-     todo:  fill this in
+     maintain the list of prompts being whittled down to a single winner.
+
 
    props:
      question -- {
@@ -71,17 +72,11 @@ export default class Bracket extends React.Component {
         {this.state.prompts[1] ?
           <p className='prompts'>
 
-            <button
-              id='prompt1'
-              onClick={this.promptClick( 1 )}
-            >
+            <button id='prompt1' onClick={this.promptClick( 1 )} >
               {this.state.prompts[0]}
             </button>
 
-            <button
-              id='prompt2'
-              onClick={this.promptClick( 0 )}
-            >
+            <button id='prompt2' onClick={this.promptClick( 0 )} >
               {this.state.prompts[1]}
             </button>
 
@@ -95,6 +90,10 @@ export default class Bracket extends React.Component {
     )
   }
 }
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 
 Bracket.propTypes = {
   prompts: PropTypes.arrayOf( PropTypes.string ).isRequired,
