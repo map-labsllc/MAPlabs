@@ -17,7 +17,6 @@ import {
    Shows a module
 
    props:
-     isLoading -- true when data is still loading into app
      moduleNum -- integer, the module number
      moduleTitle -- title of the Module
      moduleDescription -- could be many lines, is we need paragraphs then will need to set innerHTML
@@ -28,19 +27,8 @@ export default class Module extends React.Component {
   render() {
     console.log("Module::render()")
 
-    let { isLoading, moduleNum, moduleTitle, moduleDescription, children } = this.props
+    let { moduleNum, moduleTitle, moduleDescription, children } = this.props
 
-    // if data is loading show spinner, don't render Sections
-    if (isLoading) {
-      return (
-        <>
-          <p>.</p>
-          <p> Loading, visualize a spinner here...</p>
-        </>
-      )
-    }
-
-    // data loaded, show sections
     return (
       <div style={style.background}>
         <div style={style.marginz}>

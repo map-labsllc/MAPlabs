@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import Module from './Module'
-import { isLoading } from '../../store/ui/reducer'
 
 /* *****************************************
    mapStateToProps()
@@ -16,10 +15,7 @@ const mapStateToProps = ( state, passedProps ) => {
 
   const { moduleNum, moduleTitle, moduleDescription, children } = passedProps
 
-  const isLoading = state.uiRD.isLoading()
-
   return {
-    isLoading,
     moduleNum,
     moduleTitle,
     moduleDescription,

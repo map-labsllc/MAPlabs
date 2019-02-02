@@ -11,6 +11,7 @@ import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 
 import { getUser } from '../../store/user/reducer'
+import { isLoading } from '../../store/ui/reducer'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS} from '../../constants.js'
@@ -32,7 +33,7 @@ import {
 } from 'react-bootstrap'
 
 /* **************************************************
-   Module 1 layout
+   Used to test components during development
 ***************************************************** */
 class Module1 extends React.Component {
 
@@ -143,6 +144,16 @@ class Module1 extends React.Component {
   // render!
   render() {
 
+    const { isLoading } = this.props
+    if (isLoading) {
+      return (
+        <>
+          <p>.</p>
+          <p>.</p>
+          <p>Imagine a spinner...</p>
+        </>
+      )
+    }
 
     return (
       <>
@@ -195,6 +206,8 @@ class Module1 extends React.Component {
           />
         </Module>
       </>
+
+
     )
   }
 }
@@ -206,6 +219,7 @@ class Module1 extends React.Component {
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {
   return {
+    isLoading: isLoading( state ),
     userId: getUser( state.userRD ).user_id,
   }
 }

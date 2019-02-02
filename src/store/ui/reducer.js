@@ -23,7 +23,7 @@ const initialState = {
    return -- t/f
 ************************************************** */
 export const isLoading = ( store ) => {
-  return (   store.staticDataRD.isLoading
+  return (   store.staticdataRD.isLoading
           || store.answersRD.isLoading
           || store.transitionsRD.isLoading )
 }

@@ -15,6 +15,8 @@ import { loadAllAnswersAC } from '../../store/answers/actions'
 import { loadAllTransitionsAC } from '../../store/transitions/actions'
 import { loadAllStaticdataAC } from '../../store/staticdata/actions'
 import { getUser } from '../../store/user/reducer'
+import { isLoading } from '../../store/ui/reducer'
+
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
@@ -154,6 +156,17 @@ class Module3 extends React.Component {
   // render!
   render() {
 
+    const { isLoading } = this.props
+    if (isLoading) {
+      return (
+        <>
+          <p>.</p>
+          <p>.</p>
+          <p>Imagine a spinner...</p>
+        </>
+      )
+    }
+
     return (
       <>
         <Module
@@ -210,6 +223,7 @@ class Module3 extends React.Component {
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {
   return {
+    isLoading: isLoading( state ),
     userId: getUser( state.userRD ).user_id,
   }
 }
