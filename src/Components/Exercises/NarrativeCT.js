@@ -40,7 +40,7 @@ const mapStateToProps = ( state, passedProps ) => {
   console.log( `getAnswers( ${question.code} ): `, answers )
   if ( 1 < answers.length ) {
     console.log("ERROR: more than one narrative answer: ", question.code, answers );
-    throw new Error( "more than one narrative answer: ", question.code, answers )
+    throw new Error( `more than one narrative answer:  ${question.code}, ${answers}` )
   }
   const previousAnswer = answers[0] || ''
 

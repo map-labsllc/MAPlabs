@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+
 import Transitions from './Transitions'
 import { getTransitions } from '../../store/transitions/reducer'
 import { updateTransitionsAC } from '../../store/transitions/actions'

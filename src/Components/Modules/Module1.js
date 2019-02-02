@@ -32,7 +32,7 @@ import {
 } from 'react-bootstrap'
 
 /* **************************************************
-   Used to test components during development
+   Module 1 layout
 ***************************************************** */
 class Module1 extends React.Component {
 

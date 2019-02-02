@@ -136,24 +136,6 @@ class QuestionsList extends Component {
           <hr className="divider" />
         </>
       )
-
-      // const sentences = []
-      // const { lifeDescriptors } = this.props
-      // for (let i = 0; i < lifeDescriptors.length; i++) {
-      //   if (this.state.selections[i]) {
-      //     let sentence = this.buildingCongruentSentence(lifeDescriptors[i], this.state.selections[i])
-      //     sentences.push(sentence)
-      //   }
-      // }
-      //
-      // return (
-      //   <>
-      //     {sentences.map((sentence, idx) => (
-      //       <p key={idx}>{sentence.text}</p>
-      //     ))}
-      //   </>
-      // )
-
     }
 
     // Dynamic ersion of the exercise
@@ -205,6 +187,11 @@ class QuestionsList extends Component {
     )
   }
 }
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
 const style = {
   right: {
     display: "inline-block",

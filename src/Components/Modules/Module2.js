@@ -38,7 +38,7 @@ import {
 } from 'react-bootstrap'
 
 /* **************************************************
-   Used to test components during development
+   Module 2 layout
 ***************************************************** */
 class Module2 extends React.Component {
 
