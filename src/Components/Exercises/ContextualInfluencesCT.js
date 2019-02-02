@@ -11,7 +11,7 @@ const mapStateToProps = ( state, passedProps ) => {
 
   const beliefs = state.staticdataRD.beliefs
 
-  const answers = getAnswers( state.ansersRD, question.code )
+  const answers = getAnswers( state.answersRD, question.code )
 
   return {
     user,

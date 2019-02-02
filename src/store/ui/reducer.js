@@ -3,7 +3,7 @@
 
 import {
 
-} from './constants'
+} from '../../constants'
 
 /*
   uiRD: {

@@ -169,72 +169,66 @@ class Module2 extends React.Component {
   /* *********************************************************** */
   // render!
   render() {
-    const isLoading = this.props.isLoading
 
     return (
       <>
-        <p>{( ( isLoading ) ? "loading...." : ""  )}</p>
-        {!isLoading && (
-          <>
-            <Module
-              moduleNum = { 2 }
-              moduleTitle = "Your Social Context"
-              moduleDescription = { MOD_2_DESC }
-            >
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 210 }
-                sectionTitle = "Contextual Influences I"
-                exercise = {this.exercise_210}
-              />
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 220 }
-                sectionTitle = "Contextual Influences II"
-                exercise = {this.exercise_220}
-              />
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 230 }
-                sectionTitle = "Contextual Influences III"
-                exercise = {this.exercise_230}
-              />
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 240 }
-                sectionTitle = "Relating Your Values and Beliefs to Those of You Influencers"
-                exercise = {this.exercise_240}
-              />
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 250 }
-                sectionTitle = "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement"
-                exercise = {this.exercise_250}
-              />
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 260 }
-                sectionTitle = "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement"
-                exercise = {this.exercise_260}
-              />
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 270 }
-                sectionTitle = "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement"
-                exercise = {this.exercise_270}
-              />
-              {/*-------------------------
-              Module 2: 4B*/}
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 280 }
-                sectionTitle = "Breaking and building"
-                exercise = {this.exercise_280}
-              />
-            </Module>
-          </>
-        )}
+        <Module
+          moduleNum = { 2 }
+          moduleTitle = "Your Social Context"
+          moduleDescription = { MOD_2_DESC }
+        >
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 210 }
+            sectionTitle = "Contextual Influences I"
+            exercise = {this.exercise_210}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 220 }
+            sectionTitle = "Contextual Influences II"
+            exercise = {this.exercise_220}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 230 }
+            sectionTitle = "Contextual Influences III"
+            exercise = {this.exercise_230}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 240 }
+            sectionTitle = "Relating Your Values and Beliefs to Those of You Influencers"
+            exercise = {this.exercise_240}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 250 }
+            sectionTitle = "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement"
+            exercise = {this.exercise_250}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 260 }
+            sectionTitle = "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement"
+            exercise = {this.exercise_260}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 270 }
+            sectionTitle = "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement"
+            exercise = {this.exercise_270}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 280 }
+            sectionTitle = "Breaking and building"
+            exercise = {this.exercise_280}
+          />
+        </Module>
       </>
+
+
     )
   }
 }
@@ -246,7 +240,6 @@ class Module2 extends React.Component {
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {
   return {
-    isLoading: state.answersRD.isLoading || state.transitionsRD.isLoading || state.staticdataRD.isLoading,
     userId: getUser( state.userRD ).user_id,
   }
 }

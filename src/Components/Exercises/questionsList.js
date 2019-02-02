@@ -84,7 +84,7 @@ class QuestionsList extends Component {
   }
   render() {
 
-    const { isDynamic, lifeDescriptors, isLoading, userId, onPersistCB, onCloseModalCB } = this.props
+    const { isDynamic, lifeDescriptors, userId, onPersistCB, onCloseModalCB } = this.props
 
     let pages = this.splittingArray( lifeDescriptors )
     let list = pages.map( ( element, pageNum ) => (
@@ -142,47 +142,41 @@ class QuestionsList extends Component {
     // ------------------------------
     return (
       <>
-        <p>{( ( isLoading ) ? "loading...." : "" )}</p>
-        {!isLoading && (
-          <>
+        {list[this.state.page]}
+        <br />
+        <div className="container-fluid">
+          <div style={style.left}>
+            <Arrows
+              direction="left"
+              clickFunction={this.previousSlide( pages )}
+              glyph="arrow-left"
+            />
+          </div>
+          <div style={style.center}>
+            <Button
+              className="closeButton"
+              onClick={() => {
+                const sentences = []
 
-            {list[this.state.page]}
-            <br />
-            <div className="container-fluid">
-              <div style={style.left}>
-                <Arrows
-                  direction="left"
-                  clickFunction={this.previousSlide( pages )}
-                  glyph="arrow-left"
-                />
-              </div>
-              <div style={style.center}>
-                <Button
-                  className="closeButton"
-                  onClick={() => {
-                    const sentences = []
+                for ( let i = 0; i < lifeDescriptors.length; i++ ) {
+                  if ( this.state.selections[i] ) {
+                    let sentence = this.buildingCongruentSentence( lifeDescriptors[i], this.state.selections[i] )
+                    sentences.push( sentence )
 
-                    for ( let i = 0; i < lifeDescriptors.length; i++ ) {
-                      if ( this.state.selections[i] ) {
-                        let sentence = this.buildingCongruentSentence( lifeDescriptors[i], this.state.selections[i] )
-                        sentences.push( sentence )
-
-                      }
-                    }
-                    onPersistCB( userId, sentences )
-                    onCloseModalCB()
-                  }}>Close</Button>
-              </div>
-              <div style={style.right}>
-                <Arrows
-                  direction="right"
-                  clickFunction={this.nextSlide( pages )}
-                  glyph="arrow-right"
-                />
-              </div>
-            </div>
-          </>
-        )}
+                  }
+                }
+                onPersistCB( userId, sentences )
+                onCloseModalCB()
+              }}>Close</Button>
+          </div>
+          <div style={style.right}>
+            <Arrows
+              direction="right"
+              clickFunction={this.nextSlide( pages )}
+              glyph="arrow-right"
+            />
+          </div>
+        </div>
       </>
     )
   }
@@ -223,7 +217,6 @@ const mapStateToProps = ( state, passedProps ) => {
     previousAnswers = getAnswers( state.answersRD, question.code )
 
   return {
-    isLoading: state.answersRD.isLoading || state.staticdataRD.isLoading,
     userId: getUser( state.userRD ).user_id,
     description,
     question,

@@ -153,57 +153,51 @@ class Module3 extends React.Component {
   /* *********************************************************** */
   // render!
   render() {
-    const isLoading = this.props.isLoading
 
     return (
       <>
-        <p>{( ( isLoading ) ? "loading...." : ""  )}</p>
-        {!isLoading && (
-          <>
-            <Module
-              moduleNum = { 3 }
-              moduleTitle = "Personal Desires"
-              moduleDescription = { MOD_3_DESC }
-            >
-              <SectionCT
-                moduleNum = { 3 }
-                sectionNum = { 310 }
-                sectionTitle = "Deep Desires"
-                exercise = {this.exercise_310}
-              />
-              <SectionCT
-                moduleNum = { 3 }
-                sectionNum = { 320 }
-                sectionTitle = "Make tradeoffs within each category"
-                exercise = {this.exercise_320}
-              />
-              <SectionCT
-                moduleNum = { 3 }
-                sectionNum = { 330 }
-                sectionTitle = "Make tradeoffs between each category"
-                exercise = {this.exercise_330}
-              />
-              <SectionCT
-                moduleNum = { 3 }
-                sectionNum = { 340 }
-                sectionTitle = "Synthesize into a Desires Statement"
-                exercise = {this.exercise_340}
-              />
-              <SectionCT
-                moduleNum = { 3 }
-                sectionNum = { 350 }
-                sectionTitle = "Reflect of your stated desires"
-                exercise = {this.exercise_350}
-              />
-              <SectionCT
-                moduleNum = { 3 }
-                sectionNum = { 360 }
-                sectionTitle = "Break and building"
-                exercise = {this.exercise_360}
-              />
-            </Module>
-          </>
-        )}
+        <Module
+          moduleNum = { 3 }
+          moduleTitle = "Personal Desires"
+          moduleDescription = { MOD_3_DESC }
+        >
+          <SectionCT
+            moduleNum = { 3 }
+            sectionNum = { 310 }
+            sectionTitle = "Deep Desires"
+            exercise = {this.exercise_310}
+          />
+          <SectionCT
+            moduleNum = { 3 }
+            sectionNum = { 320 }
+            sectionTitle = "Make tradeoffs within each category"
+            exercise = {this.exercise_320}
+          />
+          <SectionCT
+            moduleNum = { 3 }
+            sectionNum = { 330 }
+            sectionTitle = "Make tradeoffs between each category"
+            exercise = {this.exercise_330}
+          />
+          <SectionCT
+            moduleNum = { 3 }
+            sectionNum = { 340 }
+            sectionTitle = "Synthesize into a Desires Statement"
+            exercise = {this.exercise_340}
+          />
+          <SectionCT
+            moduleNum = { 3 }
+            sectionNum = { 350 }
+            sectionTitle = "Reflect of your stated desires"
+            exercise = {this.exercise_350}
+          />
+          <SectionCT
+            moduleNum = { 3 }
+            sectionNum = { 360 }
+            sectionTitle = "Break and building"
+            exercise = {this.exercise_360}
+          />
+        </Module>
       </>
     )
   }
@@ -216,7 +210,6 @@ class Module3 extends React.Component {
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {
   return {
-    isLoading: state.answersRD.isLoading || state.transitionsRD.isLoading || state.staticdataRD.isLoading,
     userId: getUser( state.userRD ).user_id,
   }
 }
