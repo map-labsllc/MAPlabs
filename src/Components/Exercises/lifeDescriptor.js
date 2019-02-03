@@ -1,49 +1,68 @@
 import React from 'react'
-import { ListGroupItem, ButtonGroup, Button } from 'react-bootstrap'
+import {
+  Button,
+  ButtonGroup,
+  ListGroupItem,
+ } from 'react-bootstrap'
 
- const lifeDescriptorQuestion = ( { data, addingData,checkedA, checkedB, showCheckedA,showCheckedB } ) => {
+ /* **************************************************
+    LifeDescriptor component
 
-   let structured = data.description.split( '#' )
-   let first = structured[0]
-   let second = structured[1]
-  //
-  // let  variant = ''
-  //  const handleClick = () => {
-  //   if(variant === '') variant = 'success'
-  //   else{variant = ''}
-  // }
-let btnStyleA = 'link'
-if( checkedA=== true ){
-  btnStyleA= 'success'
-}
-let btnStyleB = 'link'
-if( checkedB=== true ){
-btnStyleB= 'success'
-}
+    Displays a single life descriptor with:
+      -- The life descriptor
+      -- Two buttons with the alternative text to complete the senteence
+
+    props:
+      todo: fill in props
+ ***************************************************** */
+const LifeDescriptor = ( props ) => {
+
+  const {
+    data,
+    addSelectionCB,
+    checkedA,
+    checkedB,
+    showCheckedA,
+    showCheckedB } = props
+
+  let structured = data.description.split( '#' )
+  let first = structured[0]
+  let second = structured[1]
+
+  let btnStyleA = 'default'
+  if( checkedA=== true ){
+    btnStyleA= 'success'
+  }
+
+  let btnStyleB = 'default'
+  if( checkedB=== true ){
+    btnStyleB= 'success'
+  }
 
   const renderButtons = ( children ) => {
     return (
       <ButtonGroup>
-        <Button  onClick= {() => { addingData( first,children.a,second,showCheckedA( children.a ) ) }} bsStyle={btnStyleA} >
+
+        <Button onClick= {() => {
+            addSelectionCB( first, children.a, second, showCheckedA( children.a ) ) }} bsStyle={btnStyleA} >
           <strong>{children.a}</strong>
         </Button>
-        <Button onClick= { () => {addingData( first,children.b,second,showCheckedB( children.b ) ) }} bsStyle={btnStyleB} >
+
+        <Button onClick= { () => {
+            addSelectionCB( first, children.b, second, showCheckedB( children.b ) ) }} bsStyle={btnStyleB} >
           <strong>{children.b}</strong>
         </Button>
+
       </ButtonGroup>
     )
   }
 
-
-
+  // render
   return (
-
     <ListGroupItem >
       { first } { renderButtons( data ) } { second }
     </ListGroupItem>
-
-
   )
 }
 
-export default lifeDescriptorQuestion
+export default LifeDescriptor

@@ -5,7 +5,6 @@ import Module from '../Framework/Module'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
-import QuestionsList from '../Exercises/questionsList'
 import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ContextualInfluenceGroups from '../Exercises/ContextualInfluenceGroups'
@@ -93,7 +92,7 @@ class Module2 extends React.Component {
       question = { { code: 230, text: "Rank your inhibiting influences" } }
       promptQuestionCode = { 0 }
       description = { QUES_230_DESC }
-      instructions = ""
+      instructions = { QUES_230_DESC }
     /> )
 
 
@@ -105,7 +104,7 @@ class Module2 extends React.Component {
       question = { { code: 240, text: "Relating Your Values and Beliefs to Those of Your Influences" } }
       promptQuestionCode = { 0 } // would need to do something here, maybe an array of promptQuestionCodes like in <Bracket>
       description = { QUES_240_DESC }
-      instructions = ""
+      instructions = { QUES_240_DESC }
     /> )
 
 
@@ -116,7 +115,7 @@ class Module2 extends React.Component {
       question = { { code: 250, text: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement" } }
       promptQuestionCode = { 0 }
       description = { QUES_250_DESC }
-      instructions = ""
+      instructions = { QUES_250_DESC }
     /> )
 
   // -------------------------
@@ -126,7 +125,7 @@ class Module2 extends React.Component {
       question = { { code: 260, text: "Synthesize Your Values and Beliefs into a Self-Inhibiting Statement" } }
       promptQuestionCode = { 0 }
       description = { QUES_260_DESC }
-      instructions = ""
+      instructions = { QUES_260_DESC }
     /> )
 
   // -------------------------
