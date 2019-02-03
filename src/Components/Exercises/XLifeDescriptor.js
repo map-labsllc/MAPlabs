@@ -39,7 +39,7 @@ const LifeDescriptor = ( props ) => {
 
   // render
   return (
-    
+
     <ListGroupItem >
 
       {/* ----------------------------- */}

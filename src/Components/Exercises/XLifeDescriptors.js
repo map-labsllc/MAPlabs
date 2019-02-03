@@ -96,7 +96,7 @@ export default class LifeDescriptors extends Component {
     //   return this.makeSentence( lifeDescriptors[idx], selection )
     // } )
 
-    const sentences = Object.keys(aOrB_Selections).map( ( idx ) => {
+    const sentences = Object.keys( aOrB_Selections ).map( ( idx ) => {
       return this.makeSentence( lifeDescriptors[idx], aOrB_Selections[ idx ] )
     } )
 
