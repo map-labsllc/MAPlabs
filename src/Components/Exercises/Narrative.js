@@ -25,7 +25,8 @@ import '../../CSS/ModalNavButtons.css'
      instructions -- can be empty string
      previousAnswer -- string with the previous answer
      isDynamic -- undefined or true
-                  rendering static version in Popup or dynamic verison in Modal     onPersistCB(newAnswer) -- callback for when user clicks Save
+                  rendering static version in Popup or dynamic verison in Modal
+     onPersistCB(newAnswer) -- callback for when user clicks Save
      onCloseModalCB -- call to close the modal this control resides in
 ***************************************************** */
 export default class Narrative extends React.Component {
@@ -48,7 +49,7 @@ export default class Narrative extends React.Component {
   }
 
   /* ******************************************************** */
-  // update store and persist the value as user could be clicking outside Modal and shitting it down
+  // update store and persist the value as user could be clicking outside Modal and shutting it down
   onBlur = () => {
     console.log( "Narrative::onBlur()" )
     this.updateAndPersist()
@@ -66,16 +67,6 @@ export default class Narrative extends React.Component {
 
     onPersistCB( userId, answer )
     onCloseModalCB()
-  }
-
-  /* ******************************************************** */
-  // Send newAnswer value back to Container to persist
-  //   and update Save button to indicate control is no longer dirty
-  onSubmit = ( e ) => {
-    console.log( `Narrative::onclickSave(): ${this.state.answer}` )
-    console.log( "state: ", this.state )
-    e.preventDefault()
-    this.updateAndPersist()
   }
 
   /* ******************************************************** */
@@ -117,7 +108,7 @@ export default class Narrative extends React.Component {
             />
           </div>
           <div className="text-center">
-            <Button className="closeButton" type="submit" style={style.closeButton}>Close</Button>
+            <Button className="closeButton" type="button" style={style.closeButton}>Close</Button>
           </div>
         </form>
       </>
