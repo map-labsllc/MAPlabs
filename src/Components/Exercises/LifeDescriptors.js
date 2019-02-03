@@ -8,7 +8,8 @@ import Arrow from '../Utils/Arrow'
 
 import '../../CSS/ModalNavButtons.css'
 
-const NUM_PER_PAGE = 5
+const NUM_PER_PAGE = 8
+// const NUM_PER_PAGE = 5
 
 /* **************************************************
    LifeDescriptors component
@@ -35,7 +36,10 @@ export default class LifeDescriptors extends Component {
     super()
     this.state = {
       page: 0,
-      aOrB_Selections: [], // sparse array w/ values 'a' or 'b' and index paralelling the index of lifeDesctriptors
+      // aOrB_Selections: [], // sparse array w/ values 'a' or 'b' and index paralelling the index of lifeDesctriptors
+      aOrB_Selections: {}, // hashmap of selections:
+                           //     key -- lifeDescriptors index
+                           //     value -- 'a' or 'b' w/ values 'a' or 'b'
     }
   }
 
@@ -61,7 +65,9 @@ export default class LifeDescriptors extends Component {
 
       maxPage - the max acceptable value of state.page
   ************************************************* */
-  onclickNext = ( maxPage ) => e => {
+  onclickNext = () => e => {
+    const { lifeDescriptors } = this.props
+    const maxPage = Math.ceil( lifeDescriptors.length / NUM_PER_PAGE ) - 1
 
     const { page } = this.state
     if ( page === ( maxPage ) ) return
@@ -86,25 +92,16 @@ export default class LifeDescriptors extends Component {
     } = this.props
     const { aOrB_Selections } = this.state
 
-    const sentences = aOrB_Selections.map( ( selection, idx ) => {
-      return this.makeSentence( lifeDescriptors[idx], selection )
+    // const sentences = aOrB_Selections.map( ( selection, idx ) => {
+    //   return this.makeSentence( lifeDescriptors[idx], selection )
+    // } )
+
+    const sentences = Object.keys(aOrB_Selections).map( ( idx ) => {
+      return this.makeSentence( lifeDescriptors[idx], aOrB_Selections[ idx ] )
     } )
 
     onPersistCB( userId, sentences )
     onCloseModalCB()
-  }
-
-  /* **********************************************
-
-  ************************************************* */
-  splittingArray = ( arr ) => {
-    var size = NUM_PER_PAGE
-    var arrayOfArrays = []
-    for ( var i = 0; i < arr.length; i += size ) {
-      arrayOfArrays.push( arr.slice( i, i + size ) )
-    }
-
-    return arrayOfArrays
   }
 
   /* **********************************************
@@ -116,8 +113,17 @@ export default class LifeDescriptors extends Component {
       aOrB -- 'a' or 'b'
   ************************************************* */
   addSelection = ( idxLifedescriptions, aOrB ) => {
-    const newAorB_Selections = [...this.state.aOrB_Selections]
+
+    console.log( ' ' )
+    console.log( '+++++++++++' )
+    console.log( 'state: ', this.state.aOrB_Selections )
+
+    const { aOrB_Selections } = this.state
+    const newAorB_Selections = { ...aOrB_Selections }
     newAorB_Selections[idxLifedescriptions] = aOrB
+
+    console.log( 'new  : ', newAorB_Selections )
+
     this.setState( {
       aOrB_Selections: newAorB_Selections
     } )
@@ -152,25 +158,7 @@ export default class LifeDescriptors extends Component {
       isDynamic,
       lifeDescriptors,
     } = this.props
-
-    let pages = this.splittingArray( lifeDescriptors )
-    let list = pages.map( ( element, pageNum ) => (
-      element.map( ( ele, i ) => {
-        const idxLifedescriptions = i + pageNum * NUM_PER_PAGE
-        return (
-          <LifeDescriptor
-            key={idxLifedescriptions}
-            lifeDescriptor={ele}
-            onAddSelectionCB={
-              ( aOrB ) => {
-                this.addSelection( idxLifedescriptions, aOrB )
-              }}
-            isCheckedA={this.state.aOrB_Selections[idxLifedescriptions] === 'a'}
-            isCheckedB={this.state.aOrB_Selections[idxLifedescriptions] === 'b'}
-          />
-        )
-      } )
-    ) )
+    const { page } = this.state
 
     // Static version of the exercise
     // ------------------------------
@@ -189,9 +177,29 @@ export default class LifeDescriptors extends Component {
 
     // Dynamic version of the exercise
     // -------------------------------
+
+    let thisPage = []
+    const startIdx = page * NUM_PER_PAGE
+    const endIdx = Math.min( ( ( page + 1 ) * NUM_PER_PAGE ), lifeDescriptors.length )
+    for ( let i = startIdx ; i < endIdx ; i++ ) {
+      thisPage.push( (
+        <LifeDescriptor
+          key={i}
+          lifeDescriptor={lifeDescriptors[i]}
+          onAddSelectionCB={
+            ( aOrB ) => {
+              this.addSelection( i, aOrB )
+            }}
+          isSelectedA={this.state.aOrB_Selections[i] === 'a'}
+          isSelectedB={this.state.aOrB_Selections[i] === 'b'}
+        />
+        )
+      )
+    }
+
     return (
       <>
-        {list[this.state.page]}
+        {thisPage}
 
         <br />
 
@@ -220,7 +228,7 @@ export default class LifeDescriptors extends Component {
           <div style={style.right}>
             <Arrow
               direction="right"
-              onClickCB={this.onclickNext( pages.length - 1 )}
+              onClickCB={this.onclickNext()}
               glyph="arrow-right"
             />
           </div>

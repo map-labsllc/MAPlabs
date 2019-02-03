@@ -25,8 +25,8 @@ const LifeDescriptor = ( props ) => {
 
   const {
     lifeDescriptor,
-    isCheckedA,
-    isCheckedB,
+    isSelectedA,
+    isSelectedB,
     onAddSelectionCB,
   } = props
 
@@ -34,12 +34,12 @@ const LifeDescriptor = ( props ) => {
   let firstPartOfSentence = split[0]
   let secondPartOfSentence = split[1]
 
-  let btnStyleA = ( isCheckedA ) ? 'success' : 'default'
-  let btnStyleB = ( isCheckedB ) ? 'success' : 'default'
-
+  let btnStyleA = ( isSelectedA ) ? 'success' : 'default'
+  let btnStyleB = ( isSelectedB ) ? 'success' : 'default'
 
   // render
   return (
+    
     <ListGroupItem >
 
       {/* ----------------------------- */}
