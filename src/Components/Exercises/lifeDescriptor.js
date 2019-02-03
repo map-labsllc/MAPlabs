@@ -13,54 +13,68 @@ import {
       -- Two buttons with the alternative text to complete the senteence
 
     props:
-      todo: fill in props
+      lifeDescriptor - {
+           description: 'My life # feel full of meaning',
+           a: 'does',
+           b: 'does not' }
+      isCheckedA - t/f is the a option should be selected
+      isCheckedB - t/f is the b option should be selected
+      onAddSelectionCB - CB when a selection is made
  ***************************************************** */
 const LifeDescriptor = ( props ) => {
 
   const {
-    data,
-    addSelectionCB,
-    checkedA,
-    checkedB,
-    showCheckedA,
-    showCheckedB } = props
+    lifeDescriptor,
+    isCheckedA,
+    isCheckedB,
+    onAddSelectionCB,
+  } = props
 
-  let structured = data.description.split( '#' )
-  let first = structured[0]
-  let second = structured[1]
+  let split = lifeDescriptor.description.split( '#' )
+  let firstPartOfSentence = split[0]
+  let secondPartOfSentence = split[1]
 
-  let btnStyleA = 'default'
-  if( checkedA=== true ){
-    btnStyleA= 'success'
-  }
+  let btnStyleA = ( isCheckedA ) ? 'success' : 'default'
+  let btnStyleB = ( isCheckedB ) ? 'success' : 'default'
 
-  let btnStyleB = 'default'
-  if( checkedB=== true ){
-    btnStyleB= 'success'
-  }
-
-  const renderButtons = ( children ) => {
-    return (
-      <ButtonGroup>
-
-        <Button onClick= {() => {
-            addSelectionCB( first, children.a, second, showCheckedA( children.a ) ) }} bsStyle={btnStyleA} >
-          <strong>{children.a}</strong>
-        </Button>
-
-        <Button onClick= { () => {
-            addSelectionCB( first, children.b, second, showCheckedB( children.b ) ) }} bsStyle={btnStyleB} >
-          <strong>{children.b}</strong>
-        </Button>
-
-      </ButtonGroup>
-    )
-  }
 
   // render
   return (
     <ListGroupItem >
-      { first } { renderButtons( data ) } { second }
+
+      {/* ----------------------------- */}
+      {/* FIRST PART OF SENTENCE        */}
+      {/* ----------------------------- */}
+      { firstPartOfSentence }
+
+
+      {/* ----------------------------- */}
+      {/* A / B BUTTONS                 */}
+      {/* ----------------------------- */}
+      <ButtonGroup>
+
+        <Button
+          onClick = { () => { onAddSelectionCB( 'a' ) } }
+          bsStyle = { btnStyleA }
+        >
+          <strong>{ lifeDescriptor.a }</strong>
+        </Button>
+
+        <Button
+          onClick = { () => { onAddSelectionCB( 'b' ) } }
+          bsStyle = { btnStyleB }
+        >
+          <strong>{ lifeDescriptor.b }</strong>
+        </Button>
+
+      </ButtonGroup>
+
+
+      {/* ----------------------------- */}
+      {/* SECOND PART OF SENTENCE       */}
+      {/* ----------------------------- */}
+      { secondPartOfSentence }
+
     </ListGroupItem>
   )
 }

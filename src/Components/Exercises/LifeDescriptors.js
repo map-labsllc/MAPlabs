@@ -36,7 +36,6 @@ export default class LifeDescriptors extends Component {
     this.state = {
       page: 0,
       selections: [],
-      persistingArray: [],
     }
   }
 
@@ -45,7 +44,7 @@ export default class LifeDescriptors extends Component {
 
       User clicked prev button, move page left
   ************************************************* */
-  onclickPrev = ( arr ) => e => {
+  onclickPrev = () => e => {
 
     const { page } = this.state
 
@@ -118,14 +117,15 @@ export default class LifeDescriptors extends Component {
   /* **********************************************
       addSelection()
 
-      Called by LifeDescriptor when user clicks the a or b choice for sentence 
+      Called by LifeDescriptor when user clicks the a or b choice for sentence
+
   ************************************************* */
-  addSelection = ( field1, action, field2, cb ) => {
-
-    const sentence = field1 + action + field2
-
-    this.setState( { persistingArray: [...this.state.persistingArray, sentence] } )
-    console.log( this.state.persistingArray )
+  addSelection = ( idxLifedescriptions, aOrB ) => {
+    const newSelections = [...this.state.selections]
+    newSelections[idxLifedescriptions] = aOrB
+    this.setState( {
+      selections: newSelections
+    } )
   }
 
   /* **********************************************
@@ -168,32 +168,14 @@ export default class LifeDescriptors extends Component {
         return (
           <LifeDescriptor
             key={idxLifedescriptions}
-            data={ele}
-            showCheckedA={
-              () => {
-                const newArr = this.state.selections
-                newArr[idxLifedescriptions] = "a"
-                this.setState( {
-                  clickedA: 'success',
-                  selections: newArr
-                } )
+            lifeDescriptor={ele}
+            onAddSelectionCB={
+              ( aOrB ) => {
+                this.addSelection( idxLifedescriptions, aOrB )
               }}
-            showCheckedB={
-              () => {
-                const newArr = this.state.selections
-                newArr[idxLifedescriptions] = "b"
-                this.setState( {
-                  clickedB: 'success',
-                  selections: newArr
-                } )
-                console.log( 'ed says put a title', newArr )
-              }
-            }
-            checkedA={this.state.selections[idxLifedescriptions] === 'a'}
-            checkedB={this.state.selections[idxLifedescriptions] === 'b'}
-            addSelectionCB={this.addSelection}
+            isCheckedA={this.state.selections[idxLifedescriptions] === 'a'}
+            isCheckedB={this.state.selections[idxLifedescriptions] === 'b'}
           />
-
         )
       } )
     ) )
@@ -227,7 +209,7 @@ export default class LifeDescriptors extends Component {
           <div style={style.left}>
             <Arrow
               direction="left"
-              onClickCB={this.onclickPrev( pages )}
+              onClickCB={this.onclickPrev()}
               glyph="arrow-left"
             />
           </div>
