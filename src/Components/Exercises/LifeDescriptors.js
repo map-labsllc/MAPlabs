@@ -30,7 +30,7 @@ const NUM_PER_PAGE = 8
      onCloseModalCB
      onPersistCB
 ***************************************************** */
-export default class LifeDescriptorsX extends Component {
+export default class LifeDescriptors extends Component {
 
   constructor( props ) {
     super()
@@ -144,10 +144,7 @@ export default class LifeDescriptorsX extends Component {
      return completed sentence - "My life does feel full of meaning"
   ************************************************* */
   makeSentence = ( lifeDescriptor, aOrB ) => {
-    let split = lifeDescriptor.description.split( '#' )
-    let first = split[0]
-    let second = split[1]
-    return first + ( aOrB === 'a' ? lifeDescriptor.a : lifeDescriptor.b ) + second
+    return lifeDescriptor.firstPart + ( aOrB === 'a' ? lifeDescriptor.a : lifeDescriptor.b ) + lifeDescriptor.lastPart
   }
   /* **********************************************
      render

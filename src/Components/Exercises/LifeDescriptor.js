@@ -30,10 +30,6 @@ const LifeDescriptor = ( props ) => {
     onAddSelectionCB,
   } = props
 
-  let split = lifeDescriptor.description.split( '#' )
-  let firstPartOfSentence = split[0]
-  let secondPartOfSentence = split[1]
-
   let btnStyleA = ( isSelectedA ) ? 'success' : 'default'
   let btnStyleB = ( isSelectedB ) ? 'success' : 'default'
 
@@ -45,7 +41,7 @@ const LifeDescriptor = ( props ) => {
       {/* ----------------------------- */}
       {/* FIRST PART OF SENTENCE        */}
       {/* ----------------------------- */}
-      { firstPartOfSentence }
+      { lifeDescriptor.firstPart }
 
 
       {/* ----------------------------- */}
@@ -73,7 +69,7 @@ const LifeDescriptor = ( props ) => {
       {/* ----------------------------- */}
       {/* SECOND PART OF SENTENCE       */}
       {/* ----------------------------- */}
-      { secondPartOfSentence }
+      { lifeDescriptor.lastPart }
 
     </ListGroupItem>
   )
