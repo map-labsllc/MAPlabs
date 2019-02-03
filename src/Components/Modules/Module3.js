@@ -11,17 +11,11 @@ import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 import BracketCT from '../Exercises/BracketCT'
 
-import { loadAllAnswersAC } from '../../store/answers/actions'
-import { loadAllTransitionsAC } from '../../store/transitions/actions'
-import { loadAllStaticdataAC } from '../../store/staticdata/actions'
+import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
+import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
+
 import { getUser } from '../../store/user/reducer'
 import { isLoading } from '../../store/ui/reducer'
-
-import {
-  QUESTION_TYPE_SHORT_ANSWERS,
-  QUESTION_TYPE_TRANSITIONS,
-  QUESTION_TYPE_BRACKET,
-} from '../../constants.js'
 
 import {
   MOD_3_DESC,
@@ -62,7 +56,7 @@ class Module3 extends React.Component {
   ]
   exercise_310 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       description = {QUES_310_DESC}
       subComponents = {this.shortAnswers_310}
     /> )
@@ -83,7 +77,7 @@ class Module3 extends React.Component {
   ]
   exercise_320 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_BRACKET}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       description = {QUES_320_DESC}
       subComponents = {this.brackets_320}
     /> )
@@ -100,7 +94,7 @@ class Module3 extends React.Component {
 
   exercise_330 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_BRACKET}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       description = {QUES_330_DESC}
       subComponents = {[this.bracket_330]}
   /> )
@@ -131,7 +125,7 @@ class Module3 extends React.Component {
 
   exercise_350 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       description = { QUES_350_DESC }
       subComponents = {this.shortAnswers_350}
     /> )
@@ -145,7 +139,7 @@ class Module3 extends React.Component {
   ]
   exercise_360 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_TRANSITIONS}
+      persistAC_CB = {persistTransitionsFromQuestionAC}
       description = { QUES_360_DESC }
       subComponents = {this.transitions_360}
     /> )

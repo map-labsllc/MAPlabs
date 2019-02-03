@@ -23,9 +23,7 @@ import '../../CSS/ModalNavButtons.css'
      currIdx -- current position in array of questions
 
    props:
-     userId -- integer
      subComponents -- array of React components to work with a single question
-     RD -- reducer to pass back to CT to save data to Store
      isDynamic -- undefined or true
                   undefined: render static version in Popup
                   true: render dynamic/interactive verison in Modal
@@ -42,10 +40,10 @@ export default class Questions extends React.Component {
   // ******************************************
   // persist the current question before moving off of it
   persistCurrent = () => {
-    const { userId, subComponents, onPersistQuestionCB, RD } = this.props
+    const { subComponents, onPersistQuestionCB } = this.props
     const { currIdx } = this.state
 
-    onPersistQuestionCB( userId, subComponents[currIdx].props.question, RD )
+    onPersistQuestionCB( subComponents[currIdx].props.question )
   }
 
   // ******************************************
@@ -141,9 +139,9 @@ export default class Questions extends React.Component {
         {subComponentsWithIsDynamic.map( ( subComponent, idx ) => (
           <div key={idx}>
             {( idx === currIdx ) && (
-              <div>
+              <>
                 {subComponent}
-              </div>
+              </>
             )}
           </div>
         ) )}

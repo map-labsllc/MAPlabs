@@ -1,21 +1,13 @@
 import { connect } from 'react-redux'
 import Questions from './Questions'
 import { getUser } from '../../store/user/reducer'
-import { getAnswers } from '../../store/answers/reducer'
-import { getTransitions } from '../../store/transitions/reducer'
-import { persistAnswersAC } from '../../store/answers/actions'
-import { persistTransitionsAC } from '../../store/transitions/actions'
-import {
-  QUESTION_TYPE_SHORT_ANSWERS,
-  QUESTION_TYPE_TRANSITIONS,
-  QUESTION_TYPE_BRACKET,
-} from '../../constants.js'
 
 /* *****************************************
    mapStateToProps()
 
    passedProps:
-     questionType -- from constants.js, handle ShortAnswers, Transitions, etx
+     persistAC_CB -- this is a callback to an AC to persist to the table used
+                     by the subcomponent.
      subComponents -- array of React components to work with a single question
      isDynamic -- undefined or true
                   undefined: render static version in Popup
@@ -27,7 +19,6 @@ const mapStateToProps = ( state, passedProps ) => {
   console.log( "QuestionsCT::mapStateToProps()" )
 
   const {
-    questionType,
     isDynamic,
     subComponents,
   } = passedProps
@@ -35,30 +26,7 @@ const mapStateToProps = ( state, passedProps ) => {
   // validation
   if ( !subComponents.length ) throw new Error( "no questions passed to QuestionsCT" )
 
-  // get userId
-  const userId = getUser( state.userRD ).user_id
-
-  // Get the reducer based on the question type.
-  //   Future todo: get this specific subcomponent knowledge out of the general <QuestionsCT>
-  let RD = null
-  switch ( questionType ) {
-
-    case QUESTION_TYPE_SHORT_ANSWERS:
-    case QUESTION_TYPE_BRACKET:
-      RD = state.answersRD
-      break
-
-    case QUESTION_TYPE_TRANSITIONS:
-      RD = state.transitionsRD
-      break
-
-    default:
-      throw new Error( 'unknown question type' )
-  }
-
   return {
-    userId,
-    RD,
     isDynamic,
     subComponents,
   }
@@ -91,39 +59,22 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   /* *****************************************
      presistQuestion()
 
-     Helper that actually persists the data to the correct database table
-       depending on the questionType.
+     Helper that actually persists the data to the correct database table.
 
      params:
        question -- { code: 50, text: "The question" }
 
   ******************************************** */
-  function persistQuestion( question ) {
+  function persistQuestionAC( question ) {
     console.log( `QuestionsCT::persistQuestion` )
 
     return ( dispatch, getStore ) => {
 
-      const state = getStore()
-      const { questionType } = passedProps
-      const userId = getUser( state.userRD ).user_id
+      const store = getStore()
+      const { persistAC_CB } = passedProps
+      const userId = getUser( store.userRD ).user_id
 
-      switch ( questionType ) {
-        case QUESTION_TYPE_SHORT_ANSWERS:
-        case QUESTION_TYPE_BRACKET:
-          const answers = getAnswers( state.answersRD, question.code )
-          dispatch( persistAnswersAC( userId, question.code, answers ) )
-          return
-
-        case QUESTION_TYPE_TRANSITIONS:
-          const transitions = getTransitions( state.transitionsRD, question.code )
-          dispatch( persistTransitionsAC( userId, question.code, transitions ) )
-          return
-
-        default:
-          throw new Error( 'ERROR unkown QUESTION_TYPE' )
-      }
-
-      return Promise.resolve()
+      return persistAC_CB( dispatch, store, userId, question.code )
     }
   }
 
@@ -132,27 +83,10 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
      Persist a question from the Store
   ******************************************** */
-  function onPersistQuestion( userId, question, RD ) {
+  function onPersistQuestion( question ) {
     console.log( `QuestionsCT::onPersistQuestion()` )
 
-    dispatch( persistQuestion( question ) )
-
-    // switch ( questionType ) {
-    //   case QUESTION_TYPE_SHORT_ANSWERS:
-    //   case QUESTION_TYPE_BRACKET:
-    //     const answers = getAnswers( RD, question.code )
-    //     dispatch( persistAnswersAC( userId, question.code, answers ) )
-    //     return
-    //
-    //   case QUESTION_TYPE_TRANSITIONS:
-    //     const transitions = getTransitions( RD, question.code )
-    //     dispatch( persistTransitionsAC( userId, question.code, transitions ) )
-    //     return
-    //
-    //   default:
-    //     throw new Error( 'ERROR unkown QUESTION_TYPE' )
-    // }
-
+    dispatch( persistQuestionAC( question ) )
   }
 
   /* *****************************************

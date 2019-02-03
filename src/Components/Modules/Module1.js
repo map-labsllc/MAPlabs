@@ -10,11 +10,12 @@ import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 
+import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
+import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
+
 import { getUser } from '../../store/user/reducer'
 import { isLoading } from '../../store/ui/reducer'
-import {
-  QUESTION_TYPE_SHORT_ANSWERS,
-  QUESTION_TYPE_TRANSITIONS} from '../../constants.js'
+
 
 import {
   MOD_1_DESC,
@@ -97,7 +98,7 @@ class Module1 extends React.Component {
   ]
   exercise_150 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       description = { QUES_150_DESC }
       subComponents = {this.shortAnswers_150}
     /> )
@@ -114,7 +115,7 @@ class Module1 extends React.Component {
   ]
   exercise_160 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_TRANSITIONS}
+      persistAC_CB = {persistTransitionsFromQuestionAC}
       description = { QUES_160_DESC }
       subComponents = {this.transitions_160}
     /> )
@@ -132,7 +133,7 @@ class Module1 extends React.Component {
   ]
   exercise_170 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       description = { QUES_170_DESC }
       subComponents = { this.shortAnswers_170 }
     /> )

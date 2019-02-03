@@ -6,6 +6,9 @@ import {
   TRANSITIONS_PERSIST,
 } from './constants'
 
+import { getTransitions } from './reducer'
+
+
 const URL = process.env.REACT_APP_DB_URL
 
 /* *****************************************************
@@ -49,6 +52,27 @@ export const loadAllTransitionsAC = ( userId ) => {
         return dispatch( { type: TRANSITIONS_ERROR_DB, payload: error } )
       } )
   }
+}
+
+/* *****************************************************
+   persistTransitionsFromQuestionAC()
+
+   Persists transitions for a question.  This is only called by <QuestionsCT>.
+
+   This is NOT great Redux form.  However not sure where to put this logic.  The
+     alternative is to keep it in QuestionCT with a switch statement to select
+     the correct reducer for the set of questions being managed.  But we're trying to
+     keep the framework components clean on knowledge of what they contain.
+
+   params:
+     dispatch
+     store
+     userId
+     questionCode
+******************************************************** */
+export const persistTransitionsFromQuestionAC = ( dispatch, store, userId, questionCode ) => {
+  const transitions = getTransitions( store.transitionsRD, questionCode )
+  return dispatch( persistTransitionsAC( userId, questionCode, transitions ) )
 }
 
 /* *****************************************************
