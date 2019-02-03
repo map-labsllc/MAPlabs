@@ -2,7 +2,6 @@ import {
   STATICDATA_LOADING,
   STATICDATA_LOAD,
   STATICDATA_ERROR_DB,
-  // PERSISTANT_ARRAY
  } from './constants'
 
 /*
@@ -36,7 +35,6 @@ const initialState = {
   beliefs: [],
   strengths: [],
   lifeDescriptions: [],
-  // persistant_array: []
 }
 
  /* ***********************************************
@@ -63,13 +61,6 @@ const initialState = {
         strengths: payload.strengths,
         lifeDescriptions: payload.lifeDescriptions,
       }
-    // case PERSISTANT_ARRAY:
-    // console.log( 'persisted to the array', payload )
-    //   return {
-    //     ...state,
-    //     persistant_array: [...state.persistant_array, payload]
-    //   }
-
 
     // Fetch error
     case STATICDATA_ERROR_DB:
