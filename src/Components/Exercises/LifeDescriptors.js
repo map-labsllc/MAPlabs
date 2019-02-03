@@ -35,7 +35,7 @@ export default class LifeDescriptors extends Component {
     super()
     this.state = {
       page: 0,
-      selections: [],
+      aOrB_Selections: [], // sparse array w/ values 'a' or 'b' and index paralelling the index of lifeDesctriptors
     }
   }
 
@@ -47,7 +47,6 @@ export default class LifeDescriptors extends Component {
   onclickPrev = () => e => {
 
     const { page } = this.state
-
     if ( page === 0 ) return
 
     this.setState( {
@@ -60,13 +59,12 @@ export default class LifeDescriptors extends Component {
 
       User clicked next button, move page right.
 
+      maxPage - the max acceptable value of state.page
   ************************************************* */
-  onclickNext = ( arr ) => e => {
+  onclickNext = ( maxPage ) => e => {
 
-    const lastIndex = arr.length
     const { page } = this.state
-
-    if ( page === ( lastIndex - 1 ) ) return
+    if ( page === ( maxPage ) ) return
 
     this.setState( {
       page: page + 1,
@@ -76,7 +74,7 @@ export default class LifeDescriptors extends Component {
   /* **********************************************
       onclickClose()
 
-      User clicked Close button, update store and persist selections
+      User clicked Close button, update store and persist aOrB_Selections
   ************************************************* */
   onclickClose = () => {
 
@@ -86,20 +84,15 @@ export default class LifeDescriptors extends Component {
       onPersistCB,
       onCloseModalCB
     } = this.props
+    const { aOrB_Selections } = this.state
 
-    const sentences = []
+    const sentences = aOrB_Selections.map( ( selection, idx ) => {
+      return this.makeSentence( lifeDescriptors[idx], selection )
+    } )
 
-    for ( let i = 0; i < lifeDescriptors.length; i++ ) {
-      if ( this.state.selections[i] ) {
-        let sentence = this.makeSentence( lifeDescriptors[i], this.state.selections[i] )
-        sentences.push( sentence )
-
-      }
-    }
     onPersistCB( userId, sentences )
     onCloseModalCB()
   }
-
 
   /* **********************************************
 
@@ -117,14 +110,16 @@ export default class LifeDescriptors extends Component {
   /* **********************************************
       addSelection()
 
-      Called by LifeDescriptor when user clicks the a or b choice for sentence
+      Called from LifeDescriptor when user clicks the a or b choice for a sentence
 
+      idxLifedescriptions -- index into lifeDescriptions
+      aOrB -- 'a' or 'b'
   ************************************************* */
   addSelection = ( idxLifedescriptions, aOrB ) => {
-    const newSelections = [...this.state.selections]
-    newSelections[idxLifedescriptions] = aOrB
+    const newAorB_Selections = [...this.state.aOrB_Selections]
+    newAorB_Selections[idxLifedescriptions] = aOrB
     this.setState( {
-      selections: newSelections
+      aOrB_Selections: newAorB_Selections
     } )
   }
 
@@ -143,13 +138,10 @@ export default class LifeDescriptors extends Component {
      return completed sentence - "My life does feel full of meaning"
   ************************************************* */
   makeSentence = ( lifeDescriptor, aOrB ) => {
-
-    let structured = lifeDescriptor.description.split( '#' )
-    let first = structured[0]
-    let second = structured[1]
-    const sentence = first + ( aOrB === 'a' ? lifeDescriptor.a : lifeDescriptor.b ) + second
-    return sentence
-
+    let split = lifeDescriptor.description.split( '#' )
+    let first = split[0]
+    let second = split[1]
+    return first + ( aOrB === 'a' ? lifeDescriptor.a : lifeDescriptor.b ) + second
   }
   /* **********************************************
      render
@@ -173,8 +165,8 @@ export default class LifeDescriptors extends Component {
               ( aOrB ) => {
                 this.addSelection( idxLifedescriptions, aOrB )
               }}
-            isCheckedA={this.state.selections[idxLifedescriptions] === 'a'}
-            isCheckedB={this.state.selections[idxLifedescriptions] === 'b'}
+            isCheckedA={this.state.aOrB_Selections[idxLifedescriptions] === 'a'}
+            isCheckedB={this.state.aOrB_Selections[idxLifedescriptions] === 'b'}
           />
         )
       } )
@@ -228,7 +220,7 @@ export default class LifeDescriptors extends Component {
           <div style={style.right}>
             <Arrow
               direction="right"
-              onClickCB={this.onclickNext( pages )}
+              onClickCB={this.onclickNext( pages.length - 1 )}
               glyph="arrow-right"
             />
           </div>
