@@ -30,7 +30,7 @@ const NUM_PER_PAGE = 8
      onCloseModalCB
      onPersistCB
 ***************************************************** */
-export default class LifeDescriptors extends Component {
+export default class LifeDescriptorsX extends Component {
 
   constructor( props ) {
     super()

@@ -1,7 +1,7 @@
 
 import { connect } from 'react-redux'
 
-import LifeDescriptors from './LifeDescriptors'
+import LifeDescriptorsX from './LifeDescriptorsX'
 import { getUser } from '../../store/user/reducer'
 import { getAnswers } from '../../store/answers/reducer'
 import {
@@ -72,4 +72,4 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( LifeDescriptors )
+)( LifeDescriptorsX )
