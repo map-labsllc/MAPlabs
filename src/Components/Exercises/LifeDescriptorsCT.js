@@ -28,7 +28,7 @@ const mapStateToProps = ( state, passedProps ) => {
     instructions,
     isDynamic,
     onCloseModalCB } = passedProps
-  const { lifeDescriptions } = state.staticdataRD
+  const { lifeDescriptors } = state.staticdataRD
   const userId = getUser( state.userRD ).user_id
 
   // find previous answers, if any, to display when static
@@ -41,7 +41,7 @@ const mapStateToProps = ( state, passedProps ) => {
     instructions,
     isDynamic,
     previousAnswers,
-    lifeDescriptors: lifeDescriptions,
+    lifeDescriptors: lifeDescriptors,
     onCloseModalCB,
   }
 }
@@ -57,11 +57,11 @@ const mapStateToProps = ( state, passedProps ) => {
 ******************************************** */
 const mapDispatchToProps = ( dispatch, passedProps ) => {
 
-  const onPersist = ( userId, lifeDescriptions ) => {
+  const onPersist = ( userId, lifeDescriptors ) => {
     const { question } = passedProps
 
-    dispatch( updateAnswersAC( question.code, lifeDescriptions ) )
-    dispatch( persistAnswersAC( userId, question.code, lifeDescriptions ) )
+    dispatch( updateAnswersAC( question.code, lifeDescriptors ) )
+    dispatch( persistAnswersAC( userId, question.code, lifeDescriptors ) )
   }
 
   return {

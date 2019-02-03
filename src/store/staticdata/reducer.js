@@ -14,19 +14,19 @@ import {
 
     strengths: [ 'strength1', 'strength2', ],
 
-    lifeDescriptions:  // sort-order set when loaded from db
+    lifeDescriptors:  // array is in sort order
       [
-        { description: 'My life # feel full of meaning',
-          firstPart: 'My life ',
+        { firstPart: 'My life ',
           a: 'does',
           b: 'does not',
           firstPart: ' feel full of meaning',
+          order: 1,
         },
-        { description: 'I # feel happy',
-          firstPart: 'I ',
+        { firstPart: 'I ',
           a: 'often',
           b: 'rarely',
           lastPart: ' feel happy'
+          order: 2,
         },
       ]
 }
@@ -38,7 +38,7 @@ const initialState = {
   errorMessage: '',
   beliefs: [],
   strengths: [],
-  lifeDescriptions: [],
+  lifeDescriptors: [],
 }
 
  /* ***********************************************
@@ -69,13 +69,13 @@ const initialState = {
         delete newLifeDescription.description
         return newLifeDescription
       } )
-
+      // NOTES: enhancedLifeDescripTIONS changes name to lifeDescripTORS
       return {
         ...state,
         isLoading: false,
         beliefs: payload.beliefs,
         strengths: payload.strengths,
-        lifeDescriptions: enhancedLifeDescriptions,
+        lifeDescriptors: enhancedLifeDescriptions,
       }
 
     // Fetch error

@@ -26,7 +26,7 @@ const NUM_PER_PAGE = 8
      isDynamic
      previousAnswers
      lifeDescriptors - The full list, see staticdataRD for shape.
-                       Note: naming mistmach, staticdataRD is lifeDescriptions.
+                       Note: naming mistmach, staticdataRD is lifeDescriptors.
      onCloseModalCB
      onPersistCB
 ***************************************************** */
@@ -109,10 +109,10 @@ export default class LifeDescriptors extends Component {
 
       Called from LifeDescriptor when user clicks the a or b choice for a sentence
 
-      idxLifedescriptions -- index into lifeDescriptions
+      idxLifeDescriptors -- index into lifeDescriptors
       aOrB -- 'a' or 'b'
   ************************************************* */
-  addSelection = ( idxLifedescriptions, aOrB ) => {
+  addSelection = ( idxLifeDescriptors, aOrB ) => {
 
     console.log( ' ' )
     console.log( '+++++++++++' )
@@ -120,7 +120,7 @@ export default class LifeDescriptors extends Component {
 
     const { aOrB_Selections } = this.state
     const newAorB_Selections = { ...aOrB_Selections }
-    newAorB_Selections[idxLifedescriptions] = aOrB
+    newAorB_Selections[idxLifeDescriptors] = aOrB
 
     console.log( 'new  : ', newAorB_Selections )
 
