@@ -8,7 +8,7 @@ import Arrow from '../Utils/Arrow'
 
 import '../../CSS/ModalNavButtons.css'
 
-const NUM_PER_PAGE = 8
+const NUM_PER_PAGE = 5
 // const NUM_PER_PAGE = 5
 
 /* **************************************************
