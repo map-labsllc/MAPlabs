@@ -5,21 +5,19 @@ import Module from '../Framework/Module'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
-import QuestionsList from '../Exercises/questionsList'
 import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ContextualInfluenceGroups from '../Exercises/ContextualInfluenceGroups'
 import ContextualInfluencesCT from '../Exercises/ContextualInfluencesCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 
+import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
+import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
 
-import { loadAllAnswersAC } from '../../store/answers/actions'
-import { loadAllTransitionsAC } from '../../store/transitions/actions'
-import { loadAllStaticdataAC } from '../../store/staticdata/actions'
+
 import { getUser } from '../../store/user/reducer'
-import {
-  QUESTION_TYPE_SHORT_ANSWERS,
-  QUESTION_TYPE_TRANSITIONS} from '../../constants.js'
+import { isLoading } from '../../store/ui/reducer'
+
 import {
   MOD_2_DESC,
   QUES_210_DESC,
@@ -38,7 +36,7 @@ import {
 } from 'react-bootstrap'
 
 /* **************************************************
-   Used to test components during development
+   Module 2 layout
 ***************************************************** */
 class Module2 extends React.Component {
 
@@ -73,11 +71,11 @@ class Module2 extends React.Component {
         {
           code:2202,
           name: "Social Groups/Ideologies",
-          text:"Ideologies: These are specific groups to which you belong or have belonged, or schools of thought and ideologies to which you have subscribed. These affiliations can be personally chosen or not. (Examples: schools, colleges, teams, religious communities, thought leaders [such as philosophers, theologians, self-help writers, artists, media personalities], youth groups, clubs, fraternities/sororities, civic organizations, volunteer activities, jobs, companies, affinity groups, etc…). Feel free to list these or any other social groups or ideologies that have influenced you." },
+          text: "Ideologies: These are specific groups to which you belong or have belonged, or schools of thought and ideologies to which you have subscribed. These affiliations can be personally chosen or not. (Examples: schools, colleges, teams, religious communities, thought leaders [such as philosophers, theologians, self-help writers, artists, media personalities], youth groups, clubs, fraternities/sororities, civic organizations, volunteer activities, jobs, companies, affinity groups, etc…). Feel free to list these or any other social groups or ideologies that have influenced you." },
         {
           code:2203,
-          name:"Wider Communities and Culture Groups",
-          text:"These are also groups to which you belong or have belonged, but the scope is much wider. As a result, the influence may be a bit more indirect. (Examples: cities, towns, states, countries, neighborhoods, ethnicities, genders, socio-economic sectors, educational groups, industries, etc…). Feel free to list these or any other communities or cultural groups that have influenced you."
+          name: "Wider Communities and Culture Groups",
+          text: "These are also groups to which you belong or have belonged, but the scope is much wider. As a result, the influence may be a bit more indirect. (Examples: cities, towns, states, countries, neighborhoods, ethnicities, genders, socio-economic sectors, educational groups, industries, etc…). Feel free to list these or any other communities or cultural groups that have influenced you."
         }
       ]}
       question = { { code: 220, text: "Rank your supportive influences" } }
@@ -94,7 +92,7 @@ class Module2 extends React.Component {
       question = { { code: 230, text: "Rank your inhibiting influences" } }
       promptQuestionCode = { 0 }
       description = { QUES_230_DESC }
-      instructions = ""
+      instructions = { QUES_230_DESC }
     /> )
 
 
@@ -106,7 +104,7 @@ class Module2 extends React.Component {
       question = { { code: 240, text: "Relating Your Values and Beliefs to Those of Your Influences" } }
       promptQuestionCode = { 0 } // would need to do something here, maybe an array of promptQuestionCodes like in <Bracket>
       description = { QUES_240_DESC }
-      instructions = ""
+      instructions = { QUES_240_DESC }
     /> )
 
 
@@ -117,7 +115,7 @@ class Module2 extends React.Component {
       question = { { code: 250, text: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement" } }
       promptQuestionCode = { 0 }
       description = { QUES_250_DESC }
-      instructions = ""
+      instructions = { QUES_250_DESC }
     /> )
 
   // -------------------------
@@ -127,7 +125,7 @@ class Module2 extends React.Component {
       question = { { code: 260, text: "Synthesize Your Values and Beliefs into a Self-Inhibiting Statement" } }
       promptQuestionCode = { 0 }
       description = { QUES_260_DESC }
-      instructions = ""
+      instructions = { QUES_260_DESC }
     /> )
 
   // -------------------------
@@ -143,7 +141,7 @@ class Module2 extends React.Component {
 
   exercise_270 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       subComponents = {this.shortAnswers_270}
       description = { QUES_270_DESC }
     /> )
@@ -160,7 +158,7 @@ class Module2 extends React.Component {
 
   exercise_280 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_TRANSITIONS}
+      persistAC_CB = {persistTransitionsFromQuestionAC}
       subComponents = {this.transitions_280}
       description = { QUES_280_DESC }
     /> )
@@ -169,72 +167,78 @@ class Module2 extends React.Component {
   /* *********************************************************** */
   // render!
   render() {
-    const isLoading = this.props.isLoading
+
+    const { isLoading } = this.props
+    if (isLoading) {
+      return (
+        <>
+          <p>.</p>
+          <p>.</p>
+          <p>Imagine a spinner...</p>
+        </>
+      )
+    }
+
 
     return (
       <>
-        <p>{( ( isLoading ) ? "loading...." : ""  )}</p>
-        {!isLoading && (
-          <>
-            <Module
-              moduleNum = { 2 }
-              moduleTitle = "Your Social Context"
-              moduleDescription = { MOD_2_DESC }
-            >
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 210 }
-                sectionTitle = "Contextual Influences I"
-                exercise = {this.exercise_210}
-              />
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 220 }
-                sectionTitle = "Contextual Influences II"
-                exercise = {this.exercise_220}
-              />
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 230 }
-                sectionTitle = "Contextual Influences III"
-                exercise = {this.exercise_230}
-              />
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 240 }
-                sectionTitle = "Relating Your Values and Beliefs to Those of You Influencers"
-                exercise = {this.exercise_240}
-              />
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 250 }
-                sectionTitle = "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement"
-                exercise = {this.exercise_250}
-              />
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 260 }
-                sectionTitle = "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement"
-                exercise = {this.exercise_260}
-              />
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 270 }
-                sectionTitle = "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement"
-                exercise = {this.exercise_270}
-              />
-              {/*-------------------------
-              Module 2: 4B*/}
-              <SectionCT
-                moduleNum = { 2 }
-                sectionNum = { 280 }
-                sectionTitle = "Breaking and building"
-                exercise = {this.exercise_280}
-              />
-            </Module>
-          </>
-        )}
+        <Module
+          moduleNum = { 2 }
+          moduleTitle = "Your Social Context"
+          moduleDescription = { MOD_2_DESC }
+        >
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 210 }
+            sectionTitle = "Contextual Influences I"
+            exercise = {this.exercise_210}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 220 }
+            sectionTitle = "Contextual Influences II"
+            exercise = {this.exercise_220}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 230 }
+            sectionTitle = "Contextual Influences III"
+            exercise = {this.exercise_230}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 240 }
+            sectionTitle = "Relating Your Values and Beliefs to Those of You Influencers"
+            exercise = {this.exercise_240}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 250 }
+            sectionTitle = "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement"
+            exercise = {this.exercise_250}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 260 }
+            sectionTitle = "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement"
+            exercise = {this.exercise_260}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 270 }
+            sectionTitle = "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement"
+            exercise = {this.exercise_270}
+          />
+          <SectionCT
+            moduleNum = { 2 }
+            sectionNum = { 280 }
+            sectionTitle = "Breaking and building"
+            exercise = {this.exercise_280}
+          />
+        </Module>
       </>
+
+
     )
   }
 }
@@ -246,7 +250,7 @@ class Module2 extends React.Component {
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {
   return {
-    isLoading: state.answersRD.isLoading || state.transitionsRD.isLoading || state.staticdataRD.isLoading,
+    isLoading: isLoading( state ),
     userId: getUser( state.userRD ).user_id,
   }
 }

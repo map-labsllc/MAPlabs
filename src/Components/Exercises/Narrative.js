@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import {
   Button,
   ControlLabel,
@@ -23,7 +25,8 @@ import '../../CSS/ModalNavButtons.css'
      instructions -- can be empty string
      previousAnswer -- string with the previous answer
      isDynamic -- undefined or true
-                  rendering static version in Popup or dynamic verison in Modal     onPersistCB(newAnswer) -- callback for when user clicks Save
+                  rendering static version in Popup or dynamic verison in Modal
+     onPersistCB(newAnswer) -- callback for when user clicks Save
      onCloseModalCB -- call to close the modal this control resides in
 ***************************************************** */
 export default class Narrative extends React.Component {
@@ -46,7 +49,7 @@ export default class Narrative extends React.Component {
   }
 
   /* ******************************************************** */
-  // update store and persist the value as user could be clicking outside Modal and shitting it down
+  // update store and persist the value as user could be clicking outside Modal and shutting it down
   onBlur = () => {
     console.log( "Narrative::onBlur()" )
     this.updateAndPersist()
@@ -67,16 +70,6 @@ export default class Narrative extends React.Component {
   }
 
   /* ******************************************************** */
-  // Send newAnswer value back to Container to persist
-  //   and update Save button to indicate control is no longer dirty
-  onSubmit = ( e ) => {
-    console.log( `Narrative::onclickSave(): ${this.state.answer}` )
-    console.log( "state: ", this.state )
-    e.preventDefault()
-    this.updateAndPersist()
-  }
-
-  /* ******************************************************** */
   // render!
   render() {
     // console.log("Narrative::render()")
@@ -85,40 +78,70 @@ export default class Narrative extends React.Component {
     const { question, prompts, instructions, isDynamic } = this.props
     const { answer } = this.state
 
+    // render static version
     if ( !isDynamic ) {
       return (
-        <p><i>{answer}</i></p>
+        <p>{answer}</p>
       )
     }
 
+    // render dynamic version
     return (
       <>
         <Prompts prompts={prompts} />
-        <Form onSubmit={this.onSubmit} >
-          <FormGroup>
+        <form onSubmit={this.onSubmit} >
+          <div>
             {instructions && (
-              <p><i>{instructions}</i></p>
+              <h4>{instructions}</h4>
             )}
-            <ControlLabel>&nbsp;&nbsp;{question.text}</ControlLabel>
-            <FormControl
-              componentClass="textarea"
+            <h2>&nbsp;&nbsp;{question.text}</h2>
+            <textarea
+              rows="10"
+              style={style.contain}
+              autoFocus={true}
+              placeholder="Please enter an answer and click Close"
               onChange={this.onChange}
               onBlur={this.onBlur}
               value={answer}
-              placeholder="Please enter an answer and click Close"
+              wrap="hard"
+              display="block"
             />
-          </FormGroup>
-          <div className="text-center">
-            <Button className="closeButton" type="submit" style={style.closeButton}>Close</Button>
           </div>
-        </Form>
+          <div className="text-center">
+            <Button className="closeButton" type="button" style={style.closeButton}>Close</Button>
+          </div>
+        </form>
       </>
     )
   }
 }
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+Narrative.propTypes = {
+  question: PropTypes.shape( {
+    code: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  } ).isRequired,
+  prompts: PropTypes.arrayOf( PropTypes.string ).isRequired,
+  instructions: PropTypes.string.isRequired,
+  previousAnswer: PropTypes.string.isRequired,
+  isDynamic: PropTypes.bool,
+  onCloseModalCB: PropTypes.func,  // this is required but injected by <Popup>
+}
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
 const style = {
   closeButton: {
     marginRight: "auto",
     marginLeft: "auto",
+  },
+  contain: {
+    width: "100%",
   }
 }

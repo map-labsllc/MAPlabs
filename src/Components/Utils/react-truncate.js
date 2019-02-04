@@ -362,16 +362,6 @@ export default class Truncate extends Component {
     delete spanProps.onTruncate;
     delete spanProps.trimWhitespace;
 
-    console.log('+++++++++++++++++++++++++++++++++')
-    console.log('text: ', text)
-    console.log('typeof text: ', typeof text)
-    console.log('text.toString(): ', text && text.toString())
-
-    console.log('children: ', children)
-    console.log('typeof children: ', typeof children)
-    console.log('children.toString(): ', children && children.toString())
-
-
     // const showDangerousHTML = typeof text === 'string'
 
     return (

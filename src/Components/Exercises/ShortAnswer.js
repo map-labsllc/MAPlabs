@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Button,
   Checkbox,
@@ -36,71 +37,96 @@ export default class ShortAnswer extends React.Component {
 
   // **************************************************
   // set isDirty and control answer field
-  onChange = ( e ) => {
+  onChange = (e) => {
     // console.log("ShortAnswer::onChange(), e: ", e.target.value);
-    this.setState( {
+    this.setState({
       isDirty: true,
       answer: e.target.value,
-    } )
+    })
   }
 
   // **************************************************
   // pass to parent to update value and clear isDirty
-  onBlur = ( e ) => {
-    console.log( "ShortAnswer::onBlur(), e: ", e.target.value )
+  onBlur = (e) => {
+    console.log("ShortAnswer::onBlur(), e: ", e.target.value)
     const { updateAnswerCB, id } = this.props
     const { isDirty } = this.state
-    if ( isDirty ) {
-      updateAnswerCB( id, e.target.value )
-      this.setState( {
+    if (isDirty) {
+      updateAnswerCB(id, e.target.value)
+      this.setState({
         isDirty: false,
-      } )
+      })
     }
   }
 
   // **************************************************
   // pass to parent to delete
   onclickDelete = () => {
-    console.log( "ShortAnswer::onclickDelete()" )
+    console.log("ShortAnswer::onclickDelete()")
     const { deleteAnswerCB, id } = this.props
-    deleteAnswerCB( id )
+    deleteAnswerCB(id)
   }
 
   // **************************************************
   // render!
   render() {
-    console.log( "ShortAnswer::render()" )
+    console.log("ShortAnswer::render()")
 
     // initialize
     let { answer, isDirty } = this.state
     const { id, isDynamic } = this.props
 
-    if ( !isDynamic )  {
+    if (!isDynamic) {
       return (
         <p>{answer}</p>
       )
     }
 
     return (
+      <div>
+        <br />
+        <Form inline onSubmit={this.onSubmit}>
+          <div >
 
-      <Form inline onSubmit={this.onSubmit}>
+            <textarea
+              autoFocus={true}
+              onChange={this.onChange}
+              onBlur={this.onBlur}
+              value={answer}
+              placeholder="Please enter an answer"
+              rows="2"
+              cols="50"
+            />
+            {"   "}
+            <Button style={style.inline} type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
 
-        <FormGroup>
-
-          <FormControl
-            type="text"
-            onChange={this.onChange}
-            onBlur={this.onBlur}
-            value={answer}
-            placeholder="Please enter an answer"
-          />
-          {"   "}
-          <Button type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
-
-        </FormGroup>
-
-      </Form>
-
+          </div>
+        </Form>
+      </div>
     )
+  }
+}
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+ShortAnswer.propTypes = {
+  id: PropTypes.number.isRequired,
+  previousAnswer: PropTypes.string.isRequired,
+  isDynamic: PropTypes.bool,
+  updateAnswerCB: PropTypes.func.isRequired,
+  deleteAnswerCB: PropTypes.func.isRequired,
+}
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+const style = {
+  inline: {
+    verticalAlign: "top",
+    display: "inline",
+    marginLeft: "1%"
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Button,
   Checkbox,
@@ -128,6 +129,23 @@ export default class Transition extends React.Component {
     )
   }
 }
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+Transition.propTypes = {
+  id: PropTypes.number.isRequired,
+  previousTransition: PropTypes.object.isRequired,
+  isDynamic: PropTypes.bool,       // required but injected by <Popup>
+  updateAnswerCB: PropTypes.func,  // required but injected by <Popup>
+  deleteAnswerCB: PropTypes.func,  // required but injected by <Popup>
+}
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
 const style = {
   size: {
     fontSize: "18pt",

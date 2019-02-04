@@ -34,8 +34,6 @@ function mapStateToProps( state, { promptQuestionCodes, question, isDynamic } ) 
   } )
 
   return {
-    // todo: need to make this generic, can't hard code a question number
-    // prompts: question.promptCode === 330 ? get330Prompts( state, question ) : state.answersRD.questions[promptQuestionCode],
     prompts,
     question,
     previousAnswers,

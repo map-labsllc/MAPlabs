@@ -13,7 +13,8 @@ import {
     promptQuestionCode -- integer -- Object with 0 or questionCode to
       use as prompts for this Narrative.  questionCode must be a quesiton in answerRD.
     question -- { code: 50, text: "question 50" }
-    instructions -- string with instructions, can be an empty string for no instructions
+    description
+    instructions 
     isDynamic -- undefined or true
                  rendering static version in Popup or dynamic verison in Modal
     onCloseModalCB -- call to close the modal
@@ -39,8 +40,10 @@ const mapStateToProps = ( state, passedProps ) => {
   const answers = getAnswers( state.answersRD, question.code )
   console.log( `getAnswers( ${question.code} ): `, answers )
   if ( 1 < answers.length ) {
-    console.log( "ERROR: more than one narrative answer: ", question.code, answers )
-    throw new Error( "more than one narrative answer: ", question.code, answers )
+
+    console.log("ERROR: more than one narrative answer: ", question.code, answers );
+    throw new Error( `more than one narrative answer:  ${question.code}, ${answers}` )
+
   }
   const previousAnswer = answers[0] || ''
 

@@ -21,13 +21,64 @@ import { getNextModuleSection } from './reducer'
 
 const URL = process.env.REACT_APP_DB_URL
 
+/* ************************************************
+    persistCurrModuleAndSection
+
+    Helper to persist the user's new curr_module and curr_section
+
+    distpatch
+    user -- user object
+    moduleNum -- integer
+    sectionNum -- integer
+*************************************************** */
+const persistCurrModuleAndSection = ( dispatch, user, moduleNum, sectionNum ) => {
+
+  const body = {
+    curr_module: moduleNum,
+    curr_section: sectionNum,
+  }
+
+  console.log( "---- fetching body: ", JSON.stringify( body ) )
+  return fetch( `${URL}/users/${user.user_id}`, {
+      method: 'PATCH',
+      body: JSON.stringify( body ),
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    } )
+    .then( response => {
+      if ( !response.ok ) {
+        console.log( "---- error" )
+        console.log( "-- FETCH ERROR 1" )
+        // TODO: re-test this, doesn't the return just go to the next .then?
+        return dispatch( {
+          type: USER_UPDATE_ERROR,
+          payload: "error" } )
+      }
+      return response.json()
+    } )
+    .then( message => {
+      console.log( "---- success perisisting to db" )
+    } )
+    .catch( ( error ) => {
+      console.log( "---- error" )
+      console.log( "-- FETCH ERROR", error )
+      return dispatch( {
+        type: USER_UPDATE_ERROR,
+        payload: error } )
+    } )
+  }
 
 /* ************************************************
     sectionLoadingAC
 
     Called by Section's as they mount.  Builds an array of the order of
-      modules and sections to help enforce that user moves forward one
+      sections for each module to help enforce that user moves forward one
       section at a time.
+
+    moduleNum - integer
+    sectionNum
 *************************************************** */
 export const sectionLoadingAC = ( moduleNum, sectionNum ) => {
   console.log( `---- userRD::sectionLoadingAC(${moduleNum}, ${sectionNum})` )
@@ -45,128 +96,46 @@ export const sectionLoadingAC = ( moduleNum, sectionNum ) => {
       section (ie, the furthest they've comleted) then advance the user's
       curr_module and curr_section.
 
+    user -- user object
+    completedModuleNum -- module where section is being completed
+    completedSectionNum -- section completed
+
 *************************************************** */
-export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
-  console.log( `---- userRD::sectionCompletedAC(${user.fname}, ${moduleNum}, ${sectionNum})` )
+export const sectionCompletedAC = ( user, completedModuleNum, completedSectionNum ) => {
+  console.log( `---- userRD::sectionCompletedAC(${user.fname}, ${completedModuleNum}, ${completedSectionNum})` )
 
   return async ( dispatch, getState ) => {
 
-    // don't advance the user's current module and section
-    console.log( "---- starting" )
-    if ( user.curr_section !== 0 ) {
-      if ( user.curr_module !== moduleNum || user.curr_section !== sectionNum ) {
-        console.log( "---- no change" )
-        return dispatch ( {
-          type: USER_UPDATE_CURR_SECTION_NO_CHANGE,
-          payload: { }
-        } )
-      }
+    // DO update the user's curr_module and curr_section
+    // -------------------------------------------------
+    if ( ( user.curr_module === completedModuleNum )
+      && ( user.curr_section === 0 || user.curr_section === completedSectionNum ) ) {
+
+      const nextModuleSectionObj = getNextModuleSection( getState().userRD, user.curr_module, user.curr_section )
+      console.log( "---- nextModuleSectionObj advancing to:", nextModuleSectionObj )
+
+      // persist the new curr_module, curr_section
+      persistCurrModuleAndSection( dispatch, user, nextModuleSectionObj.moduleNum, nextModuleSectionObj.sectionNum )
+
+      // update store
+      return dispatch ( {
+        type: USER_UPDATE_CURR_SECTION,
+        payload: {
+          moduleNum: nextModuleSectionObj.moduleNum,
+          sectionNum: nextModuleSectionObj.sectionNum }
+      } )
+
     }
 
-    // advance the user's furthest module and section because they just
-    //   completed their furthest section
-    const nextModuleSectionObj = getNextModuleSection( getState().userRD, user.curr_module, user.curr_section )
-    console.log( "---- nextModuleSectionObj:", nextModuleSectionObj )
-
-    // udate it immediately
-    dispatch ( {
-      type: USER_UPDATE_CURR_SECTION,
-      payload: {
-        moduleNum: nextModuleSectionObj.moduleNum,
-        sectionNum: nextModuleSectionObj.sectionNum }
+    // DON'T advance the user's current module and section
+    // ---------------------------------------------------
+    console.log( "---- no change" )
+    return dispatch ( {
+      type: USER_UPDATE_CURR_SECTION_NO_CHANGE,
+      payload: { }
     } )
-
-    const body = {
-      curr_module: nextModuleSectionObj.moduleNum,
-      curr_section: nextModuleSectionObj.sectionNum,
-    }
-    console.log( "---- fetching body: ", JSON.stringify( body ) )
-    return fetch( `${URL}/users/${user.user_id}`, {
-        method: 'PATCH',
-        body: JSON.stringify( body ),
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      } )
-      .then( response => {
-        if ( !response.ok ) {
-          console.log( "---- error" )
-          console.log( "-- FETCH ERROR 1" )
-          return dispatch( {
-            type: USER_UPDATE_ERROR,
-            payload: "error" } )
-        }
-        return response.json()
-      } )
-      .then( message => {
-        console.log( "---- success perisisting to db" )
-      } )
-      .catch( ( error ) => {
-        console.log( "---- error" )
-        console.log( "-- FETCH ERROR", error )
-        return dispatch( {
-          type: USER_UPDATE_ERROR,
-          payload: error } )
-      } )
   }
 }
-// export const sectionCompletedAC = ( user, moduleNum, sectionNum ) => {
-//   console.log( `---- userRD::sectionCompletedAC(${user.fname}, ${moduleNum}, ${sectionNum})` )
-//
-//   return async ( dispatch, getState ) => {
-//
-//     // don't advance the user's current module and section
-//     console.log( "---- starting" )
-//     if ( user.curr_section !== 0 ) {
-//       if ( user.curr_module !== moduleNum || user.curr_section !== sectionNum ) {
-//         console.log( "---- no change" )
-//         return dispatch ( {
-//           type: USER_UPDATE_CURR_SECTION_NO_CHANGE,
-//           payload: { }
-//         } )
-//       }
-//     }
-//
-//     // advance the user's furthest module and section because they just
-//     //   completed their furthest section
-//     const nextModuleSectionObj = getNextModuleSection( getState().userRD, user.curr_module, user.curr_section )
-//     console.log( "---- nextModuleSectionObj:", nextModuleSectionObj )
-//
-//     // udate it immediately
-//     dispatch ( {
-//       type: USER_UPDATE_CURR_SECTION,
-//       payload: {
-//         moduleNum: nextModuleSectionObj.moduleNum,
-//         sectionNum: nextModuleSectionObj.sectionNum }
-//     } )
-//
-//     const body = {
-//       curr_module: nextModuleSectionObj.moduleNum,
-//       curr_section: nextModuleSectionObj.sectionNum,
-//     }
-//     console.log( "---- fetching body: ", JSON.stringify( body ) )
-//     return fetch( `${URL}/users/${user.user_id}`, {
-//         method: 'PATCH',
-//         body: JSON.stringify( body ),
-//         headers: {
-//           'Content-Type': 'application/json',
-//           Accept: 'application/json',
-//         },
-//       } )
-//       .then( response => response.json() )
-//       .then( message => {
-//         console.log( "---- success perisisting to db" )
-//       } )
-//       .catch( ( error ) => {
-//         console.log( "---- error" )
-//         console.log( "-- FETCH ERROR", error )
-//         return dispatch( {
-//           type: USER_UPDATE_ERROR,
-//           payload: error } )
-//       } )
-//   }
-// }
 
 
 /* ************************************************

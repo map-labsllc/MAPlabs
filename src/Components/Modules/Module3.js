@@ -5,21 +5,16 @@ import Module from '../Framework/Module'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
-import QuestionsList from '../Exercises/questionsList'
 import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 import BracketCT from '../Exercises/BracketCT'
 
-import { loadAllAnswersAC } from '../../store/answers/actions'
-import { loadAllTransitionsAC } from '../../store/transitions/actions'
-import { loadAllStaticdataAC } from '../../store/staticdata/actions'
+import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
+import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
+
 import { getUser } from '../../store/user/reducer'
-import {
-  QUESTION_TYPE_SHORT_ANSWERS,
-  QUESTION_TYPE_TRANSITIONS,
-  QUESTION_TYPE_BRACKET,
-} from '../../constants.js'
+import { isLoading } from '../../store/ui/reducer'
 
 import {
   MOD_3_DESC,
@@ -37,7 +32,7 @@ import {
 } from 'react-bootstrap'
 
 /* **************************************************
-   Used to test components during development
+   Module 3 layout
 ***************************************************** */
 class Module3 extends React.Component {
 
@@ -60,7 +55,7 @@ class Module3 extends React.Component {
   ]
   exercise_310 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       description = {QUES_310_DESC}
       subComponents = {this.shortAnswers_310}
     /> )
@@ -81,7 +76,7 @@ class Module3 extends React.Component {
   ]
   exercise_320 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_BRACKET}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       description = {QUES_320_DESC}
       subComponents = {this.brackets_320}
     /> )
@@ -98,7 +93,7 @@ class Module3 extends React.Component {
 
   exercise_330 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_BRACKET}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       description = {QUES_330_DESC}
       subComponents = {[this.bracket_330]}
   /> )
@@ -129,7 +124,7 @@ class Module3 extends React.Component {
 
   exercise_350 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       description = { QUES_350_DESC }
       subComponents = {this.shortAnswers_350}
     /> )
@@ -143,7 +138,7 @@ class Module3 extends React.Component {
   ]
   exercise_360 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_TRANSITIONS}
+      persistAC_CB = {persistTransitionsFromQuestionAC}
       description = { QUES_360_DESC }
       subComponents = {this.transitions_360}
     /> )
@@ -153,57 +148,62 @@ class Module3 extends React.Component {
   /* *********************************************************** */
   // render!
   render() {
-    const isLoading = this.props.isLoading
+
+    const { isLoading } = this.props
+    if (isLoading) {
+      return (
+        <>
+          <p>.</p>
+          <p>.</p>
+          <p>Imagine a spinner...</p>
+        </>
+      )
+    }
 
     return (
       <>
-        <p>{( ( isLoading ) ? "loading...." : ""  )}</p>
-        {!isLoading && (
-          <>
-            <Module
-              moduleNum = { 3 }
-              moduleTitle = "Personal Desires"
-              moduleDescription = { MOD_3_DESC }
-            >
-              <SectionCT
-                moduleNum = { 3 }
-                sectionNum = { 310 }
-                sectionTitle = "Deep Desires"
-                exercise = {this.exercise_310}
-              />
-              <SectionCT
-                moduleNum = { 3 }
-                sectionNum = { 320 }
-                sectionTitle = "Make tradeoffs within each category"
-                exercise = {this.exercise_320}
-              />
-              <SectionCT
-                moduleNum = { 3 }
-                sectionNum = { 330 }
-                sectionTitle = "Make tradeoffs between each category"
-                exercise = {this.exercise_330}
-              />
-              <SectionCT
-                moduleNum = { 3 }
-                sectionNum = { 340 }
-                sectionTitle = "Synthesize into a Desires Statement"
-                exercise = {this.exercise_340}
-              />
-              <SectionCT
-                moduleNum = { 3 }
-                sectionNum = { 350 }
-                sectionTitle = "Reflect of your stated desires"
-                exercise = {this.exercise_350}
-              />
-              <SectionCT
-                moduleNum = { 3 }
-                sectionNum = { 360 }
-                sectionTitle = "Break and building"
-                exercise = {this.exercise_360}
-              />
-            </Module>
-          </>
-        )}
+        <Module
+          moduleNum = { 3 }
+          moduleTitle = "Personal Desires"
+          moduleDescription = { MOD_3_DESC }
+        >
+          <SectionCT
+            moduleNum = { 3 }
+            sectionNum = { 310 }
+            sectionTitle = "Deep Desires"
+            exercise = {this.exercise_310}
+          />
+          <SectionCT
+            moduleNum = { 3 }
+            sectionNum = { 320 }
+            sectionTitle = "Make tradeoffs within each category"
+            exercise = {this.exercise_320}
+          />
+          <SectionCT
+            moduleNum = { 3 }
+            sectionNum = { 330 }
+            sectionTitle = "Make tradeoffs between each category"
+            exercise = {this.exercise_330}
+          />
+          <SectionCT
+            moduleNum = { 3 }
+            sectionNum = { 340 }
+            sectionTitle = "Synthesize into a Desires Statement"
+            exercise = {this.exercise_340}
+          />
+          <SectionCT
+            moduleNum = { 3 }
+            sectionNum = { 350 }
+            sectionTitle = "Reflect of your stated desires"
+            exercise = {this.exercise_350}
+          />
+          <SectionCT
+            moduleNum = { 3 }
+            sectionNum = { 360 }
+            sectionTitle = "Break and building"
+            exercise = {this.exercise_360}
+          />
+        </Module>
       </>
     )
   }
@@ -216,7 +216,7 @@ class Module3 extends React.Component {
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {
   return {
-    isLoading: state.answersRD.isLoading || state.transitionsRD.isLoading || state.staticdataRD.isLoading,
+    isLoading: isLoading( state ),
     userId: getUser( state.userRD ).user_id,
   }
 }
