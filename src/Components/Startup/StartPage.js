@@ -116,10 +116,11 @@ const style = {
   title: {
     textAlign: "center",
     color: "#25274D",
-    fontStyle: "Helvetica",
+    fontFamily: "Helvetica",
   },
   map: {
     color: "#29648A",
+    fontFamily: "Helvetica",
   },
   subtitle: {
     color: "black",
