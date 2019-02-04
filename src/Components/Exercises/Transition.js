@@ -37,65 +37,65 @@ export default class Transition extends React.Component {
 
   // **************************************************
   // set isDirty and update state with new transition.from
-  onChangeFrom = ( e ) => {
+  onChangeFrom = (e) => {
     // console.log("Transition::onChangeFrom(), e: ", e.target.value);
 
     const newTransition = { ...this.state.transition }
     newTransition.from = e.target.value
 
-    this.setState( {
+    this.setState({
       isDirty: true,
       transition: newTransition,
-    } )
+    })
   }
 
   // **************************************************
   // set isDirty and update state with new transition.to
-  onChangeTo = ( e ) => {
+  onChangeTo = (e) => {
     // console.log("Transition::onChangeTo(), e: ", e.target.value);
 
     const newTransition = { ...this.state.transition }
     newTransition.to = e.target.value
 
-    this.setState( {
+    this.setState({
       isDirty: true,
       transition: newTransition,
-    } )
+    })
   }
 
 
   // **************************************************
   // pass to parent to update value and clear isDirty
-  onBlur = ( e ) => {
-    console.log( "Transition::onBlur(), e: ", e.target.value )
+  onBlur = (e) => {
+    console.log("Transition::onBlur(), e: ", e.target.value)
     const { updateTransitionCB, id } = this.props
     const { isDirty, transition } = this.state
-    if ( isDirty ) {
-      updateTransitionCB( id, transition )
-      this.setState( {
+    if (isDirty) {
+      updateTransitionCB(id, transition)
+      this.setState({
         isDirty: false,
-      } )
+      })
     }
   }
 
   // **************************************************
   // pass to parent to delete
   onclickDelete = () => {
-    console.log( "Transition::onclickDelete()" )
+    console.log("Transition::onclickDelete()")
     const { deleteTransitionCB, id } = this.props
-    deleteTransitionCB( id )
+    deleteTransitionCB(id)
   }
 
   // **************************************************
   // render!
   render() {
-    console.log( "Transition::render()" )
+    console.log("Transition::render()")
 
     // initialize
     let { transition, isDirty } = this.state
     const { id, isDynamic } = this.props
 
-    if ( !isDynamic ) {
+    if (!isDynamic) {
       return (
         <p>{transition.from} -> {transition.to}</p>
       )
@@ -111,6 +111,7 @@ export default class Transition extends React.Component {
               onChange={this.onChangeFrom}
               onBlur={this.onBlur}
               value={transition.from}
+              style={style.width}
               placeholder="Please enter a from"
             />
             {' to '}
@@ -119,6 +120,7 @@ export default class Transition extends React.Component {
               onChange={this.onChangeTo}
               onBlur={this.onBlur}
               value={transition.to}
+              style={style.width}
               placeholder="Please enter a to"
             />
           </FormGroup>
@@ -149,5 +151,8 @@ Transition.propTypes = {
 const style = {
   size: {
     fontSize: "18pt",
+  },
+  width: {
+    width: "280px",
   }
 }
