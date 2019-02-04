@@ -66,9 +66,9 @@ const style = {
   modalContain: {
     backgroundColor: "white",
     borderRadius: "10px",
-    paddingTop: "5px",
-    paddingBottom: "5px",
-    margin: "1%",
+    padding: "3%",
+    margin: "4%",
+    boxShadow: "3px 3px 1px 3px rgb(46, 102, 178)",
   },
   header: {
     fontWeight: "1",

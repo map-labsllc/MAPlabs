@@ -15,7 +15,7 @@ import {
    props:
      prompts -- [] or array a short string prompts
 ***************************************************** */
-const Prompts = ( props ) => {
+const Prompts = (props) => {
   const { prompts } = props
   if (!prompts.length) return null
   return (
@@ -24,7 +24,6 @@ const Prompts = ( props ) => {
       {prompts.map((prompt, idx) =>
         <p key={idx}>{prompt}</p>
       )}
-      <p>.</p>
     </>
   )
 }
