@@ -224,16 +224,17 @@ export const signUp = () => {
 }
 export const signUpUser = ( firstName, lastName, email, password ) => {
   let body = {
-    first_name: firstName,
-    last_name: lastName,
+    fname: firstName,
+    lname: lastName,
     email: email,
     token: password,
     uri: ''
   }
   return async ( dispatch ) => {
+      console.log( 'this disBATCH', dispatch )
         await firebase.auth().createUserWithEmailAndPassword( email, password )
           .then( user => loginUserSuccess( dispatch, user ) )
-          firebase.auth().onAuthStateChanged( ( user ) => {
+           firebase.auth().onAuthStateChanged( ( user ) => {
             if ( user ) {
               console.log( 'in here duuuuuude' )
               body.token = user.uid
@@ -241,7 +242,10 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
 
             }
           } )
-          dispatch( {type: SIGNUP} )
+          dispatch( {
+            type: SIGNUP,
+            payload:body
+          } )
   }
 }
 //
@@ -259,6 +263,7 @@ const loginUserFail = ( dispatch ) => {
 }
 
 const loginUserSuccess = ( dispatch, user ) => {
+  console.log( 'user is in the HOUSE',user )
   dispatch( {
     type: LOGIN_USER_SUCCESS,
     payload: user
