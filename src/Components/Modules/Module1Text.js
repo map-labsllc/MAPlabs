@@ -51,12 +51,12 @@ export const QUES_170_DESC = `Based on your top key words, phrases, or other ins
 <br><br>
 Let’s make this very concrete.  Look ahead and imagine yourself having completed the MAPmaker program.  In a broad sense:
 <br><br>
-What changes would you like to see in your everyday life?
+1. What changes would you like to see in your everyday life?
 <br><br>
-What changes would you like to see in your personal growth?
+2. What changes would you like to see in your personal growth?
 <br><br>
-What changes would you like to see in your relationships?
+3. What changes would you like to see in your relationships?
 <br><br>
-What changes would you like to see in your life’s work (your vocation)?
+4. What changes would you like to see in your life’s work (your vocation)?
 <br><br>
-What changes would you like to see outside of your work (your avocational pursuits)?`
+5. What changes would you like to see outside of your work (your avocational pursuits)?`

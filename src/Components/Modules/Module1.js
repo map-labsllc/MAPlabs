@@ -146,7 +146,7 @@ class Module1 extends React.Component {
   render() {
 
     const { isLoading } = this.props
-    if (isLoading) {
+    if ( isLoading ) {
       return (
         <>
           <p>.</p>
@@ -158,6 +158,7 @@ class Module1 extends React.Component {
 
     return (
       <>
+        
         <Module
           moduleNum = { 1 }
           moduleTitle = "Your Meanings and Motivations "
