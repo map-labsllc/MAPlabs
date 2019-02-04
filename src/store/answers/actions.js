@@ -6,7 +6,8 @@ import {
   ANSWERS_PERSIST,
 } from './constants'
 
-// const URL = "http://localhost:3001"
+import { getAnswers } from './reducer'
+
 const URL = process.env.REACT_APP_DB_URL
 
 /* *****************************************************
@@ -50,6 +51,27 @@ export const loadAllAnswersAC = ( userId ) => {
         return dispatch( { type: ANSWERS_ERROR_DB, payload: error } )
       } )
   }
+}
+
+/* *****************************************************
+   persistAnswersFromQuestionAC()
+
+   Persists answers for a question.  This is only called by <QuestionsCT>.
+
+   This is NOT great Redux form.  However not sure where to put this logic.  The
+     alternative is to keep it in QuestionsCT with a switch statement to select
+     the correct reducer for the set of questions being managed.  But we're trying to
+     keep the framework components clean on knowledge of what they contain.
+
+   params:
+     dispatch
+     store
+     userId
+     questionCode
+******************************************************** */
+export const persistAnswersFromQuestionAC = ( dispatch, store, userId, questionCode ) => {
+  const answers = getAnswers( store.answersRD, questionCode )
+  return dispatch( persistAnswersAC( userId, questionCode, answers ) )
 }
 
 /* *****************************************************

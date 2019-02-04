@@ -17,11 +17,11 @@ import {
 ***************************************************** */
 const Prompts = (props) => {
   const { prompts } = props
-  if (!prompts.length) return null
+  if ( !prompts.length ) return null
   return (
     <>
       <p>Prompts:</p>
-      {prompts.map((prompt, idx) =>
+      {prompts.map( ( prompt, idx ) =>
         <p key={idx}>{prompt}</p>
       )}
     </>

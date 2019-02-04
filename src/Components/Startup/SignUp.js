@@ -7,43 +7,45 @@ import { firstNameChanged, lastNameChanged, emailChanged, passwordChanged, login
 
 class SignUp extends Component {
   constructor( props ) {
-    super( )
+    super( props )
 
-    this.onButtonPress.bind( this )
-    this.onPasswordChange.bind( this )
-    this.onFirstNameChanged.bind( this )
-    this.onLastNameChanged.bind( this )
-    this.onEmailChange.bind( this )
+console.log( 'thisis the props from the constructor>>>>>',props )
+this.onFirstNameChanged = this.onFirstNameChanged.bind( this )
+this.onLastNameChanged = this.onLastNameChanged.bind( this )
+this.onEmailChange = this.onEmailChange.bind( this )
+this.onPasswordChange = this.onPasswordChange.bind( this )
   }
 
 
-  onFirstNameChanged( text ) {
-    console.log( 'text', text )
-    this.props.firstNameChanged( text )
+  onFirstNameChanged=( event )=> {
+    console.log( 'event', event.target.value )
+    this.props.firstNameChanged( event.target.value )
   }
 
-  onLastNameChanged( text ) {
-    this.props.lastNameChanged( text )
+  onLastNameChanged=( event )=> {
+    console.log( 'eventfor LAST NAME', event )
+    this.props.lastNameChanged( event.target.value )
   }
 
-  onEmailChange( text ) {
+  onEmailChange=( event )=> {
 
-    console.log( 'type of string', typeof text,text )
-    this.props.emailChanged( text )
+    console.log( 'type of string', typeof event,event )
+    this.props.emailChanged( event.target.value )
   }
 
-  onPasswordChange( text ) {
-    this.props.passwordChanged( text )
+  onPasswordChange=( event ) =>{
+    console.log( 'this is the error on password', event, typeof event )
+    this.props.passwordChanged( event.target.value )
   }
 
-  onButtonPress() {
+  onButtonPress=() =>{
     // const {first_name, last_name, email, password} = this.props
     // console.log('firstName',this.props.first_name);
     console.log( 'this.props.first_name', this.props )
     this.props.signUpUser( this.props.first_name, this.props.last_name, this.props.email, this.props.password )
   }
 
-  renderError() {
+  renderError=()=> {
     if ( this.props.error ) {
       return (
         <div>
@@ -68,7 +70,7 @@ class SignUp extends Component {
   render() {
     const { viewStyles, textInputStyles, emailTextStyles, passwordTextStyles,
             signUpTextStyles, signUpButtonStyle } = styles
-
+            console.log( 'here duuuuude',this.props )
     return (
       <div style={viewStyles}>
       <div
@@ -80,7 +82,7 @@ class SignUp extends Component {
           placeholder='John'
           autoCapitalize="none"
           onChange={ this.onFirstNameChanged}
-          value={ this.props.first_name }/>
+          value={ this.props.fname }/>
 
         <p style={emailTextStyles}>Last Name</p>
         <input
@@ -89,7 +91,7 @@ class SignUp extends Component {
           autoCapitalize="none"
 
           onChange={ this.onLastNameChanged}
-          value={ this.props.last_name.value }/>
+          value={ this.props.lname }/>
 
         <p style={emailTextStyles}>Email</p>
         <input
@@ -97,7 +99,7 @@ class SignUp extends Component {
           placeholder='example@email.com'
           autoCapitalize="none"
           onChange={ this.onEmailChange }
-          value={ this.props.email.value }/>
+          value={ this.props.email }/>
 
         <p style={passwordTextStyles}>Password</p>
         <input style={textInputStyles}
@@ -105,7 +107,7 @@ class SignUp extends Component {
           type= 'password'
           autoCapitalize="none"
           onChange={ this.onPasswordChange }
-          value={ this.props.password.target }
+          value={ this.props.password }
         />
 
 
@@ -174,11 +176,12 @@ const styles = {
 }
 
 function mapStateToProps( state ) {
+  console.log( 'thisis the STATE>>',state.userRD.user )
   return {
-    first_name : state.auth.first_name,
-    last_name : state.auth.last_name,
-    email : state.auth.email,
-    password: state.auth.password,
+    fname : state.userRD.user.fname,
+    lname : state.userRD.user.lname,
+    email : state.userRD.user.email,
+    password: state.userRD.user.password,
 
   }
 }

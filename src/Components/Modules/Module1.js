@@ -5,15 +5,17 @@ import Module from '../Framework/Module'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
-import QuestionsList from '../Exercises/questionsList'
+import LifeDescriptorsCT from '../Exercises/LifeDescriptorsCT'
 import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 
+import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
+import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
+
 import { getUser } from '../../store/user/reducer'
-import {
-  QUESTION_TYPE_SHORT_ANSWERS,
-  QUESTION_TYPE_TRANSITIONS} from '../../constants.js'
+import { isLoading } from '../../store/ui/reducer'
+
 
 import {
   MOD_1_DESC,
@@ -44,7 +46,7 @@ class Module1 extends React.Component {
   // -------------------------
   // Module 1: 2C-F
   exercise_110 = (
-    <QuestionsList
+    <LifeDescriptorsCT
       question = { { code: 110, text: "Reflect on your current situation" } }
       description = { QUES_110_DESC }
       instructions = "Complete sentences that are important to you."
@@ -65,7 +67,7 @@ class Module1 extends React.Component {
   // -------------------------
   // Module 1: 3B-D
   exercise_130 = (
-    <QuestionsList
+    <LifeDescriptorsCT
       question = { { code: 130, text: "Imagine your future desired situation" } }
       description = { QUES_130_DESC }
       instructions = "Complete sentences that are important to you."
@@ -96,7 +98,7 @@ class Module1 extends React.Component {
   ]
   exercise_150 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       description = { QUES_150_DESC }
       subComponents = {this.shortAnswers_150}
     /> )
@@ -113,7 +115,7 @@ class Module1 extends React.Component {
   ]
   exercise_160 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_TRANSITIONS}
+      persistAC_CB = {persistTransitionsFromQuestionAC}
       description = { QUES_160_DESC }
       subComponents = {this.transitions_160}
     /> )
@@ -131,7 +133,7 @@ class Module1 extends React.Component {
   ]
   exercise_170 = (
     <QuestionsCT
-      questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+      persistAC_CB = {persistAnswersFromQuestionAC}
       description = { QUES_170_DESC }
       subComponents = { this.shortAnswers_170 }
     /> )
@@ -142,64 +144,71 @@ class Module1 extends React.Component {
   /* *********************************************************** */
   // render!
   render() {
-    const isLoading = this.props.isLoading
+
+    const { isLoading } = this.props
+    if (isLoading) {
+      return (
+        <>
+          <p>.</p>
+          <p>.</p>
+          <p>Imagine a spinner...</p>
+        </>
+      )
+    }
 
     return (
       <>
-        <p>{( ( isLoading ) ? "loading...." : ""  )}</p>
-        {!isLoading && (
-          <>
-            <Module
-              moduleNum = { 1 }
-              moduleTitle = "Your Meanings and Motivations "
-              moduleDescription = { MOD_1_DESC }
-            >
-              <SectionCT
-                moduleNum = { 1 }
-                sectionNum = { 110 }
-                sectionTitle = "Reflect on your current situation"
-                exercise = {this.exercise_110}
-              />
-              <SectionCT
-                moduleNum = { 1 }
-                sectionNum = { 120 }
-                sectionTitle = "Describe your current situation"
-                exercise = {this.exercise_120}
-              />
-              <SectionCT
-                moduleNum = { 1 }
-                sectionNum = { 130 }
-                sectionTitle = "Imagine your future desired situation"
-                exercise = {this.exercise_130}
-              />
-              <SectionCT
-                moduleNum = { 1 }
-                sectionNum = { 140 }
-                sectionTitle = "Describe your future situation"
-                exercise = {this.exercise_140}
-              />
-              <SectionCT
-                moduleNum = { 1 }
-                sectionNum = { 150 }
-                sectionTitle = "Compare your 'current situation' statement to your 'future desired situation' statement"
-                exercise = {this.exercise_150}
-              />
-              <SectionCT
-                moduleNum = { 1 }
-                sectionNum = { 160 }
-                sectionTitle = "Breaking and building"
-                exercise = {this.exercise_160}
-              />
-              <SectionCT
-                moduleNum = { 1 }
-                sectionNum = { 170 }
-                sectionTitle = "Tie these reflections to the course"
-                exercise = {this.exercise_170}
-              />
-            </Module>
-          </>
-        )}
+        <Module
+          moduleNum = { 1 }
+          moduleTitle = "Your Meanings and Motivations "
+          moduleDescription = { MOD_1_DESC }
+        >
+          <SectionCT
+            moduleNum = { 1 }
+            sectionNum = { 110 }
+            sectionTitle = "Reflect on your current situation"
+            exercise = {this.exercise_110}
+          />
+          <SectionCT
+            moduleNum = { 1 }
+            sectionNum = { 120 }
+            sectionTitle = "Describe your current situation"
+            exercise = {this.exercise_120}
+          />
+          <SectionCT
+            moduleNum = { 1 }
+            sectionNum = { 130 }
+            sectionTitle = "Imagine your future desired situation"
+            exercise = {this.exercise_130}
+          />
+          <SectionCT
+            moduleNum = { 1 }
+            sectionNum = { 140 }
+            sectionTitle = "Describe your future situation"
+            exercise = {this.exercise_140}
+          />
+          <SectionCT
+            moduleNum = { 1 }
+            sectionNum = { 150 }
+            sectionTitle = "Compare your 'current situation' statement to your 'future desired situation' statement"
+            exercise = {this.exercise_150}
+          />
+          <SectionCT
+            moduleNum = { 1 }
+            sectionNum = { 160 }
+            sectionTitle = "Breaking and building"
+            exercise = {this.exercise_160}
+          />
+          <SectionCT
+            moduleNum = { 1 }
+            sectionNum = { 170 }
+            sectionTitle = "Tie these reflections to the course"
+            exercise = {this.exercise_170}
+          />
+        </Module>
       </>
+
+
     )
   }
 }
@@ -211,7 +220,7 @@ class Module1 extends React.Component {
 // Wrap in container to get access to store and dispatch
 const mapStateToProps = state => {
   return {
-    isLoading: state.answersRD.isLoading || state.transitionsRD.isLoading || state.staticdataRD.isLoading,
+    isLoading: isLoading( state ),
     userId: getUser( state.userRD ).user_id,
   }
 }

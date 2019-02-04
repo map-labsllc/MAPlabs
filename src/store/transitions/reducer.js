@@ -34,7 +34,7 @@ const initialState = {
    param store -- state of the reduser
    param question_code -- integer
 
-   return array of transitions or empty array
+   return array of transitions or empty array -- [ { from: 'here', to: 'there' }, ... ]
 ************************************************** */
 export const getTransitions = ( state, question_code ) =>
   state.questions[question_code] || []
