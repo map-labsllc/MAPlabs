@@ -6,6 +6,14 @@ import {
   USER_UPDATE_CURR_SECTION,
   USER_UPDATE_CURR_SECTION_NO_CHANGE,
   USER_UPDATE_ERROR,
+  SIGNUP,
+  FIRSTNAME_CHANGED,
+  LASTNAME_CHANGED,
+  EMAIL_CHANGED,
+  PASSWORD_CHANGED,
+  LOGIN_USER,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_FAIL
 } from './constants'
 
 /*
@@ -42,6 +50,7 @@ const initialState = {
     fname: "Sandy",
     lname: "Harrison",
     email: "tharrison@gmail.com",
+    password: "",
     login_service_id: 1,
     login_token: "DFDS34543GD",
     curr_module: 4,
@@ -146,7 +155,36 @@ export const userRD = ( state = initialState, action ) => {
         user: newUser,
       }
     }
-
+    case FIRSTNAME_CHANGED:
+    let user = {
+      ...state.user,
+      fname: payload,
+    }
+  return{...state, user}
+  case LASTNAME_CHANGED:
+    let last = {
+      ...state.user,
+      lname: payload,
+    }
+  return{...state, user:last}
+case EMAIL_CHANGED:
+  let email = {
+    ...state.user,
+    lname: payload,
+}
+  return {...state, user:email }
+case PASSWORD_CHANGED:
+let password = {
+  ...state.user,
+  password:payload
+}
+  return {...state, user:password}
+case LOGIN_USER:
+  return {...state, loading: true, error: '' }
+case LOGIN_USER_SUCCESS:
+  return {...state, user: payload }
+case LOGIN_USER_FAIL:
+  return { ...state, error: 'Authentication Failed.', password: '', loading: false }
     case USER_UPDATE_CURR_SECTION_NO_CHANGE:
       return state
 
@@ -154,7 +192,7 @@ export const userRD = ( state = initialState, action ) => {
       return state
 
     case USER_ADD_SECTION: {
-      const { moduleNum, sectionNum } = payload
+      const { moduleNum, sectionNum,  } = payload
 
       const newOrderOfSections = { ...state.orderOfSections }
       const sections = newOrderOfSections[moduleNum] || []
@@ -165,6 +203,11 @@ export const userRD = ( state = initialState, action ) => {
         ...state,
         orderOfSections: newOrderOfSections,
       }
+    }
+    case SIGNUP: {
+      const { userRD } = payload
+      console.log( 'THIS IS THE USERRD FOOOOOO!!!',userRD )
+      return  payload
     }
 
     default:

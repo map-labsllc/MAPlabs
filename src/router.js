@@ -15,7 +15,7 @@ export default class RouterComponent extends React.Component {
     return (
       <Switch>
         <Route exact path='/' component={SplashPage} />
-        <Route exact path='/startpage' component={StartPage} />
+        <Route exact path='/infopage' component={StartPage} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/modules/1' component={Module1} />
         <Route exact path='/modules/2' component={Module2} />
