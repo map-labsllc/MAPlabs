@@ -33,7 +33,7 @@ const initialState = {
    state -- answersRD (this reducer, not the entire store)
    question_code -- integer
 
-   return array of answer strings or empty array
+   return array of answer strings or []
 ************************************************** */
 export const getAnswers = ( state, question_code ) =>
   state.questions[question_code] || []
