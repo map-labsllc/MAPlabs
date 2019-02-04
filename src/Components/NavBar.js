@@ -23,8 +23,8 @@ class NavBar extends React.Component {
     console.log( "NavBar::render" )
     return (
       this.props.user &&
-
       <Navbar style={styles.body} fixedTop>
+      
         <Navbar.Header>
           <Navbar.Brand>
             <NavLink to="/">M.A.P.Labs</NavLink>

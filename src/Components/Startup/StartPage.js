@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, PanelGroup, Panel } from 'react-bootstrap'
-
+import { NavLink } from 'react-router-dom'
 const StartPage = () => {
   return (
     <div style={style.background}>
@@ -91,7 +91,10 @@ const StartPage = () => {
         </PanelGroup>
       </div>
       <div className="text-center">
-        <Button className="startButton">Begin MAPMaker</Button>
+        <Button className="startButton"><NavLink to="/modules/1"  activeStyle={{
+    fontWeight: "bold",
+    color: "white"
+  }}>Begin MAPMaker</NavLink></Button>
       </div>
     </div >
   )
@@ -133,8 +136,8 @@ const style = {
     backgroundColor: "rgba(255, 255, 255, 0.8)",
     borderRadius: "10px",
     color: "black",
-    marginLeft: "15%",
-    marginRight: "15%",
+    marginLeft: "2%",
+    marginRight: "2%",
     paddingRight: "1%",
     paddingLeft: "1%",
   },

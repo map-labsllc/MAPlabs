@@ -12,87 +12,87 @@ const Dashboard = () => {
           </div>
           <div className="lineup">
             <Col md={4} lg={4}>
-              <h5>Current Situation M5 **Exercise 1**</h5>
-              <div className="container-fluid smallContain"><p>Currently sitting in galvanize</p></div>
-              <h5>Future Desired Situation M5 **Exercise 1**</h5>
-              <div className="container-fluid smallContain" ><p>THE FUTURE</p></div>
-              <h5>Key Themes on Self-Knowlege **M5 Exercise 1**</h5>
-              <div className="container-fluid smallContain" ><p>THEMES</p></div>
-              <h5>Summarizing Thoughts or Directives **M5 Excercise 1**</h5>
-              <div className="container-fluid smallContain"><p>MY THOUGHTS ON THE DIRECTIVES ETC</p></div>
+              <h5>Current Situation</h5>
+              <div className="container-fluid smallContain"><p>Currently I am not satisfied with my job</p></div>
+              <h5>Future Desired Situation</h5>
+              <div className="container-fluid smallContain" ><p> To find a career that inspires me and brings me joy</p></div>
+              <h5>Key Themes on Self-Knowlege</h5>
+              <div className="container-fluid smallContain" ><p> Inspiration, joy, interest, intelligence</p></div>
+              <h5>Summarizing Thoughts or Directives</h5>
+              <div className="container-fluid smallContain"><p>My thoughts on the directives are that they will help me to inspire future generation to pursue a career in the field of education</p></div>
             </Col>
             <Col md={4} lg={4}>
-              <PanelGroup accordian bsStyle="primary">
+              <PanelGroup accordian bsStyle="primary" style={style.bump}>
                 <Panel eventKey="1">
                   <Panel.Heading>
-                    <Panel.Title toggle>Key Themes on Meaning **M5 Exercise 2**  </Panel.Title>
+                    <Panel.Title toggle>Key Themes on Meaning  </Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    Here lie my Key Themes on Meaning and such here it goes....
+                    I find meaning in inspiring people. I find meaning in showing my skills. I find meaning in making sure that I have a career that makes me happy.
                   </Panel.Body>
                 </Panel>
                 <Panel eventKey="2">
                   <Panel.Heading>
-                    <Panel.Title toggle>Desire Statement **M5 Exercise 2**</Panel.Title>
+                    <Panel.Title toggle>Desire Statement</Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    Here is what I desire most in the world
+                    I desire a career that compensates me for what I am worth.  I desire something that pushes my intelligence.  I desire the one ring.
                   </Panel.Body>
                 </Panel>
                 <Panel eventKey="3">
                   <Panel.Heading>
-                    <Panel.Title toggle>Key Strengths **M5 Exercise 2**</Panel.Title>
+                    <Panel.Title toggle>Key Strengths</Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    string... strength... strong..
+                    One key Strength that I have is my ability to adapt to an ever changing world.
                   </Panel.Body>
                 </Panel>
                 <Panel eventKey="4">
                   <Panel.Heading>
-                    <Panel.Title toggle>Embodiment Themes **M5 Exercise 2**</Panel.Title>
+                    <Panel.Title toggle>Embodiment Themes</Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    theme... theme... theme...
+                    I can search for the right fit.
                   </Panel.Body>
                 </Panel>
                 <Panel eventKey="5">
                   <Panel.Heading>
-                    <Panel.Title toggle>Impediment Themes **M5 Exercise 2**</Panel.Title>
+                    <Panel.Title toggle>Impediment Themes</Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>
-                    roadblock, cones, Road Closed.
+                    Orcs, goblins, the Mines of Moria.
                   </Panel.Body>
                 </Panel>
               </PanelGroup>
             </Col>
             <Col md={4} lg={4}>
-              <h5>Key Themes on the Beyond the Self service *****M5 Exercise 3****</h5>
+              <h5>Key Themes on the Beyond the Self Service</h5>
               <div className="container-fluid smallContain">
-                <p>THEMS EKSDLJFJGILJGLSDIJGLKDJGLSIDJFGIJSDFIJ</p>
+                <p>Making sure that I contribute positivly to the world.</p>
               </div>
-              <h5>Summarizing Thoughts or Directives ****M5 Exercise 3 *****</h5>
+              <h5>Summarizing Thoughts or Directives</h5>
               <div className="container-fluid smallContain">
-                <p>answers go here I believe</p>
+                <p>Summarizing my thoughts about Directives</p>
               </div>
-              <h5>From the elements you chose, this is your purpose statement ***M5 E4***</h5>
+              <h5>From the elements you chose, this is your purpose statement</h5>
               <div className="container-fluid smallContain">
-                <p>My purpose is this</p>
+                <p>My purpose is to destroy the one ring by throwing it in the fires of Mordor</p>
               </div>
-              <div>Key commitments about personal growth ****M5 E5***</div>
+              <div>Key commitments about personal growth</div>
               <div className="container-fluid smallContain">
-                <p>These are my commitments to personal growth</p>
+                <p>I need to realize that in my quest to destroy the one ring I must make sure to accept help from my friends.</p>
               </div>
-              <h5>Key Relationships ****M5 E5***</h5>
+              <h5>Key Relationships</h5>
               <div className="container-fluid smallContain">
-                <p>These are important relations</p>
+                <p>My friends, My family, Middle-Earth</p>
               </div>
-              <h5>Key themes on engagement mastery ***M5 E5***</h5>
+              <h5>Key themes on engagement mastery</h5>
               <div className="container-fluid smallContain">
-                <p>Engagementssssssss</p>
+                <p>I will engage on engagement by engaging in many different things.</p>
               </div>
               <h5>Break/Build Commitments</h5>
               <div className="container-fluid smallContain">
-                <p>Break these and Build these commitments etc etccc</p>
+                <p>I plan to break the ring and build a better future for Middle Earth.</p>
               </div>
             </Col>
           </div>
@@ -107,6 +107,9 @@ const style = {
     backgroundImage: "url('trees.jpg')",
     backgroundSize: "cover",
   },
+  bump: {
+    marginTop: "10px"
+  }
 }
 
 export default Dashboard
