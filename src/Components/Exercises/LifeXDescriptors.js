@@ -3,7 +3,7 @@ import {
   Button,
  } from 'react-bootstrap'
 
-import LifeDescriptor from './LifeDescriptor'
+import LifeXDescriptor from './LifeXDescriptor'
 import Arrow from '../Utils/Arrow'
 
 import '../../CSS/ModalNavButtons.css'
@@ -180,7 +180,7 @@ export default class LifeDescriptors extends Component {
     const endIdx = Math.min( ( ( page + 1 ) * NUM_PER_PAGE ), lifeDescriptors.length )
     for ( let i = startIdx ; i < endIdx ; i++ ) {
       thisPage.push( (
-        <LifeDescriptor
+        <LifeXDescriptor
           key={i}
           lifeDescriptor={lifeDescriptors[i]}
           onAddSelectionCB={

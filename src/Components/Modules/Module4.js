@@ -5,7 +5,7 @@ import Module from '../Framework/Module'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
-import LifeDescriptorsCT from '../Exercises/LifeDescriptorsCT'
+import LifeXDescriptorsCT from '../Exercises/LifeXDescriptorsCT'
 import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
@@ -48,7 +48,7 @@ class Module4 extends React.Component {
   // LifeDescriptions
 
   exercise_410 = (
-    <LifeDescriptorsCT
+    <LifeXDescriptorsCT
       question = { { code: 410, text: "Reflect on your current situation" } }
       description = { QUES_410_DESC }
       instructions = "Complete sentences that are important to you:"
@@ -71,8 +71,6 @@ class Module4 extends React.Component {
   transitions_430 = [
     <TransitionsCT question = { { code: 431, text: "Thoughts/Attitudes" } } />,
     <TransitionsCT question = { { code: 432, text: "Behaviors/Actions" } } />,
-    <TransitionsCT question = { { code: 433, text: "Goals" } } />,
-    <TransitionsCT question = { { code: 434, text: "Commitments" } } />,
   ]
   exercise_430 = (
     <QuestionsCT
@@ -86,8 +84,8 @@ class Module4 extends React.Component {
   // ShortAnswers
 
   shortAnswers_440 = [
-    <ShortAnswersCT question = { { code: 441, text: "List the most important overarching themes that impact how meaningful and purposeful your life is." } } />,
-    <ShortAnswersCT question = { { code: 442, text: "Which core feelings and experiences are most important to providing you with personal senses of the meaning in your life?" } } />,
+    <ShortAnswersCT question = { { code: 441, text: "Which core feelings and experiences are most important to providing you with personal senses of the meaning in your life?" } } />,
+    <ShortAnswersCT question = { { code: 442, text: "List the most important overarching themes that impact how meaningful and purposeful your life is." } } />,
   ]
   exercise_440 = (
     <QuestionsCT
@@ -116,7 +114,7 @@ class Module4 extends React.Component {
   exercise_460 = (
     <NarrativeCT
       question = { { code: 460, text: "Synthesize into a Desires Statement." } }
-      promptQuestionCode = { 450 } // should the prompt be all of the winners from 320 or just 330?
+      promptQuestionCode = { 451 }
       description = { QUES_460_DESC }
       instructions = "Write a short statement that brings together all the desires from each category and captures the essence of what this exercise has revealed to you using the phrases themselves. Note:  If there were desires that reached the final tradeoff round in Exercise 3 that are also really important, feel free to incorporate them as well. "
     /> )
