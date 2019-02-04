@@ -115,7 +115,7 @@ const style = {
   },
   title: {
     textAlign: "center",
-    color: "#25274D",
+    color: "white",
     fontFamily: "Helvetica",
   },
   map: {
