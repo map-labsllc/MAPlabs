@@ -151,7 +151,7 @@ const mapStateToProps = ( state,passedProps ) => {
 
 const mapDispatchToProps = ( dispatch,passedProps ) => {
   const onPersist = ( userId, lifeDescriptionsArray ) => {
-    const { question } = passedProps
+    const { question} = passedProps
 
     dispatch( updateAnswersAC( question.code, lifeDescriptionsArray ) )
     dispatch( persistAnswersAC( userId, question.code, lifeDescriptionsArray ) )
