@@ -47,15 +47,31 @@ const initialState = {
   orderOfSections: [],
   user: {
     user_id: 1,
-    fname: "",
-    lname: "",
-    email: "",
+    fname: "Sandy",
+    lname: "Keziah",
+    email: "sandy@lacuna.com",
     password: "",
     login_service_id: 1,
-    token: "",
-    curr_module: 4,
+    login_token: "DFDS34543GD",
+    curr_module: 5,
     curr_section: 0,
    },
+// const initialState = {
+//   isLoading: false,  // change to true when we connect with login process
+//   isError: false,
+//   errorMessage: '',
+//   orderOfSections: [],
+//   user: {
+//     user_id: 1,
+//     fname: "",
+//     lname: "",
+//     email: "",
+//     password: "",
+//     login_service_id: 1,
+//     token: "",
+//     curr_module: 4,
+//     curr_section: 0,
+//    },
 }
 
 /* ***********************************************
