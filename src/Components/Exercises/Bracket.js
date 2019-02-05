@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import '../../CSS/ModalNavButtons.css'
+import { Button } from 'react-bootstrap'
 
 
 /* **************************************************
@@ -25,27 +27,27 @@ import PropTypes from 'prop-types'
      onUpdateStoreCB() -- this is a function in BracketCT to update the Store with winner
 ***************************************************** */
 export default class Bracket extends React.Component {
-  constructor( props ) {
-    super( props )
+  constructor(props) {
+    super(props)
     this.state = {
       prompts: props.prompts
     }
   }
 
   updateStore = prompts => {
-    this.props.onUpdateStoreCB( this.props.question.code, prompts )
+    this.props.onUpdateStoreCB(this.props.question.code, prompts)
   }
 
   promptClick = index => e => {
 
     const newPrompts = this.state.prompts.slice()
-    newPrompts.splice( index, 1 )
+    newPrompts.splice(index, 1)
 
-    this.updateStore( newPrompts )
+    this.updateStore(newPrompts)
 
-    return this.setState( {
+    return this.setState({
       prompts: newPrompts
-    } )
+    })
   }
 
 
@@ -53,12 +55,12 @@ export default class Bracket extends React.Component {
     const { question: { code, text }, isDynamic } = this.props
 
     // render static content
-    if ( !isDynamic ) {
+    if (!isDynamic) {
       return (
         <>
-          {this.props.previousAnswers.map( ( prompt, index ) => (
+          {this.props.previousAnswers.map((prompt, index) => (
             <p key={index}>{prompt}</p>
-          ) ) }
+          ))}
         </>
       )
     }
@@ -71,21 +73,21 @@ export default class Bracket extends React.Component {
           Click a desire to choose it</p>
         {this.state.prompts[1] ?
           <p className='prompts'>
-
-            <button id='prompt1' onClick={this.promptClick( 1 )} >
-              {this.state.prompts[0]}
-            </button>
-
-            <button id='prompt2' onClick={this.promptClick( 0 )} >
-              {this.state.prompts[1]}
-            </button>
-
+            <div className="text-center">
+              <Button className="bracketing" id='prompt1' onClick={this.promptClick(1)} >
+                {this.state.prompts[0]}
+              </Button>
+              {" VS "}
+              <Button className="bracketing" id='prompt2' onClick={this.promptClick(0)} >
+                {this.state.prompts[1]}
+              </Button>
+            </div>
           </p>
-        :
-          ( this.state.prompts.length > 0 && <p>You desire: {this.state.prompts[0]}.
+          :
+          (this.state.prompts.length > 0 && <p>You desire: {this.state.prompts[0]}.
            Click 'Next' to continue the exercise, or 'Close' to save your work.
-          </p> )
-      }
+          </p>)
+        }
       </div>
     )
   }
@@ -96,10 +98,10 @@ export default class Bracket extends React.Component {
 ////////////////////////////////////////////////////////////////
 
 Bracket.propTypes = {
-  prompts: PropTypes.arrayOf( PropTypes.string ).isRequired,
-  question: PropTypes.shape( {
+  prompts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-  } ).isRequired,
+  }).isRequired,
   onUpdateStoreCB: PropTypes.func.isRequired,
 }

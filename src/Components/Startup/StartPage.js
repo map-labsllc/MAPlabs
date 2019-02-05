@@ -91,10 +91,10 @@ const StartPage = () => {
         </PanelGroup>
       </div>
       <div className="text-center">
-        <Button className="startButton"><NavLink to="/modules/1"  activeStyle={{
-    fontWeight: "bold",
-    color: "white"
-  }}>Begin MAPMaker</NavLink></Button>
+        <Button className="startButton"><NavLink to="/modules/1" activeStyle={{
+          fontWeight: "bold",
+          color: "white"
+        }}>Begin MAPMaker</NavLink></Button>
       </div>
     </div >
   )
@@ -118,7 +118,7 @@ const style = {
   },
   title: {
     textAlign: "center",
-    color: "#25274D",
+    color: "black",
     fontFamily: "Helvetica",
   },
   map: {
