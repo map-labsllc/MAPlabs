@@ -169,22 +169,44 @@ export const passwordChanged = ( text ) => {
   }
 }
 
-export const loginUser = ( { email, password } ) => {
-  return async ( dispatch ) => {
-    console.log( dispatch )
-    dispatch( { type: LOGIN_USER } )
+export const loginUser = ( { email, password}  ) => {
 
-    firebase.auth().signInWithEmailAndPassword( email, password )
+  return async ( dispatch ) => {
+    console.log( 'email hurrrrr', email )
+
+    await firebase.auth().signInWithEmailAndPassword( email, password )
       .then( user => {
+        // let body = {
+        //   fname
+        //   lname,
+        //   email: email,
+        //   token: password,
+        //   uri: ''
+        // }
         console.log( 'user ball', user )
         loginUserSuccess( dispatch, user )
       } )
       .catch( function(){
         loginUserFail( dispatch )
       } )
+      dispatch( { type: LOGIN_USER } )
   }
 }
 
+const loginUserFail = ( dispatch ) => {
+  dispatch( {
+    type: LOGIN_USER_FAIL
+  } )
+}
+
+const loginUserSuccess = ( dispatch, user ) => {
+  console.log( 'user is in the HOUSE',user )
+  dispatch( {
+    type: LOGIN_USER_SUCCESS,
+    payload: user
+  } )
+
+}
 export const signUp = () => {
   return async ( dispatch ) => {
     console.log( dispatch,'signup' )
@@ -224,18 +246,3 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
 //     type: LOAD_LIFE_DESCRIPTORS
 //   })
 // }
-
-const loginUserFail = ( dispatch ) => {
-  dispatch( {
-    type: LOGIN_USER_FAIL
-  } )
-}
-
-const loginUserSuccess = ( dispatch, user ) => {
-  console.log( 'user is in the HOUSE',user )
-  dispatch( {
-    type: LOGIN_USER_SUCCESS,
-    payload: user
-  } )
-dispatch.main()
-}

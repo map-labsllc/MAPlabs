@@ -47,9 +47,9 @@ const initialState = {
   orderOfSections: [],
   user: {
     user_id: 1,
-    fname: "Sandy",
-    lname: "Harrison",
-    email: "tharrison@gmail.com",
+    fname: "",
+    lname: "",
+    email: "",
     password: "",
     login_service_id: 1,
     login_token: "DFDS34543GD",
@@ -170,7 +170,7 @@ export const userRD = ( state = initialState, action ) => {
 case EMAIL_CHANGED:
   let email = {
     ...state.user,
-    lname: payload,
+    email: payload,
 }
   return {...state, user:email }
 case PASSWORD_CHANGED:
@@ -205,9 +205,9 @@ case LOGIN_USER_FAIL:
       }
     }
     case SIGNUP: {
-      const { userRD } = payload
-      console.log( 'THIS IS THE USERRD FOOOOOO!!!',userRD )
-      return  payload
+
+      
+      return {...state, loading: true, error: '' }
     }
 
     default:
