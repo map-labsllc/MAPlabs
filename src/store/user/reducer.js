@@ -52,7 +52,7 @@ const initialState = {
     email: "",
     password: "",
     login_service_id: 1,
-    login_token: "DFDS34543GD",
+    token: "",
     curr_module: 4,
     curr_section: 0,
    },
@@ -182,7 +182,8 @@ let password = {
 case LOGIN_USER:
   return {...state, loading: true, error: '' }
 case LOGIN_USER_SUCCESS:
-  return {...state, user: payload }
+
+  return {...state, user: {...state.user, ...payload.user} }
 case LOGIN_USER_FAIL:
   return { ...state, error: 'Authentication Failed.', password: '', loading: false }
     case USER_UPDATE_CURR_SECTION_NO_CHANGE:
@@ -206,7 +207,7 @@ case LOGIN_USER_FAIL:
     }
     case SIGNUP: {
 
-      
+
       return {...state, loading: true, error: '' }
     }
 

@@ -199,8 +199,12 @@ const loginUserFail = ( dispatch ) => {
   } )
 }
 
-const loginUserSuccess = ( dispatch, user ) => {
-  console.log( 'user is in the HOUSE',user )
+const loginUserSuccess = async( dispatch, user ) => {
+  await fetch( `${process.env.REACT_APP_DB_URL}/users/:id`, {
+    method:"GET",
+  } ).then( res => {
+
+  } )
   dispatch( {
     type: LOGIN_USER_SUCCESS,
     payload: user
@@ -214,28 +218,39 @@ export const signUp = () => {
   }
 }
 export const signUpUser = ( firstName, lastName, email, password ) => {
-  let body = {
+  let payload = {
     fname: firstName,
     lname: lastName,
     email: email,
-    token: password,
+    token:'',
     uri: ''
   }
+
   return async ( dispatch ) => {
-      console.log( 'this disBATCH', dispatch )
+
+      console.log( 'this disBATCH', document.cookie )
         await firebase.auth().createUserWithEmailAndPassword( email, password )
           .then( user => loginUserSuccess( dispatch, user ) )
-           firebase.auth().onAuthStateChanged( ( user ) => {
+           firebase.auth().onAuthStateChanged( async( user ) => {
             if ( user ) {
-              console.log( 'in here duuuuuude' )
-              body.token = user.uid
-
-
+              payload.token = user.uid
+              console.log( 'here is my token', firebase.User )
+               const { user_id, jwt }  = await fetch( `${process.env.REACT_APP_DB_URL}/users`, {
+                method:'POST',
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify( {token:user.uid} )
+              } )
+              .then(
+                res => res.json()
+              )
+              payload.user_id= user_id
+              payload.jwt= jwt
             }
+            document.cookie = `jwt:${payload.jwt}`
           } )
           dispatch( {
             type: SIGNUP,
-            payload:body
+            payload
           } )
   }
 }

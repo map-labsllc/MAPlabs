@@ -76,7 +76,7 @@ class Login extends Component {
         <p style={styles.text}>{account}</p>
         <p style={styles.text}>Create one for FREE</p>
         <div
-          onPress={this.props.signUp}
+          onClick={this.props.signUp}
           underlayColor='#fff'
           href= '/signup'
           >
@@ -180,7 +180,7 @@ class Login extends Component {
 
 const mapStateToProps = ( { userRD } ) => {
   const { email, password, error, loading } = userRD.user
-  return { email, password, error, loading, token:userRD.user.user? userRD.user.user.uid:null  }
+  return { email, password, error, loading, token: userRD.user.uid  }
 }
 
 export default connect( mapStateToProps, {
