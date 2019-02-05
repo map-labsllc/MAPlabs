@@ -183,7 +183,7 @@ case LOGIN_USER:
   return {...state, loading: true, error: '' }
 case LOGIN_USER_SUCCESS:
 
-  return {...state, user: {...state.user, ...payload.user} }
+  return {...state, user: {...payload} }
 case LOGIN_USER_FAIL:
   return { ...state, error: 'Authentication Failed.', password: '', loading: false }
     case USER_UPDATE_CURR_SECTION_NO_CHANGE:

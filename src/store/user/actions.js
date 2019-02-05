@@ -176,10 +176,12 @@ export const loginUser = ( { email, password}  ) => {
   return async ( dispatch ) => {
 
     await firebase.auth().signInWithEmailAndPassword( email, password )
-      .then ( async ( user ) => {
-      const jwt = await  user.gerIdToken()
-        document.cookie = `jwt:${jwt}`
-        await fetch( `${process.env.REACT_APP_DB_URL}/users/:id`, {
+    //user is nested in an object  
+    .then ( async ( { user } ) => {
+      const jwt = await user.getIdToken()
+      document.cookie = `jwt:${jwt}`
+      console.log( 'jwt', jwt )
+      await fetch( `${process.env.REACT_APP_DB_URL}/users/`, {
           method:"GET",
         } ).then( async( res ) => {
           const info = await res.json()
@@ -225,14 +227,9 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
 
       console.log( 'this disBATCH', document.cookie )
         await firebase.auth().createUserWithEmailAndPassword( email, password )
-          .then( user => {
+          .then( user => {} )
 
-            loginUserSuccess( dispatch, user )
-
-         }
-       )
-
-           firebase.auth().onAuthStateChanged( async( user ) => {
+           await firebase.auth().onAuthStateChanged( async( user ) => {
             if ( user ) {
               payload.token = user.uid
               const jwt = await user.getIdToken()
@@ -253,12 +250,16 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
               )
 
               document.cookie = `jwt:${jwt}`
+              
+              loginUserSuccess( dispatch, payload.user )
+              
+              dispatch( {
+                type: SIGNUP,
+                payload
+              } )
             }
           } )
-          dispatch( {
-            type: SIGNUP,
-            payload
-          } )
+
   }
 }
 //

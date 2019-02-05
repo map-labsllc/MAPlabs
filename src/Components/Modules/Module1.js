@@ -224,7 +224,7 @@ const mapStateToProps = state => {
   return {
     isLoading: isLoading( state ),
     userId: getUser( state.userRD ).user_id,
-    token: state.userRD.user.uid
+    token: state.userRD.user.login_token
   }
 }
 

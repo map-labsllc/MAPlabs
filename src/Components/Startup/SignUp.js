@@ -10,7 +10,6 @@ class SignUp extends Component {
   constructor( props ) {
     super( props )
 
-
   }
 
 
@@ -68,8 +67,9 @@ class SignUp extends Component {
     const { viewStyles, textInputStyles, emailTextStyles, passwordTextStyles,
             signUpTextStyles, signUpButtonStyle } = styles
             console.log( 'here duuuuude',this.props )
+    const redirect = this.props.token ? true : false
     return (
-        this.props.token ? <Redirect to="/infopage"/>:
+        redirect ? <Redirect to="/infopage"/> :
       <div style={viewStyles}>
       <div
         style={{height:'100%',width:'100%',justifyContent: 'center',
@@ -180,7 +180,7 @@ function mapStateToProps( {userRD} ) {
     lname : userRD.user.lname,
     email : userRD.user.email,
     password: userRD.user.password,
-    token:userRD.user.user? userRD.user.user.uid:null
+    token: userRD.user.login_token ? userRD.user.login_token : '' 
   }
 }
 
