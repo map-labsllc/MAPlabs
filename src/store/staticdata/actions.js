@@ -65,7 +65,7 @@ export const loadAllStaticdataAC = () => {
       .catch( ( error ) => {
         console.log( "PROMISE.ALL ERROR", error )
         return dispatch( { type: STATICDATA_ERROR_DB, payload: error } )
-      });
+      } )
   }
 }
 

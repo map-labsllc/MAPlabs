@@ -41,7 +41,9 @@ export const loadAllTransitionsAC = ( userId ) => {
 
   return async dispatch => {
     dispatch( { type: TRANSITIONS_LOADING } )
-    return fetch( `${URL}/transitions/${userId}` )
+    return fetch( `${URL}/transitions/${userId}`, {
+      credentials: 'include'
+    } )
       .then( response => response.json() )
       .then( ( transitions ) => {
         // console.log("transitions", transitions)
@@ -97,6 +99,7 @@ export const persistTransitionsAC = ( userId, question_code, transitions ) => {
     return fetch( `${URL}/transitions/${userId}/${question_code}`, {
         method: 'POST',
         body: JSON.stringify( { transitions } ),
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',

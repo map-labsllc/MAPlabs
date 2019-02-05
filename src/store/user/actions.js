@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import Cookies from 'js-cookie'
 
 import {
   FIRSTNAME_CHANGED,
@@ -42,6 +43,7 @@ const persistCurrModuleAndSection = ( dispatch, user, moduleNum, sectionNum ) =>
   return fetch( `${URL}/users/${user.user_id}`, {
       method: 'PATCH',
       body: JSON.stringify( body ),
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -179,12 +181,13 @@ export const loginUser = ( { email, password}  ) => {
     //user is nested in an object  
     .then ( async ( { user } ) => {
       const jwt = await user.getIdToken()
-      document.cookie = `jwt:${jwt}`
-      console.log( 'jwt', jwt )
+      Cookies.set( 'jwt', jwt )
       await fetch( `${process.env.REACT_APP_DB_URL}/users/`, {
           method:"GET",
+          credentials: 'include'
         } ).then( async( res ) => {
           const info = await res.json()
+          console.log( 'user???', info )
           loginUserSuccess( dispatch, info )
 
         } )
@@ -249,7 +252,7 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
                 res => res.json()
               )
 
-              document.cookie = `jwt:${jwt}`
+              Cookies.set( 'jwt', jwt )      
               
               loginUserSuccess( dispatch, payload.user )
               

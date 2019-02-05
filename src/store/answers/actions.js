@@ -40,7 +40,9 @@ export const loadAllAnswersAC = ( userId ) => {
 
   return async dispatch => {
     dispatch( { type: ANSWERS_LOADING } )
-    return fetch( `${URL}/answers/${userId}` )
+    return fetch( `${URL}/answers/${userId}`, {
+      credentials: 'include'
+    } )
       .then( response => response.json() )
       .then( ( answers ) => {
         // console.log("answers", answers)
