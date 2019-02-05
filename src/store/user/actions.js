@@ -219,7 +219,6 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
     fname: firstName,
     lname: lastName,
     email: email,
-
   }
 
   return async ( dispatch ) => {
@@ -236,21 +235,22 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
            firebase.auth().onAuthStateChanged( async( user ) => {
             if ( user ) {
               payload.token = user.uid
-              const  jwt = await user.getIdToken()
+              const jwt = await user.getIdToken()
+              const body = JSON.stringify( {
+                fname:payload.fname,
+                lname:payload.lname,
+                email: payload.email,
+                jwt:jwt
+              } )
 
                payload.user = await fetch( `${process.env.REACT_APP_DB_URL}/users`, {
                 method:'POST',
                 headers:{"Content-Type":"application/json"},
-                body: JSON.stringify( {
-                  fname:payload.fname,
-                  lname:payload.lname,
-                  jwt:jwt
-                } )
+                body: body
               } )
               .then(
                 res => res.json()
               )
-
 
               document.cookie = `jwt:${jwt}`
             }

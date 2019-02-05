@@ -39,7 +39,7 @@ class SignUp extends Component {
     // const {first_name, last_name, email, password} = this.props
     // console.log('firstName',this.props.first_name);
     console.log( 'this.props.first_name', this.props )
-    this.props.signUpUser( this.props.first_name, this.props.last_name, this.props.email, this.props.password )
+    this.props.signUpUser( this.props.fname, this.props.lname, this.props.email, this.props.password )
   }
 
   renderError=()=> {
