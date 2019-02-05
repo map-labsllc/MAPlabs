@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { emailChanged, passwordChanged, loginUser, signUp } from '../../store/user/actions'
-
+import { Redirect }from 'react-router-dom'
 class Login extends Component {
   constructor( props ) {
     super( props )
   }
 
-  onEmailChange( text ) {
-    this.props.emailChanged( text )
+  onEmailChange =( event ) => {
+    this.props.emailChanged( event.target.value )
   }
 
-  onPasswordChange( text ) {
-    this.props.passwordChanged( text )
+  onPasswordChange =( event ) => {
+    this.props.passwordChanged( event.target.value )
   }
 
-  onButtonPress() {
+  onButtonPress=() => {
     const { email, password } = this.props
-
+    console.log( 'this.props.user',this.props.user )
     this.props.loginUser( { email, password } )
   }
 
-  renderError() {
+  renderError=()=> {
     if ( this.props.error ) {
       return (
         <div>
@@ -33,10 +33,10 @@ class Login extends Component {
     }
   }
 
-  renderButton() {
+  renderButton=() => {
     return (
       <div style={styles.loginButtonStyle} >
-        <button style={styles.loginTextStyles} onClick={ this.onButtonPress.bind( this )} > Login</button>
+        <button style={styles.loginTextStyles} onClick={ this.onButtonPress} > Login</button>
       </div>
     )
   }
@@ -48,6 +48,7 @@ class Login extends Component {
             const account= "Don't have an account?"
 
     return (
+      this.props.token ? <Redirect to="/infopage"/>:
       <div style={styles.divStyles}>
         <div
         style={{height:'100%',width:'100%',justifyContent: 'center',
@@ -59,23 +60,23 @@ class Login extends Component {
           placeholder='example@email.com'
           autoCapitalize="none"
           autoCorrect={ false }
-          onChange={ this.onEmailChange.bind( this ) }
-          value={ this.props.email.value}/>
+          onChange={ this.onEmailChange }
+          value={ this.props.email}/>
         <div style={styles.passwordTextStyles}>Password</div>
         <input style={styles.textInputStyles}
           type= 'password'
           placeholder='password'
           autoCorrect={ false }
           autoCapitalize="none"
-          onChange={ this.onPasswordChange.bind( this ) }
-          value={ this.props.password.value }
+          onChange={ this.onPasswordChange}
+          value={ this.props.password }
         />
         { this.renderError() }
         { this.renderButton()}
         <p style={styles.text}>{account}</p>
         <p style={styles.text}>Create one for FREE</p>
         <div
-          onPress={this.props.signUp}
+          onClick={this.props.signUp}
           underlayColor='#fff'
           href= '/signup'
           >
@@ -177,9 +178,9 @@ class Login extends Component {
     }
   }
 
-const mapStateToProps = ( { auth } ) => {
-  const { email, password, error, loading } = auth
-  return { email, password, error, loading }
+const mapStateToProps = ( { userRD } ) => {
+  const { email, password, error, loading } = userRD.user
+  return { email, password, error, loading, token: userRD.user.uid  }
 }
 
 export default connect( mapStateToProps, {

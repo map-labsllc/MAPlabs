@@ -29,7 +29,7 @@ const StartPage = () => {
         <PanelGroup accordian bsStyle="primary" style={style.panel}>
           <Panel eventKey="1">
             <Panel.Heading >
-              <Panel.Title toggle style={style.title}>1.	Commit to the process.</Panel.Title>
+              <Panel.Title toggle style={style.panelTitle}>1.	Commit to the process.</Panel.Title>
             </Panel.Heading>
             <Panel.Body collapsible style={style.panelBody}>
               One element of the scientific definition of purpose is “commitment.” Even if you do not yet have a sense of purpose, you can commit to the process of searching for it. Practically speaking, this commitment will work best by scheduling time for MAPmaker into your calendar. Everyone’s schedule is different, so try to find the times in your days and weeks that can consistently allow you to engage with this important investment in your future.
@@ -37,7 +37,7 @@ const StartPage = () => {
           </Panel>
           <Panel eventKey="2">
             <Panel.Heading>
-              <Panel.Title toggle style={style.title}> 2.	Promise to be honest with yourself.</Panel.Title>
+              <Panel.Title toggle style={style.panelTitle}> 2.	Promise to be honest with yourself.</Panel.Title>
             </Panel.Heading>
             <Panel.Body collapsible style={style.panelBody}>
               This is harder than it sounds.  Chances are that questions about your meaning and purpose have nagged you for a long time, and that you have gotten used to ignoring them and soldiering on with life.  Your default stance may be one of accepting the status quo and allowing your pre-established conceptions to hold root, despite your growing awareness (whether conscious or subconscious) that your old patterns, beliefs, and principles may no longer be sufficient to sustain your growing, evolving self.  But with more honesty, you will likely find new personal insights and understandings that you have consciously or unconsciously avoided.
@@ -47,7 +47,7 @@ const StartPage = () => {
           </Panel>
           <Panel eventKey="3">
             <Panel.Heading>
-              <Panel.Title toggle style={style.title}> 3.	Open yourself to new ideas.</Panel.Title>
+              <Panel.Title toggle style={style.panelTitle}> 3.	Open yourself to new ideas.</Panel.Title>
             </Panel.Heading>
             <Panel.Body collapsible style={style.panelBody}>
               Because MAPmaker will expose you to ways of thinking about yourself that you may never have considered before, or that you have previously avoided, it is important to approach the program with a willingness to entertain both new ideas and any old ideas that you may have avoided, but that you now come to understand as informing who you are.
@@ -56,7 +56,7 @@ const StartPage = () => {
           </Panel>
           <Panel eventKey="4">
             <Panel.Heading>
-              <Panel.Title toggle style={style.title}>4.	Embrace discomfort.</Panel.Title>
+              <Panel.Title toggle style={style.panelTitle}>4.	Embrace discomfort.</Panel.Title>
             </Panel.Heading>
             <Panel.Body collapsible style={style.panelBody}>
               The exercises might stir up a thought or desire that seems risky, something that makes you feel uncomfortable.  Pay attention to that feeling.  Resist the instinct to make it go away.  Instead, take a step back and think about why you are uncomfortable and what the underlying trigger of the discomfort is.  Often such discomfort arises from a perceived conflict between your deepest sense of personal truth that is being provoked, and a constraint in your life that seems to be at odds with your truth.  Most likely, this personal truth is not going to go away, and resolving the conflict it produces may be a major key to developing more meaning and purpose in your life.
@@ -64,7 +64,7 @@ const StartPage = () => {
           </Panel>
           <Panel eventKey="5">
             <Panel.Heading>
-              <Panel.Title toggle style={style.title}> 5.	Dare to not seek “happiness.”</Panel.Title>
+              <Panel.Title toggle style={style.panelTitle}> 5.	Dare to not seek “happiness.”</Panel.Title>
             </Panel.Heading>
             <Panel.Body collapsible style={style.panelBody}>
               The point of seeking purpose is flourishing (or as researchers sometimes say, eudaemonic well-being).  It turns out that flourishing does not require the transient state of conventional happiness.  In fact, seeking happiness can divert us from the search for purpose.  But if you find purpose, happiness, and more importantly life satisfaction, will almost certainly follow.
@@ -72,7 +72,7 @@ const StartPage = () => {
           </Panel>
           <Panel eventKey="6">
             <Panel.Heading>
-              <Panel.Title toggle style={style.title}>6.	Be aware that your search may be difficult for others to understand or contribute to.</Panel.Title>
+              <Panel.Title toggle style={style.panelTitle}>6.	Be aware that your search may be difficult for others to understand or contribute to.</Panel.Title>
             </Panel.Heading>
             <Panel.Body collapsible style={style.panelBody}>
               In fact, those closest to you may feel threatened, or even blamed, by your desire to seek a change in your life.  Your search for your meaning and purpose is up to you, not others.  So use discretion about who you talk to and what you reveal about your process.  This is especially important early on when your emerging understandings are like young seedlings that are just starting to sprout:  they are easily trampled and impaired by others even when there was no intention to do harm.
@@ -82,7 +82,7 @@ const StartPage = () => {
           </Panel>
           <Panel eventKey="7">
             <Panel.Heading>
-              <Panel.Title toggle style={style.title}>7.	To go deeper through journaling.</Panel.Title>
+              <Panel.Title toggle style={style.panelTitle}>7.	To go deeper through journaling.</Panel.Title>
             </Panel.Heading>
             <Panel.Body collapsible style={style.panelBody}>
               Most people find new layers of understanding are revealed when they write about the insights they gain from the exercises. Establishing a regular journaling practice will not only benefit you throughout the MAPmaker program as you are examining your life, but will continue to provide insight and accountability after you complete the program. Establishing a journaling routine now will provide immediate and future rewards.
@@ -91,10 +91,10 @@ const StartPage = () => {
         </PanelGroup>
       </div>
       <div className="text-center">
-        <Button className="startButton"><NavLink to="/modules/1"  activeStyle={{
-    fontWeight: "bold",
-    color: "white"
-  }}>Begin MAPMaker</NavLink></Button>
+        <Button className="startButton"><NavLink to="/modules/1" activeStyle={{
+          fontWeight: "bold",
+          color: "white"
+        }}>Begin MAPMaker</NavLink></Button>
       </div>
     </div >
   )
@@ -117,6 +117,11 @@ const style = {
     color: "#AAABB8",
   },
   title: {
+    textAlign: "center",
+    color: "black",
+    fontFamily: "Helvetica",
+  },
+  panelTitle: {
     textAlign: "center",
     color: "white",
     fontFamily: "Helvetica",

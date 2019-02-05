@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { firstNameChanged, lastNameChanged, emailChanged, passwordChanged, loginUser, signUpUser } from '../../store/user/actions'
+import { Redirect } from 'react-router-dom'
 
 
 //
@@ -9,11 +10,7 @@ class SignUp extends Component {
   constructor( props ) {
     super( props )
 
-console.log( 'thisis the props from the constructor>>>>>',props )
-this.onFirstNameChanged = this.onFirstNameChanged.bind( this )
-this.onLastNameChanged = this.onLastNameChanged.bind( this )
-this.onEmailChange = this.onEmailChange.bind( this )
-this.onPasswordChange = this.onPasswordChange.bind( this )
+
   }
 
 
@@ -57,7 +54,7 @@ this.onPasswordChange = this.onPasswordChange.bind( this )
     }
   }
 
-  renderButton() {
+  renderButton=()=> {
     return (
       <button style={styles.signUpButtonStyle} onClick={ this.onButtonPress}>
         <p style={styles.signUpTextStyles}>Sign Up</p>
@@ -72,6 +69,7 @@ this.onPasswordChange = this.onPasswordChange.bind( this )
             signUpTextStyles, signUpButtonStyle } = styles
             console.log( 'here duuuuude',this.props )
     return (
+        this.props.token ? <Redirect to="/infopage"/>:
       <div style={viewStyles}>
       <div
         style={{height:'100%',width:'100%',justifyContent: 'center',
@@ -175,14 +173,14 @@ const styles = {
   }
 }
 
-function mapStateToProps( state ) {
-  console.log( 'thisis the STATE>>',state.userRD.user )
+function mapStateToProps( {userRD} ) {
+  console.log( 'thisis the STATE>>',userRD.user )
   return {
-    fname : state.userRD.user.fname,
-    lname : state.userRD.user.lname,
-    email : state.userRD.user.email,
-    password: state.userRD.user.password,
-
+    fname : userRD.user.fname,
+    lname : userRD.user.lname,
+    email : userRD.user.email,
+    password: userRD.user.password,
+    token:userRD.user.user? userRD.user.user.uid:null
   }
 }
 

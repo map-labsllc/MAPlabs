@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import { Redirect } from 'react-router-dom'
 import Module from '../Framework/Module'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
@@ -127,7 +127,7 @@ class Module4 extends React.Component {
   render() {
 
     const { isLoading } = this.props
-    if (isLoading) {
+    if ( isLoading ) {
       return (
         <>
           <p>.</p>
@@ -138,6 +138,7 @@ class Module4 extends React.Component {
     }
 
     return (
+      !this.props.token ? <Redirect to="/infopage"/>:
       <>
         <Module
           moduleNum = { 4 }
@@ -204,6 +205,7 @@ const mapStateToProps = state => {
   return {
     isLoading: isLoading( state ),
     userId: getUser( state.userRD ).user_id,
+      token: state.userRD.user.uid
   }
 }
 

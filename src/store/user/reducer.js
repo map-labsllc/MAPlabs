@@ -47,12 +47,12 @@ const initialState = {
   orderOfSections: [],
   user: {
     user_id: 1,
-    fname: "Sandy",
-    lname: "Harrison",
-    email: "tharrison@gmail.com",
+    fname: "",
+    lname: "",
+    email: "",
     password: "",
     login_service_id: 1,
-    login_token: "DFDS34543GD",
+    token: "",
     curr_module: 4,
     curr_section: 0,
    },
@@ -170,7 +170,7 @@ export const userRD = ( state = initialState, action ) => {
 case EMAIL_CHANGED:
   let email = {
     ...state.user,
-    lname: payload,
+    email: payload,
 }
   return {...state, user:email }
 case PASSWORD_CHANGED:
@@ -182,7 +182,8 @@ let password = {
 case LOGIN_USER:
   return {...state, loading: true, error: '' }
 case LOGIN_USER_SUCCESS:
-  return {...state, user: payload }
+
+  return {...state, user: {...state.user, ...payload.user} }
 case LOGIN_USER_FAIL:
   return { ...state, error: 'Authentication Failed.', password: '', loading: false }
     case USER_UPDATE_CURR_SECTION_NO_CHANGE:
@@ -205,9 +206,9 @@ case LOGIN_USER_FAIL:
       }
     }
     case SIGNUP: {
-      const { userRD } = payload
-      console.log( 'THIS IS THE USERRD FOOOOOO!!!',userRD )
-      return  payload
+
+
+      return {...state, loading: true, error: '' }
     }
 
     default:
