@@ -171,20 +171,21 @@ export const passwordChanged = ( text ) => {
 
 export const loginUser = ( { email, password}  ) => {
 
+
+
   return async ( dispatch ) => {
-    console.log( 'email hurrrrr', email )
 
     await firebase.auth().signInWithEmailAndPassword( email, password )
-      .then( user => {
-        // let body = {
-        //   fname
-        //   lname,
-        //   email: email,
-        //   token: password,
-        //   uri: ''
-        // }
-        console.log( 'user ball', user )
-        loginUserSuccess( dispatch, user )
+      .then ( async ( user ) => {
+      const jwt = await  user.gerIdToken()
+        document.cookie = `jwt:${jwt}`
+        await fetch( `${process.env.REACT_APP_DB_URL}/users/:id`, {
+          method:"GET",
+        } ).then( async( res ) => {
+          const info = await res.json()
+          loginUserSuccess( dispatch, info )
+
+        } )
       } )
       .catch( function(){
         loginUserFail( dispatch )
@@ -200,11 +201,7 @@ const loginUserFail = ( dispatch ) => {
 }
 
 const loginUserSuccess = async( dispatch, user ) => {
-  await fetch( `${process.env.REACT_APP_DB_URL}/users/:id`, {
-    method:"GET",
-  } ).then( res => {
 
-  } )
   dispatch( {
     type: LOGIN_USER_SUCCESS,
     payload: user
@@ -222,31 +219,41 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
     fname: firstName,
     lname: lastName,
     email: email,
-    token:'',
-    uri: ''
+
   }
 
   return async ( dispatch ) => {
 
       console.log( 'this disBATCH', document.cookie )
         await firebase.auth().createUserWithEmailAndPassword( email, password )
-          .then( user => loginUserSuccess( dispatch, user ) )
+          .then( user => {
+
+            loginUserSuccess( dispatch, user )
+
+         }
+       )
+
            firebase.auth().onAuthStateChanged( async( user ) => {
             if ( user ) {
               payload.token = user.uid
-              console.log( 'here is my token', firebase.User )
-               const { user_id, jwt }  = await fetch( `${process.env.REACT_APP_DB_URL}/users`, {
+              const  jwt = await user.getIdToken()
+
+               payload.user = await fetch( `${process.env.REACT_APP_DB_URL}/users`, {
                 method:'POST',
                 headers:{"Content-Type":"application/json"},
-                body: JSON.stringify( {token:user.uid} )
+                body: JSON.stringify( {
+                  fname:payload.fname,
+                  lname:payload.lname,
+                  jwt:jwt
+                } )
               } )
               .then(
                 res => res.json()
               )
-              payload.user_id= user_id
-              payload.jwt= jwt
+
+
+              document.cookie = `jwt:${jwt}`
             }
-            document.cookie = `jwt:${payload.jwt}`
           } )
           dispatch( {
             type: SIGNUP,
