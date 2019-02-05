@@ -72,7 +72,8 @@ export const getUser = ( state ) => state.user
    isFirstSection()
 
    Check if sectionNum is first section in moduleNum.
-     Note: only check when there is
+     Note: only check when the sections of the module have been loaded (ie you
+           can't check random modules, just the one you're in.)
 
    return -- t/f
 ************************************************** */
@@ -143,6 +144,69 @@ export const userRD = ( state = initialState, action ) => {
 
   switch( type ) {
 
+    case FIRSTNAME_CHANGED:
+      let user = {
+        ...state.user,
+        fname: payload,
+      }
+      return{...state, user}
+
+    case LASTNAME_CHANGED:
+      let last = {
+        ...state.user,
+        lname: payload,
+      }
+      return{
+        ...state,
+        user:last}
+
+    case EMAIL_CHANGED:
+      let email = {
+        ...state.user,
+        lname: payload,
+      }
+      return {
+        ...state,
+        user:email }
+
+    case PASSWORD_CHANGED:
+      let password = {
+        ...state.user,
+        password:payload
+      }
+      return {
+        ...state,
+        user:password}
+
+    case LOGIN_USER:
+      return {
+        ...state,
+        loading: true,
+        error: '' }
+
+    case LOGIN_USER_SUCCESS:
+      return {
+        ...state,
+        user: payload }
+
+    case LOGIN_USER_FAIL:
+      return {
+        ...state,
+        error: 'Authentication Failed.',
+        password: '',
+        loading: false }
+
+
+    // TODO: we don't want to replace the whole userRD
+    case SIGNUP: {
+      const { userRD } = payload
+      console.log( 'userRD::SIGNUP, payload', userRD )
+      return  payload
+    }
+
+
+
+
     case USER_UPDATE_CURR_SECTION: {
       const { moduleNum, sectionNum } = payload
       const newUser = {
@@ -155,46 +219,18 @@ export const userRD = ( state = initialState, action ) => {
         user: newUser,
       }
     }
-    case FIRSTNAME_CHANGED:
-    let user = {
-      ...state.user,
-      fname: payload,
-    }
-  return{...state, user}
-  case LASTNAME_CHANGED:
-    let last = {
-      ...state.user,
-      lname: payload,
-    }
-  return{...state, user:last}
-case EMAIL_CHANGED:
-  let email = {
-    ...state.user,
-    email: payload,
-}
-  return {...state, user:email }
-case PASSWORD_CHANGED:
-let password = {
-  ...state.user,
-  password:payload
-}
-  return {...state, user:password}
-case LOGIN_USER:
-  return {...state, loading: true, error: '' }
-case LOGIN_USER_SUCCESS:
 
-  return {...state, user: {...state.user, ...payload.user} }
-case LOGIN_USER_FAIL:
-  return { ...state, error: 'Authentication Failed.', password: '', loading: false }
     case USER_UPDATE_CURR_SECTION_NO_CHANGE:
       return state
 
     case USER_UPDATE_ERROR:
+      console.log( "ERROR: USER_UPDATE_ERROR in userRD, payload: ", payload )
       return state
 
-    case USER_ADD_SECTION: {
-      const { moduleNum, sectionNum,  } = payload
+    case USER_ADD_SECTION:
+      const { moduleNum, sectionNum } = payload
 
+      // add the section to a module, potentially creaing the module first
       const newOrderOfSections = { ...state.orderOfSections }
       const sections = newOrderOfSections[moduleNum] || []
       if ( !sections.includes( sectionNum ) ) sections.push( sectionNum )
@@ -203,17 +239,12 @@ case LOGIN_USER_FAIL:
       return  {
         ...state,
         orderOfSections: newOrderOfSections,
-      }
-    }
-    case SIGNUP: {
-
-
-      return {...state, loading: true, error: '' }
-    }
+        }
 
     default:
       return state
    }
+
  }
 
  export default userRD

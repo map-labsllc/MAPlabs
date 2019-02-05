@@ -20,10 +20,12 @@ const Prompts = (props) => {
   if ( !prompts.length ) return null
   return (
     <>
-      <p>Prompts:</p>
+      <p><b>Prompts</b></p>
+      <ul>
       {prompts.map( ( prompt, idx ) =>
-        <p key={idx}>{prompt}</p>
+        <li key={idx}>{prompt}</li>
       )}
+      </ul>
     </>
   )
 }

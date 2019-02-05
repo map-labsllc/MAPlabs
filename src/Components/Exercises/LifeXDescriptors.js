@@ -161,12 +161,23 @@ export default class LifeDescriptors extends Component {
     // ------------------------------
     if ( !isDynamic ) {
       const { previousAnswers } = this.props
+
+      // nothing if there were no previous answers
+      if ( !previousAnswers.length ) {
+        return (
+          <></>
+        )
+      }
+
+      // display the previous answers
       return (
         <>
           <p><strong>Previous answers</strong></p>
+          <ul>
           {previousAnswers.map( ( previousAnswer, idx ) =>
-            <p key={idx}>{previousAnswer}</p>
+            <li key={idx}>{previousAnswer}</li>
           )}
+          </ul>
           <hr className="divider" />
         </>
       )
