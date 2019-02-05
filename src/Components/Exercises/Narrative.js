@@ -88,13 +88,13 @@ export default class Narrative extends React.Component {
     // render dynamic version
     return (
       <>
-        <Prompts prompts={prompts} />
         <form onSubmit={this.onSubmit} >
           <div>
             {instructions && (
-              <h4>{instructions}</h4>
+              <p>{instructions}</p>
             )}
-            <h2>&nbsp;&nbsp;{question.text}</h2>
+            <Prompts prompts={prompts} />
+            <h4>{question.text}</h4>
             <textarea
               rows="10"
               style={style.contain}
@@ -113,6 +113,33 @@ export default class Narrative extends React.Component {
         </form>
       </>
     )
+    // return (
+    //   <>
+    //     <Prompts prompts={prompts} />
+    //     <form onSubmit={this.onSubmit} >
+    //       <div>
+    //         {instructions && (
+    //           <h4>{instructions}</h4>
+    //         )}
+    //         <h2>{question.text}</h2>
+    //         <textarea
+    //           rows="10"
+    //           style={style.contain}
+    //           autoFocus={true}
+    //           placeholder="Please enter an answer and click Close"
+    //           onChange={this.onChange}
+    //           onBlur={this.onBlur}
+    //           value={answer}
+    //           wrap="hard"
+    //           display="block"
+    //         />
+    //       </div>
+    //       <div className="text-center">
+    //         <Button className="closeButton" type="button" style={style.closeButton}>Close</Button>
+    //       </div>
+    //     </form>
+    //   </>
+    // )
   }
 }
 
