@@ -233,23 +233,25 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
   return async ( dispatch ) => {
 
       console.log( 'this disBATCH', document.cookie )
+      //firebase sends back a user but we do not use it here. 
+      //user and jwt are taken from result of onAuthStateChanged
         await firebase.auth().createUserWithEmailAndPassword( email, password )
-          .then( user => {} )
+          .then( () => {} )
 
            await firebase.auth().onAuthStateChanged( async( user ) => {
             if ( user ) {
-              payload.token = user.uid
               const jwt = await user.getIdToken()
               const body = JSON.stringify( {
                 fname:payload.fname,
                 lname:payload.lname,
                 email: payload.email,
-                jwt:jwt
               } )
 
                payload.user = await fetch( `${process.env.REACT_APP_DB_URL}/users`, {
                 method:'POST',
-                headers:{"Content-Type":"application/json"},
+                headers:{"Content-Type":"application/json",
+                Authorization: `Token: ${jwt}`
+              },
                 body: body
               } )
               .then(
