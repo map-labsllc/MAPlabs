@@ -66,7 +66,7 @@ export default class Section extends React.Component {
           )}
 
           {!isVisible && (
-            <p>not availble yet</p>
+            <p>Please complete the the previous exercise</p>
           )}
         </Panel>
       </div >

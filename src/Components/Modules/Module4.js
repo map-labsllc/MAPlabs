@@ -137,8 +137,8 @@ class Module4 extends React.Component {
       )
     }
 
+    // {/*!this.props.token ? <Redirect to="/infopage"/>:*/}
     return (
-      !this.props.token ? <Redirect to="/infopage"/>:
       <>
         <Module
           moduleNum = { 4 }

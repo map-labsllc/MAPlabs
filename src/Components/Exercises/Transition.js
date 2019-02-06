@@ -96,8 +96,19 @@ export default class Transition extends React.Component {
     const { id, isDynamic } = this.props
 
     if (!isDynamic) {
+
+      // nothing to display
+      if ( !transition.from.length ) {
+        return (
+          <></>
+        )
+      }
+
+      // display the transition
       return (
-        <p>{transition.from} -> {transition.to}</p>
+        <ul>
+          <li>{transition.from} -> {transition.to}</li>
+        </ul>
       )
     }
 

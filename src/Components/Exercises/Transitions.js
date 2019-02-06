@@ -118,7 +118,8 @@ export default class Transitions extends React.Component {
     console.log("transitionsWithKeys", transitionsWithKeys)
     console.log("this.props.previousTransitions", this.props.previousTransitions)
 
-    if (!isDynamic) {
+    if ( !isDynamic ) {
+
       return (
         <>
           {transitionsWithKeys.map((transitionWithKey) =>
