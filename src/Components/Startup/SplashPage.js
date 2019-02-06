@@ -40,7 +40,7 @@ const style = {
         color: "#29648A",
         fontFamily: "Helvetica",
         fontSize: "5em",
-        marginTop: "3%",
+        marginTop: "5%",
         opacity: "0.95",
     },
     map: {
@@ -70,7 +70,7 @@ const style = {
     background: {
         backgroundImage: 'url("MAPmaker.jpg")',
         backgroundSize: "cover",
-        marginTop: "2%",
+        //marginTop: "2%",
         padding: "6px",
         color: "#AAABB8",
     },
