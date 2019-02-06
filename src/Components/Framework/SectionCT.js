@@ -22,7 +22,7 @@ const canUserView = ( state, moduleNum, sectionNum ) => {
   if ( moduleNum < user.curr_module ) return true
   if ( user.curr_module < moduleNum ) return false
 
-  if ( user.curr_section === 0 ) {
+  if ( user.curr_section <= 1 ) {
     return ( isFirstSection( state.userRD, moduleNum, sectionNum ) )
   }
   return sectionNum <= user.curr_section

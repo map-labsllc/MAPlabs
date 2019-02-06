@@ -78,7 +78,6 @@ export const getUser = ( state ) => state.user
 ************************************************** */
 export const isFirstSection = ( state, moduleNum, sectionNum ) => {
   console.log( 'userRD::isFirstSection()' )
-
   // We should only be getting inquiries for Modules that have been loaded and thus
   //   have a key/value pair in orderOfSections.  However some timing issue
   //   with loading leads to this being called before the first section loads SOMETIMES!
