@@ -39,10 +39,14 @@ export const updateTransitionsAC = ( question_code, transitions ) => {
 export const loadAllTransitionsAC = ( userId ) => {
   console.log( "loadAllTransitionsAC()" )
 
+  const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
+
   return async dispatch => {
     dispatch( { type: TRANSITIONS_LOADING } )
     return fetch( `${URL}/transitions/${userId}`, {
-      credentials: 'include'
+      headers: {
+        Authorization: `Token: ${jwt}`
+      }
     } )
       .then( response => response.json() )
       .then( ( transitions ) => {
@@ -96,13 +100,14 @@ export const persistTransitionsAC = ( userId, question_code, transitions ) => {
   console.log( "persisting: ", transitions )
 
   return async dispatch => {
+    const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
     return fetch( `${URL}/transitions/${userId}/${question_code}`, {
         method: 'POST',
         body: JSON.stringify( { transitions } ),
-        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
+          Authorization: `Token ${jwt}`
         },
       } )
       .then( response => response.json() )
