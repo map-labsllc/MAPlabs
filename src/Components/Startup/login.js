@@ -180,7 +180,7 @@ class Login extends Component {
 
 const mapStateToProps = ( { userRD } ) => {
   const { email, password, error, loading } = userRD.user
-  return { email, password, error, loading, token: userRD.user.uid  }
+  return { email, password, error, loading, token: userRD.user.login_token  }
 }
 
 export default connect( mapStateToProps, {

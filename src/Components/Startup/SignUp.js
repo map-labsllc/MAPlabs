@@ -10,7 +10,6 @@ class SignUp extends Component {
   constructor( props ) {
     super( props )
 
-
   }
 
 
@@ -39,7 +38,7 @@ class SignUp extends Component {
     // const {first_name, last_name, email, password} = this.props
     // console.log('firstName',this.props.first_name);
     console.log( 'this.props.first_name', this.props )
-    this.props.signUpUser( this.props.first_name, this.props.last_name, this.props.email, this.props.password )
+    this.props.signUpUser( this.props.fname, this.props.lname, this.props.email, this.props.password )
   }
 
   renderError=()=> {
@@ -68,8 +67,9 @@ class SignUp extends Component {
     const { viewStyles, textInputStyles, emailTextStyles, passwordTextStyles,
             signUpTextStyles, signUpButtonStyle } = styles
             console.log( 'here duuuuude',this.props )
+    const redirect = this.props.token ? true : false
     return (
-        this.props.token ? <Redirect to="/infopage"/>:
+        redirect ? <Redirect to="/infopage"/> :
       <div style={viewStyles}>
       <div
         style={{height:'100%',width:'100%',justifyContent: 'center',
@@ -180,7 +180,7 @@ function mapStateToProps( {userRD} ) {
     lname : userRD.user.lname,
     email : userRD.user.email,
     password: userRD.user.password,
-    token:userRD.user.user? userRD.user.user.uid:null
+    token: userRD.user.login_token ? userRD.user.login_token : '' 
   }
 }
 

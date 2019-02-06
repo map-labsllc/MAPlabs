@@ -9,20 +9,22 @@ import { loadAllStaticdataAC } from '../store/staticdata/actions'
 // export default class NavBar extends React.Component {
 class NavBar extends React.Component {
 
-  componentDidMount() {
-    console.log( "NavBar::componentDidMount()" )
-    const { dispatch, user } = this.props
+  componentDidUpdate( prevProps, prevState ) {
+    console.log( "NavBar::componentDidUpdate()" )
+    if ( this.props.user.login_token !== prevProps.user.login_token ) {
+      const { dispatch, user } = this.props
 
-    // asynch calls to load user and static from db
-    dispatch( loadAllAnswersAC( user.user_id ) )
-    dispatch( loadAllTransitionsAC( user.user_id ) )
-    dispatch( loadAllStaticdataAC() )
+      // asynch calls to load user and static from db
+      dispatch( loadAllAnswersAC( user.user_id ) )
+      dispatch( loadAllTransitionsAC( user.user_id ) )
+      dispatch( loadAllStaticdataAC() )
+    }
   }
 
   render() {
     console.log( "NavBar::render" )
     return (
-      this.props.user &&
+      !this.props.user.login_token ? null : 
       <Navbar style={styles.body} fixedTop>
       
         <Navbar.Header>

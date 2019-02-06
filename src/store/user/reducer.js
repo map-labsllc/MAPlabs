@@ -46,14 +46,14 @@ const initialState = {
   errorMessage: '',
   orderOfSections: [],
   user: {
-    user_id: 1,
-    fname: "Sandy",
-    lname: "Keziah",
-    email: "sandy@lacuna.com",
+    user_id: 0,
+    fname: "",
+    lname: "",
+    email: "",
     password: "",
-    login_service_id: 1,
-    login_token: "DFDS34543GD",
-    curr_module: 5,
+    login_service_id: 0,
+    token: "",
+    curr_module: -1,
     curr_section: 0,
    },
 // const initialState = {
@@ -95,7 +95,6 @@ export const getUser = ( state ) => state.user
 ************************************************** */
 export const isFirstSection = ( state, moduleNum, sectionNum ) => {
   console.log( 'userRD::isFirstSection()' )
-
   // We should only be getting inquiries for Modules that have been loaded and thus
   //   have a key/value pair in orderOfSections.  However some timing issue
   //   with loading leads to this being called before the first section loads SOMETIMES!
@@ -235,6 +234,37 @@ export const userRD = ( state = initialState, action ) => {
         user: newUser,
       }
     }
+    case FIRSTNAME_CHANGED:
+    let user = {
+      ...state.user,
+      fname: payload,
+    }
+  return{...state, user}
+  case LASTNAME_CHANGED:
+    let last = {
+      ...state.user,
+      lname: payload,
+    }
+  return{...state, user:last}
+case EMAIL_CHANGED:
+  let email = {
+    ...state.user,
+    email: payload,
+}
+  return {...state, user:email }
+case PASSWORD_CHANGED:
+let password = {
+  ...state.user,
+  password:payload
+}
+  return {...state, user:password}
+case LOGIN_USER:
+  return {...state, loading: true, error: '' }
+case LOGIN_USER_SUCCESS:
+
+  return {...state, user: {...payload} }
+case LOGIN_USER_FAIL:
+  return { ...state, error: 'Authentication Failed.', password: '', loading: false }
 
     case USER_UPDATE_CURR_SECTION_NO_CHANGE:
       return state
