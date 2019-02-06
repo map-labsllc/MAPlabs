@@ -46,14 +46,14 @@ const initialState = {
   errorMessage: '',
   orderOfSections: [],
   user: {
-    user_id: 1,
+    user_id: 0,
     fname: "",
     lname: "",
     email: "",
     password: "",
-    login_service_id: 1,
+    login_service_id: 0,
     token: "",
-    curr_module: 4,
+    curr_module: -1,
     curr_section: 0,
    },
 }
