@@ -98,6 +98,7 @@ export const persistAnswersAC = ( userId, question_code, answers ) => {
   return async dispatch => {
     return fetch( `${URL}/answers/${userId}/${question_code}`, {
         method: 'POST',
+        credentials: 'include',
         body: JSON.stringify( { answers } ),
         headers: {
           'Content-Type': 'application/json',
