@@ -40,8 +40,9 @@ export const loadAllAnswersAC = ( userId ) => {
 
   return async dispatch => {
     dispatch( { type: ANSWERS_LOADING } )
+    const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
     return fetch( `${URL}/answers/${userId}`, {
-      credentials: 'include'
+      headers: {Authorization: `Token: ${jwt}`} 
     } )
       .then( response => response.json() )
       .then( ( answers ) => {
@@ -96,13 +97,14 @@ export const persistAnswersAC = ( userId, question_code, answers ) => {
   console.log( "persisting: ", answers )
 
   return async dispatch => {
+    const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
     return fetch( `${URL}/answers/${userId}/${question_code}`, {
         method: 'POST',
-        credentials: 'include',
         body: JSON.stringify( { answers } ),
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
+          Authorization: `Token: ${jwt}`
         },
       } )
       .then( response => response.json() )

@@ -1,5 +1,4 @@
 import firebase from 'firebase'
-import Cookies from 'js-cookie'
 
 import {
   FIRSTNAME_CHANGED,
@@ -40,13 +39,16 @@ const persistCurrModuleAndSection = ( dispatch, user, moduleNum, sectionNum ) =>
   }
 
   console.log( "---- fetching body: ", JSON.stringify( body ) )
+
+  const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
+
   return fetch( `${URL}/users/${user.user_id}`, {
       method: 'PATCH',
       body: JSON.stringify( body ),
-      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        Authorization: `Token: ${jwt}`
       },
     } )
     .then( response => {
@@ -181,10 +183,12 @@ export const loginUser = ( { email, password}  ) => {
     //user is nested in an object  
     .then ( async ( { user } ) => {
       const jwt = await user.getIdToken()
-      Cookies.set( 'jwt', jwt )
+      localStorage.setItem( 'jwt', JSON.stringify( jwt ) )
       await fetch( `${process.env.REACT_APP_DB_URL}/users/`, {
           method:"GET",
-          credentials: 'include'
+          headers: {
+            Authorization: `Token: ${jwt}`
+          }
         } ).then( async( res ) => {
           const info = await res.json()
           console.log( 'user???', info )
@@ -252,8 +256,8 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
                 res => res.json()
               )
 
-              Cookies.set( 'jwt', jwt )      
-              
+              localStorage.setItem( 'jwt', JSON.stringify( jwt ) )
+      
               loginUserSuccess( dispatch, payload.user )
               
               dispatch( {
