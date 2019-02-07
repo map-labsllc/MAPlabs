@@ -22,7 +22,7 @@ import { getNextModuleSection } from './reducer'
 const URL = process.env.REACT_APP_DB_URL
 
 /* ************************************************
-    persistCurrModuleAndSection
+    persistCurrModuleAndSectionz
 
     Helper to persist the user's new curr_module and curr_section
 
@@ -174,8 +174,6 @@ export const passwordChanged = ( text ) => {
 }
 
 export const loginUser = ( { email, password}  ) => {
-
-
 
   return async ( dispatch ) => {
 
