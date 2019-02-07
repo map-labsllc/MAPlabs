@@ -154,11 +154,8 @@ export const getNextModuleSection = ( userRD, currModuleNum, currSectionNum ) =>
   userRD
 ************************************************** */
 export const userRD = ( state = initialState, action ) => {
-
     const { type, payload } = action
-
   switch( type ) {
-
     case USER_UPDATE_CURR_SECTION: {
       const { moduleNum, sectionNum } = payload
       const newUser = {
@@ -177,60 +174,51 @@ export const userRD = ( state = initialState, action ) => {
       fname: payload,
     }
   return{...state, user}
-  case LASTNAME_CHANGED:
+    case LASTNAME_CHANGED:
     let last = {
       ...state.user,
       lname: payload,
     }
   return{...state, user:last}
-case EMAIL_CHANGED:
-  let email = {
-    ...state.user,
-    email: payload,
-}
+  case EMAIL_CHANGED:
+    let email = {
+      ...state.user,
+      email: payload,
+    }
   return {...state, user:email }
-case PASSWORD_CHANGED:
-let password = {
-  ...state.user,
-  password:payload
-}
+  case PASSWORD_CHANGED:
+    let password = {
+      ...state.user,
+      password:payload
+    }
   return {...state, user:password}
-case LOGIN_USER:
-  return {...state, loading: true, error: '' }
-case LOGIN_USER_SUCCESS:
-
-  return {...state, user: {...payload} }
-case LOGIN_USER_FAIL:
-  return { ...state, error: 'Authentication Failed.', password: '', loading: false }
-    case USER_UPDATE_CURR_SECTION_NO_CHANGE:
-      return state
-
-    case USER_UPDATE_ERROR:
-      return state
-
-    case USER_ADD_SECTION: {
-      const { moduleNum, sectionNum,  } = payload
-
-      const newOrderOfSections = { ...state.orderOfSections }
-      const sections = newOrderOfSections[moduleNum] || []
-      if ( !sections.includes( sectionNum ) ) sections.push( sectionNum )
-      newOrderOfSections[moduleNum] = sections
-
-      return  {
-        ...state,
-        orderOfSections: newOrderOfSections,
-      }
+  case LOGIN_USER:
+    return {...state, loading: true, error: '' }
+  case LOGIN_USER_SUCCESS:
+    return {...state, user: {...payload}, loading: false }
+  case LOGIN_USER_FAIL:
+    return { ...state, error: 'Authentication Failed.', password: '', loading: false }
+  case USER_UPDATE_CURR_SECTION_NO_CHANGE:
+    return state
+  case USER_UPDATE_ERROR:
+    return state
+  case USER_ADD_SECTION: {
+    const { moduleNum, sectionNum,  } = payload
+    const newOrderOfSections = { ...state.orderOfSections }
+    const sections = newOrderOfSections[moduleNum] || []
+    if ( !sections.includes( sectionNum ) ) sections.push( sectionNum )
+    newOrderOfSections[moduleNum] = sections
+    return  {
+      ...state,
+      orderOfSections: newOrderOfSections,
     }
-    case SIGNUP: {
+  }
+  case SIGNUP: {
+    return {...state, loading: true, error: '' }
+  }
+  default:
+    return state
+  }
+}
 
-
-      return {...state, loading: true, error: '' }
-    }
-
-    default:
-      return state
-   }
-
- }
-
- export default userRD
+export default userRD
