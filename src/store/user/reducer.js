@@ -1,13 +1,3 @@
-oad
-    const newOrderOfSections = { ...state.orderOfSections }
-    const sections = newOrderOfSections[moduleNum] || []
-    if ( !sections.includes( sectionNum ) ) sections.push( sectionNum )
-    newOrderOfSections[moduleNum] = sections
-    return  {
-      ...state,
-      orderOfSections: newOrderOfSections,
-    }
-  }
 // need to mege with the user info coming from login
 
 import {
