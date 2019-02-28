@@ -1,0 +1,65 @@
+.headContainer {
+  z-index: 1;
+  height: 250px;
+  width: 650px;
+  position: relative;
+  left: 10%;
+  top: -126px;
+}
+
+.subheader {
+  z-index: 1;
+  font-style: italic;
+  position: relative;
+  left: 7px;
+  top: 60px;
+}
+
+.signup {
+  color: white;
+}
+
+.navlinks{
+  float: right;
+}
+
+.infoBtn {
+  margin-left: 20px;
+}
+
+.signupHead {
+  z-index: 1;
+}
+
+@media only screen and (min-width: 1136px) {
+  .signup {
+    color: white;
+    /* borderStyle: "solid", */
+    /* borderColor: "white", */
+    /* paddingRight: "10px", */
+    /* paddingLeft: "10px", */ 
+    padding: 8px 15px;
+    /* backgroundImage: "linear-gradient(to right, #F64C72 , #EB6D58)", */
+    /* background: "#66FCF1", */
+    border-radius: 5px;
+  }
+
+  .subheader{
+    z-index: 1;
+    font-style: italic;
+    top: -140px;
+    left: 103px;
+    position: relative;
+  }
+
+  .headContainer {
+    left: -157px;
+    top: -180px;
+    position: relative;
+    align-self: flex-end;
+    z-index: 1;
+    height: 250px;
+    width: 650px;
+    
+  }
+}
