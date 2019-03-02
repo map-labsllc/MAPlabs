@@ -26,7 +26,8 @@ const StartPage = () => {
         </div>
       </div >
       <div className="container-fluid" style={style.panelContain}>
-        <PanelGroup accordian bsStyle="primary" style={style.panel}>
+        { /*pass id prop to prevent react runtime warning*/ }
+        <PanelGroup id="0" accordian="true" bsStyle="primary" style={style.panel}>
           <Panel eventKey="1">
             <Panel.Heading >
               <Panel.Title toggle style={style.panelTitle}>1.	Commit to the process.</Panel.Title>

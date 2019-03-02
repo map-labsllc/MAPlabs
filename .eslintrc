@@ -2,7 +2,6 @@
    "extends": "react-app",
    "rules": {
      "semi": ["error","never"],
-     "space-in-parens": ["error", "always"],
      "no-restricted-imports": ["error", "never"],
      "no-unused-expressions": 0
      }
