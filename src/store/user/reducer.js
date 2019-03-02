@@ -16,6 +16,9 @@ import {
 } from './constants'
 
 /*
+
+  THIS IS THE SHAPE, DON'T UNCOMMMENT
+
   userRD: {
     isLoading: true,
     isError: false,
@@ -39,38 +42,45 @@ import {
   }
 */
 
-const initialState = {
-  isLoading: false,  // change to true when we connect with login process
-  isError: false,
-  errorMessage: '',
-  orderOfSections: [],
-  user: {
-    user_id: 0,
-    fname: "",
-    lname: "",
-    email: "",
-    password: "",
-    login_service_id: 0,
-    token: "",
-    curr_module: -1,
-    curr_section: 0,
-   },
+
+// Blank user will start app in auth mode
+// --------------------------------------
 // const initialState = {
 //   isLoading: false,  // change to true when we connect with login process
 //   isError: false,
 //   errorMessage: '',
 //   orderOfSections: [],
 //   user: {
-//     user_id: 1,
+//     user_id: 0,
 //     fname: "",
 //     lname: "",
 //     email: "",
-//     password: "",
-//     login_service_id: 1,
-//     token: "",
-//     curr_module: 4,
+//     password: "",  // can we remove this?
+//     login_service_id: 0,
+//     login_token: "",
+//     curr_module: -1,
 //     curr_section: 0,
-//    },
+//   }
+// }
+
+// Mock user will start app already logged in
+// ------------------------------------------
+const initialState = {
+  isLoading: false,  // change to true when we connect with login process
+  isError: false,
+  errorMessage: '',
+  orderOfSections: [],
+  user: {
+    user_id: 3,
+    fname: "Isabel",
+    lname: "Phelps",
+    email: "isabel@gmail.com",
+    password: "",  // can we remove this?
+    login_service_id: 0,
+    login_token: "XYZ",
+    curr_module: 5,
+    curr_section: 0,
+  },
 }
 
 /* ***********************************************
