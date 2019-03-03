@@ -20,7 +20,6 @@ import Section from './Section'
    props:
      isLoggedIn -- boolean if a user is logged in
      isLoading -- boolean if still loading user data
-
      moduleNum -- integer, the module number
      moduleTitle -- title of the Module
      moduleDescription -- could be many lines, if we need paragraphs then will need to set innerHTML
@@ -46,7 +45,7 @@ export default class Module extends React.Component {
         <>
           <p>.</p>
           <p>.</p>
-          <p>Imagine a spinner...</p>
+          <p>Imagine if I were a spinner, how professional would that be????</p>
         </>
       )
     }

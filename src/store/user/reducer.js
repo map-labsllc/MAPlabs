@@ -44,7 +44,8 @@ import {
 
 let initialState = {}
 
-// set t/f to go through auth or auto-login with mock user
+// true: go through auth
+// false: backdoor / bypass auth and auto-login with mock user
 if (false) {
 
   // Blank user will start app in auth mode
@@ -97,7 +98,17 @@ if (false) {
 
    return -- user object
 ************************************************** */
-export const getUser = ( state ) => state.user
+export const getUser = (state) => state.user
+
+
+/* ***********************************************
+   isLoggedIn()
+
+   Check if user is logged in / authorized
+
+   return -- t/f
+************************************************** */
+export const isLoggedIn = (state) => !!state.user.login_token
 
 
 /* ***********************************************
