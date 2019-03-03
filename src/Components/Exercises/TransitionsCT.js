@@ -8,6 +8,7 @@ import { updateTransitionsAC } from '../../store/transitions/actions'
    mapStateToProps()
 
    passedProps:
+     number -- number of the question in <Questions>, 1-based
      question -- { code: 50, text: "question 50" }
      isDynamic -- undefined or true
                   rendering static version in Popup or dynamic verison in Modal
@@ -16,6 +17,7 @@ const mapStateToProps = ( state, passedProps ) => {
   console.log( "TransitionsCT::mapStateToProps()" )
 
   const {
+    number,
     question,
   } = passedProps
 
@@ -30,6 +32,7 @@ const mapStateToProps = ( state, passedProps ) => {
   console.log('TransitionsCT::previousTransitions: ', previousTransitions);
 
   return {
+    number,
     question,
     previousTransitions,
   }
