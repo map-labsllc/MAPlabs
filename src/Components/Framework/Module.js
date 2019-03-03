@@ -63,8 +63,15 @@ export default class Module extends React.Component {
           >
             <span dangerouslySetInnerHTML={{ __html: moduleDescription }} />
           </ShowMoreLess>
+
+          { /* render the sections, add the number of the section in the module */ }
           <div style={style.spacing}>
-            {children}
+            {React.Children.map(children, (child, index) => {
+              const numberedChild = React.cloneElement(child, {
+                number: index + 1, // numbering is 1-based
+              })
+              return numberedChild
+            })}
           </div>
         </div>
       </div>
