@@ -45,7 +45,7 @@ import {
 let initialState = {}
 
 // set t/f to go through auth or auto-login with mock user
-if (true) {
+if (false) {
 
   // Blank user will start app in auth mode
   // --------------------------------------

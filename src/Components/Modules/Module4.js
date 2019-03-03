@@ -1,7 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import Module from '../Framework/Module'
+
+import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
@@ -14,10 +13,6 @@ import BracketCT from '../Exercises/BracketCT'
 import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
 import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
 
-import { getUser } from '../../store/user/reducer'
-import { isLoading } from '../../store/ui/reducer'
-
-
 import {
   MOD_4_DESC,
   QUES_410_DESC,
@@ -26,23 +21,19 @@ import {
   QUES_440_DESC,
   QUES_450_DESC,
   QUES_460_DESC,
-  QUES_470_DESC,
 } from './Module4Text'
 
 import {
-  Button,
-  Form,
 } from 'react-bootstrap'
 
 /* **************************************************
    Used to test components during development
 ***************************************************** */
-class Module4 extends React.Component {
-
+export default class Module4 extends React.Component {
 
   // Define questions and excercises for Module 4
-  // ---------------------------------------------------------------------
-
+  // --------------------------------------------------------------------
+  
 
   // -------------------------
   // LifeDescriptions
@@ -119,105 +110,51 @@ class Module4 extends React.Component {
       instructions = "Write a short statement that brings together all the desires from each category and captures the essence of what this exercise has revealed to you using the phrases themselves. Note:  If there were desires that reached the final tradeoff round in Exercise 3 that are also really important, feel free to incorporate them as well. "
     /> )
 
-
-
-
   /* *********************************************************** */
-  // render!
   render() {
-
-    const { isLoading } = this.props
-    if ( isLoading ) {
-      return (
-        <>
-          <p>.</p>
-          <p>.</p>
-          <p>Imagine a spinner...</p>
-        </>
-      )
-    }
-
-    // {/*!this.props.token ? <Redirect to="/infopage"/>:*/}
     return (
-      <>
-        <Module
+      <ModuleCT
+        moduleNum = { 4 }
+        moduleTitle = "Your Meanings and Motivations "
+        moduleDescription = { MOD_4_DESC }
+      >
+        <SectionCT
           moduleNum = { 4 }
-          moduleTitle = "Your Meanings and Motivations "
-          moduleDescription = { MOD_4_DESC }
-        >
-          <SectionCT
-            moduleNum = { 4 }
-            sectionNum = { 410 }
-            sectionTitle = "Reflect on your current situation"
-            exercise = {this.exercise_410}
-          />
-          <SectionCT
-            moduleNum = { 4 }
-            sectionNum = { 420 }
-            sectionTitle = "Describe your current situation"
-            exercise = {this.exercise_420}
-          />
-          <SectionCT
-            moduleNum = { 4 }
-            sectionNum = { 430 }
-            sectionTitle = "Breaking and building"
-            exercise = {this.exercise_430}
-          />
-          <SectionCT
-            moduleNum = { 4 }
-            sectionNum = { 440 }
-            sectionTitle = "Compare your 'current situation' statement to your 'future desired situation' statement"
-            exercise = {this.exercise_440}
-          />
-          <SectionCT
-            moduleNum = { 4 }
-            sectionNum = { 450 }
-            sectionTitle = "Make tradeoffs within each category"
-            exercise = {this.exercise_450}
-          />
-          <SectionCT
-            moduleNum = { 4 }
-            sectionNum = { 460 }
-            sectionTitle = "Synthesize into a Desires Statement"
-            exercise = {this.exercise_460}
-          />
-
-
-
-
-
-
-
-        </Module>
-      </>
-
-
+          sectionNum = { 410 }
+          sectionTitle = "Reflect on your current situation"
+          exercise = {this.exercise_410}
+        />
+        <SectionCT
+          moduleNum = { 4 }
+          sectionNum = { 420 }
+          sectionTitle = "Describe your current situation"
+          exercise = {this.exercise_420}
+        />
+        <SectionCT
+          moduleNum = { 4 }
+          sectionNum = { 430 }
+          sectionTitle = "Breaking and building"
+          exercise = {this.exercise_430}
+        />
+        <SectionCT
+          moduleNum = { 4 }
+          sectionNum = { 440 }
+          sectionTitle = "Compare your 'current situation' statement to your 'future desired situation' statement"
+          exercise = {this.exercise_440}
+        />
+        <SectionCT
+          moduleNum = { 4 }
+          sectionNum = { 450 }
+          sectionTitle = "Make tradeoffs within each category"
+          exercise = {this.exercise_450}
+        />
+        <SectionCT
+          moduleNum = { 4 }
+          sectionNum = { 460 }
+          sectionTitle = "Synthesize into a Desires Statement"
+          exercise = {this.exercise_460}
+        />
+      </ModuleCT>
     )
   }
 }
-
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-
-// Wrap in container to get access to store and dispatch
-const mapStateToProps = state => {
-  return {
-    isLoading: isLoading( state ),
-    userId: getUser( state.userRD ).user_id,
-      token: state.userRD.user.login_token
-  }
-}
-
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-
-const mapDispatchToProps = dispatch => ( {
-  dispatch,
-} )
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )( Module4 )

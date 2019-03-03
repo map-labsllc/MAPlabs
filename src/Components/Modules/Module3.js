@@ -1,10 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import Module from '../Framework/Module'
+
+import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
-
 import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
@@ -12,9 +10,6 @@ import BracketCT from '../Exercises/BracketCT'
 
 import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
 import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
-
-import { getUser } from '../../store/user/reducer'
-import { isLoading } from '../../store/ui/reducer'
 
 import {
   MOD_3_DESC,
@@ -34,7 +29,7 @@ import {
 /* **************************************************
    Module 3 layout
 ***************************************************** */
-class Module3 extends React.Component {
+export default class Module3 extends React.Component {
 
   // Define questions and excercises for Module 3
   // ---------------------------------------------------------------------
@@ -148,90 +143,49 @@ class Module3 extends React.Component {
   /* *********************************************************** */
   // render!
   render() {
-
-    const { isLoading } = this.props
-    if ( isLoading ) {
-      return (
-        <>
-          <p>.</p>
-          <p>.</p>
-          <p>Imagine a spinner...</p>
-        </>
-      )
-    }
-
     return (
-      !this.props.token ? <Redirect to="/infopage"/>:
-      <>
-        <Module
+      <ModuleCT
+        moduleNum = { 3 }
+        moduleTitle = "Personal Desires"
+        moduleDescription = { MOD_3_DESC }
+      >
+        <SectionCT
           moduleNum = { 3 }
-          moduleTitle = "Personal Desires"
-          moduleDescription = { MOD_3_DESC }
-        >
-          <SectionCT
-            moduleNum = { 3 }
-            sectionNum = { 310 }
-            sectionTitle = "Deep Desires"
-            exercise = {this.exercise_310}
-          />
-          <SectionCT
-            moduleNum = { 3 }
-            sectionNum = { 320 }
-            sectionTitle = "Make tradeoffs within each category"
-            exercise = {this.exercise_320}
-          />
-          <SectionCT
-            moduleNum = { 3 }
-            sectionNum = { 330 }
-            sectionTitle = "Make tradeoffs between each category"
-            exercise = {this.exercise_330}
-          />
-          <SectionCT
-            moduleNum = { 3 }
-            sectionNum = { 340 }
-            sectionTitle = "Synthesize into a Desires Statement"
-            exercise = {this.exercise_340}
-          />
-          <SectionCT
-            moduleNum = { 3 }
-            sectionNum = { 350 }
-            sectionTitle = "Reflect of your stated desires"
-            exercise = {this.exercise_350}
-          />
-          <SectionCT
-            moduleNum = { 3 }
-            sectionNum = { 360 }
-            sectionTitle = "Break and building"
-            exercise = {this.exercise_360}
-          />
-        </Module>
-      </>
+          sectionNum = { 310 }
+          sectionTitle = "Deep Desires"
+          exercise = {this.exercise_310}
+        />
+        <SectionCT
+          moduleNum = { 3 }
+          sectionNum = { 320 }
+          sectionTitle = "Make tradeoffs within each category"
+          exercise = {this.exercise_320}
+        />
+        <SectionCT
+          moduleNum = { 3 }
+          sectionNum = { 330 }
+          sectionTitle = "Make tradeoffs between each category"
+          exercise = {this.exercise_330}
+        />
+        <SectionCT
+          moduleNum = { 3 }
+          sectionNum = { 340 }
+          sectionTitle = "Synthesize into a Desires Statement"
+          exercise = {this.exercise_340}
+        />
+        <SectionCT
+          moduleNum = { 3 }
+          sectionNum = { 350 }
+          sectionTitle = "Reflect of your stated desires"
+          exercise = {this.exercise_350}
+        />
+        <SectionCT
+          moduleNum = { 3 }
+          sectionNum = { 360 }
+          sectionTitle = "Break and building"
+          exercise = {this.exercise_360}
+        />
+      </ModuleCT>
     )
   }
 }
-
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-
-// Wrap in container to get access to store and dispatch
-const mapStateToProps = state => {
-  return {
-    isLoading: isLoading( state ),
-    userId: getUser( state.userRD ).user_id,
-      token: state.userRD.user.login_token
-  }
-}
-
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-
-const mapDispatchToProps = dispatch => ( {
-  dispatch,
-} )
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )( Module3 )

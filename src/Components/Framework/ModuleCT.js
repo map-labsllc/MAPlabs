@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import Module from './Module'
+import { isLoading } from '../../store/ui/reducer'
 
 /* *****************************************
    mapStateToProps()
@@ -13,9 +14,14 @@ import Module from './Module'
 const mapStateToProps = ( state, passedProps ) => {
   console.log( "ModuleCT::mapStateToProps()" )
 
+  const isLoggedIn = !!state.userRD.user.login_token
+
   const { moduleNum, moduleTitle, moduleDescription, children } = passedProps
 
   return {
+    isLoggedIn,
+    isLoading: isLoading( state ),
+
     moduleNum,
     moduleTitle,
     moduleDescription,
