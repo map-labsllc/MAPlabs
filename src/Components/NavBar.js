@@ -132,15 +132,22 @@ const styles = {
     'lineHeight': '20px'
   }
 }
+
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+
 /* ********************************************************
    Wrap NavBar in container to get access to dispatch
 *********************************************************** */
+
 const mapStateToProps = state => {
   const { user } = state.userRD
   return {
     user
   }
 }
+
 const mapDispatchToProps = dispatch => ( {
   dispatch,
 } )
