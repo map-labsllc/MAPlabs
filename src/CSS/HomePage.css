@@ -1,18 +1,20 @@
 .headContainer {
   z-index: 1;
-  height: 250px;
+  height: 50px;
   width: 650px;
   position: relative;
-  left: 10%;
-  top: -126px;
+  margin-left: 10px; 
+  /* left: 10%; */
+  top: -30px;
+  /* text-decoration: underline; */
 }
 
 .subheader {
   z-index: 1;
   font-style: italic;
   position: relative;
-  left: 7px;
-  top: 60px;
+  /* left: 7px; */
+  top: 50px;
 }
 
 .signup {
@@ -21,17 +23,52 @@
 
 .navlinks{
   float: right;
+  font-size: 20px;
 }
 
 .infoBtn {
-  margin-left: 20px;
+  margin-left: 10px;
+}
+
+.subText {
+  font-weight: 300i;
+  font-family: 'Roboto', sans-serif;
+  /* font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif; */
+}
+
+.header {
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
 }
 
 .signupHead {
   z-index: 1;
+  width: 35%;
+  /* text-align: center; */
+  position: relative;
+  /* top: -50px; */
+  margin-top: 40px;
+  border-left: 6px solid #91DF5C;
+  border-top-left-radius: 25px;
 }
 
-@media only screen and (min-width: 1136px) {
+.signupBtn {
+  text-indent: 2%;
+}
+
+.acct {
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+}
+
+.loginLink {
+  /* color: #f64c72; */
+  color: #91DF5C;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+}
+
+@media only screen and (min-width: 1008px) {
   .signup {
     color: white;
     /* borderStyle: "solid", */
@@ -47,19 +84,44 @@
   .subheader{
     z-index: 1;
     font-style: italic;
-    top: -140px;
+    top: -50px;
     left: 103px;
     position: relative;
   }
 
+  .signupHead {
+    z-index: 1;
+    /* width: 100%; */
+    /* text-align: center; */
+    position: relative;
+    top: -20px;
+    margin-bottom: 0px;
+    border-left: 6px solid #91DF5C;
+  }
+
+  .signupText {
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }
+
+  .signupBtn {
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }
+
+  .loginText {
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+
   .headContainer {
     left: -157px;
-    top: -180px;
+    top: 40px;
     position: relative;
     align-self: flex-end;
     z-index: 1;
     height: 250px;
     width: 650px;
-    
+    /* text-decoration: underline; */
   }
 }
