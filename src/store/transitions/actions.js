@@ -107,7 +107,7 @@ export const persistTransitionsAC = ( userId, question_code, transitions ) => {
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          Authorization: `Token ${jwt}`
+          Authorization: `Token: ${jwt}`
         },
       } )
       .then( response => response.json() )
