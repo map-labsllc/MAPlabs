@@ -16,6 +16,9 @@ import {
 } from './constants'
 
 /*
+
+  THIS IS THE SHAPE, DON'T UNCOMMMENT
+
   userRD: {
     isLoading: true,
     isError: false,
@@ -39,39 +42,54 @@ import {
   }
 */
 
-const initialState = {
-  isLoading: false,  // change to true when we connect with login process
-  isError: false,
-  errorMessage: '',
-  orderOfSections: [],
-  user: {
-    user_id: 0,
-    fname: "",
-    lname: "",
-    email: "",
-    password: "",
-    login_service_id: 0,
-    token: "",
-    curr_module: -1,
-    curr_section: 0,
-   },
-// const initialState = {
-//   isLoading: false,  // change to true when we connect with login process
-//   isError: false,
-//   errorMessage: '',
-//   orderOfSections: [],
-//   user: {
-//     user_id: 1,
-//     fname: "",
-//     lname: "",
-//     email: "",
-//     password: "",
-//     login_service_id: 1,
-//     token: "",
-//     curr_module: 4,
-//     curr_section: 0,
-//    },
+let initialState = {}
+
+// true: go through auth
+// false: backdoor / bypass auth and auto-login with mock user
+if (false) {
+
+  // Blank user will start app in auth mode
+  // --------------------------------------
+  initialState = {
+    isLoading: false,  // change to true when we connect with login process
+    isError: false,
+    errorMessage: '',
+    orderOfSections: [],
+    user: {
+      user_id: 0,
+      fname: "",
+      lname: "",
+      email: "",
+      password: "",  // can we remove this?
+      login_service_id: 0,
+      login_token: "",
+      curr_module: -1,
+      curr_section: 0,
+    }
+  }
+} else {
+
+  // Mock user will start app already logged in
+  // ------------------------------------------
+  initialState = {
+    isLoading: false,  // change to true when we connect with login process
+    isError: false,
+    errorMessage: '',
+    orderOfSections: [],
+    user: {
+      user_id: 3,
+      fname: "Isabel",
+      lname: "Phelps",
+      email: "isabel@gmail.com",
+      password: "",  // can we remove this?
+      login_service_id: 0,
+      login_token: "XYZ",
+      curr_module: 5,
+      curr_section: 0,
+    }
+  }
 }
+
 
 /* ***********************************************
    getUser()
@@ -80,7 +98,17 @@ const initialState = {
 
    return -- user object
 ************************************************** */
-export const getUser = ( state ) => state.user
+export const getUser = (state) => state.user
+
+
+/* ***********************************************
+   isLoggedIn()
+
+   Check if user is logged in / authorized
+
+   return -- t/f
+************************************************** */
+export const isLoggedIn = (state) => !!state.user.login_token
 
 
 /* ***********************************************

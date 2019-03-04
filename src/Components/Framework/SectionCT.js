@@ -32,6 +32,7 @@ const canUserView = ( state, moduleNum, sectionNum ) => {
    mapStateToProps()
 
    passedProps:
+     number -- the number of this section in the module: 1, 2, 3, ...
      moduleNum -- integer, the module this section is in (1-based)
      sectionNum -- integer, the section (1-based)
      sectionTitle -- title of the section
@@ -40,12 +41,13 @@ const canUserView = ( state, moduleNum, sectionNum ) => {
 const mapStateToProps = ( state, passedProps ) => {
   console.log( `SectionCT::mapStateToProps()` )
 
-  const { moduleNum, sectionNum, sectionTitle, exercise } = passedProps
+  const { number, moduleNum, sectionNum, sectionTitle, exercise } = passedProps
 
   // get user
   const user = getUser( state.userRD )
 
   return {
+    number,
     user,
     isVisible: canUserView( state, moduleNum, sectionNum ),
     moduleNum,

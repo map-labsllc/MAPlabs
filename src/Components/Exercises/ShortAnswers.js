@@ -24,6 +24,7 @@ import '../../CSS/ModalNavButtons.css'
        updated by another CT.
 
    props:
+     number -- number of the question in <Questions>, 1-based
      question -- { code: 50, text: "Question 50" }
      previousAnswers -- [] or array of strings of previous answers
      isDynamic -- undefined or true
@@ -120,7 +121,7 @@ export default class ShortAnswers extends React.Component {
   render() {
     console.log("ShortAnswers::render()")
 
-    const { question, isDynamic } = this.props
+    const { number, question, isDynamic } = this.props
     const { answersWithKeys } = this.state
 
     console.log("answersWithKeys", answersWithKeys);
@@ -150,7 +151,7 @@ export default class ShortAnswers extends React.Component {
     return (
       <>
         <p> </p>
-        <h4>{question.text}</h4>
+        <h4>{number}. {question.text}</h4>
         <br />
         {answersWithKeys.map((answerWithKey) =>
           <ShortAnswer

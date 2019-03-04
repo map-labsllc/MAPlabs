@@ -7,6 +7,7 @@ import Module4 from './Components/Modules/Module4'
 import SplashPage from './Components/Startup/SplashPage'
 import HomePage from './Components/Startup/HomePage'
 import StartPage from './Components/Startup/StartPage'
+import InfoPage from './Components/Startup/InfoPage'
 import Login from './Components/Startup/login'
 import SignUp from './Components/Startup/SignUp'
 import Dashboard from './Components/Framework/Dashboard'
@@ -17,7 +18,7 @@ export default class RouterComponent extends React.Component {
     return (
       <Switch>
         <Route exact path='/' component={HomePage} />
-        <Route exact path='/infopage' component={StartPage} />
+        <Route exact path='/infopage' component={InfoPage} />
         <Route exact path='/splash' component={SplashPage} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/modules/1' component={Module1} />

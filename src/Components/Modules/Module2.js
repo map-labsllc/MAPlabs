@@ -1,22 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import  { Redirect } from 'react-router-dom'
-import Module from '../Framework/Module'
+
+import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
 import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
-import ContextualInfluenceGroups from '../Exercises/ContextualInfluenceGroups'
 import ContextualInfluencesCT from '../Exercises/ContextualInfluencesCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 
 import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
 import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
-
-
-import { getUser } from '../../store/user/reducer'
-import { isLoading } from '../../store/ui/reducer'
 
 import {
   MOD_2_DESC,
@@ -31,14 +25,12 @@ import {
 } from './Module2Text'
 
 import {
-  Button,
-  Form,
 } from 'react-bootstrap'
 
 /* **************************************************
    Module 2 layout
 ***************************************************** */
-class Module2 extends React.Component {
+export default class Module2 extends React.Component {
 
 
   // Define questions and excercises for Module 3
@@ -165,107 +157,62 @@ class Module2 extends React.Component {
 
 
   /* *********************************************************** */
-  // render!
   render() {
-
-    const { isLoading } = this.props
-    if ( isLoading ) {
-      return (
-        <>
-          <p>.</p>
-          <p>.</p>
-          <p>Imagine a spinner...</p>
-        </>
-      )
-    }
-
-
     return (
-      !this.props.token ? <Redirect to="/infopage"/>:
-      <>
-        <Module
+      <ModuleCT
+        moduleNum = { 2 }
+        moduleTitle = "Your Social Context"
+        moduleDescription = { MOD_2_DESC }
+      >
+        <SectionCT
           moduleNum = { 2 }
-          moduleTitle = "Your Social Context"
-          moduleDescription = { MOD_2_DESC }
-        >
-          <SectionCT
-            moduleNum = { 2 }
-            sectionNum = { 210 }
-            sectionTitle = "Contextual Influences I"
-            exercise = {this.exercise_210}
-          />
-          <SectionCT
-            moduleNum = { 2 }
-            sectionNum = { 220 }
-            sectionTitle = "Contextual Influences II"
-            exercise = {this.exercise_220}
-          />
-          <SectionCT
-            moduleNum = { 2 }
-            sectionNum = { 230 }
-            sectionTitle = "Contextual Influences III"
-            exercise = {this.exercise_230}
-          />
-          <SectionCT
-            moduleNum = { 2 }
-            sectionNum = { 240 }
-            sectionTitle = "Relating Your Values and Beliefs to Those of You Influencers"
-            exercise = {this.exercise_240}
-          />
-          <SectionCT
-            moduleNum = { 2 }
-            sectionNum = { 250 }
-            sectionTitle = "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement"
-            exercise = {this.exercise_250}
-          />
-          <SectionCT
-            moduleNum = { 2 }
-            sectionNum = { 260 }
-            sectionTitle = "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement"
-            exercise = {this.exercise_260}
-          />
-          <SectionCT
-            moduleNum = { 2 }
-            sectionNum = { 270 }
-            sectionTitle = "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement"
-            exercise = {this.exercise_270}
-          />
-          <SectionCT
-            moduleNum = { 2 }
-            sectionNum = { 280 }
-            sectionTitle = "Breaking and building"
-            exercise = {this.exercise_280}
-          />
-        </Module>
-      </>
-
-
+          sectionNum = { 210 }
+          sectionTitle = "Contextual Influences I"
+          exercise = {this.exercise_210}
+        />
+        <SectionCT
+          moduleNum = { 2 }
+          sectionNum = { 220 }
+          sectionTitle = "Contextual Influences II"
+          exercise = {this.exercise_220}
+        />
+        <SectionCT
+          moduleNum = { 2 }
+          sectionNum = { 230 }
+          sectionTitle = "Contextual Influences III"
+          exercise = {this.exercise_230}
+        />
+        <SectionCT
+          moduleNum = { 2 }
+          sectionNum = { 240 }
+          sectionTitle = "Relating Your Values and Beliefs to Those of You Influencers"
+          exercise = {this.exercise_240}
+        />
+        <SectionCT
+          moduleNum = { 2 }
+          sectionNum = { 250 }
+          sectionTitle = "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement"
+          exercise = {this.exercise_250}
+        />
+        <SectionCT
+          moduleNum = { 2 }
+          sectionNum = { 260 }
+          sectionTitle = "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement"
+          exercise = {this.exercise_260}
+        />
+        <SectionCT
+          moduleNum = { 2 }
+          sectionNum = { 270 }
+          sectionTitle = "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement"
+          exercise = {this.exercise_270}
+        />
+        <SectionCT
+          moduleNum = { 2 }
+          sectionNum = { 280 }
+          sectionTitle = "Breaking and building"
+          exercise = {this.exercise_280}
+        />
+      </ModuleCT>
     )
   }
 }
-
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-
-// Wrap in container to get access to store and dispatch
-const mapStateToProps = state => {
-  return {
-    isLoading: isLoading( state ),
-    userId: getUser( state.userRD ).user_id,
-    token: state.userRD.user.login_token
-  }
-}
-
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-
-const mapDispatchToProps = dispatch => ( {
-  dispatch,
-} )
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )( Module2 )

@@ -7,6 +7,7 @@ import { updateAnswersAC } from '../../store/answers/actions'
    mapStateToProps()
 
    passedProps:
+     number -- number of the question in <Questions>, 1-based
      question -- { code: 50, text: "question 50" }
      isDynamic -- undefined or true
                   undefined: render static version in Popup
@@ -16,6 +17,7 @@ const mapStateToProps = ( state, passedProps ) => {
   console.log( "ShortAnswersCT::mapStateToProps()" )
 
   const {
+    number,
     question,
     isDynamic,
   } = passedProps
@@ -29,6 +31,7 @@ const mapStateToProps = ( state, passedProps ) => {
   const previousAnswers = answers
 
   return {
+    number,
     question,
     previousAnswers,
     isDynamic,

@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from './Section'
+import { Redirect } from 'react-router-dom'
 import ShowMoreLess from '../Utils/ShowMoreLess'
 import {
   Button,
@@ -9,17 +9,20 @@ import {
   Form,
   FormControl,
   FormGroup,
-} from 'react-bootstrap';
+} from 'react-bootstrap'
+import Section from './Section'
 
 /* **************************************************
    Module
 
-   Shows a module
+   Shows a module, spinner, or redirects to "/" if not logged in
 
    props:
+     isLoggedIn -- boolean if a user is logged in
+     isLoading -- boolean if still loading user data
      moduleNum -- integer, the module number
      moduleTitle -- title of the Module
-     moduleDescription -- could be many lines, is we need paragraphs then will need to set innerHTML
+     moduleDescription -- could be many lines, if we need paragraphs then will need to set innerHTML
      children -- the Section components to display
 ***************************************************** */
 export default class Module extends React.Component {
@@ -27,8 +30,28 @@ export default class Module extends React.Component {
   render() {
     console.log("Module::render()")
 
-    let { moduleNum, moduleTitle, moduleDescription, children } = this.props
+    // if not logged in, redirect to root
+    const { isLoggedIn } = this.props
+    if (!isLoggedIn) {
+      return (
+        <Redirect to="/"/>
+      )
+    }
 
+    // if still loading, show spinner
+    const { isLoading } = this.props
+    if ( isLoading ) {
+      return (
+        <>
+          <p>.</p>
+          <p>.</p>
+          <p>Imagine if I were a spinner, how professional would that be????</p>
+        </>
+      )
+    }
+
+    // good to go! layout the module
+    let { moduleNum, moduleTitle, moduleDescription, children } = this.props
     return (
       <div style={style.background}>
         <div style={style.marginz}>
@@ -39,8 +62,15 @@ export default class Module extends React.Component {
           >
             <span dangerouslySetInnerHTML={{ __html: moduleDescription }} />
           </ShowMoreLess>
+
+          { /* render the sections, add the number of the section in the module */ }
           <div style={style.spacing}>
-            {children}
+            {React.Children.map(children, (child, index) => {
+              const numberedChild = React.cloneElement(child, {
+                number: index + 1, // numbering is 1-based
+              })
+              return numberedChild
+            })}
           </div>
         </div>
       </div>

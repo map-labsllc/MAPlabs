@@ -1,7 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import Module from '../Framework/Module'
+
+import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
@@ -12,10 +11,6 @@ import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 
 import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
 import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
-
-import { getUser } from '../../store/user/reducer'
-import { isLoading } from '../../store/ui/reducer'
-
 
 import {
   MOD_1_DESC,
@@ -29,14 +24,12 @@ import {
  } from './Module1Text'
 
 import {
-  Button,
-  Form,
 } from 'react-bootstrap'
 
 /* **************************************************
    Used to test components during development
 ***************************************************** */
-class Module1 extends React.Component {
+export default class Module1 extends React.Component {
 
 
   // Define questions and excercises for Module 1
@@ -138,105 +131,57 @@ class Module1 extends React.Component {
       subComponents = { this.shortAnswers_170 }
     /> )
 
-
-
-
   /* *********************************************************** */
-  // render!
   render() {
-
-    const { isLoading } = this.props
-    if ( isLoading ) {
-      return (
-        <>
-          <p>.</p>
-          <p>.</p>
-          <p>Imagine a spinner...</p>
-        </>
-      )
-    }
-
     return (
-      !this.props.token ? <Redirect to="/infopage"/>:
-      <>
-
-        <Module
+      <ModuleCT
+        moduleNum = { 1 }
+        moduleTitle = "Your Meanings and Motivations "
+        moduleDescription = { MOD_1_DESC }
+      >
+        <SectionCT
           moduleNum = { 1 }
-          moduleTitle = "Your Meanings and Motivations "
-          moduleDescription = { MOD_1_DESC }
-        >
-          <SectionCT
-            moduleNum = { 1 }
-            sectionNum = { 110 }
-            sectionTitle = "Reflect on your current situation"
-            exercise = {this.exercise_110}
-          />
-          <SectionCT
-            moduleNum = { 1 }
-            sectionNum = { 120 }
-            sectionTitle = "Describe your current situation"
-            exercise = {this.exercise_120}
-          />
-          <SectionCT
-            moduleNum = { 1 }
-            sectionNum = { 130 }
-            sectionTitle = "Imagine your future desired situation"
-            exercise = {this.exercise_130}
-          />
-          <SectionCT
-            moduleNum = { 1 }
-            sectionNum = { 140 }
-            sectionTitle = "Describe your future situation"
-            exercise = {this.exercise_140}
-          />
-          <SectionCT
-            moduleNum = { 1 }
-            sectionNum = { 150 }
-            sectionTitle = "Compare your 'current situation' statement to your 'future desired situation' statement"
-            exercise = {this.exercise_150}
-          />
-          <SectionCT
-            moduleNum = { 1 }
-            sectionNum = { 160 }
-            sectionTitle = "Breaking and building"
-            exercise = {this.exercise_160}
-          />
-          <SectionCT
-            moduleNum = { 1 }
-            sectionNum = { 170 }
-            sectionTitle = "Tie these reflections to the course"
-            exercise = {this.exercise_170}
-          />
-        </Module>
-      </>
-
-
+          sectionNum = { 110 }
+          sectionTitle = "Reflect on your current situation"
+          exercise = {this.exercise_110}
+        />
+        <SectionCT
+          moduleNum = { 1 }
+          sectionNum = { 120 }
+          sectionTitle = "Describe your current situation"
+          exercise = {this.exercise_120}
+        />
+        <SectionCT
+          moduleNum = { 1 }
+          sectionNum = { 130 }
+          sectionTitle = "Imagine your future desired situation"
+          exercise = {this.exercise_130}
+        />
+        <SectionCT
+          moduleNum = { 1 }
+          sectionNum = { 140 }
+          sectionTitle = "Describe your future situation"
+          exercise = {this.exercise_140}
+        />
+        <SectionCT
+          moduleNum = { 1 }
+          sectionNum = { 150 }
+          sectionTitle = "Compare your 'current situation' statement to your 'future desired situation' statement"
+          exercise = {this.exercise_150}
+        />
+        <SectionCT
+          moduleNum = { 1 }
+          sectionNum = { 160 }
+          sectionTitle = "Breaking and building"
+          exercise = {this.exercise_160}
+        />
+        <SectionCT
+          moduleNum = { 1 }
+          sectionNum = { 170 }
+          sectionTitle = "Tie these reflections to the course"
+          exercise = {this.exercise_170}
+        />
+      </ModuleCT>
     )
   }
 }
-
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-
-// Wrap in container to get access to store and dispatch
-const mapStateToProps = state => {
-  return {
-    isLoading: isLoading( state ),
-    userId: getUser( state.userRD ).user_id,
-    token: state.userRD.user.login_token
-  }
-}
-
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-
-const mapDispatchToProps = dispatch => ( {
-  dispatch,
-} )
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )( Module1 )

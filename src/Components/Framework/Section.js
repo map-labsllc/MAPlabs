@@ -19,6 +19,7 @@ import '../../CSS/Section.css'
    Shows / hides a section depending on user's curr_module / curr_section
 
    props:
+     number -- the number of this section in the module: 1, 2, 3, ...
      user -- the complete user object to check the furthest mod/sec they've gotten to
      isVisible -- is the user able to view this section yet?
      moduleNum -- integer, the module this section is in (1-based)
@@ -47,14 +48,14 @@ export default class Section extends React.Component {
     console.log("Section::render()")
 
     // let { isVisible } = this.state
-    let { user, isVisible, moduleNum, sectionNum, sectionTitle, exercise } = this.props
+    let { number, user, isVisible, moduleNum, sectionNum, sectionTitle, exercise } = this.props
     // const isVisible = this.canUserView(user, moduleNum, sectionNum)
 
     return (
       <div className="background">
         <Panel bsStyle='primary' className="panelSpace">
           <Panel.Heading className="sectionHeader">
-            <Panel.Title><div className="text-center">{sectionTitle}</div></Panel.Title>
+            <Panel.Title><div className="text-center">{number}. {sectionTitle}</div></Panel.Title>
           </Panel.Heading>
 
           {isVisible && (
@@ -73,17 +74,3 @@ export default class Section extends React.Component {
     )
   }
 }
-//  <>
-//         <p>.</p>
-//         <p>-----------------------------------------</p>
-//         <h4><u>Section</u>: {sectionTitle}</h4>
-//         {!isVisible && (
-//           <p>not available yet</p>
-//         )}
-//         {isVisible && (
-//           <>
-//             <Popup sectionTitle = {sectionTitle} exercise = {exercise} />
-//           </>
-//         )}
-//       <p> </p>
-//       </>

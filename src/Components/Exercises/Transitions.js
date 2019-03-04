@@ -18,6 +18,7 @@ import '../../CSS/ModalNavButtons.css'
        new blank entries (it allows us to be in control of the focus).
 
    props:
+     number -- number of the question in <Questions>, 1-based
      question -- { code: 50, text: "Question 50" }
      previousTransitions -- [] or array of strings of previous transitions
      isDynamic -- undefined or true
@@ -112,7 +113,7 @@ export default class Transitions extends React.Component {
   render() {
     console.log("Transitions::render()")
 
-    const { question, isDynamic } = this.props
+    const { number, question, isDynamic } = this.props
     const { transitionsWithKeys } = this.state
 
     console.log("transitionsWithKeys", transitionsWithKeys)
@@ -140,7 +141,7 @@ export default class Transitions extends React.Component {
     return (
       <>
         <div className="text-center">
-          <h4>{question.text}</h4>
+          <h4>{number}. {question.text}</h4>
         </div>
         {transitionsWithKeys.map((transitionWithKey) =>
           <Transition

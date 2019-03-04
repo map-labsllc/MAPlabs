@@ -9,24 +9,83 @@ import { loadAllStaticdataAC } from '../store/staticdata/actions'
 // export default class NavBar extends React.Component {
 class NavBar extends React.Component {
 
+  /* ***********************************************
+  loadUserData()
+
+  Helper function for kick off loading user data from db.
+  The loads are async so consumers of this data need to
+  test if it's still loading (uiRD can test loading status)
+  ************************************************** */
+  loadUserData = (dispatch, user) => {
+    // asynch calls to load user data from db
+    dispatch( loadAllAnswersAC( user.user_id ) )
+    dispatch( loadAllTransitionsAC( user.user_id ) )
+  }
+
+  /* ***********************************************
+  componentDidMount()
+
+  This is only needed when we're using the backdoor to start the app with
+  an initial user.  We can't wait for componentDidUpdate() b/c it's not called.
+  ************************************************** */
+  componentDidMount( prevProps, prevState ) {
+    console.log( "NavBar::componentDidMount()" )
+
+    const { dispatch, user } = this.props
+
+    // we have a mock user, so skip login and add backdoor jwt to localStorage
+    // so it get passed in the auth header to backend where the backend
+    // will skip auth.
+    if (user.user_id) {
+      localStorage.setItem( 'jwt', JSON.stringify(process.env.REACT_APP_BACKDOOR_JWT) )
+      this.loadUserData(dispatch, user)
+    }
+
+    // asynch call to load static from db
+    dispatch( loadAllStaticdataAC() )
+  }
+
+  /* ***********************************************
+  componentDidUpdate()
+
+  Catches changes to the user's login status which will trigger loading
+  the new user's data.
+  ************************************************** */
   componentDidUpdate( prevProps, prevState ) {
     console.log( "NavBar::componentDidUpdate()" )
     if ( this.props.user.login_token !== prevProps.user.login_token ) {
       const { dispatch, user } = this.props
+      this.loadUserData(dispatch, user)
 
-      // asynch calls to load user and static from db
-      dispatch( loadAllAnswersAC( user.user_id ) )
-      dispatch( loadAllTransitionsAC( user.user_id ) )
-      dispatch( loadAllStaticdataAC() )
+      // // asynch calls to load user and static from db
+      // dispatch( loadAllAnswersAC( user.user_id ) )
+      // dispatch( loadAllTransitionsAC( user.user_id ) )
+      // dispatch( loadAllStaticdataAC() )
     }
   }
 
+  /* ***********************************************
+  render()
+
+  NavBar is hidden if user isn't logged in.
+  ************************************************** */
   render() {
     console.log( "NavBar::render" )
+
+    const { user } = this.props
+
+    // user not logged in, don't show NavBar b/c we're in the login flow.
+    // todo: make this work off a a userRD boolean or function, poor form to be testing login_token
+    if (!user.login_token) {
+      console.log("NavBar hidden, no user.login_token")
+      console.log("user: ", user)
+      return null
+    }
+
+    // user logged in, show the navbar
     return (
-      !this.props.user.login_token ? null : 
       <Navbar style={styles.body} fixedTop>
-      
+
         <Navbar.Header>
           <Navbar.Brand>
             <NavLink to="/">M.A.P.Labs</NavLink>
@@ -73,15 +132,22 @@ const styles = {
     'lineHeight': '20px'
   }
 }
+
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+
 /* ********************************************************
    Wrap NavBar in container to get access to dispatch
 *********************************************************** */
+
 const mapStateToProps = state => {
   const { user } = state.userRD
   return {
     user
   }
 }
+
 const mapDispatchToProps = dispatch => ( {
   dispatch,
 } )

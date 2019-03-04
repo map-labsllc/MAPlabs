@@ -103,7 +103,7 @@ export default class Questions extends React.Component {
         <>
           {subComponents.map( ( subComponent, idx ) => (
             <div key={idx}>
-              <p><b>{subComponent.props.question.text}</b></p>
+              <p><b>{idx + 1}. {subComponent.props.question.text}</b></p>
               {subComponent}
             </div>
 
@@ -116,11 +116,12 @@ export default class Questions extends React.Component {
     // render dynamic verison in <ModalX>
 
     // inject isDynamic into props so the subCompoent will render its dynamic version
-    const subComponentsWithIsDynamic = subComponents.map( ( subComponent ) => {
+    const subComponentsWithIsDynamic = subComponents.map( ( subComponent, idx ) => {
       return React.cloneElement(
         subComponent,
         {
-          isDynamic: true
+          isDynamic: true,
+          number: idx + 1,
         }
       )
     } )

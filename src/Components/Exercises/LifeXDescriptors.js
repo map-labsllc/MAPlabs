@@ -36,7 +36,6 @@ export default class LifeDescriptors extends Component {
     super()
     this.state = {
       page: 0,
-      // aOrB_Selections: [], // sparse array w/ values 'a' or 'b' and index paralelling the index of lifeDesctriptors
       aOrB_Selections: {}, // hashmap of selections:
                            //     key -- lifeDescriptors index
                            //     value -- 'a' or 'b' w/ values 'a' or 'b'
@@ -91,10 +90,6 @@ export default class LifeDescriptors extends Component {
       onCloseModalCB
     } = this.props
     const { aOrB_Selections } = this.state
-
-    // const sentences = aOrB_Selections.map( ( selection, idx ) => {
-    //   return this.makeSentence( lifeDescriptors[idx], selection )
-    // } )
 
     const sentences = Object.keys( aOrB_Selections ).map( ( idx ) => {
       return this.makeSentence( lifeDescriptors[idx], aOrB_Selections[ idx ] )
@@ -152,6 +147,7 @@ export default class LifeDescriptors extends Component {
   render() {
 
     const {
+      instructions,
       isDynamic,
       lifeDescriptors,
     } = this.props
@@ -185,7 +181,6 @@ export default class LifeDescriptors extends Component {
 
     // Dynamic version of the exercise
     // -------------------------------
-
     let thisPage = []
     const startIdx = page * NUM_PER_PAGE
     const endIdx = Math.min( ( ( page + 1 ) * NUM_PER_PAGE ), lifeDescriptors.length )
@@ -207,6 +202,8 @@ export default class LifeDescriptors extends Component {
 
     return (
       <>
+        <p><b>{instructions}</b></p>
+        
         {thisPage}
 
         <br />

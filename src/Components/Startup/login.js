@@ -59,14 +59,14 @@ class Login extends Component {
           style={styles.textInputStyles}
           placeholder='example@email.com'
           autoCapitalize="none"
-          autoCorrect={ false }
+          autoCorrect="false"
           onChange={ this.onEmailChange }
           value={ this.props.email}/>
         <div style={styles.passwordTextStyles}>Password</div>
         <input style={styles.textInputStyles}
           type= 'password'
           placeholder='password'
-          autoCorrect={ false }
+          autoCorrect="false"
           autoCapitalize="none"
           onChange={ this.onPasswordChange}
           value={ this.props.password }
@@ -77,13 +77,9 @@ class Login extends Component {
         <p style={styles.text}>Create one for FREE</p>
         <div
           onClick={this.props.signUp}
-          underlayColor='#fff'
           href= '/signup'
           >
-
           <button
-
-            underlayColor='#fff'
             href= '/signup'
             style={{color:'#982D38',fontSize: 30,fontWeight:'700', borderColor:'#982D37' ,borderRadius:2, borderWidth:2, backgroundColor:'white'}}>SIGN UP
           </button>
