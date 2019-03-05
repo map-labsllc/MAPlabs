@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 
 import LifeXDescriptors from './LifeXDescriptors'
 import { getUser } from '../../store/user/reducer'
-import { getAnswers } from '../../store/answers/reducer'
+import { getAnswersx } from '../../store/answersx/reducer'
+import { QUESTION_TYPE_LIFEDESCRIPTORS } from '../../store/answersx/constants'
 import {
-  updateAnswersAC,
-  persistAnswersAC
-} from '../../store/answers/actions'
+  updateAnswersxAC,
+  persistAnswersxAC
+} from '../../store/answersx/actions'
 
 /* *****************************************
    mapStateToProps()
@@ -32,7 +33,10 @@ const mapStateToProps = ( state, passedProps ) => {
   const userId = getUser( state.userRD ).user_id
 
   // find previous answers, if any, to display when static
-  let previousAnswers = getAnswers( state.answersRD, question.code )
+  const answers = getAnswersx( state.answersxRD, question.code )
+
+  // pull answers out of 2D array of strings to an simple array of strings
+  const previousAnswers = answers.map(answerArray => answerArray[0])
 
   return {
     userId,
@@ -60,8 +64,12 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   const onPersist = ( userId, lifeDescriptors ) => {
     const { question } = passedProps
 
-    dispatch( updateAnswersAC( question.code, lifeDescriptors ) )
-    dispatch( persistAnswersAC( userId, question.code, lifeDescriptors ) )
+    // store wants 2D array of strings, so map the array of strings into that format
+    const twoDimArrayOfString = lifeDescriptors.map(str => [str])
+    console.log("LifeXDescriptors::onPersist(), 2darray ", twoDimArrayOfString)
+
+    dispatch( updateAnswersxAC( question.code, twoDimArrayOfString ) )
+    dispatch( persistAnswersxAC( userId, question.code, QUESTION_TYPE_LIFEDESCRIPTORS, twoDimArrayOfString ) )
   }
 
   return {

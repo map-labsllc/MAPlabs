@@ -1,13 +1,16 @@
 import { connect } from 'react-redux'
 import Questions from './Questions'
 import { getUser } from '../../store/user/reducer'
+import { persistAnswersxFromQuestionAC } from '../../store/answersx/actions'
 
 /* *****************************************
    mapStateToProps()
 
    passedProps:
-     persistAC_CB -- this is a callback to an AC to persist to the table used
+     XXX persistAC_CB -- this is a callback to an AC to persist to the table used
                      by the subcomponent.
+     questionType -- constant from store/answers/constants.js to
+                     determine the question_type value for persisting
      subComponents -- array of React components to work with a single question
      isDynamic -- undefined or true
                   undefined: render static version in Popup
@@ -66,15 +69,17 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
   ******************************************** */
   function persistQuestionAC( question ) {
-    console.log( `QuestionsCT::persistQuestion` )
+    console.log( `QuestionsCT::persistQuestion XYZ` )
 
     return ( dispatch, getStore ) => {
 
       const store = getStore()
-      const { persistAC_CB } = passedProps
+      // const { persistAC_CB, questionType } = passedProps
+      const { questionType } = passedProps
       const userId = getUser( store.userRD ).user_id
 
-      return persistAC_CB( dispatch, store, userId, question.code )
+      return persistAnswersxFromQuestionAC( dispatch, store, userId, question.code, questionType )
+      // return persistAC_CB( dispatch, store, userId, question.code, questionType )
     }
   }
 

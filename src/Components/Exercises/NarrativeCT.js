@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 import Narrative from './Narrative'
 import { getUser } from '../../store/user/reducer'
-import { getAnswers } from '../../store/answers/reducer'
+import { getAnswersx } from '../../store/answersx/reducer'
+import { QUESTION_TYPE_NARRATIVE } from '../../store/answersx/constants'
 import {
-  updateAnswersAC,
-  persistAnswersAC } from '../../store/answers/actions'
+  updateAnswersxAC,
+  persistAnswersxAC } from '../../store/answersx/actions'
 
 /* *****************************************
    mapStateToProps()
@@ -29,22 +30,20 @@ const mapStateToProps = ( state, passedProps ) => {
   // find prompts, if any
   let prompts = []
   if ( promptQuestionCode ) {
-    prompts = getAnswers( state.answersRD, promptQuestionCode )
+    prompts = getAnswersx( state.answersxRD, promptQuestionCode )
   }
-  // console.log("Prompts for narrative: ", prompts);
 
   // find previous answer, if any
   //   Note: getAnswers() returns an array but narrative should have at most one answer
-  // const answers = state.answersRD.questions[question.code] || []
-  const answers = getAnswers( state.answersRD, question.code )
+  const answers = getAnswersx( state.answersxRD, question.code )
   console.log( `getAnswers( ${question.code} ): `, answers )
   if ( 1 < answers.length ) {
-
     console.log( "ERROR: more than one narrative answer: ", question.code, answers )
     throw new Error( `more than one narrative answer:  ${question.code}, ${answers}` )
-
   }
-  const previousAnswer = answers[0] || ''
+
+  // default to '' if there was no previous answer
+  const previousAnswer = (answers[0] && answers[0][0]) || ''
 
   return {
     userId,
@@ -79,8 +78,11 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   function onPersist( userId, newAnswer ) {
     const { question } = passedProps
     console.log( `NarrativeCT::onPersist( ${question.code}, ${newAnswer} )` )
-    dispatch( updateAnswersAC( question.code, [newAnswer] ) )
-    dispatch( persistAnswersAC( userId, question.code, [newAnswer] ) )
+
+    // store wants 2D array of strings, so map the array of strings into that format
+    const twoDimArrayOfString = [ [ newAnswer ] ]
+    dispatch( updateAnswersxAC( question.code, twoDimArrayOfString ) )
+    dispatch( persistAnswersxAC( userId, question.code, QUESTION_TYPE_NARRATIVE, twoDimArrayOfString ) )
   }
 
   return {

@@ -1,10 +1,9 @@
 import Bracket from './Bracket'
 
 import { connect } from 'react-redux'
-import { getAnswers } from '../../store/answers/reducer'
+import { getAnswersx } from '../../store/answersx/reducer'
 import {
-  persistAnswersAC,
-  updateAnswersAC } from '../../store/answers/actions'
+  updateAnswersxAC } from '../../store/answersx/actions'
 
 /* *****************************************
    mapStateToProps()
@@ -26,11 +25,15 @@ function mapStateToProps( state, { promptQuestionCodes, question, isDynamic } ) 
   //   If bracketing finished there will be a single answer.
   //   If bracketing wasn't finished there can be multiple answers
 
-  const previousAnswers = getAnswers( state.answersRD, question.code )
+  // find previous answers, if any, to display when static
+  const answers = getAnswersx( state.answersxRD, question.code )
+
+  // pull answers out of 2D array of strings to an simple array of strings
+  const previousAnswers = answers.map(answerArray => answerArray[0])
 
   let prompts = []
   promptQuestionCodes.forEach( (questionCode) => {
-    prompts = prompts.concat( getAnswers( state.answersRD, questionCode ) )
+    prompts = prompts.concat( getAnswersx( state.answersRD, questionCode ) )
   } )
 
   return {
@@ -53,7 +56,11 @@ function mapStateToProps( state, { promptQuestionCodes, question, isDynamic } ) 
 function mapDispatchToProps( dispatch ) {
   return  {
     onUpdateStoreCB: function( questionCode, prompts ) {
-      dispatch( updateAnswersAC( questionCode, prompts ) )
+
+      // store wants 2D array of strings, so map the array of strings into that format
+      const twoDimArrayOfString = prompts.map(str => [str])
+
+      dispatch( updateAnswersxAC( questionCode, twoDimArrayOfString ) )
     }
   }
 }

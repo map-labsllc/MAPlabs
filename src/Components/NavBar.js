@@ -3,6 +3,7 @@ import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { loadAllAnswersAC } from '../store/answers/actions'
+import { loadAllAnswersxAC } from '../store/answersx/actions'
 import { loadAllTransitionsAC } from '../store/transitions/actions'
 import { loadAllStaticdataAC } from '../store/staticdata/actions'
 
@@ -19,6 +20,7 @@ class NavBar extends React.Component {
   loadUserData = (dispatch, user) => {
     // asynch calls to load user data from db
     dispatch( loadAllAnswersAC( user.user_id ) )
+    dispatch( loadAllAnswersxAC( user.user_id ) )
     dispatch( loadAllTransitionsAC( user.user_id ) )
   }
 
