@@ -1,16 +1,8 @@
-import React from 'react';
+import React from 'react'
 import { Redirect } from 'react-router-dom'
 import ShowMoreLess from '../Utils/ShowMoreLess'
 import {
-  Button,
-  Checkbox,
-  Col,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
 } from 'react-bootstrap'
-import Section from './Section'
 
 /* **************************************************
    Module

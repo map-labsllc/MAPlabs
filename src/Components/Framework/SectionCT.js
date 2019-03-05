@@ -32,9 +32,9 @@ const canUserView = ( state, moduleNum, sectionNum ) => {
    mapStateToProps()
 
    passedProps:
-     number -- the number of this section in the module: 1, 2, 3, ...
      moduleNum -- integer, the module this section is in (1-based)
      sectionNum -- integer, the section (1-based)
+     number -- the number of this section in the module: 1, 2, 3, ...
      sectionTitle -- title of the section
      exercise -- component user will interact with
 ******************************************** */
@@ -47,11 +47,11 @@ const mapStateToProps = ( state, passedProps ) => {
   const user = getUser( state.userRD )
 
   return {
-    number,
     user,
     isVisible: canUserView( state, moduleNum, sectionNum ),
     moduleNum,
     sectionNum,
+    number,
     sectionTitle,
     exercise,
   }

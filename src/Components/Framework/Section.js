@@ -19,11 +19,11 @@ import '../../CSS/Section.css'
    Shows / hides a section depending on user's curr_module / curr_section
 
    props:
-     number -- the number of this section in the module: 1, 2, 3, ...
      user -- the complete user object to check the furthest mod/sec they've gotten to
      isVisible -- is the user able to view this section yet?
      moduleNum -- integer, the module this section is in (1-based)
-     sectionNum -- integer, the section
+     sectionNum -- integer, the section, ex: 260
+     number -- the order number of this section in the module: 1, 2, 3, ...
      sectionTitle -- title of the section
      exercise -- component user will interact with
 ***************************************************** */
