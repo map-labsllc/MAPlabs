@@ -12,8 +12,9 @@ import {
     isError: false,
     errorMessage: '',
     questions: {
-      1: [ 'answer one', 'answer two' ],
-      2: [ 'this is a narrative, so only one answer' ],
+      1: [ [ 'narrative, so only one answer', '', '', '' ] ],
+      2: [ [ 'from', 'to', '','' },
+      3: [ ... ]
     },
   }
 */
@@ -28,12 +29,12 @@ const initialState = {
 /* ***********************************************
    getAnswers()
 
-   Get array of answers strings for a given question_code
+   Get 2D array of strings for a given question_code
 
    state -- answersRD (this reducer, not the entire store)
    question_code -- integer
 
-   return array of answer strings or []
+   return array of array of answer strings or []
 ************************************************** */
 export const getAnswers = ( state, question_code ) =>
   state.questions[question_code] || []
@@ -55,8 +56,10 @@ export const getAnswers = ( state, question_code ) =>
 
     // Payload:
     //  {
-    //    1: [ 'answer one', 'answer two' ],
-    //    2: [ 'this is a narrative, so only one answer' ],
+    //    1: [ [ 'narrative, so only one answer' ] ],
+    //    2: [ [ 'from', 'to' ],
+    //         [ 'east', 'west' ]
+    //       ]
     //  }
     case ANSWERS_LOAD:
       console.log( "answersRD::LOAD" )
@@ -66,7 +69,7 @@ export const getAnswers = ( state, question_code ) =>
         questions: payload,
       }
 
-    // Payload: { question_code: 6, answers: ["one", "two"] }
+    // Payload: todo: add example
     case ANSWERS_UPDATE:
       console.log( "answersRD::UPDATE" )
       const newQuestions = { ...state.questions }

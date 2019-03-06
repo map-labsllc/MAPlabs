@@ -56,9 +56,10 @@ const persistCurrModuleAndSection = ( dispatch, user, moduleNum, sectionNum ) =>
         console.log( "---- error" )
         console.log( "-- FETCH ERROR 1" )
         // TODO: re-test this, doesn't the return just go to the next .then?
-        return dispatch( {
+        dispatch( {
           type: USER_UPDATE_ERROR,
           payload: "error" } )
+        return //
       }
       return response.json()
     } )
@@ -68,9 +69,10 @@ const persistCurrModuleAndSection = ( dispatch, user, moduleNum, sectionNum ) =>
     .catch( ( error ) => {
       console.log( "---- error" )
       console.log( "-- FETCH ERROR", error )
-      return dispatch( {
+      dispatch( {
         type: USER_UPDATE_ERROR,
         payload: error } )
+      return //
     } )
   }
 
@@ -122,22 +124,23 @@ export const sectionCompletedAC = ( user, completedModuleNum, completedSectionNu
       persistCurrModuleAndSection( dispatch, user, nextModuleSectionObj.moduleNum, nextModuleSectionObj.sectionNum )
 
       // update store
-      return dispatch ( {
+      dispatch ( {
         type: USER_UPDATE_CURR_SECTION,
         payload: {
           moduleNum: nextModuleSectionObj.moduleNum,
           sectionNum: nextModuleSectionObj.sectionNum }
       } )
-
+      return //
     }
 
     // DON'T advance the user's current module and section
     // ---------------------------------------------------
     console.log( "---- no change" )
-    return dispatch ( {
+    dispatch ( {
       type: USER_UPDATE_CURR_SECTION_NO_CHANGE,
       payload: { }
     } )
+    return //
   }
 }
 
@@ -178,7 +181,7 @@ export const loginUser = ( { email, password}  ) => {
   return async ( dispatch ) => {
 
     await firebase.auth().signInWithEmailAndPassword( email, password )
-    //user is nested in an object  
+    //user is nested in an object
     //alias as fireBaseUser to avoid overloaded term user
     .then ( async ( { user: fireBaseUser } ) => {
       const jwt = await fireBaseUser.getIdToken()
@@ -232,7 +235,7 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
   return async ( dispatch ) => {
 
       console.log( 'this disBATCH', document.cookie )
-      //firebase sends back a user but we do not use it here. 
+      //firebase sends back a user but we do not use it here.
       //user and jwt are taken from result of onAuthStateChanged
         await firebase.auth().createUserWithEmailAndPassword( email, password )
           .then( () => {} )
@@ -242,7 +245,7 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
               const jwt = await fireBaseUser.getIdToken()
 
               localStorage.setItem( 'jwt', JSON.stringify( jwt ) )
-              
+
               const body = JSON.stringify( {
                 fname:payload.fname,
                 lname:payload.lname
@@ -258,9 +261,9 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
               .then(
                 res => res.json()
               )
-      
+
               loginUserSuccess( dispatch, payload.user )
-              
+
               dispatch( {
                 type: SIGNUP,
                 payload

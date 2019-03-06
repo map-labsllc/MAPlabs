@@ -12,7 +12,7 @@ import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
   QUESTION_TYPE_BRACKET,
- } from '../../store/answersx/constants'
+ } from '../../store/answers/constants'
 
 import {
   MOD_3_DESC,

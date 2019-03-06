@@ -24,9 +24,7 @@ const initialState = {
 ************************************************** */
 export const isLoading = ( store ) => {
   return (   store.staticdataRD.isLoading
-          || store.answersRD.isLoading
-          || store.answersxRD.isLoading
-          || store.transitionsRD.isLoading )
+          || store.answersRD.isLoading )
 }
 
 /* ***********************************************

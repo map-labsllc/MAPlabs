@@ -15,7 +15,7 @@ const URL = process.env.REACT_APP_DB_URL
 
    Update answers for a question in state.
    Will replace any other answers for the question.
-   Call persistQuestionAC() to save to database.
+   Call persistQuestionAC() if you want to persist to database.
 
    quesion_code - integer
    answers - array of answer strings
@@ -42,39 +42,20 @@ export const loadAllAnswersAC = ( userId ) => {
     dispatch( { type: ANSWERS_LOADING } )
     const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
     return fetch( `${URL}/answers/${userId}`, {
-      headers: {Authorization: `Token: ${jwt}`} 
+      headers: {Authorization: `Token: ${jwt}`}
     } )
       .then( response => response.json() )
       .then( ( answers ) => {
         // console.log("answers", answers)
-        return dispatch( { type: ANSWERS_LOAD, payload: answers } )
+        dispatch( { type: ANSWERS_LOAD, payload: answers } )
+        return //
       } )
       .catch( ( error ) => {
         console.log( "FETCH ERROR", error )
-        return dispatch( { type: ANSWERS_ERROR_DB, payload: error } )
+        dispatch( { type: ANSWERS_ERROR_DB, payload: error } )
+        return //
       } )
   }
-}
-
-/* *****************************************************
-   persistAnswersFromQuestionAC()
-
-   Persists answers for a question.  This is only called by <QuestionsCT>.
-
-   This is NOT great Redux form.  However not sure where to put this logic.  The
-     alternative is to keep it in QuestionsCT with a switch statement to select
-     the correct reducer for the set of questions being managed.  But we're trying to
-     keep the framework components clean on knowledge of what they contain.
-
-   params:
-     dispatch
-     store
-     userId
-     questionCode
-******************************************************** */
-export const persistAnswersFromQuestionAC = ( dispatch, store, userId, questionCode ) => {
-  const answers = getAnswers( store.answersRD, questionCode )
-  return dispatch( persistAnswersAC( userId, questionCode, answers ) )
 }
 
 /* *****************************************************
@@ -82,7 +63,7 @@ export const persistAnswersFromQuestionAC = ( dispatch, store, userId, questionC
 
    Persists answers for a question.
 
-   Warning: The following fails b/c store isn't updated before getAnswers() is
+   Warning: The following example fails b/c store isn't updated before getAnswers() is
             called. You need to pass "answers" directly to persistQuestionAC().
 
      this.props.dispatch(updateAnswersAC(question_code, answers))
@@ -90,15 +71,19 @@ export const persistAnswersFromQuestionAC = ( dispatch, store, userId, questionC
 
    userId
    quesion_code - integer
-   answers - array of answer strings
+   question_type -- integer from ./contants.js
+   answers - 2D array of up to four strings each
+                [ [ "ans1", "ans2", "ans3, "ans4"], [...] ]
+             Note:  only need to supply as many strings as are used, ex:
+                [ [ "narrative" ] ]
 ******************************************************** */
-export const persistAnswersAC = ( userId, question_code, answers ) => {
+export const persistAnswersAC = ( userId, question_code, question_type, answers ) => {
   console.log( `persistAnswersAC(${question_code})` )
   console.log( "persisting: ", answers )
 
   return async dispatch => {
     const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
-    return fetch( `${URL}/answers/${userId}/${question_code}`, {
+    return fetch( `${URL}/answers/${userId}/${question_code}/${question_type}`, {
         method: 'POST',
         body: JSON.stringify( { answers } ),
         headers: {
@@ -110,11 +95,13 @@ export const persistAnswersAC = ( userId, question_code, answers ) => {
       .then( response => response.json() )
       .then( ( message ) => {
         console.log( "post response message", message )
-        return dispatch( { type: ANSWERS_PERSIST } )
+        dispatch( { type: ANSWERS_PERSIST } )
+        return //
       } )
       .catch( ( error ) => {
         console.log( "POST ERROR", error )
-        return dispatch( { type: ANSWERS_ERROR_DB, payload: error } )
+        dispatch( { type: ANSWERS_ERROR_DB, payload: error } )
+        return //
       } )
   }
 }

@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 
 import LifeXDescriptors from './LifeXDescriptors'
 import { getUser } from '../../store/user/reducer'
-import { getAnswersx } from '../../store/answersx/reducer'
-import { QUESTION_TYPE_LIFEDESCRIPTORS } from '../../store/answersx/constants'
+import { getAnswers } from '../../store/answers/reducer'
+import { QUESTION_TYPE_LIFEDESCRIPTORS } from '../../store/answers/constants'
 import {
-  updateAnswersxAC,
-  persistAnswersxAC
-} from '../../store/answersx/actions'
+  updateAnswersAC,
+  persistAnswersAC
+} from '../../store/answers/actions'
 
 /* *****************************************
    mapStateToProps()
@@ -33,7 +33,7 @@ const mapStateToProps = ( state, passedProps ) => {
   const userId = getUser( state.userRD ).user_id
 
   // find previous answers, if any, to display when static
-  const answers = getAnswersx( state.answersxRD, question.code )
+  const answers = getAnswers( state.answersRD, question.code )
 
   // pull answers out of 2D array of strings to an simple array of strings
   const previousAnswers = answers.map(answerArray => answerArray[0])
@@ -68,8 +68,8 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     const twoDimArrayOfString = lifeDescriptors.map(str => [str])
     console.log("LifeXDescriptors::onPersist(), 2darray ", twoDimArrayOfString)
 
-    dispatch( updateAnswersxAC( question.code, twoDimArrayOfString ) )
-    dispatch( persistAnswersxAC( userId, question.code, QUESTION_TYPE_LIFEDESCRIPTORS, twoDimArrayOfString ) )
+    dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
+    dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_LIFEDESCRIPTORS, twoDimArrayOfString ) )
   }
 
   return {

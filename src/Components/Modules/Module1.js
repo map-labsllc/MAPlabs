@@ -12,7 +12,7 @@ import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
- } from '../../store/answersx/constants'
+ } from '../../store/answers/constants'
 
 import {
   MOD_1_DESC,

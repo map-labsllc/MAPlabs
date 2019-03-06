@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 
 import Transitions from './Transitions'
-import { getAnswersx } from '../../store/answersx/reducer'
-import { updateAnswersxAC } from '../../store/answersx/actions'
+import { getAnswers } from '../../store/answers/reducer'
+import { updateAnswersAC } from '../../store/answers/actions'
 
 /* *****************************************
    mapStateToProps()
@@ -25,7 +25,7 @@ const mapStateToProps = ( state, passedProps ) => {
   if ( !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
   // get previous transitions, if any
-  const answers = getAnswersx( state.answersxRD, question.code )
+  const answers = getAnswers( state.answersRD, question.code )
   console.log( `getAnswers(${question.code}): `, answers )
   const previousTransitions = answers.map(answerArray => ({ from: answerArray[0], to: answerArray[1] }))
 
@@ -70,7 +70,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     const twoDimArrayOfString = filterOutBlanks( newTransitions ).map(transition => [transition.from, transition.to])
 
     // update store
-    dispatch( updateAnswersxAC( question.code, twoDimArrayOfString ) )
+    dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
   }
 
   /* *****************************************

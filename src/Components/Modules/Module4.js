@@ -10,8 +10,8 @@ import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 import BracketCT from '../Exercises/BracketCT'
 
-import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
-import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
+// import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
+// import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
 
 import {
   MOD_4_DESC,
@@ -33,8 +33,8 @@ export default class Module4 extends React.Component {
 
   // Define questions and excercises for Module 4
   // --------------------------------------------------------------------
-  
 
+/*
   // -------------------------
   // LifeDescriptions
 
@@ -109,7 +109,7 @@ export default class Module4 extends React.Component {
       description = { QUES_460_DESC }
       instructions = "Write a short statement that brings together all the desires from each category and captures the essence of what this exercise has revealed to you using the phrases themselves. Note:  If there were desires that reached the final tradeoff round in Exercise 3 that are also really important, feel free to incorporate them as well. "
     /> )
-
+*/
   /* *********************************************************** */
   render() {
     return (
@@ -118,7 +118,7 @@ export default class Module4 extends React.Component {
         moduleTitle = "Your Meanings and Motivations "
         moduleDescription = { MOD_4_DESC }
       >
-        <SectionCT
+        {/*<SectionCT
           moduleNum = { 4 }
           sectionNum = { 410 }
           sectionTitle = "Reflect on your current situation"
@@ -153,7 +153,7 @@ export default class Module4 extends React.Component {
           sectionNum = { 460 }
           sectionTitle = "Synthesize into a Desires Statement"
           exercise = {this.exercise_460}
-        />
+        />*/}
       </ModuleCT>
     )
   }

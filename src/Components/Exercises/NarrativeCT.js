@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import Narrative from './Narrative'
 import { getUser } from '../../store/user/reducer'
-import { getAnswersx } from '../../store/answersx/reducer'
-import { QUESTION_TYPE_NARRATIVE } from '../../store/answersx/constants'
+import { getAnswers } from '../../store/answers/reducer'
+import { QUESTION_TYPE_NARRATIVE } from '../../store/answers/constants'
 import {
-  updateAnswersxAC,
-  persistAnswersxAC } from '../../store/answersx/actions'
+  updateAnswersAC,
+  persistAnswersAC } from '../../store/answers/actions'
 
 /* *****************************************
    mapStateToProps()
@@ -30,12 +30,12 @@ const mapStateToProps = ( state, passedProps ) => {
   // find prompts, if any
   let prompts = []
   if ( promptQuestionCode ) {
-    prompts = getAnswersx( state.answersxRD, promptQuestionCode )
+    prompts = getAnswers( state.answersRD, promptQuestionCode )
   }
 
   // find previous answer, if any
   //   Note: getAnswers() returns an array but narrative should have at most one answer
-  const answers = getAnswersx( state.answersxRD, question.code )
+  const answers = getAnswers( state.answersRD, question.code )
   console.log( `getAnswers( ${question.code} ): `, answers )
   if ( 1 < answers.length ) {
     console.log( "ERROR: more than one narrative answer: ", question.code, answers )
@@ -81,8 +81,8 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
     // store wants 2D array of strings, so map the array of strings into that format
     const twoDimArrayOfString = [ [ newAnswer ] ]
-    dispatch( updateAnswersxAC( question.code, twoDimArrayOfString ) )
-    dispatch( persistAnswersxAC( userId, question.code, QUESTION_TYPE_NARRATIVE, twoDimArrayOfString ) )
+    dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
+    dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_NARRATIVE, twoDimArrayOfString ) )
   }
 
   return {

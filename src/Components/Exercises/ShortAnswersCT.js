@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import ShortAnswers from './ShortAnswers'
-import { getAnswersx } from '../../store/answersx/reducer'
-import { updateAnswersxAC } from '../../store/answersx/actions'
+import { getAnswers } from '../../store/answers/reducer'
+import { updateAnswersAC } from '../../store/answers/actions'
 
 
 /* *****************************************
@@ -27,7 +27,7 @@ const mapStateToProps = ( state, passedProps ) => {
   if ( !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
   // get previous answers, if any
-  const answers = getAnswersx( state.answersxRD, question.code )
+  const answers = getAnswers( state.answersRD, question.code )
   console.log( `getAnswers(${question.code}): `, answers )
   // answers are an array of arrays:
   //   [["one"],["two"]]
@@ -74,7 +74,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     const twoDimArrayOfString = filterOutBlanks( newAnswers ).map(str => [str])
 
     // update store
-    dispatch( updateAnswersxAC( question.code, twoDimArrayOfString ) )
+    dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
   }
 
   /* *****************************************

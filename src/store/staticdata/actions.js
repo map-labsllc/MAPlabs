@@ -62,11 +62,13 @@ export const loadAllStaticdataAC = () => {
         payload[result[1].section] = result[1].jsonData
         payload[result[2].section] = result[2].jsonData
 
-        return dispatch( { type: STATICDATA_LOAD, payload } )
+        dispatch( { type: STATICDATA_LOAD, payload } )
+        return //
       } )
       .catch( ( error ) => {
         console.log( "PROMISE.ALL ERROR", error )
-        return dispatch( { type: STATICDATA_ERROR_DB, payload: error } )
+        dispatch( { type: STATICDATA_ERROR_DB, payload: error } )
+        return //
       } )
   }
 }

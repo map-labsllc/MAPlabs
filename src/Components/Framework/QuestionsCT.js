@@ -1,7 +1,10 @@
 import { connect } from 'react-redux'
 import Questions from './Questions'
 import { getUser } from '../../store/user/reducer'
-import { persistAnswersxFromQuestionAC } from '../../store/answersx/actions'
+import { getAnswers } from '../../store/answers/reducer'
+import {
+  persistAnswersAC
+} from '../../store/answers/actions'
 
 /* *****************************************
    mapStateToProps()
@@ -69,24 +72,23 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
   ******************************************** */
   function persistQuestionAC( question ) {
-    console.log( `QuestionsCT::persistQuestion XYZ` )
+    console.log( `QuestionsCT::persistQuestion` )
 
     return ( dispatch, getStore ) => {
 
       const store = getStore()
-      // const { persistAC_CB, questionType } = passedProps
       const { questionType } = passedProps
       const userId = getUser( store.userRD ).user_id
+      const twoDimArrayOfString = getAnswers( store.answersRD, question.code )
 
-      return persistAnswersxFromQuestionAC( dispatch, store, userId, question.code, questionType )
-      // return persistAC_CB( dispatch, store, userId, question.code, questionType )
+      dispatch( persistAnswersAC( userId, question.code, questionType, twoDimArrayOfString ) )
     }
   }
 
   /* *****************************************
      onPersistQuestion()
 
-     Persist a question from the Store
+     Persist a question from Store to Db
   ******************************************** */
   function onPersistQuestion( question ) {
     console.log( `QuestionsCT::onPersistQuestion()` )
