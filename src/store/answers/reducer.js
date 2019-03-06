@@ -13,14 +13,15 @@ import {
     errorMessage: '',
     questions: {
       1: [ [ 'narrative, so only one answer', '', '', '' ] ],
-      2: [ [ 'from', 'to', '','' },
-      3: [ ... ]
+      2: [ [ 'east', 'west', '','' ], [ 'top', 'bottom', '','' ] },
+      3: [ [ 'short 1', '', '','' ], [ 'short 2', '', '','' ] },
+      4: [ ... ]
     },
   }
 */
 
 const initialState = {
-  isLoading: true,
+  isLoading: true, // assume we're loading
   isError: false,
   errorMessage: '',
   questions: {},
@@ -54,7 +55,7 @@ export const getAnswers = ( state, question_code ) =>
       console.log( "answersRD::LOADING" )
       return initialState
 
-    // Payload:
+    // Payload, 2D array of strings:
     //  {
     //    1: [ [ 'narrative, so only one answer' ] ],
     //    2: [ [ 'from', 'to' ],
@@ -89,7 +90,7 @@ export const getAnswers = ( state, question_code ) =>
         errorMessage: payload || "no error message provided",
       }
 
-      // answers for a question were persisted
+      // answers for a question were successfully persisted
       case ANSWERS_PERSIST:
         console.log( "answersRD::PERSIST" )
         return state

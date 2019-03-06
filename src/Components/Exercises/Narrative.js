@@ -21,7 +21,8 @@ import '../../CSS/ModalNavButtons.css'
    props:
      userId -- integer
      question -- { code: 50, text: "Question 50" }
-     prompts -- [] or array of strings with short answers saved by previous exercise
+     prompts -- [] or 2D array of strings with short answers saved by prior exercise
+                    [ [ 'prompt1' ], ['prompt2'] ]
      instructions -- can be empty string
      previousAnswer -- string with the previous answer
      isDynamic -- undefined or true
@@ -152,7 +153,7 @@ Narrative.propTypes = {
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
   } ).isRequired,
-  prompts: PropTypes.arrayOf( PropTypes.string ).isRequired,
+  prompts: PropTypes.arrayOf( PropTypes.array ).isRequired,
   instructions: PropTypes.string.isRequired,
   previousAnswer: PropTypes.string.isRequired,
   isDynamic: PropTypes.bool,

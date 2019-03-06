@@ -175,7 +175,6 @@ Transitions.propTypes = {
   } ).isRequired,
   previousTransitions: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
 }
 
 ////////////////////////////////////////////////////////////////

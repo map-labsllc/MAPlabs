@@ -7,11 +7,13 @@ import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 import BracketCT from '../Exercises/BracketCT'
+import StrengthXCT from '../Exercises/StrengthXCT'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
   QUESTION_TYPE_BRACKET,
+  QUESTION_TYPE_STRENGTH,
  } from '../../store/answers/constants'
 
 import {
@@ -34,6 +36,23 @@ export default class Module3 extends React.Component {
 
   // Define questions and excercises for Module 3
   // ---------------------------------------------------------------------
+
+
+  // -------------------------
+  // Testing Strength
+
+  strength_900 = [
+    <StrengthXCT question = { { code: 901, text: "Enter your first strength" } } />,
+    <StrengthXCT question = { { code: 902, text: "Enter your second strength" } } />,
+  ]
+  exercise_900 = (
+    <QuestionsCT
+      questionType = {QUESTION_TYPE_STRENGTH}
+      description = "Testing strength components"
+      subComponents = {this.strength_900}
+    /> )
+
+
 
 
   // -------------------------
@@ -150,6 +169,12 @@ export default class Module3 extends React.Component {
         moduleTitle = "Personal Desires"
         moduleDescription = { MOD_3_DESC }
       >
+        <SectionCT
+          moduleNum = { 3 }
+          sectionNum = { 900 }
+          sectionTitle = "Developing StrengthCT"
+          exercise = {this.exercise_900}
+        />
         <SectionCT
           moduleNum = { 3 }
           sectionNum = { 310 }

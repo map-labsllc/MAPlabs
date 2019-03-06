@@ -42,7 +42,7 @@ const mapStateToProps = ( state, passedProps ) => {
     throw new Error( `more than one narrative answer:  ${question.code}, ${answers}` )
   }
 
-  // default to '' if there was no previous answer
+  // unpack the string from answers[0][0] default to '' if there was no previous answer
   const previousAnswer = (answers[0] && answers[0][0]) || ''
 
   return {

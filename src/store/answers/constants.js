@@ -12,4 +12,4 @@ export const QUESTION_TYPE_TRANSITIONS     = 3
 export const QUESTION_TYPE_LIFEDESCRIPTORS = 4
 export const QUESTION_TYPE_BRACKET         = 5
 export const QUESTION_TYPE_BELIEFS         = 6
-export const QUESTION_TYPE_STRENGTHS       = 7
+export const QUESTION_TYPE_STRENGTH        = 7

@@ -13,7 +13,7 @@ import {
    Display prompts before a Narrative question, if any
 
    props:
-     prompts -- [] or array a short string prompts
+     prompts -- 2D [] of short string prompts
 ***************************************************** */
 const Prompts = (props) => {
   const { prompts } = props
@@ -23,7 +23,7 @@ const Prompts = (props) => {
       <p><b>Prompts</b></p>
       <ul>
       {prompts.map( ( prompt, idx ) =>
-        <li key={idx}>{prompt}</li>
+        <li key={idx}>{prompt[0]}</li>
       )}
       </ul>
     </>
