@@ -19,6 +19,7 @@ const mapStateToProps = ( state, passedProps ) => {
   const {
     number,
     question,
+    isDynamic,
   } = passedProps
 
   // validation
@@ -35,6 +36,7 @@ const mapStateToProps = ( state, passedProps ) => {
     number,
     question,
     previousTransitions,
+    isDynamic,
   }
 }
 
@@ -76,10 +78,8 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   /* *****************************************
      The props being passed down
   ******************************************** */
-  const { isDynamic } = passedProps
   return {
     onUpdateStoreCB: onUpdateStore,
-    isDynamic,
   }
 
 }
