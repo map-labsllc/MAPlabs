@@ -2,12 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   Button,
-  Checkbox,
-  Col,
-  ControlLabel,
   Form,
-  FormControl,
-  FormGroup,
   Glyphicon
 } from 'react-bootstrap'
 
@@ -94,7 +89,7 @@ export default class ShortAnswer extends React.Component {
         <br />
         <Form inline onSubmit={this.onSubmit}>
           <div >
-
+            {id}&nbsp;
             <textarea
               autoFocus={true}
               onChange={this.onChange}

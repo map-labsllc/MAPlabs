@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import {
   Button,
 } from 'react-bootstrap'
-import Transition from './Transition'
 import '../../CSS/ModalNavButtons.css'
+import { UUID } from '../Utils/UUID'
 
 // legal values for an effect
 export const EFFECT_IMPEDIMENT = 'impediment'
@@ -37,40 +37,13 @@ export const EFFECT_EMBODIMENT = 'embodiment'
 ***************************************************** */
 export default class StrengthX extends React.Component {
 
-  // -------------------------------------------------------
-  // UUID to be used as the component key
-  uuid = 1;
-
-  // get new UUID
-  getUUID = () => {
-    console.log("Strength::getUUID() returning ", this.uuid + 1)
-    return this.uuid++
-  }
-
-  // make a new reflectionWithKey
-  getNewReflectionWithKey = (reflection) => ({
-    key: this.getUUID(),
-    reflection,
-  })
-
-  // strip keys
-  stripKeys = (reflectionsWithKeys) => {
-    return reflectionsWithKeys.map(reflectionWithKey => reflectionWithKey.reflection)
-  }
-
-  // add keys
-  // addKeys = (transitions) => transitions.map(transition => ({ key: this.getUUID() , transition}))
-  addKeys = (reflections) => reflections.map((reflection) => {
-    console.log("addKeys: ", reflection)
-    return { key: this.getUUID(), reflection }
-  })
-  // -------------------------------------------------------
+  uuid = new UUID() // provides unique keys for <StrengthX> components
 
   state = {
     isDirty: false,
     strength: this.props.previousData.strength,
     broadly: this.props.previousData.broadly,
-    reflectionsWithKeys: this.addKeys(this.props.previousData.reflections)
+    reflectionsWithKeys: this.uuid.addKeys(this.props.previousData.reflections)
   }
 
   // **********************************************
@@ -90,7 +63,7 @@ export default class StrengthX extends React.Component {
     const newData = {}
     newData.strength    = this.state.strength
     newData.broadly     = this.state.broadly
-    newData.reflections = this.stripKeys(this.state.reflectionsWithKeys)
+    newData.reflections = this.uuid.stripKeys(this.state.reflectionsWithKeys)
 
     onUpdateStoreCB(newData)
   }

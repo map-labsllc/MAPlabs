@@ -1,14 +1,11 @@
-import React from 'react';
+import React from 'react'
 import PropTypes from 'prop-types'
 import {
   Button,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
-} from 'react-bootstrap';
+} from 'react-bootstrap'
 import ShortAnswer from './ShortAnswer'
 import '../../CSS/ModalNavButtons.css'
+import { UUID } from '../Utils/UUID'
 
 /* **************************************************
    ShortAnswers component
@@ -32,38 +29,16 @@ import '../../CSS/ModalNavButtons.css'
                   true: render dynamic/interactive verison in Modal
      onUpdateStoreCB(newAnswers) -- callback to update the store
 ***************************************************** */
+
+
+///////////////////////////////////////////
 export default class ShortAnswers extends React.Component {
 
-  // -------------------------------------------------------
-  // UUID to be used as the component key
-  uuid = 1;
-
-  // get new UUID
-  getUUID = () => {
-    console.log("ShortAnswers::getUUID() retruning ", this.uuid + 1);
-    return this.uuid++
-  }
-
-  // make a new answerWithKey
-  getNewAnswerWithKey = (answer) => ({
-    key: this.getUUID(),
-    text: answer,
-  })
-
-  // strip keys
-  stripKeys = (answersWithKeys) => answersWithKeys.map(answerWithKey => answerWithKey.text)
-
-  // add keys
-  // addKeys = (answers) => answers.map(answer => ({ key: this.getUUID() , text: answer}))
-  addKeys = (answers) => answers.map((answer) => {
-    console.log("addKeys: ", answer);
-    return { key: this.getUUID(), text: answer }
-  })
-  // -------------------------------------------------------
+  uuid = new UUID() // provides unique keys for <ShortAnswer> components
 
   state = {
     isDirty: false,
-    answersWithKeys: this.addKeys(this.props.previousAnswers)
+    answersWithKeys: this.uuid.addKeys(this.props.previousAnswers)
   }
 
   // **********************************************
@@ -77,15 +52,15 @@ export default class ShortAnswers extends React.Component {
   // **********************************************
   // tell parent to update array of answers to store
   updateAnswer = (key, newAnswer) => {
-    console.log(`ShortAnswers::updateAnswer(${key}, ${newAnswer})`);
+    console.log(`ShortAnswers::updateAnswer(${key}, ${newAnswer})`)
 
     const { onUpdateStoreCB } = this.props
     const { answersWithKeys } = this.state
 
     const newAnswersWithKeys = answersWithKeys.map(answerWithKey =>
-      (answerWithKey.key === key) ? { key: key, text: newAnswer } : answerWithKey)
+      (answerWithKey.key === key) ? { key: key, item: newAnswer } : answerWithKey)
 
-    onUpdateStoreCB(this.stripKeys(newAnswersWithKeys))
+    onUpdateStoreCB(this.uuid.stripKeys(newAnswersWithKeys))
     this.setState({ answersWithKeys: newAnswersWithKeys })
   }
 
@@ -93,7 +68,7 @@ export default class ShortAnswers extends React.Component {
   // delete answer from state::answers and
   //   tell parent to update array of answers to store
   deleteAnswer = (keyToDelete) => {
-    console.log(`ShortAnswers::deleteAnswer(${keyToDelete})`);
+    console.log(`ShortAnswers::deleteAnswer(${keyToDelete})`)
 
     const { onUpdateStoreCB } = this.props
     const { answersWithKeys } = this.state
@@ -101,18 +76,18 @@ export default class ShortAnswers extends React.Component {
     const newAnswersWithKeys = answersWithKeys.filter((answerWithKey) =>
       keyToDelete !== answerWithKey.key)
 
-    onUpdateStoreCB(this.stripKeys(newAnswersWithKeys))
+    onUpdateStoreCB(this.uuid.stripKeys(newAnswersWithKeys))
     this.setState({ answersWithKeys: newAnswersWithKeys })
   }
 
   // **********************************************
   // add an empty answer to state::answers
   onclickAdd = () => {
-    console.log(`ShortAnswers::onclickAdd()`);
+    console.log(`ShortAnswers::onclickAdd()`)
     const { answersWithKeys } = this.state
 
-    const newAnswersWithKeys = answersWithKeys.concat(this.getNewAnswerWithKey(''))
-    console.log("newAnswersWithKeys: ", newAnswersWithKeys);
+    const newAnswersWithKeys = answersWithKeys.concat(this.uuid.getNewItemWithKey(''))
+    console.log("newAnswersWithKeys: ", newAnswersWithKeys)
     this.setState({ answersWithKeys: newAnswersWithKeys })
   }
 
@@ -124,9 +99,9 @@ export default class ShortAnswers extends React.Component {
     const { number, question, isDynamic } = this.props
     const { answersWithKeys } = this.state
 
-    console.log("answersWithKeys", answersWithKeys);
-    console.log("this.props.previousAnswers", this.props.previousAnswers);
-    console.log("this.state.answers", this.state.answers);
+    console.log("answersWithKeys", answersWithKeys)
+    console.log("this.props.previousAnswers", this.props.previousAnswers)
+    console.log("this.state.answers", this.state.answers)
 
     // render static version in <Popup>
     if (!isDynamic) {
@@ -136,7 +111,7 @@ export default class ShortAnswers extends React.Component {
             <ShortAnswer
               key={answerWithKey.key}
               id={answerWithKey.key}
-              previousAnswer={answerWithKey.text}
+              previousAnswer={answerWithKey.item}
               updateAnswerCB={this.updateAnswer}
               deleteAnswerCB={this.deleteAnswer}
               isDynamic={isDynamic}
@@ -157,7 +132,7 @@ export default class ShortAnswers extends React.Component {
           <ShortAnswer
             key={answerWithKey.key}
             id={answerWithKey.key}
-            previousAnswer={answerWithKey.text}
+            previousAnswer={answerWithKey.item}
             updateAnswerCB={this.updateAnswer}
             deleteAnswerCB={this.deleteAnswer}
             isDynamic={isDynamic}

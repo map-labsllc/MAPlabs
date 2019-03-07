@@ -6,6 +6,8 @@ import {
 import Transition from './Transition'
 import '../../CSS/ModalNavButtons.css'
 
+import { UUID } from '../Utils/UUID'
+
 /* **************************************************
    Transitions component
 
@@ -27,36 +29,11 @@ import '../../CSS/ModalNavButtons.css'
 ***************************************************** */
 export default class Transitions extends React.Component {
 
-  // -------------------------------------------------------
-  // UUID to be used as the component key
-  uuid = 1;
-
-  // get new UUID
-  getUUID = () => {
-    console.log("Transitions::getUUID() returning ", this.uuid + 1)
-    return this.uuid++
-  }
-
-  // make a new transitionWithKey
-  getNewTransitionWithKey = (transition) => ({
-    key: this.getUUID(),
-    transition,
-  })
-
-  // strip keys
-  stripKeys = (transitionsWithKeys) => transitionsWithKeys.map(transitionWithKey => transitionWithKey.transition)
-
-  // add keys
-  // addKeys = (transitions) => transitions.map(transition => ({ key: this.getUUID() , transition}))
-  addKeys = (transitions) => transitions.map((transition) => {
-    console.log("addKeys: ", transition)
-    return { key: this.getUUID(), transition }
-  })
-  // -------------------------------------------------------
+  uuid = new UUID() // provides unique keys for <Transition> components
 
   state = {
     isDirty: false,
-    transitionsWithKeys: this.addKeys(this.props.previousTransitions)
+    transitionsWithKeys: this.uuid.addKeys(this.props.previousTransitions)
   }
 
   // **********************************************
@@ -75,9 +52,9 @@ export default class Transitions extends React.Component {
     const { transitionsWithKeys } = this.state
 
     const newTransitionsWithKeys = transitionsWithKeys.map(transitionWithKey =>
-      (transitionWithKey.key === key) ? { key: key, transition: newTransition } : transitionWithKey)
+      (transitionWithKey.key === key) ? { key: key, item: newTransition } : transitionWithKey)
 
-    onUpdateStoreCB(this.stripKeys(newTransitionsWithKeys))
+    onUpdateStoreCB(this.uuid.stripKeys(newTransitionsWithKeys))
     this.setState({ transitionsWithKeys: newTransitionsWithKeys })
   }
 
@@ -93,7 +70,7 @@ export default class Transitions extends React.Component {
     const newTransitionsWithKeys = transitionsWithKeys.filter((transitionWithKey) =>
       keyToDelete !== transitionWithKey.key)
 
-    onUpdateStoreCB(this.stripKeys(newTransitionsWithKeys))
+    onUpdateStoreCB(this.uuid.tripKeys(newTransitionsWithKeys))
     this.setState({ transitionsWithKeys: newTransitionsWithKeys })
   }
 
@@ -103,7 +80,7 @@ export default class Transitions extends React.Component {
     console.log(`Transitions::onclickAdd()`)
     const { transitionsWithKeys } = this.state
 
-    const newTransitionsWithKeys = transitionsWithKeys.concat(this.getNewTransitionWithKey({ from: '', to: '' }))
+    const newTransitionsWithKeys = transitionsWithKeys.concat(this.uuid.getNewItemWithKey({ from: '', to: '' }))
     console.log("newTransitionsWithKeys: ", newTransitionsWithKeys)
     this.setState({ transitionsWithKeys: newTransitionsWithKeys })
   }
@@ -127,7 +104,7 @@ export default class Transitions extends React.Component {
             <Transition
               key={transitionWithKey.key}
               id={transitionWithKey.key}
-              previousTransition={transitionWithKey.transition}
+              previousTransition={transitionWithKey.item}
               isDynamic={isDynamic}
               updateTransitionCB={this.updateTransition}
               deleteTransitionCB={this.deleteTransition}
@@ -147,7 +124,7 @@ export default class Transitions extends React.Component {
           <Transition
             key={transitionWithKey.key}
             id={transitionWithKey.key}
-            previousTransition={transitionWithKey.transition}
+            previousTransition={transitionWithKey.item}
             isDynamic={isDynamic}
             updateTransitionCB={this.updateTransition}
             deleteTransitionCB={this.deleteTransition}
