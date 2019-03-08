@@ -90,7 +90,7 @@ export default class Questions extends React.Component {
 
   // ******************************************
   render() {
-    console.log( "ShortAnswers::render()" )
+    // console.log( "ShortAnswers::render()" )
 
     const { subComponents, isDynamic } = this.props
     const { currIdx } = this.state

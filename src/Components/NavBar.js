@@ -27,7 +27,7 @@ class NavBar extends React.Component {
   an initial user.  We can't wait for componentDidUpdate() b/c it's not called.
   ************************************************** */
   componentDidMount( prevProps, prevState ) {
-    console.log( "NavBar::componentDidMount()" )
+    // console.log( "NavBar::componentDidMount()" )
 
     const { dispatch, user } = this.props
 
@@ -63,7 +63,7 @@ class NavBar extends React.Component {
   NavBar is hidden if user isn't logged in.
   ************************************************** */
   render() {
-    console.log( "NavBar::render" )
+    // console.log( "NavBar::render" )
 
     const { user } = this.props
 

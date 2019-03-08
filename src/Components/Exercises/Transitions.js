@@ -77,24 +77,24 @@ export default class Transitions extends React.Component {
   // **********************************************
   // add an empty transition to state::transitions
   onclickAdd = () => {
-    console.log(`Transitions::onclickAdd()`)
+    // console.log(`Transitions::onclickAdd()`)
     const { transitionsWithKeys } = this.state
 
     const newTransitionsWithKeys = transitionsWithKeys.concat(this.uuid.getNewItemWithKey({ from: '', to: '' }))
-    console.log("newTransitionsWithKeys: ", newTransitionsWithKeys)
+    // console.log("newTransitionsWithKeys: ", newTransitionsWithKeys)
     this.setState({ transitionsWithKeys: newTransitionsWithKeys })
   }
 
   // **********************************************
   // render!
   render() {
-    console.log("Transitions::render()")
+    // console.log("Transitions::render()")
 
     const { number, question, isDynamic } = this.props
     const { transitionsWithKeys } = this.state
 
-    console.log("transitionsWithKeys", transitionsWithKeys)
-    console.log("this.props.previousTransitions", this.props.previousTransitions)
+    //console.log("transitionsWithKeys", transitionsWithKeys)
+    //console.log("this.props.previousTransitions", this.props.previousTransitions)
 
     if ( !isDynamic ) {
 

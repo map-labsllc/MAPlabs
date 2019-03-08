@@ -13,7 +13,7 @@ import { isLoggedIn } from '../../store/user/reducer'
      children -- the Section components to display
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
-  console.log( "ModuleCT::mapStateToProps()" )
+  // console.log( "ModuleCT::mapStateToProps()" )
 
   const { moduleNum, moduleTitle, moduleDescription, children } = passedProps
 

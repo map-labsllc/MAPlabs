@@ -45,7 +45,7 @@ export default class Section extends React.Component {
   }
 
   render() {
-    console.log("Section::render()")
+    // console.log("Section::render()")
 
     // let { isVisible } = this.state
     let { number, user, isVisible, moduleNum, sectionNum, sectionTitle, exercise } = this.props

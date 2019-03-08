@@ -23,7 +23,7 @@ const STRENGTHS_FN = 'strengths'
 ******************************************************** */
 function loadstaticJSON( section ) {
   const url= `${URL}/${section}.json`
-  console.log( `loadstaticJSON: ${url}` );
+  // console.log( `loadstaticJSON: ${url}` );
   return fetch( url )
     .then( response => response.json() )
     .then( ( jsonData ) => {
@@ -43,7 +43,7 @@ function loadstaticJSON( section ) {
    Called by NavBar::onComponentDidMount()
 ******************************************************** */
 export const loadAllStaticdataAC = () => {
-  console.log( "loadAC()" )
+  // console.log( "loadAC()" )
 
   return async dispatch => {
     dispatch( { type: STATICDATA_LOADING } )

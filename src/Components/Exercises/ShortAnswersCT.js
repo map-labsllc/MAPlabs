@@ -15,7 +15,7 @@ import { updateAnswersAC } from '../../store/answers/actions'
                   true: render dynamic/interactive verison in Modal
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
-  console.log( "ShortAnswersCT::mapStateToProps()" )
+  // console.log( "ShortAnswersCT::mapStateToProps()" )
 
   const {
     number,
@@ -28,7 +28,7 @@ const mapStateToProps = ( state, passedProps ) => {
 
   // get previous answers, if any
   const answers = getAnswers( state.answersRD, question.code )
-  console.log( `getAnswers(${question.code}): `, answers )
+  // console.log( `getAnswers(${question.code}): `, answers )
   // answers are an array of arrays:
   //   [["one"],["two"]]
   // use map() to pull them out to just an array of strings

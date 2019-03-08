@@ -12,7 +12,7 @@ import { getUser } from '../../store/user/reducer'
      exercise -- component user will interact with
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
-  console.log( "PopupCT::mapStateToProps()" )
+  // console.log( "PopupCT::mapStateToProps()" )
 
   const { moduleNum, sectionNum, sectionTitle, exercise } = passedProps
 

@@ -83,25 +83,25 @@ export default class ShortAnswers extends React.Component {
   // **********************************************
   // add an empty answer to state::answers
   onclickAdd = () => {
-    console.log(`ShortAnswers::onclickAdd()`)
+    // console.log(`ShortAnswers::onclickAdd()`)
     const { answersWithKeys } = this.state
 
     const newAnswersWithKeys = answersWithKeys.concat(this.uuid.getNewItemWithKey(''))
-    console.log("newAnswersWithKeys: ", newAnswersWithKeys)
+    // console.log("newAnswersWithKeys: ", newAnswersWithKeys)
     this.setState({ answersWithKeys: newAnswersWithKeys })
   }
 
   // **********************************************
   // render!
   render() {
-    console.log("ShortAnswers::render()")
+    //console.log("ShortAnswers::render()")
 
     const { number, question, isDynamic } = this.props
     const { answersWithKeys } = this.state
 
-    console.log("answersWithKeys", answersWithKeys)
-    console.log("this.props.previousAnswers", this.props.previousAnswers)
-    console.log("this.state.answers", this.state.answers)
+    //console.log("answersWithKeys", answersWithKeys)
+    //console.log("this.props.previousAnswers", this.props.previousAnswers)
+    //console.log("this.state.answers", this.state.answers)
 
     // render static version in <Popup>
     if (!isDynamic) {

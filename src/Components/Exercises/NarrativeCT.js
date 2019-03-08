@@ -20,7 +20,7 @@ import {
     onCloseModalCB -- call to close the modal
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
-  console.log( "NarrativeCT::mapStateToProps()" )
+  // console.log( "NarrativeCT::mapStateToProps()" )
   const { promptQuestionCode, question, instructions, isDynamic, onCloseModalCB } = passedProps
   if ( !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
@@ -36,7 +36,7 @@ const mapStateToProps = ( state, passedProps ) => {
   // find previous answer, if any
   //   Note: getAnswers() returns an array but narrative should have at most one answer
   const answers = getAnswers( state.answersRD, question.code )
-  console.log( `getAnswers( ${question.code} ): `, answers )
+  // console.log( `getAnswers( ${question.code} ): `, answers )
   if ( 1 < answers.length ) {
     console.log( "ERROR: more than one narrative answer: ", question.code, answers )
     throw new Error( `more than one narrative answer:  ${question.code}, ${answers}` )

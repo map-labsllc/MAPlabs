@@ -57,7 +57,7 @@ export default class ShortAnswer extends React.Component {
   // **************************************************
   // pass to parent to delete
   onclickDelete = () => {
-    console.log("ShortAnswer::onclickDelete()")
+    //console.log("ShortAnswer::onclickDelete()")
     const { deleteAnswerCB, id } = this.props
     deleteAnswerCB(id)
   }
@@ -65,7 +65,7 @@ export default class ShortAnswer extends React.Component {
   // **************************************************
   // render!
   render() {
-    console.log("ShortAnswer::render()")
+    //console.log("ShortAnswer::render()")
 
     // initialize
     let { answer, isDirty } = this.state

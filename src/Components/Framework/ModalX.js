@@ -29,8 +29,8 @@ export default class ModalX extends React.Component {
   // **************************************************
   // render!
   render() {
-    console.log("Modal::render()")
-    console.log("props: ", this.props)
+    // console.log("Modal::render()")
+    // console.log("props: ", this.props)
 
     const {
       sectionTitle,

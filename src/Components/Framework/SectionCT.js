@@ -39,7 +39,7 @@ const canUserView = ( state, moduleNum, sectionNum ) => {
      exercise -- component user will interact with
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
-  console.log( `SectionCT::mapStateToProps()` )
+  // console.log( `SectionCT::mapStateToProps()` )
 
   const { number, moduleNum, sectionNum, sectionTitle, exercise } = passedProps
 

@@ -36,7 +36,7 @@ export const updateAnswersAC = ( question_code, answers ) => {
    userId
 ******************************************************** */
 export const loadAllAnswersAC = ( userId ) => {
-  console.log( "loadAllAnswersAC()" )
+  // console.log( "loadAllAnswersAC()" )
 
   return async dispatch => {
     dispatch( { type: ANSWERS_LOADING } )

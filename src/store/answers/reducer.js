@@ -52,7 +52,7 @@ export const getAnswers = ( state, question_code ) =>
     // Reset the reducer to initial state, could be
     //   used when switching users.
     case ANSWERS_LOADING:
-      console.log( "answersRD::LOADING" )
+      // console.log( "answersRD::LOADING" )
       return initialState
 
     // Payload, 2D array of strings:
@@ -63,7 +63,7 @@ export const getAnswers = ( state, question_code ) =>
     //       ]
     //  }
     case ANSWERS_LOAD:
-      console.log( "answersRD::LOAD" )
+      // console.log( "answersRD::LOAD" )
       return {
         ...state,
         isLoading: false,
@@ -72,7 +72,7 @@ export const getAnswers = ( state, question_code ) =>
 
     // Payload: todo: add example
     case ANSWERS_UPDATE:
-      console.log( "answersRD::UPDATE" )
+      // console.log( "answersRD::UPDATE" )
       const newQuestions = { ...state.questions }
       newQuestions[payload.question_code] = payload.answers
       return {

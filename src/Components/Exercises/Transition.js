@@ -89,7 +89,7 @@ export default class Transition extends React.Component {
   // **************************************************
   // render!
   render() {
-    console.log("Transition::render()")
+    // console.log("Transition::render()")
 
     // initialize
     let { transition, isDirty } = this.state

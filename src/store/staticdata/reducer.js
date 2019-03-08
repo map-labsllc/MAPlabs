@@ -52,13 +52,13 @@ const initialState = {
 
     // Reset the reducer to initial state
     case STATICDATA_LOADING:
-      console.log( "staticdataRD::LOADING" )
+      // console.log( "staticdataRD::LOADING" )
       return initialState
 
     // payload has beliefs, strengths, and lifeDescriptions JSON file contents
     case STATICDATA_LOAD:
-      console.log( "staticdataRD::LOAD" )
-      console.log( 'payload.lifeDescriptions', payload.lifeDescriptions )
+      // console.log( "staticdataRD::LOAD" )
+      // console.log( 'payload.lifeDescriptions', payload.lifeDescriptions )
 
       // split the 'description' into 'firstPart' and 'lastPart', the delete 'description'
       const enhancedLifeDescriptions = payload.lifeDescriptions.map( ( lifeDescription ) => {

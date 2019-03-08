@@ -64,7 +64,7 @@ export default class Popup extends React.Component {
   // **************************************************
   // render!
   render() {
-    console.log("Popup::render()")
+    // console.log("Popup::render()")
 
     let { isVisible } = this.state
     let { sectionTitle, exercise } = this.props

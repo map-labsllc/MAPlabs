@@ -20,7 +20,7 @@ import {
 export default class Module extends React.Component {
 
   render() {
-    console.log("Module::render()")
+    // console.log("Module::render()")
 
     // if not logged in, redirect to root
     const { isLoggedIn } = this.props
