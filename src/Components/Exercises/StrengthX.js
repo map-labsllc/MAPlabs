@@ -95,7 +95,7 @@ export default class StrengthX extends React.Component {
 
     return (
       <>
-        <p>{number}. DYNAMIC data</p>
+        <p>{number}. DYNAMIC  data</p>
         <Button onClick={this.updateData}>update store</Button>
         <p>this.state:</p>
         <p>- strength: {this.state.strength}</p>

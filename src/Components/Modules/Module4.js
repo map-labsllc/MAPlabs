@@ -9,9 +9,17 @@ import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
 import BracketCT from '../Exercises/BracketCT'
+import StrengthXCT from '../Exercises/StrengthXCT'
 
 // import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
 // import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
+import {
+  QUESTION_TYPE_SHORT_ANSWERS,
+  QUESTION_TYPE_TRANSITIONS,
+  QUESTION_TYPE_BRACKET,
+  QUESTION_TYPE_STRENGTH,
+ } from '../../store/answers/constants'
+
 
 import {
   MOD_4_DESC,
@@ -31,9 +39,10 @@ import {
 ***************************************************** */
 export default class Module4 extends React.Component {
 
+  
+
   // Define questions and excercises for Module 4
   // --------------------------------------------------------------------
-
 /*
   // -------------------------
   // LifeDescriptions
@@ -111,6 +120,19 @@ export default class Module4 extends React.Component {
     /> )
 */
   /* *********************************************************** */
+
+  strengths_410 = [
+    <StrengthXCT question = { { code: 411, text: "question 411" } } />,
+    <StrengthXCT question = { { code: 412, text: "question 412" } } />,
+  ]
+
+  exercise_410 = (
+    <QuestionsCT
+      questionType = { QUESTION_TYPE_STRENGTH }
+      description = { QUES_410_DESC }
+      subComponents = {this.strengths_410}
+    />)
+
   render() {
     return (
       <ModuleCT
@@ -118,6 +140,12 @@ export default class Module4 extends React.Component {
         moduleTitle = "Your Meanings and Motivations "
         moduleDescription = { MOD_4_DESC }
       >
+      <SectionCT
+          moduleNum = { 4 }
+          sectionNum = { 410 }
+          sectionTitle = "Record your top 5 strengths and reflect on each"
+          exercise = {this.exercise_410}
+        />
         {/*<SectionCT
           moduleNum = { 4 }
           sectionNum = { 410 }
