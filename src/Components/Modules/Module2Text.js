@@ -25,7 +25,7 @@ export const QUES_220_DESC = `In the previous exercise you listed the values and
 Choose your most important influences.  Choose your top 5 'supportive' values and beliefs according to how influential or important someone’s, or some group’s, values and beliefs have been upon you. For values and beliefs that you identified as similar to another influence (e.g., for parent 2 you wrote 'same as parent 1 supportive belief'), just choose one since you already chose those values and beliefs elsewhere.
 Once you have completed the ranking of your 'supportive' values, do the same for your top 5 'inhibiting' values.`
 
-export const QUES_230_DESC = `Choose your top 5 'inhibiting' values and beliefs according to how influential or important someone’s, or some group’s, values and beliefs have been upon you. For values and beliefs that you identified as similar to another influence (e.g., for parent 2 you wrote 'same as parent 1 supportive belief'), just choose one since you already chose those values and beliefs elsewhere.`
+export const QUES_230_DESC = `Based on what you have written for your top 5 supportive and top 5 inhibiting influences, fill in the blanks of the statement provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.`
 
 export const QUES_240_DESC = `Based on what you have written for your top 5 supportive and top 5 inhibiting influences, fill in the blanks of the statement provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.`
 

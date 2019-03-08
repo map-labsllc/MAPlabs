@@ -7,6 +7,7 @@ import QuestionsCT from '../Framework/QuestionsCT'
 import TransitionsCT from '../Exercises/TransitionsCT'
 import NarrativeCT from '../Exercises/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswersCT'
+import InfluencesCT from '../Exercises/InfluencesCT'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
@@ -40,63 +41,55 @@ export default class Module2 extends React.Component {
 
 
   // -------------------------
-  // Replace with new component
+  // Contextual Influences
   // Module 2: 1A-B
   exercise_210 = (
-    <NarrativeCT
-      question = { { code: 210, text: "List all of your contextual influences" } }
-      promptQuestionCode = { 0 }
+    <InfluencesCT
+      question = { { code: 210, text: "List your most important contextual influences" } }
       description = { QUES_210_DESC }
-      instructions = "Choose influences in your life, their beliefs / values, and if they are supporrtive or inhibiting."
+      instructions = "Choose influences in your life, their beliefs / values, and if they are supportive or inhibiting."
     /> )
 
+    // -------------------------
+    // Contextual Influences
+    // Module 2: 2B for supportive influences
+    exercise_220 = (
+      <NarrativeCT
+        question = { { code: 220, text: "Choose your most important supportive contextual influences" } }
+        promptQuestionCode = { 0 }
+        description = { QUES_220_DESC }
+        instructions = "Choose your top 5 supportive influences"
+      /> )
+
+    // -------------------------
+    // Contextual Influences
+    // Module 2: 2B for inhibiting influences
+    exercise_221 = (
+      <NarrativeCT
+        question = { { code: 221, text: "Choose your most important inhibiting contextual influences" } }
+        promptQuestionCode = { 0 }
+        description = { QUES_220_DESC }
+        instructions = "Choose your top 5 inhibiting influences"
+      /> )
+
 
   // -------------------------
-  // May drop this??
-  // Module 2: 2B part 1
-  // <ContextualInfluenceGroups
-  // exercise_220 = (
-  //   <ContextualInfluencesCT
-  //     groups = {[
-  //       {
-  //         code:2201,
-  //         name: "Personal Relationships",
-  //         text: "These are all the individuals who now or in the past have directly influenced you positively, negatively, or both. (Examples: mother, father, step parents, brothers, sisters, grandparents, aunts, uncles, cousins, teachers, coaches, mentors, religious leaders, neighbors, friends from different eras, parents’ friends, camp counselors, bosses, etc…). Feel free to list these or any other personal relationships that have influenced you."},
-  //       {
-  //         code:2202,
-  //         name: "Social Groups/Ideologies",
-  //         text: "Ideologies: These are specific groups to which you belong or have belonged, or schools of thought and ideologies to which you have subscribed. These affiliations can be personally chosen or not. (Examples: schools, colleges, teams, religious communities, thought leaders [such as philosophers, theologians, self-help writers, artists, media personalities], youth groups, clubs, fraternities/sororities, civic organizations, volunteer activities, jobs, companies, affinity groups, etc…). Feel free to list these or any other social groups or ideologies that have influenced you." },
-  //       {
-  //         code:2203,
-  //         name: "Wider Communities and Culture Groups",
-  //         text: "These are also groups to which you belong or have belonged, but the scope is much wider. As a result, the influence may be a bit more indirect. (Examples: cities, towns, states, countries, neighborhoods, ethnicities, genders, socio-economic sectors, educational groups, industries, etc…). Feel free to list these or any other communities or cultural groups that have influenced you."
-  //       }
-  //     ]}
-  //     question = { { code: 220, text: "Rank your supportive influences" } }
-  //     promptQuestionCode = { 0 }
-  //     description = { QUES_220_DESC }
-  //     instructions = ""
-  //   /> )
-
-  // -------------------------
-  // May drop this??
-  // Module 2: 2B part 2
+  // Module 2: 3A for supportive
   exercise_230 = (
     <NarrativeCT
-      question = { { code: 230, text: "Rank your inhibiting influences" } }
-      promptQuestionCode = { 0 }
+      question = { { code: 230, text: "Relating Your Values and Beliefs to Those of Your Supportive Influences" } }
+      promptQuestionCode = { 220 }
       description = { QUES_230_DESC }
       instructions = { QUES_230_DESC }
     /> )
 
 
   // -------------------------
-  // Replace with new component
-  // Module 2: 3A
+  // Module 2: 3A for inhibiting
   exercise_240 = (
     <NarrativeCT
-      question = { { code: 240, text: "Relating Your Values and Beliefs to Those of Your Influences" } }
-      promptQuestionCode = { 0 } // would need to do something here, maybe an array of promptQuestionCodes like in <Bracket>
+      question = { { code: 240, text: "Relating Your Values and Beliefs to Those of Your Inhibiting Influences" } }
+      promptQuestionCode = { 221 }
       description = { QUES_240_DESC }
       instructions = { QUES_240_DESC }
     /> )
@@ -107,7 +100,7 @@ export default class Module2 extends React.Component {
   exercise_250 = (
     <NarrativeCT
       question = { { code: 250, text: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement" } }
-      promptQuestionCode = { 0 }
+      promptQuestionCode = { 230 }
       description = { QUES_250_DESC }
       instructions = { QUES_250_DESC }
     /> )
@@ -117,7 +110,7 @@ export default class Module2 extends React.Component {
   exercise_260 = (
     <NarrativeCT
       question = { { code: 260, text: "Synthesize Your Values and Beliefs into a Self-Inhibiting Statement" } }
-      promptQuestionCode = { 0 }
+      promptQuestionCode = { 240 }
       description = { QUES_260_DESC }
       instructions = { QUES_260_DESC }
     /> )
@@ -169,25 +162,31 @@ export default class Module2 extends React.Component {
         <SectionCT
           moduleNum = { 2 }
           sectionNum = { 210 }
-          sectionTitle = "Contextual Influences I"
+          sectionTitle = "Contextual Influences"
           exercise = {this.exercise_210}
         />
-        {/* <SectionCT
+         {/*<SectionCT
           moduleNum = { 2 }
           sectionNum = { 220 }
-          sectionTitle = "Contextual Influences II"
+          sectionTitle = "Top 5 Supportive Influences"
           exercise = {this.exercise_220}
-        />*/}
+        />
+         <SectionCT
+          moduleNum = { 2 }
+          sectionNum = { 221 }
+          sectionTitle = "Top 5 Inhibiting Influences"
+          exercise = {this.exercise_221}
+        />
         <SectionCT
           moduleNum = { 2 }
           sectionNum = { 230 }
-          sectionTitle = "Contextual Influences III"
+          sectionTitle = "Relating Your Values and Beliefs to Those of Your Influencers, I"
           exercise = {this.exercise_230}
         />
         <SectionCT
           moduleNum = { 2 }
           sectionNum = { 240 }
-          sectionTitle = "Relating Your Values and Beliefs to Those of You Influencers"
+          sectionTitle = "Relating Your Values and Beliefs to Those of Your Influencers, II"
           exercise = {this.exercise_240}
         />
         <SectionCT
@@ -213,7 +212,7 @@ export default class Module2 extends React.Component {
           sectionNum = { 280 }
           sectionTitle = "Breaking and building"
           exercise = {this.exercise_280}
-        />
+        />*/}
       </ModuleCT>
     )
   }
