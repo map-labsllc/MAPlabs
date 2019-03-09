@@ -3,12 +3,11 @@ import React from 'react'
 import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
-
-import LifeXDescriptorsCT from '../Exercises/LifeXDescriptorsCT'
-import TransitionsCT from '../Exercises/TransitionsCT'
-import NarrativeCT from '../Exercises/NarrativeCT'
-import ShortAnswersCT from '../Exercises/ShortAnswersCT'
-import BracketCT from '../Exercises/BracketCT'
+import LifeDescriptorsCT from '../Exercises/LifeDescriptors/LifeDescriptorsCT'
+import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
+import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
+import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
+import BracketCT from '../Exercises/Bracket/BracketCT'
 
 // import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
 // import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
@@ -39,7 +38,7 @@ export default class Module4 extends React.Component {
   // LifeDescriptions
 
   exercise_410 = (
-    <LifeXDescriptorsCT
+    <LifeDescriptorsCT
       question = { { code: 410, text: "Reflect on your current situation" } }
       description = { QUES_410_DESC }
       instructions = "Complete sentences that are important to you:"

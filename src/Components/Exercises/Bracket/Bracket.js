@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import '../../CSS/ModalNavButtons.css'
+import '../../../CSS/ModalNavButtons.css'
 import { Button } from 'react-bootstrap'
 
 

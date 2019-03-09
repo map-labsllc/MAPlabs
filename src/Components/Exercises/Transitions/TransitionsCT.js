@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 
 import Transitions from './Transitions'
-import { getAnswers } from '../../store/answers/reducer'
-import { updateAnswersAC } from '../../store/answers/actions'
+import { getAnswers } from '../../../store/answers/reducer'
+import { updateAnswersAC } from '../../../store/answers/actions'
 
 /* *****************************************
    mapStateToProps()

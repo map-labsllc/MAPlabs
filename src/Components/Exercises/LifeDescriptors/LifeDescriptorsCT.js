@@ -1,14 +1,14 @@
 
 import { connect } from 'react-redux'
 
-import LifeXDescriptors from './LifeXDescriptors'
-import { getUser } from '../../store/user/reducer'
-import { getAnswers } from '../../store/answers/reducer'
-import { QUESTION_TYPE_LIFEDESCRIPTORS } from '../../store/answers/constants'
+import LifeDescriptors from './LifeDescriptors'
+import { getUser } from '../../../store/user/reducer'
+import { getAnswers } from '../../../store/answers/reducer'
+import { QUESTION_TYPE_LIFEDESCRIPTORS } from '../../../store/answers/constants'
 import {
   updateAnswersAC,
   persistAnswersAC
-} from '../../store/answers/actions'
+} from '../../../store/answers/actions'
 
 /* *****************************************
    mapStateToProps()
@@ -66,7 +66,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
     // store wants 2D array of strings, so map the array of strings into that format
     const twoDimArrayOfString = lifeDescriptors.map(str => [str])
-    console.log("LifeXDescriptors::onPersist(), 2darray ", twoDimArrayOfString)
+    console.log("LifeDescriptors::onPersist(), 2darray ", twoDimArrayOfString)
 
     dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
     dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_LIFEDESCRIPTORS, twoDimArrayOfString ) )
@@ -80,4 +80,4 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( LifeXDescriptors )
+)( LifeDescriptors )

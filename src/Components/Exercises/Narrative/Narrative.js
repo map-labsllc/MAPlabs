@@ -8,8 +8,8 @@ import {
   FormControl,
   FormGroup,
 } from 'react-bootstrap'
-import Prompts from '../Framework/Prompts'
-import '../../CSS/ModalNavButtons.css'
+import Prompts from '../../Framework/Prompts'
+import '../../../CSS/ModalNavButtons.css'
 
 /* **************************************************
    Narrative component
@@ -23,6 +23,7 @@ import '../../CSS/ModalNavButtons.css'
      question -- { code: 50, text: "Question 50" }
      prompts -- [] or 2D array of strings with short answers saved by prior exercise
                     [ [ 'prompt1' ], ['prompt2'] ]
+     promptFormat -- pass to <Prompt> to format different prompts
      instructions -- can be empty string
      previousAnswer -- string with the previous answer
      isDynamic -- undefined or true
@@ -76,7 +77,7 @@ export default class Narrative extends React.Component {
     // console.log("Narrative::render()")
 
     // initialize
-    const { question, prompts, instructions, isDynamic } = this.props
+    const { question, prompts, promptFormat, instructions, isDynamic } = this.props
     const { answer } = this.state
 
     // render static version
@@ -94,7 +95,7 @@ export default class Narrative extends React.Component {
             {instructions && (
               <p>{instructions}</p>
             )}
-            <Prompts prompts={prompts} />
+            <Prompts prompts={prompts} promptFormat={promptFormat}/>
             <h4>{question.text}</h4>
             <textarea
               rows="10"

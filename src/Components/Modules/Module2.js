@@ -4,10 +4,10 @@ import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
-import TransitionsCT from '../Exercises/TransitionsCT'
-import NarrativeCT from '../Exercises/NarrativeCT'
-import ShortAnswersCT from '../Exercises/ShortAnswersCT'
-import InfluencesCT from '../Exercises/InfluencesCT'
+import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
+import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
+import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
+import InfluencesCT from '../Exercises/Influences/InfluencesCT'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
@@ -78,7 +78,8 @@ export default class Module2 extends React.Component {
   exercise_230 = (
     <NarrativeCT
       question = { { code: 230, text: "Relating Your Values and Beliefs to Those of Your Supportive Influences" } }
-      promptQuestionCode = { 220 }
+      promptQuestionCode = { 210 }
+      promptFormat = { 'madlib-supportive' }
       description = { QUES_230_DESC }
       instructions = { QUES_230_DESC }
     /> )
@@ -176,14 +177,14 @@ export default class Module2 extends React.Component {
           sectionNum = { 221 }
           sectionTitle = "Top 5 Inhibiting Influences"
           exercise = {this.exercise_221}
-        />
+        />*/}
         <SectionCT
           moduleNum = { 2 }
           sectionNum = { 230 }
           sectionTitle = "Relating Your Values and Beliefs to Those of Your Influencers, I"
           exercise = {this.exercise_230}
         />
-        <SectionCT
+        {/*}<SectionCT
           moduleNum = { 2 }
           sectionNum = { 240 }
           sectionTitle = "Relating Your Values and Beliefs to Those of Your Influencers, II"

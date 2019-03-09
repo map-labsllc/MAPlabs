@@ -4,9 +4,9 @@ import {
   Button,
 } from 'react-bootstrap'
 import Transition from './Transition'
-import '../../CSS/ModalNavButtons.css'
+import '../../../CSS/ModalNavButtons.css'
 
-import { UUID } from '../Utils/UUID'
+import { UUID } from '../../Utils/UUID'
 
 /* **************************************************
    Transitions component

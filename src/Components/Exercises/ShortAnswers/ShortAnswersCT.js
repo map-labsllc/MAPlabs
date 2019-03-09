@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import ShortAnswers from './ShortAnswers'
-import { getAnswers } from '../../store/answers/reducer'
-import { updateAnswersAC } from '../../store/answers/actions'
+import { getAnswers } from '../../../store/answers/reducer'
+import { updateAnswersAC } from '../../../store/answers/actions'
 
 
 /* *****************************************

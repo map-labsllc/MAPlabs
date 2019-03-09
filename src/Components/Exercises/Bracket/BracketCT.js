@@ -1,10 +1,10 @@
 import Bracket from './Bracket'
 
 import { connect } from 'react-redux'
-import { getAnswers } from '../../store/answers/reducer'
+import { getAnswers } from '../../../store/answers/reducer'
 import {
-  updateAnswersAC } from '../../store/answers/actions'
-
+  updateAnswersAC } from '../../../store/answers/actions'
+ 
 /* *****************************************
    mapStateToProps()
 

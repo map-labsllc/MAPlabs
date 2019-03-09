@@ -21,7 +21,7 @@ import {
       isCheckedB - t/f is the b option should be selected
       onAddSelectionCB - CB when a selection is made
  ***************************************************** */
-const LifeXDescriptor = ( props ) => {
+const LifeDescriptor = ( props ) => {
 
   const {
     lifeDescriptor,
@@ -75,4 +75,4 @@ const LifeXDescriptor = ( props ) => {
   )
 }
 
-export default LifeXDescriptor
+export default LifeDescriptor

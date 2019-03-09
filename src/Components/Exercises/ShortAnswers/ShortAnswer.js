@@ -89,7 +89,6 @@ export default class ShortAnswer extends React.Component {
         <br />
         <Form inline onSubmit={this.onSubmit}>
           <div >
-            {id}&nbsp;
             <textarea
               autoFocus={true}
               onChange={this.onChange}

@@ -4,8 +4,8 @@ import {
   Button,
 } from 'react-bootstrap'
 import ShortAnswer from './ShortAnswer'
-import '../../CSS/ModalNavButtons.css'
-import { UUID } from '../Utils/UUID'
+import '../../../CSS/ModalNavButtons.css'
+import { UUID } from '../../Utils/UUID'
 
 /* **************************************************
    ShortAnswers component

@@ -3,10 +3,10 @@ import {
   Button,
  } from 'react-bootstrap'
 
-import LifeXDescriptor from './LifeXDescriptor'
-import Arrow from '../Utils/Arrow'
+import LifeDescriptor from './LifeDescriptor'
+import Arrow from '../../Utils/Arrow'
 
-import '../../CSS/ModalNavButtons.css'
+import '../../../CSS/ModalNavButtons.css'
 
 const NUM_PER_PAGE = 5
 // const NUM_PER_PAGE = 5
@@ -186,7 +186,7 @@ export default class LifeDescriptors extends Component {
     const endIdx = Math.min( ( ( page + 1 ) * NUM_PER_PAGE ), lifeDescriptors.length )
     for ( let i = startIdx ; i < endIdx ; i++ ) {
       thisPage.push( (
-        <LifeXDescriptor
+        <LifeDescriptor
           key={i}
           lifeDescriptor={lifeDescriptors[i]}
           onAddSelectionCB={
@@ -203,7 +203,7 @@ export default class LifeDescriptors extends Component {
     return (
       <>
         <p><b>{instructions}</b></p>
-        
+
         {thisPage}
 
         <br />

@@ -4,10 +4,10 @@ import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
-import LifeXDescriptorsCT from '../Exercises/LifeXDescriptorsCT'
-import TransitionsCT from '../Exercises/TransitionsCT'
-import NarrativeCT from '../Exercises/NarrativeCT'
-import ShortAnswersCT from '../Exercises/ShortAnswersCT'
+import LifeDescriptorsCT from '../Exercises/LifeDescriptors/LifeDescriptorsCT'
+import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
+import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
+import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
@@ -41,7 +41,7 @@ export default class Module1 extends React.Component {
   // -------------------------
   // Module 1: 2C-F
   exercise_110 = (
-    <LifeXDescriptorsCT
+    <LifeDescriptorsCT
       question = { { code: 110, text: "Reflect on your current situation" } }
       description = { QUES_110_DESC }
       instructions = "Complete sentences that are important to you."
@@ -62,7 +62,7 @@ export default class Module1 extends React.Component {
   // -------------------------
   // Module 1: 3B-D
   exercise_130 = (
-    <LifeXDescriptorsCT
+    <LifeDescriptorsCT
       question = { { code: 130, text: "Imagine your future desired situation" } }
       description = { QUES_130_DESC }
       instructions = "Complete sentences that are important to you."
