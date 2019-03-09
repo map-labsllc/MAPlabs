@@ -35,10 +35,8 @@ import {
 ***************************************************** */
 export default class Module2 extends React.Component {
 
-
   // Define questions and excercises for Module 3
   // ---------------------------------------------------------------------
-
 
   // -------------------------
   // Contextual Influences
@@ -47,7 +45,7 @@ export default class Module2 extends React.Component {
     <InfluencesCT
       question = { { code: 210, text: "List your most important contextual influences" } }
       description = { QUES_210_DESC }
-      instructions = "Choose influences in your life, their beliefs / values, and if they are supportive or inhibiting."
+      instructions = "Choose influences in your life, thier relationship to you, their beliefs / values, and if they were supportive or inhibiting."
     /> )
 
     // -------------------------

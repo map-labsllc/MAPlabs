@@ -97,9 +97,7 @@ export default class Popup extends React.Component {
               <ShowMoreLess lines={3} >
                 <span dangerouslySetInnerHTML={{ __html: description }} />
               </ShowMoreLess>
-              <br />
               <hr className="divider" />
-              <br />
               {exerciseStatic}
               <div className="text-center">
                 <Button className="startButton" type="button" onClick={this.onclickStart}>Start</Button>
