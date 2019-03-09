@@ -73,7 +73,7 @@ export const loadAllAnswersAC = ( userId ) => {
    quesion_code - integer
    question_type -- integer from ./contants.js
    answers - 2D array of up to four strings each
-                [ [ "ans1", "ans2", "ans3, "ans4"], [...] ]
+                [ [ "ans1", "ans2", "ans3, "ans4", "ans5", "ams6"], [...] ]
              Note:  only need to supply as many strings as are used, ex:
                 [ [ "narrative" ] ]
 ******************************************************** */
@@ -96,12 +96,12 @@ export const persistAnswersAC = ( userId, question_code, question_type, answers 
       .then( ( message ) => {
         console.log( "post response message", message )
         dispatch( { type: ANSWERS_PERSIST } )
-        return //
+        return
       } )
       .catch( ( error ) => {
         console.log( "POST ERROR", error )
         dispatch( { type: ANSWERS_ERROR_DB, payload: error } )
-        return //
+        return
       } )
   }
 }

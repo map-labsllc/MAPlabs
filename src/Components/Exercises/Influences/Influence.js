@@ -4,18 +4,16 @@ import PropTypes from 'prop-types'
 import {
   Button,
   Form,
-  FormGroup,
   FormControl,
   Glyphicon,
 } from 'react-bootstrap'
 
-import '../../CSS/ModalNavButtons.css'
-import { UUID } from '../Utils/UUID'
+import {
+  IMPACT_SUPPORTIVE,
+  IMPACT_INHIBITING
+} from './InfluencesConstants'
 
-// legal values for an impact
-export const IMPACT_SUPPORTIVE = 'supportive'
-export const IMPACT_INHIBITING = 'inhibiting'
-export const IMPACT_BOTH       = 'both'
+import '../../../CSS/ModalNavButtons.css'
 
 /* **************************************************
    Influence component
@@ -26,14 +24,13 @@ export const IMPACT_BOTH       = 'both'
      -- selection for impact
      -- delete button
 
-   state:
-     todo: fill this in
-
    props:
      id -- integer id for the question (poorman's UUID)
+     beliefs -- statcdata -- [ 'belief1', 'belief2', ... ]
+     relationships -- staticdata -- ['brother',...]
      influence -- { name:"Tim", belief:"Charity", impact:"supportive" }
      isDynamic -- not defined or true
-     updateInfluenceCB -- call for all changes, updt store
+     updateInfluenceCB -- call for all changes
      deleteInfluenceCB -- click trash can
 ***************************************************** */
 export default class Influence extends React.Component {
@@ -41,7 +38,7 @@ export default class Influence extends React.Component {
   /* **********************************************
     onChange()
 
-    e - target.id is key for influence object:  name, belief, or impact
+    e - target.id is a key for the influence object:  'relationship', 'name', 'belief', or 'impact'
   ************************************************ */
   onChange = (e) => {
     console.log("Influence::onChange()")
@@ -49,9 +46,6 @@ export default class Influence extends React.Component {
       ...this.props.influence,
       [e.target.id]: e.target.value
     }
-    console.log('-----------')
-    console.log('newInfluence:', newInfluence)
-    console.log('-----------')
     const { id, updateInfluenceCB } = this.props
     updateInfluenceCB(id, newInfluence)
   }
@@ -68,23 +62,42 @@ export default class Influence extends React.Component {
   render() {
     console.log("Influence::render(): ", this.props.influence)
 
-    const { influence, isDynamic } = this.props
-    const { name, belief, impact } = influence
+    const { beliefs, relationships, influence, isDynamic } = this.props
+    const { relationship, name, belief, impact } = influence
 
-    // if ( !isDynamic ) {
-    //   return (
-    //     <>
-    //       <p>&nbsp;&nbsp;&nbsp;{name} -- {belief} -- {impact}</p>
-    //     </>
-    //   )
-    // }
+    // static render, note: no surrounding <table> tag, but still working
+    if ( !isDynamic ) {
+      return (
+        <tr>
+          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{relationship}</th>
+          <th>&nbsp;&nbsp;--&nbsp;&nbsp;{name}</th>
+          <th>&nbsp;&nbsp;--&nbsp;&nbsp;{belief}</th>
+          <th>&nbsp;&nbsp;--&nbsp;&nbsp;{impact}</th>
+        </tr>
+      )
+    }
 
+    // dynamic render
     return (
       <Form inline>
-        {/*<p>&nbsp;&nbsp;&nbsp;{name} -- {belief} -- {impact}</p>*/}
 
         &nbsp;&nbsp;&nbsp;
         <Button type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
+
+        &nbsp;
+        &nbsp;
+        <select
+          id="relationship"
+          defaultValue={relationship}
+          onChange={this.onChange}
+        >
+          <option value='' disabled hidden>- relationship -</option>
+          {/*'key' added to suppress react warning*/}
+          {relationships.map((relationship, idx) =>
+            <option key={idx} value={relationship}>{relationship}</option>
+          )}
+        </select>
+
         &nbsp;
         &nbsp;
         <FormControl
@@ -94,6 +107,7 @@ export default class Influence extends React.Component {
           placeholder='Individual'
           onChange={this.onChange}
         />
+
         &nbsp;
         &nbsp;
         <select
@@ -102,10 +116,12 @@ export default class Influence extends React.Component {
           onChange={this.onChange}
         >
           <option value='' disabled hidden>- belief/value -</option>
-          <option value='Balance'>Balance</option>
-          <option value='Charity'>Charity</option>
-          <option value='Courage'>Courage</option>
+          {/*'key' added to suppress react warning*/}
+          {beliefs.map((belief, idx) =>
+            <option key={idx} value={belief}>{belief}</option>
+          )}
         </select>
+
         &nbsp;
         &nbsp;
         <select
@@ -116,37 +132,12 @@ export default class Influence extends React.Component {
           <option value='' disabled hidden>- impact -</option>
           <option value={IMPACT_SUPPORTIVE}>{IMPACT_SUPPORTIVE}</option>
           <option value={IMPACT_INHIBITING}>{IMPACT_INHIBITING}</option>
-          <option value={IMPACT_BOTH}      >{IMPACT_BOTH}</option>
         </select>
+
       </Form>
     )
   }
 }
-
-// <select id="belief">
-//   <option selected={belief==='Balance'}>Balance</option>
-//   <option selected={belief==='Charity'}>Charity</option>
-//   <option selected={belief==='Courage'}>Courage</option>
-// </select>
-
-// <option {((belief === IMPACT_SUPPORTIVE) ? 'selected' : 'x')}>{IMPACT_SUPPORTIVE}</option>
-// <option {((belief === IMPACT_INHIBITING) ? 'selected' : 'x')}>{IMPACT_INHIBITING}</option>
-// <option {((belief === IMPACT_BOTH)       ? 'selected' : 'x')}>{IMPACT_BOTH}</option>
-
-
-// onChange={this.onChangeFrom}
-// onBlur={this.onBlur}
-// style={style.width}
-
-// <Form>
-//   <p>&nbsp;&nbsp;&nbsp;{name} -- {belief} -- {impact}</p>
-//   <Form.Control as="select">
-//     <option>{IMPACT_SUPPORTIVE}</option>
-//     <option>{IMPACT_INHIBITING}</option>
-//     <option>{IMPACT_BOTH}</option>
-//   </Form.Control>
-// </Form>
-
 
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////

@@ -12,9 +12,9 @@ import {
     isError: false,
     errorMessage: '',
     questions: {
-      1: [ [ 'narrative, so only one answer', '', '', '' ] ],
-      2: [ [ 'east', 'west', '','' ], [ 'top', 'bottom', '','' ] },
-      3: [ [ 'short 1', '', '','' ], [ 'short 2', '', '','' ] },
+      1: [ [ 'narrative, so only one answer', '', '', '', '', '' ] ],
+      2: [ [ 'east', 'west', '','' ], [ 'top', 'bottom', '','', '', '' ] },
+      3: [ [ 'short 1', '', '','' ], [ 'short 2', '', '','', '', '' ] },
       4: [ ... ]
     },
   }

@@ -14,6 +14,8 @@ import {
 
     strengths: [ 'strength1', 'strength2', ],
 
+    relationships: [ 'brother', 'coach', ... ]
+
     lifeDescriptors:  // array is in sort order
       [
         { firstPart: 'My life ',
@@ -75,6 +77,7 @@ const initialState = {
         isLoading: false,
         beliefs: payload.beliefs,
         strengths: payload.strengths,
+        relationships: payload.relationships,
         lifeDescriptors: enhancedLifeDescriptions,
       }
 

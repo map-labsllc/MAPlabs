@@ -1,20 +1,27 @@
 import { connect } from 'react-redux'
 import Influences from './Influences'
-import { getAnswers } from '../../store/answers/reducer'
-import { getUser } from '../../store/user/reducer'
-import { updateAnswersAC } from '../../store/answers/actions'
+import { getAnswers } from '../../../store/answers/reducer'
+import { getUser } from '../../../store/user/reducer'
+import {
+  updateAnswersAC,
+  persistAnswersAC
+} from '../../../store/answers/actions'
+
+import {
+  QUESTION_TYPE_INFLUENCES,
+ } from '../../../store/answers/constants'
+
 import {
   GROUP_PERSONAL,
   GROUP_SOCIAL,
   GROUP_WIDER,
+
+  IDX_RELATIONSHIP,
+  IDX_GROUP,
+  IDX_NAME,
+  IDX_BELIEF,
+  IDX_IMPACT,
 } from './InfluencesConstants.js'
-
-
-// indexes into the columns of the 2D data structure coming from the store
-const IDX_GROUP  = 0 // personal / social / wider
-const IDX_NAME   = 1 // Steve
-const IDX_BELIEF = 2 // Charity
-const IDX_IMPACT = 3 // supportive / inhibiting
 
 /* *****************************************
    mapStateToProps()
@@ -47,7 +54,7 @@ const mapStateToProps = ( state, passedProps ) => {
   console.log( `getAnswers(${question.code}): `, answerRecords )
 
   // data structure to pass down in props
-  const previousData = {
+  const influences = {
     [GROUP_PERSONAL]: [], // [ {name:'Tim', belief:'Charity', impact:'supportive'}, {...} ]
     [GROUP_SOCIAL]:   [], // same as above
     [GROUP_WIDER]:    [], // same as above
@@ -58,22 +65,23 @@ const mapStateToProps = ( state, passedProps ) => {
   if (answerRecords.length) {
     answerRecords.forEach( record => {
       const influence = {
-        name:   record[IDX_NAME],
-        belief: record[IDX_BELIEF],
-        impact: record[IDX_IMPACT],
+        relationship: record[IDX_RELATIONSHIP],
+        name:         record[IDX_NAME],
+        belief:       record[IDX_BELIEF],
+        impact:       record[IDX_IMPACT],
       }
 
       switch (record[IDX_GROUP]) {
         case (GROUP_PERSONAL):
-          previousData[GROUP_PERSONAL].push(influence)
+          influences[GROUP_PERSONAL].push(influence)
           break
 
         case (GROUP_SOCIAL):
-          previousData[GROUP_SOCIAL].push(influence)
+          influences[GROUP_SOCIAL].push(influence)
           break
 
         case (GROUP_WIDER):
-          previousData[GROUP_WIDER].push(influence)
+          influences[GROUP_WIDER].push(influence)
           break
 
         default:
@@ -82,14 +90,15 @@ const mapStateToProps = ( state, passedProps ) => {
     })
   }
 
-
-  console.log('InfluencesCT::previousData: ', previousData)
+  console.log('InfluencesCT::influences: ', influences)
 
   return {
     userId,
     question,
     instructions,
-    previousData,
+    beliefs: state.staticdataRD.beliefs,
+    relationships: state.staticdataRD.relationships,
+    influences,
     isDynamic,
     onCloseModalCB,
   }
@@ -109,19 +118,45 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   /* *****************************************
   onPersist()
 
-  Save the new answer to store and persist it.
+  Save the new influences to store and persist them.
 
   userId -- integer
-  newData -- same format as the object that was passed down in props as "previousData"
-  ******************************************** */
-  function onPersist( userId, newData ) {
-    // const { question } = passedProps
-    console.log( `InfluencesCT::onPersist( ${newData} )` )
+  newInfluences -- same format as the object that was passed down in props as "influences"
+            {
+              [GROUP_PERSONAL]: [ {name:'Tim', belief:'Charity', impact:'supportive'}, {...} ]
+              [GROUP_SOCIAL]:   [], // same as above
+              [GROUP_WIDER]:    [], // same as above
+            }
 
-    // store wants 2D array of strings, so map the array of strings into that format
-    // const twoDimArrayOfString = [ [ newAnswer ] ]
-    // dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
-    // dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_NARRATIVE, twoDimArrayOfString ) )
+  ******************************************** */
+  function onPersist( userId, newInfluences ) {
+    console.log( `InfluencesCT::onPersist( ${newInfluences} )` )
+
+    const { question } = passedProps
+
+    // store wants 2D array of strings, so map the object into that format
+    const twoDimArrayOfString = []
+    const groupIds = [GROUP_PERSONAL, GROUP_SOCIAL, GROUP_WIDER]
+    groupIds.forEach(groupId => {
+      newInfluences[groupId].forEach(influence => {
+        // don't save unless name was entered
+        if (influence.name.trim().length) {
+          const record = []
+          record[IDX_GROUP]        = groupId
+          record[IDX_RELATIONSHIP] = influence.relationship
+          record[IDX_NAME]         = influence.name
+          record[IDX_BELIEF]       = influence.belief
+          record[IDX_IMPACT]       = influence.impact
+          twoDimArrayOfString.push(record)
+        }
+      })
+    })
+
+    console.log('-------------------- persisting')
+    console.log(JSON.stringify(twoDimArrayOfString))
+
+    dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
+    dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_INFLUENCES, twoDimArrayOfString ) )
   }
 
   /* *****************************************
