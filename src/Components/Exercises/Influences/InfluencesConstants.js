@@ -10,7 +10,11 @@ export const IDX_RELATIONSHIP = 1 // brother
 export const IDX_NAME         = 2 // Steve
 export const IDX_BELIEF       = 3 // Charity
 export const IDX_IMPACT       = 4 // supportive / inhibiting
+export const IDX_SELECTED     = 5 // 'selected' or ''
 
 // legal values for an impact
 export const IMPACT_SUPPORTIVE = 'supportive'
 export const IMPACT_INHIBITING = 'inhibiting'
+
+// field value when slecting top 5
+export const SELECTED = 'selected' 

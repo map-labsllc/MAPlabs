@@ -8,12 +8,17 @@ import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import InfluencesCT from '../Exercises/Influences/InfluencesCT'
+import InfluencesTop5CT from '../Exercises/InfluencesTop5/InfluencesTop5CT'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
  } from '../../store/answers/constants'
 
+import {
+  IMPACT_SUPPORTIVE,
+  IMPACT_INHIBITING,
+} from '../Exercises/Influences/InfluencesConstants'
 
 import {
   MOD_2_DESC,
@@ -39,7 +44,7 @@ export default class Module2 extends React.Component {
   // ---------------------------------------------------------------------
 
   // -------------------------
-  // Contextual Influences
+  // Influences
   // Module 2: 1A-B
   exercise_210 = (
     <InfluencesCT
@@ -48,35 +53,40 @@ export default class Module2 extends React.Component {
       instructions = "Choose influences in your life, thier relationship to you, their beliefs / values, and if they were supportive or inhibiting."
     /> )
 
-    // -------------------------
-    // Contextual Influences
-    // Module 2: 2B for supportive influences
-    exercise_220 = (
-      <NarrativeCT
-        question = { { code: 220, text: "Choose your most important supportive contextual influences" } }
-        promptQuestionCode = { 0 }
-        description = { QUES_220_DESC }
-        instructions = "Choose your top 5 supportive influences"
-      /> )
+  // -------------------------
+  // Top5 Supportive
+  // Module 2: 2B for supportive influences
+  exercise_220 = (
+    <InfluencesTop5CT
+      question = { { code: 220, text: "Choose your most important supportive contextual influences" } }
+      promptQuestionCode = { 210 }
+      outputQuestionCode = { 230 }
+      impactFilter = { IMPACT_SUPPORTIVE }
+      description = { QUES_220_DESC }
+      instructions = "Choose your top 5 supportive influences"
+    /> )
 
-    // -------------------------
-    // Contextual Influences
-    // Module 2: 2B for inhibiting influences
-    exercise_221 = (
-      <NarrativeCT
-        question = { { code: 221, text: "Choose your most important inhibiting contextual influences" } }
-        promptQuestionCode = { 0 }
-        description = { QUES_220_DESC }
-        instructions = "Choose your top 5 inhibiting influences"
-      /> )
+  // -------------------------
+  // Top 5 Inhibiting
+  // Module 2: 2B for inhibiting influences
+  exercise_221 = (
+    <InfluencesTop5CT
+      question = { { code: 221, text: "Choose your most important inhibiting contextual influences" } }
+      promptQuestionCode = { 210 }
+      outputQuestionCode = { 240 }
+      impactFilter = { IMPACT_INHIBITING }
+      description = { QUES_220_DESC }
+      instructions = "Choose your top 5 inhibiting influences"
+    /> )
 
 
   // -------------------------
+  // Madlibs: Supportive
   // Module 2: 3A for supportive
   exercise_230 = (
     <NarrativeCT
       question = { { code: 230, text: "Relating Your Values and Beliefs to Those of Your Supportive Influences" } }
-      promptQuestionCode = { 210 }
+      promptQuestionCode = { 0 }
       promptFormat = { 'madlib-supportive' }
       description = { QUES_230_DESC }
       instructions = { QUES_230_DESC }
@@ -84,17 +94,19 @@ export default class Module2 extends React.Component {
 
 
   // -------------------------
+  // M<adlibs: Inhibiting
   // Module 2: 3A for inhibiting
   exercise_240 = (
     <NarrativeCT
       question = { { code: 240, text: "Relating Your Values and Beliefs to Those of Your Inhibiting Influences" } }
-      promptQuestionCode = { 221 }
+      promptQuestionCode = { 0 }
       description = { QUES_240_DESC }
       instructions = { QUES_240_DESC }
     /> )
 
 
   // -------------------------
+  // Narrative Supportive
   // Module 2: 3B
   exercise_250 = (
     <NarrativeCT
@@ -105,6 +117,7 @@ export default class Module2 extends React.Component {
     /> )
 
   // -------------------------
+  // Narrative Inhibiting
   // Module 2: 3C
   exercise_260 = (
     <NarrativeCT
@@ -164,7 +177,7 @@ export default class Module2 extends React.Component {
           sectionTitle = "Contextual Influences"
           exercise = {this.exercise_210}
         />
-         {/*<SectionCT
+        <SectionCT
           moduleNum = { 2 }
           sectionNum = { 220 }
           sectionTitle = "Top 5 Supportive Influences"
@@ -175,17 +188,17 @@ export default class Module2 extends React.Component {
           sectionNum = { 221 }
           sectionTitle = "Top 5 Inhibiting Influences"
           exercise = {this.exercise_221}
-        />*/}
+        />
         <SectionCT
           moduleNum = { 2 }
           sectionNum = { 230 }
-          sectionTitle = "Relating Your Values and Beliefs to Those of Your Influencers, I"
+          sectionTitle = "Relating Your Values and Beliefs to Those of Your Supportive Influencers"
           exercise = {this.exercise_230}
         />
-        {/*}<SectionCT
+        <SectionCT
           moduleNum = { 2 }
           sectionNum = { 240 }
-          sectionTitle = "Relating Your Values and Beliefs to Those of Your Influencers, II"
+          sectionTitle = "Relating Your Values and Beliefs to Those of Your Inhibiting Influencers"
           exercise = {this.exercise_240}
         />
         <SectionCT
@@ -211,7 +224,7 @@ export default class Module2 extends React.Component {
           sectionNum = { 280 }
           sectionTitle = "Breaking and building"
           exercise = {this.exercise_280}
-        />*/}
+        />
       </ModuleCT>
     )
   }

@@ -19,16 +19,17 @@ import '../../../CSS/ModalNavButtons.css'
    Influence component
 
    Displays a single influence
+     -- delete button
+     -- selection for relationship
      -- text control for name
      -- selection for belief
      -- selection for impact
-     -- delete button
 
    props:
      id -- integer id for the question (poorman's UUID)
      beliefs -- statcdata -- [ 'belief1', 'belief2', ... ]
      relationships -- staticdata -- ['brother',...]
-     influence -- { name:"Tim", belief:"Charity", impact:"supportive" }
+     influence -- { relationship:"brother", name:"Tim", belief:"Charity", impact:"supportive", selected:'selected' }
      isDynamic -- not defined or true
      updateInfluenceCB -- call for all changes
      deleteInfluenceCB -- click trash can

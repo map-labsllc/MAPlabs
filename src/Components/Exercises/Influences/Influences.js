@@ -21,11 +21,13 @@ import { UUID } from '../../Utils/UUID'
 
    state:
     isDirty -- decide if we need to persist to db
-    influences --
-      {
-        personal: [ { relationship:'brother', name:"Tim", belief:"Charity", impact:"supportive"}, {...} ]
-        social:   [ { relationship:'friend',name:"Tim", belief:"Charity", impact:"supportive"}, {...} ]
-        wider:    [ { nrelationship:'coach',ame:"Tim", belief:"Charity", impact:"supportive"}, {...} ]
+    influencesWithKeys -- 
+      { key: 3,
+        item: {
+          personal: [ { relationship:'brother', name:"Tim", belief:"Charity", impact:"supportive", selected:'selected'}, {...} ]
+          social:   [ { relationship:'friend',name:"Tim", belief:"Charity", impact:"supportive", selected:'selected'}, {...} ]
+          wider:    [ { nrelationship:'coach',ame:"Tim", belief:"Charity", impact:"supportive", selected:'selected'}, {...} ]
+        }
       }
 
    props:
@@ -115,7 +117,8 @@ export default class Influences extends React.Component {
       relationship: previousRelationship,
       name: previousName,
       belief: '',
-      impact:''
+      impact:'',
+      selected: '',
     }))
 
     this.setState({
@@ -196,6 +199,10 @@ export default class Influences extends React.Component {
 
         {isDynamic &&
           <Button type="button" onClick={this.onclickClose}>Close</Button>
+        }
+        
+        {!isDynamic &&
+          <br></br>
         }
       </>
     )

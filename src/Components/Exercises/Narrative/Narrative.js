@@ -96,7 +96,7 @@ export default class Narrative extends React.Component {
               <p>{instructions}</p>
             )}
             <Prompts prompts={prompts} promptFormat={promptFormat}/>
-            <h4>{question.text}</h4>
+            {/* <h4>{question.text}</h4> */}
             <textarea
               rows="10"
               style={style.contain}

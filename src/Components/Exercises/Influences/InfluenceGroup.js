@@ -20,7 +20,7 @@ import Influence from './Influence'
         [
           {
             key: 3,
-            item: { name:"Tim", belief:"Chartiy", impact:"supportive" }
+            item: { relationship:'brother', name:"Tim", belief:"Chartiy", impact:"supportive", selected:'selected' }
           },
           { ... }
         ]
@@ -66,8 +66,42 @@ export default class InfluenceGroup extends React.Component {
 
     const { heading, beliefs, relationships, isDynamic, influencesWithKeys } = this.props
 
+    // static render
+    if (!isDynamic) {
+      return (
+        <>
+          <h4>{heading}</h4>
+          {influencesWithKeys.length === 0 &&
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no data</p>
+          }
+          <table>
+            <tbody>
+              {influencesWithKeys.map((influenceWithKey) =>
+                <Influence
+                  key={influenceWithKey.key}
+                  id={influenceWithKey.key}
+                  beliefs={beliefs}
+                  relationships={relationships}
+                  influence={influenceWithKey.item}
+                  isDynamic={isDynamic}
+                  updateInfluenceCB={this.updateInfluence}
+                  deleteInfluenceCB={this.deleteInfluence}
+                />
+              )}
+            </tbody>
+          </table>
 
+          {isDynamic &&
+            <>
+              &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>+ Add</Button>
+              <p>&nbsp;</p>
+            </>
+          }
+        </>
+      )
+    }
     
+    // dynamic render
     return (
       <>
         <h4>{heading}</h4>
@@ -87,12 +121,10 @@ export default class InfluenceGroup extends React.Component {
             />
           )}
 
-        {isDynamic &&
           <>
             &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>+ Add</Button>
             <p>&nbsp;</p>
           </>
-        }
       </>
     )
   }
