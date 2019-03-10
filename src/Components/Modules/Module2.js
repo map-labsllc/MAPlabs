@@ -87,7 +87,6 @@ export default class Module2 extends React.Component {
     <NarrativeCT
       question = { { code: 230, text: "Relating Your Values and Beliefs to Those of Your Supportive Influences" } }
       promptQuestionCode = { 0 }
-      promptFormat = { 'madlib-supportive' }
       description = { QUES_230_DESC }
       instructions = { QUES_230_DESC }
     /> )

@@ -13,7 +13,6 @@ import {
    passedProps:
     promptQuestionCode -- integer -- Object with 0 or questionCode to
       use as prompts for this Narrative.  questionCode must be a quesiton in answerRD.
-    promptFormat -- pass to <Prompt> to format different prompts
     question -- { code: 50, text: "question 50" }
     instructions
     isDynamic -- undefined or true
@@ -22,7 +21,7 @@ import {
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
   // console.log( "NarrativeCT::mapStateToProps()" )
-  const { promptQuestionCode, promptFormat, question, instructions, isDynamic, onCloseModalCB } = passedProps
+  const { promptQuestionCode, question, instructions, isDynamic, onCloseModalCB } = passedProps
   if ( !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
   // get userId
@@ -50,7 +49,6 @@ const mapStateToProps = ( state, passedProps ) => {
     userId,
     question,
     prompts,
-    promptFormat,
     instructions,
     previousAnswer,
     isDynamic,
