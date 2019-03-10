@@ -9,6 +9,7 @@ import {
   FormGroup,
 } from 'react-bootstrap'
 import Prompts from '../../Framework/Prompts'
+import MultiLineString from '../../Utils/MultiLineString'
 import '../../../CSS/ModalNavButtons.css'
 
 /* **************************************************
@@ -23,7 +24,6 @@ import '../../../CSS/ModalNavButtons.css'
      question -- { code: 50, text: "Question 50" }
      prompts -- [] or 2D array of strings with short answers saved by prior exercise
                     [ [ 'prompt1' ], ['prompt2'] ]
-     promptFormat -- pass to <Prompt> to format different prompts
      instructions -- can be empty string
      previousAnswer -- string with the previous answer
      isDynamic -- undefined or true
@@ -73,19 +73,20 @@ export default class Narrative extends React.Component {
 
   /* ******************************************************** */
   // render!
+
   render() {
     // console.log("Narrative::render()")
 
     // initialize
-    const { question, prompts, promptFormat, instructions, isDynamic } = this.props
+    const { question, prompts, instructions, isDynamic } = this.props
     const { answer } = this.state
 
-    // render static version
+    // static render
     if ( !isDynamic ) {
-      return (
-        <p>{answer}</p>
-      )
-    }
+        return (
+          <MultiLineString str={answer} />   
+        )
+      }
 
     // render dynamic version
     return (
@@ -95,7 +96,7 @@ export default class Narrative extends React.Component {
             {instructions && (
               <p>{instructions}</p>
             )}
-            <Prompts prompts={prompts} promptFormat={promptFormat}/>
+            <Prompts prompts={prompts}/>
             {/* <h4>{question.text}</h4> */}
             <textarea
               rows="10"
@@ -115,33 +116,6 @@ export default class Narrative extends React.Component {
         </form>
       </>
     )
-    // return (
-    //   <>
-    //     <Prompts prompts={prompts} />
-    //     <form onSubmit={this.onSubmit} >
-    //       <div>
-    //         {instructions && (
-    //           <h4>{instructions}</h4>
-    //         )}
-    //         <h2>{question.text}</h2>
-    //         <textarea
-    //           rows="10"
-    //           style={style.contain}
-    //           autoFocus={true}
-    //           placeholder="Please enter an answer and click Close"
-    //           onChange={this.onChange}
-    //           onBlur={this.onBlur}
-    //           value={answer}
-    //           wrap="hard"
-    //           display="block"
-    //         />
-    //       </div>
-    //       <div className="text-center">
-    //         <Button className="closeButton" type="button" style={style.closeButton}>Close</Button>
-    //       </div>
-    //     </form>
-    //   </>
-    // )
   }
 }
 
