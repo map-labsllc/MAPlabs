@@ -46,6 +46,7 @@ import { UUID } from '../../Utils/UUID'
      onCloseModalCB -- when user clicks Close button
 ***************************************************** */
 export default class InfluencesTop5 extends React.Component {
+  
 
   uuid = new UUID() // provides unique keys for <ShortAnswer> components
 
