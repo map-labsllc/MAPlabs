@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 // import { Button } from "react-bootstrap"
-import { Form, Dropdown, TextArea, Select, Button } from "semantic-ui-react"
+import { Form, Dropdown, TextArea, Select, Button, Label, Input, Divider } from "semantic-ui-react"
 import "../../CSS/ModalNavButtons.css"
 import { UUID } from "../Utils/UUID"
 
@@ -78,11 +78,12 @@ export default class StrengthX extends React.Component {
     strength: this.props.previousData.strength,
     broadly: this.props.previousData.broadly,
     reflectionsWithKeys: this.uuid.addKeys(this.props.previousData.reflections),
-    phrases: [],
+    phrases: [ { reflection:"", effect:"" } ],
   }
 
   // **********************************************
   componentDidMount = () => {
+    console.log(this.props)
     // add an initial blank entry if there are no previous entries
     // const { previousData } = this.props
     // TODO: NEED TO ADD THIS TO <Phrases>:  if (previousData.reflections.length === 0) this.onclickAdd()
@@ -99,17 +100,58 @@ export default class StrengthX extends React.Component {
     newData.strength = this.state.strength
     newData.broadly = this.state.broadly
     newData.reflections = this.uuid.stripKeys(this.state.reflectionsWithKeys)
-
     onUpdateStoreCB(newData)
   }
 
-  handleChange = (e, { value }) => this.setState({ strength: value })
+  onBlur = () => {
+    const { isDirty } = this.state
+    if (isDirty) {
+      this.updateData()
+      this.setState({
+        isDirty: false
+      })
+    }
+  }
+
+  handleDropChange = (e, { value }) => this.setState({ strength: value })
+
+  onPhraseAddClick = () => {
+    if(this.state.reflections){
+    this.setState((prevState) => ({
+      reflections: [ ...prevState.reflections, { reflection: "", effect: "" } ],
+    }));
+  } else {
+    this.setState((prevState) => ({
+      reflections: [ { reflection: "", effect: "" } ],
+    }));
+  }
+  }
+
+  handlePhraseChange = (e) => {
+    console.log(this.state)
+    let reflections = [...this.state.reflections]
+    reflections[e.target.id].reflection = e.target.value
+    this.setState((prevState) => ({
+      isDirty: true, 
+      reflections 
+    }))
+  }
+
+  handleEIMChange = (e, idx) => {
+    let reflections = [...this.state.reflections]
+    reflections[idx].effect = e.target.value
+    this.setState((prevState) => ({ 
+      isDirty: true,
+      reflections 
+    }))
+  }
+
 
   // **********************************************
   // render!
   render() {
     console.log("Strength::render()")
-    const { strength, phrases } = this.state
+    const { strength, reflections } = this.state
     const { number, question, isDynamic } = this.props
     const { reflectionsWithKeys } = this.state
 
@@ -129,46 +171,64 @@ export default class StrengthX extends React.Component {
       )
     }
 
-    let morePhrases = phrases.map(phrase => {
-      return (<div>
-      <Form.Input placeholder='Phrase' />
-      <Select options={bodimentOpts} placeholder="Embodiment or Impendiment" />
-      </div>)
-    })
-
     return (
       <>
-        <Form onSubmit={this.onSubmit} inverted>
+        <Form 
+        onSubmit={this.onSubmit} >
           <Dropdown
+            name="strength"
             search
             selection
             options={options}
             placeholder="Select Strength"
-            onChange={this.handleChange}
+            onChange={this.handleDropChange}
             value={strength}
+            style={{ margin: "5px" }}
+            onBlur={this.onBlur}
           />
-          <TextArea placeholder="Reflect broadly and generally on this strength." />
-          <Form.Group >
-            <Form.Input placeholder='Phrase' />
-            <Select options={bodimentOpts} placeholder="Embodiment or Impendiment" />
-            {morePhrases}
-          </Form.Group>
+          <TextArea 
+          placeholder="Reflect broadly and generally on this strength." 
+          style={{ margin: "10px" }}
+          onBlur={this.onBlur}
+          />
+            { 
+              /* if (reflections.length > 0) */
+              reflections ? reflections.map((val, idx) => {
+              return (
+                <div key={idx} >
+                <Input 
+                fluid
+                className="reflection" 
+                id={idx} 
+                placeholder='Write about a situation where you were able or unable to use this strength.' 
+                onChange={this.handlePhraseChange}
+                onBlur={this.onBlur}
+                style={{ margin: "10px" }}
+                />
+                <Form.Field style={{ margin: "10px" }}>
+                <Label pointing="below" >Define the above sitation by Embodiment (if you were able) or Impediment (if you were unable).</Label>
+                <Select 
+                id={idx}
+                className="select" 
+                options={bodimentOpts} 
+                onChange={(e) => this.handleEIMChange(e, idx)}
+                onBlur={this.onBlur}
+                placeholder="Embodiment or Impendiment" 
+                />
+                </Form.Field>
+                <Divider />
+                </div>
+              )
+              }) : null
+            }
           <Button 
           onClick={this.onPhraseAddClick}
+          style={{ margin: "10px" }}
           >
           Add Phrase
           </Button>
         </Form>
       </>
-      // <>
-      //   <p>{number}. DYNAMIC  data</p>
-      //   <Button onClick={this.updateData}>update store</Button>
-      //   <p>this.state:</p>
-      //   <p>- strength: {this.state.strength}</p>
-      //   <p>- broad thought: {this.state.broadly}</p>
-      //   <p>- reflections: </p>
-      //   <p>{JSON.stringify(this.state.reflectionsWithKeys)}</p>
-      // </>
     )
   }
 }
