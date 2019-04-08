@@ -34,111 +34,111 @@ import '../../../CSS/ModalNavButtons.css'
      updateInfluenceCB -- call for all changes
      deleteInfluenceCB -- click trash can
 ***************************************************** */
-export default class Influence extends React.Component {
+export default function Influence( props )  {
 
   /* **********************************************
     onChange()
 
     e - target.id is a key for the influence object:  'relationship', 'name', 'belief', or 'impact'
   ************************************************ */
-  onChange = (e) => {
+  const onChange = (e) => {
     console.log("Influence::onChange()")
     const newInfluence = {
-      ...this.props.influence,
+      ...props.influence,
       [e.target.id]: e.target.value
     }
-    const { id, updateInfluenceCB } = this.props
+    const { id, updateInfluenceCB } = props
     updateInfluenceCB(id, newInfluence)
   }
 
   // **********************************************
-  onclickDelete = (e) => {
+  const onclickDelete = (e) => {
     console.log("Influence::onclickDelete()")
-    const { id, deleteInfluenceCB } = this.props
+    const { id, deleteInfluenceCB } = props
     deleteInfluenceCB(id)
   }
 
   // **********************************************
-  // render!
-  render() {
-    console.log("Influence::render(): ", this.props.influence)
+  console.log("Influence::render(): ", props.influence)
 
-    const { beliefs, relationships, influence, isDynamic } = this.props
-    const { relationship, name, belief, impact } = influence
+  const { beliefs, relationships, influence, isDynamic } = props
+  const { relationship, name, belief, impact } = influence
 
-    // static render, note: no surrounding <table> tag, but still working
-    if ( !isDynamic ) {
-      return (
-        <tr>
-          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{relationship}</th>
-          <th>&nbsp;&nbsp;--&nbsp;&nbsp;{name}</th>
-          <th>&nbsp;&nbsp;--&nbsp;&nbsp;{belief}</th>
-          <th>&nbsp;&nbsp;--&nbsp;&nbsp;{impact}</th>
-        </tr>
-      )
-    }
-
-    // dynamic render
+  // static render, note: no surrounding <table> tag, but still working
+  if ( !isDynamic ) {
     return (
-      <Form inline>
-
-        &nbsp;&nbsp;&nbsp;
-        <Button type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
-
-        &nbsp;
-        &nbsp;
-        <select
-          id="relationship"
-          defaultValue={relationship}
-          onChange={this.onChange}
-        >
-          <option value='' disabled hidden>- relationship -</option>
-          {/*'key' added to suppress react warning*/}
-          {relationships.map((relationship, idx) =>
-            <option key={idx} value={relationship}>{relationship}</option>
-          )}
-        </select>
-
-        &nbsp;
-        &nbsp;
-        <FormControl
-          id='name'
-          type='text'
-          value={name}
-          placeholder='Individual'
-          onChange={this.onChange}
-        />
-
-        &nbsp;
-        &nbsp;
-        <select
-          id="belief"
-          defaultValue={belief}
-          onChange={this.onChange}
-        >
-          <option value='' disabled hidden>- belief/value -</option>
-          {/*'key' added to suppress react warning*/}
-          {beliefs.map((belief, idx) =>
-            <option key={idx} value={belief}>{belief}</option>
-          )}
-        </select>
-
-        &nbsp;
-        &nbsp;
-        <select
-          id="impact"
-          defaultValue={impact}
-          onChange={this.onChange}
-        >
-          <option value='' disabled hidden>- impact -</option>
-          <option value={IMPACT_SUPPORTIVE}>{IMPACT_SUPPORTIVE}</option>
-          <option value={IMPACT_INHIBITING}>{IMPACT_INHIBITING}</option>
-        </select>
-
-      </Form>
+      <tr>
+        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{relationship}</th>
+        <th>&nbsp;&nbsp;--&nbsp;&nbsp;{name}</th>
+        <th>&nbsp;&nbsp;--&nbsp;&nbsp;{belief}</th>
+        <th>&nbsp;&nbsp;--&nbsp;&nbsp;{impact}</th>
+      </tr>
     )
   }
+  
+
+  // dynamic render
+  return (
+    <Form inline>
+
+      &nbsp;&nbsp;&nbsp;
+      <Button type="button" onClick={onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
+
+      &nbsp;
+      &nbsp;
+      <select
+        id="relationship"
+        defaultValue={relationship}
+        onChange={onChange}
+      >
+        <option value='' disabled hidden>- relationship -</option>
+        {/*'key' added to suppress react warning*/}
+        {relationships.map((relationship, idx) =>
+          <option key={idx} value={relationship}>{relationship}</option>
+        )}
+      </select>
+
+      &nbsp;
+      &nbsp;
+      <FormControl
+        id='name'
+        type='text'
+        value={name}
+        placeholder='Individual'
+        onChange={onChange}
+      />
+
+      &nbsp;
+      &nbsp;
+      <select
+        id="belief"
+        defaultValue={belief}
+        onChange={onChange}
+      >
+        <option value='' disabled hidden>- belief/value -</option>
+        {/*'key' added to suppress react warning*/}
+        {beliefs.map((belief, idx) =>
+          <option key={idx} value={belief}>{belief}</option>
+        )}
+      </select>
+
+      &nbsp;
+      &nbsp;
+      <select
+        id="impact"
+        defaultValue={impact}
+        onChange={onChange}
+      >
+        <option value='' disabled hidden>- impact -</option>
+        <option value={IMPACT_SUPPORTIVE}>{IMPACT_SUPPORTIVE}</option>
+        <option value={IMPACT_INHIBITING}>{IMPACT_INHIBITING}</option>
+      </select>
+
+    </Form>
+  )
 }
+
+//export default Influence
 
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
