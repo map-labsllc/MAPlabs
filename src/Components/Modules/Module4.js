@@ -3,21 +3,14 @@ import React from 'react'
 import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
-<<<<<<< HEAD
+
 import LifeDescriptorsCT from '../Exercises/LifeDescriptors/LifeDescriptorsCT'
 import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import BracketCT from '../Exercises/Bracket/BracketCT'
-=======
-
-import LifeXDescriptorsCT from '../Exercises/LifeXDescriptorsCT'
-import TransitionsCT from '../Exercises/TransitionsCT'
-import NarrativeCT from '../Exercises/NarrativeCT'
-import ShortAnswersCT from '../Exercises/ShortAnswersCT'
-import BracketCT from '../Exercises/BracketCT'
 import StrengthXCT from '../Exercises/StrengthXCT'
->>>>>>> 4.1
+
 
 // import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
 // import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
@@ -47,7 +40,7 @@ import {
 ***************************************************** */
 export default class Module4 extends React.Component {
 
-  
+
 
   // Define questions and excercises for Module 4
   // --------------------------------------------------------------------
