@@ -29,57 +29,56 @@ import '../../../CSS/ModalNavButtons.css'
      updateInfluenceCB -- call for all changes
      deleteInfluenceCB -- click trash can
 ***************************************************** */
-export default class Influence extends React.Component {
+export default function Influence(props) {
 
   /* **********************************************
     onChange()
 
     e - target.id is a key into the influence object:  'relationship', 'name', 'belief', or 'impact'
   ************************************************ */
-  onChange = (e) => {
+  const onChange = (e) => {
     console.log("InfluenceTop5::onChange(), e.target.checked:", e.target.checked)
     const newInfluence = {
-      ...this.props.influence,
+      ...props.influence,
       selected: (e.target.checked ? SELECTED : '')
     }
-    const { id, updateInfluenceCB } = this.props
+    const { id, updateInfluenceCB } = props
     updateInfluenceCB(id, newInfluence)
   }
 
   // **********************************************
   // render!
-  render() {
-    console.log("InfluenceTop5::render(): ", this.props.influence)
+  console.log("InfluenceTop5::render(): ", props.influence)
 
-    const { influence, isDynamic } = this.props
-    const { selected, relationship, name, belief } = influence
+  const { influence, isDynamic } = props
+  const { selected, relationship, name, belief } = influence
 
-    // static
-    if ( !isDynamic ) {
-      return (
-        <tr>
-          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{relationship}</th>
-          <th>&nbsp;&nbsp;--&nbsp;&nbsp;{name}</th>
-          <th>&nbsp;&nbsp;--&nbsp;&nbsp;{belief}</th>
-        </tr>
-      )
-    }
-
-    // dynamic render
+  // static
+  if ( !isDynamic ) {
     return (
-      <Form inline>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input 
-          onChange={this.onChange}
-          type="checkbox" 
-          checked={selected.length!==0 ? true : false}
-        />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{relationship}
-        &nbsp;&nbsp;--&nbsp;&nbsp;{name}
-        &nbsp;&nbsp;--&nbsp;&nbsp;{belief}
-      </Form>
+      <tr>
+        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{relationship}</th>
+        <th>&nbsp;&nbsp;--&nbsp;&nbsp;{name}</th>
+        <th>&nbsp;&nbsp;--&nbsp;&nbsp;{belief}</th>
+      </tr>
     )
   }
+
+  // dynamic render
+  return (
+    <Form inline>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input 
+        onChange={onChange}
+        type="checkbox" 
+        checked={selected.length!==0 ? true : false}
+      />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{relationship}
+      &nbsp;&nbsp;--&nbsp;&nbsp;{name}
+      &nbsp;&nbsp;--&nbsp;&nbsp;{belief}
+    </Form>
+  )
+
 }
 
 ////////////////////////////////////////////////////////////////

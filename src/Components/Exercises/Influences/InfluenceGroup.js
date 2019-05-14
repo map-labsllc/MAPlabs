@@ -32,102 +32,97 @@ import Influence from './Influence'
      deleteInfluenceCB -- click trash can
      addInfluenceCB -- click add button
 ***************************************************** */
-export default class InfluenceGroup extends React.Component {
+export default function InfluenceGroup( props ) {
 
   // **********************************************
-  componentDidMount = () => {
-  }
-
-  // **********************************************
-  updateInfluence = (keyToUpdate, newInfluence) => {
+  const updateInfluence = (keyToUpdate, newInfluence) => {
     console.log(`InfluenceGroup::updateInfluence(${keyToUpdate}, ${newInfluence})`)
-    const { groupId, updateInfluenceCB } = this.props
+    const { groupId, updateInfluenceCB } = props
     updateInfluenceCB(groupId, keyToUpdate, newInfluence)
   }
 
   // **********************************************
-  deleteInfluence = (keyToDelete) => {
+  const deleteInfluence = (keyToDelete) => {
     console.log(`InfluenceGroup::deleteInfluence(${keyToDelete})`)
-    const { groupId, deleteInfluenceCB } = this.props
+    const { groupId, deleteInfluenceCB } = props
     deleteInfluenceCB(groupId, keyToDelete)
   }
 
   // **********************************************
-  onclickAdd = () => {
+  const onclickAdd = () => {
     console.log(`InfluenceGroup::onclickAdd()`)
-    const { groupId, addInfluenceCB } = this.props
+    const { groupId, addInfluenceCB } = props
     addInfluenceCB(groupId)
   }
 
   // **********************************************
   // render!
-  render() {
-    console.log("InfluenceGroup::render()")
+  console.log("InfluenceGroup::render()")
 
-    const { heading, beliefs, relationships, isDynamic, influencesWithKeys } = this.props
+  const { heading, beliefs, relationships, isDynamic, influencesWithKeys } = props
 
-    // static render
-    if (!isDynamic) {
-      return (
-        <>
-          <h4>{heading}</h4>
-          {influencesWithKeys.length === 0 &&
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no data</p>
-          }
-          <table>
-            <tbody>
-              {influencesWithKeys.map((influenceWithKey) =>
-                <Influence
-                  key={influenceWithKey.key}
-                  id={influenceWithKey.key}
-                  beliefs={beliefs}
-                  relationships={relationships}
-                  influence={influenceWithKey.item}
-                  isDynamic={isDynamic}
-                  updateInfluenceCB={this.updateInfluence}
-                  deleteInfluenceCB={this.deleteInfluence}
-                />
-              )}
-            </tbody>
-          </table>
-
-          {isDynamic &&
-            <>
-              &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>+ Add</Button>
-              <p>&nbsp;</p>
-            </>
-          }
-        </>
-      )
-    }
-    
-    // dynamic render
+  // static render
+  if (!isDynamic) {
     return (
       <>
         <h4>{heading}</h4>
         {influencesWithKeys.length === 0 &&
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no data</p>
         }
-          {influencesWithKeys.map((influenceWithKey) =>
-            <Influence
-              key={influenceWithKey.key}
-              id={influenceWithKey.key}
-              beliefs={beliefs}
-              relationships={relationships}
-              influence={influenceWithKey.item}
-              isDynamic={isDynamic}
-              updateInfluenceCB={this.updateInfluence}
-              deleteInfluenceCB={this.deleteInfluence}
-            />
-          )}
+        <table>
+          <tbody>
+            {influencesWithKeys.map((influenceWithKey) =>
+              <Influence
+                key={influenceWithKey.key}
+                id={influenceWithKey.key}
+                beliefs={beliefs}
+                relationships={relationships}
+                influence={influenceWithKey.item}
+                isDynamic={isDynamic}
+                updateInfluenceCB={updateInfluence}
+                deleteInfluenceCB={deleteInfluence}
+              />
+            )}
+          </tbody>
+        </table>
 
+        {isDynamic &&
           <>
-            &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>+ Add</Button>
+            &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={onclickAdd}>+ Add</Button>
             <p>&nbsp;</p>
           </>
+        }
       </>
     )
   }
+    
+  // dynamic render
+  return (
+    <>
+      <h4>{heading}</h4>
+      {influencesWithKeys.length === 0 &&
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no data</p>
+      }
+        {influencesWithKeys.map((influenceWithKey) =>
+          <Influence
+            key={influenceWithKey.key}
+            id={influenceWithKey.key}
+            beliefs={beliefs}
+            relationships={relationships}
+            influence={influenceWithKey.item}
+            isDynamic={isDynamic}
+            updateInfluenceCB={updateInfluence}
+            deleteInfluenceCB={deleteInfluence}
+          />
+        )}
+
+        <>
+          &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={onclickAdd}>+ Add</Button>
+          <p>&nbsp;</p>
+        </>
+    </>
+  )
+
 }
 
 ////////////////////////////////////////////////////////////////
