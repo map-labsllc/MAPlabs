@@ -34,11 +34,7 @@ export default class Module extends React.Component {
     const { isLoading } = this.props
     if ( isLoading ) {
       return (
-        <>
-          <p>.</p>
-          <p>.</p>
-          <p>Imagine if I were a spinner, how professional would that be????</p>
-        </>
+          <div>Loading...</div>
       )
     }
 
@@ -69,26 +65,24 @@ export default class Module extends React.Component {
     )
   }
 }
-const style = {
-  background: {
-    backgroundColor: "white",
-    paddingRight: "6%",
-    paddingLeft: "6%",
-    paddingTop: "2%",
-    paddingBottom: "2%",
-    marginTop: "8%",
-    marginRight: "10%",
-    marginLeft: "10%",
-    marginBottom: "4%",
-    borderRadius: "15px",
-    boxShadow: "5px 5px 50px 10px grey",
-  },
-  spacing: {
-    marginTop: "5%",
-  }
-}
+const style = {}
+// const style = {
+//   background: {
+//     backgroundColor: "white",
+//     paddingRight: "6%",
+//     paddingLeft: "6%",
+//     paddingTop: "2%",
+//     paddingBottom: "2%",
+//     marginTop: "8%",
+//     marginRight: "10%",
+//     marginLeft: "10%",
+//     marginBottom: "4%",
+//     borderRadius: "15px",
+//     boxShadow: "5px 5px 50px 10px grey",
+//   },
+//   spacing: {
+//     marginTop: "5%",
+//   }
+// }
 
 
-////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////

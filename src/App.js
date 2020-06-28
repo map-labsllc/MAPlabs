@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
 import firebase from 'firebase'
-import ReduxThunk from 'redux-thunk'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { createLogger } from 'redux-logger'
 import Routes from './router'
-import reducers from './store/reducers'
-import NavBar from './Components/NavBar'
-import Footer from './Components/Footer'
+import NavBar from './Components/layout/NavBar'
+import Footer from './Components/layout/Footer'
+import SideBar from './Components/layout/SideBar'
+import './CSS/light-bootstrap-dashboard.css'
 
 // const history = createBrowserHistory()
 class App extends Component {
@@ -29,25 +26,20 @@ class App extends Component {
   }
 
   render() {
-
-    const middleware = [ReduxThunk]
-    if (process.env.NODE_ENV === 'development') {
-      middleware.push(createLogger()) // log actions and pre and post store state
-    }
-
-    const store = createStore(
-      reducers,
-      {}, // no intiial state
-      applyMiddleware(...middleware)
-    )
-
     return (
       <Router>
-        <Provider store={store}>
-          <NavBar />
-          <Routes />
-          <Footer />
-        </Provider>
+        <div class="wrapper">
+          <SideBar />
+          <div class="main-panel">
+            <NavBar />
+            <div class="content">
+              <div class="container-fluid">
+                <Routes />
+              </div>
+            </div>
+            <Footer />
+          </div>
+        </div>
       </Router>
     )
   }

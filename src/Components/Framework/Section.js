@@ -11,7 +11,7 @@ import {
   Panel,
 } from 'react-bootstrap'
 import { sectionLoadingAC } from '../../store/user/actions'
-import '../../CSS/Section.css'
+import '../../CSS/light-bootstrap-dashboard.css'
 
 /* **************************************************
    Section
