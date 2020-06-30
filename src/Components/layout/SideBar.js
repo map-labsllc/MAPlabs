@@ -14,24 +14,42 @@ const SideBar = () => (
       </a>
     </div>
    
-    <Nav className="ml-auto">       
-      <NavItem>
-        <NavLink to="/infopage">Info</NavLink>
+    <Nav className="nav ml-auto">       
+      <NavItem className="nav-item">
+        <NavLink className="nav-link" to="/infopage">
+          <i class="nc-icon nc-explore-2"></i>
+          Info
+        </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink to="/modules/1">Module 1</NavLink>
+      <NavItem className="nav-item">
+        <NavLink className="nav-link" to="/modules/1">
+          <i class="nc-icon nc-compass-05"></i>
+          <p>Module 1</p>
+        </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink to="/modules/2">Module 2</NavLink>
+      <NavItem className="nav-item">
+        <NavLink className="nav-link" to="/modules/2">
+          <i class="nc-icon nc-compass-05"></i>
+          Module 2
+          </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink to="/modules/3">Module 3</NavLink>
+      <NavItem className="nav-item">
+        <NavLink className="nav-link" to="/modules/3">
+          <i class="nc-icon nc-compass-05"></i>
+          Module 3
+        </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink to="/modules/4">Module 4</NavLink>
+      <NavItem className="nav-item">
+        <NavLink className="nav-link" to="/modules/4">
+          <i class="nc-icon nc-compass-05"></i>
+          Module 4
+        </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink to="/modules/5">Module 5</NavLink>
+      <NavItem className="nav-item">
+        <NavLink className="nav-link" to="/modules/5">
+          <i class="nc-icon nc-compass-05"></i>
+          Module 5
+        </NavLink>
       </NavItem>
     </Nav>
   </div>
