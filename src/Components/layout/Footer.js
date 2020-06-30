@@ -4,13 +4,13 @@ const Footer = () => (
   <footer class="footer">
     <div class="container-fluid">
       <nav>
-        <ul class="footer-menu">
+        {/* <ul class="footer-menu">
           <li>
             <a href="/">
               Home
             </a>
           </li>
-        </ul>
+        </ul> */}
         <p class="copyright text-center">
             ©
           <script>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { loadAllAnswersAC } from '../../store/answers/actions'
 import { loadAllStaticdataAC } from '../../store/staticdata/actions'
 
@@ -34,7 +34,7 @@ class NavBar extends React.Component {
     // we have a mock user, so skip login and add backdoor jwt to localStorage
     // so it get passed in the auth header to backend where the backend
     // will skip auth.
-    if (user.user_id) {
+    if (user && user.user_id) {
       localStorage.setItem( 'jwt', JSON.stringify(process.env.REACT_APP_BACKDOOR_JWT) )
       this.loadUserData(dispatch, user)
     }
@@ -76,16 +76,25 @@ class NavBar extends React.Component {
       return null
     }
 
+    
     // user logged in, show the navbar
     return (
-      <nav className="navbar navbar-expand-lg " color-on-scroll="500">
-        <div className="container-fluid"> 
-          <NavDropdown eventKey={6} title={this.props.user.fname} id="basic-nav-dropdown">
-            <MenuItem eventKey={6.1}><Link to="/dashboard">Dashboard</Link></MenuItem>
-            <MenuItem eventKey={6.2}>Account info</MenuItem>
-            <MenuItem divider />
-            <MenuItem eventKey={6.4}>Log out</MenuItem>
-          </NavDropdown>
+      <nav className="navbar navbar-expand-lg" color-on-scroll="500">
+        <div className="container-fluid">
+          <div className="collapse navbar-collapse justify-content-end" id="navigation"> 
+            <Nav className="navbar-nav ml-auto pull-right">
+              <NavItem className="nav-item">
+                <NavLink className="nav-link" to="/account">
+                  <span class="no-icon">Account</span>
+                </NavLink>
+              </NavItem>
+              <NavItem className="nav-item">
+                <NavLink className="nav-link" to="/logout">
+                  <span class="no-icon">Logout</span>
+                </NavLink>
+              </NavItem>
+            </Nav>
+          </div>
         </div>
       </nav>
     )
