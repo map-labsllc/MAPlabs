@@ -10,7 +10,7 @@ import {
   FormGroup,
 } from 'react-bootstrap'
 import ShowMoreLess from '../Utils/ShowMoreLess'
-import '../../CSS/Section.css'
+// import '../../CSS/Section.css'
 import { sectionCompletedAC } from '../../store/user/actions'
 
 /* **************************************************

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Col, Row, Panel, PanelGroup, Grid } from 'react-bootstrap'
-import '../../CSS/Dashboard.css'
 
 const Dashboard = () => {
   return (

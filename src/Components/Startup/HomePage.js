@@ -9,9 +9,6 @@ import {
   Col
 } from "react-bootstrap"
 import { NavLink } from "react-router-dom"
-// import {Brand,} from "react-bootstrap/lib/Nav"
-
-import "../../CSS/HomePage.css"
 
 class HomePage extends React.Component {
   render() {

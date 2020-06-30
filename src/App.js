@@ -5,7 +5,7 @@ import Routes from './router'
 import NavBar from './Components/layout/NavBar'
 import Footer from './Components/layout/Footer'
 import SideBar from './Components/layout/SideBar'
-import './CSS/light-bootstrap-dashboard.css'
+// import './CSS/light-bootstrap-dashboard.css'
 
 // const history = createBrowserHistory()
 class App extends Component {
