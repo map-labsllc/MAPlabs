@@ -83,16 +83,17 @@ class NavBar extends React.Component {
         <div className="container-fluid">
           <div className="collapse navbar-collapse justify-content-end" id="navigation"> 
             <Nav className="navbar-nav ml-auto pull-right">
-              <NavItem className="nav-item">
+              <li className="nav-item">
                 <NavLink className="nav-link" to="/account">
-                  <span class="no-icon">Account</span>
+                  <i className="nc-icon nc-single-02"></i>
+                  <span>Account</span>
                 </NavLink>
-              </NavItem>
-              <NavItem className="nav-item">
+              </li>
+              <li as="Link" className="nav-item">
                 <NavLink className="nav-link" to="/logout">
                   <span class="no-icon">Logout</span>
                 </NavLink>
-              </NavItem>
+              </li>
             </Nav>
           </div>
         </div>
