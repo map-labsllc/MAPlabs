@@ -85,8 +85,8 @@ class NavBar extends React.Component {
             <Nav className="navbar-nav ml-auto pull-right">
               <li className="nav-item">
                 <NavLink className="nav-link" to="/account">
-                  <i className="nc-icon nc-single-02"></i>
-                  <span>Account</span>
+                  <i className="nc-icon nc-single-02 "></i>
+                  <span style={style.account}>Account</span>
                 </NavLink>
               </li>
               <li as="Link" className="nav-item">
@@ -102,6 +102,9 @@ class NavBar extends React.Component {
   }
 }
 
+const style = {
+  account: {marginLeft: '3px'}
+}
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////

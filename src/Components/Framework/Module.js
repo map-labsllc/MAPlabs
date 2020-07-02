@@ -20,7 +20,6 @@ import {
 export default class Module extends React.Component {
 
   render() {
-    // console.log("Module::render()")
 
     // if not logged in, redirect to root
     const { isLoggedIn } = this.props
@@ -41,18 +40,15 @@ export default class Module extends React.Component {
     // good to go! layout the module
     let { moduleNum, moduleTitle, moduleDescription, children } = this.props
     return (
-      <div style={style.background}>
-        <div style={style.marginz}>
-          <h2 className="text-center">Module {moduleNum}</h2>
-          <h2 className="text-center">{moduleTitle}</h2>
-          <ShowMoreLess
-            lines={5}
-          >
-            <span dangerouslySetInnerHTML={{ __html: moduleDescription }} />
-          </ShowMoreLess>
-
+      <div className="reading-wrapper">
+        <h1>Module {moduleNum}</h1>
+        <h2>{moduleTitle}</h2>
+        <div className="text-center">
+          <p className="reading" dangerouslySetInnerHTML={{ __html: moduleDescription }} />
+  
+          { /* TODO: FIX...should this be links */ }
           { /* render the sections, add the number of the section in the module */ }
-          <div style={style.spacing}>
+          <div>
             {React.Children.map(children, (child, index) => {
               const numberedChild = React.cloneElement(child, {
                 number: index + 1, // numbering is 1-based
@@ -65,24 +61,7 @@ export default class Module extends React.Component {
     )
   }
 }
-const style = {}
-// const style = {
-//   background: {
-//     backgroundColor: "white",
-//     paddingRight: "6%",
-//     paddingLeft: "6%",
-//     paddingTop: "2%",
-//     paddingBottom: "2%",
-//     marginTop: "8%",
-//     marginRight: "10%",
-//     marginLeft: "10%",
-//     marginBottom: "4%",
-//     borderRadius: "15px",
-//     boxShadow: "5px 5px 50px 10px grey",
-//   },
-//   spacing: {
-//     marginTop: "5%",
-//   }
-// }
+
+
 
 

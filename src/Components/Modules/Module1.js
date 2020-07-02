@@ -9,6 +9,8 @@ import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 
+import { Link } from 'react-router-dom'
+
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
@@ -135,54 +137,63 @@ export default class Module1 extends React.Component {
 
   /* *********************************************************** */
   render() {
+    const { moduleId, sectionId } = this.props
+
+    console.log("mod:", moduleId, "section:", sectionId)
+
+    // interim refactor, needs to be in a DB
+    const sections = {
+      110: {
+        sectionTitle: "Reflect on your current situation",
+        exercise: this.exercise_110
+      },
+      120: { 
+        sectionTitle: "Describe your current situation",
+        exercise: this.exercise_120
+      },
+      130: {
+        sectionTitle: "Imagine your future desired situation",
+        exercise: this.exercise_130
+      },
+      140: {
+        sectionTitle: "Describe your future situation",
+        exercise: this.exercise_140
+      },
+      150: {
+        sectionTitle: "Compare your 'current situation' statement to your 'future desired situation' statement",
+        exercise: this.exercise_150
+      },
+      160: {
+        sectionTitle: "Breaking and building",
+        exercise: this.exercise_160
+      },
+      170: {
+        sectionTitle: "Tie these reflections to the course",
+        exercise: this.exercise_170
+      }
+    }
+
     return (
       <ModuleCT
-        moduleNum = { 1 }
+        moduleNum = { moduleId }
         moduleTitle = "Your Meanings and Motivations "
         moduleDescription = { MOD_1_DESC }
       >
+      { sectionId ? 
         <SectionCT
-          moduleNum = { 1 }
-          sectionNum = { 110 }
-          sectionTitle = "Reflect on your current situation"
-          exercise = {this.exercise_110}
+          moduleNum = { moduleId }
+          sectionNum = { sectionId }
+          sectionTitle = { sections[sectionId].sectionTitle }
+          exercise = { sections[sectionId].exercise }
         />
-        <SectionCT
-          moduleNum = { 1 }
-          sectionNum = { 120 }
-          sectionTitle = "Describe your current situation"
-          exercise = {this.exercise_120}
-        />
-        <SectionCT
-          moduleNum = { 1 }
-          sectionNum = { 130 }
-          sectionTitle = "Imagine your future desired situation"
-          exercise = {this.exercise_130}
-        />
-        <SectionCT
-          moduleNum = { 1 }
-          sectionNum = { 140 }
-          sectionTitle = "Describe your future situation"
-          exercise = {this.exercise_140}
-        />
-        <SectionCT
-          moduleNum = { 1 }
-          sectionNum = { 150 }
-          sectionTitle = "Compare your 'current situation' statement to your 'future desired situation' statement"
-          exercise = {this.exercise_150}
-        />
-        <SectionCT
-          moduleNum = { 1 }
-          sectionNum = { 160 }
-          sectionTitle = "Breaking and building"
-          exercise = {this.exercise_160}
-        />
-        <SectionCT
-          moduleNum = { 1 }
-          sectionNum = { 170 }
-          sectionTitle = "Tie these reflections to the course"
-          exercise = {this.exercise_170}
-        />
+        : 
+        <p textCenter>
+          <Link to="/modules/1/section/110" className="btn">
+            Get Started &rarr;
+          </Link>
+        </p>
+        }
+
       </ModuleCT>
     )
   }

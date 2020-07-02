@@ -7,21 +7,16 @@ import { NavLink } from 'react-router-dom'
 
 const InfoPage = () => {
   return (
-    <div style={style.background}>
-      <div style={style.title}>
-        <h1 >Welcome to <span style={style.map}>M</span><span style={style.map}>A</span><span style={style.map}>P</span>maker</h1>
-      </div>
-      <div className="container-fluid" style={style.otherContain}>
+    <div style={style.background} className="reading-wrapper">
+      <div className="container-fluid text-center reading">
 
-
+        <h1>Introduction</h1> 
         {/* PROGRAM INTRODUCTION */}
         {/* ------------------------------ */}
 
-        <div style={style.subtitle} className="container-fluid">
-          <h3>Program Introduction</h3>
-        </div>
-        <div style={style.text} className="container-fluid">
-          <p>Welcome to MAPmaker! </p>
+        <h2 >Welcome to MAP Maker</h2>
+
+        <div className="reading">
           <p>By joining our community of searchers, you have taken a positive step toward a deeper sense of meaning and purpose. Over the next few weeks you will be immersed in a series of exercises designed to help you apply the latest science on well-being in your own life. </p>
           <p>The MAPmaker program will efficiently jumpstart your process of self-discovery. It will lead you to actionable insights about how, when, and where you experience meaning, and guide you through a personal decision-making process that leaves you with deeper self-understanding and a directed vision of how to live more purposefully.  </p>
           <p>Meaning and purpose are not items that can be discovered once-and-for-all like a hidden treasure that was always there just waiting for you. Instead, we are all actively involved in making our meaning everyday, and the meaning we make is foundational to enabling each of us to develop our senses of purpose.</p>
@@ -34,10 +29,9 @@ const InfoPage = () => {
         {/* THE MODULE STRUCTURE */}
         {/* ------------------------------ */}
 
-        <div style={style.subtitle} className="container-fluid">
-          <h3>The Module Structure</h3>
-        </div>
-        <div style={style.text} className="container-fluid">
+        <h2>The Module Structure</h2>
+
+        <div>
           <p>MAPmaker is divided into five modules. The modules follow a sequence designed to build up from the basics toward your own personal sense of meaning and purpose.</p>
           <p>Each module focuses on a particular aspect of the developmental process.  We begin each module with some instructional content, and then move into a series of exercises. Do them at whatever pace suits you best, and know that this process benefits from the quality and depth of effort you put into the exercises, not the speed at which you complete them.  The main objective is that you do them neither too quickly nor too slowly, but at a pace that best serves your personal exploration.</p>
           <p>The topics covered in each module are:</p>
@@ -54,20 +48,15 @@ const InfoPage = () => {
         {/* BEST PRACTICES */}
         {/* ------------------------------ */}
 
-        <div style={style.subtitle} className="container-fluid">
-          <h3>Best Practices and Suggested Approaches</h3>
-        </div>
-        <div style={style.text} className="container-fluid">
+        <h2>Best Practices and Suggested Approaches</h2>
+        <div>
           <p>As you begin the program, think about how you could arrange your calendar over the next few weeks or months to make room for a deep dive into your own personal search. You do not need to put everything on hold. In fact, it may be best not to. What we are ultimately trying to do, after all, is to help you shift how you approach your everyday routine, and staying in it can provide a constant source of valuable fodder for reflection.</p>
           <p>Here are some tips for specific practices and mentalities that can help you to get the most out of MAPmaker:</p>
         </div>
-      </div >
 
 
-      {/* SEVEN TIPS */}
-      {/* ------------------------------ */}
-
-      <div className="container-fluid" style={style.panelContain}>
+        {/* SEVEN TIPS */}
+        {/* ------------------------------ */}
 
         { /*pass id prop to prevent react runtime warning*/ }
         <PanelGroup id="0" accordian="true" bsStyle="primary" style={style.panel}>
@@ -155,83 +144,19 @@ const InfoPage = () => {
             </Panel.Body>
           </Panel>
         </PanelGroup>
-      </div>
 
 
-      {/* BEGIN MAPMAKER */}
-      {/* ------------------------------ */}
+        {/* BEGIN MAPMAKER */}
+        {/* ------------------------------ */}
 
-      <div className="text-center">
-        <Button className="startButton"><NavLink to="/modules/1" activeStyle={{
-          fontWeight: "bold",
-          color: "white"
-        }}>Begin MAPMaker</NavLink></Button>
-      </div>
+        <div className="text-center">
+          <Button className="btn btn-primary"><NavLink to="/modules/1">Begin MAPMaker</NavLink></Button>
+        </div>
+      </div >
     </div >
   )
 }
 const style = {
-  background: {
-    backgroundImage: 'url("MAPmaker.jpg")',
-    backgroundSize: "cover",
-    marginTop: "3%",
-    padding: "6px",
-    color: "#AAABB8"
-  },
-  panel: {
-    paddingTop: "3%",
-    marginLeft: "5%",
-    marginRight: "5%",
-  },
-  panelBody: {
-    backgroundColor: "#25274D",
-    color: "#AAABB8",
-  },
-  title: {
-    textAlign: "center",
-    color: "black",
-    fontFamily: "Helvetica",
-  },
-  panelTitle: {
-    textAlign: "center",
-    color: "white",
-    fontFamily: "Helvetica",
-  },
-  map: {
-    color: "#29648A",
-    fontFamily: "Helvetica",
-  },
-  subtitle: {
-    color: "black",
-    fontFamily: "Helvetica",
-    width: "40%",
-    textAlign: "center",
-    borderRadius: "10px",
-  },
-  text: {
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
-    borderRadius: "10px",
-    color: "black",
-    marginLeft: "2%",
-    marginRight: "2%",
-    paddingRight: "1%",
-    paddingLeft: "1%",
-  },
-  otherContain: {
-    backgroundColor: "rgba(174, 198, 239, 0.6)",
-    marginLeft: "20%",
-    marginRight: '20%',
-    borderRadius: '25px',
-    paddingBottom: "1%",
-    marginBottom: "1%"
-  },
-  panelContain: {
-    backgroundColor: "rgba(174, 198, 239, 0.6)",
-    marginLeft: "15%",
-    marginRight: '15%',
-    borderRadius: '25px',
-    paddingBottom: "1%",
-    marginBottom: "1%",
-  }
 }
+
 export default InfoPage

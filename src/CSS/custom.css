@@ -1,0 +1,17 @@
+.reading, .reading p {
+  text-align: left;
+  max-width: 700px;
+  display: inline-block;
+  color:rgb(41, 41, 41);
+  font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.063px;
+  line-height: 32px;
+}
+
+.reading-wrapper {
+  text-align: center;
+  margin: auto;
+}
