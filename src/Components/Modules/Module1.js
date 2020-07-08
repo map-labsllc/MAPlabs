@@ -10,6 +10,7 @@ import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 
 import { Link } from 'react-router-dom'
+import ModuleNav from './ModuleNav'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
@@ -142,53 +143,67 @@ export default class Module1 extends React.Component {
     console.log("mod:", moduleId, "section:", sectionId)
 
     // interim refactor, needs to be in a DB
-    const sections = {
-      110: {
-        sectionTitle: "Reflect on your current situation",
+    const sections =
+    [
+      {
+        id: 110,
+        title: "Reflect on your current situation",
         exercise: this.exercise_110
       },
-      120: { 
-        sectionTitle: "Describe your current situation",
+      { 
+        id: 120,
+        title: "Describe your current situation",
         exercise: this.exercise_120
       },
-      130: {
-        sectionTitle: "Imagine your future desired situation",
+      {
+        id: 130,
+        title: "Imagine your future desired situation",
         exercise: this.exercise_130
       },
-      140: {
-        sectionTitle: "Describe your future situation",
+      {
+        id: 140,
+        title: "Describe your future situation",
         exercise: this.exercise_140
       },
-      150: {
-        sectionTitle: "Compare your 'current situation' statement to your 'future desired situation' statement",
+      {
+        id: 150,
+        title: "Compare your 'current situation' statement to your 'future desired situation' statement",
         exercise: this.exercise_150
       },
-      160: {
-        sectionTitle: "Breaking and building",
+      {
+        id: 160,
+        title: "Breaking and building",
         exercise: this.exercise_160
       },
-      170: {
-        sectionTitle: "Tie these reflections to the course",
+      {
+        id: 170,
+        title: "Tie these reflections to the course",
         exercise: this.exercise_170
       }
-    }
+    ]
 
-    return (
+    // find current section
+    const section = sectionId ? 
+      sections.filter(sec => sec.id == sectionId)[0] : 'foobar'
+
+      return (
       <ModuleCT
         moduleNum = { moduleId }
         moduleTitle = "Your Meanings and Motivations "
         moduleDescription = { MOD_1_DESC }
       >
+      <ModuleNav sections={sections} moduleId={moduleId} />
+
       { sectionId ? 
         <SectionCT
           moduleNum = { moduleId }
           sectionNum = { sectionId }
-          sectionTitle = { sections[sectionId].sectionTitle }
-          exercise = { sections[sectionId].exercise }
+          sectionTitle = { section.title }
+          exercise = { section.exercise }
         />
         : 
         <p textCenter>
-          <Link to="/modules/1/section/110" className="btn">
+          <Link to="/modules/1/section/110" className="btn btn-primary">
             Get Started &rarr;
           </Link>
         </p>
