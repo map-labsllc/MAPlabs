@@ -10,6 +10,7 @@ import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import BracketCT from '../Exercises/Bracket/BracketCT'
 import StrengthXCT from '../Exercises/StrengthXCT'
+import ModuleWrapper from './ModuleWrapper'
 
 
 // import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
@@ -134,56 +135,66 @@ export default class Module4 extends React.Component {
       subComponents = {this.strengths_410}
     />)
 
+  _module = {
+    id: 4,
+    title: "Your Meanings and Motivations", // TODO: is this right?
+    description: MOD_4_DESC
+  }
+
+  // interim refactor, needs to be in a DB
+  sections =
+  [
+    {
+      id: 410,
+      module_id: 4,
+      title: "Reflect on your current situation",
+      exercise: this.exercise_410
+    },
+    // TODO: This right?? ... it was commented out, so I'm not sure content is right
+    {
+      id: 420,
+      module_id: 4,
+      title: "Describe your current situation",
+      exercise: this.exercise_420
+    },
+    {
+      id: 430,
+      module_id: 4,
+      title: "Breaking and building",
+      exercise: this.exercise_430
+    },
+    {
+      id: 440,
+      module_id: 4,
+      title: "Compare your 'current situation' statement to your 'future desired situation' statement",
+      exercise: this.exercise_440
+    },
+    {
+      id: 450,
+      module_id: 4,
+      title: "Make tradeoffs within each category",
+      exercise: this.exercise_450
+    },
+    {
+      id: 460,
+      module_id: 4,
+      title: "Synthesize into a Desires Statement",
+      exercise: this.exercise_460
+    },
+  ]
+
   render() {
+    const { moduleId, sectionId } = this.props
+
     return (
-      <ModuleCT
-        moduleNum = { 4 }
-        moduleTitle = "Your Meanings and Motivations "
-        moduleDescription = { MOD_4_DESC }
+      <ModuleWrapper
+        title = { this._module.title }
+        description= { this._module.description }
+        moduleId = { moduleId }
+        sections = { this.sections } 
+        sectionId = { sectionId }
       >
-      <SectionCT
-          moduleNum = { 4 }
-          sectionNum = { 410 }
-          sectionTitle = "Record your top 5 strengths and reflect on each"
-          exercise = {this.exercise_410}
-        />
-        {/*<SectionCT
-          moduleNum = { 4 }
-          sectionNum = { 410 }
-          sectionTitle = "Reflect on your current situation"
-          exercise = {this.exercise_410}
-        />
-        <SectionCT
-          moduleNum = { 4 }
-          sectionNum = { 420 }
-          sectionTitle = "Describe your current situation"
-          exercise = {this.exercise_420}
-        />
-        <SectionCT
-          moduleNum = { 4 }
-          sectionNum = { 430 }
-          sectionTitle = "Breaking and building"
-          exercise = {this.exercise_430}
-        />
-        <SectionCT
-          moduleNum = { 4 }
-          sectionNum = { 440 }
-          sectionTitle = "Compare your 'current situation' statement to your 'future desired situation' statement"
-          exercise = {this.exercise_440}
-        />
-        <SectionCT
-          moduleNum = { 4 }
-          sectionNum = { 450 }
-          sectionTitle = "Make tradeoffs within each category"
-          exercise = {this.exercise_450}
-        />
-        <SectionCT
-          moduleNum = { 4 }
-          sectionNum = { 460 }
-          sectionTitle = "Synthesize into a Desires Statement"
-          exercise = {this.exercise_460}
-        />*/}
-      </ModuleCT>
+      </ModuleWrapper>
     )
   }
 }

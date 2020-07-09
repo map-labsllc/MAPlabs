@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ProgressBar } from 'react-bootstrap'
 
-const ModuleNav = ({ moduleId, sections }) => {
+const ModuleNav = ( { moduleId, sections } ) => {
   const createLink = (_moduleId, sectionId, title) => (
     <Link to={`/modules/${_moduleId}/section/${sectionId}`}>{title}</Link>
   )
@@ -19,7 +19,7 @@ const ModuleNav = ({ moduleId, sections }) => {
               <tbody>
                 <tr>
                   <td className="text-left">
-                    <h2>0</h2>
+                    <h2></h2>
                   </td>
                   <td className="text-left">
                     <p>

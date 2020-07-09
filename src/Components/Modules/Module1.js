@@ -140,42 +140,48 @@ export default class Module1 extends React.Component {
   [
     {
       id: 110,
+      module_id: 1,
       title: "Reflect on your current situation",
       exercise: this.exercise_110
     },
     { 
       id: 120,
+      module_id: 1,
       title: "Describe your current situation",
       exercise: this.exercise_120
     },
     {
       id: 130,
+      module_id: 1,
       title: "Imagine your future desired situation",
       exercise: this.exercise_130
     },
     {
       id: 140,
+      module_id: 1,
       title: "Describe your future situation",
       exercise: this.exercise_140
     },
     {
       id: 150,
+      module_id: 1,
       title: "Compare your 'current situation' statement to your 'future desired situation' statement",
       exercise: this.exercise_150
     },
     {
       id: 160,
+      module_id: 1,
       title: "Breaking and building",
       exercise: this.exercise_160
     },
     {
       id: 170,
+      module_id: 1,
       title: "Tie these reflections to the course",
       exercise: this.exercise_170
     }
   ]
 
-  /* *********************************************************** */
   render() {
     const { moduleId, sectionId } = this.props
 

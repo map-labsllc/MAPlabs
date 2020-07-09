@@ -1,5 +1,6 @@
 import React from 'react'
 
+import ModuleWrapper from './ModuleWrapper'
 import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
@@ -51,9 +52,6 @@ export default class Module3 extends React.Component {
       description = "Testing strength components"
       subComponents = {this.strength_900}
     /> )
-
-
-
 
   // -------------------------
   // Module 3: 1A
@@ -158,60 +156,71 @@ export default class Module3 extends React.Component {
       subComponents = {this.transitions_360}
     /> )
 
+  _module = {
+    id: 3,
+    title: "Personal Desires",
+    description: MOD_3_DESC
+  }
 
+  // interim refactor, needs to be in a DB
+  sections =
+  [
+    {
+      id: 900,
+      module_id: 3,
+      title: "Developing StrengthCT", // TODO Fix title
+      exercise: this.exercise_900
+    },
+    {
+      id: 310,
+      module_id: 3,
+      title: "Deep Desires",
+      exercise: this.exercise_310
+    },
+    {
+      id: 320,
+      module_id: 3,
+      title: "Make tradeoffs within each category",
+      exercise: this.exercise_320
+    },
+    {
+      id: 330,
+      module_id: 3,
+      title: "Make tradeoffs between each category",
+      exercise: this.exercise_330
+    },
+    {
+      id: 340,
+      module_id: 3,
+      title: "Synthesize into a Desires Statement",
+      exercise: this.exercise_340
+    },
+    {
+      id: 350,
+      module_id: 3,
+      title: "Reflect of your stated desires",
+      exercise: this.exercise_350
+    },
+    {
+      id: 360,
+      module_id: 3,
+      title: "Break and building",
+      exercise: this.exercise_360
+    },
+  ]
 
-  /* *********************************************************** */
-  // render!
   render() {
+    const { moduleId, sectionId } = this.props
+
     return (
-      <ModuleCT
-        moduleNum = { 3 }
-        moduleTitle = "Personal Desires"
-        moduleDescription = { MOD_3_DESC }
+      <ModuleWrapper
+        title = { this._module.title }
+        description= { this._module.description }
+        moduleId = { moduleId }
+        sections = { this.sections } 
+        sectionId = { sectionId }
       >
-        <SectionCT
-          moduleNum = { 3 }
-          sectionNum = { 900 }
-          sectionTitle = "Developing StrengthCT"
-          exercise = {this.exercise_900}
-        />
-        <SectionCT
-          moduleNum = { 3 }
-          sectionNum = { 310 }
-          sectionTitle = "Deep Desires"
-          exercise = {this.exercise_310}
-        />
-        <SectionCT
-          moduleNum = { 3 }
-          sectionNum = { 320 }
-          sectionTitle = "Make tradeoffs within each category"
-          exercise = {this.exercise_320}
-        />
-        <SectionCT
-          moduleNum = { 3 }
-          sectionNum = { 330 }
-          sectionTitle = "Make tradeoffs between each category"
-          exercise = {this.exercise_330}
-        />
-        <SectionCT
-          moduleNum = { 3 }
-          sectionNum = { 340 }
-          sectionTitle = "Synthesize into a Desires Statement"
-          exercise = {this.exercise_340}
-        />
-        <SectionCT
-          moduleNum = { 3 }
-          sectionNum = { 350 }
-          sectionTitle = "Reflect of your stated desires"
-          exercise = {this.exercise_350}
-        />
-        <SectionCT
-          moduleNum = { 3 }
-          sectionNum = { 360 }
-          sectionTitle = "Break and building"
-          exercise = {this.exercise_360}
-        />
-      </ModuleCT>
+      </ModuleWrapper>
     )
   }
 }

@@ -1,7 +1,5 @@
 import React from 'react'
 
-import ModuleCT from '../Framework/ModuleCT'
-import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
 import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
@@ -9,6 +7,7 @@ import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import InfluencesCT from '../Exercises/Influences/InfluencesCT'
 import InfluencesTop5CT from '../Exercises/InfluencesTop5/InfluencesTop5CT'
+import ModuleWrapper from './ModuleWrapper'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
@@ -161,70 +160,79 @@ export default class Module2 extends React.Component {
       description = { QUES_280_DESC }
     /> )
 
+  _module = {
+    id: 2,
+    title: "Your Social Context",
+    description: MOD_2_DESC
+  }
 
-  /* *********************************************************** */
+  // interim refactor, needs to be in a DB
+  sections =
+  [
+    {
+      id: 210,
+      module_id: 2,
+      title: "Contextual Influences",
+      exercise: this.exercise_210
+    },
+    {
+      id: 220,
+      module_id: 2,
+      title: "Top 5 Supportive Influences",
+      exercise: this.exercise_220
+    },
+    {
+      id: 221,
+      module_id: 2,
+      title: "Top 5 Inhibiting Influences",
+      exercise: this.exercise_221
+    },
+    {
+      id: 230,
+      module_id: 2,
+      title: "Relating Your Values and Beliefs to Those of Your Supportive Influencers",
+      exercise: this.exercise_230,
+    },
+    {
+      id: 240,
+      module_id: 2,
+      title: "Relating Your Values and Beliefs to Those of Your Inhibiting Influencers",
+      exercise: this.exercise_240,
+    },
+    {
+      id: 250,
+      title: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement",
+      exercise: this.exercise_250,
+    },
+    {
+      id: 260,
+      title: "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement",
+      exercise: this.exercise_260,
+    },
+    {
+      id: 270,
+      title: "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement",
+      exercise: this.exercise_270,
+    },
+    {
+      id: 280,
+      title: "Breaking and building",
+      exercise: this.exercise_280,
+    },
+  ]
+
   render() {
+    const { moduleId, sectionId } = this.props
+
     return (
-      <ModuleCT
-        moduleNum = { 2 }
-        moduleTitle = "Your Social Context"
-        moduleDescription = { MOD_2_DESC }
+      <ModuleWrapper
+        title = { this._module.title }
+        description= { this._module.description }
+        moduleId = { moduleId }
+        sections = { this.sections } 
+        sectionId = { sectionId }
       >
-        <SectionCT
-          moduleNum = { 2 }
-          sectionNum = { 210 }
-          sectionTitle = "Contextual Influences"
-          exercise = {this.exercise_210}
-        />
-        <SectionCT
-          moduleNum = { 2 }
-          sectionNum = { 220 }
-          sectionTitle = "Top 5 Supportive Influences"
-          exercise = {this.exercise_220}
-        />
-         <SectionCT
-          moduleNum = { 2 }
-          sectionNum = { 221 }
-          sectionTitle = "Top 5 Inhibiting Influences"
-          exercise = {this.exercise_221}
-        />
-        <SectionCT
-          moduleNum = { 2 }
-          sectionNum = { 230 }
-          sectionTitle = "Relating Your Values and Beliefs to Those of Your Supportive Influencers"
-          exercise = {this.exercise_230}
-        />
-        <SectionCT
-          moduleNum = { 2 }
-          sectionNum = { 240 }
-          sectionTitle = "Relating Your Values and Beliefs to Those of Your Inhibiting Influencers"
-          exercise = {this.exercise_240}
-        />
-        <SectionCT
-          moduleNum = { 2 }
-          sectionNum = { 250 }
-          sectionTitle = "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement"
-          exercise = {this.exercise_250}
-        />
-        <SectionCT
-          moduleNum = { 2 }
-          sectionNum = { 260 }
-          sectionTitle = "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement"
-          exercise = {this.exercise_260}
-        />
-        <SectionCT
-          moduleNum = { 2 }
-          sectionNum = { 270 }
-          sectionTitle = "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement"
-          exercise = {this.exercise_270}
-        />
-        <SectionCT
-          moduleNum = { 2 }
-          sectionNum = { 280 }
-          sectionTitle = "Breaking and building"
-          exercise = {this.exercise_280}
-        />
-      </ModuleCT>
+      </ModuleWrapper>
     )
   }
 }
