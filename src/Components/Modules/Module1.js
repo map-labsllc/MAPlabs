@@ -1,7 +1,5 @@
 import React from 'react'
 
-import ModuleCT from '../Framework/ModuleCT'
-import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
 import LifeDescriptorsCT from '../Exercises/LifeDescriptors/LifeDescriptorsCT'
@@ -9,10 +7,7 @@ import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 
-import { Link } from 'react-router-dom'
-import ModuleNav from './ModuleNav'
-import ModuleIntro from './ModuleIntro'
-import { Alert } from 'react-bootstrap'
+import ModuleWrapper from './ModuleWrapper'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
@@ -30,9 +25,6 @@ import {
   QUES_170_DESC,
  } from './Module1Text'
 
-import {
-} from 'react-bootstrap'
-
 /* **************************************************
    Used to test components during development
 ***************************************************** */
@@ -41,7 +33,7 @@ export default class Module1 extends React.Component {
 
   // Define questions and excercises for Module 1
   // ---------------------------------------------------------------------
-  module_1_title = "Your Meanings and Motivations"
+
 
   // -------------------------
   // Module 1: 2C-F
@@ -87,7 +79,6 @@ export default class Module1 extends React.Component {
 
   // -------------------------
   // Module 1: 4A
-
   shortAnswers_150 = [
     <ShortAnswersCT question = { { code: 151, text: "List the most important overarching themes that impact how meaningful and purposeful your life is." } } />,
     <ShortAnswersCT question = { { code: 152, text: "Which core feelings and experiences are most important to providing you with personal senses of the meaning in your life?" } } />,
@@ -138,89 +129,65 @@ export default class Module1 extends React.Component {
       subComponents = { this.shortAnswers_170 }
     /> )
 
+  _module = {
+    id: 1,
+    title: "Your Meanings and Motivations",
+    description: MOD_1_DESC
+  }
+
+  // interim refactor, needs to be in a DB
+  sections =
+  [
+    {
+      id: 110,
+      title: "Reflect on your current situation",
+      exercise: this.exercise_110
+    },
+    { 
+      id: 120,
+      title: "Describe your current situation",
+      exercise: this.exercise_120
+    },
+    {
+      id: 130,
+      title: "Imagine your future desired situation",
+      exercise: this.exercise_130
+    },
+    {
+      id: 140,
+      title: "Describe your future situation",
+      exercise: this.exercise_140
+    },
+    {
+      id: 150,
+      title: "Compare your 'current situation' statement to your 'future desired situation' statement",
+      exercise: this.exercise_150
+    },
+    {
+      id: 160,
+      title: "Breaking and building",
+      exercise: this.exercise_160
+    },
+    {
+      id: 170,
+      title: "Tie these reflections to the course",
+      exercise: this.exercise_170
+    }
+  ]
+
   /* *********************************************************** */
   render() {
     const { moduleId, sectionId } = this.props
 
-    console.log("mod:", moduleId, "section:", sectionId)
-
-    // interim refactor, needs to be in a DB
-    const sections =
-    [
-      {
-        id: 110,
-        title: "Reflect on your current situation",
-        exercise: this.exercise_110
-      },
-      { 
-        id: 120,
-        title: "Describe your current situation",
-        exercise: this.exercise_120
-      },
-      {
-        id: 130,
-        title: "Imagine your future desired situation",
-        exercise: this.exercise_130
-      },
-      {
-        id: 140,
-        title: "Describe your future situation",
-        exercise: this.exercise_140
-      },
-      {
-        id: 150,
-        title: "Compare your 'current situation' statement to your 'future desired situation' statement",
-        exercise: this.exercise_150
-      },
-      {
-        id: 160,
-        title: "Breaking and building",
-        exercise: this.exercise_160
-      },
-      {
-        id: 170,
-        title: "Tie these reflections to the course",
-        exercise: this.exercise_170
-      }
-    ]
-
-    // find current section
-    const section = sectionId ? 
-      sections.filter(sec => sec.id == sectionId)[0] : null;
-
-    // dislay overview, intro or section
-    const displaySection = (sectionId = 'overview', section) => {
-      switch (sectionId) {
-        case 'overview':
-          return (<ModuleNav sections={sections} moduleId={moduleId} />)
-        
-        // case 'intro':
-        //   return
-        //     (<ModuleIntro moduleDescription={MOD_1_DESC} firstSectionHref={`/modules/1/section/110`}/>)
-
-        default:
-          return (sectionId && section ? 
-            <SectionCT
-              moduleNum = { moduleId }
-              sectionNum = { sectionId }
-              sectionTitle = { section.title }
-              exercise = { section.exercise }
-            />
-            : 
-            <Alert variant="warning">
-              Unknown exercise.
-            </Alert>
-          )
-      }
-    }
-
     return (
-      <ModuleCT
-        moduleNum = { moduleId }
-        moduleTitle = { this. module_1_title }  
+      <ModuleWrapper
+        title = { this._module.title }
+        description= { this._module.description }
+        moduleId = { moduleId }
+        sections = { this.sections } 
+        sectionId = { sectionId }
       >
-        {displaySection(sectionId, section)}
-      </ModuleCT>
+      </ModuleWrapper>
     )
   }
 }

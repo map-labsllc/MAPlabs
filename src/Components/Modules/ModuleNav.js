@@ -3,10 +3,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ProgressBar } from 'react-bootstrap'
 
-const ModuleNav = ({moduleId, sections}) => {
-
-  const createLink = (moduleId, sectionId, title) => (
-    <Link to={`/modules/${moduleId}/section/${sectionId}`}>{title}</Link>
+const ModuleNav = ({ moduleId, sections }) => {
+  const createLink = (_moduleId, sectionId, title) => (
+    <Link to={`/modules/${_moduleId}/section/${sectionId}`}>{title}</Link>
   )
 
   return (
@@ -31,7 +30,7 @@ const ModuleNav = ({moduleId, sections}) => {
                     <ProgressBar className="sectionProgress" now={50} label={'50%'}/>
                   </td>
                 </tr>
-                {sections.map(section => (
+                {sections.map((section) => (
                   <tr>
                     <td className="text-left">
                       <h2>{section.id}</h2>

@@ -1,12 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ModuleIntro = ({ moduleDescription, firstSectionHref }) => (
+const ModuleIntro = ({ description, firstSectionHref }) => (
   <div className="text-center">
-    <p className="reading" dangerouslySetInnerHTML={{ __html: moduleDescription }} />
-    <Link to={firstSectionHref} className="btn btn-primary">
-       Get Started &rarr;
-    </Link>
+    <p className="reading" dangerouslySetInnerHTML={{ __html: description }} />
+    <div className="text-center">
+      <Link to={firstSectionHref} className="btn btn-primary">
+        Get Started &rarr;
+      </Link>
+    </div>
+
   </div>
 )
 
