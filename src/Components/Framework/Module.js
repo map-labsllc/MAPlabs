@@ -38,25 +38,12 @@ export default class Module extends React.Component {
     }
 
     // good to go! layout the module
-    let { moduleNum, moduleTitle, moduleDescription, children } = this.props
+    let { moduleNum, moduleTitle, children } = this.props
     return (
       <div className="reading-wrapper">
         <h1>Module {moduleNum}</h1>
         <h2>{moduleTitle}</h2>
-        <div className="text-center">
-          <p className="reading" dangerouslySetInnerHTML={{ __html: moduleDescription }} />
-  
-          { /* TODO: FIX...should this be links */ }
-          { /* render the sections, add the number of the section in the module */ }
-          <div>
-            {React.Children.map(children, (child, index) => {
-              const numberedChild = React.cloneElement(child, {
-                number: index + 1, // numbering is 1-based
-              })
-              return numberedChild
-            })}
-          </div>
-        </div>
+        {children}
       </div>
     )
   }

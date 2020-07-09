@@ -11,7 +11,3 @@ const ModuleIntro = ({ moduleDescription, firstSectionHref }) => (
 )
 
 export default ModuleIntro
-
-
-
-
