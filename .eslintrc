@@ -1,8 +1,15 @@
 {
-   "extends": "react-app",
+   "extends": ["react-app", "airbnb-base"],
+    "env": {
+      "node": true,
+      "es6": true,
+      "browser": true
+    },
    "rules": {
      "semi": ["error","never"],
      "no-restricted-imports": ["error", "never"],
-     "no-unused-expressions": 0
-     }
+     "no-unused-expressions": 0,
+     "no-console": "off",
+     "indent": [2, "space"]
+   }
 }
