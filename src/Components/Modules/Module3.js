@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ModuleWrapper from './ModuleWrapper'
+import ModuleLayout from './ModuleLayout'
 import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
@@ -213,14 +213,14 @@ export default class Module3 extends React.Component {
     const { moduleId, sectionId } = this.props
 
     return (
-      <ModuleWrapper
+      <ModuleLayout
         title = { this._module.title }
         description= { this._module.description }
         moduleId = { moduleId }
         sections = { this.sections } 
         sectionId = { sectionId }
       >
-      </ModuleWrapper>
+      </ModuleLayout>
     )
   }
 }

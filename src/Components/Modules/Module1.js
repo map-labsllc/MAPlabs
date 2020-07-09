@@ -7,7 +7,7 @@ import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 
-import ModuleWrapper from './ModuleWrapper'
+import ModuleLayout from './ModuleLayout'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
@@ -186,14 +186,14 @@ export default class Module1 extends React.Component {
     const { moduleId, sectionId } = this.props
 
     return (
-      <ModuleWrapper
+      <ModuleLayout
         title = { this._module.title }
         description= { this._module.description }
         moduleId = { moduleId }
         sections = { this.sections } 
         sectionId = { sectionId }
       >
-      </ModuleWrapper>
+      </ModuleLayout>
     )
   }
 }

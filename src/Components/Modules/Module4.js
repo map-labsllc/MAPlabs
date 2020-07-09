@@ -10,7 +10,7 @@ import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import BracketCT from '../Exercises/Bracket/BracketCT'
 import StrengthXCT from '../Exercises/StrengthXCT'
-import ModuleWrapper from './ModuleWrapper'
+import ModuleLayout from './ModuleLayout'
 
 
 // import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
@@ -187,14 +187,14 @@ export default class Module4 extends React.Component {
     const { moduleId, sectionId } = this.props
 
     return (
-      <ModuleWrapper
+      <ModuleLayout
         title = { this._module.title }
         description= { this._module.description }
         moduleId = { moduleId }
         sections = { this.sections } 
         sectionId = { sectionId }
       >
-      </ModuleWrapper>
+      </ModuleLayout>
     )
   }
 }
