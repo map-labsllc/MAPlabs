@@ -11,6 +11,8 @@ import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 
 import { Link } from 'react-router-dom'
 import ModuleNav from './ModuleNav'
+import ModuleIntro from './ModuleIntro'
+import { Alert } from 'react-bootstrap'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
@@ -39,7 +41,7 @@ export default class Module1 extends React.Component {
 
   // Define questions and excercises for Module 1
   // ---------------------------------------------------------------------
-
+  module_1_title = "Your Meanings and Motivations"
 
   // -------------------------
   // Module 1: 2C-F
@@ -184,31 +186,40 @@ export default class Module1 extends React.Component {
 
     // find current section
     const section = sectionId ? 
-      sections.filter(sec => sec.id == sectionId)[0] : 'foobar'
+      sections.filter(sec => sec.id == sectionId)[0] : null;
 
-      return (
+    // dislay overview, intro or section
+    const displaySection = (sectionId = 'overview', section) => {
+      switch (sectionId) {
+        case 'overview':
+          return (<ModuleNav sections={sections} moduleId={moduleId} />)
+        
+        // case 'intro':
+        //   return
+        //     (<ModuleIntro moduleDescription={MOD_1_DESC} firstSectionHref={`/modules/1/section/110`}/>)
+
+        default:
+          return (sectionId && section ? 
+            <SectionCT
+              moduleNum = { moduleId }
+              sectionNum = { sectionId }
+              sectionTitle = { section.title }
+              exercise = { section.exercise }
+            />
+            : 
+            <Alert variant="warning">
+              Unknown exercise.
+            </Alert>
+          )
+      }
+    }
+
+    return (
       <ModuleCT
         moduleNum = { moduleId }
-        moduleTitle = "Your Meanings and Motivations "
-        moduleDescription = { MOD_1_DESC }
+        moduleTitle = { this. module_1_title }  
       >
-      <ModuleNav sections={sections} moduleId={moduleId} />
-
-      { sectionId ? 
-        <SectionCT
-          moduleNum = { moduleId }
-          sectionNum = { sectionId }
-          sectionTitle = { section.title }
-          exercise = { section.exercise }
-        />
-        : 
-        <p textCenter>
-          <Link to="/modules/1/section/110" className="btn btn-primary">
-            Get Started &rarr;
-          </Link>
-        </p>
-        }
-
+        {displaySection(sectionId, section)}
       </ModuleCT>
     )
   }
