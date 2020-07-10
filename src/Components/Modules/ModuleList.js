@@ -10,47 +10,51 @@ const ModuleList = ( { m} ) => {
   )
 
   return (
-    <div className="card">
-      <div className="card-header">
-        <h3>Modules</h3>
-      </div>
-      <div className="card-body ">
-        <div className="table-full-width">
-            <table className="table">
-              <tbody>
-                <tr>
-                  <td className="text-left">
-                    <h2></h2>
-                  </td>
-                  <td className="text-left">
-                    <p>
-                    <Link to={`/`}>Introduction</Link> 
-                    </p>
-                  </td>
-                  <td className="text-left">
-                    <ProgressBar className="sectionProgress" now={50} label={'50%'}/>
-                  </td>
-                </tr>
-                { MODULES.map((mod) => (
+    <div className="reading-wrapper">
+    <h1>Module Overview</h1>
+ 
+      <div className="card">
+        <div className="card-header">
+          <h3>Modules</h3>
+        </div>
+        <div className="card-body ">
+          <div className="table-full-width">
+              <table className="table">
+                <tbody>
                   <tr>
                     <td className="text-left">
-                      <h2>{mod.id}</h2>
+                      <h2></h2>
                     </td>
                     <td className="text-left">
                       <p>
-                        {createLink(mod.id, mod.title)}
+                      <Link to={`/`}>Introduction</Link> 
                       </p>
                     </td>
                     <td className="text-left">
                       <ProgressBar className="sectionProgress" now={50} label={'50%'}/>
                     </td>
                   </tr>
-                  )
-                )}
-              </tbody>
-            </table>
+                  { MODULES.map((mod) => (
+                    <tr>
+                      <td className="text-left">
+                        <h2>{mod.id}</h2>
+                      </td>
+                      <td className="text-left">
+                        <p>
+                          {createLink(mod.id, mod.title)}
+                        </p>
+                      </td>
+                      <td className="text-left">
+                        <ProgressBar className="sectionProgress" now={50} label={'50%'}/>
+                      </td>
+                    </tr>
+                    )
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+      </div>
     </div>
   )
 }
