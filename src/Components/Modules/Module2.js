@@ -8,6 +8,7 @@ import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import InfluencesCT from '../Exercises/Influences/InfluencesCT'
 import InfluencesTop5CT from '../Exercises/InfluencesTop5/InfluencesTop5CT'
 import ModuleLayout from './ModuleLayout'
+import { MODULES } from './ModuleData'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
@@ -160,11 +161,7 @@ export default class Module2 extends React.Component {
       description = { QUES_280_DESC }
     /> )
 
-  _module = {
-    id: 2,
-    title: "Your Social Context",
-    description: MOD_2_DESC
-  }
+  _module = MODULES.filter(m => m.id === 2)
 
   // interim refactor, needs to be in a DB
   sections =

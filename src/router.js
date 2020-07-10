@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import ModuleList from "./Components/Modules/ModuleList"
 import ModuleRouter from "./Components/Modules/ModuleRouter"
 import SplashPage from './Components/Startup/SplashPage'
 import HomePage from './Components/Startup/HomePage'
@@ -18,6 +19,7 @@ export default class RouterComponent extends React.Component {
         <Route exact path='/login' component={Login} />
         <Route exact path='/signup' component={SignUp} />
         <Route exact path='/dashboard' component={Dashboard} />
+        <Route path='/modules/list' component={ModuleList} />
         <Route path='/modules/:moduleId/section/:sectionId' component={ModuleRouter} />
         <Route path='/modules/:moduleId' component={ModuleRouter} />
         <Route path='/' component={HomePage} />

@@ -11,6 +11,7 @@ import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import BracketCT from '../Exercises/Bracket/BracketCT'
 import StrengthXCT from '../Exercises/StrengthXCT'
 import ModuleLayout from './ModuleLayout'
+import { MODULES } from './ModuleData'
 
 
 // import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
@@ -135,11 +136,7 @@ export default class Module4 extends React.Component {
       subComponents = {this.strengths_410}
     />)
 
-  _module = {
-    id: 4,
-    title: "Your Meanings and Motivations", // TODO: is this right?
-    description: MOD_4_DESC
-  }
+  _module = MODULES.filter(m => m.id === 4)
 
   // interim refactor, needs to be in a DB
   sections =
@@ -147,16 +144,17 @@ export default class Module4 extends React.Component {
     {
       id: 410,
       module_id: 4,
-      title: "Reflect on your current situation",
+      title: "Take the VIA Survey of Character Strengths",
       exercise: this.exercise_410
     },
     // TODO: This right?? ... it was commented out, so I'm not sure content is right
     {
       id: 420,
       module_id: 4,
-      title: "Describe your current situation",
+      title: "Record your top 5 strengths and reflect on each",
       exercise: this.exercise_420
     },
+    // TODO... this content isn't right
     {
       id: 430,
       module_id: 4,

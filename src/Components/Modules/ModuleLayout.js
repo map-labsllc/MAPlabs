@@ -8,8 +8,6 @@ import ModuleIntro from './ModuleIntro'
 import { Alert } from 'react-bootstrap'
 
 const ModuleWrapper = ( {moduleId, title, description, sectionId, sections} ) => {
-  console.log("mod:", moduleId, "section:", sectionId)
-
 
   // find current section
   const section = sectionId ? 
@@ -22,7 +20,7 @@ const ModuleWrapper = ( {moduleId, title, description, sectionId, sections} ) =>
   const displaySection = (sectionId = 'overview', section) => {
     switch (sectionId) {
       case 'overview':
-        return (<ModuleNav sections={sections} moduleId={moduleId} />)
+        return (<ModuleNav title={'Exercises'} sections={sections} moduleId={moduleId} />)
 
       case 'intro':
         return (<ModuleIntro description={description} firstSectionHref={firstSectionHref}/>)

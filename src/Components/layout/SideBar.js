@@ -22,6 +22,12 @@ const SideBar = () => (
         </NavLink>
       </li>
       <li className="nav-item">
+        <NavLink className="nav-link" to="/modules/list">
+          <i class="nc-icon nc-layers-3"></i>
+          Module Overview
+        </NavLink>
+      </li>
+      <li className="nav-item">
         <NavLink className="nav-link" to="/modules/1">
           <i class="nc-icon nc-compass-05"></i>
           <p>Module 1</p>
