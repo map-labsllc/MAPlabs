@@ -111,7 +111,7 @@ export default class Narrative extends React.Component {
             />
           </div>
           <div className="text-center">
-            <Button className="closeButton" type="button" style={style.closeButton}>Close</Button>
+            <Button className="closeButton btn"  type="button" style={style.closeButton}>Save</Button>
           </div>
         </form>
       </>

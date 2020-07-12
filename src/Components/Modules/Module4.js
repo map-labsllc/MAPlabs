@@ -25,7 +25,6 @@ import {
 
 
 import {
-  MOD_4_DESC,
   QUES_410_DESC,
   QUES_420_DESC,
   QUES_430_DESC,

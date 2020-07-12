@@ -85,7 +85,7 @@ export default class Bracket extends React.Component {
           </p>
           :
           (this.state.prompts.length > 0 && <p>You desire: {this.state.prompts[0]}.
-           Click 'Next' to continue the exercise, or 'Close' to save your work.
+           Click 'Next' to continue the exercise, or 'Save' to save your work.
           </p>)
         }
       </div>

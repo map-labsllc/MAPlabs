@@ -1,15 +1,6 @@
 import React from 'react'
-import PopupCT from './PopupCT'
-import {
-  Button,
-  Checkbox,
-  Col,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
-  Panel,
-} from 'react-bootstrap'
+import SectionExercise from './SectionExercise'
+import { Panel } from 'react-bootstrap'
 import { sectionLoadingAC } from '../../store/user/actions'
 import '../../CSS/light-bootstrap-dashboard.css'
 
@@ -61,7 +52,7 @@ export default class Section extends React.Component {
           {isVisible && (
             <Panel.Body className="sectionBody">
               <div className="container-fluid contain">
-                <PopupCT moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
+                <SectionExercise moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
               </div>
             </Panel.Body>
           )}
