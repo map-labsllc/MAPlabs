@@ -76,17 +76,7 @@ if (false) {
     isError: false,
     errorMessage: '',
     orderOfSections: [],
-    user: {
-      user_id: 3,
-      fname: "Isabel",
-      lname: "Phelps",
-      email: "isabel@gmail.com",
-      password: "",  // can we remove this?
-      login_service_id: 0,
-      login_token: "XYZ",
-      curr_module: 5,
-      curr_section: 0,
-    }
+    user: {}
   }
 }
 

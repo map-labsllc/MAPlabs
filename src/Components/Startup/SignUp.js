@@ -1,175 +1,177 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { firstNameChanged, lastNameChanged, emailChanged, passwordChanged, loginUser, signUpUser } from '../../store/user/actions'
-import { Redirect } from 'react-router-dom'
-
-
-//
+import { signUpUser } from '../../store/user/actions'
+import { Redirect, Link } from 'react-router-dom'
+import FormCard from './FormCard'
+import { Alert } from 'react-bootstrap'
 
 class SignUp extends Component {
-  constructor( props ) {
-    super( props )
+  constructor(props) {
+    super(props)
 
+    this.state = {
+      fname: '',
+      lname: '',
+      email: '',
+      password: '',
+      verify_password: '',
+      passwordClasses: 'form-control',
+      passwordIsValid: true
+    }
   }
 
+  userSignup = e => {
+    e.preventDefault()
+    let { fname, lname, email, password, verify_password } = this.state
+    if (!password || password !== verify_password || !verify_password) {
+      this.setState({
+        passwordClasses: this.state.passwordClasses + ' is-invalid',
+        passwordIsValid: false
+      })
+    }
+    else {
+      this.setState({
+        passwordIsValid: true,
+        passwordClasses: 'form-control',
+      })
 
-  onFirstNameChanged=( event )=> {
-    console.log( 'event', event.target.value )
-    this.props.firstNameChanged( event.target.value )
+      console.log("SignUp", fname, lname, email, password)
+      this.props.signUpUser(fname, lname, email, password)
+    }
   }
 
-  onLastNameChanged=( event )=> {
-    console.log( 'eventfor LAST NAME', event )
-    this.props.lastNameChanged( event.target.value )
-  }
-
-  onEmailChange=( event )=> {
-
-    console.log( 'type of string', typeof event,event )
-    this.props.emailChanged( event.target.value )
-  }
-
-  onPasswordChange=( event ) =>{
-    console.log( 'this is the error on password', event, typeof event )
-    this.props.passwordChanged( event.target.value )
-  }
-
-  onButtonPress=() =>{
-    // const {first_name, last_name, email, password} = this.props
-    // console.log('firstName',this.props.first_name);
-    console.log( 'this.props.first_name', this.props )
-    this.props.signUpUser( this.props.fname, this.props.lname, this.props.email, this.props.password )
-  }
-
-  renderError=()=> {
-    if ( this.props.error ) {
+  renderError = () => {
+    if ( this.props.error || !this.state.passwordIsValid) {
       return (
-        <div>
-          <p style={ styles.errorTextStyle }>
-            { this.props.error }
-          </p>
-        </div>
+        <Alert variant="error">
+          { this.props.error }
+          { this.state.passwordIsValid ? '' : `Passwords invalid or don't match` }
+        </Alert>
       )
     }
   }
 
-  renderButton=()=> {
-    return (
-      <button style={styles.signUpButtonStyle} onClick={ this.onButtonPress}>
-        <p style={styles.signUpTextStyles}>Sign Up</p>
-      </button>
-    )
-
-  }
-
-
   render() {
-    const { viewStyles, textInputStyles, emailTextStyles, passwordTextStyles,
-            signUpTextStyles, signUpButtonStyle } = styles
-            console.log( 'here duuuuude',this.props )
-    const redirect = this.props.token ? true : false
     return (
-        redirect ? <Redirect to="/infopage"/> :
-      <div style={viewStyles}>
-      <div
-        style={{height:'100%',width:'100%',justifyContent: 'center',
-        alignItems: 'center',}}>
-        <p style={emailTextStyles}>First Name</p>
-        <input
-          style={textInputStyles}
-          placeholder='John'
-          autoCapitalize="none"
-          onChange={ this.onFirstNameChanged}
-          value={ this.props.fname }/>
+      this.props.token ? <Redirect to="/module/list"/> :
+      <FormCard title="Sign up for an account">
+        <div>
+          <form>
+            <div className="row">
+              <div className="col-md-3"></div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>First Name</label>
+                  <input
+                    className="form-control"
+                    placeholder='Jane'
+                    autoCapitalize="true"
+                    onChange={(e) => this.setState({fname: e.target.value.trim()})}
+                    value={ this.state.fname }
+                    required
+                  />
+                </div>
+              </div>
+              <div className="col-md-3"></div>
+            </div>
 
-        <p style={emailTextStyles}>Last Name</p>
-        <input
-          style={textInputStyles}
-          placeholder='Doe'
-          autoCapitalize="none"
-
-          onChange={ this.onLastNameChanged}
-          value={ this.props.lname }/>
-
-        <p style={emailTextStyles}>Email</p>
-        <input
-          style={textInputStyles}
-          placeholder='example@email.com'
-          autoCapitalize="none"
-          onChange={ this.onEmailChange }
-          value={ this.props.email }/>
-
-        <p style={passwordTextStyles}>Password</p>
-        <input style={textInputStyles}
-          placeholder='password'
-          type= 'password'
-          autoCapitalize="none"
-          onChange={ this.onPasswordChange }
-          value={ this.props.password }
-        />
-
-
-
-        { this.renderError() }
-        { this.renderButton()}
+            <div className="row">
+              <div className="col-md-3"></div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Last Name</label>
+                  <input
+                    className="form-control"
+                    placeholder='Doe'
+                    autoCapitalize="true"
+                    onChange={(e) => this.setState({lname: e.target.value.trim()})}
+                    value={ this.state.lname }
+                    required
+                  />
+                </div>
+              </div>
+              <div className="col-md-3"></div>
+            </div>
+            <div className="row">
+              <div className="col-md-3"></div>
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label for="email">Email address</label>
+                  <input
+                    className="form-control"
+                    type="email"
+                    placeholder="example@email.com"
+                    autoCapitalize="none"
+                    autoCorrect="false"
+                    onChange={(e) => this.setState({email: e.target.value.trim()})}
+                    value={ this.state.email}
+                    required
+                  />
+                </div>
+                <div className="col-md-3"></div>
+              </div>
+            </div>
+            <div className="row">
+                <div className="col-md-3"></div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                      <label>Password</label>
+                      <input
+                        className={this.state.passwordClasses}
+                        type= 'password'
+                        placeholder='password'
+                        autoCorrect="false"
+                        autoCapitalize="none"
+                        onChange={(e) => this.setState({password: e.target.value.trim()})}
+                        value={ this.props.password }
+                        min-length="8"
+                        required
+                      />
+                  </div>
+                </div>
+                <div className="col-md-3"></div>
+            </div>
+            <div className="row">
+                <div className="col-md-3"></div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                      <label>Verify Password</label>
+                      <input
+                        className={this.state.passwordClasses}
+                        type= 'password'
+                        placeholder='verify password'
+                        autoCorrect="false"
+                        autoCapitalize="none"
+                        onChange={(e) => this.setState({verify_password: e.target.value.trim()})}
+                        value={ this.props.verify_password }
+                        min-length="8"
+                        required
+                      />
+                  </div>
+                </div>
+                <div className="col-md-3"></div>
+            </div>
+            <div className="row">
+              <div className="col-md-3"></div>
+              <div className="col-md-3">
+                { this.renderError() }
+              </div>
+              <div className="col-md-3"></div>
+            </div>
+            <div className="row">
+              <div className="col-md-3"></div>
+              <div className="col-md-3">
+                <button type="submit" className="btn btn-info btn-fill" onClick={this.userSignUp}>Sign Up</button>
+              </div>
+              <div className="col-md-3">
+                <Link to="/login">Login</Link>
+              </div>
+              <div className="col-md-3"></div>
+            </div>
+          </form>
         </div>
-      </div>
+      </FormCard>
     )
-  }
-}
-
-const styles = {
-  viewStyles: {
-    flex: 1,
-    backgroundColor:'white',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  textInputStyles: {
-    height: 60,
-    alignSelf: 'stretch',
-    backgroundColor: 'white',
-    marginTop: 1,
-    marginLeft: 40,
-    marginRight: 40,
-    paddingLeft: 10,
-    borderRadius: 5,
-    borderWidth: 1.5,
-    borderColor: '#982D37'
-  },
-  emailTextStyles: {
-    alignSelf: 'flex-start',
-    marginTop: 30,
-    marginLeft: 40,
-    color: '#982D37',
-    fontSize: 16,
-    fontWeight: '600'
-  },
-  passwordTextStyles: {
-    alignSelf: 'flex-start',
-    marginTop: 30,
-    marginLeft: 40,
-    color: '#982D37',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  signUpTextStyles: {
-    alignSelf: 'center',
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-    paddingTop: 15,
-    paddingBottom: 15
-  },
-  signUpButtonStyle: {
-    alignSelf: 'stretch',
-    backgroundColor: '#982D37',
-    borderRadius: 7,
-    borderWidth: 1,
-    borderColor: '#982D37',
-    marginLeft: 40,
-    marginRight: 40,
-    marginTop: 30
   }
 }
 
@@ -185,5 +187,5 @@ function mapStateToProps( {userRD} ) {
 }
 
 export default connect( mapStateToProps, {
-  firstNameChanged, lastNameChanged, emailChanged, passwordChanged, loginUser, signUpUser
+  signUpUser
 } )( SignUp )

@@ -60,40 +60,52 @@ class NavBar extends React.Component {
   /* ***********************************************
   render()
 
-  NavBar is hidden if user isn't logged in.
   ************************************************** */
 
   render() {
-    // console.log( "NavBar::render" )
 
     const { user } = this.props
 
-    // user not logged in, don't show NavBar b/c we're in the login flow.
-    // todo: make this work off a a userRD boolean or function, poor form to be testing login_token
-    if (!user.login_token) {
-      console.log("NavBar hidden, no user.login_token")
-      console.log("user: ", user)
-      return null
-    }
-
-    
     // user logged in, show the navbar
     return (
       <nav className="navbar navbar-expand-lg" color-on-scroll="500">
         <div className="container-fluid">
           <div className="collapse navbar-collapse justify-content-end" id="navigation"> 
             <Nav className="navbar-nav ml-auto pull-right">
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/account">
-                  <i className="nc-icon nc-single-02 "></i>
-                  <span style={style.account}>Account</span>
-                </NavLink>
-              </li>
-              <li as="Link" className="nav-item">
-                <NavLink className="nav-link" to="/logout">
-                  <span class="no-icon">Logout</span>
-                </NavLink>
-              </li>
+              { user && user.user_id ?
+              // logged in
+              (
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/account">
+                    <i className="nc-icon nc-single-02 "></i>
+                    <span style={style.account}>Account</span>
+                  </NavLink>
+                </li>
+                <li as="Link" className="nav-item">
+                  <NavLink className="nav-link" to="/logout">
+                    <span class="no-icon">Logout</span>
+                  </NavLink>
+                </li>
+              </>
+              ) :
+              // not logged in
+              (
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/signup">
+                    <i className="no-icon"></i>
+                    <span>Sign Up</span>
+                  </NavLink>
+                </li>
+                <li as="Link" className="nav-item">
+                  <NavLink className="nav-link" to="/login">
+                    <span class="no-icon">Login</span>
+                  </NavLink>
+                </li>
+              </>
+              )
+            }
             </Nav>
           </div>
         </div>

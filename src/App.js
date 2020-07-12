@@ -14,6 +14,7 @@ class App extends Component {
   componentWillMount() {
 
     // make new web proj in firebase
+    // UGH, this can't be right
     var config = {
       apiKey: "AIzaSyAUOCnEKUCOCZcRgBc1y9sWC-AuHgEa7aw",
       authDomain: "map-labs123.firebaseapp.com",
@@ -28,6 +29,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <Router>
         <div>
