@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signUpUser } from '../../store/user/actions'
 import { Redirect, Link } from 'react-router-dom'
-import FormCard from './FormCard'
+import FormCard from '../layout/FormCard'
 import { Alert } from 'react-bootstrap'
 
 class SignUp extends Component {

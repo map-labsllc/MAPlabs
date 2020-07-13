@@ -2,8 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { Button } from 'reactstrap'
+import { Button } from 'react-bootstrap'
 import { PropTypes } from 'prop-types'
+import FormCard from '../layout/FormCard'
 
 import { userLogout } from '../../store/user/actions'
 
@@ -15,7 +16,9 @@ const Logout = ({ userLogout }) => {
   }
 
   return (
-    <Button onClick={handleLogout}>Sign Out</Button>
+    <FormCard title="Logout">
+      <Button className="btn btn-primary" onClick={handleLogout}>Sign Out</Button>
+    </FormCard>
   )
 }
 

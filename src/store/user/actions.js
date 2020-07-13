@@ -219,18 +219,17 @@ const loginUserSuccess = async( dispatch, user ) => {
   } )
 
 }
+
 export const signUp = () => {
   return async ( dispatch ) => {
     console.log( dispatch,'signup' )
     dispatch.signUp()
   }
 }
-export const signUpUser = ( firstName, lastName, email, password ) => {
-  let payload = {
-    fname: firstName,
-    lname: lastName,
-    email: email,
-  }
+
+export const signUpUser = ( user ) => {
+  let payload = user
+  let { email, password } = user
 
   return async ( dispatch ) => {
 
@@ -270,13 +269,15 @@ export const signUpUser = ( firstName, lastName, email, password ) => {
               } )
             }
           } )
-
   }
 }
-//
-// export const loadLifeDescriptorsAC = () => {
-//   console.log('action!!!');
-//   dispatch({
-//     type: LOAD_LIFE_DESCRIPTORS
-//   })
-// }
+
+export const userLogout = (  ) => {
+  return async ( dispatch ) => {
+    firebase.auth().signOut().then(function() {
+      console.log('logoutUser')
+    }).catch(function(error) {
+      console.error('logoutUser', error)
+    })
+  }
+}
