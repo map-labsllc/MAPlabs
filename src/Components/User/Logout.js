@@ -5,14 +5,19 @@ import { bindActionCreators } from 'redux'
 import { Button } from 'react-bootstrap'
 import { PropTypes } from 'prop-types'
 import FormCard from '../layout/FormCard'
-
 import { userLogout } from '../../store/user/actions'
+import { createBrowserHistory } from 'history';
 
+export const browserHistory = createBrowserHistory();
 
 const Logout = ({ userLogout }) => {
   const handleLogout = (e) => {
     e.preventDefault();
-    userLogout()
+    userLogout().then(() => {
+      console.log('redirect /')
+      browserHistory.push('/')
+    })
+
   }
 
   return (
