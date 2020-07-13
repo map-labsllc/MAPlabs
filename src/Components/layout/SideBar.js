@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 
 
 const SideBar = ( { user }) => (
-  <div className="sidebar" data-color="blue" data-image="../assets/img/sidebar-5.jpg">
+  <div className="sidebar" data-color="blue" data-image="./assets/img/sidebar-5.jpg">
     <div className="sidebar-wrapper">
       <div className="logo">
         <a href="/" className="simple-text">
@@ -17,7 +17,7 @@ const SideBar = ( { user }) => (
         </a>
       </div>
     
-      {user && user.user_id ? 
+      {user && user.login_token ? 
       <ul className="nav ml-auto">       
         <li className="nav-item">
           <NavLink className="nav-link" to="/infopage">

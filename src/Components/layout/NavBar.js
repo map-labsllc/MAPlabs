@@ -72,7 +72,7 @@ class NavBar extends React.Component {
         <div className="container-fluid">
           <div className="collapse navbar-collapse justify-content-end" id="navigation"> 
             <Nav className="navbar-nav ml-auto pull-right">
-              { user && user.user_id ?
+              { user && user.login_token ?
               // logged in
               (
               <>

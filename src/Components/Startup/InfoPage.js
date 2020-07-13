@@ -165,7 +165,7 @@ const InfoPage = () => {
         {/* ------------------------------ */}
 
         <div className="text-center">
-          <Button className="btn btn-primary"><NavLink to="/modules/1">Begin MAPMaker</NavLink></Button>
+          <Button className="btn"><NavLink to="/signup">Sign Up</NavLink></Button>
         </div>
       </div >
     </div >

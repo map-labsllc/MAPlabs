@@ -21,40 +21,54 @@ class HomePage extends React.Component {
               Discover how to inform, empower, and fulfill your life.
             </h1>
           </div>
-          <div>
+          <div className="mt-5">
             <Row>
               <Col md={4}>
-              <Card style={{ width: '18rem' }}>
-                <Card.Body>
-                  <Card.Text>
-                    Visit our website to learn more about us.
-                  </Card.Text>
-                  <Button 
-                    variant="primary"
-                    href="https://www.map-labs.com/map-maker-core-meaning-and-purpose-program.html"
-                    target="_blank"
-                    className="btn pull-right align-bottom"
-                    variant="light"
-                  >
-                  Learn more about MAPMaker
-                  <img
-                    style={{ width: "20px", paddingLeft: "5px" }}
-                    src="Arrow-Right.svg"
-                    alt="info icon"
-                  />
-                </Button>
-                </Card.Body>
-              </Card>
+                <Card style={{ width: '18rem' }}>
+                  <Card.Body>
+                    <Card.Text>
+                      <p>
+                        Visit our website to learn more about us.
+                      </p>
+
+                      <Button 
+                        variant="primary"
+                        href="https://www.map-labs.com/map-maker-core-meaning-and-purpose-program.html"
+                        target="_blank"
+                        className="btn"
+                        variant="light"
+                      >
+                      Learn more about MAPMaker
+                    </Button>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
               </Col>
+
               <Col md={4}>
-                Find out more about this progrm.
-              <h3><Link className="outline-secondary btn" to="/infopage">Get Started</Link></h3> 
+                <Card style={{ width: '18rem' }}>
+                  <Card.Body>
+                    <Card.Text>
+                      <p>
+                        Find out more about this program
+                      </p>
+                      <Link className="outline-secondary btn" to="/infopage">Get Started</Link> 
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
               </Col>
+
               <Col md={4}>
-                <h4>
-                  Already have an account?
-                  <Link className="btn" to="/login">Login here.</Link>
-                </h4>
+                <Card>
+                  <Card.Body>
+                    <Card.Text>
+                      <p>
+                        Already have an account?
+                      </p>
+                      <Link className="btn" to="/login">Login here.</Link>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
               </Col>
             </Row>
           </div>
