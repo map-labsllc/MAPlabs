@@ -14,9 +14,10 @@ import { FIREBASE_CONFIG } from './config/FirebaseConfig.js'
 class App extends Component {
   componentWillMount() {
 
+    console.log('FIREBASE_CONFIG', FIREBASE_CONFIG)
     if (!firebase.apps.length) {
       firebase.initializeApp(FIREBASE_CONFIG)
-    }
+    }  
   }
 
   render() {
@@ -25,12 +26,12 @@ class App extends Component {
       <Router>
         <div>
           <ScrollToTop />
-          <div class="wrapper">
+          <div className="wrapper">
             <SideBar />
-            <div class="main-panel">
+            <div className="main-panel">
               <NavBar />
-              <div class="content">
-                <div class="container-fluid">
+              <div className="content">
+                <div className="container-fluid">
                   <Routes />
                 </div>
               </div>

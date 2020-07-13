@@ -236,40 +236,42 @@ export const signUpUser = ( user ) => {
       console.log('action signUpUser with ', user)
       //firebase sends back a user but we do not use it here.
       //user and jwt are taken from result of onAuthStateChanged
-        await firebase.auth().createUserWithEmailAndPassword( email, password )
-          .then( () => {} )
+      const response = await firebase.auth().createUserWithEmailAndPassword( email, password )
+        .catch(console.error)
+      console.log('createUser FB response', response)
+
+      await firebase.auth().onAuthStateChanged( async( fireBaseUser ) => {
+        if ( fireBaseUser ) {
+          console.log('fireBaseUser', fireBaseUser)
+          const jwt = await fireBaseUser.getIdToken()
+
+          localStorage.setItem('jwt', JSON.stringify( jwt ))
+
+          const body = JSON.stringify( {
+            fname:payload.fname,
+            lname:payload.lname
+          } )
+
+            payload.user = await fetch( `${process.env.REACT_APP_DB_URL}/users`, {
+            method:'POST',
+            headers:{"Content-Type":"application/json",
+            Authorization: `Token: ${jwt}`
+          },
+            body: body
+          } )
+          .then(
+            res => res.json()
+          )
           .catch(console.error)
 
-           await firebase.auth().onAuthStateChanged( async( fireBaseUser ) => {
-            if ( fireBaseUser ) {
-              const jwt = await fireBaseUser.getIdToken()
+          loginUserSuccess( dispatch, payload.user )
 
-              localStorage.setItem( 'jwt', JSON.stringify( jwt ) )
-
-              const body = JSON.stringify( {
-                fname:payload.fname,
-                lname:payload.lname
-              } )
-
-               payload.user = await fetch( `${process.env.REACT_APP_DB_URL}/users`, {
-                method:'POST',
-                headers:{"Content-Type":"application/json",
-                Authorization: `Token: ${jwt}`
-              },
-                body: body
-              } )
-              .then(
-                res => res.json()
-              )
-
-              loginUserSuccess( dispatch, payload.user )
-
-              dispatch( {
-                type: SIGNUP,
-                payload
-              } )
-            }
+          dispatch( {
+            type: SIGNUP,
+            payload
           } )
+        }
+      } )
   }
 }
 
