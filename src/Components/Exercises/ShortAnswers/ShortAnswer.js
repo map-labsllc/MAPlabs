@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   Button,
-  Form,
-  Glyphicon
+  Form
 } from 'react-bootstrap'
 
 /* **************************************************
@@ -99,7 +98,7 @@ export default class ShortAnswer extends React.Component {
               cols="50"
             />
             {"   "}
-            <Button style={style.inline} type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
+            <Button style={style.inline} type="button" onClick={this.onclickDelete}><i className="nc-icon nc-simple-remove"></i></Button>
 
           </div>
         </Form>

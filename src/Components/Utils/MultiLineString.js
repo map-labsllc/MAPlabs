@@ -1,5 +1,4 @@
 import React from 'react'
-import { Glyphicon, Button } from 'react-bootstrap'
 
 /* **************************************************
    MultiLineString component

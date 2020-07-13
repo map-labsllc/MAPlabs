@@ -100,7 +100,7 @@ class NavBar extends React.Component {
                 </li>
                 <li as="Link" className="nav-item">
                   <NavLink className="nav-link" to="/login">
-                    <span class="no-icon">Login</span>
+                    <span className="no-icon">Login</span>
                   </NavLink>
                 </li>
               </>

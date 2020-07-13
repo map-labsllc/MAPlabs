@@ -5,7 +5,6 @@ import {
   Button,
   Form,
   FormControl,
-  Glyphicon,
 } from 'react-bootstrap'
 
 import {
@@ -82,7 +81,7 @@ export default function Influence( props )  {
     <Form inline>
 
       &nbsp;&nbsp;&nbsp;
-      <Button type="button" onClick={onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
+      <Button type="button" onClick={onclickDelete}><i className="nc-icon nc-simple-remove"></i></Button>
 
       &nbsp;
       &nbsp;

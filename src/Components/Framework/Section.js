@@ -1,6 +1,6 @@
 import React from 'react'
 import SectionExercise from './SectionExercise'
-import { Panel } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { sectionLoadingAC } from '../../store/user/actions'
 import '../../CSS/light-bootstrap-dashboard.css'
 
@@ -44,23 +44,23 @@ export default class Section extends React.Component {
 
     return (
       <div className="background">
-        <Panel bsStyle='primary' className="panelSpace">
-          <Panel.Heading className="sectionHeader">
-            <Panel.Title><div className="text-center">{number}. {sectionTitle}</div></Panel.Title>
-          </Panel.Heading>
+        <Card bsStyle='primary' className="CardSpace">
+          <Card.Heading className="sectionHeader">
+            <Card.Title><div className="text-center">{number}. {sectionTitle}</div></Card.Title>
+          </Card.Heading>
 
           {isVisible && (
-            <Panel.Body className="sectionBody">
+            <Card.Body className="sectionBody">
               <div className="container-fluid contain">
                 <SectionExercise moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
               </div>
-            </Panel.Body>
+            </Card.Body>
           )}
 
           {!isVisible && (
             <p>Please complete the the previous exercise</p>
           )}
-        </Panel>
+        </Card>
       </div >
     )
   }

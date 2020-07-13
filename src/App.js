@@ -8,23 +8,14 @@ import Footer from './Components/layout/Footer'
 import SideBar from './Components/layout/SideBar'
 import './CSS/light-bootstrap-dashboard.css'
 import './CSS/custom.css'
+import { FIREBASE_CONFIG } from './config/FirebaseConfig.js'
 
 // const history = createBrowserHistory()
 class App extends Component {
   componentWillMount() {
 
-    // make new web proj in firebase
-    // UGH, this can't be right
-    var config = {
-      apiKey: "AIzaSyAUOCnEKUCOCZcRgBc1y9sWC-AuHgEa7aw",
-      authDomain: "map-labs123.firebaseapp.com",
-      databaseURL: "https://map-labs123.firebaseio.com",
-      projectId: "map-labs123",
-      storageBucket: "",
-      messagingSenderId: "666788418297"
-    }
     if (!firebase.apps.length) {
-      firebase.initializeApp(config)
+      firebase.initializeApp(FIREBASE_CONFIG)
     }
   }
 

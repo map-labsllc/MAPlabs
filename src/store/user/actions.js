@@ -233,11 +233,12 @@ export const signUpUser = ( user ) => {
 
   return async ( dispatch ) => {
 
-      console.log( 'this disBATCH', document.cookie )
+      console.log('action signUpUser with ', user)
       //firebase sends back a user but we do not use it here.
       //user and jwt are taken from result of onAuthStateChanged
         await firebase.auth().createUserWithEmailAndPassword( email, password )
           .then( () => {} )
+          .catch(console.error)
 
            await firebase.auth().onAuthStateChanged( async( fireBaseUser ) => {
             if ( fireBaseUser ) {
@@ -275,7 +276,7 @@ export const signUpUser = ( user ) => {
 export const userLogout = (  ) => {
   return async ( dispatch ) => {
     firebase.auth().signOut().then(function() {
-      console.log('logoutUser')
+      console.log('userLogout complete')
     }).catch(function(error) {
       console.error('logoutUser', error)
     })

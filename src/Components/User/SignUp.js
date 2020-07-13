@@ -35,8 +35,8 @@ class SignUp extends Component {
         passwordClasses: 'form-control',
       })
 
-      console.log("SignUp", fname, lname, email, password)
-      this.props.signUpUser(fname, lname, email, password)
+      let newUser = { fname, lname, email, password }
+      this.props.signUpUser(newUser)
     }
   }
 
@@ -56,7 +56,7 @@ class SignUp extends Component {
       this.props.token ? <Redirect to="/module/list"/> :
       <FormCard title="Sign up for an account">
         <div>
-          <form>
+          <form onSubmit={ this.userSignup }>
             <div className="row">
               <div className="col-md-3"></div>
               <div className="col-md-6">
@@ -161,7 +161,7 @@ class SignUp extends Component {
             <div className="row">
               <div className="col-md-3"></div>
               <div className="col-md-3">
-                <button type="submit" className="btn btn-info btn-fill" onClick={this.userSignUp}>Sign Up</button>
+                <button type="submit" className="btn btn-info btn-fill">Sign Up</button>
               </div>
               <div className="col-md-3">
                 <Link to="/login">Login</Link>
@@ -176,7 +176,7 @@ class SignUp extends Component {
 }
 
 function mapStateToProps( {userRD} ) {
-  console.log( 'thisis the STATE>>',userRD.user )
+  console.log( 'this is the STATE when dispatching >>',userRD.user )
   return {
     fname : userRD.user.fname,
     lname : userRD.user.lname,

@@ -7,8 +7,7 @@ import {
   ControlLabel,
   Form,
   FormControl,
-  FormGroup,
-  Glyphicon
+  FormGroup
 } from 'react-bootstrap'
 
 /* **************************************************
@@ -136,7 +135,7 @@ export default class Transition extends React.Component {
             />
           </FormGroup>
           {" "}
-          <Button type="button" onClick={this.onclickDelete}><Glyphicon glyph="trash"></Glyphicon></Button>
+          <Button type="button" onClick={this.onclickDelete}><i className="nc-icon nc-simple-remove"></i></Button>
         </div>
       </Form>
     )

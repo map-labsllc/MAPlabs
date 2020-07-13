@@ -1,5 +1,5 @@
 import React from 'react'
-import { Glyphicon, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 /* **************************************************
    Arrow component
@@ -23,9 +23,7 @@ const Arrow = ( props ) => {
     <Button
       className={`slide-arrow ${direction}`}
       onClick={onClickCB}>
-      <Glyphicon
-        glyph={glyph}
-      />
+      <i className={`nc-icon nc-stre-${direction}`}></i>
     </Button>
   )
 }
