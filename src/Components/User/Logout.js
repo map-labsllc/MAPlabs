@@ -26,7 +26,9 @@ const Logout = ({ user, userLogout }) => {
 
   return (
     loggedOut ?
-      <Redirect to="/" /> 
+      <div className="alert alert-info">
+        You have been successfully logged out.
+      </div>
       :
       <FormCard title="Logout">
         <Button className="btn btn-primary" onClick={handleLogout}>Sign Out</Button>

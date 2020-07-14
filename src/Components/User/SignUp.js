@@ -50,17 +50,6 @@ class SignUp extends Component {
     this.setState({ errorMessage: `` })
   }
 
-  renderError = () => {
-    if ( this.props.error || this.state.errorMessage) {
-      return (
-        <div className="alert alert-danger">
-          { this.props.error }
-          { this.state.errorMessage }
-        </div>
-      )
-    }
-  }
-
   render() {
     const { errorMessage } = this.state
 
@@ -165,7 +154,7 @@ class SignUp extends Component {
             </div>
             <div className="row">
               <div className="col-md-3"></div>
-              <div className="col-md-3">
+              <div className="col-md-6">
                 { this.props.error || errorMessage ?
                   <div className="alert alert-danger">
                     { this.props.error }
@@ -181,7 +170,7 @@ class SignUp extends Component {
                 <button type="submit" className="btn btn-info btn-fill">Sign Up</button>
               </div>
               <div className="col-md-3">
-                <Link to="/login">Login</Link>
+                Already have an account? <Link to="/login">Login</Link>
               </div>
               <div className="col-md-3"></div>
             </div>

@@ -9,6 +9,7 @@ import Login from './Components/User/Login'
 import Logout from './Components/User/Logout'
 import SignUp from './Components/User/SignUp'
 import Dashboard from './Components/Framework/Dashboard'
+import PrivateRoute from './Components/User/PrivateRoute'
 
 export default class RouterComponent extends React.Component {
   render() {
@@ -18,11 +19,11 @@ export default class RouterComponent extends React.Component {
         <Route exact path='/login' component={Login} />
         <Route exact path='/signup' component={SignUp} />
         <Route exact path='/logout' component={Logout} />
-        <Route exact path='/dashboard' component={Dashboard} />
         <Route exact path='/infopage' component={InfoPage} />
-        <Route path='/modules/list' component={ModuleList} />
-        <Route path='/modules/:moduleId/section/:sectionId' component={ModuleRouter} />
-        <Route path='/modules/:moduleId' component={ModuleRouter} />
+        <PrivateRoute exact path='/dashboard' component={Dashboard} />
+        <PrivateRoute path='/modules/list' component={ModuleList} />
+        <PrivateRoute path='/modules/:moduleId/section/:sectionId' component={ModuleRouter} />
+        <PrivateRoute path='/modules/:moduleId' component={ModuleRouter} />
         <Route path='/' component={HomePage} />
       </Switch>
     )
