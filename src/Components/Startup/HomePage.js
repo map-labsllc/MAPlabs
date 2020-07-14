@@ -11,7 +11,7 @@ import { Link } from "react-router-dom"
 class HomePage extends React.Component {
   render() {
     return (
-      <div style={style.container} className="pageContainer">
+      <div  className="pageContainer">
         <Jumbotron style={style.jumboimage}>
           <div className="subheader">
             <p className="subText">The science of meaning and purpose.</p>
@@ -21,7 +21,7 @@ class HomePage extends React.Component {
               Discover how to inform, empower, and fulfill your life.
             </h1>
           </div>
-          <div className="mt-5">
+          <div style={{marginTop: '3em'}}>
             <Row>
               <Col md={4}>
                 <Card style={{ width: '18rem' }}>
@@ -59,7 +59,7 @@ class HomePage extends React.Component {
               </Col>
 
               <Col md={4}>
-                <Card>
+              <Card style={{ width: '18rem' }}>
                   <Card.Body>
                     <Card.Text>
                       <p>

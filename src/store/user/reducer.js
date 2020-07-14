@@ -1,18 +1,19 @@
 // need to mege with the user info coming from login
 
 import {
+  EMAIL_CHANGED,
+  FIRSTNAME_CHANGED,
+  LASTNAME_CHANGED,
+  LOGIN_USER,
+  LOGIN_USER_FAIL,
+  LOGIN_USER_SUCCESS,
+  LOGOUT,
+  PASSWORD_CHANGED,
+  SIGNUP,
   USER_ADD_SECTION,
   USER_UPDATE_CURR_SECTION,
   USER_UPDATE_CURR_SECTION_NO_CHANGE,
   USER_UPDATE_ERROR,
-  SIGNUP,
-  FIRSTNAME_CHANGED,
-  LASTNAME_CHANGED,
-  EMAIL_CHANGED,
-  PASSWORD_CHANGED,
-  LOGIN_USER,
-  LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL
 } from './constants'
 
 /*
@@ -229,6 +230,9 @@ export const userRD = ( state = initialState, action ) => {
         ...state,
         orderOfSections: newOrderOfSections,
       }
+    }
+    case LOGOUT: {
+      return {...state, user: {}, error: '' }
     }
     case SIGNUP: {
       return {...state, loading: true, error: '' }

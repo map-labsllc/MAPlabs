@@ -9,6 +9,7 @@ import SideBar from './Components/layout/SideBar'
 import './CSS/light-bootstrap-dashboard.css'
 import './CSS/custom.css'
 import { FIREBASE_CONFIG } from './config/FirebaseConfig.js'
+import ScriptTag from 'react-script-tag';
 
 // const history = createBrowserHistory()
 class App extends Component {
@@ -25,6 +26,11 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <ScriptTag src="./assets/js/jquery.3.2.1.min.js" type="text/javascript"></ScriptTag>
+	        <ScriptTag src="./assets/js/bootstrap.min.js" type="text/javascript"></ScriptTag>
+          <ScriptTag src="./assets/js/bootstrap-notify.js"></ScriptTag>
+	        <ScriptTag src="./assets/js/light-bootstrap-dashboard.js?v=1.4.0"></ScriptTag>
+          <ScriptTag src="assets/js/demo.js"></ScriptTag>
           <ScrollToTop />
           <div className="wrapper">
             <SideBar />

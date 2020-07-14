@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signUpUser } from '../../store/user/actions'
 import { Redirect, Link } from 'react-router-dom'
-import FormCard from '../layout/FormCard'
+import FormCard from './FormCard'
 import { Alert } from 'react-bootstrap'
 
 class SignUp extends Component {
@@ -16,24 +16,18 @@ class SignUp extends Component {
       password: '',
       verify_password: '',
       passwordClasses: 'form-control',
-      passwordIsValid: true,
-      errorMessage: ''
+      passwordIsValid: true
     }
   }
 
   userSignup = e => {
-    console.log("userSignup submitted")
     e.preventDefault()
     let { fname, lname, email, password, verify_password } = this.state
-
     if (!password || password !== verify_password || !verify_password) {
-      console.log("in an error state", password, verify_password)
       this.setState({
         passwordClasses: this.state.passwordClasses + ' is-invalid',
         passwordIsValid: false
       })
-
-      this.setState({errorMessage: `Passwords don't match`})
     }
     else {
       this.setState({
@@ -42,32 +36,28 @@ class SignUp extends Component {
       })
 
       let newUser = { fname, lname, email, password }
+      console.log("SignUp", newUser)
       this.props.signUpUser(newUser)
     }
   }
 
-  clearError = () => {
-    this.setState({ errorMessage: `` })
-  }
-
   renderError = () => {
-    if ( this.props.error || !this.state.errorMessage) {
+    if ( this.props.error || !this.state.passwordIsValid) {
       return (
         <Alert variant="error">
           { this.props.error }
-          { this.state.errorMessage }
+          { this.state.passwordIsValid ? '' : `Passwords invalid or don't match` }
         </Alert>
       )
     }
   }
 
   render() {
-    const { errorMessage } = this.state
     return (
       this.props.token ? <Redirect to="/modules/list"/> :
       <FormCard title="Sign up for an account">
         <div>
-          <form onSubmit={ this.userSignup }>
+          <form>
             <div className="row">
               <div className="col-md-3"></div>
               <div className="col-md-6">
@@ -165,19 +155,14 @@ class SignUp extends Component {
             <div className="row">
               <div className="col-md-3"></div>
               <div className="col-md-3">
-                { this.props.error || errorMessage ?
-                  <Alert variant="error">
-                    { this.props.error }
-                    { errorMessage }
-                  </Alert> : null 
-                }
+                { this.renderError() }
               </div>
               <div className="col-md-3"></div>
             </div>
             <div className="row">
               <div className="col-md-3"></div>
               <div className="col-md-3">
-                <button type="submit" className="btn btn-info btn-fill">Sign Up</button>
+                <button type="submit" className="btn btn-info btn-fill" onClick={this.userSignUp}>Sign Up</button>
               </div>
               <div className="col-md-3">
                 <Link to="/login">Login</Link>
@@ -192,6 +177,7 @@ class SignUp extends Component {
 }
 
 function mapStateToProps( {userRD} ) {
+  console.log( 'thisis the STATE>>',userRD.user )
   return {
     fname : userRD.user.fname,
     lname : userRD.user.lname,

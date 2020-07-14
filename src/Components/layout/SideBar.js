@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 
 
 const SideBar = ( { user }) => (
-  <div className="sidebar" data-color="blue" data-image="./assets/img/sidebar-5.jpg">
+  <div className="sidebar" data-color="blue" data-image="/assets/img/sidebar-5.jpg">
     <div className="sidebar-wrapper">
       <div className="logo">
         <a href="/" className="simple-text">

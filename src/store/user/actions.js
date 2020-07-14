@@ -1,20 +1,19 @@
 import firebase from 'firebase'
 
 import {
+  EMAIL_CHANGED,
   FIRSTNAME_CHANGED,
   LASTNAME_CHANGED,
-  EMAIL_CHANGED,
-  PASSWORD_CHANGED,
   LOGIN_USER,
-  SIGNUP,
   LOGIN_USER_FAIL,
   LOGIN_USER_SUCCESS,
-
+  LOGOUT,
+  PASSWORD_CHANGED,
+  SIGNUP,
   USER_ADD_SECTION,
   USER_UPDATE_CURR_SECTION,
   USER_UPDATE_CURR_SECTION_NO_CHANGE,
   USER_UPDATE_ERROR,
-
 } from './constants'
 
 import { getNextModuleSection } from './reducer'
@@ -238,6 +237,7 @@ export const signUpUser = ( user ) => {
       //user and jwt are taken from result of onAuthStateChanged
       const response = await firebase.auth().createUserWithEmailAndPassword( email, password )
         .catch(console.error)
+        // TODO Catch error here and set error message
       console.log('createUser FB response', response)
 
       await firebase.auth().onAuthStateChanged( async( fireBaseUser ) => {
@@ -278,7 +278,9 @@ export const signUpUser = ( user ) => {
 export const userLogout = (  ) => {
   return async ( dispatch ) => {
     firebase.auth().signOut().then(function() {
-      console.log('userLogout complete')
+      dispatch( {
+        type: LOGOUT,
+      } )
     }).catch(function(error) {
       console.error('logoutUser', error)
     })

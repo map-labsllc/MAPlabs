@@ -34,7 +34,7 @@ class Login extends Component {
 
   render() {
     return (
-      this.props.token ? <Redirect to="/module/list"/> :
+      this.props.token ? <Redirect to="/modules/list"/> :
       <FormCard title="Login">
         <div>
           <form>

@@ -79,7 +79,7 @@ class NavBar extends React.Component {
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/account">
                     <i className="nc-icon nc-single-02 "></i>
-                    <span style={style.account}>Account</span>
+                    <span style={style.account}>{`${user.fname} ${user.lname}`}</span>
                   </NavLink>
                 </li>
                 <li as="Link" className="nav-item">
