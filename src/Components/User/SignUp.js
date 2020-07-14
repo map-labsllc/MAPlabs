@@ -51,18 +51,19 @@ class SignUp extends Component {
   }
 
   renderError = () => {
-    if ( this.props.error || !this.state.errorMessage) {
+    if ( this.props.error || this.state.errorMessage) {
       return (
-        <Alert variant="error">
+        <div className="alert alert-danger">
           { this.props.error }
           { this.state.errorMessage }
-        </Alert>
+        </div>
       )
     }
   }
 
   render() {
     const { errorMessage } = this.state
+
     return (
       this.props.token ? <Redirect to="/modules/list"/> :
       <FormCard title="Sign up for an account">
@@ -133,7 +134,7 @@ class SignUp extends Component {
                         placeholder='password'
                         autoCorrect="false"
                         autoCapitalize="none"
-                        onChange={(e) => this.setState({password: e.target.value.trim()})}
+                        onChange={(e) => {this.clearError(); this.setState({password: e.target.value.trim()})}}
                         value={ this.props.password }
                         min-length="8"
                         required
@@ -153,7 +154,7 @@ class SignUp extends Component {
                         placeholder='verify password'
                         autoCorrect="false"
                         autoCapitalize="none"
-                        onChange={(e) => this.setState({verify_password: e.target.value.trim()})}
+                        onChange={(e) => {this.clearError(); this.setState({verify_password: e.target.value.trim()})}}
                         value={ this.props.verify_password }
                         min-length="8"
                         required
@@ -166,10 +167,10 @@ class SignUp extends Component {
               <div className="col-md-3"></div>
               <div className="col-md-3">
                 { this.props.error || errorMessage ?
-                  <Alert variant="error">
+                  <div className="alert alert-danger">
                     { this.props.error }
                     { errorMessage }
-                  </Alert> : null 
+                  </div> : null 
                 }
               </div>
               <div className="col-md-3"></div>
@@ -197,7 +198,8 @@ function mapStateToProps( {userRD} ) {
     lname : userRD.user.lname,
     email : userRD.user.email,
     password: userRD.user.password,
-    token: userRD.user.login_token ? userRD.user.login_token : '' 
+    token: userRD.user.login_token ? userRD.user.login_token : '',
+    error: userRD.errorMessage
   }
 }
 

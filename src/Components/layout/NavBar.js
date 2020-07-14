@@ -51,10 +51,10 @@ class NavBar extends React.Component {
   ************************************************** */
   componentDidUpdate( prevProps, prevState ) {
     console.log( "NavBar::componentDidUpdate()" )
-    if ( this.props.user.login_token !== prevProps.user.login_token ) {
-      const { dispatch, user } = this.props
-      this.loadUserData(dispatch, user)
-    }
+    // if ( this.props.user.login_token !== prevProps.user.login_token ) {
+    //   const { dispatch, user } = this.props
+    //   this.loadUserData(dispatch, user)
+    // }
   }
 
   /* ***********************************************

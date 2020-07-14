@@ -10,6 +10,7 @@ import {
   LOGOUT,
   PASSWORD_CHANGED,
   SIGNUP,
+  SIGNUP_FAIL,
   USER_ADD_SECTION,
   USER_UPDATE_CURR_SECTION,
   USER_UPDATE_CURR_SECTION_NO_CHANGE,
@@ -179,11 +180,15 @@ export const loginUser = ( { email, password}  ) => {
 
   return async ( dispatch ) => {
 
+    // clear error
+    dispatch( { type: LOGIN_USER } ) 
+
     await firebase.auth().signInWithEmailAndPassword( email, password )
     //user is nested in an object
     //alias as fireBaseUser to avoid overloaded term user
     .then ( async ( { user: fireBaseUser } ) => {
       const jwt = await fireBaseUser.getIdToken()
+      console.log("got user from FB", fireBaseUser )
       localStorage.setItem( 'jwt', JSON.stringify( jwt ) )
       await fetch( `${process.env.REACT_APP_DB_URL}/users/`, {
           method:"GET",
@@ -200,7 +205,6 @@ export const loginUser = ( { email, password}  ) => {
       .catch( function(){
         loginUserFail( dispatch )
       } )
-      dispatch( { type: LOGIN_USER } )
   }
 }
 
@@ -235,43 +239,48 @@ export const signUpUser = ( user ) => {
       console.log('action signUpUser with ', user)
       //firebase sends back a user but we do not use it here.
       //user and jwt are taken from result of onAuthStateChanged
-      const response = await firebase.auth().createUserWithEmailAndPassword( email, password )
-        .catch(console.error)
-        // TODO Catch error here and set error message
-      console.log('createUser FB response', response)
-
-      await firebase.auth().onAuthStateChanged( async( fireBaseUser ) => {
-        if ( fireBaseUser ) {
-          console.log('fireBaseUser', fireBaseUser)
-          const jwt = await fireBaseUser.getIdToken()
-
-          localStorage.setItem('jwt', JSON.stringify( jwt ))
-
-          const body = JSON.stringify( {
-            fname:payload.fname,
-            lname:payload.lname
+      await firebase.auth().createUserWithEmailAndPassword( email, password )
+        .then(async () => {
+          await firebase.auth().onAuthStateChanged( async( fireBaseUser ) => {
+            if ( fireBaseUser ) {
+              console.log('fireBaseUser', fireBaseUser)
+              const jwt = await fireBaseUser.getIdToken()
+    
+              localStorage.setItem('jwt', JSON.stringify( jwt ))
+    
+              const body = JSON.stringify( {
+                fname:payload.fname,
+                lname:payload.lname
+              } )
+    
+                payload.user = await fetch( `${process.env.REACT_APP_DB_URL}/users`, {
+                method:'POST',
+                headers:{"Content-Type":"application/json",
+                Authorization: `Token: ${jwt}`
+              },
+                body: body
+              } )
+              .then(
+                res => res.json()
+              )
+              .catch(console.error)
+    
+              loginUserSuccess( dispatch, payload.user )
+    
+              dispatch( {
+                type: SIGNUP,
+                payload
+              } )
+            }
           } )
-
-            payload.user = await fetch( `${process.env.REACT_APP_DB_URL}/users`, {
-            method:'POST',
-            headers:{"Content-Type":"application/json",
-            Authorization: `Token: ${jwt}`
-          },
-            body: body
-          } )
-          .then(
-            res => res.json()
-          )
-          .catch(console.error)
-
-          loginUserSuccess( dispatch, payload.user )
-
+        })
+        .catch(err => {
+          console.error("createUser error", err)
           dispatch( {
-            type: SIGNUP,
-            payload
-          } )
-        }
-      } )
+            type: SIGNUP_FAIL,
+            payload: { errorMessage: err.message }
+          })
+        })
   }
 }
 

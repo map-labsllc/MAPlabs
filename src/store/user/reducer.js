@@ -10,6 +10,7 @@ import {
   LOGOUT,
   PASSWORD_CHANGED,
   SIGNUP,
+  SIGNUP_FAIL,
   USER_ADD_SECTION,
   USER_UPDATE_CURR_SECTION,
   USER_UPDATE_CURR_SECTION_NO_CHANGE,
@@ -22,7 +23,6 @@ import {
 
   userRD: {
     isLoading: true,
-    isError: false,
     errorMessage: '',
 
     orderOfSections: {     // this is lazy loaded as Module#.js files are loaded and sections are built
@@ -52,8 +52,7 @@ if (false) {
   // Blank user will start app in auth mode
   // --------------------------------------
   initialState = {
-    isLoading: false,  // change to true when we connect with login process
-    isError: false,
+    isLoading: false,  // change to true when we connect with login process g
     errorMessage: '',
     orderOfSections: [],
     user: {
@@ -70,11 +69,9 @@ if (false) {
   }
 } else {
 
-  // Mock user will start app already logged in
   // ------------------------------------------
   initialState = {
     isLoading: false,  // change to true when we connect with login process
-    isError: false,
     errorMessage: '',
     orderOfSections: [],
     user: {}
@@ -211,11 +208,11 @@ export const userRD = ( state = initialState, action ) => {
       }
       return {...state, user:password}
     case LOGIN_USER:
-      return {...state, loading: true, error: '' }
+      return {...state, loading: true, errorMessage: '' }
     case LOGIN_USER_SUCCESS:
       return {...state, user: {...payload}, loading: false }
     case LOGIN_USER_FAIL:
-      return { ...state, error: 'Authentication Failed.', password: '', loading: false }
+      return { ...state, user: {}, errorMessage: 'Authentication Failed. Please check username/password.', password: '', loading: false }
     case USER_UPDATE_CURR_SECTION_NO_CHANGE:
       return state
     case USER_UPDATE_ERROR:
@@ -232,10 +229,13 @@ export const userRD = ( state = initialState, action ) => {
       }
     }
     case LOGOUT: {
-      return {...state, user: {}, error: '' }
+      return {...state, user: {}, errorMessage: '' }
     }
     case SIGNUP: {
-      return {...state, loading: true, error: '' }
+      return {...state, loading: true, errorMessage: '' }
+    }
+    case SIGNUP_FAIL: {
+      return {...state, loading: true, errorMessage: payload.errorMessage }
     }
     default:
       return state

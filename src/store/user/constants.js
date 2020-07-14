@@ -6,6 +6,7 @@ export const LOGIN_USER = 'login_user'
 export const FIRSTNAME_CHANGED = 'firstname_changed'
 export const LASTNAME_CHANGED = 'lastname_changed'
 export const SIGNUP = 'signup'
+export const SIGNUP_FAIL = 'SIGNUP_FAIL'
 export const LOGOUT = 'LOGOUT'
 
 export const USER_ADD_SECTION = 'USER_ADD_SECTION'
