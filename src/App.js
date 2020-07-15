@@ -6,10 +6,12 @@ import ScrollToTop from './Components/layout/ScrollToTop'
 import NavBar from './Components/layout/NavBar'
 import Footer from './Components/layout/Footer'
 import SideBar from './Components/layout/SideBar'
-import './CSS/light-bootstrap-dashboard.css'
-import './CSS/custom.css'
+import LoadUser from './Components/User/LoadUser'
 import { FIREBASE_CONFIG } from './config/FirebaseConfig.js'
 import ScriptTag from 'react-script-tag';
+
+import './CSS/light-bootstrap-dashboard.css'
+import './CSS/custom.css'
 
 // const history = createBrowserHistory()
 class App extends Component {
@@ -18,7 +20,8 @@ class App extends Component {
     console.log('FIREBASE_CONFIG', FIREBASE_CONFIG)
     if (!firebase.apps.length) {
       firebase.initializeApp(FIREBASE_CONFIG)
-    }  
+    }
+
   }
 
   render() {
@@ -31,6 +34,7 @@ class App extends Component {
           <ScriptTag src="./assets/js/bootstrap-notify.js"></ScriptTag>
 	        <ScriptTag src="./assets/js/light-bootstrap-dashboard.js?v=1.4.0"></ScriptTag>
           <ScriptTag src="assets/js/demo.js"></ScriptTag>
+          <LoadUser />
           <ScrollToTop />
           <div className="wrapper">
             <SideBar />

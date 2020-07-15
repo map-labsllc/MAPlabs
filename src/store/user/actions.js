@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 
 import {
+  AUTH_CHECK_COMPLETE,
   EMAIL_CHANGED,
   FIRSTNAME_CHANGED,
   LASTNAME_CHANGED,
@@ -175,6 +176,35 @@ export const passwordChanged = ( text ) => {
     payload: text
   }
 }
+
+export const authCheckComplete = (  ) => {
+  return {
+    type: AUTH_CHECK_COMPLETE
+  }
+}
+
+export const setPersistedUser = ( fireBaseUser ) => {
+
+  return async ( dispatch ) => {
+    const jwt = await fireBaseUser.getIdToken()
+
+    console.log("setting persisted user with", jwt)
+    await fetch( `${URL}/users/`, {
+      method:"GET",
+      headers: {
+        Authorization: `Token: ${jwt}`
+      }
+    } ).then( async( res ) => {
+      const userFromDatabase = await res.json()
+      loginUserSuccess( dispatch, userFromDatabase )
+    } )
+    .catch( function(){
+      loginUserFail( dispatch )
+    })
+  }
+}
+
+
 
 export const loginUser = ( { email, password}  ) => {
 

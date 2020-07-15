@@ -24,8 +24,7 @@ const PrivateRoute = ({ component, isAuthenticated, authCheckPending, ...rest })
 
 const mapStateToProps = (state, ownProps) => ({ 
   isAuthenticated: isLoggedIn(state.userRD),
-  // TODO is this needed?
-  // authCheckPending: state.auth.authCheckPending
+  authCheckPending: state.userRD.authCheckPending
 });
 
 export default withRouter(connect(mapStateToProps)(PrivateRoute));
