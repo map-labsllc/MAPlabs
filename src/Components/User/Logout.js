@@ -7,7 +7,6 @@ import { PropTypes } from 'prop-types'
 import FormCard from '../layout/FormCard'
 import { userLogout } from '../../store/user/actions'
 import { createBrowserHistory } from 'history';
-import { Redirect } from 'react-router-dom'
 
 export const browserHistory = createBrowserHistory();
 

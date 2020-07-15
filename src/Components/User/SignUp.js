@@ -22,12 +22,10 @@ class SignUp extends Component {
   }
 
   userSignup = e => {
-    console.log("userSignup submitted")
     e.preventDefault()
     let { fname, lname, email, password, verify_password } = this.state
 
     if (!password || password !== verify_password || !verify_password) {
-      console.log("in an error state", password, verify_password)
       this.setState({
         passwordClasses: this.state.passwordClasses + ' is-invalid',
         passwordIsValid: false

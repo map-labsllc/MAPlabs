@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect, withRouter } from "react-router-dom";
+import { isLoggedIn } from '../../store/user/reducer'
 
 const PrivateRoute = ({ component, isAuthenticated, authCheckPending, ...rest }) => {
   let ComponentToRender = component;
@@ -22,7 +23,8 @@ const PrivateRoute = ({ component, isAuthenticated, authCheckPending, ...rest })
 };
 
 const mapStateToProps = (state, ownProps) => ({ 
-  isAuthenticated: state.userRD.user.login_token,
+  isAuthenticated: isLoggedIn(state.userRD),
+  // TODO is this needed?
   // authCheckPending: state.auth.authCheckPending
 });
 

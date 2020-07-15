@@ -27,15 +27,11 @@ class NavBar extends React.Component {
   an initial user.  We can't wait for componentDidUpdate() b/c it's not called.
   ************************************************** */
   componentDidMount( prevProps, prevState ) {
-    // console.log( "NavBar::componentDidMount()" )
 
     const { dispatch, user } = this.props
 
-    // we have a mock user, so skip login and add backdoor jwt to localStorage
-    // so it get passed in the auth header to backend where the backend
-    // will skip auth.
-    if (user && user.user_id) {
-      localStorage.setItem( 'jwt', JSON.stringify(process.env.REACT_APP_BACKDOOR_JWT) )
+    // load user data
+    if (user && user.login_token) {
       this.loadUserData(dispatch, user)
     }
 
@@ -51,10 +47,10 @@ class NavBar extends React.Component {
   ************************************************** */
   componentDidUpdate( prevProps, prevState ) {
     console.log( "NavBar::componentDidUpdate()" )
-    // if ( this.props.user.login_token !== prevProps.user.login_token ) {
-    //   const { dispatch, user } = this.props
-    //   this.loadUserData(dispatch, user)
-    // }
+    if ( this.props.user.login_token !== prevProps.user.login_token ) {
+      const { dispatch, user } = this.props
+      this.loadUserData(dispatch, user)
+    }
   }
 
   /* ***********************************************

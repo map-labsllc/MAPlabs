@@ -152,7 +152,7 @@ export default class StrengthX extends React.Component {
   render() {
     console.log("Strength::render()")
     const { strength, reflections } = this.state
-    const { number, question, isDynamic } = this.props
+    const { isDynamic } = this.props
     const { reflectionsWithKeys } = this.state
 
     console.log("reflectionsWithKeys", reflectionsWithKeys)

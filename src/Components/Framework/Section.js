@@ -36,21 +36,19 @@ export default class Section extends React.Component {
   }
 
   render() {
-    // console.log("Section::render()")
-
     // let { isVisible } = this.state
     let { number, user, isVisible, moduleNum, sectionNum, sectionTitle, exercise } = this.props
     // const isVisible = this.canUserView(user, moduleNum, sectionNum)
 
     return (
       <div className="background">
-        <Card bsStyle='primary' className="CardSpace">
-          <Card.Heading className="sectionHeader">
+        <Card>
+          <Card.Header>
             <Card.Title><div className="text-center">{number}. {sectionTitle}</div></Card.Title>
-          </Card.Heading>
+          </Card.Header>
 
           {isVisible && (
-            <Card.Body className="sectionBody">
+            <Card.Body >
               <div className="container-fluid contain">
                 <SectionExercise moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
               </div>
@@ -58,10 +56,10 @@ export default class Section extends React.Component {
           )}
 
           {!isVisible && (
-            <p>Please complete the the previous exercise</p>
+            <p>Please complete the the previous exercise.</p>
           )}
         </Card>
-      </div >
+      </div>
     )
   }
 }

@@ -2,9 +2,8 @@ import React, { useState} from 'react'
 import { connect } from 'react-redux'
 import { loginUser } from '../../store/user/actions'
 import { Redirect, Link } from 'react-router-dom'
-import FormCard from '../layout/FormCard'
-import { Alert } from 'react-bootstrap'
 import { PropTypes } from 'prop-types'
+import FormCard from '../layout/FormCard'
 
 const Login = ({ login_token, errorMessage, loginUser }) => {
   const [email, setEmail] = useState('')
@@ -15,7 +14,6 @@ const Login = ({ login_token, errorMessage, loginUser }) => {
     loginUser( { email, password } )
   }
 
-  console.log("errorMessage?", errorMessage)
   
   return (
     login_token ? <Redirect to="/modules/list"/> :

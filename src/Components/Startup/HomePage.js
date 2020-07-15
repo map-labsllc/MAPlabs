@@ -50,7 +50,7 @@ class HomePage extends React.Component {
                   <Card.Body>
                     <Card.Text>
                       <p>
-                        Find out more about this program.
+                        Find out more about this program
                       </p>
                       <Link className="outline-secondary btn" to="/infopage">Get Started</Link> 
                     </Card.Text>

@@ -188,7 +188,7 @@ export const loginUser = ( { email, password}  ) => {
     //alias as fireBaseUser to avoid overloaded term user
     .then ( async ( { user: fireBaseUser } ) => {
       const jwt = await fireBaseUser.getIdToken()
-      console.log("got user from FB", fireBaseUser )
+
       localStorage.setItem( 'jwt', JSON.stringify( jwt ) )
       await fetch( `${process.env.REACT_APP_DB_URL}/users/`, {
           method:"GET",
@@ -197,9 +197,7 @@ export const loginUser = ( { email, password}  ) => {
           }
         } ).then( async( res ) => {
           const userFromDatabase = await res.json()
-          console.log( 'user from MAPmaker database', userFromDatabase )
           loginUserSuccess( dispatch, userFromDatabase )
-
         } )
       } )
       .catch( function(){
@@ -215,7 +213,6 @@ const loginUserFail = ( dispatch ) => {
 }
 
 const loginUserSuccess = async( dispatch, user ) => {
-
   dispatch( {
     type: LOGIN_USER_SUCCESS,
     payload: user
@@ -287,6 +284,8 @@ export const signUpUser = ( user ) => {
 export const userLogout = (  ) => {
   return async ( dispatch ) => {
     firebase.auth().signOut().then(function() {
+      localStorage.clear()
+
       dispatch( {
         type: LOGOUT,
       } )
