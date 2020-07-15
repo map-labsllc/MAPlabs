@@ -9,12 +9,10 @@ const LoadUser = ({ setPersistedUser }) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-        console.log("FB auth check", user)
         setPersistedUser(user)
         authCheckComplete()
       } else {
         authCheckComplete()
-        console.log("FB auth check", 'NOT PASSED')
       }
     });
   })
