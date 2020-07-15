@@ -2,7 +2,6 @@ import React from 'react'
 import {
   Button,
 } from 'react-bootstrap'
-import ShowMoreLess from '../Utils/ShowMoreLess'
 
 import { sectionCompletedAC } from '../../store/user/actions'
 
@@ -18,7 +17,7 @@ import { sectionCompletedAC } from '../../store/user/actions'
      sectionTitle -- title of the section for resdisplay if we do a modal below this
      exercise -- component user will interact with
 ***************************************************** */
-export default class SectionExercise extends React.Component {
+class SectionExercise extends React.Component {
 
   state = {
     isVisible: false,
@@ -27,15 +26,12 @@ export default class SectionExercise extends React.Component {
   // **************************************************
   // Show the complex interactive component
   onclickStart = () => {
-    console.log("SectionExercise::onclickStart()")
     this.setState({ isVisible: true })
   }
 
   // **************************************************
   // CB from the <exercise> when its close/save button is clicked
   onCloseModal = () => {
-    console.log("SectionExercise::onCloseModal()")
-
     const { dispatch, user, moduleNum, sectionNum } = this.props
     dispatch(sectionCompletedAC(user, moduleNum, sectionNum))
 
@@ -45,8 +41,6 @@ export default class SectionExercise extends React.Component {
   // **************************************************
   // render!
   render() {
-    console.log("SectionExercise::render()")
-    console.log('isVisible', isVisible)
 
     let { isVisible } = this.state
     let { sectionTitle, exercise } = this.props
@@ -108,41 +102,4 @@ const style = {
   }
 }
 
-        // return (
-//   <>
-//     <h6><i>..SectionExercise controller manages starting a section..</i></h6>
-//     {!isVisible && (
-//       <Button type = "button" onClick = {this.onclickStart}>Start</Button>
-//     )}
-//     {isVisible && (
-//       <>
-//       <ModalX
-//         sectionTitle = {sectionTitle}
-//         exercise = {exerciseWithOnCloseCB}
-//         isVisible = {this.state.isVisible}
-//         onModalOpeningCB = {this.onModalOpening}
-//         onModalClosingCB = {this.onModalClosing}
-//       />
-//       </>
-//     )}
-//   </>
-// )
-
-
-// WORKING CODE pre-modal
-// May need to pass a prop to SectionExercise to decide if the exercise should be wrapped
-//   in a Modal or appear flat.
-
-// return (
-//   <>
-//     <h6><i>..SectionExercise controller manages starting a section..</i></h6>
-//     {!isVisible && (
-//       <Button type = "button" onClick = {this.onclickStart}>Start</Button>
-//     )}
-//     {isVisible && (
-//       <>
-//       {exerciseWithOnCloseCB}
-//       </>
-//     )}
-//   </>
-// )
+export default SectionExercise

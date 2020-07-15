@@ -1,5 +1,5 @@
 import React from 'react'
-import SectionExercise from './SectionExercise'
+import SectionExerciseCT from './SectionExerciseCT'
 import { Card } from 'react-bootstrap'
 import { sectionLoadingAC } from '../../store/user/actions'
 import '../../CSS/light-bootstrap-dashboard.css'
@@ -50,7 +50,7 @@ export default class Section extends React.Component {
           {isVisible && (
             <Card.Body >
               <div className="container-fluid contain">
-                <SectionExercise moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
+                <SectionExerciseCT moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} />
               </div>
             </Card.Body>
           )}
