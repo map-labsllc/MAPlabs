@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import Router from './Router'
 import ScrollToTop from './Components/layout/ScrollToTop'
 import NavBar from './Components/layout/NavBar'
@@ -27,7 +27,7 @@ class App extends Component {
   render() {
 
     return (
-      <Router>
+      <BrowserRouter>
         <div>
           <ScriptTag src="./assets/js/jquery.3.2.1.min.js" type="text/javascript"></ScriptTag>
 	        <ScriptTag src="./assets/js/bootstrap.min.js" type="text/javascript"></ScriptTag>
@@ -49,7 +49,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-      </Router>
+      </BrowserRouter>
     )
   }
 }

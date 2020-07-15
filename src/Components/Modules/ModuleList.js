@@ -35,7 +35,7 @@ const ModuleList = ( { m} ) => {
                     </td>
                   </tr>
                   { MODULES.map((mod) => (
-                    <tr>
+                    <tr key={mod.id}>
                       <td className="text-left">
                         <h2>{mod.id}</h2>
                       </td>
