@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
 import { BrowserRouter as Router } from 'react-router-dom'
-import Routes from './router'
+import Router from './Router'
 import ScrollToTop from './Components/layout/ScrollToTop'
 import NavBar from './Components/layout/NavBar'
 import Footer from './Components/layout/Footer'
@@ -42,7 +42,7 @@ class App extends Component {
               <NavBar />
               <div className="content">
                 <div className="container-fluid">
-                  <Routes />
+                  <Router />
                 </div>
               </div>
               <Footer />
