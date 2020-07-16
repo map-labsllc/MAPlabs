@@ -3,11 +3,28 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ProgressBar } from 'react-bootstrap'
 import { MODULES } from './ModuleData'
+import { getUser } from '../../store/user/reducer'
+import { connect } from 'react-redux'
 
-const ModuleList = ( { m} ) => {
+const ModuleList = ( { user } ) => {
   const createLink = (_moduleId, title) => (
     <Link to={`/modules/${_moduleId}`}>{title}</Link>
   )
+
+  const completion = (moduleId) => {
+    let currentModule = user.curr_module
+    let currentSection = user.curr_section
+
+    // not to this module yet
+    if (moduleId > currentModule) { return 0 }
+
+    // determine how many sections completed
+    let sectionCount  = MODULES.filter(m => m.id === +(moduleId))[0].sectionCount
+
+    let percent = 100 * Math.floor(currentSection/sectionCount)
+
+    return percent
+  }
 
   return (
     <div className="reading-wrapper">
@@ -45,7 +62,7 @@ const ModuleList = ( { m} ) => {
                         </p>
                       </td>
                       <td className="text-left">
-                        <ProgressBar className="sectionProgress" now={50} label={'50%'}/>
+                        <ProgressBar className="sectionProgress" now={completion(mod.id)} label={`${completion(mod.id)}`}/>
                       </td>
                     </tr>
                     )
@@ -60,4 +77,13 @@ const ModuleList = ( { m} ) => {
 }
 
 
-export default ModuleList
+const mapStateToProps = ( state, passedProps ) => {
+  const user = getUser(state.userRD)
+
+  return {
+    user
+  }
+}
+
+export default connect( mapStateToProps)(ModuleList)
+

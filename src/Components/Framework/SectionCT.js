@@ -1,8 +1,6 @@
 import { connect } from 'react-redux'
 import Section from './Section'
-import {
-  getUser,
-  isFirstSection } from '../../store/user/reducer'
+import { getUser, isFirstSection } from '../../store/user/reducer'
 
 
 /* *****************************************
@@ -12,11 +10,11 @@ import {
 ******************************************** */
 const canUserView = ( state, moduleNum, sectionNum ) => {
 
+  // IMPORTANT!!! TODO remove
+  return true // TODO...disable for content review
+
   const user = getUser( state.userRD )
 
-  // console.log('----------------------------------------');
-  // console.log('----------------------------------------');
-  // console.log('----------------------------------------');
   // console.log(`moduleNum: ${moduleNum}, sectionNum: ${sectionNum}, user.curr_module: ${user.curr_module}, user.curr_section: ${user.curr_section}`);
 
   if ( moduleNum < user.curr_module ) return true
