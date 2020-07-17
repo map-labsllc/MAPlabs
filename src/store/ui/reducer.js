@@ -1,9 +1,5 @@
-
 // need to mege with the user info coming from login
 
-import {
-
-} from '../../constants'
 
 /*
   uiRD: {

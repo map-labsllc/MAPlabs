@@ -4,6 +4,9 @@ import {
   AUTH_CHECK_COMPLETE,
   EMAIL_CHANGED,
   FIRSTNAME_CHANGED,
+  FORGOT_PASSWORD,
+  FORGOT_PASSWORD_FAIL,
+  FORGOT_PASSWORD_SUCCESS,
   LASTNAME_CHANGED,
   LOGIN_USER,
   LOGIN_USER_FAIL,
@@ -218,6 +221,12 @@ export const userRD = ( state = initialState, action ) => {
       return {...state, user: {...payload}, loading: false }
     case LOGIN_USER_FAIL:
       return { ...state, user: {}, errorMessage: 'Authentication Failed. Please check username/password.', password: '', loading: false }
+    case FORGOT_PASSWORD:
+      return {...state, loading: true, errorMessage: '', message: '' }
+    case FORGOT_PASSWORD_SUCCESS:
+      return {...state, loading: false, errorMessage: '', message: 'Please check your email for reset instructions.' }
+    case FORGOT_PASSWORD_FAIL:
+      return { ...state, loading: false, errorMessage: payload.message, message: '' }
     case USER_UPDATE_CURR_SECTION_NO_CHANGE:
       return state
     case USER_UPDATE_ERROR:

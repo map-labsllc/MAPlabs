@@ -8,6 +8,7 @@ import InfoPage from './Components/Startup/InfoPage'
 import Login from './Components/User/Login'
 import Logout from './Components/User/Logout'
 import SignUp from './Components/User/SignUp'
+import ForgotPassword from './Components/User/ForgotPassword'
 import Dashboard from './Components/Framework/Dashboard'
 import PrivateRoute from './Components/User/PrivateRoute'
 
@@ -19,7 +20,9 @@ const Router = () => {
       <Route exact path='/login' component={Login} />
       <Route exact path='/signup' component={SignUp} />
       <Route exact path='/logout' component={Logout} />
+      <Route exact path='/forgotpassword' component={ForgotPassword} />
       <Route exact path='/infopage' component={InfoPage} />
+      
       <PrivateRoute exact path='/dashboard' component={Dashboard} />
       <PrivateRoute path='/modules/list' component={ModuleList} />
       <PrivateRoute path='/modules/:moduleId/section/:sectionId' component={ModuleRouter} />

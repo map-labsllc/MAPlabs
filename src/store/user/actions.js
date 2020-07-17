@@ -8,6 +8,9 @@ import {
   LOGIN_USER,
   LOGIN_USER_FAIL,
   LOGIN_USER_SUCCESS,
+  FORGOT_PASSWORD,
+  FORGOT_PASSWORD_FAIL,
+  FORGOT_PASSWORD_SUCCESS,
   LOGOUT,
   PASSWORD_CHANGED,
   SIGNUP,
@@ -204,7 +207,27 @@ export const setPersistedUser = ( fireBaseUser ) => {
   }
 }
 
+export const forgotPassword = ({ email }) => {
+  console.log("forgotPassword", email)
 
+  return async ( dispatch ) => {
+    console.log("dispatching...")
+    dispatch( { type: FORGOT_PASSWORD } ) 
+
+    console.log("commencing firbase reset for", email )
+
+    await firebase.auth().sendPasswordResetEmail(email).then(() => {
+      console.log("email reset success!")
+      dispatch( { type: FORGOT_PASSWORD_SUCCESS } ) 
+    }).catch((error) => {
+      console.log("email reset fail", error)
+      dispatch( { 
+        type: FORGOT_PASSWORD_FAIL, 
+        payload: { error: error } 
+      }) 
+    })
+  }
+}
 
 export const loginUser = ( { email, password}  ) => {
 
@@ -235,6 +258,7 @@ export const loginUser = ( { email, password}  ) => {
       } )
   }
 }
+
 
 const loginUserFail = ( dispatch ) => {
   dispatch( {
