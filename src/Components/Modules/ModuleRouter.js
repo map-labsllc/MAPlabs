@@ -13,7 +13,7 @@ function ModuleRouter(props) {
   }
 
   const Module = moduleList[props.match.params.moduleId || 1]
-console.log("params", props.match.params)
+
   return <Module moduleId={props.match.params.moduleId} sectionId={props.match.params.sectionId} />
 }
 

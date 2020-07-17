@@ -6,7 +6,10 @@ import {
 } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 
-const InfoPage = () => {
+import { connect } from 'react-redux'
+
+const InfoPage = ({ user }) => {
+
   return (
     <div className="reading-wrapper">
       <div className="container-fluid text-center reading">
@@ -161,16 +164,26 @@ const InfoPage = () => {
         </ListGroup>
 
 
-        {/* BEGIN MAPMAKER */}
-        {/* ------------------------------ */}
-
         <div className="text-center">
-          <Button className="btn"><NavLink to="/signup">Sign Up</NavLink></Button>
+        { user && user.login_token ? 
+          <Button className="btn btn-primary"><NavLink to="/modules/list">Continue</NavLink></Button>
+          :
+          <Button className="btn btn-primary"><NavLink to="/signup">Sign Up</NavLink></Button>
+        }  
         </div>
       </div >
     </div >
   )
 }
 
+const mapStateToProps = state => {
+  const { user } = state.userRD
+  return {
+    user
+  }
+}
 
-export default InfoPage
+export default connect(
+  mapStateToProps
+)( InfoPage )
+

@@ -48,7 +48,7 @@ const ModuleList = ( { user } ) => {
                       </p>
                     </td>
                     <td className="text-left">
-                      <ProgressBar className="sectionProgress" now={50} label={'50%'}/>
+                      {/* <ProgressBar className="sectionProgress" now={50} label={'50%'}/> */}
                     </td>
                   </tr>
                   { MODULES.map((mod) => (

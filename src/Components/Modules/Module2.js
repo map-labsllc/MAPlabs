@@ -21,7 +21,6 @@ import {
 } from '../Exercises/Influences/InfluencesConstants'
 
 import {
-  MOD_2_DESC,
   QUES_210_DESC,
   QUES_220_DESC,
   QUES_230_DESC,
@@ -184,18 +183,20 @@ export default class Module2 extends React.Component {
       title: "Top 5 Inhibiting Influences",
       exercise: this.exercise_221
     },
-    {
-      id: 230,
-      module_id: 2,
-      title: "Relating Your Values and Beliefs to Those of Your Supportive Influencers",
-      exercise: this.exercise_230,
-    },
-    {
-      id: 240,
-      module_id: 2,
-      title: "Relating Your Values and Beliefs to Those of Your Inhibiting Influencers",
-      exercise: this.exercise_240,
-    },
+    // CUT 2.2.A
+    // {
+    //   id: 230,
+    //   module_id: 2,
+    //   title: "Relating Your Values and Beliefs to Those of Your Supportive Influencers",
+    //   exercise: this.exercise_230,
+    // },
+    // CUT 2.3.A
+    // {
+    //   id: 240,
+    //   module_id: 2,
+    //   title: "Relating Your Values and Beliefs to Those of Your Inhibiting Influencers",
+    //   exercise: this.exercise_240,
+    // },
     {
       id: 250,
       title: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement",

@@ -5,7 +5,6 @@ import {
   Button,
   Form,
   FormControl,
-  Glyphicon,
 } from 'react-bootstrap'
 
 import {

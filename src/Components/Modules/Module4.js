@@ -13,9 +13,6 @@ import StrengthXCT from '../Exercises/StrengthXCT'
 import ModuleLayout from './ModuleLayout'
 import { MODULES } from './ModuleData'
 
-
-// import { persistAnswersFromQuestionAC } from '../../store/answers/actions'
-// import { persistTransitionsFromQuestionAC } from '../../store/transitions/actions'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
@@ -45,7 +42,7 @@ export default class Module4 extends React.Component {
 
   // Define questions and excercises for Module 4
   // --------------------------------------------------------------------
-/*
+
   // -------------------------
   // LifeDescriptions
 
@@ -76,7 +73,6 @@ export default class Module4 extends React.Component {
   ]
   exercise_430 = (
     <QuestionsCT
-      persistAC_CB = {persistTransitionsFromQuestionAC}
       description = { QUES_430_DESC }
       subComponents = {this.transitions_430}
     /> )
@@ -91,7 +87,6 @@ export default class Module4 extends React.Component {
   ]
   exercise_440 = (
     <QuestionsCT
-      persistAC_CB = {persistAnswersFromQuestionAC}
       description = { QUES_440_DESC }
       subComponents = {this.shortAnswers_440}
     /> )
@@ -105,7 +100,6 @@ export default class Module4 extends React.Component {
   ]
   exercise_450 = (
     <QuestionsCT
-      persistAC_CB = {persistAnswersFromQuestionAC}
       description = {QUES_450_DESC}
       subComponents = {this.brackets_450}
     /> )
@@ -120,7 +114,7 @@ export default class Module4 extends React.Component {
       description = { QUES_460_DESC }
       instructions = "Write a short statement that brings together all the desires from each category and captures the essence of what this exercise has revealed to you using the phrases themselves. Note:  If there were desires that reached the final tradeoff round in Exercise 3 that are also really important, feel free to incorporate them as well. "
     /> )
-*/
+
   /* *********************************************************** */
 
   strengths_410 = [
@@ -137,23 +131,44 @@ export default class Module4 extends React.Component {
 
   _module = MODULES.filter(m => m.id === 4)
 
+
+  // -------------------------
+  // Testing Strength
+  // {
+  //   id: 900,
+  //   module_id: 3,
+  //   title: "Developing StrengthCT", // TODO Fix title
+  //   exercise: this.exercise_900
+  // },
+  // strength_900 = [
+  //   <StrengthXCT question = { { code: 901, text: "Enter your first strength" } } />,
+  //   <StrengthXCT question = { { code: 902, text: "Enter your second strength" } } />,
+  // ]
+  // exercise_900 = (
+  //   <QuestionsCT
+  //     questionType = {QUESTION_TYPE_STRENGTH}
+  //     description = "Testing strength components"
+  //     subComponents = {this.strength_900}
+  //   /> )
+
   // interim refactor, needs to be in a DB
   sections =
   [
+    // 4.1.A
     {
       id: 410,
       module_id: 4,
       title: "Take the VIA Survey of Character Strengths",
       exercise: this.exercise_410
     },
-    // TODO: This right?? ... it was commented out, so I'm not sure content is right
+    // 4.1.B
     {
       id: 420,
       module_id: 4,
-      title: "Record your top 5 strengths and reflect on each",
+      title: "Top 5 Strengths",
       exercise: this.exercise_420
     },
-    // TODO... this content isn't right
+    // 
     {
       id: 430,
       module_id: 4,

@@ -44,6 +44,7 @@ class SectionExercise extends React.Component {
 
     let { isVisible } = this.state
     let { sectionTitle, exercise } = this.props
+    const { user, sectionNum } = this.props
 
     // Link the <exersise> to this instance of the SectionExercise Component.
     //   - onCloseModalCB() is called when exercise completes to tell us to close ModalX
@@ -65,17 +66,19 @@ class SectionExercise extends React.Component {
     // get the exercise's descrition
     const { description } = exerciseStatic.props
 
+    let buttonLabel = user.curr_section >= sectionNum ? 'Continue' : 'Start'
+
     return (
       <>
         {/* display instructions */ }
         {!isVisible && (
           <>
-            <div style={style.inner}>
-              <span dangerouslySetInnerHTML={{ __html: description }} />
+            <div>
+              <span className="reading" dangerouslySetInnerHTML={{ __html: description }} />
               <hr className="divider" />
               {exerciseStatic}
               <div className="text-center">
-                <Button className="btn btn-primary" type="button" onClick={this.onclickStart}>Start</Button>
+                <Button className="btn btn-primary" type="button" onClick={this.onclickStart}>{buttonLabel}</Button>
               </div>
             </div>
           </>
@@ -84,8 +87,8 @@ class SectionExercise extends React.Component {
         {/* display the exercise */ }  
         {isVisible && (
           <>
-            <div style={style.inner}>
-              <span dangerouslySetInnerHTML={{ __html: description }} />
+            <div>
+              <span className="reading" dangerouslySetInnerHTML={{ __html: description }} />
               <hr className="divider" />
               { exerciseDynamic }
             </div>
@@ -93,12 +96,6 @@ class SectionExercise extends React.Component {
         )}
       </>
     )
-  }
-}
-const style = {
-  inner: {
-    marginLeft: "5%",
-    marginRight: "5%",
   }
 }
 

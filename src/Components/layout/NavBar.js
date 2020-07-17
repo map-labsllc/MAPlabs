@@ -8,6 +8,8 @@ import { loadAllStaticdataAC } from '../../store/staticdata/actions'
 // export default class NavBar extends React.Component {
 class NavBar extends React.Component {
 
+  // TODO... REFACTOR this doesn't seem like the right place for the data loading to live
+
   /* ***********************************************
   loadUserData()
 

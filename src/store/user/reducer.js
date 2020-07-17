@@ -1,6 +1,7 @@
 // need to mege with the user info coming from login
 
 import {
+  AUTH_CHECK_COMPLETE,
   EMAIL_CHANGED,
   FIRSTNAME_CHANGED,
   LASTNAME_CHANGED,
@@ -71,6 +72,7 @@ if (false) {
 
   // ------------------------------------------
   initialState = {
+    authCheckPending: true,
     isLoading: false,  // change to true when we connect with login process
     errorMessage: '',
     orderOfSections: [],
@@ -96,7 +98,7 @@ export const getUser = (state) => state.user
 
    return -- t/f
 ************************************************** */
-export const isLoggedIn = (state) => !!state.user.login_token
+export const isLoggedIn = (state) => state.user && !!state.user.login_token
 
 
 /* ***********************************************
@@ -171,6 +173,9 @@ export const getNextModuleSection = ( userRD, currModuleNum, currSectionNum ) =>
 export const userRD = ( state = initialState, action ) => {
     const { type, payload } = action
   switch( type ) {
+    case AUTH_CHECK_COMPLETE:
+      return {...state, authCheckPending: false}
+      
     case USER_UPDATE_CURR_SECTION: {
       const { moduleNum, sectionNum } = payload
       const newUser = {
@@ -235,7 +240,7 @@ export const userRD = ( state = initialState, action ) => {
       return {...state, loading: true, errorMessage: '' }
     }
     case SIGNUP_FAIL: {
-      return {...state, loading: true, errorMessage: payload.errorMessage }
+      return {...state, loading: false, errorMessage: payload.errorMessage }
     }
     default:
       return state

@@ -24,7 +24,7 @@ class HomePage extends React.Component {
           <div style={{marginTop: '3em'}}>
             <Row>
               <Col md={4}>
-                <Card style={{ width: '18rem' }}>
+                <Card>
                   <Card.Body>
                     <Card.Text>
                       <p>
@@ -46,7 +46,7 @@ class HomePage extends React.Component {
               </Col>
 
               <Col md={4}>
-                <Card style={{ width: '18rem' }}>
+                <Card>
                   <Card.Body>
                     <Card.Text>
                       <p>
@@ -59,7 +59,7 @@ class HomePage extends React.Component {
               </Col>
 
               <Col md={4}>
-              <Card style={{ width: '18rem' }}>
+              <Card>
                   <Card.Body>
                     <Card.Text>
                       <p>

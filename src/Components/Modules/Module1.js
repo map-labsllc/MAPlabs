@@ -15,7 +15,6 @@ import {
  } from '../../store/answers/constants'
 
 import {
-  MOD_1_DESC,
   QUES_110_DESC,
   QUES_120_DESC,
   QUES_130_DESC,
@@ -24,6 +23,8 @@ import {
   QUES_160_DESC,
   QUES_170_DESC,
  } from './Module1Text'
+
+import { MODULES } from './ModuleData'
 
 /* **************************************************
    Used to test components during development
@@ -129,11 +130,7 @@ export default class Module1 extends React.Component {
       subComponents = { this.shortAnswers_170 }
     /> )
 
-  _module = {
-    id: 1,
-    title: "Your Meanings and Motivations",
-    description: MOD_1_DESC
-  }
+  _module = MODULES.filter(m => m.id === 1)
 
   // interim refactor, needs to be in a DB
   sections =
@@ -142,19 +139,19 @@ export default class Module1 extends React.Component {
       id: 110,
       module_id: 1,
       title: "Reflect on your current situation",
-      exercise: this.exercise_110
+      exercise: this.exercise_110,
     },
     { 
       id: 120,
       module_id: 1,
       title: "Describe your current situation",
-      exercise: this.exercise_120
+      exercise: this.exercise_120,
     },
     {
       id: 130,
       module_id: 1,
       title: "Imagine your future desired situation",
-      exercise: this.exercise_130
+      exercise: this.exercise_130,
     },
     {
       id: 140,
@@ -174,12 +171,13 @@ export default class Module1 extends React.Component {
       title: "Breaking and building",
       exercise: this.exercise_160
     },
-    {
-      id: 170,
-      module_id: 1,
-      title: "Tie these reflections to the course",
-      exercise: this.exercise_170
-    }
+    // Remove M15
+    // {
+    //   id: 170,
+    //   module_id: 1,
+    //   title: "Tie these reflections to the course",
+    //   exercise: this.exercise_170
+    // }
   ]
 
   render() {

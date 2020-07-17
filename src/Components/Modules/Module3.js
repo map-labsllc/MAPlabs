@@ -18,7 +18,6 @@ import {
  } from '../../store/answers/constants'
 
 import {
-  MOD_3_DESC,
   QUES_310_DESC,
   QUES_320_DESC,
   QUES_330_DESC,
@@ -26,6 +25,7 @@ import {
   QUES_350_DESC,
   QUES_360_DESC,
 } from './Module3Text'
+import { MODULES } from './ModuleData'
 
 import {
 } from 'react-bootstrap'
@@ -37,21 +37,6 @@ export default class Module3 extends React.Component {
 
   // Define questions and excercises for Module 3
   // ---------------------------------------------------------------------
-
-
-  // -------------------------
-  // Testing Strength
-
-  strength_900 = [
-    <StrengthXCT question = { { code: 901, text: "Enter your first strength" } } />,
-    <StrengthXCT question = { { code: 902, text: "Enter your second strength" } } />,
-  ]
-  exercise_900 = (
-    <QuestionsCT
-      questionType = {QUESTION_TYPE_STRENGTH}
-      description = "Testing strength components"
-      subComponents = {this.strength_900}
-    /> )
 
   // -------------------------
   // Module 3: 1A
@@ -156,21 +141,11 @@ export default class Module3 extends React.Component {
       subComponents = {this.transitions_360}
     /> )
 
-  _module = {
-    id: 3,
-    title: "Personal Desires",
-    description: MOD_3_DESC
-  }
+  _module = MODULES.filter(m => m.id === 3)
 
   // interim refactor, needs to be in a DB
   sections =
   [
-    {
-      id: 900,
-      module_id: 3,
-      title: "Developing StrengthCT", // TODO Fix title
-      exercise: this.exercise_900
-    },
     {
       id: 310,
       module_id: 3,
