@@ -129,7 +129,7 @@ export default class Module4 extends React.Component {
       subComponents = {this.strengths_410}
     />)
 
-  _module = MODULES.filter(m => m.id === 4)
+  _module = MODULES.filter(m => m.id === 4)[0]
 
 
   // -------------------------

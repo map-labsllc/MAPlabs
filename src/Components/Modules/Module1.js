@@ -130,7 +130,7 @@ export default class Module1 extends React.Component {
       subComponents = { this.shortAnswers_170 }
     /> )
 
-  _module = MODULES.filter(m => m.id === 1)
+  _module = MODULES.filter(m => m.id === 1)[0]
 
   // interim refactor, needs to be in a DB
   sections =
@@ -183,6 +183,7 @@ export default class Module1 extends React.Component {
   render() {
     const { moduleId, sectionId } = this.props
 
+    console.log(this._module)
     return (
       <ModuleLayout
         title = { this._module.title }

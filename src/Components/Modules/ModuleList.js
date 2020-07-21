@@ -44,7 +44,7 @@ const ModuleList = ( { user } ) => {
                     </td>
                     <td className="text-left">
                       <p>
-                      <Link to={`/`}>Introduction</Link> 
+                      <Link to={`/infopage`}>Program Introduction</Link> 
                       </p>
                     </td>
                     <td className="text-left">

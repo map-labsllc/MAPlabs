@@ -141,7 +141,7 @@ export default class Module3 extends React.Component {
       subComponents = {this.transitions_360}
     /> )
 
-  _module = MODULES.filter(m => m.id === 3)
+  _module = MODULES.filter(m => m.id === 3)[0]
 
   // interim refactor, needs to be in a DB
   sections =

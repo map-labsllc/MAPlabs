@@ -160,7 +160,7 @@ export default class Module2 extends React.Component {
       description = { QUES_280_DESC }
     /> )
 
-  _module = MODULES.filter(m => m.id === 2)
+  _module = MODULES.filter(m => m.id === 2)[0]
 
   // interim refactor, needs to be in a DB
   sections =
