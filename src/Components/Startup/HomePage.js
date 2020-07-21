@@ -24,21 +24,20 @@ class HomePage extends React.Component {
           <div style={{marginTop: '3em'}}>
             <Row>
               <Col md={4}>
-                <Card>
+                <Card style={style.Card}>
                   <Card.Body>
                     <Card.Text>
                       <p>
                         Visit our website to learn more about us.
                       </p>
 
-                      <Button 
-                        variant="primary"
+                      <Button style={style.CardButton}
                         href="https://www.map-labs.com/map-maker-core-meaning-and-purpose-program.html"
                         target="_blank"
-                        className="btn"
+                        className="btn btn-info btn-fill"
                         variant="light"
                       >
-                      Learn more about MAPMaker
+                      MAPMaker
                     </Button>
                     </Card.Text>
                   </Card.Body>
@@ -46,26 +45,27 @@ class HomePage extends React.Component {
               </Col>
 
               <Col md={4}>
-                <Card>
+                <Card style={style.Card}>
                   <Card.Body>
                     <Card.Text>
                       <p>
-                        Find out more about this program
+                        Find out more about this program.
                       </p>
-                      <Link className="outline-secondary btn" to="/infopage">Get Started</Link> 
+                      <Link style={style.CardButton} className="btn btn-info btn-fill" to="/infopage">Get Started</Link> 
                     </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
 
               <Col md={4}>
-              <Card>
+              <Card style={style.Card}>
                   <Card.Body>
                     <Card.Text>
                       <p>
                         Already have an account?
+                        <br />
                       </p>
-                      <Link className="btn" to="/login">Login here.</Link>
+                      <Link style={style.CardButton} className="btn btn-info btn-fill" to="/login">Login here.</Link>
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -79,6 +79,9 @@ class HomePage extends React.Component {
   }
 }
 
-const style = {}
+const style = {
+  Card: {minHeight: '160px'},
+  CardButton: { verticalAlign: 'bottom'}
+}
 
 export default HomePage
