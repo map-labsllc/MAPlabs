@@ -78,6 +78,7 @@ if (false) {
     authCheckPending: true,
     isLoading: false,  // change to true when we connect with login process
     errorMessage: '',
+    message: '',
     orderOfSections: [],
     user: {}
   }
@@ -216,7 +217,7 @@ export const userRD = ( state = initialState, action ) => {
       }
       return {...state, user:password}
     case LOGIN_USER:
-      return {...state, loading: true, errorMessage: '' }
+      return {...state, loading: true, errorMessage: '', message: '' }
     case LOGIN_USER_SUCCESS:
       return {...state, user: {...payload}, loading: false }
     case LOGIN_USER_FAIL:
@@ -226,7 +227,7 @@ export const userRD = ( state = initialState, action ) => {
     case FORGOT_PASSWORD_SUCCESS:
       return {...state, loading: false, errorMessage: '', message: 'Please check your email for reset instructions.' }
     case FORGOT_PASSWORD_FAIL:
-      return { ...state, loading: false, errorMessage: payload.message, message: '' }
+      return { ...state, loading: false, errorMessage: payload.errorMessage, message: '' }
     case USER_UPDATE_CURR_SECTION_NO_CHANGE:
       return state
     case USER_UPDATE_ERROR:

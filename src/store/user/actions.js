@@ -208,22 +208,19 @@ export const setPersistedUser = ( fireBaseUser ) => {
 }
 
 export const forgotPassword = ({ email }) => {
-  console.log("forgotPassword", email)
 
   return async ( dispatch ) => {
-    console.log("dispatching...")
     dispatch( { type: FORGOT_PASSWORD } ) 
 
-    console.log("commencing firbase reset for", email )
 
+    // TODO...fix
+    // not sure what's up with this not being called
     await firebase.auth().sendPasswordResetEmail(email).then(() => {
-      console.log("email reset success!")
       dispatch( { type: FORGOT_PASSWORD_SUCCESS } ) 
     }).catch((error) => {
-      console.log("email reset fail", error)
       dispatch( { 
         type: FORGOT_PASSWORD_FAIL, 
-        payload: { error: error } 
+        payload: { errorMessage: error.message } 
       }) 
     })
   }
@@ -272,13 +269,6 @@ const loginUserSuccess = async( dispatch, user ) => {
     payload: user
   } )
 
-}
-
-export const signUp = () => {
-  return async ( dispatch ) => {
-    console.log( dispatch,'signup' )
-    dispatch.signUp()
-  }
 }
 
 export const signUpUser = ( user ) => {
