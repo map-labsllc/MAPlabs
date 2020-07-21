@@ -22,7 +22,7 @@ const SideBar = ( { user }) => (
         <li className="nav-item">
           <NavLink className="nav-link" to="/infopage">
             <i class="nc-icon nc-explore-2"></i>
-            Introduction
+            Program Introduction
           </NavLink>
         </li>
         <li className="nav-item">
@@ -66,7 +66,7 @@ const SideBar = ( { user }) => (
       null 
       }
     </div>
-    <div class="sidebar-background" style={style.SidebarBackground}></div>
+    <div className="sidebar-background" style={style.SidebarBackground}></div>
   </div>
 )
 
