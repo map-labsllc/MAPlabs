@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 
 
 const SideBar = ( { user }) => (
-  <div className="sidebar" data-color="blue" data-image="/assets/img/sidebar-5.jpg">
+  <div className="sidebar has-image" data-color="blue" data-image="/assets/img/sidebar-5.jpg">
     <div className="sidebar-wrapper">
       <div className="logo">
         <a href="/" className="simple-text">
@@ -66,9 +66,13 @@ const SideBar = ( { user }) => (
       null 
       }
     </div>
+    <div class="sidebar-background" style={style.SidebarBackground}></div>
   </div>
 )
 
+const style = {
+  SidebarBackground: { backgroundImage: `url(/assets/img/sidebar-5.jpg)` }
+}
 
 const mapStateToProps = state => {
   const { user } = state.userRD
