@@ -7,9 +7,9 @@ import LifeDescriptor from './LifeDescriptor'
 import Arrow from '../../Utils/Arrow'
 
 import '../../../CSS/ModalNavButtons.css'
+import { ProgressBar } from 'react-bootstrap'
 
 const NUM_PER_PAGE = 5
-// const NUM_PER_PAGE = 5
 
 /* **************************************************
    LifeDescriptors component
@@ -203,13 +203,16 @@ export default class LifeDescriptors extends Component {
       )
     }
 
+    const progressAmount = Math.round(100 * startIdx / lifeDescriptors.length)
+
     return (
       <>
         <p><b>{instructions}</b></p>
 
-        Progress { 100 * Math.round(startIdx / lifeDescriptors.length) }
+        <ProgressBar variant="success" now={progressAmount} label={`${progressAmount}%`} />
+
         <ul className="list-group text-left">
-          { thisPage.map(p => <li className="list-group-item">{p}</li>) } 
+          { thisPage.map((p, key) => <li key={key} className="list-group-item">{p}</li>) } 
         </ul>
         <br />
 
