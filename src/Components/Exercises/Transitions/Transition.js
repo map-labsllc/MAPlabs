@@ -105,8 +105,8 @@ export default class Transition extends React.Component {
 
       // display the transition
       return (
-        <ul>
-          <li>{transition.from} -> {transition.to}</li>
+        <ul className="list-group">
+          <li className="list-group-item">{transition.from} -> {transition.to}</li>
         </ul>
       )
     }

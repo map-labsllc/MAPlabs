@@ -52,7 +52,7 @@ export default class ShortAnswers extends React.Component {
   // **********************************************
   // tell parent to update array of answers to store
   updateAnswer = (key, newAnswer) => {
-    console.log(`ShortAnswers::updateAnswer(${key}, ${newAnswer})`)
+    // console.log(`ShortAnswers::updateAnswer(${key}, ${newAnswer})`)
 
     const { onUpdateStoreCB } = this.props
     const { answersWithKeys } = this.state
@@ -68,7 +68,7 @@ export default class ShortAnswers extends React.Component {
   // delete answer from state::answers and
   //   tell parent to update array of answers to store
   deleteAnswer = (keyToDelete) => {
-    console.log(`ShortAnswers::deleteAnswer(${keyToDelete})`)
+    // console.log(`ShortAnswers::deleteAnswer(${keyToDelete})`)
 
     const { onUpdateStoreCB } = this.props
     const { answersWithKeys } = this.state
@@ -99,35 +99,32 @@ export default class ShortAnswers extends React.Component {
     const { number, question, isDynamic } = this.props
     const { answersWithKeys } = this.state
 
-    //console.log("answersWithKeys", answersWithKeys)
-    //console.log("this.props.previousAnswers", this.props.previousAnswers)
-    //console.log("this.state.answers", this.state.answers)
-
-    // render static version in <Popup>
+    // render static version
+  
     if (!isDynamic) {
+      console.log(number, question, answersWithKeys)
       return (
-        <>
-          {answersWithKeys.map((answerWithKey) =>
-            <ShortAnswer
-              key={answerWithKey.key}
-              id={answerWithKey.key}
-              previousAnswer={answerWithKey.item}
-              updateAnswerCB={this.updateAnswer}
-              deleteAnswerCB={this.deleteAnswer}
-              isDynamic={isDynamic}
-            >
-            </ShortAnswer>
+        <ul className="list-group text-left">
+          { answersWithKeys.map((answerWithKey) =>
+            <li className="list-group-item" key={answerWithKey.key}>
+              <ShortAnswer
+                key={answerWithKey.key}
+                id={answerWithKey.key}
+                previousAnswer={answerWithKey.item}
+                updateAnswerCB={this.updateAnswer}
+                deleteAnswerCB={this.deleteAnswer}
+                isDynamic={isDynamic}
+              />
+            </li>
           )}
-        </>
+        </ul>
       )
     }
 
-    // render dynamic version in <ModalX>
+    // render dynamic version
     return (
-      <>
-        <p> </p>
-        <h4>{number}. {question.text}</h4>
-        <br />
+      <div className="text-left">
+        <h4 style={style.h4}>{number}. {question.text}</h4>
         {answersWithKeys.map((answerWithKey) =>
           <ShortAnswer
             key={answerWithKey.key}
@@ -141,11 +138,12 @@ export default class ShortAnswers extends React.Component {
         )}
 
         <hr />
-        <div style={style.centering} >
+        <div>
           <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
         </div>
         <hr />
-      </>
+      </div>
+        
     )
   }
 }
@@ -169,6 +167,7 @@ ShortAnswers.propTypes = {
 ////////////////////////////////////////////////////////////////
 
 const style = {
+  h4: { marginTop: '1em' },
   centering: {
     marginLeft: "45%",
     marginRight: "45%",

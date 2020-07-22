@@ -71,16 +71,7 @@ export default class ShortAnswer extends React.Component {
     const { id, isDynamic } = this.props
 
     if (!isDynamic) {
-      if ( !answer.length ) {
-        return (
-          <></>
-        )
-      }
-      return (
-        <ul>
-          <li>{answer}</li>
-        </ul>
-      )
+      return answer.length > 0 && <> { answer } </>
     }
 
     return (

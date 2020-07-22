@@ -49,7 +49,7 @@ export default class Questions extends React.Component {
   // ******************************************
   // called when close button is clicked
   onclickClose = () => {
-    console.log( "Questions::onclickClose()" )
+    // console.log( "Questions::onclickClose()" )
 
     const { onCloseModalCB } = this.props
 
@@ -60,7 +60,7 @@ export default class Questions extends React.Component {
   // ******************************************
   // called when left button clicked
   onclickLeft = () => {
-    console.log( "Questions::onclicLeft()" )
+    // console.log( "Questions::onclicLeft()" )
 
     const { currIdx } = this.state
 
@@ -74,7 +74,7 @@ export default class Questions extends React.Component {
   // ******************************************
   // called when right button clicked
   onclickRight = () => {
-    console.log( "Questions::onclickRight()" )
+    // console.log( "Questions::onclickRight()" )
 
     const { currIdx } = this.state
     const { subComponents } = this.props
@@ -102,8 +102,8 @@ export default class Questions extends React.Component {
       return (
         <>
           {subComponents.map( ( subComponent, idx ) => (
-            <div key={idx}>
-              <p><b>{idx + 1}. {subComponent.props.question.text}</b></p>
+            <div className="text-left" key={idx}>
+              <h4>{idx + 1}. {subComponent.props.question.text}</h4>
               {subComponent}
             </div>
 
@@ -144,7 +144,7 @@ export default class Questions extends React.Component {
 
         <div className="bgButton text-center">
           <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>{' '}
-          <Button className="closeButton" type="button" onClick={this.onclickClose}>Close</Button>
+          <Button className="closeButton" type="button" onClick={this.onclickClose}>Save</Button>
           <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
         </div>
       </>

@@ -27,7 +27,7 @@ const mapStateToProps = ( state, passedProps ) => {
 
   // get previous transitions, if any
   const answers = getAnswers( state.answersRD, question.code )
-  //console.log( `getAnswers(${question.code}): `, answers )
+  console.log( `getAnswers(${question.code}): `, answers )
   const previousTransitions = answers.map(answerArray => ({ from: answerArray[0], to: answerArray[1] }))
 
   //console.log('TransitionsCT::previousTransitions: ', previousTransitions);
