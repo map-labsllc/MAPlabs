@@ -152,30 +152,27 @@ export default class LifeDescriptors extends Component {
       lifeDescriptors,
     } = this.props
     const { page } = this.state
+    const { previousAnswers } = this.props
 
     // Static version of the exercise
     // ------------------------------
     if ( !isDynamic ) {
-      const { previousAnswers } = this.props
-
-      // nothing if there were no previous answers
-      if ( !previousAnswers.length ) {
-        return (
-          <></>
-        )
-      }
+      
 
       // display the previous answers
       return (
+        previousAnswers.length ? 
         <>
           <p><strong>Previous answers</strong></p>
-          <ul>
+          <ul className="list-group text-left">
           {previousAnswers.map( ( previousAnswer, idx ) =>
-            <li key={idx}>{previousAnswer}</li>
+            <li className="list-group-item" key={idx}>{previousAnswer}</li>
           )}
           </ul>
           <hr className="divider" />
         </>
+        : 
+        <></> 
       )
     }
 
@@ -184,6 +181,12 @@ export default class LifeDescriptors extends Component {
     let thisPage = []
     const startIdx = page * NUM_PER_PAGE
     const endIdx = Math.min( ( ( page + 1 ) * NUM_PER_PAGE ), lifeDescriptors.length )
+
+    console.log('pages', page, 'of', lifeDescriptors.length/NUM_PER_PAGE)
+    console.log('indexes to show', startIdx, endIdx)
+    console.log('descriptors length', lifeDescriptors.length)
+    console.log(startIdx/lifeDescriptors.length)
+
     for ( let i = startIdx ; i < endIdx ; i++ ) {
       thisPage.push( (
         <LifeDescriptor
@@ -204,20 +207,24 @@ export default class LifeDescriptors extends Component {
       <>
         <p><b>{instructions}</b></p>
 
-        {thisPage}
-
+        Progress { 100 * Math.round(startIdx / lifeDescriptors.length) }
+        <ul className="list-group text-left">
+          { thisPage }
+        </ul>
         <br />
 
-        <div className="container-fluid">
+        <div className="container-fluid text-center">
 
           {/* left arrow */}
-          <div style={style.left}>
-            <Arrow
-              direction="left"
-              onClickCB={this.onclickPrev()}
-              glyph="arrow-left"
-            />
-          </div>
+          { startIdx > 0 &&
+            <div style={style.left}>
+              <Arrow
+                direction="left"
+                onClickCB={this.onclickPrev()}
+                glyph="arrow-left"
+              />
+            </div> 
+          }
 
           {/* close button */}
           <div style={style.center}>
@@ -225,18 +232,20 @@ export default class LifeDescriptors extends Component {
               className="closeButton"
               onClick={this.onclickClose}
             >
-              Close
+              Save
             </Button>
           </div>
 
           {/* right arrow */}
-          <div style={style.right}>
-            <Arrow
-              direction="right"
-              onClickCB={this.onclickNext()}
-              glyph="arrow-right"
-            />
-          </div>
+          { endIdx !== (lifeDescriptors.length) &&
+            <div style={style.right}>
+              <Arrow
+                direction="right"
+                onClickCB={this.onclickNext()}
+                glyph="arrow-right"
+              />
+            </div>
+          }
 
         </div>
       </>
@@ -259,6 +268,5 @@ const style = {
   },
   center: {
     display: "inline-block",
-    marginLeft: "42%"
   }
 }

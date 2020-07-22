@@ -30,8 +30,8 @@ const LifeDescriptor = ( props ) => {
     onAddSelectionCB,
   } = props
 
-  let btnStyleA = ( isSelectedA ) ? 'success' : 'default'
-  let btnStyleB = ( isSelectedB ) ? 'success' : 'default'
+  let btnStyleA = ( isSelectedA ) ? 'btn-fill' : ''
+  let btnStyleB = ( isSelectedB ) ? 'btn-fill' : ''
 
   // render
   return (
@@ -51,14 +51,14 @@ const LifeDescriptor = ( props ) => {
 
         <Button
           onClick = { () => { onAddSelectionCB( 'a' ) } }
-          bsStyle = { btnStyleA }
+          className = { btnStyleA }
         >
           <strong>{ lifeDescriptor.a }</strong>
         </Button>
 
         <Button
           onClick = { () => { onAddSelectionCB( 'b' ) } }
-          bsStyle = { btnStyleB }
+          className = { btnStyleB }
         >
           <strong>{ lifeDescriptor.b }</strong>
         </Button>
