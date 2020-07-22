@@ -17,7 +17,6 @@ import {
 ***************************************************** */
 const Prompts = (props) => {
   const { prompts } = props
-  // debugger
   // no prompts
   if ( !prompts.length ) return null
 
@@ -29,10 +28,10 @@ const Prompts = (props) => {
     return (
       <>
         <p><b>Prompts</b></p>
-        <ul>
+        <ul className="list-group">
           {removeDblNewLine.split('\n').map(function(para, key) {
             return (
-              <li key={key}>{para}</li>
+              <li className="list-group-item" key={key}>{para}</li>
             )
           })}  
         </ul>  
@@ -44,9 +43,9 @@ const Prompts = (props) => {
   return (
     <>
       <p><b>Prompts</b></p>
-      <ul>
+      <ul className="list-group text-left">
       {prompts.map( ( prompt, idx ) =>
-        <li key={idx}>
+        <li className="list-group-item" key={idx}>
           {prompt[0]}
         </li>
       )}

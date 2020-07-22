@@ -43,7 +43,6 @@ export default class Narrative extends React.Component {
   /* ******************************************************** */
   // set isDirty and controlled answer field
   onChange = ( e ) => {
-    console.log( "Narrative::onChange(), e: ", e.target.value )
     this.setState( {
       isDirty: true,
       answer: e.target.value,
@@ -53,14 +52,12 @@ export default class Narrative extends React.Component {
   /* ******************************************************** */
   // update store and persist the value as user could be clicking outside Modal and shutting it down
   onBlur = () => {
-    console.log( "Narrative::onBlur()" )
     this.updateAndPersist()
   }
 
   /* ******************************************************** */
   // helper, update the store and persist
   updateAndPersist = () => {
-    console.log( "state: ", this.state )
 
     this.setState( { isDirty: false } )
 
@@ -72,10 +69,7 @@ export default class Narrative extends React.Component {
   }
 
   /* ******************************************************** */
-  // render!
-
   render() {
-    // console.log("Narrative::render()")
 
     // initialize
     const { question, prompts, instructions, isDynamic } = this.props
@@ -94,7 +88,7 @@ export default class Narrative extends React.Component {
         <form onSubmit={this.onSubmit} >
           <div>
             {instructions && (
-              <p>{instructions}</p>
+              <p className="text-left">{instructions}</p>
             )}
             <Prompts prompts={prompts}/>
             {/* <h4>{question.text}</h4> */}
@@ -102,7 +96,7 @@ export default class Narrative extends React.Component {
               rows="10"
               style={style.contain}
               autoFocus={true}
-              placeholder="Please enter an answer and click Close"
+              placeholder="Please enter an answer and click Save"
               onChange={this.onChange}
               onBlur={this.onBlur}
               value={answer}
