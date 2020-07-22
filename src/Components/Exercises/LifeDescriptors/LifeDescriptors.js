@@ -163,7 +163,7 @@ export default class LifeDescriptors extends Component {
       return (
         previousAnswers.length ? 
         <>
-          <p><strong>Previous answers</strong></p>
+          <p><strong>Answers</strong></p>
           <ul className="list-group text-left">
           {previousAnswers.map( ( previousAnswer, idx ) =>
             <li className="list-group-item" key={idx}>{previousAnswer}</li>
@@ -209,7 +209,7 @@ export default class LifeDescriptors extends Component {
 
         Progress { 100 * Math.round(startIdx / lifeDescriptors.length) }
         <ul className="list-group text-left">
-          { thisPage }
+          { thisPage.map(p => <li className="list-group-item">{p}</li>) } 
         </ul>
         <br />
 

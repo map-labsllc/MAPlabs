@@ -2,7 +2,6 @@ import React from 'react'
 import {
   Button,
   ButtonGroup,
-  ListGroupItem,
  } from 'react-bootstrap'
 
  /* **************************************************
@@ -36,7 +35,7 @@ const LifeDescriptor = ( props ) => {
   // render
   return (
 
-    <ListGroupItem >
+    <>
 
       {/* ----------------------------- */}
       {/* FIRST PART OF SENTENCE        */}
@@ -71,7 +70,7 @@ const LifeDescriptor = ( props ) => {
       {/* ----------------------------- */}
       { lifeDescriptor.lastPart }
 
-    </ListGroupItem>
+    </>
   )
 }
 
