@@ -79,12 +79,6 @@ export default function Influence( props )  {
   // dynamic render
   return (
     <Form inline>
-
-      &nbsp;&nbsp;&nbsp;
-      <Button type="button" onClick={onclickDelete}><i className="nc-icon nc-simple-remove"></i></Button>
-
-      &nbsp;
-      &nbsp;
       <select
         id="relationship"
         defaultValue={relationship}
@@ -97,8 +91,6 @@ export default function Influence( props )  {
         )}
       </select>
 
-      &nbsp;
-      &nbsp;
       <FormControl
         id='name'
         type='text'
@@ -107,8 +99,6 @@ export default function Influence( props )  {
         onChange={onChange}
       />
 
-      &nbsp;
-      &nbsp;
       <select
         id="belief"
         defaultValue={belief}
@@ -121,8 +111,6 @@ export default function Influence( props )  {
         )}
       </select>
 
-      &nbsp;
-      &nbsp;
       <select
         id="impact"
         defaultValue={impact}
@@ -132,6 +120,8 @@ export default function Influence( props )  {
         <option value={IMPACT_SUPPORTIVE}>{IMPACT_SUPPORTIVE}</option>
         <option value={IMPACT_INHIBITING}>{IMPACT_INHIBITING}</option>
       </select>
+
+      <Button type="button" onClick={onclickDelete}><i className="nc-icon nc-simple-remove"></i></Button>
 
     </Form>
   )

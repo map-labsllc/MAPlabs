@@ -67,7 +67,7 @@ export default function InfluenceGroup( props ) {
       <>
         <h4>{heading}</h4>
         {influencesWithKeys.length === 0 &&
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no data</p>
+          <p>Not started.</p>
         }
         <table>
           <tbody>
