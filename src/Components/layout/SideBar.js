@@ -21,43 +21,43 @@ const SideBar = ( { user }) => (
       <ul className="nav ml-auto">       
         <li className="nav-item">
           <NavLink className="nav-link" to="/infopage">
-            <i class="nc-icon nc-explore-2"></i>
+            <i className="nc-icon nc-explore-2"></i>
             Program Introduction
           </NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/modules/list">
-            <i class="nc-icon nc-layers-3"></i>
+            <i className="nc-icon nc-layers-3"></i>
             Module Overview
           </NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/modules/1">
-            <i class="nc-icon nc-compass-05"></i>
+            <i className="nc-icon nc-compass-05"></i>
             <p>Module 1</p>
           </NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/modules/2">
-            <i class="nc-icon nc-compass-05"></i>
+            <i className="nc-icon nc-compass-05"></i>
             Module 2
             </NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/modules/3">
-            <i class="nc-icon nc-compass-05"></i>
+            <i className="nc-icon nc-compass-05"></i>
             Module 3
           </NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/modules/4">
-            <i class="nc-icon nc-compass-05"></i>
+            <i className="nc-icon nc-compass-05"></i>
             Module 4
           </NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/modules/5">
-            <i class="nc-icon nc-compass-05"></i>
+            <i className="nc-icon nc-compass-05"></i>
             Module 5
           </NavLink>
         </li>
