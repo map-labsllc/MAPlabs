@@ -27,9 +27,7 @@ class HomePage extends React.Component {
                 <Card style={style.Card}>
                   <Card.Body>
                     <Card.Text>
-                      <p>
-                        Visit our website to learn more about us.
-                      </p>
+                      Visit our website to learn more about us.
 
                       <Button style={style.CardButton}
                         href="https://www.map-labs.com/map-maker-core-meaning-and-purpose-program.html"
@@ -37,7 +35,7 @@ class HomePage extends React.Component {
                         className="btn btn-info btn-fill"
                         variant="light"
                       >
-                      MAPMaker
+                      MAPmaker
                     </Button>
                     </Card.Text>
                   </Card.Body>
@@ -48,9 +46,7 @@ class HomePage extends React.Component {
                 <Card style={style.Card}>
                   <Card.Body>
                     <Card.Text>
-                      <p>
                         Find out more about this program.
-                      </p>
                       <Link style={style.CardButton} className="btn btn-info btn-fill" to="/infopage">Get Started</Link> 
                     </Card.Text>
                   </Card.Body>
@@ -61,10 +57,7 @@ class HomePage extends React.Component {
               <Card style={style.Card}>
                   <Card.Body>
                     <Card.Text>
-                      <p>
                         Already have an account?
-                        <br />
-                      </p>
                       <Link style={style.CardButton} className="btn btn-info btn-fill" to="/login">Login here.</Link>
                     </Card.Text>
                   </Card.Body>
@@ -80,8 +73,12 @@ class HomePage extends React.Component {
 }
 
 const style = {
-  Card: {minHeight: '160px'},
-  CardButton: { verticalAlign: 'bottom'}
+  Card: { minHeight: '160px' },
+
+  CardButton: { 
+    marginTop: '1em',
+    verticalAlign: 'bottom', 
+    display: 'block' }
 }
 
 export default HomePage

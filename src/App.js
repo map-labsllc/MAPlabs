@@ -29,11 +29,11 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <ScriptTag src="./assets/js/jquery.3.2.1.min.js" type="text/javascript"></ScriptTag>
+          {/* <ScriptTag src="./assets/js/jquery.3.2.1.min.js" type="text/javascript"></ScriptTag>
 	        <ScriptTag src="./assets/js/bootstrap.min.js" type="text/javascript"></ScriptTag>
           <ScriptTag src="./assets/js/bootstrap-notify.js"></ScriptTag>
 	        <ScriptTag src="./assets/js/light-bootstrap-dashboard.js?v=1.4.0"></ScriptTag>
-          <ScriptTag src="assets/js/demo.js"></ScriptTag>
+          <ScriptTag src="assets/js/demo.js"></ScriptTag> */}
           <LoadUser />
           <ScrollToTop />
           <div className="wrapper">
