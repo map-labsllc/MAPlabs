@@ -13,8 +13,9 @@ const INITIAL_STATE = {
     isError: false,
     errorMessage: '',
     beliefs: [],
+    relationships: [],
     strengths: [],
-    lifeDescriptions: [],
+    lifeDescriptors: [],
 }
 
 describe( 'static data reducer', () => {

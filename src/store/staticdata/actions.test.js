@@ -16,6 +16,7 @@ const URL = `end:.json`
 const DATA = { section: 'TEST', jsonData: ['TEST']}
 const BELIEFS_FN = 'beliefs'
 const LIFEDESCRIPTIONS_FN = 'lifeDescriptions'
+const RELATIONSHIPS_FN = 'relationships'
 const STRENGTHS_FN = 'strengths'
 
 describe( 'async actions', () => {
@@ -30,6 +31,7 @@ describe( 'async actions', () => {
             { type: STATICDATA_LOAD, payload: {
                 [BELIEFS_FN]: DATA.jsonData,
                 [LIFEDESCRIPTIONS_FN]: DATA.jsonData,
+                [RELATIONSHIPS_FN]: DATA.jsonData,
                 [STRENGTHS_FN]: DATA.jsonData
             }}
         ]
