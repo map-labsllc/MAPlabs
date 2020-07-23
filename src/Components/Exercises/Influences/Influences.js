@@ -198,7 +198,7 @@ export default class Influences extends React.Component {
         />
 
         {isDynamic &&
-          <Button type="button" onClick={this.onclickClose}>Close</Button>
+          <Button type="button" onClick={this.onclickClose}>Save</Button>
         }
         
         {!isDynamic &&

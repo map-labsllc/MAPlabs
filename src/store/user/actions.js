@@ -212,9 +212,6 @@ export const forgotPassword = ({ email }) => {
   return async ( dispatch ) => {
     dispatch( { type: FORGOT_PASSWORD } ) 
 
-
-    // TODO...fix
-    // not sure what's up with this not being called
     await firebase.auth().sendPasswordResetEmail(email).then(() => {
       dispatch( { type: FORGOT_PASSWORD_SUCCESS } ) 
     }).catch((error) => {

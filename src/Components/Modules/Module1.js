@@ -183,7 +183,6 @@ export default class Module1 extends React.Component {
   render() {
     const { moduleId, sectionId } = this.props
 
-    console.log(this._module)
     return (
       <ModuleLayout
         title = { this._module.title }
