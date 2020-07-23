@@ -19,3 +19,7 @@
 .sectionProgress {
   width: 200px;
 }
+
+.card-header {
+ background-color: #eeeeee; 
+}

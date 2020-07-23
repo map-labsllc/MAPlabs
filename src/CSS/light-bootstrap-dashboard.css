@@ -2839,8 +2839,8 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .card .card-header {
-    padding: 15px 15px 0;
-    background-color: #FFFFFF;
+    padding: 1em 1em;
+    background-color: #eeeeee;
     border-bottom: none !important;
 }
 
