@@ -84,7 +84,6 @@ if (false) {
   }
 }
 
-
 /* ***********************************************
    getUser()
 
@@ -175,7 +174,8 @@ export const getNextModuleSection = ( userRD, currModuleNum, currSectionNum ) =>
   userRD
 ************************************************** */
 export const userRD = ( state = initialState, action ) => {
-    const { type, payload } = action
+  const { type, payload } = action
+
   switch( type ) {
     case AUTH_CHECK_COMPLETE:
       return {...state, authCheckPending: false}
@@ -197,13 +197,13 @@ export const userRD = ( state = initialState, action ) => {
         ...state.user,
         fname: payload,
       }
-      return{...state, user}
+      return {...state, user}
     case LASTNAME_CHANGED:
       let last = {
         ...state.user,
         lname: payload,
       }
-      return{...state, user:last}
+      return {...state, user:last}
     case EMAIL_CHANGED:
       let email = {
         ...state.user,
