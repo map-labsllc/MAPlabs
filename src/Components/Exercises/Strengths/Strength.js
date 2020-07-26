@@ -1,48 +1,15 @@
 import React from "react"
 import PropTypes from "prop-types"
-// import { Button } from "react-bootstrap"
-import { Form, Dropdown, TextArea, Select, Button, Label, Input, Divider } from "semantic-ui-react"
-import "../../CSS/ModalNavButtons.css"
-import { UUID } from "../Utils/UUID"
+import { Form, Button, FormGroup, FormLabel, FormControl } from "react-bootstrap"
+import { UUID } from "../../Utils/UUID"
 
 // legal values for an effect
 export const EFFECT_IMPEDIMENT = "impediment"
 export const EFFECT_EMBODIMENT = "embodiment"
 
-const options = [
-  {
-    key: "0",
-    text: "Appreciation of beauty and excellence",
-    value: "appreciation of beauty and excellence"
-  },
-  { key: "1", text: "Bravery", value: "bravery" },
-  { key: "2", text: "Creativity", value: "creativity" },
-  { key: "3", text: "Curiosity", value: "curiosity" },
-  { key: "4", text: "Fairness", value: "fairness" },
-  { key: "5", text: "Forgiveness", value: "forgiveness" },
-  { key: "6", text: "Gratitude", value: "gratitude" },
-  { key: "7", text: "Honesty", value: "honesty" },
-  { key: "8", text: "Hope", value: "hope" },
-  { key: "9", text: "Humility", value: "humility" },
-  { key: "10", text: "Humor", value: "humor" },
-  { key: "11", text: "Judgment", value: "judgment" },
-  { key: "12", text: "Kindness", value: "kindness" },
-  { key: "13", text: "Leadership", value: "leadership" },
-  { key: "14", text: "Love", value: "love" },
-  { key: "15", text: "Love of learning", value: "love of learning" },
-  { key: "16", text: "Perseverance", value: "perseverance" },
-  { key: "17", text: "Perspective", value: "perspective" },
-  { key: "18", text: "Prudence", value: "prudence" },
-  { key: "19", text: "Self-regulation", value: "self-regulation" },
-  { key: "20", text: "Social intelligence", value: "social intelligence" },
-  { key: "21", text: "Spirituality", value: "spirituality" },
-  { key: "22", text: "Teamwork", value: "teamwork" },
-  { key: "23", text: "Zest", value: "zest" }
-]
-
 const bodimentOpts = [
-  { key: "0", text: "Embodiment", value: "em" },
-  { key: "1", text: "Impediment", value: "im" }
+  { key: "0", text: "Embodiment", value: "embodiment" },
+  { key: "1", text: "Impediment", value: "impediment" }
 ]
 
 /* **************************************************
@@ -70,8 +37,8 @@ const bodimentOpts = [
                   true - render dynamic version <ModalX>
      onUpdateStoreCB() -- callback to update the store
 ***************************************************** */
-export default class StrengthX extends React.Component {
-  uuid = new UUID() // provides unique keys for <StrengthX> components
+export default class Strength extends React.Component {
+  uuid = new UUID() // provides unique keys for <Strength> components
 
   state = {
     isDirty: false,
@@ -80,6 +47,8 @@ export default class StrengthX extends React.Component {
     reflectionsWithKeys: this.uuid.addKeys(this.props.previousData.reflections),
     phrases: [ { reflection:"", effect:"" } ],
   }
+
+  options = this.props.strengths.map((s, key) => ({ key, text: s, value: s }))
 
   // **********************************************
   componentDidMount = () => {
@@ -151,9 +120,8 @@ export default class StrengthX extends React.Component {
   // render!
   render() {
     console.log("Strength::render()")
-    const { strength, reflections } = this.state
-    const { isDynamic } = this.props
-    const { reflectionsWithKeys } = this.state
+    const { strength, reflections, reflectionsWithKeys } = this.state
+    const { isDynamic, strengths } = this.props
 
     console.log("reflectionsWithKeys", reflectionsWithKeys)
     console.log("this.props.previousData", this.props.previousData)
@@ -175,18 +143,25 @@ export default class StrengthX extends React.Component {
       <>
         <Form 
         onSubmit={this.onSubmit} >
-          <Dropdown
-            name="strength"
-            search
+          <FormControl
+            as="select"
+            search="true"
             selection
-            options={options}
             placeholder="Select Strength"
             onChange={this.handleDropChange}
             value={strength}
             style={{ margin: "5px" }}
             onBlur={this.onBlur}
-          />
-          <TextArea 
+          >
+            {strengths.map((value, key) => (
+              <option key={key} value={value}>
+                { value }
+              </option>
+              )
+            )}
+          </FormControl>
+          <FormControl 
+          as="textarea" 
           placeholder="Reflect broadly and generally on this strength." 
           style={{ margin: "10px" }}
           onBlur={this.onBlur}
@@ -196,7 +171,7 @@ export default class StrengthX extends React.Component {
               reflections ? reflections.map((val, idx) => {
               return (
                 <div key={idx} >
-                <Input 
+                <FormControl 
                 fluid
                 className="reflection" 
                 id={idx} 
@@ -205,18 +180,19 @@ export default class StrengthX extends React.Component {
                 onBlur={this.onBlur}
                 style={{ margin: "10px" }}
                 />
-                <Form.Field style={{ margin: "10px" }}>
-                <Label pointing="below" >Define the above sitation by Embodiment (if you were able) or Impediment (if you were unable).</Label>
-                <Select 
+                <FormGroup style={{ margin: "10px" }}>
+                <FormLabel pointing="below" >Define the above sitation by Embodiment (if you were able) or Impediment (if you were unable).</FormLabel>
+                <FormControl 
                 id={idx}
+                as="select"
                 className="select" 
                 options={bodimentOpts} 
                 onChange={(e) => this.handleEIMChange(e, idx)}
                 onBlur={this.onBlur}
                 placeholder="Embodiment or Impendiment" 
                 />
-                </Form.Field>
-                <Divider />
+                </FormGroup>
+                <hr className="divider" />
                 </div>
               )
               }) : null
@@ -237,16 +213,14 @@ export default class StrengthX extends React.Component {
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
-StrengthX.propTypes = {
+Strength.propTypes = {
   question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired
   }).isRequired,
   previousData: PropTypes.object.isRequired,
   isDynamic: PropTypes.bool,
+  strengths: PropTypes.array,
   onUpdateAnswerCB: PropTypes.func // required, injected by <Popup>
 }
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////

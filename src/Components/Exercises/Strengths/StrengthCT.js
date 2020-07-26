@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import StrengthX from './StrengthX'
-import { getAnswers } from '../../store/answers/reducer'
-import { updateAnswersAC } from '../../store/answers/actions'
+import Strength from './Strength'
+import { getAnswers } from '../../../store/answers/reducer'
+import { updateAnswersAC } from '../../../store/answers/actions'
 
 // legal values for the IDX_EFFECT field of the
 export const EFFECT_BROADLY = 'broadly'
@@ -28,6 +28,7 @@ const mapStateToProps = ( state, passedProps ) => {
     number,
     question,
     isDynamic,
+    strengths
   } = passedProps
 
   // validate params
@@ -89,6 +90,7 @@ const mapStateToProps = ( state, passedProps ) => {
     question,
     previousData,
     isDynamic,
+    strengths: state.staticdataRD.strengths
   }
 }
 
@@ -152,4 +154,4 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( StrengthX )
+)( Strength )

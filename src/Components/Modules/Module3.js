@@ -8,7 +8,6 @@ import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import BracketCT from '../Exercises/Bracket/BracketCT'
-import StrengthXCT from '../Exercises/StrengthXCT'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,

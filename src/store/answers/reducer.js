@@ -87,7 +87,7 @@ export const getAnswers = ( state, question_code ) =>
         ...state,
         isLoading: false,
         isError: true,
-        errorMessage: payload || "no error message provided",
+        errorMessage: payload || "Error fetching answers",
       }
 
       // answers for a question were successfully persisted

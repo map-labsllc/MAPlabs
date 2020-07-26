@@ -9,7 +9,7 @@ import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import BracketCT from '../Exercises/Bracket/BracketCT'
-import StrengthXCT from '../Exercises/StrengthXCT'
+import StrengthCT from '../Exercises/Strengths/StrengthCT'
 import ModuleLayout from './ModuleLayout'
 import { MODULES } from './ModuleData'
 
@@ -38,8 +38,6 @@ import {
 ***************************************************** */
 export default class Module4 extends React.Component {
 
-
-
   // Define questions and excercises for Module 4
   // --------------------------------------------------------------------
 
@@ -48,7 +46,7 @@ export default class Module4 extends React.Component {
 
   exercise_410 = (
     <LifeDescriptorsCT
-      question = { { code: 410, text: "Reflect on your current situation" } }
+      question = { { code: 410, text: "" } }
       description = { QUES_410_DESC }
       instructions = "Complete sentences that are important to you:"
     /> )
@@ -118,8 +116,8 @@ export default class Module4 extends React.Component {
   /* *********************************************************** */
 
   strengths_410 = [
-    <StrengthXCT question = { { code: 411, text: "question 411" } } />,
-    <StrengthXCT question = { { code: 412, text: "question 412" } } />,
+    <StrengthCT question = { { code: 411, text: "question 411" } } />,
+    <StrengthCT question = { { code: 412, text: "question 412" } } />,
   ]
 
   exercise_410 = (
@@ -132,36 +130,15 @@ export default class Module4 extends React.Component {
   _module = MODULES.filter(m => m.id === 4)[0]
 
 
-  // -------------------------
-  // Testing Strength
-  // {
-  //   id: 900,
-  //   module_id: 3,
-  //   title: "Developing StrengthCT", // TODO Fix title
-  //   exercise: this.exercise_900
-  // },
-  // strength_900 = [
-  //   <StrengthXCT question = { { code: 901, text: "Enter your first strength" } } />,
-  //   <StrengthXCT question = { { code: 902, text: "Enter your second strength" } } />,
-  // ]
-  // exercise_900 = (
-  //   <QuestionsCT
-  //     questionType = {QUESTION_TYPE_STRENGTH}
-  //     description = "Testing strength components"
-  //     subComponents = {this.strength_900}
-  //   /> )
-
   // interim refactor, needs to be in a DB
   sections =
   [
-    // 4.1.A
     {
       id: 410,
       module_id: 4,
-      title: "Take the VIA Survey of Character Strengths",
+      title: "List your Strengths",
       exercise: this.exercise_410
     },
-    // 4.1.B
     {
       id: 420,
       module_id: 4,
@@ -172,26 +149,32 @@ export default class Module4 extends React.Component {
     {
       id: 430,
       module_id: 4,
-      title: "Breaking and building",
+      title: "Embodiments and Impediments",
       exercise: this.exercise_430
     },
     {
       id: 440,
       module_id: 4,
-      title: "Compare your 'current situation' statement to your 'future desired situation' statement",
+      title: "Top 5 Embodiments of Strength",
       exercise: this.exercise_440
     },
     {
       id: 450,
       module_id: 4,
-      title: "Make tradeoffs within each category",
+      title: "Top 5 Impediments of Strength",
       exercise: this.exercise_450
     },
     {
       id: 460,
       module_id: 4,
-      title: "Synthesize into a Desires Statement",
+      title: "Compare your “Embodiment” themes to your “mpediment” themes.",
       exercise: this.exercise_460
+    },
+    {
+      id: 470,
+      module_id: 4,
+      title: "Breaking and building",
+      exercise: this.exercise_470
     },
   ]
 

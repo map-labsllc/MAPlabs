@@ -7,6 +7,7 @@ import {
 } from './constants'
 
 import { getAnswers } from './reducer'
+import { getUserJwt } from '../user/actions'
 
 const URL = process.env.REACT_APP_DB_URL
 
@@ -36,18 +37,27 @@ export const updateAnswersAC = ( question_code, answers ) => {
    userId
 ******************************************************** */
 export const loadAllAnswersAC = ( userId ) => {
-  // console.log( "loadAllAnswersAC()" )
+  console.log( "loadAllAnswersAC()", userId )
 
   return async dispatch => {
     dispatch( { type: ANSWERS_LOADING } )
-    const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
+    const jwtGetter = getUserJwt()
+    const jwt = await jwtGetter(dispatch)
+
+
     return fetch( `${URL}/answers/${userId}`, {
       headers: {Authorization: `Token: ${jwt}`}
     } )
       .then( response => response.json() )
       .then( ( answers ) => {
-        // console.log("answers", answers)
-        dispatch( { type: ANSWERS_LOAD, payload: answers } )
+        console.log("answers", answers)
+        if (typeof answers === 'string' && answers.match("Error:")){
+          console.log("error detected loading answers")
+          dispatch( { type: ANSWERS_ERROR_DB, payload: answers })
+        }
+        else {
+          dispatch( { type: ANSWERS_LOAD, payload: answers } )
+        }
         return //
       } )
       .catch( ( error ) => {
@@ -82,7 +92,9 @@ export const persistAnswersAC = ( userId, question_code, question_type, answers 
   console.log( "persisting: ", answers )
 
   return async dispatch => {
-    const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
+    const jwtGetter = getUserJwt()
+    const jwt = await jwtGetter(dispatch)
+    
     return fetch( `${URL}/answers/${userId}/${question_code}/${question_type}`, {
         method: 'POST',
         body: JSON.stringify( { answers } ),
