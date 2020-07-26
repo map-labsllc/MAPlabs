@@ -66,7 +66,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
      newAnswers -- array of strings
   ******************************************** */
   function onUpdateStore( newAnswers ) {
-    console.log( `ShortAnswersCT::onUpdate(${newAnswers})` )
+    // console.log( `ShortAnswersCT::onUpdate(${newAnswers})` )
 
     const { question } = passedProps
 
