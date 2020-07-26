@@ -274,7 +274,6 @@ export const signUpUser = ( user ) => {
 
   return async ( dispatch ) => {
 
-      console.log('action signUpUser with ', user)
       //firebase sends back a user but we do not use it here.
       //user and jwt are taken from result of onAuthStateChanged
       await firebase.auth().createUserWithEmailAndPassword( email, password )
@@ -331,7 +330,27 @@ export const userLogout = (  ) => {
         type: LOGOUT,
       } )
     }).catch(function(error) {
-      console.error('logoutUser', error)
+      console.error('logoutUser error', error)
     })
+  }
+}
+
+export const getUserJwt = () => {
+
+  return async ( dispatch ) => {
+    // fresh token
+    await firebase.auth().onAuthStateChanged( async( fireBaseUser ) => {
+      if ( fireBaseUser ) {
+        const jwt = await fireBaseUser.getIdToken()
+        localStorage.setItem('jwt', JSON.stringify( jwt ))
+      }
+      else {
+        dispatch( { type: LOGOUT } )
+      } 
+    })
+
+    // return last token
+    return JSON.parse(localStorage.getItem('jwt'))
+
   }
 }
