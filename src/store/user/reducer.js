@@ -247,7 +247,7 @@ export const userRD = ( state = initialState, action ) => {
       return {...state, user: {}, errorMessage: '' }
     }
     case SIGNUP: {
-      return {...state, loading: true, errorMessage: '' }
+      return {...state, loading: true, message: '', errorMessage: '' }
     }
     case SIGNUP_FAIL: {
       return {...state, loading: false, errorMessage: payload.errorMessage }
