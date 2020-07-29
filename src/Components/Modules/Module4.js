@@ -9,7 +9,7 @@ import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import BracketCT from '../Exercises/Bracket/BracketCT'
-import StrengthCT from '../Exercises/Strengths/StrengthCT'
+import StrengthsCT from '../Exercises/Strengths/StrengthsCT'
 import ModuleLayout from './ModuleLayout'
 import { MODULES } from './ModuleData'
 
@@ -41,16 +41,8 @@ export default class Module4 extends React.Component {
   // Define questions and excercises for Module 4
   // --------------------------------------------------------------------
 
-  // -------------------------
-  // LifeDescriptions
 
-  exercise_410 = (
-    <LifeDescriptorsCT
-      question = { { code: 410, text: "" } }
-      description = { QUES_410_DESC }
-      instructions = "Complete sentences that are important to you:"
-    /> )
-
+// TODO... update with correct exercises...
 
   // -------------------------
   // Narrative
@@ -115,20 +107,14 @@ export default class Module4 extends React.Component {
 
   /* *********************************************************** */
 
-  strengths_410 = [
-    <StrengthCT question = { { code: 411, text: "question 411" } } />,
-    <StrengthCT question = { { code: 412, text: "question 412" } } />,
-  ]
-
   exercise_410 = (
-    <QuestionsCT
-      questionType = { QUESTION_TYPE_STRENGTH }
+    <StrengthsCT
+      question = { { code: 410, text: "Determine your top strengths" } }
       description = { QUES_410_DESC }
-      subComponents = {this.strengths_410}
-    />)
+      instructions = "Add 5 strengths and select the values from the drop down in order from the survey."
+    /> )
 
   _module = MODULES.filter(m => m.id === 4)[0]
-
 
   // interim refactor, needs to be in a DB
   sections =
@@ -136,42 +122,37 @@ export default class Module4 extends React.Component {
     {
       id: 410,
       module_id: 4,
-      title: "List your Strengths",
+      title: "Determine your Top 5 Strengths",
       exercise: this.exercise_410
     },
-    {
-      id: 420,
-      module_id: 4,
-      title: "Top 5 Strengths",
-      exercise: this.exercise_420
-    },
+
     // 
     {
-      id: 430,
+      id: 420,
       module_id: 4,
       title: "Embodiments and Impediments",
       exercise: this.exercise_430
     },
     {
-      id: 440,
+      id: 430,
       module_id: 4,
       title: "Top 5 Embodiments of Strength",
       exercise: this.exercise_440
     },
     {
-      id: 450,
+      id: 440,
       module_id: 4,
       title: "Top 5 Impediments of Strength",
       exercise: this.exercise_450
     },
     {
-      id: 460,
+      id: 450,
       module_id: 4,
       title: "Compare your “Embodiment” themes to your “mpediment” themes.",
       exercise: this.exercise_460
     },
     {
-      id: 470,
+      id: 460,
       module_id: 4,
       title: "Breaking and building",
       exercise: this.exercise_470

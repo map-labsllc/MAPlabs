@@ -8,7 +8,7 @@ export const MOD_4_DESC = `
 `
 
 // TODO... This is needs to be updated
-export const QUES_410_DESC = `Determine your top 5 strengths by taking the  <a href="https://www.authentichappiness.sas.upenn.edu/" target="_blank">VIA Survey of Character Strengths</a>. Enter your top 5 strengths from the cell's drop down menu in the order they are reported in the VIA Survey.`
+export const QUES_410_DESC = `Determine your top 5 strengths by taking the  <a href="https://www.authentichappiness.sas.upenn.edu/" target="_blank">VIA Survey of Character Strengths</a>. Enter your top 5 strengths using the drop down menu in the order they are reported in the VIA Survey.`
 
 
 export const QUES_420_DESC = `Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your current state of mind, state of being, and general assessment of your current condition today as you begin MAPmaker.  Create this description in your own image, capturing how you feel, what you think of your situation, what is good and bad, and how you would describe your current self to your future self.  The goal of this exercise is not only to ground yourself in deep self-reflection and honesty, but also to give you a benchmark of your current condition that you can reference in the future.  So be as honest, thorough, and as descriptive as you can be.`

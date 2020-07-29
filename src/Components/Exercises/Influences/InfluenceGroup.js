@@ -9,7 +9,7 @@ import Influence from './Influence'
 /* **************************************************
    InfluenceGroup component
 
-   Displays a section of influences, map array of <Influence>s
+   Displays a section of influences, map array of <Influences>
 
    state:
      todo: fill this in
