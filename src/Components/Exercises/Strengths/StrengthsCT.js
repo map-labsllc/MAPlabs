@@ -46,7 +46,10 @@ const mapStateToProps = ( state, passedProps ) => {
   // get userId
   const userId = getUser( state.userRD ).user_id
 
-  const strengths = getStrengths(state, question.code)
+  const strengthValues = getStrengths(state, question.code)
+
+  let strengths = strengthValues.map((value, key) => value[0])
+    .reduce((acc, v) => { acc.push(v); return acc }, [])
 
   console.log('StrengthsCT::Strengths: ', strengths)
 
@@ -67,29 +70,12 @@ export function persist( dispatch, question, userId, newStrengths ) {
   // const { question } = passedProps
 
   // store wants 2D array of strings, so map the object into that format
-// TODO FIX
-  const twoDimArrayOfString = []
-  // const groupIds = [GROUP_PERSONAL, GROUP_SOCIAL, GROUP_WIDER]
-  // groupIds.forEach(groupId => {
-  //   newStrengths[groupId].forEach(influence => {
-  //     // don't save unless name was entered
-  //     if (influence.name.trim().length) {
-  //       const record = []
-  //       record[IDX_GROUP]        = groupId
-  //       record[IDX_RELATIONSHIP] = influence.relationship
-  //       record[IDX_NAME]         = influence.name
-  //       record[IDX_BELIEF]       = influence.belief
-  //       record[IDX_IMPACT]       = influence.impact
-  //       record[IDX_SELECTED]     = influence.selected
-  //       twoDimArrayOfString.push(record)
-  //     }
-  //   })
-  // })
 
+  const twoDimArrayOfString = newStrengths.map(str => [str])
+  
+  dispatch( updateAnswersAC( question.code, twoDimArrayOfString ))
   console.log('-------------------- persisting')
   console.log(JSON.stringify(twoDimArrayOfString))
-
-  dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
   dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_STRENGTH, twoDimArrayOfString ) )
 }
 

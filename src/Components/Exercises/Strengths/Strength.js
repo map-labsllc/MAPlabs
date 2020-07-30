@@ -25,44 +25,23 @@ import { Form, FormControl } from "react-bootstrap"
 export default class Strength extends React.Component {
 
   state = {
-    number: this.props.number,
-    isDirty: false,
+    number: this.props.number, // display number
     strength: this.props.strength
   }
 
   options = this.props.strengthOptions.map((s, key) => ({ key, text: s, value: s }))
 
   // **********************************************
-  componentDidMount = () => {
-    console.log(this.props)
-    // add an initial blank entry if there are no previous entries
-    // const { previousData } = this.props
-  }
-
-  // **********************************************
   // tell parent to update data to store
   updateData = () => {
-    console.log(`Strength::updateData()`)
-
     const { onUpdateStoreCB } = this.props
-
-    const newData = {}
-    newData.strength = this.state.strength
-    onUpdateStoreCB(this.state.number, newData)
+    onUpdateStoreCB(this.state.number, this.state.strength)
   }
 
-  onBlur = () => {
-    const { isDirty } = this.state
-    if (isDirty) {
-      this.updateData()
-      this.setState({
-        isDirty: false
-      })
-    }
+  handleChange = async (e) => {
+    await this.setState({ strength: e.target.value })
+    this.updateData() // update parent state
   }
-
-  handleDropChange = (e) => this.setState({ strength: e.target.value })
-
 
   render() {
     const { strength } = this.state
@@ -78,30 +57,23 @@ export default class Strength extends React.Component {
 
     return (
       <>
-        <Form onSubmit={this.onSubmit} >
-          <FormControl
-            as="select"
-            placeholder="Select Strength"
-            onChange={this.handleDropChange}
-            value={strength}
-            onBlur={this.onBlur}
-          >
-            {strengthOptions.map((value, key) => (
-              <option key={key} value={value}>
-                { value }
-              </option>
-              )
-            )}
-          </FormControl>
-        </Form>
+        <FormControl
+          as="select"
+          onChange={this.handleChange}
+          value={strength}
+        >
+          <option>-- select --</option>
+          {strengthOptions.map((value, key) => (
+            <option key={key} value={value}>
+              { value }
+            </option>
+            )
+          )}
+        </FormControl>
       </>
     )
   }
 }
-
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
 
 Strength.propTypes = {
   question: PropTypes.shape({

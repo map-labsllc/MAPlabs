@@ -37,7 +37,7 @@ class Strengths extends React.Component {
 
   state = {
     isDirty: false,
-    strengths: []
+    strengths: this.props.strengths || []
   }
 
   // **********************************************
@@ -51,13 +51,8 @@ class Strengths extends React.Component {
     const { userId, onPersistCB, onCloseModalCB } = this.props
     const { isDirty, strengths } = this.state
 
-    if (isDirty)
-      onPersistCB(
-        userId,
-        {
-          strengths
-        }
-      )
+    console.log("saving strengths", strengths)
+    if (isDirty) onPersistCB(userId, strengths)
 
     onCloseModalCB()
   }
@@ -70,9 +65,8 @@ class Strengths extends React.Component {
   }
 
   // update individual strength in list of strengths
-  updateStrengthCB = (key, value) => {
-    let strengths = [...this.state.strength.slice(0, key), value, ...this.state.strength(key + 1)]
-    console.log(">>>updateStrengthCB", strengths)
+  updateStrengthCB = (index, value) => {
+    let strengths = [...this.state.strengths.slice(0, index), value, ...this.state.strengths.slice(index + 1)]
     this.setState({
       isDirty: true, 
       strengths
@@ -81,12 +75,11 @@ class Strengths extends React.Component {
 
   // **********************************************
   render() {
-    console.log("Strengths::render()")
   
     const { question, instructions, isDynamic } = this.props
 
     const { strengths } = this.state
-    console.log(strengths)
+    console.log("strengths", strengths)
 
     return (
       <>
@@ -96,7 +89,7 @@ class Strengths extends React.Component {
 
             <ol>
               { strengths.map((strength, i) => (
-                <li>
+                <li key={i}>
                   <StrengthCT 
                     number={i}
                     strength={strength}
@@ -110,9 +103,16 @@ class Strengths extends React.Component {
             </ol>
 
             { strengths.length < STRENGTH_LIMIT &&
-              <Button type="button" onClick={this.addStrength}>Add Strength</Button>
+              <>
+                <hr />
+                <div className="text-center">
+                  <Button type="button" onClick={this.addStrength}>Add Strength</Button>
+                </div>
+              </>
             }
-            
+
+
+            <hr />
             <div className="text-center">
               <Button type="button" onClick={this.onclickClose}>Save</Button>
             </div>
@@ -122,10 +122,10 @@ class Strengths extends React.Component {
 
         {!isDynamic && 
           (
-            <ListGroup>
-              {strengths.map(_strength => (
+            <ListGroup className="text-left">
+              {strengths.map((_strength, i) => (
                 <ListGroupItem>
-                  {_strength}
+                  {i + 1}. {_strength}
                 </ListGroupItem>
               ))
               }
@@ -142,7 +142,7 @@ Strengths.propTypes = {
      code: PropTypes.number.isRequired,
      text: PropTypes.string.isRequired,
    } ).isRequired,
-   strength: PropTypes.object.isRequired,
+   strengths: PropTypes.array.isRequired,
    isDynamic: PropTypes.bool,
    onUpdateAnswerCB: PropTypes.func,
 }
