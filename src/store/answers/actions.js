@@ -6,7 +6,6 @@ import {
   ANSWERS_PERSIST,
 } from './constants'
 
-import { getAnswers } from './reducer'
 import { getUserJwt } from '../user/actions'
 
 const URL = process.env.REACT_APP_DB_URL

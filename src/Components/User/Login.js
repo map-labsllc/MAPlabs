@@ -24,8 +24,9 @@ const Login = ({ login_token, errorMessage, loginUser }) => {
             <div className="col-md-3"></div>
             <div className="col-md-6">
               <div className="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label htmlFor="email">Email address</label>
                 <input
+                  name="email"
                   className="form-control"
                   type="email"
                   placeholder="example@email.com"
@@ -43,8 +44,9 @@ const Login = ({ login_token, errorMessage, loginUser }) => {
               <div className="col-md-3"></div>
               <div className="col-md-6">
                 <div className="form-group">
-                    <label>Password</label>
+                    <label htmlFor="password">Password</label>
                     <input
+                      name="password"
                       className="form-control"
                       type= 'password'
                       placeholder='password'

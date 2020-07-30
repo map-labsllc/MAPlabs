@@ -1,12 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import {
-  Nav,
-  NavItem
-} from 'react-bootstrap';
-
 import { connect } from 'react-redux'
-
 
 const SideBar = ( { user }) => (
   <div className="sidebar has-image" data-color="blue" data-image="/assets/img/sidebar-5.jpg">

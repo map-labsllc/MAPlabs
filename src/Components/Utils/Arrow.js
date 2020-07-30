@@ -8,14 +8,12 @@ import { Button } from 'react-bootstrap'
 
    props:
      direction - 'left' or 'right'
-     glyph - 'arrow-left' or 'arrow-right'
      onClickCB
 ***************************************************** */
 const Arrow = ( props ) => {
 
   const {
     direction,
-    glyph,
     onClickCB,
    } = props
 

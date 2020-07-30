@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { signUpUser } from '../../store/user/actions'
 import { Redirect, Link } from 'react-router-dom'
 import FormCard from '../layout/FormCard'
-import { Alert } from 'react-bootstrap'
 
 class SignUp extends Component {
   constructor(props) {
@@ -60,8 +59,9 @@ class SignUp extends Component {
               <div className="col-md-3"></div>
               <div className="col-md-6">
                 <div className="form-group">
-                  <label>First Name</label>
+                  <label htmlFor="fname">First Name</label>
                   <input
+                    name="fname"
                     className="form-control"
                     placeholder='Jane'
                     autoCapitalize="true"
@@ -78,7 +78,7 @@ class SignUp extends Component {
               <div className="col-md-3"></div>
               <div className="col-md-6">
                 <div className="form-group">
-                  <label>Last Name</label>
+                  <label htmlFor="lname">Last Name</label>
                   <input
                     className="form-control"
                     placeholder='Doe'
@@ -95,8 +95,9 @@ class SignUp extends Component {
               <div className="col-md-3"></div>
               <div className="col-md-6">
                 <div className="form-group">
-                  <label for="email">Email address</label>
+                  <label htmlFor="email">Email address</label>
                   <input
+                    name="email"
                     className="form-control"
                     type="email"
                     placeholder="example@email.com"
@@ -114,8 +115,9 @@ class SignUp extends Component {
                 <div className="col-md-3"></div>
                 <div className="col-md-6">
                   <div className="form-group">
-                      <label>Password</label>
+                      <label htmlFor="password">Password</label>
                       <input
+                        name="password"
                         className={this.state.passwordClasses}
                         type= 'password'
                         placeholder='password'
@@ -134,8 +136,9 @@ class SignUp extends Component {
                 <div className="col-md-3"></div>
                 <div className="col-md-6">
                   <div className="form-group">
-                      <label>Verify Password</label>
+                      <label htmlFor="verify_password">Verify Password</label>
                       <input
+                        name="verify_password"
                         className={this.state.passwordClasses}
                         type= 'password'
                         placeholder='verify password'
