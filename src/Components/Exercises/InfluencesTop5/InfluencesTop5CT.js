@@ -158,6 +158,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   newInfluences.forEach(influence => {
     const { name, belief, impact } = influence
     if (impact === impactFilter) {
+      // TODO Fix
       const madlib = `From ${name} I appropriated ${belief}, which makes me feel EMOTION. The effect of this value/belief is that it ${impact} me from PERSONAL_DESIRE because I see myself as IDENTITY_DESCRIPTOR who can/should ACTION_BEHAVIOR so that RESULT. Moving forward, I would like to DESIRED_CHANGE by PERSONAL_INTENTION.`
       if (madlibs.length)
         madlibs += '\n\n'
