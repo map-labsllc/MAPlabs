@@ -10,6 +10,7 @@ import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import BracketCT from '../Exercises/Bracket/BracketCT'
 import StrengthsCT from '../Exercises/Strengths/StrengthsCT'
+import StrengthsEmImCT from '../Exercises/StrengthsEmIm/StrengthsEmImCT'
 import ModuleLayout from './ModuleLayout'
 import { MODULES } from './ModuleData'
 
@@ -41,77 +42,18 @@ export default class Module4 extends React.Component {
   // Define questions and excercises for Module 4
   // --------------------------------------------------------------------
 
-
-// TODO... update with correct exercises...
-
-  // -------------------------
-  // Narrative
-  exercise_420 = (
-    <NarrativeCT
-      question = { { code: 420, text: "Describe your current situation" } }
-      promptQuestionCode = { 410 }
-      description = { QUES_420_DESC }
-      instructions = "Using the phrases you chose, write a full description of your current state of mind, state of being, and general assessment of your current condition today as you begin MAPmaker."
-    /> )
-
-  // -------------------------
-  // Transitions
-
-  transitions_430 = [
-    <TransitionsCT question = { { code: 431, text: "Thoughts/Attitudes" } } />,
-    <TransitionsCT question = { { code: 432, text: "Behaviors/Actions" } } />,
-  ]
-  exercise_430 = (
-    <QuestionsCT
-      description = { QUES_430_DESC }
-      subComponents = {this.transitions_430}
-    /> )
-
-
-  // -------------------------
-  // ShortAnswers
-
-  shortAnswers_440 = [
-    <ShortAnswersCT question = { { code: 441, text: "Which core feelings and experiences are most important to providing you with personal senses of the meaning in your life?" } } />,
-    <ShortAnswersCT question = { { code: 442, text: "List the most important overarching themes that impact how meaningful and purposeful your life is." } } />,
-  ]
-  exercise_440 = (
-    <QuestionsCT
-      description = { QUES_440_DESC }
-      subComponents = {this.shortAnswers_440}
-    /> )
-
-  // -------------------------
-  // Bracket
-
-  brackets_450 = [
-    <BracketCT promptQuestionCodes = { [ 441 ] }  question = { { code: 451, text: "Financial/Material" } } />,
-    <BracketCT promptQuestionCodes = { [ 442 ] }  question = { { code: 452, text: "Vocation/Career/Life Work" } } />,
-  ]
-  exercise_450 = (
-    <QuestionsCT
-      description = {QUES_450_DESC}
-      subComponents = {this.brackets_450}
-    /> )
-
-  // ---------------------------
-  // Narrative
-
-  exercise_460 = (
-    <NarrativeCT
-      question = { { code: 460, text: "Synthesize into a Desires Statement." } }
-      promptQuestionCode = { 451 }
-      description = { QUES_460_DESC }
-      instructions = "Write a short statement that brings together all the desires from each category and captures the essence of what this exercise has revealed to you using the phrases themselves. Note:  If there were desires that reached the final tradeoff round in Exercise 3 that are also really important, feel free to incorporate them as well. "
-    /> )
-
-  /* *********************************************************** */
-
   exercise_410 = (
     <StrengthsCT
       question = { { code: 410, text: "Determine your top strengths" } }
       description = { QUES_410_DESC }
       instructions = "Add 5 strengths and select the values from the drop down in order from the survey."
+    /> )
+
+  exercise_420 = (
+    <StrengthsEmImCT
+      question = { { code: 420, text: "Embodiments and Impediments" } }
+      description = { QUES_420_DESC }
+      instructions = "Determine your embodiments and impediments for your each of your strengths."
     /> )
 
   _module = MODULES.filter(m => m.id === 4)[0]
@@ -125,37 +67,35 @@ export default class Module4 extends React.Component {
       title: "Determine your Top 5 Strengths",
       exercise: this.exercise_410
     },
-
-    // 
     {
       id: 420,
       module_id: 4,
       title: "Embodiments and Impediments",
-      exercise: this.exercise_430
+      exercise: this.exercise_420
     },
     {
       id: 430,
       module_id: 4,
       title: "Top 5 Embodiments of Strength",
-      exercise: this.exercise_440
+      exercise: this.exercise_430
     },
     {
       id: 440,
       module_id: 4,
       title: "Top 5 Impediments of Strength",
-      exercise: this.exercise_450
+      exercise: this.exercise_440
     },
     {
       id: 450,
       module_id: 4,
-      title: "Compare your “Embodiment” themes to your “mpediment” themes.",
-      exercise: this.exercise_460
+      title: "Compare your “embodiment” themes to your “impediment” themes.",
+      exercise: this.exercise_450
     },
     {
       id: 460,
       module_id: 4,
       title: "Breaking and building",
-      exercise: this.exercise_470
+      exercise: this.exercise_460
     },
   ]
 

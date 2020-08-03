@@ -124,7 +124,7 @@ class Strengths extends React.Component {
           (
             <ListGroup className="text-left">
               {strengths.map((_strength, i) => (
-                <ListGroupItem>
+                <ListGroupItem key={i}>
                   {i + 1}. {_strength}
                 </ListGroupItem>
               ))
