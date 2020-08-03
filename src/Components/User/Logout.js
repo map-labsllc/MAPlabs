@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -7,19 +7,17 @@ import { PropTypes } from 'prop-types'
 import FormCard from '../layout/FormCard'
 import { userLogout } from '../../store/user/actions'
 import { createBrowserHistory } from 'history';
-import { Redirect } from 'react-router-dom'
 
 export const browserHistory = createBrowserHistory();
 
 const Logout = ({ user, userLogout }) => {
   const [loggedOut, setLoggedout] = useState(!(user && user.login_token));
 
-  useEffect(() => handleLogout())
- 
   const handleLogout = (e) => {
-    if (e) e.preventDefault();
+    e.preventDefault();
 
     userLogout().then(() => {
+      console.log('redirect to /')
       setLoggedout(true)
     })
 
@@ -27,7 +25,9 @@ const Logout = ({ user, userLogout }) => {
 
   return (
     loggedOut ?
-      <Redirect to="/" />
+      <div className="alert alert-info">
+        You have been successfully logged out.
+      </div>
       :
       <FormCard title="Logout">
         <Button className="btn btn-primary" onClick={handleLogout}>Sign Out</Button>
