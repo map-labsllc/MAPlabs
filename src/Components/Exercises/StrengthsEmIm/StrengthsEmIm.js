@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Form, FormControl, Dropdown, Button, FormLabel, FormGroup } from "react-bootstrap"
+import { Form, FormControl, Dropdown, Button, FormLabel, FormGroup, Container, Col, Row } from "react-bootstrap"
 import { UUID } from "../../Utils/UUID"
 
 // legal values for an effect
@@ -121,7 +121,7 @@ export default class StrengthEmim extends React.Component {
 
     const options= [] // TODO FIX...display each strength already determined in previous exercise
     return (
-      <>
+      <Container>
         <Form 
         onSubmit={this.onSubmit} >
           {/* <Dropdown
@@ -139,32 +139,37 @@ export default class StrengthEmim extends React.Component {
               /* if (reflections.length > 0) */
               reflections ? reflections.map((val, idx) => {
               return (
-                <div key={idx} >
-                <FormControl 
-                fluid="true"
-                className="reflection" 
-                id={idx} 
-                placeholder='Write about a situation where you were able or unable to use this strength.' 
-                onChange={this.handlePhraseChange}
-                onBlur={this.onBlur}
-                style={{ margin: "10px" }}
-                />
-                <FormGroup style={{ margin: "10px" }}>
-                  <FormLabel pointing="below" >Define the above sitation by Embodiment (if you were able) or Impediment (if you were unable).</FormLabel>
+                <Row key={idx} >
+                  <Col md={10}>
+                    <FormControl 
+                      as="textarea"
+                      fluid="true"
+                      className="reflection" 
+                      id={idx} 
+                      placeholder='Write about a situation where you were able or unable to use this strength.' 
+                      onChange={this.handlePhraseChange}
+                      onBlur={this.onBlur}
+                      style={{ margin: "10px" }}
+                    />
+                  </Col>
+ 
+                  <Col md={2}>
+                    <FormGroup style={{ margin: "10px" }}>
+                      <FormLabel pointing="below" >Define the above sitation by Embodiment (if you were able) or Impediment (if you were unable).</FormLabel>
 
-                  <FormControl
-                  as="select" 
-                  id={idx} 
-                  onChange={(e) => this.handleEIMChange(e, idx)}
-                  placeholder="Embodiment or Impendiment" 
-                  >
-                  <option>-- select --</option>
-                  <option key={EFFECT_EMBODIMENT} value={EFFECT_EMBODIMENT}>{EFFECT_EMBODIMENT}</option>
-                  <option key={EFFECT_IMPEDIMENT} value={EFFECT_IMPEDIMENT}>{EFFECT_IMPEDIMENT}</option>
-                  </FormControl>
-                </FormGroup>
-                <hr />
-                </div>
+                      <FormControl
+                      as="select" 
+                      id={idx} 
+                      onChange={(e) => this.handleEIMChange(e, idx)}
+                      placeholder="Embodiment or Impendiment" 
+                      >
+                      <option>-- select --</option>
+                      <option key={EFFECT_EMBODIMENT} value={EFFECT_EMBODIMENT}>{EFFECT_EMBODIMENT}</option>
+                      <option key={EFFECT_IMPEDIMENT} value={EFFECT_IMPEDIMENT}>{EFFECT_IMPEDIMENT}</option>
+                      </FormControl>
+                    </FormGroup>
+                  </Col>
+                </Row>
               )
               }) : null
             }
@@ -175,7 +180,7 @@ export default class StrengthEmim extends React.Component {
           Add Reflection
           </Button>
         </Form>
-      </>
+      </Container>
     )
   }
 }

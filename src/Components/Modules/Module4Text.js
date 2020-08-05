@@ -11,7 +11,7 @@ export const MOD_4_DESC = `
 export const QUES_410_DESC = `Determine your top 5 strengths by taking the  <a href="https://www.authentichappiness.sas.upenn.edu/" target="_blank">VIA Survey of Character Strengths</a>. Enter your top 5 strengths using the drop down menu in the order they are reported in the VIA Survey.`
 
 
-export const QUES_420_DESC = `For each strength write a simple word or phrase that describes embodiment or impediment for that strength. List as many as you'd like for each.`
+export const QUES_420_DESC = `For each strength write a simple word or phrase that describes embodiment or impediment for that strength. List as many as you'd like for each. Define each sitation as an Embodiment (if you were able) or Impediment (if you were unable).`
 
 
 export const QUES_430_DESC = `List only your most important 5 embodiments from the previous exercise`
