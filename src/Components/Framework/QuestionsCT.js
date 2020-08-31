@@ -59,7 +59,9 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     console.log( `QuestionsCT::onCloseModal()` )
 
     const { onCloseModalCB } = passedProps
-    onCloseModalCB()
+    if (onCloseModalCB) {
+      onCloseModalCB()
+    }
   }
 
   /* *****************************************

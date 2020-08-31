@@ -4,13 +4,10 @@ import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
-import LifeDescriptorsCT from '../Exercises/LifeDescriptors/LifeDescriptorsCT'
-import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
-import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
-import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
-import BracketCT from '../Exercises/Bracket/BracketCT'
 import StrengthsCT from '../Exercises/Strengths/StrengthsCT'
-import StrengthsEmImCT from '../Exercises/StrengthsEmIm/StrengthsEmImCT'
+import StrengthsEmImWrapperCT from '../Exercises/StrengthsEmIm/StrengthsEmImWrapperCT'
+
+// import StrengthsEmImCT from '../Exercises/StrengthsEmIm/StrengthsEmImCT'
 import ModuleLayout from './ModuleLayout'
 import { MODULES } from './ModuleData'
 
@@ -50,10 +47,9 @@ export default class Module4 extends React.Component {
     /> )
 
   exercise_420 = (
-    <StrengthsEmImCT
-      question = { { code: 420, text: "Embodiments and Impediments" } }
+    <StrengthsEmImWrapperCT
+      question = { { code: 410, text: "Embodiments and Impediments" } }
       description = { QUES_420_DESC }
-      instructions = "Determine your embodiments and impediments for your each of your strengths."
     /> )
 
   _module = MODULES.filter(m => m.id === 4)[0]

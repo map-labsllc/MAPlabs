@@ -191,7 +191,6 @@ export const setPersistedUser = ( fireBaseUser ) => {
   return async ( dispatch ) => {
     const jwt = await fireBaseUser.getIdToken()
 
-    console.log("setting persisted user with", jwt)
     await fetch( `${URL}/users/`, {
       method:"GET",
       headers: {

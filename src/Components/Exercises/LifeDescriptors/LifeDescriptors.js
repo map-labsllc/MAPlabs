@@ -82,7 +82,6 @@ export default class LifeDescriptors extends Component {
       User clicked Close button, update store and persist aOrB_Selections
   ************************************************* */
   onclickClose = () => {
-
     const {
       userId,
       lifeDescriptors,
@@ -157,8 +156,6 @@ export default class LifeDescriptors extends Component {
     // Static version of the exercise
     // ------------------------------
     if ( !isDynamic ) {
-      
-
       // display the previous answers
       return (
         previousAnswers.length ? 
@@ -182,10 +179,10 @@ export default class LifeDescriptors extends Component {
     const startIdx = page * NUM_PER_PAGE
     const endIdx = Math.min( ( ( page + 1 ) * NUM_PER_PAGE ), lifeDescriptors.length )
 
-    console.log('pages', page, 'of', lifeDescriptors.length/NUM_PER_PAGE)
-    console.log('indexes to show', startIdx, endIdx)
-    console.log('descriptors length', lifeDescriptors.length)
-    console.log(startIdx/lifeDescriptors.length)
+    // console.log('pages', page, 'of', lifeDescriptors.length/NUM_PER_PAGE)
+    // console.log('indexes to show', startIdx, endIdx)
+    // console.log('descriptors length', lifeDescriptors.length)
+    // console.log(startIdx/lifeDescriptors.length)
 
     for ( let i = startIdx ; i < endIdx ; i++ ) {
       thisPage.push( (

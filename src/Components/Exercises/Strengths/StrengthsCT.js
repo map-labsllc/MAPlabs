@@ -67,10 +67,6 @@ const mapStateToProps = ( state, passedProps ) => {
 export function persist( dispatch, question, userId, newStrengths ) {
   console.log( `StrengthsCT::persist( ${newStrengths} )` )
 
-  // const { question } = passedProps
-
-  // store wants 2D array of strings, so map the object into that format
-
   const twoDimArrayOfString = newStrengths.map(str => [str])
   
   dispatch( updateAnswersAC( question.code, twoDimArrayOfString ))

@@ -43,7 +43,6 @@ export const loadAllAnswersAC = ( userId ) => {
     const jwtGetter = getUserJwt()
     const jwt = await jwtGetter(dispatch)
 
-
     return fetch( `${URL}/answers/${userId}`, {
       headers: {Authorization: `Token: ${jwt}`}
     } )

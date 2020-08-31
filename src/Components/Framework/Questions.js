@@ -126,13 +126,11 @@ export default class Questions extends React.Component {
       )
     } )
 
-    // NOTE: The <div key = {idx}> tag is used to suppress React warning about
-    //       elements needing a unique key.
     return (
       <>
         {subComponentsWithIsDynamic.map( ( subComponent, idx ) => (
           <div key={idx}>
-            {( idx === currIdx ) && (
+            {( idx === currIdx ) && ( 
               <>
                 {subComponent}
               </>
@@ -143,9 +141,15 @@ export default class Questions extends React.Component {
         <br />
 
         <div className="bgButton text-center">
-          <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>{' '}
+          {currIdx > 0 && 
+            <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>
+          }
+
           <Button className="closeButton" type="button" onClick={this.onclickClose}>Save</Button>
-          <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
+
+          {currIdx < subComponentsWithIsDynamic.length - 1 && 
+            <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
+          }
         </div>
       </>
     )

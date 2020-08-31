@@ -33,7 +33,7 @@ export default class StrengthEmim extends React.Component {
 
   state = {
     isDirty: false,
-    strength: this.props.previousData.strength,
+    strength: this.props.strength,
     reflectionsWithKeys: this.uuid.addKeys(this.props.previousData.reflections),
     phrases: [ { reflection:"", effect:"" } ],
   }
@@ -64,21 +64,16 @@ export default class StrengthEmim extends React.Component {
   handleDropChange = (e, { value }) => this.setState({ strength: value })
 
   addReflection = () => {
-    if(this.state.reflections){
+    let reflections = this.state.reflections || []
     this.setState((prevState) => ({
-      reflections: [ ...prevState.reflections, { reflection: "", effect: "" } ],
+      reflections: [ ...reflections, { reflection: "", effect: "", id: reflections.length } ],
     }));
-  } else {
-    this.setState((prevState) => ({
-      reflections: [ { reflection: "", effect: "" } ],
-    }));
-  }
   }
 
-  handlePhraseChange = (e) => {
-    console.log(this.state)
+  handlePhraseChange = (e, idx) => {
     let reflections = [...this.state.reflections]
-    reflections[e.target.id].reflection = e.target.value
+    
+    reflections[idx].reflection = e.target.value
     this.setState((prevState) => ({
       isDirty: true, 
       reflections 
@@ -98,9 +93,9 @@ export default class StrengthEmim extends React.Component {
   // **********************************************
   // render!
   render() {
-    console.log("Strength::render()")
-    const { strength, reflections } = this.state
-    const { number, question, isDynamic } = this.props
+    console.log("StrengthsEmIm::render()")
+    const { reflections } = this.state
+    const { strength, number, question, isDynamic } = this.props
     const { reflectionsWithKeys } = this.state
 
     console.log("reflectionsWithKeys", reflectionsWithKeys)
@@ -109,76 +104,59 @@ export default class StrengthEmim extends React.Component {
     if (!isDynamic) {
       return (
         <>
-          <p>STATIC data, should call Phrases components so they can render</p>
-          <p>this.state:</p>
-          <p>- strength: {this.state.strength}</p>
-          <p>- broadly: {this.state.broadly}</p>
-          <p>- reflections: </p>
-          <p>{JSON.stringify(this.state.reflectionsWithKeys)}</p>
+        { this.state.reflectionsWithKeys.map(reflection => (
+            <Row>
+              <Col>{ reflection.item.reflection }</Col>
+              <Col>{ reflection.item.effect }</Col> 
+            </Row>
+          ))
+        }
         </>
       )
     }
 
-    const options= [] // TODO FIX...display each strength already determined in previous exercise
+    const options= []
+
     return (
       <Container>
-        <Form 
-        onSubmit={this.onSubmit} >
-          {/* <Dropdown
-            name="strength"
-            search
-            selection
-            options={options}
-            placeholder="Select Strength"
-            onChange={this.handleDropChange}
-            value={strength}
-            style={{ margin: "5px" }}
-            onBlur={this.onBlur}
-          /> */}
-            { 
-              /* if (reflections.length > 0) */
-              reflections ? reflections.map((val, idx) => {
+        <h3>{ strength }</h3>
+        <Form onSubmit={this.onSubmit} >
+          <Container >
+            { reflections ? reflections.map((val, idx) => {
               return (
-                <Row key={idx} >
-                  <Col md={10}>
+                <FormGroup as={Row}>
+                  <Col md={6}>
                     <FormControl 
                       as="textarea"
-                      fluid="true"
-                      className="reflection" 
                       id={idx} 
                       placeholder='Write about a situation where you were able or unable to use this strength.' 
-                      onChange={this.handlePhraseChange}
+                      onChange={(e) => this.handlePhraseChange(e, idx)}
                       onBlur={this.onBlur}
-                      style={{ margin: "10px" }}
                     />
                   </Col>
- 
                   <Col md={2}>
-                    <FormGroup style={{ margin: "10px" }}>
-                      <FormLabel pointing="below" >Define the above sitation by Embodiment (if you were able) or Impediment (if you were unable).</FormLabel>
-
-                      <FormControl
+                    <FormControl
+                      column
+                      md={2}
                       as="select" 
-                      id={idx} 
                       onChange={(e) => this.handleEIMChange(e, idx)}
                       placeholder="Embodiment or Impendiment" 
-                      >
+                    >
                       <option>-- select --</option>
                       <option key={EFFECT_EMBODIMENT} value={EFFECT_EMBODIMENT}>{EFFECT_EMBODIMENT}</option>
                       <option key={EFFECT_IMPEDIMENT} value={EFFECT_IMPEDIMENT}>{EFFECT_IMPEDIMENT}</option>
-                      </FormControl>
-                    </FormGroup>
+                    </FormControl>                                     
                   </Col>
-                </Row>
+                </FormGroup>
               )
               }) : null
             }
-          <Button 
-          onClick={this.addReflection}
-          style={{ margin: "10px" }}
-          >
-          Add Reflection
+          </Container>
+
+          <Button onClick={this.addReflection} >
+            Add Reflection
           </Button>
+
         </Form>
       </Container>
     )
