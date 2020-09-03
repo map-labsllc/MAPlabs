@@ -86,7 +86,7 @@ export const loadAllAnswersAC = ( userId ) => {
                 [ [ "narrative" ] ]
 ******************************************************** */
 export const persistAnswersAC = ( userId, question_code, question_type, answers ) => {
-  console.log( `persistAnswersAC(${question_code})` )
+  console.log( `persistAnswersAC(${question_code}, ${question_type})` )
   console.log( "persisting: ", answers )
 
   return async dispatch => {

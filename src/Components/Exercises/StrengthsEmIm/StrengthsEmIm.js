@@ -35,7 +35,7 @@ export default class StrengthEmim extends React.Component {
     isDirty: false,
     strength: this.props.strength,
     reflectionsWithKeys: this.uuid.addKeys(this.props.previousData.reflections),
-    phrases: [ { reflection:"", effect:"" } ],
+    phrases: [ { reflection: "", effect: "" } ],
   }
 
   // **********************************************
@@ -61,8 +61,6 @@ export default class StrengthEmim extends React.Component {
     }
   }
 
-  handleDropChange = (e, { value }) => this.setState({ strength: value })
-
   addReflection = () => {
     let reflections = this.state.reflections || []
     this.setState((prevState) => ({
@@ -78,6 +76,8 @@ export default class StrengthEmim extends React.Component {
       isDirty: true, 
       reflections 
     }))
+    this.updateData()
+
   }
 
   handleEIMChange = (e, idx) => {
@@ -87,6 +87,7 @@ export default class StrengthEmim extends React.Component {
       isDirty: true,
       reflections 
     }))
+    this.updateData()
   }
 
 
@@ -136,10 +137,9 @@ export default class StrengthEmim extends React.Component {
                   </Col>
                   <Col md={2}>
                     <FormControl
-                      column
-                      md={2}
                       as="select" 
                       onChange={(e) => this.handleEIMChange(e, idx)}
+                      onBlur={this.onBlur}
                       placeholder="Embodiment or Impendiment" 
                     >
                       <option>-- select --</option>

@@ -4,6 +4,7 @@ import { UUID } from "../../Utils/UUID"
 import StrengthsEmImCT from "./StrengthsEmImCT"
 import QuestionsCT from "../../Framework/QuestionsCT"
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
+import { QUESTION_TYPE_STRENGTH } from "../../../store/answers/constants"
 
 /* **************************************************
    Strength component
@@ -57,7 +58,8 @@ export default class StrengthsEmImWrapper extends React.Component {
       // previous/next wrapper for each strength
       <QuestionsCT
         question={question}
-        onCloseModalCB={onUpdateStoreCB}
+        questionType={QUESTION_TYPE_STRENGTH}
+        onCloseModalCB={() => {}} 
         subComponents={EmImReflections}
         isDynamic={true}
       />

@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
 import StrengthsEmImWrapper from './StrengthsEmImWrapper'
 import { getAnswers } from '../../../store/answers/reducer'
-import { updateAnswersAC } from '../../../store/answers/actions'
+import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
+import { QUESTION_TYPE_STRENGTH } from '../../../store/answers/constants'
 
 // legal values for the IDX_EFFECT field of the
 export const EFFECT_BROADLY = 'broadly'
@@ -54,11 +55,12 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
      newTransitions -- array of transitinos
   ******************************************** */
   function onUpdateStore( newData ) {
-    console.log( `StrengthsEmImCT::onUpdate(${newData})` )
+    console.log( `StrengthsEmImCT::onUpdate`, newData )
 
-    const { question } = passedProps
+    const { question, userId } = passedProps
 
     // store wants 2D array of strings, so map newData into that format
+    // NOTE: this is super crappy
     const twoDimArrayOfString = []
 
     if (newData.strength) {
@@ -75,6 +77,9 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
     // update store
     dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
+    // save
+    //dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_STRENGTH, twoDimArrayOfString ) )
+
   }
 
   /* *****************************************
