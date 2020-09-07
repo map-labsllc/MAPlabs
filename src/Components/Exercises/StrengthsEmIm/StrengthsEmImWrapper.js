@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { UUID } from "../../Utils/UUID"
 import StrengthsEmImCT from "./StrengthsEmImCT"
 import QuestionsCT from "../../Framework/QuestionsCT"
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
@@ -19,7 +18,6 @@ import { QUESTION_TYPE_STRENGTH } from "../../../store/answers/constants"
      onUpdateStoreCB() -- callback to update the store
 ***************************************************** */
 export default class StrengthsEmImWrapper extends React.Component {
-  uuid = new UUID() // provides unique keys for <StrengthsEmImWrapper> components
 
   state = {
     strengths: this.props.strengths,

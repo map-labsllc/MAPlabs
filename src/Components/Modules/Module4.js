@@ -47,6 +47,8 @@ export default class Module4 extends React.Component {
     /> )
 
   exercise_420 = (
+    // note, this exercise is child of 410, so answers are stored there
+    // this could be fixed with a better DB structure
     <StrengthsEmImWrapperCT
       question = { { code: 410, text: "Embodiments and Impediments" } }
       description = { QUES_420_DESC }

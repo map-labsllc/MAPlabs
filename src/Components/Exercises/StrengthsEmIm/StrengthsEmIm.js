@@ -29,12 +29,10 @@ export const EFFECT_EMBODIMENT = "embodiment"
      onUpdateStoreCB() -- callback to update the store
 ***************************************************** */
 export default class StrengthEmim extends React.Component {
-  uuid = new UUID() // provides unique keys for <StrengthEmim> components
-
   state = {
     isDirty: false,
     strength: this.props.strength,
-    reflectionsWithKeys: this.uuid.addKeys(this.props.previousData.reflections),
+    reflections: this.props.previousData.reflections,
     phrases: [ { reflection: "", effect: "" } ],
   }
 
@@ -47,7 +45,8 @@ export default class StrengthEmim extends React.Component {
 
     const newData = {}
     newData.strength = this.state.strength
-    newData.reflections = this.uuid.stripKeys(this.state.reflectionsWithKeys)
+    newData.reflections = this.state.reflections
+
     onUpdateStoreCB(newData)
   }
 
@@ -77,7 +76,6 @@ export default class StrengthEmim extends React.Component {
       reflections 
     }))
     this.updateData()
-
   }
 
   handleEIMChange = (e, idx) => {
@@ -97,18 +95,17 @@ export default class StrengthEmim extends React.Component {
     console.log("StrengthsEmIm::render()")
     const { reflections } = this.state
     const { strength, number, question, isDynamic } = this.props
-    const { reflectionsWithKeys } = this.state
 
-    console.log("reflectionsWithKeys", reflectionsWithKeys)
+    console.log("reflections", reflections)
     console.log("this.props.previousData", this.props.previousData)
 
     if (!isDynamic) {
       return (
         <>
-        { this.state.reflectionsWithKeys.map(reflection => (
-            <Row>
-              <Col>{ reflection.item.reflection }</Col>
-              <Col>{ reflection.item.effect }</Col> 
+        { reflections.map((reflection, idx) => (
+            <Row key={idx}>
+              <Col>{ reflection.reflection }</Col>
+              <Col>{ reflection.effect }</Col> 
             </Row>
           ))
         }
@@ -123,13 +120,14 @@ export default class StrengthEmim extends React.Component {
         <h3>{ strength }</h3>
         <Form onSubmit={this.onSubmit} >
           <Container >
-            { reflections ? reflections.map((val, idx) => {
+            { reflections ? reflections.map((reflection, idx) => {
               return (
-                <FormGroup as={Row}>
+                <FormGroup as={Row} key={idx}>
                   <Col md={6}>
                     <FormControl 
                       as="textarea"
-                      id={idx} 
+                      id={idx}
+                      value={reflection.phrase}
                       placeholder='Write about a situation where you were able or unable to use this strength.' 
                       onChange={(e) => this.handlePhraseChange(e, idx)}
                       onBlur={this.onBlur}
@@ -141,6 +139,7 @@ export default class StrengthEmim extends React.Component {
                       onChange={(e) => this.handleEIMChange(e, idx)}
                       onBlur={this.onBlur}
                       placeholder="Embodiment or Impendiment" 
+                      value={reflection.effect}
                     >
                       <option>-- select --</option>
                       <option key={EFFECT_EMBODIMENT} value={EFFECT_EMBODIMENT}>{EFFECT_EMBODIMENT}</option>

@@ -3,10 +3,6 @@ import StrengthsEmIm from './StrengthsEmIm'
 import { getAnswers } from '../../../store/answers/reducer'
 import { updateAnswersAC } from '../../../store/answers/actions'
 
-// legal values for the IDX_EFFECT field of the
-export const EFFECT_BROADLY = 'broadly'
-
-
 // indexes into the data structure coming from the store
 const IDX_STRENGTH = 0
 const IDX_PHRASE = 1
@@ -26,20 +22,21 @@ const mapStateToProps = ( state, passedProps ) => {
     number,
     question,
     isDynamic,
+    strength
   } = passedProps
 
   // validate params
   if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
   // get previous data, if any
-  const answerRecords = getAnswers( state.answersRD, question.code )
+  const answerRecords = getAnswers( state.answersRD, question.code ).filter((answer => answer[0] === strength))
   console.log( `getAnswers(${question.code}): `, answerRecords )
 
   // data structure to pass down in props
   const previousData = {
     strength: "",
     reflections: [],  // array of objects in form { reflection: "str", effect: "impediment/embodiment" }
-    }
+  }
 
   // translate data from the 2D array of strings to
   //   the object structure to pass down as prop to <Strength>
@@ -51,12 +48,11 @@ const mapStateToProps = ( state, passedProps ) => {
 
     // check that each record has the same strength
     if (!answerRecords.every(record => record[0] === previousData.strength)) {
-      console.log("ERROR, question.code:", question.code, "records should all have the same strength")
+      console.error("ERROR, question.code:", question.code, "records should all have the same strength")
     }
 
     // REFLECTIONS array
     // ----------------
-
     const reflections = []
     for (let i = 1; i < answerRecords.length; i++) {
       reflections.push({
@@ -83,8 +79,8 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
   /* *****************************************
      onUpdateStore()
-     Save the new transitions to store.  Does NOT persist.
-     newTransitions -- array of transitinos
+     Save to store.  Does NOT persist.
+     
   ******************************************** */
   function onUpdateStore( newData ) {
     console.log( `StrengthsEmImCT::onUpdate(${newData})` )
