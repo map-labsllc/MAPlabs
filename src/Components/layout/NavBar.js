@@ -19,7 +19,7 @@ class NavBar extends React.Component {
   ************************************************** */
   loadUserData = (dispatch, user) => {
     // asynch calls to load user data from db
-    dispatch( loadAllAnswersAC( user.user_id ) )
+    dispatch( loadAllAnswersAC( user.id ) )
   }
 
   /* ***********************************************

@@ -30,7 +30,7 @@ const mapStateToProps = ( state, passedProps ) => {
     isDynamic,
     onCloseModalCB } = passedProps
   const { lifeDescriptors } = state.staticdataRD
-  const userId = getUser( state.userRD ).user_id
+  const userId = getUser( state.userRD ).id
 
   // find previous answers, if any, to display when static
   const answers = getAnswers( state.answersRD, question.code )

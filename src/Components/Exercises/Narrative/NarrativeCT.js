@@ -25,7 +25,7 @@ const mapStateToProps = ( state, passedProps ) => {
   if ( !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
   // get userId
-  const userId = getUser( state.userRD ).user_id
+  const userId = getUser( state.userRD ).id
 
   // find prompts, if any
   let prompts = []

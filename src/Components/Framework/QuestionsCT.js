@@ -80,7 +80,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
       const store = getStore()
       const { questionType } = passedProps
-      const userId = getUser( store.userRD ).user_id
+      const userId = getUser( store.userRD ).id
       const twoDimArrayOfString = getAnswers( store.answersRD, question.code )
 
       dispatch( persistAnswersAC( userId, question.code, questionType, twoDimArrayOfString ) )

@@ -46,7 +46,7 @@ const persistCurrModuleAndSection = ( dispatch, user, moduleNum, sectionNum ) =>
 
   const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
 
-  return fetch( `${URL}/users/${user.user_id}`, {
+  return fetch( `${URL}/users/${user.id}`, {
       method: 'PATCH',
       body: JSON.stringify( body ),
       headers: {

@@ -44,7 +44,7 @@ const mapStateToProps = ( state, passedProps ) => {
   if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
   // get userId
-  const userId = getUser( state.userRD ).user_id
+  const userId = getUser( state.userRD ).id
 
   const strengthValues = getStrengths(state, question.code)
 
