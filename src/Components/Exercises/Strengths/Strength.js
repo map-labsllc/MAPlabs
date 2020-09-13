@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Form, FormControl } from "react-bootstrap"
-
+import { listIdToValue } from "../../../store/lists/actions"
 
 /* **************************************************
    Strength component
@@ -29,8 +29,6 @@ export default class Strength extends React.Component {
     strength: this.props.strength
   }
 
-  options = this.props.strengthOptions.map((s, key) => ({ key, text: s, value: s }))
-
   // **********************************************
   // tell parent to update data to store
   updateData = () => {
@@ -47,10 +45,11 @@ export default class Strength extends React.Component {
     const { strength } = this.state
     const { isDynamic, strengthOptions } = this.props
 
+    let strengthValue = listIdToValue(strengthOptions, strength)
     if (!isDynamic) {
       return (
         <>
-          {strength}
+          {strengthValue}
         </>
       )
     }
@@ -63,9 +62,9 @@ export default class Strength extends React.Component {
           value={strength}
         >
           <option>-- select --</option>
-          {strengthOptions.map((value, key) => (
-            <option key={key} value={value}>
-              { value }
+          {strengthOptions.map(option => (
+            <option key={option.id} value={option.id}>
+              { option.value }
             </option>
             )
           )}

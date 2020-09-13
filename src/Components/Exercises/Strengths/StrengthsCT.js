@@ -60,6 +60,7 @@ const mapStateToProps = ( state, passedProps ) => {
     strengths,
     isDynamic,
     onCloseModalCB,
+    strengthOptions: state.listsRD.lists.strengths
   }
 }
 

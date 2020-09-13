@@ -4,6 +4,7 @@ import {
   Button, ListGroup, ListGroupItem
 } from 'react-bootstrap'
 import StrengthCT from './StrengthCT'
+import { listIdToValue } from "../../../store/lists/actions"
 
 const STRENGTH_LIMIT = 5
 
@@ -76,7 +77,7 @@ class Strengths extends React.Component {
   // **********************************************
   render() {
   
-    const { question, instructions, isDynamic } = this.props
+    const { question, instructions, isDynamic, strengthOptions } = this.props
 
     const { strengths } = this.state
     console.log("strengths", strengths)
@@ -123,11 +124,13 @@ class Strengths extends React.Component {
         {!isDynamic && 
           (
             <ListGroup className="text-left">
-              {strengths.map((_strength, i) => (
-                <ListGroupItem key={i}>
-                  {i + 1}. {_strength}
-                </ListGroupItem>
-              ))
+              {strengths
+                .map((_strength)=> listIdToValue(strengthOptions, _strength))
+                .map((_strength, i) => (
+                  <ListGroupItem key={i}>
+                    {i + 1}. {_strength}
+                  </ListGroupItem>
+                ))
               }
             </ListGroup>
           )

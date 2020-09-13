@@ -6,6 +6,11 @@ import {
 
 const URL = process.env.REACT_APP_DB_URL
 
+export const listIdToValue = (list, id) => {
+  let option = list.filter(option => option.id == id)
+  return option.length ? option[0].value : undefined
+}
+
 /* *****************************************************
    loadListsAC() - Load all LISTS
 ******************************************************** */

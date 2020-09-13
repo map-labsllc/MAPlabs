@@ -22,7 +22,7 @@ const mapStateToProps = ( state, passedProps ) => {
     question,
     strength,
     isDynamic,
-    strengthOptions: state.staticdataRD.strengths
+    strengthOptions: state.listsRD.lists.strengths
   }
 }
 
