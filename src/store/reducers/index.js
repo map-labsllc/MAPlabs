@@ -1,15 +1,13 @@
 import { combineReducers } from 'redux'
-// import answersRD from '../answers/reducer'
 import answersRD from '../answers/reducer'
-// import transitionsRD from '../transitions/reducer'
 import staticdataRD from '../staticdata/reducer'
 import userRD from '../user/reducer'
 import uiRD from '../ui/reducer'
+import listsRD from '../lists/reducer'
 
 export default combineReducers( {
-  // answersRD,
   answersRD,
-  // transitionsRD,
+  listsRD,
   staticdataRD,
   userRD,
   uiRD,
