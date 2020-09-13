@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { loadAllAnswersAC } from '../../store/answers/actions'
 import { loadAllStaticdataAC } from '../../store/staticdata/actions'
+import { loadListsAC } from '../../store/lists/actions'
 
 // export default class NavBar extends React.Component {
 class NavBar extends React.Component {
@@ -37,8 +38,9 @@ class NavBar extends React.Component {
       this.loadUserData(dispatch, user)
     }
 
-    // asynch call to load static from db
+    // load life descriptors and lists 
     dispatch( loadAllStaticdataAC() )
+    dispatch( loadListsAC() )
   }
 
   /* ***********************************************

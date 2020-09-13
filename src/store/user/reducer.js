@@ -34,7 +34,7 @@ import {
       2: [210, 220, 230, 240],
     }
     user: {
-      user_id: 1,
+      id: 1,
       fname: "Sandy",
       lname: "Harrison",
       email: "tharrison@gmail.com",
@@ -60,7 +60,7 @@ if (false) {
     errorMessage: '',
     orderOfSections: [],
     user: {
-      user_id: 0,
+      id: 0,
       fname: "",
       lname: "",
       email: "",
