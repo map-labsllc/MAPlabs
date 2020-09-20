@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import StrengthsEmImWrapper from './StrengthsEmImWrapper'
 import { getAnswers } from '../../../store/answers/reducer'
 import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
-import { QUESTION_TYPE_STRENGTH } from '../../../store/answers/constants'
+import { QUESTION_TYPE_STRENGTH_EM_IM } from '../../../store/answers/constants'
 
 // legal values for the IDX_EFFECT field of the
 export const EFFECT_BROADLY = 'broadly'
@@ -25,29 +25,46 @@ const mapStateToProps = ( state, passedProps ) => {
   const {
     number,
     question,
-    isDynamic,
+    isDynamic
   } = passedProps
 
   // validate params
   if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
   // get previous data, if any
-  const answerRecords = getAnswers( state.answersRD, question.code )
+  let answerRecords = getAnswers( state.answersRD, question.code )
   console.log(`getAnswers(${question.code}): `, answerRecords )
 
   return {
     number,
     question,
     strengths: answerRecords,
+    strengthsList: state.listsRD.lists.strengths,
     isDynamic,
   }
 }
+
 
 /* *****************************************
    mapDispatchToProps()
    passedProps -- see mapStateToProps above
 ******************************************** */
 const mapDispatchToProps = ( dispatch, passedProps ) => {
+  const { question, userId } = passedProps
+
+  function copyParentAnswers(question) {
+    return async(dispatch, getState) => {
+      let state = getState()
+  
+      // get parent answers
+      const parentAnswers = getAnswers(state.answersRD, question.parent_code )
+      console.log('parentAnswers', parentAnswers)
+  
+      await dispatch(updateAnswersAC(question.code, parentAnswers))
+      await dispatch(persistAnswersAC(userId, question.code, QUESTION_TYPE_STRENGTH_EM_IM, parentAnswers ) )
+
+    }
+  }
 
   /* *****************************************
      onUpdateStore()
@@ -87,6 +104,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   ******************************************** */
   return {
     onUpdateStoreCB: onUpdateStore,
+    copyParentAnswersCB: () => copyParentAnswers(question)
   }
 
 }

@@ -41,16 +41,16 @@ export default class Module4 extends React.Component {
 
   exercise_410 = (
     <StrengthsCT
-      question = { { code: 410, text: "Determine your top strengths" } }
+      question = { { code: 410, child_code: 420, text: "Determine your top strengths" } }
       description = { QUES_410_DESC }
       instructions = "Add 5 strengths and select the values from the drop down in order from the survey."
     /> )
 
   exercise_420 = (
-    // note, this exercise is child of 410, so answers are stored there
+    // note, this exercise is child of 410
     // this could be fixed with a better DB structure
     <StrengthsEmImWrapperCT
-      question = { { code: 410, text: "Embodiments and Impediments" } }
+      question = { { code: 420, parent_code: 410, text: "Embodiments and Impediments" } }
       description = { QUES_420_DESC }
     /> )
 

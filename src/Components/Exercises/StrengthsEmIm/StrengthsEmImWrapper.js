@@ -4,6 +4,7 @@ import StrengthsEmImCT from "./StrengthsEmImCT"
 import QuestionsCT from "../../Framework/QuestionsCT"
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
 import { QUESTION_TYPE_STRENGTH } from "../../../store/answers/constants"
+import { listIdToValue } from "../../../store/lists/actions"
 
 /* **************************************************
    Strength component
@@ -22,10 +23,20 @@ export default class StrengthsEmImWrapper extends React.Component {
   state = {
     strengths: this.props.strengths,
     isDynamic: this.props.isDynamic,
+    strengthsSet: false
+  }
+
+  componentDidMount() {
+    let { copyParentAnswersCB } = this.props
+    if (!this.state.strengths.length && !this.state.strengthsSet) {
+      console.log('answers not set, copying parent')
+      copyParentAnswersCB().then(() => console.log("done with parent copy"))
+    }
+    this.state.strengthsSet = true
   }
 
   render() {
-    const { strengths, isDynamic } = this.state
+    const { strengths, strengthsList, isDynamic } = this.state
 
     const { question, onUpdateStoreCB } = this.props
 
@@ -35,7 +46,7 @@ export default class StrengthsEmImWrapper extends React.Component {
           {strengths.map((strength, i) => (
             <ListGroupItem key={i}>
               <h3>
-                {i + 1}. {strength}
+                {i + 1}. {listIdToValue(strengthsList, strength)}
               </h3>
               <div>
                 <StrengthsEmImCT question={question} strength={strength } />
@@ -48,7 +59,7 @@ export default class StrengthsEmImWrapper extends React.Component {
     }
 
     let EmImReflections = strengths.reduce((acc, strength) => {
-      acc.push(<StrengthsEmImCT question={question} strength={strength} />)
+      acc.push(<StrengthsEmImCT question={question} strength={listIdToValue(strengthsList, strength)} />)
       return acc
     }, [])
     
@@ -71,6 +82,8 @@ StrengthsEmImWrapper.propTypes = {
     text: PropTypes.string.isRequired
   }).isRequired,
   strengths: PropTypes.array.isRequired,
+  strengthsList: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func 
+  onUpdateAnswerCB: PropTypes.func,
+  copyParentAnswers: PropTypes.func 
 }

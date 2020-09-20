@@ -68,6 +68,7 @@ const mapStateToProps = ( state, passedProps ) => {
     question,
     previousData,
     isDynamic,
+    strengthsList: state.listsRD.lists.strengths
   }
 }
 

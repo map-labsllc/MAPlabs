@@ -1,7 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Form, FormControl, Dropdown, Button, FormLabel, FormGroup, Container, Col, Row } from "react-bootstrap"
-import { UUID } from "../../Utils/UUID"
+//import { UUID } from "../../Utils/UUID"
+import { listIdToValue } from "../../../store/lists/actions"
 
 // legal values for an effect
 export const EFFECT_IMPEDIMENT = "impediment"
@@ -93,7 +94,7 @@ export default class StrengthEmim extends React.Component {
   // render!
   render() {
     console.log("StrengthsEmIm::render()")
-    const { reflections } = this.state
+    const { reflections, strengthsList } = this.state
     const { strength, number, question, isDynamic } = this.props
 
     console.log("reflections", reflections)
@@ -117,7 +118,7 @@ export default class StrengthEmim extends React.Component {
 
     return (
       <Container>
-        <h3>{ strength }</h3>
+        <h3>{ listIdToValue(strengthsList, strength) }</h3>
         <Form onSubmit={this.onSubmit} >
           <Container >
             { reflections ? reflections.map((reflection, idx) => {
