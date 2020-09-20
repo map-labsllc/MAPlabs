@@ -7,9 +7,17 @@ import { getUser } from '../../store/user/reducer'
 import { connect } from 'react-redux'
 
 const ModuleList = ( { user } ) => {
-  const createLink = (_moduleId, title) => (
-    <Link to={`/modules/${_moduleId}`}>{title}</Link>
-  )
+  const currentModule = +(user.curr_module)
+  const currentSection = +(user.curr_section)
+
+  const createLink = (moduleId, title) => {
+    let disabled = +(moduleId) > currentModule
+
+    return (
+      disabled ? <b>{title}</b> : 
+        <Link to={`/modules/${moduleId}`} >{title}</Link>
+    )
+  }
 
   const completion = (moduleId) => {
     let currentModule = user.curr_module

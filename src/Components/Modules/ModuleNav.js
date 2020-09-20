@@ -2,11 +2,34 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 import { ProgressBar } from 'react-bootstrap'
+import { getUser } from '../../store/user/reducer'
+import { persistCurrModuleAndSection } from '../../store/user/actions'
+import { connect } from 'react-redux'
 
-const ModuleNav = ( { moduleId, sections, title } ) => {
-  const createLink = (_moduleId, sectionId, title) => (
-    <Link to={`/modules/${_moduleId}/section/${sectionId}`}>{title}</Link>
-  )
+const ModuleNav = ( { user, moduleId, sections, title, updateCurrentSection } ) => {
+  const currentModule = +(user.curr_module)
+  const currentSection = +(user.curr_section)
+  moduleId = +(moduleId)
+
+  const createLink = (moduleId, sectionId, title) => {
+
+    moduleId = +(moduleId)
+    console.log(currentModule, currentSection, moduleId, sectionId)
+
+    let show = 
+
+      // previous module
+      moduleId < currentModule || 
+
+      // intro
+      (moduleId === currentModule && sectionId === "intro") ||
+
+      // OR current module and current or previous section 
+      (moduleId === currentModule && sectionId <= currentSection)
+
+    return show ? <Link to={`/modules/${moduleId}/section/${sectionId}`} onClick={updateCurrentSection(user, moduleId, sectionId)}>{title}</Link>
+      : <b className="sectionNavTitle">{title}</b>
+  }
 
   return (
     <div className="card">
@@ -23,27 +46,27 @@ const ModuleNav = ( { moduleId, sections, title } ) => {
                   </td>
                   <td className="text-left">
                     <p>
-                      {createLink(moduleId, 'intro', 'Introduction')} 
+                      {createLink(moduleId, 'intro', 'Introduction', true)} 
                     </p>
                   </td>
                   <td className="text-left">
-                    <ProgressBar className="sectionProgress" now={50} label={'50%'}/>
                   </td>
                 </tr>
-                {sections.map((section) => (
-                  <tr key={section.id}>
-                    <td className="text-left">
-                      <h2>{section.id}</h2>
-                    </td>
-                    <td className="text-left">
-                      <p>
-                        {createLink(moduleId, section.id, section.title)}
-                      </p>
-                    </td>
-                    <td className="text-left">
-                      <ProgressBar className="sectionProgress" now={50} label={'50%'}/>
-                    </td>
-                  </tr>
+                {sections.map((section, idx) =>
+                  (
+                    <tr key={section.id}>
+                      <td className="text-left">
+                        <h2>{section.id}</h2>
+                      </td>
+                      <td className="text-left">
+                        <p>
+                          {createLink(moduleId, section.id, section.title, idx === 0)}
+                        </p>
+                      </td>
+                      <td className="text-left">
+                        <ProgressBar className="sectionProgress" now={50} label={'50%'}/>
+                      </td>
+                    </tr>
                   )
                 )}
               </tbody>
@@ -55,4 +78,18 @@ const ModuleNav = ( { moduleId, sections, title } ) => {
 }
 
 
-export default ModuleNav
+const mapStateToProps = ( state, passedProps ) => {
+  const user = getUser(state.userRD)
+
+  return {
+    user
+  }
+}
+
+const mapDispatchToProps = ( dispatch, passedProps ) => {
+  return {
+    updateCurrentSection: persistCurrModuleAndSection,
+  }
+}
+
+export default connect( mapStateToProps, mapDispatchToProps)(ModuleNav)

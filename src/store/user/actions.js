@@ -30,55 +30,42 @@ const URL = process.env.REACT_APP_DB_URL
 
     Helper to persist the user's new curr_module and curr_section
 
-    distpatch
     user -- user object
     moduleNum -- integer
     sectionNum -- integer
 *************************************************** */
-const persistCurrModuleAndSection = ( dispatch, user, moduleNum, sectionNum ) => {
-
+export const persistCurrModuleAndSection = (user, moduleNum, sectionNum ) => {
+      
   const body = {
-    curr_module: moduleNum,
-    curr_section: sectionNum,
+    curr_module: moduleNum || 0,
+    curr_section: sectionNum || 0,
   }
 
-  console.log( "---- fetching body: ", JSON.stringify( body ) )
+  return async dispatch => {
 
-  const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
+    console.log( "---- fetching body: ", JSON.stringify( body ) )
 
-  return fetch( `${URL}/users/${user.id}`, {
-      method: 'PATCH',
-      body: JSON.stringify( body ),
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Token: ${jwt}`
-      },
-    } )
-    .then( response => {
-      if ( !response.ok ) {
+    const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
+    return fetch( `${URL}/users/${user.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify( body ),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Token: ${jwt}`
+        },
+      } )
+      // } )
+      .catch( ( error ) => {
         console.log( "---- error" )
-        console.log( "-- FETCH ERROR 1" )
-        // TODO: re-test this, doesn't the return just go to the next .then?
+        console.log( "-- FETCH ERROR", error )
         dispatch( {
           type: USER_UPDATE_ERROR,
-          payload: "error" } )
+          payload: error } )
         return //
-      }
-      return response.json()
-    } )
-    .then( message => {
-      console.log( "---- success perisisting to db" )
-    } )
-    .catch( ( error ) => {
-      console.log( "---- error" )
-      console.log( "-- FETCH ERROR", error )
-      dispatch( {
-        type: USER_UPDATE_ERROR,
-        payload: error } )
-      return //
-    } )
+      } )
   }
+}
 
 /* ************************************************
     sectionLoadingAC
