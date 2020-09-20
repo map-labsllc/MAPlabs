@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import { ProgressBar } from 'react-bootstrap'
+import SectionProgress from '../Framework/SectionProgress'
 import { getUser } from '../../store/user/reducer'
 import { persistCurrModuleAndSection } from '../../store/user/actions'
 import { connect } from 'react-redux'
@@ -60,11 +60,11 @@ const ModuleNav = ( { user, moduleId, sections, title, updateCurrentSection } ) 
                       </td>
                       <td className="text-left">
                         <p>
-                          {createLink(moduleId, section.id, section.title, idx === 0)}
+                          {createLink(moduleId, section.id, section.title)}
                         </p>
                       </td>
                       <td className="text-left">
-                        <ProgressBar className="sectionProgress" now={50} label={'50%'}/>
+                        { SectionProgress(currentModule, currentSection, moduleId, section.id) }
                       </td>
                     </tr>
                   )
