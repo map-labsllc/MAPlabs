@@ -28,7 +28,6 @@ import {
   userRD: {
     isLoading: true,
     errorMessage: '',
-
     orderOfSections: {     // this is lazy loaded as Module#.js files are loaded and sections are built
       1: [110, 120, 130],  // FUTURE: shouldn't this be its own reducer?
       2: [210, 220, 230, 240],
@@ -49,39 +48,14 @@ import {
 
 let initialState = {}
 
-// true: go through auth
-// false: backdoor / bypass auth and auto-login with mock user
-if (false) {
-
-  // Blank user will start app in auth mode
-  // --------------------------------------
-  initialState = {
-    isLoading: false,  // change to true when we connect with login process g
-    errorMessage: '',
-    orderOfSections: [],
-    user: {
-      id: 0,
-      fname: "",
-      lname: "",
-      email: "",
-      password: "",  // can we remove this?
-      login_service_id: 0,
-      login_token: "",
-      curr_module: -1,
-      curr_section: 0,
-    }
-  }
-} else {
-
-  // ------------------------------------------
-  initialState = {
-    authCheckPending: true,
-    isLoading: false,  // change to true when we connect with login process
-    errorMessage: '',
-    message: '',
-    orderOfSections: [],
-    user: {}
-  }
+// ------------------------------------------
+initialState = {
+  authCheckPending: true,
+  isLoading: false,  // change to true when we connect with login process
+  errorMessage: '',
+  message: '',
+  orderOfSections: [],
+  user: {}
 }
 
 /* ***********************************************
@@ -237,7 +211,9 @@ export const userRD = ( state = initialState, action ) => {
       const newOrderOfSections = { ...state.orderOfSections }
       const sections = newOrderOfSections[moduleNum] || []
       if ( !sections.includes( sectionNum ) ) sections.push( sectionNum )
-        newOrderOfSections[moduleNum] = sections
+      newOrderOfSections[moduleNum] = sections
+      
+      console.log(USER_ADD_SECTION, sections, newOrderOfSections)
       return  {
         ...state,
         orderOfSections: newOrderOfSections,

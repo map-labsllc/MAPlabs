@@ -26,7 +26,7 @@ import { getNextModuleSection } from './reducer'
 const URL = process.env.REACT_APP_DB_URL
 
 /* ************************************************
-    persistCurrModuleAndSectionz
+    persistCurrModuleAndSection
 
     Helper to persist the user's new curr_module and curr_section
 
@@ -78,11 +78,17 @@ export const persistCurrModuleAndSection = (user, moduleNum, sectionNum ) => {
     sectionNum
 *************************************************** */
 export const sectionLoadingAC = ( moduleNum, sectionNum ) => {
-  console.log( `---- userRD::sectionLoadingAC(${moduleNum}, ${sectionNum})` )
-
-  return {
-    type: USER_ADD_SECTION,
-    payload: { moduleNum, sectionNum },
+  moduleNum = +moduleNum
+  sectionNum = +sectionNum
+  
+  // console.log( `---- userRD::sectionLoadingAC(${moduleNum}, ${sectionNum})` )
+  return (dispatch, getState) => {
+    dispatch(
+      {
+        type: USER_ADD_SECTION,
+        payload: { moduleNum, sectionNum },
+      }
+    )
   }
 }
 
@@ -100,6 +106,9 @@ export const sectionLoadingAC = ( moduleNum, sectionNum ) => {
 *************************************************** */
 export const sectionCompletedAC = ( user, completedModuleNum, completedSectionNum ) => {
   console.log( `---- userRD::sectionCompletedAC(${user.fname}, ${completedModuleNum}, ${completedSectionNum})` )
+
+  completedModuleNum = +completedModuleNum
+  completedSectionNum = +completedSectionNum
 
   return async ( dispatch, getState ) => {
 
@@ -124,14 +133,16 @@ export const sectionCompletedAC = ( user, completedModuleNum, completedSectionNu
       return //
     }
 
-    // DON'T advance the user's current module and section
-    // ---------------------------------------------------
-    console.log( "---- no change" )
-    dispatch ( {
-      type: USER_UPDATE_CURR_SECTION_NO_CHANGE,
-      payload: { }
-    } )
-    return //
+    else {
+      // DON'T advance the user's current module and section
+      // ---------------------------------------------------
+      console.log( "---- no change" )
+      dispatch ( {
+        type: USER_UPDATE_CURR_SECTION_NO_CHANGE,
+        payload: { }
+      } )
+      return //
+    }
   }
 }
 

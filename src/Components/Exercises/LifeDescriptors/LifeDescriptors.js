@@ -8,6 +8,7 @@ import Arrow from '../../Utils/Arrow'
 
 import '../../../CSS/ModalNavButtons.css'
 import { ProgressBar } from 'react-bootstrap'
+import SectionCompleteButton from '../../Framework/SectionCompleteButton'
 
 const NUM_PER_PAGE = 5
 
@@ -178,6 +179,7 @@ export default class LifeDescriptors extends Component {
     let thisPage = []
     const startIdx = page * NUM_PER_PAGE
     const endIdx = Math.min( ( ( page + 1 ) * NUM_PER_PAGE ), lifeDescriptors.length )
+    const lastPage = lifeDescriptors.length/NUM_PER_PAGE - 1
 
     // console.log('pages', page, 'of', lifeDescriptors.length/NUM_PER_PAGE)
     // console.log('indexes to show', startIdx, endIdx)
@@ -234,6 +236,10 @@ export default class LifeDescriptors extends Component {
             >
               Save
             </Button>
+
+            {page === lastPage && 
+              <SectionCompleteButton onClick={this.onclickClose} />
+            }
           </div>
 
           {/* right arrow */}
