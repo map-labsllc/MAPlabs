@@ -9,10 +9,7 @@ const URL = process.env.REACT_APP_DB_URL
 
 // JSON filenames are used as the keys when building state, therefore
 // don't change them as other code relies on these names.
-const BELIEFS_FN = 'beliefs'
 const LIFEDESCRIPTIONS_FN = 'lifeDescriptions'
-const RELATIONSHIPS_FN = 'relationships'
-const STRENGTHS_FN = 'strengths'
 
 /* *****************************************************
    loadstaticJSON()
@@ -49,21 +46,15 @@ export const loadAllStaticdataAC = () => {
   return async dispatch => {
     dispatch( { type: STATICDATA_LOADING } )
 
-    const p1 = loadstaticJSON( BELIEFS_FN )
-    const p2 = loadstaticJSON( LIFEDESCRIPTIONS_FN )
-    const p3 = loadstaticJSON( RELATIONSHIPS_FN )
-    const p4 = loadstaticJSON( STRENGTHS_FN )
+    const p1 = loadstaticJSON( LIFEDESCRIPTIONS_FN )
 
-    return Promise.all( [p1, p2, p3, p4] )
+    return Promise.all( [p1] )
       .then( result => {
         // console.log(" ");
         // console.log("Promise.all: ", result);
 
         const payload = {}
         payload[result[0].section] = result[0].jsonData
-        payload[result[1].section] = result[1].jsonData
-        payload[result[2].section] = result[2].jsonData
-        payload[result[3].section] = result[3].jsonData
 
         dispatch( { type: STATICDATA_LOAD, payload } )
         return //
@@ -75,10 +66,3 @@ export const loadAllStaticdataAC = () => {
       } )
   }
 }
-
-// export const addToPersistingArray = array => {
-//  return {
-//    type: PERSISTANT_ARRAY,
-//    payload: array
-//  }
-// }
