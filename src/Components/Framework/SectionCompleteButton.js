@@ -10,10 +10,8 @@ const SectionCompleteButton = ( { user, onClick } ) => {
   const currentSection = +(user.curr_section)
 
   const onComplete = () => {
-    console.log('onComplete')
     // save data
     onClick()
-  
 
     // save next section
     sectionCompletedAC(user, currentModule, currentSection)

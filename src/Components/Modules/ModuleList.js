@@ -14,7 +14,7 @@ const ModuleList = ( { user } ) => {
     let disabled = +(moduleId) > currentModule
 
     return (
-      disabled ? <b>{title}</b> : 
+      disabled ? <>{title}</> : 
         <Link to={`/modules/${moduleId}`} >{title}</Link>
     )
   }
@@ -45,29 +45,29 @@ const ModuleList = ( { user } ) => {
               <table className="table">
                 <tbody>
                   <tr>
-                    <td className="text-left">
+                    <td className="text-left align-bottom">
                       <h2></h2>
                     </td>
-                    <td className="text-left">
-                      <p>
+                    <td className="text-left align-bottom">
+                      <>
                       <Link to={`/infopage`}>Program Introduction</Link> 
-                      </p>
+                      </>
                     </td>
-                    <td className="text-left">
+                    <td className="text-left align-bottom">
                       {/* <ProgressBar className="sectionProgress" now={50} label={'50%'}/> */}
                     </td>
                   </tr>
                   { MODULES.map((mod) => (
                     <tr key={mod.id}>
-                      <td className="text-left">
+                      <td className="text-left align-bottom">
                         <h2>{mod.id}</h2>
                       </td>
-                      <td className="text-left">
-                        <p>
+                      <td className="text-left align-bottom">
+                        <h4>
                           {createLink(mod.id, mod.title)}
-                        </p>
+                        </h4>
                       </td>
-                      <td className="text-left">
+                      <td className="text-left align-bottom">
                         <ProgressBar className="sectionProgress" now={completion(mod.id)} label={`${completion(mod.id)}`}/>
                       </td>
                     </tr>

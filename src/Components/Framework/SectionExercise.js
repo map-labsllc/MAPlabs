@@ -2,9 +2,12 @@ import React from 'react'
 import {
   Button,
 } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 import { sectionCompletedAC } from '../../store/user/actions'
+import { getAnswers } from '../../store/answers/reducer'
 import SectionCompleteButton from './SectionCompleteButton'
+import { getNextModuleSection } from '../../store/user/reducer'
 
 /* **************************************************
    SectionExercise component
@@ -44,8 +47,7 @@ class SectionExercise extends React.Component {
   render() {
 
     let { isVisible } = this.state
-    let { sectionTitle, exercise } = this.props
-    const { user, sectionNum, moduleNum } = this.props
+    const { user, sectionNum, moduleNum, answersRD, userRD, exercise } = this.props
     let currentModule = user.curr_module
     let currentSection = user.curr_section
 
@@ -69,8 +71,15 @@ class SectionExercise extends React.Component {
     // get the exercise's descrition
     const { description } = exerciseStatic.props
 
-    let sectionStatus = user.curr_section >= +(sectionNum) ? 'Continue' : 'Start'
-    console.log(currentModule, moduleNum, currentSection, sectionNum)
+    // is this module started?
+    let answer = getAnswers(answersRD, sectionNum)
+    let buttonLabel = answer.length === 0 ? 'Start' : 'Continue'
+
+    // next Module in sequence
+    let next = getNextModuleSection(userRD, +moduleNum, +sectionNum)  
+    let nextModule = next.moduleNum
+    let nextSection = next.sectionNum || 'intro'
+
     return (
       <>
         {/* display instructions */ }
@@ -80,13 +89,17 @@ class SectionExercise extends React.Component {
               <span className="reading" dangerouslySetInnerHTML={{ __html: description }} />
               <hr className="divider" />
               {exerciseStatic}
+
               {currentModule === +moduleNum && currentSection === +sectionNum &&
                 <div className="text-center">
-                  <Button className="btn btn-primary" type="button" onClick={this.onclickStart}>{sectionStatus}</Button>
-                  { sectionStatus !== 'Start' && <SectionCompleteButton onClick={this.onComplete} /> }
+                  <Button className="btn btn-primary" type="button" onClick={this.onclickStart}>{buttonLabel}</Button>
+                  { answer.length > 0 && <SectionCompleteButton onClick={this.onComplete} /> }
                 </div>
               }
 
+              <div className="text-right">
+                <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>Next</Link>
+              </div>
             </div>
           </>
         )}

@@ -29,7 +29,7 @@ const ModuleNav = ( { user, moduleId, sections, title, sectionLoading } ) => {
       (moduleId === currentModule && sectionId <= currentSection)
 
     return show ? <Link to={`/modules/${moduleId}/section/${sectionId}`}>{title}</Link>
-      : <b className="sectionNavTitle">{title}</b>
+      : <>{title}</>
   }
 
   return (
@@ -42,15 +42,15 @@ const ModuleNav = ( { user, moduleId, sections, title, sectionLoading } ) => {
             <table className="table">
               <tbody>
                 <tr>
-                  <td className="text-left">
+                  <td className="text-left align-bottom">
                     <h2></h2>
                   </td>
-                  <td className="text-left">
+                  <td className="text-left align-bottom">
                     <p>
                       {createLink(moduleId, 'intro', 'Introduction', true)} 
                     </p>
                   </td>
-                  <td className="text-left">
+                  <td className="text-left align-bottom">
                   </td>
                 </tr>
                 {sections.map((section, idx) =>
@@ -58,15 +58,15 @@ const ModuleNav = ( { user, moduleId, sections, title, sectionLoading } ) => {
                     sectionLoading(moduleId, section.id)
                     return (
                       <tr key={section.id}>
-                        <td className="text-left">
+                        <td className="text-left align-bottom">
                           <h2>{section.id}</h2>
                         </td>
-                        <td className="text-left">
-                          <p>
+                        <td className="text-left align-bottom">
+                          <h4>
                             {createLink(moduleId, section.id, section.title)}
-                          </p>
+                          </h4>
                         </td>
-                        <td className="text-left">
+                        <td className="text-left align-bottom">
                           { SectionProgress(currentModule, currentSection, moduleId, section.id) }
                         </td>
                       </tr>
