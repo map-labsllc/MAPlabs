@@ -147,7 +147,7 @@ export default class InfluencesTop5 extends React.Component {
           />
         )}
         <br/>
-        <Button type="button" onClick={this.onclickClose}>Close</Button>
+        <Button type="button" onClick={this.onclickClose}>Save</Button>
       </>
     )
   }

@@ -149,7 +149,6 @@ export default class Questions extends React.Component {
 
           <Button className="closeButton" type="button" onClick={this.onclickClose}>Save</Button>
 
-          { console.log(currIdx, subComponentsWithIsDynamic.length - 1)}
           {currIdx === (subComponentsWithIsDynamic.length - 1) && 
             <SectionCompleteButton onClick={this.onclickClose} />
           }

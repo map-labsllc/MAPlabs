@@ -20,8 +20,6 @@ const ModuleList = ( { user } ) => {
   }
 
   const completion = (moduleId) => {
-    let currentModule = user.curr_module
-    let currentSection = user.curr_section
 
     // not to this module yet
     if (moduleId > currentModule) { return 0 }

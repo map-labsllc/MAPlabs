@@ -4,6 +4,7 @@ import {
 } from 'react-bootstrap'
 
 import { sectionCompletedAC } from '../../store/user/actions'
+import SectionCompleteButton from './SectionCompleteButton'
 
 /* **************************************************
    SectionExercise component
@@ -31,7 +32,7 @@ class SectionExercise extends React.Component {
 
   // **************************************************
   // CB from the <exercise> when its close/save button is clicked
-  onCloseModal = () => {
+  onComplete = () => {
     const { dispatch, user, moduleNum, sectionNum } = this.props
     dispatch(sectionCompletedAC(user, moduleNum, sectionNum))
 
@@ -44,7 +45,9 @@ class SectionExercise extends React.Component {
 
     let { isVisible } = this.state
     let { sectionTitle, exercise } = this.props
-    const { user, sectionNum } = this.props
+    const { user, sectionNum, moduleNum } = this.props
+    let currentModule = user.curr_module
+    let currentSection = user.curr_section
 
     // Link the <exersise> to this instance of the SectionExercise Component.
     //   - onCloseModalCB() is called when exercise completes to tell us to close ModalX
@@ -53,7 +56,7 @@ class SectionExercise extends React.Component {
     const exerciseDynamic = React.cloneElement(
       exercise,
       {
-        onCloseModalCB: this.onCloseModal,
+        onCloseModalCB: this.onComplete,
         isDynamic: true
       }
     )
@@ -66,8 +69,8 @@ class SectionExercise extends React.Component {
     // get the exercise's descrition
     const { description } = exerciseStatic.props
 
-    let buttonLabel = user.curr_section >= sectionNum ? 'Continue' : 'Start'
-
+    let sectionStatus = user.curr_section >= +(sectionNum) ? 'Continue' : 'Start'
+    console.log(currentModule, moduleNum, currentSection, sectionNum)
     return (
       <>
         {/* display instructions */ }
@@ -77,9 +80,13 @@ class SectionExercise extends React.Component {
               <span className="reading" dangerouslySetInnerHTML={{ __html: description }} />
               <hr className="divider" />
               {exerciseStatic}
-              <div className="text-center">
-                <Button className="btn btn-primary" type="button" onClick={this.onclickStart}>{buttonLabel}</Button>
-              </div>
+              {currentModule === +moduleNum && currentSection === +sectionNum &&
+                <div className="text-center">
+                  <Button className="btn btn-primary" type="button" onClick={this.onclickStart}>{sectionStatus}</Button>
+                  { sectionStatus !== 'Start' && <SectionCompleteButton onClick={this.onComplete} /> }
+                </div>
+              }
+
             </div>
           </>
         )}

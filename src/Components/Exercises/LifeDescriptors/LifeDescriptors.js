@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
-import {
-  Button,
- } from 'react-bootstrap'
-
+import { Button } from 'react-bootstrap'
 import LifeDescriptor from './LifeDescriptor'
 import Arrow from '../../Utils/Arrow'
 
 import '../../../CSS/ModalNavButtons.css'
 import { ProgressBar } from 'react-bootstrap'
-import SectionCompleteButton from '../../Framework/SectionCompleteButton'
 
 const NUM_PER_PAGE = 5
 
@@ -236,10 +232,6 @@ export default class LifeDescriptors extends Component {
             >
               Save
             </Button>
-
-            {page === lastPage && 
-              <SectionCompleteButton onClick={this.onclickClose} />
-            }
           </div>
 
           {/* right arrow */}

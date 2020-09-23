@@ -171,13 +171,6 @@ export default class Module1 extends React.Component {
       title: "Breaking and building",
       exercise: this.exercise_160
     },
-    // Remove M15
-    // {
-    //   id: 170,
-    //   module_id: 1,
-    //   title: "Tie these reflections to the course",
-    //   exercise: this.exercise_170
-    // }
   ]
 
   render() {

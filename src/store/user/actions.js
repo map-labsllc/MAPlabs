@@ -43,7 +43,7 @@ export const persistCurrModuleAndSection = (user, moduleNum, sectionNum ) => {
 
   return async dispatch => {
 
-    console.log( "---- fetching body: ", JSON.stringify( body ) )
+    console.log( "---- UPDATING user: ", JSON.stringify( body ) )
 
     const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
     return fetch( `${URL}/users/${user.id}`, {
@@ -55,14 +55,12 @@ export const persistCurrModuleAndSection = (user, moduleNum, sectionNum ) => {
           Authorization: `Token: ${jwt}`
         },
       } )
-      // } )
       .catch( ( error ) => {
         console.log( "---- error" )
         console.log( "-- FETCH ERROR", error )
         dispatch( {
           type: USER_UPDATE_ERROR,
           payload: error } )
-        return //
       } )
   }
 }
@@ -121,7 +119,7 @@ export const sectionCompletedAC = ( user, completedModuleNum, completedSectionNu
       console.log( "---- nextModuleSectionObj advancing to:", nextModuleSectionObj )
 
       // persist the new curr_module, curr_section
-      persistCurrModuleAndSection( dispatch, user, nextModuleSectionObj.moduleNum, nextModuleSectionObj.sectionNum )
+      dispatch(persistCurrModuleAndSection(user, nextModuleSectionObj.moduleNum, nextModuleSectionObj.sectionNum))
 
       // update store
       dispatch ( {
