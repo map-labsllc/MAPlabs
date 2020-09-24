@@ -7,8 +7,20 @@ import {
 } from './constants'
 
 import { getUserJwt } from '../user/actions'
+import { push } from 'connected-react-router'
 
 const URL = process.env.REACT_APP_DB_URL
+
+const redirectFirebaseErrors = (dispatch, error) => {
+  if (error.message.match(/Firebase/)){
+    console.error("Firebase Auth error")
+    dispatch(push('/login'))
+  }
+  else {
+    console.error( "FETCH ERROR", error )
+    dispatch( { type: ANSWERS_ERROR_DB, payload: error } )
+  }
+}
 
 /* *****************************************************
    updateAnswersAC()
@@ -42,27 +54,27 @@ export const loadAllAnswersAC = ( userId ) => {
     dispatch( { type: ANSWERS_LOADING } )
     const jwtGetter = getUserJwt()
     const jwt = await jwtGetter(dispatch)
-
+    
+    dispatch(push('/login'))
     return fetch( `${URL}/answers/${userId}`, {
-      headers: {Authorization: `Token: ${jwt}`}
-    } )
-      .then( response => response.json() )
-      .then( ( answers ) => {
+        headers: {Authorization: `Token: ${jwt}`}
+      })
+      .then(response => {
+        
+        if(response.ok)
+        {
+          return response.json()        
+        }
+
+        throw new Error(response.text());
+      })
+      .then(answers => {
         console.log("answers", answers)
-        if (typeof answers === 'string' && answers.match("Error:")){
-          console.log("error detected loading answers")
-          dispatch( { type: ANSWERS_ERROR_DB, payload: answers })
-        }
-        else {
-          dispatch( { type: ANSWERS_LOAD, payload: answers } )
-        }
-        return //
+        dispatch( { type: ANSWERS_LOAD, payload: answers } )
       } )
       .catch( ( error ) => {
-        console.log( "FETCH ERROR", error )
-        dispatch( { type: ANSWERS_ERROR_DB, payload: error } )
-        return //
-      } )
+        redirectFirebaseErrors(dispatch, error)
+      })
   }
 }
 
@@ -102,16 +114,21 @@ export const persistAnswersAC = ( userId, question_code, question_type, answers 
           Authorization: `Token: ${jwt}`
         },
       } )
-      .then( response => response.json() )
-      .then( ( message ) => {
+      .then(response => {
+        if(response.ok)
+        {
+          return response.json()        
+        }
+
+        throw new Error(response.text());
+      })
+      .then(message => {
         console.log( "post response message", message )
         dispatch( { type: ANSWERS_PERSIST } )
         return
       } )
-      .catch( ( error ) => {
-        console.log( "POST ERROR", error )
-        dispatch( { type: ANSWERS_ERROR_DB, payload: error } )
-        return
-      } )
+      .catch(error => {
+        return redirectFirebaseErrors(dispatch, error)
+      })
   }
 }

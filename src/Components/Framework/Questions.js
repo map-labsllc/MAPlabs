@@ -8,10 +8,6 @@ import {
   FormGroup,
 } from 'react-bootstrap'
 
-// import '../../CSS/ModalNavButtons.css'
-
-import SectionCompleteButton from './SectionCompleteButton'
-
 
 /* **************************************************
    Questions component
@@ -148,10 +144,6 @@ export default class Questions extends React.Component {
           }
 
           <Button className="closeButton" type="button" onClick={this.onclickClose}>Save</Button>
-
-          {currIdx === (subComponentsWithIsDynamic.length - 1) && 
-            <SectionCompleteButton onClick={this.onclickClose} />
-          }
 
           {currIdx < subComponentsWithIsDynamic.length - 1 && 
             <Button className="nextButton" onClick={this.onclickRight}>Next</Button>

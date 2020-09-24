@@ -7,7 +7,6 @@ import {
   GROUP_PERSONAL,
   GROUP_SOCIAL,
   GROUP_WIDER, 
-
   SELECTED,
 } from '../Influences/InfluencesConstants.js'
 import InfluenceTop5 from './InfluenceTop5'
@@ -111,7 +110,7 @@ export default class InfluencesTop5 extends React.Component {
         influenceWithKey.item.selected === SELECTED
       )
       if (selectedInfluencesWithKeys.length === 0)
-        return <p>&nbsp;&nbsp;&nbsp;&nbsp;no data</p>
+        return <p>No data provided.</p>
 
       return (
         <>
