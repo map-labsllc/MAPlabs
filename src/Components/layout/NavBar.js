@@ -35,7 +35,6 @@ class NavBar extends React.Component {
 
     // load user data
     if (user && user.login_token) {
-      console.log('********* NavBar componentDidMount')
       this.loadUserData(dispatch, user)
     }
 
