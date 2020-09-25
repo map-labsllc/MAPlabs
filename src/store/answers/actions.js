@@ -6,15 +6,16 @@ import {
   ANSWERS_PERSIST,
 } from './constants'
 
+import { REMOVE_TOKEN } from '../user/constants'
 import { getUserJwt } from '../user/actions'
-import { push } from 'connected-react-router'
 
 const URL = process.env.REACT_APP_DB_URL
 
 const redirectFirebaseErrors = (dispatch, error) => {
   if (error.message.match(/Firebase/)){
     console.error("Firebase Auth error")
-    dispatch(push('/login'))
+    // log them out
+    dispatch({ type: REMOVE_TOKEN })
   }
   else {
     console.error( "FETCH ERROR", error )
@@ -55,7 +56,6 @@ export const loadAllAnswersAC = ( userId ) => {
     const jwtGetter = getUserJwt()
     const jwt = await jwtGetter(dispatch)
     
-    dispatch(push('/login'))
     return fetch( `${URL}/answers/${userId}`, {
         headers: {Authorization: `Token: ${jwt}`}
       })

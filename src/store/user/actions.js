@@ -260,7 +260,6 @@ const loginUserSuccess = async( dispatch, user ) => {
     type: LOGIN_USER_SUCCESS,
     payload: user
   } )
-
 }
 
 export const signUpUser = ( user ) => {

@@ -19,6 +19,7 @@ import {
   USER_UPDATE_CURR_SECTION,
   USER_UPDATE_CURR_SECTION_NO_CHANGE,
   USER_UPDATE_ERROR,
+  REMOVE_TOKEN
 } from './constants'
 
 /*
@@ -227,6 +228,9 @@ export const userRD = ( state = initialState, action ) => {
     }
     case SIGNUP_FAIL: {
       return {...state, loading: false, errorMessage: payload.errorMessage }
+    }
+    case REMOVE_TOKEN: {
+      return {...state, user: {...user, login_token: undefined} }
     }
     default:
       return state
