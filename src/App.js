@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
+import { BrowserRouter } from 'react-router-dom'
 import Router from './Router'
 import ScrollToTop from './Components/layout/ScrollToTop'
 import NavBar from './Components/layout/NavBar'
@@ -7,8 +8,7 @@ import Footer from './Components/layout/Footer'
 import SideBar from './Components/layout/SideBar'
 import LoadUser from './Components/User/LoadUser'
 import { FIREBASE_CONFIG } from './config/FirebaseConfig.js'
-import  { history } from './store'
-import { ConnectedRouter } from 'connected-react-router'
+import ScriptTag from 'react-script-tag';
 
 import './CSS/light-bootstrap-dashboard.css'
 import './CSS/custom.css'
@@ -16,15 +16,18 @@ import './CSS/custom.css'
 // const history = createBrowserHistory()
 class App extends Component {
   componentWillMount() {
+
+    console.log('FIREBASE_CONFIG', FIREBASE_CONFIG)
     if (!firebase.apps.length) {
       firebase.initializeApp(FIREBASE_CONFIG)
     }
+
   }
 
   render() {
 
     return (
-      <ConnectedRouter history={history}> 
+      <BrowserRouter>
         <div>
           {/* <ScriptTag src="./assets/js/jquery.3.2.1.min.js" type="text/javascript"></ScriptTag>
 	        <ScriptTag src="./assets/js/bootstrap.min.js" type="text/javascript"></ScriptTag>
@@ -46,7 +49,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-      </ConnectedRouter>
+      </BrowserRouter>
     )
   }
 }
