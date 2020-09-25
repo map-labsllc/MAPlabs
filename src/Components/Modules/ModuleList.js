@@ -27,9 +27,13 @@ const ModuleList = ( { user } ) => {
     // determine how many sections completed
     let sectionCount  = MODULES.filter(m => m.id === +(moduleId))[0].sectionCount
 
-    let percent = 100 * Math.floor(currentSection/sectionCount)
+    // this is a hack, but middle digit of section should correspond the where we are at
+    let sectionPosition = `${currentSection}`.split('')[1]
+    sectionPosition = +sectionPosition
+    let percentComplete = Math.floor(100 * (sectionPosition - 1)/sectionCount)
 
-    return percent
+    console.log(moduleId, currentSection, sectionPosition, sectionCount, 'completion', percentComplete)
+    return percentComplete
   }
 
   return (
@@ -49,9 +53,9 @@ const ModuleList = ( { user } ) => {
                       <h2></h2>
                     </td>
                     <td className="text-left align-bottom">
-                      <>
+                      <h4>
                       <Link to={`/infopage`}>Program Introduction</Link> 
-                      </>
+                      </h4>
                     </td>
                     <td className="text-left align-bottom">
                       {/* <ProgressBar className="sectionProgress" now={50} label={'50%'}/> */}
@@ -68,7 +72,7 @@ const ModuleList = ( { user } ) => {
                         </h4>
                       </td>
                       <td className="text-left align-bottom">
-                        <ProgressBar className="sectionProgress" now={completion(mod.id)} label={`${completion(mod.id)}`}/>
+                        <ProgressBar className="sectionProgress" now={completion(mod.id)} label={`${completion(mod.id)}%`}/>
                       </td>
                     </tr>
                     )

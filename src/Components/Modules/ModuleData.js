@@ -8,7 +8,7 @@ export const MODULES = [
     id: 1,
     title: "Your Meanings and Motivations",
     description: MOD_1_DESC,
-    sectionCount: 8  // TODO this should be DB
+    sectionCount: 6  // TODO this should be DB
   },
   {
     id: 2,
