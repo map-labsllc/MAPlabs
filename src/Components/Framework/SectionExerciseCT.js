@@ -1,6 +1,9 @@
 import { connect } from 'react-redux'
 import SectionExercise from './SectionExercise'
 import { getUser } from '../../store/user/reducer'
+import { sectionCompletedAC } from '../../store/user/actions'
+import { persistAnswersAC } from '../../store/answers/actions'
+import { bindActionCreators } from 'redux';
 
 /* *****************************************
    mapStateToProps()
@@ -40,9 +43,9 @@ const mapStateToProps = ( state, passedProps ) => {
    passedProps -- see mapStateToProps above
 ******************************************** */
 const mapDispatchToProps = ( dispatch, passedProps ) => {
-
   return {
-    dispatch,
+    onPersistQuestionCB: bindActionCreators(persistAnswersAC, dispatch),
+    sectionCompletedCB: bindActionCreators(sectionCompletedAC, dispatch)
   }
 }
 

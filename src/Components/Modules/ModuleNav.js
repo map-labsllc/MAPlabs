@@ -46,9 +46,9 @@ const ModuleNav = ( { user, moduleId, sections, title, sectionLoading } ) => {
                     <h2></h2>
                   </td>
                   <td className="text-left align-bottom">
-                    <p>
+                    <h4>
                       {createLink(moduleId, 'intro', 'Introduction', true)} 
-                    </p>
+                    </h4>
                   </td>
                   <td className="text-left align-bottom">
                   </td>

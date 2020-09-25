@@ -4,7 +4,6 @@ import {
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-import { sectionCompletedAC } from '../../store/user/actions'
 import { getAnswers } from '../../store/answers/reducer'
 import SectionCompleteButton from './SectionCompleteButton'
 import { getNextModuleSection } from '../../store/user/reducer'
@@ -33,12 +32,19 @@ class SectionExercise extends React.Component {
     this.setState({ isVisible: true })
   }
 
-  // **************************************************
-  // CB from the <exercise> when its close/save button is clicked
+  // Complete
   onComplete = () => {
-    const { dispatch, user, moduleNum, sectionNum } = this.props
-    dispatch(sectionCompletedAC(user, moduleNum, sectionNum))
+    const { user, moduleNum, sectionNum, sectionCompletedCB} = this.props
+    sectionCompletedCB(user, moduleNum, sectionNum)
 
+    this.setState({ isVisible: false })
+  }
+
+  // Save
+  onSave = () => {
+    const { exercise, onPersistQuestionCB } = this.props
+
+    onPersistQuestionCB(exercise.question_code)
     this.setState({ isVisible: false })
   }
 
@@ -58,7 +64,7 @@ class SectionExercise extends React.Component {
     const exerciseDynamic = React.cloneElement(
       exercise,
       {
-        onCloseModalCB: this.onComplete,
+        onCloseModalCB: this.onSave,
         isDynamic: true
       }
     )
@@ -97,9 +103,12 @@ class SectionExercise extends React.Component {
                 </div>
               }
 
-              <div className="text-right">
-                <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>Next</Link>
-              </div>
+              {(currentModule < +moduleNum || 
+              (currentModule === +moduleNum && currentSection > +sectionNum)) &&
+                <div className="text-right">
+                  <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>Next</Link>
+                </div>
+              }
             </div>
           </>
         )}

@@ -16,12 +16,9 @@ import './CSS/custom.css'
 // const history = createBrowserHistory()
 class App extends Component {
   componentWillMount() {
-
-    console.log('FIREBASE_CONFIG', FIREBASE_CONFIG)
     if (!firebase.apps.length) {
       firebase.initializeApp(FIREBASE_CONFIG)
     }
-
   }
 
   render() {
