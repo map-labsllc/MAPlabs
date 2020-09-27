@@ -53,7 +53,7 @@ class SectionExercise extends React.Component {
   render() {
 
     let { isVisible } = this.state
-    const { user, sectionNum, moduleNum, answersRD, userRD, exercise } = this.props
+    const { user, sectionNum, moduleNum, answersRD, userRD, exercise, section } = this.props
     let currentModule = user.curr_module
     let currentSection = user.curr_section
 
@@ -74,12 +74,31 @@ class SectionExercise extends React.Component {
     //   The assignment below is only to emphasize this fact.
     const exerciseStatic = exercise
 
-    // get the exercise's descrition
+    // get the exercise's description
     const { description } = exerciseStatic.props
 
+    const answer = getAnswers(answersRD, sectionNum)
+
     // is this module started?
-    let answer = getAnswers(answersRD, sectionNum)
-    let buttonLabel = answer.length === 0 ? 'Start' : 'Continue'
+    const isStarted = () => {
+      if (answer.length > 0) { return true }
+      if (section.subComponents) {
+        return section.subComponents.some(childSectionId => getAnswers(answersRD, childSectionId).length)
+      }
+      return false 
+    }
+
+    let buttonLabel = isStarted() ? 'Continue' : 'Start'
+
+    const answersComplete = () => {
+      if (answer.length > 0) return true
+
+      if (section.subComponents) {
+        return section.subComponents.every(childSectionId => getAnswers(answersRD, childSectionId).length)
+      }
+      return false 
+
+    }
 
     // next Module in sequence
     let next = getNextModuleSection(userRD, +moduleNum, +sectionNum)  
@@ -99,7 +118,7 @@ class SectionExercise extends React.Component {
               {currentModule === +moduleNum && currentSection === +sectionNum &&
                 <div className="text-center">
                   <Button className="btn btn-primary" type="button" onClick={this.onclickStart}>{buttonLabel}</Button>
-                  { answer.length > 0 && <SectionCompleteButton onClick={this.onComplete} /> }
+                  { answersComplete(answer) && <SectionCompleteButton onClick={this.onComplete} /> }
                 </div>
               }
 

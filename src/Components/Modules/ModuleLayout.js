@@ -34,6 +34,7 @@ const ModuleWrapper = ( {moduleId, title, description, sectionId, sections} ) =>
             number = { section.id }
             sectionTitle = { section.title }
             exercise = { section.exercise }
+            section = { section }
           />
           : 
           <Alert variant="warning">

@@ -39,7 +39,7 @@ const canUserView = ( state, moduleNum, sectionNum ) => {
 const mapStateToProps = ( state, passedProps ) => {
   // console.log( `SectionCT::mapStateToProps()` )
 
-  const { number, moduleNum, sectionNum, sectionTitle, exercise } = passedProps
+  const { number, moduleNum, sectionNum, sectionTitle, exercise, section } = passedProps
 
   // get user
   const user = getUser( state.userRD )
@@ -52,6 +52,7 @@ const mapStateToProps = ( state, passedProps ) => {
     number,
     sectionTitle,
     exercise,
+    section
   }
 }
 

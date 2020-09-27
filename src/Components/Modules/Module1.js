@@ -116,19 +116,19 @@ export default class Module1 extends React.Component {
   // -------------------------
   // Module 1: 5A
 
-  shortAnswers_170 = [
-    <ShortAnswersCT question={ { code: 171, text: "What changes would you like to see in your everyday life?" } } />,
-    <ShortAnswersCT question={ { code: 172, text: "What changes would you like to see in your personal growth?" } } />,
-    <ShortAnswersCT question={ { code: 173, text: "What changes would you like to see in your relationships?" } } />,
-    <ShortAnswersCT question={ { code: 174, text: "What changes would you like to see in your life’s work (your vocation)?" } } />,
-    <ShortAnswersCT question={ { code: 175, text: "What changes would you like to see in your avocational pursuits?" } } />,
-  ]
-  exercise_170 = (
-    <QuestionsCT
-      questionType = {QUESTION_TYPE_SHORT_ANSWERS}
-      description = { QUES_170_DESC }
-      subComponents = { this.shortAnswers_170 }
-    /> )
+  // shortAnswers_170 = [
+  //   <ShortAnswersCT question={ { code: 171, text: "What changes would you like to see in your everyday life?" } } />,
+  //   <ShortAnswersCT question={ { code: 172, text: "What changes would you like to see in your personal growth?" } } />,
+  //   <ShortAnswersCT question={ { code: 173, text: "What changes would you like to see in your relationships?" } } />,
+  //   <ShortAnswersCT question={ { code: 174, text: "What changes would you like to see in your life’s work (your vocation)?" } } />,
+  //   <ShortAnswersCT question={ { code: 175, text: "What changes would you like to see in your avocational pursuits?" } } />,
+  // ]
+  // exercise_170 = (
+  //   <QuestionsCT
+  //     questionType = {QUESTION_TYPE_SHORT_ANSWERS}
+  //     description = { QUES_170_DESC }
+  //     subComponents = { this.shortAnswers_170 }
+  //   /> )
 
   _module = MODULES.filter(m => m.id === 1)[0]
 
@@ -163,13 +163,15 @@ export default class Module1 extends React.Component {
       id: 150,
       module_id: 1,
       title: "Compare your 'current situation' statement to your 'future desired situation' statement",
-      exercise: this.exercise_150
+      exercise: this.exercise_150,
+      subComponents: [151,152,153,154,155,156]
     },
     {
       id: 160,
       module_id: 1,
       title: "Breaking and building",
-      exercise: this.exercise_160
+      exercise: this.exercise_160,
+      subComponents: [161,162,163,164]
     },
   ]
 
