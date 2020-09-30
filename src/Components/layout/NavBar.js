@@ -50,7 +50,7 @@ class NavBar extends React.Component {
   the new user's data.
   ************************************************** */
   componentDidUpdate( prevProps, prevState ) {
-    console.log( "NavBar::componentDidUpdate()" )
+    // console.log( "NavBar::componentDidUpdate()" )
     if ( this.props.user.login_token !== prevProps.user.login_token ) {
       const { dispatch, user } = this.props
       this.loadUserData(dispatch, user)
