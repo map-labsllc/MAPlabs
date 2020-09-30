@@ -69,7 +69,15 @@ export default function InfluenceGroup( props ) {
         {influencesWithKeys.length === 0 &&
           <p>Not started.</p>
         }
-        <table>
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col" className="text-left">Relationship</th>
+              <th scope="col" className="text-left">Individual</th>
+              <th scope="col" className="text-left">Belief/Value</th>
+              <th scope="col" className="text-left">Impact</th>
+            </tr>
+          </thead>
           <tbody>
             {influencesWithKeys.map((influenceWithKey) =>
               <Influence

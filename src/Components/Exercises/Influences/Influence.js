@@ -58,7 +58,7 @@ export default function Influence( props )  {
   }
 
   // **********************************************
-  console.log("Influence::render(): ", props.influence)
+  // console.log("Influence::render(): ", props.influence)
 
   const { beliefs, relationships, influence, isDynamic } = props
   const { relationship, name, belief, impact } = influence
@@ -67,10 +67,10 @@ export default function Influence( props )  {
   if ( !isDynamic ) {
     return (
       <tr>
-        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{relationship}</th>
-        <th>&nbsp;&nbsp;--&nbsp;&nbsp;{name}</th>
-        <th>&nbsp;&nbsp;--&nbsp;&nbsp;{belief}</th>
-        <th>&nbsp;&nbsp;--&nbsp;&nbsp;{impact}</th>
+        <td className="text-left">{relationship}</td>
+        <td className="text-left">{name}</td>
+        <td className="text-left">{belief}</td>
+        <td className="text-left">{impact}</td>
       </tr>
     )
   }
@@ -79,16 +79,17 @@ export default function Influence( props )  {
   // dynamic render
   return (
     <Form inline>
-      <select
+      <FormControl
         id="relationship"
-        defaultValue={relationship}
+        value={relationship}
         onChange={onChange}
+        as="select"
       >
         <option value='' disabled hidden>- relationship -</option>
         {relationships.map((relationship, idx) =>
           <option key={relationship.id} value={relationship.value}>{relationship.value}</option>
         )}
-      </select>
+      </FormControl>
 
       <FormControl
         id='name'
@@ -98,27 +99,29 @@ export default function Influence( props )  {
         onChange={onChange}
       />
 
-      <select
+      <FormControl
         id="belief"
-        defaultValue={belief}
+        value={belief}
         onChange={onChange}
+        as="select"
       >
         <option value='' disabled hidden>- belief/value -</option>
         {/*'key' added to suppress react warning*/}
         {beliefs.map((belief, idx) =>
           <option key={belief.id} value={belief.value}>{belief.value}</option>
         )}
-      </select>
+      </FormControl>
 
-      <select
+      <FormControl
         id="impact"
-        defaultValue={impact}
+        value={impact}
         onChange={onChange}
+        as="select"
       >
         <option value='' disabled hidden>- impact -</option>
         <option value={IMPACT_SUPPORTIVE}>{IMPACT_SUPPORTIVE}</option>
         <option value={IMPACT_INHIBITING}>{IMPACT_INHIBITING}</option>
-      </select>
+      </FormControl>
 
       <Button type="button" onClick={onclickDelete}><i className="nc-icon nc-simple-remove"></i></Button>
 
