@@ -41,7 +41,7 @@ export default function Influence( props )  {
     e - target.id is a key for the influence object:  'relationship', 'name', 'belief', or 'impact'
   ************************************************ */
   const onChange = (e) => {
-    console.log("Influence::onChange()")
+    // console.log("Influence::onChange()")
     const newInfluence = {
       ...props.influence,
       [e.target.id]: e.target.value
@@ -52,7 +52,7 @@ export default function Influence( props )  {
 
   // **********************************************
   const onclickDelete = (e) => {
-    console.log("Influence::onclickDelete()")
+    // console.log("Influence::onclickDelete()")
     const { id, deleteInfluenceCB } = props
     deleteInfluenceCB(id)
   }

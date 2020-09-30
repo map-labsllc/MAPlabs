@@ -43,21 +43,21 @@ export default function InfluenceGroup( props ) {
 
   // **********************************************
   const deleteInfluence = (keyToDelete) => {
-    console.log(`InfluenceGroup::deleteInfluence(${keyToDelete})`)
+    // console.log(`InfluenceGroup::deleteInfluence(${keyToDelete})`)
     const { groupId, deleteInfluenceCB } = props
     deleteInfluenceCB(groupId, keyToDelete)
   }
 
   // **********************************************
   const onclickAdd = () => {
-    console.log(`InfluenceGroup::onclickAdd()`)
+    // console.log(`InfluenceGroup::onclickAdd()`)
     const { groupId, addInfluenceCB } = props
     addInfluenceCB(groupId)
   }
 
   // **********************************************
   // render!
-  console.log("InfluenceGroup::render()")
+  // console.log("InfluenceGroup::render()")
 
   const { heading, beliefs, relationships, isDynamic, influencesWithKeys } = props
 

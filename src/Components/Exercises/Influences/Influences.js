@@ -61,7 +61,7 @@ export default class Influences extends React.Component {
 
   // **********************************************
   onclickClose = () => {
-    console.log( "Influences::onclickClose()" )
+    // console.log( "Influences::onclickClose()" )
 
     const { userId, onPersistCB, onCloseModalCB } = this.props
     const { isDirty, influencesWithKeys } = this.state
@@ -82,7 +82,7 @@ export default class Influences extends React.Component {
   // **********************************************
   // groupId is the key into influencesWithKeys
   deleteInfluence = (groupId, keyToDelete) => {
-    console.log(`Influences::deleteInfluence(${groupId}, ${keyToDelete})`)
+    // console.log(`Influences::deleteInfluence(${groupId}, ${keyToDelete})`)
 
     const { influencesWithKeys } = this.state
 
@@ -101,7 +101,7 @@ export default class Influences extends React.Component {
   // **********************************************
   // groupId is the key into influencesWithKeys
   addInfluence = (groupId) => {
-    console.log(`Influences::addInfluence(${groupId})`)
+    // console.log(`Influences::addInfluence(${groupId})`)
 
     const { influencesWithKeys } = this.state
 
@@ -132,7 +132,7 @@ export default class Influences extends React.Component {
 
   // **********************************************
   updateInfluence = (groupId, keyToUpdate, newInfluence) => {
-    console.log(`Influences::updateData()`)
+    // console.log(`Influences::updateData()`)
 
     const { influencesWithKeys } = this.state
 
@@ -151,8 +151,8 @@ export default class Influences extends React.Component {
   // **********************************************
   // render!
   render() {
-    console.log("Influences::render()")
-    console.log("this.props.influences", this.props.influences)
+    // console.log("Influences::render()")
+    // console.log("this.props.influences", this.props.influences)
 
     const { question, beliefs, relationships, instructions, influences, isDynamic } = this.props
 
