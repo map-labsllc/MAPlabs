@@ -4,7 +4,7 @@ import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 
 import ModuleNav from './ModuleNav'
-import ModuleIntro from './ModuleIntro'
+import ModuleIntroCT from './ModuleIntroCT'
 import { Alert } from 'react-bootstrap'
 
 const ModuleWrapper = ( {moduleId, title, description, sectionId, sections} ) => {
@@ -24,7 +24,7 @@ const ModuleWrapper = ( {moduleId, title, description, sectionId, sections} ) =>
         return (<ModuleNav title={'Exercises'} sections={sections} moduleId={moduleId} />)
 
       case 'intro':
-        return (<ModuleIntro description={description} firstSectionHref={firstSectionHref}/>)
+        return (<ModuleIntroCT moduleNum = { moduleId } description={description} firstSectionHref={firstSectionHref}/>)
 
       default:
         return (sectionId && section ?

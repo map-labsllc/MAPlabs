@@ -237,14 +237,22 @@ export const loginUser = ( { email, password}  ) => {
           headers: {
             Authorization: `Token: ${jwt}`
           }
-        } ).then( async( res ) => {
-          const userFromDatabase = await res.json()
-          loginUserSuccess( dispatch, userFromDatabase )
+          } )
+          .then(response => {
+            if(response.ok)
+            {
+              return response        
+            }
+            throw new Error(response.text());
+          })
+          .then( async( res ) => {
+            const userFromDatabase = await res.json()
+            loginUserSuccess( dispatch, userFromDatabase )
+          } )
         } )
-      } )
-      .catch( function(){
-        loginUserFail( dispatch )
-      } )
+        .catch( function(){
+          loginUserFail( dispatch )
+        } )
   }
 }
 
@@ -269,7 +277,9 @@ export const signUpUser = ( user ) => {
 
       //firebase sends back a user but we do not use it here.
       //user and jwt are taken from result of onAuthStateChanged
-      await firebase.auth().createUserWithEmailAndPassword( email, password )
+      await firebase
+        .auth()
+        .createUserWithEmailAndPassword( email, password )
         .then(async () => {
           await firebase.auth().onAuthStateChanged( async( fireBaseUser ) => {
             if ( fireBaseUser ) {
@@ -283,26 +293,35 @@ export const signUpUser = ( user ) => {
                 lname:payload.lname
               } )
     
-                payload.user = await fetch( `${process.env.REACT_APP_DB_URL}/users`, {
-                method:'POST',
-                headers:{"Content-Type":"application/json",
-                Authorization: `Token: ${jwt}`
-              },
-                body: body
-              } )
-              .then(
-                res => res.json()
-              )
-              .catch(console.error)
-    
-              loginUserSuccess( dispatch, payload.user )
-    
-              dispatch( {
-                type: SIGNUP,
-                payload
-              } )
-            }
-          } )
+              await fetch( `${process.env.REACT_APP_DB_URL}/users`, 
+                  {
+                    method:'POST',
+                    headers:{"Content-Type":"application/json",
+                    Authorization: `Token: ${jwt}`
+                  },
+                  body: body
+                })
+                .then(response => {
+                  if(response.ok)
+                  {
+                    return response.json()       
+                  }
+                  throw new Error(response.text());
+                })
+                .then(user => {
+                  payload.user = user
+                  loginUserSuccess( dispatch, payload.user )
+      
+                  dispatch( {
+                    type: SIGNUP,
+                    payload
+                  } )
+                })
+                .catch(err => {
+                  console.err(err)
+                  throw new Error(err.message);
+                })
+          }
         })
         .catch(err => {
           console.error("createUser error", err)
@@ -311,6 +330,7 @@ export const signUpUser = ( user ) => {
             payload: { errorMessage: err.message }
           })
         })
+    })
   }
 }
 
