@@ -1,8 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { isLoggedIn } from '../../store/user/reducer'
 
-const SideBar = ( { user }) => (
+const SideBar = ( { isLoggedIn }) => (
   <div className="sidebar has-image" data-color="blue" data-image="/assets/img/sidebar-5.jpg">
     <div className="sidebar-wrapper">
       <div className="logo">
@@ -11,7 +12,7 @@ const SideBar = ( { user }) => (
         </a>
       </div>
     
-      {user && user.login_token ? 
+      {isLoggedIn ? 
       <ul className="nav ml-auto">       
         <li className="nav-item">
           <NavLink className="nav-link" to="/infopage">
@@ -71,7 +72,8 @@ const style = {
 const mapStateToProps = state => {
   const { user } = state.userRD
   return {
-    user
+    user, 
+    isLoggedIn: isLoggedIn(state.userRD),
   }
 }
 

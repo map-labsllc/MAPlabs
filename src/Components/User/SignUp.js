@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { signUpUser } from '../../store/user/actions'
 import { Redirect, Link } from 'react-router-dom'
 import FormCard from '../layout/FormCard'
+import { isLoggedIn } from '../../store/user/reducer'
 
 class SignUp extends Component {
   constructor(props) {
@@ -49,9 +50,10 @@ class SignUp extends Component {
 
   render() {
     const { errorMessage } = this.state
+    const { isLoggedIn } = this.props
 
     return (
-      this.props.token ? <Redirect to="/modules/list"/> :
+      isLoggedIn ? <Redirect to="/modules/list"/> :
       <FormCard title="Sign up for an account">
         <div>
           <form onSubmit={ this.userSignup }>
@@ -182,14 +184,16 @@ class SignUp extends Component {
   }
 }
 
-function mapStateToProps( {userRD} ) {
+function mapStateToProps(state) {
+  const {userRD} = state
+
   return {
     fname : userRD.user.fname,
     lname : userRD.user.lname,
     email : userRD.user.email,
     password: userRD.user.password,
-    token: userRD.user.login_token ? userRD.user.login_token : '',
-    error: userRD.errorMessage
+    error: userRD.errorMessage,
+    isLoggedIn: isLoggedIn(state.userRD),
   }
 }
 

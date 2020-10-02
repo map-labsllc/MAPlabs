@@ -30,7 +30,7 @@ const initialState = {
  ************************************************** */
  export const listsRD = ( state = initialState, action ) => {
 
-  console.log("listsRD", action )
+  // console.log("listsRD", action )
   const { type, payload } = action
 
   switch( type ) {

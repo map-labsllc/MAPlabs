@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -7,21 +7,26 @@ import { PropTypes } from 'prop-types'
 import FormCard from '../layout/FormCard'
 import { userLogout } from '../../store/user/actions'
 import { createBrowserHistory } from 'history';
+import { isLoggedIn } from '../../store/user/reducer'
 
 export const browserHistory = createBrowserHistory();
 
-const Logout = ({ user, userLogout }) => {
-  const [loggedOut, setLoggedout] = useState(!(user && user.login_token));
+const Logout = ({ isLoggedIn, userLogout }) => {
+  const [loggedOut, setLoggedout] = useState(!isLoggedIn);
 
   const handleLogout = (e) => {
     e.preventDefault();
 
     userLogout().then(() => {
-      console.log('redirect to /')
       setLoggedout(true)
     })
-
   }
+
+  useEffect(() => {
+    userLogout().then(() => {
+      setLoggedout(true)
+    })
+  });
 
   return (
     loggedOut ?
@@ -49,7 +54,8 @@ function mapDispatchToProps(dispatch) {
 const mapStateToProps = state => {
   const { user } = state.userRD
   return {
-    user
+    user,
+    isLoggedIn: isLoggedIn(state.userRD),
   }
 }
 

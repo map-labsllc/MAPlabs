@@ -4,8 +4,9 @@ import { loginUser } from '../../store/user/actions'
 import { Redirect, Link } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import FormCard from '../layout/FormCard'
+import { isLoggedIn } from '../../store/user/reducer'
 
-const Login = ({ login_token, errorMessage, loginUser }) => {
+const Login = ({ isLoggedIn, errorMessage, loginUser }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -16,7 +17,7 @@ const Login = ({ login_token, errorMessage, loginUser }) => {
 
   
   return (
-    login_token ? <Redirect to="/modules/list"/> :
+    isLoggedIn ? <Redirect to="/modules/list"/> :
     <FormCard title="Login">
       <div>
         <form onSubmit={onSubmit}>
@@ -91,10 +92,14 @@ Login.propTypes = {
   loginUser: PropTypes.func.isRequired
 }
 
-const mapStateToProps = ( { userRD } ) => {
+const mapStateToProps = (state) => {
+  const { userRD } = state
   const { errorMessage, loading } = userRD
-  const { login_token } = userRD.user
-  return { errorMessage, loading, login_token }
+  return { 
+    errorMessage, 
+    loading, 
+    isLoggedIn: isLoggedIn(state.userRD),
+  }
 }
 
 export default connect( mapStateToProps, {

@@ -22,6 +22,8 @@ import {
   REMOVE_TOKEN
 } from './constants'
 
+const LOGIN_TOKEN_LENGTH = 28;
+
 /*
 
   THIS IS THE SHAPE, DON'T UNCOMMMENT
@@ -30,7 +32,7 @@ import {
     isLoading: true,
     errorMessage: '',
     orderOfSections: {     // this is lazy loaded as Module#.js files are loaded and sections are built
-      1: [110, 120, 130],  // FUTURE: shouldn't this be its own reducer?
+      1: [110, 120, 130],  // TODO: shouldn't this be its own reducer?
       2: [210, 220, 230, 240],
     }
     user: {
@@ -76,7 +78,7 @@ export const getUser = (state) => state.user
 
    return -- t/f
 ************************************************** */
-export const isLoggedIn = (state) => state.user && !!state.user.login_token
+export const isLoggedIn = (state) => state.user && state.user.login_token && state.user.login_token.length === LOGIN_TOKEN_LENGTH
 
 
 /* ***********************************************

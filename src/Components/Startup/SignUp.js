@@ -4,6 +4,7 @@ import { signUpUser } from '../../store/user/actions'
 import { Redirect, Link } from 'react-router-dom'
 import FormCard from './FormCard'
 import { Alert } from 'react-bootstrap'
+import { isLoggedIn } from '../../store/user/reducer'
 
 class SignUp extends Component {
   constructor(props) {
@@ -53,8 +54,9 @@ class SignUp extends Component {
   }
 
   render() {
+    const isLoggedIn = { this.props }
     return (
-      this.props.token ? <Redirect to="/modules/list"/> :
+      isLoggedIn ? <Redirect to="/modules/list"/> :
       <FormCard title="Sign up for an account">
         <div>
           <form>
@@ -176,14 +178,15 @@ class SignUp extends Component {
   }
 }
 
-function mapStateToProps( {userRD} ) {
+function mapStateToProps(state) {
+  const { userRD } = state
   console.log( 'thisis the STATE>>',userRD.user )
   return {
     fname : userRD.user.fname,
     lname : userRD.user.lname,
     email : userRD.user.email,
     password: userRD.user.password,
-    token: userRD.user.login_token ? userRD.user.login_token : '' 
+    isLoggedIn: isLoggedIn(state.userRD),
   }
 }
 

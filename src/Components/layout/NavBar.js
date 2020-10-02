@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { loadAllAnswersAC } from '../../store/answers/actions'
 import { loadAllStaticdataAC } from '../../store/staticdata/actions'
 import { loadListsAC } from '../../store/lists/actions'
+import { isLoggedIn } from '../../store/user/reducer'
 
 // export default class NavBar extends React.Component {
 class NavBar extends React.Component {
@@ -31,10 +32,10 @@ class NavBar extends React.Component {
   ************************************************** */
   componentDidMount( prevProps, prevState ) {
 
-    const { dispatch, user } = this.props
+    const { dispatch, user, isLoggedIn } = this.props
 
     // load user data
-    if (user && user.login_token) {
+    if (isLoggedIn) {
       this.loadUserData(dispatch, user)
     }
 
@@ -51,7 +52,7 @@ class NavBar extends React.Component {
   ************************************************** */
   componentDidUpdate( prevProps, prevState ) {
     // console.log( "NavBar::componentDidUpdate()" )
-    if ( this.props.user.login_token !== prevProps.user.login_token ) {
+    if ( this.props.isLoggedIn !== prevProps.isLoggedIn ) {
       const { dispatch, user } = this.props
       this.loadUserData(dispatch, user)
     }
@@ -64,7 +65,7 @@ class NavBar extends React.Component {
 
   render() {
 
-    const { user } = this.props
+    const { user, isLoggedIn } = this.props
 
     // user logged in, show the navbar
     return (
@@ -72,7 +73,7 @@ class NavBar extends React.Component {
         <div className="container-fluid">
           <div className="collapse navbar-collapse justify-content-end" id="navigation"> 
             <Nav className="navbar-nav ml-auto pull-right">
-              { user && user.login_token ?
+              { isLoggedIn ?
               // logged in
               (
               <>
@@ -129,7 +130,8 @@ const style = {
 const mapStateToProps = state => {
   const { user } = state.userRD
   return {
-    user
+    user,
+    isLoggedIn: isLoggedIn(state.userRD),
   }
 }
 
