@@ -20,7 +20,7 @@ const redirectFirebaseErrors = (dispatch, error) => {
   else {
     console.error( "FETCH ANSWERS ERROR", error.message )
     dispatch( { type: ANSWERS_ERROR_DB, payload: error.message } )
-    dispatch({ type: REMOVE_TOKEN }) // hack, since this is most likely due to firebase auth
+    // dispatch({ type: REMOVE_TOKEN }) // hack, since this is most likely due to firebase auth
   }
 }
 
