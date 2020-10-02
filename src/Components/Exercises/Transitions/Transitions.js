@@ -70,7 +70,7 @@ export default class Transitions extends React.Component {
     const newTransitionsWithKeys = transitionsWithKeys.filter((transitionWithKey) =>
       keyToDelete !== transitionWithKey.key)
 
-    onUpdateStoreCB(this.uuid.tripKeys(newTransitionsWithKeys))
+    onUpdateStoreCB(this.uuid.stripKeys(newTransitionsWithKeys))
     this.setState({ transitionsWithKeys: newTransitionsWithKeys })
   }
 

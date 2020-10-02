@@ -243,7 +243,7 @@ export const loginUser = ( { email, password}  ) => {
             {
               return response        
             }
-            throw new Error(response.text());
+            throw new Error(response.statusText);
           })
           .then( async( res ) => {
             const userFromDatabase = await res.json()
@@ -306,7 +306,7 @@ export const signUpUser = ( user ) => {
                   {
                     return response.json()       
                   }
-                  throw new Error(response.text());
+                  throw new Error(response.statusText);
                 })
                 .then(user => {
                   payload.user = user

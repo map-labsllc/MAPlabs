@@ -60,7 +60,7 @@ export default class InfluencesTop5 extends React.Component {
 
   // **********************************************
   onclickClose = () => {
-    console.log( "Influences::onclickClose()" )
+    // console.log( "Influences::onclickClose()" )
 
     const { userId, onPersistCB, onCloseModalCB } = this.props
     const { isDirty, allInfluencesWithKeys } = this.state
@@ -76,7 +76,7 @@ export default class InfluencesTop5 extends React.Component {
 
   // **********************************************
   updateInfluence = (keyToUpdate, newInfluence) => {
-    console.log(`InfluencesTop5::updateData()`)
+    // console.log(`InfluencesTop5::updateData()`)
 
     const { allInfluencesWithKeys } = this.state
 
@@ -92,8 +92,8 @@ export default class InfluencesTop5 extends React.Component {
   // **********************************************
   // render!
   render() {
-    console.log("InfluencesTop5::render()")
-    console.log("this.props.influences", this.props.influences)
+    // console.log("InfluencesTop5::render()")
+    // console.log("this.props.influences", this.props.influences)
 
     const { question, impactFilter, instructions, isDynamic } = this.props
 
@@ -114,7 +114,14 @@ export default class InfluencesTop5 extends React.Component {
 
       return (
         <>
-          <table>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col" className="text-left">Relationship</th>
+                <th scope="col" className="text-left">Individual</th>
+                <th scope="col" className="text-left">Belief/Value</th>
+              </tr>
+            </thead>
             <tbody>
               {selectedInfluencesWithKeys.map(influenceWithKey =>
                 <InfluenceTop5 
@@ -127,7 +134,6 @@ export default class InfluencesTop5 extends React.Component {
               )}
             </tbody>
           </table>
-          <br></br>
         </>
       )
     }
@@ -136,16 +142,27 @@ export default class InfluencesTop5 extends React.Component {
     return (
       <>
         <p>{instructions}</p>
-        {impactInfluencesWithKeys.map(influenceWithKey =>
-          <InfluenceTop5 
-            key={influenceWithKey.key}
-            id={influenceWithKey.key}
-            influence={influenceWithKey.item}
-            isDynamic={isDynamic}
-            updateInfluenceCB={this.updateInfluence}
-          />
-        )}
-        <br/>
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col" className="text-left">Relationship</th>
+              <th scope="col" className="text-left">Individual</th>
+              <th scope="col" className="text-left">Belief/Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {impactInfluencesWithKeys.map(influenceWithKey =>
+              <InfluenceTop5 
+                key={influenceWithKey.key}
+                id={influenceWithKey.key}
+                influence={influenceWithKey.item}
+                isDynamic={isDynamic}
+                updateInfluenceCB={this.updateInfluence}
+              />
+            )}
+          </tbody>
+        </table>
+        
         <Button type="button" onClick={this.onclickClose}>Save</Button>
       </>
     )

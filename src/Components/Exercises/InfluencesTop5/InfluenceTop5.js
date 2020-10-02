@@ -47,7 +47,7 @@ export default function Influence(props) {
 
   // **********************************************
   // render!
-  console.log("InfluenceTop5::render(): ", props.influence)
+  // console.log("InfluenceTop5::render(): ", props.influence)
 
   const { influence, isDynamic } = props
   const { selected, relationship, name, belief } = influence
@@ -56,26 +56,28 @@ export default function Influence(props) {
   if ( !isDynamic ) {
     return (
       <tr>
-        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{relationship}</th>
-        <th>&nbsp;&nbsp;--&nbsp;&nbsp;{name}</th>
-        <th>&nbsp;&nbsp;--&nbsp;&nbsp;{belief}</th>
+        <td className="text-left">{relationship}</td>
+        <td className="text-left">{name}</td>
+        <td className="text-left">{belief}</td>
       </tr>
     )
   }
 
   // dynamic render
   return (
-    <Form inline>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input 
-        onChange={onChange}
-        type="checkbox" 
-        checked={selected.length!==0 ? true : false}
-      />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{relationship}
-      &nbsp;&nbsp;--&nbsp;&nbsp;{name}
-      &nbsp;&nbsp;--&nbsp;&nbsp;{belief}
-    </Form>
+    <tr>
+      <td className="text-left">
+        <Form inline>
+          <input 
+            onChange={onChange}
+            type="checkbox" 
+            checked={selected.length!==0 ? true : false}
+          />
+        </Form>
+      </td>
+      <td className="text-left">{relationship}</td>
+      <td className="text-left">{name}</td>
+    </tr>
   )
 
 }

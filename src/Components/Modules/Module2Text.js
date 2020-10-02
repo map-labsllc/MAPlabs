@@ -25,15 +25,11 @@ export const QUES_220_DESC = `In the previous exercise you listed the values and
 Choose your most important influences.  Choose your top 5 'supportive' values and beliefs according to how influential or important someone’s, or some group’s, values and beliefs have been upon you. For values and beliefs that you identified as similar to another influence (e.g., for parent 2 you wrote 'same as parent 1 supportive belief'), just choose one since you already chose those values and beliefs elsewhere.
 Once you have completed the ranking of your 'supportive' values, do the same for your top 5 'inhibiting' values.`
 
-export const QUES_230_DESC = `Based on what you have written for your top 5 supportive and top 5 inhibiting influences, fill in the blanks of the statement provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.`
-
 export const QUES_240_DESC = `Based on what you have written for your top 5 supportive and top 5 inhibiting influences, fill in the blanks of the statement provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.`
 
-export const QUES_250_DESC = `Review the statements you completed for your top 5 'supportive' influences. As you reread these 5 'supportive' statements, think about what the statements have in common, or how they work together for you, and what themes they imply.  Try to summarize your core insights into a Supportive Self-Acceptance statement that articulates what your personal values & beliefs are, and why you accept them as a meaningful part of your forward-moving self.`
+export const QUES_250_DESC = `Based on what you have written for your top 5 supportive and top 5 inhibiting influences, fill in the blanks of the statement provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.`
 
-export const QUES_260_DESC = `When you have completed the summarization for your top 5 'supportive' influences, review your top 5 'inhibiting' influences. As you reread these 5 'inhibiting' influences, think about what the statements have in common, or how they work to inhibit you, and what themes they imply. Try to summarize your core insights into a Self-Inhibiting Statement that articulates why these values & beliefs are 'inhibiting' to you, and why you accept that these values & beliefs are not a meaningful part of your forward-moving self.`
-
-export const QUES_270_DESC = `Review and compare the 'supportive' and 'inhibiting' Self-Acceptance statements from Exercise 3.  Look for ways in which the two statements reflect each other, and for ways in which they reflect differing things from each other.
+export const QUES_260_DESC = `Review and compare the 'supportive' and 'inhibiting' Self-Acceptance statements from Exercise 3.  Look for ways in which the two statements reflect each other, and for ways in which they reflect differing things from each other.
 <br><br>
 As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is.
 <br><br>
@@ -47,6 +43,6 @@ Which relationships that you either currently have or need to develop in the fut
 <br><br>
 What areas of engagement could your core values and beliefs lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?`
 
-export const QUES_280_DESC = `In order to create a more meaningful life, consider which values and beliefs need to be 'broken from,' and which values and beliefs need to be 'built toward.' Fill in the following blanks:
+export const QUES_270_DESC = `In order to create a more meaningful life, consider which values and beliefs need to be 'broken from,' and which values and beliefs need to be 'built toward.' Fill in the following blanks:
 <br><br>
 In order to create a more meaningful life, I want to embrace more authentic Self-acceptance by altering my:`

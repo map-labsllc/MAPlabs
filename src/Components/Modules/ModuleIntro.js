@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 
 const ModuleIntro = ({ user, sectionCompleteCB, moduleNum, description, firstSectionHref, advanceSection }) => {
-  console.log(sectionCompleteCB)
   advanceSection = (e) => {
     console.log("advancing section")
     if (+user.curr_module === +moduleNum && +user.curr_section === 0)

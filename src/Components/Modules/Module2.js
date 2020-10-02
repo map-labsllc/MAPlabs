@@ -59,7 +59,7 @@ export default class Module2 extends React.Component {
     <InfluencesTop5CT
       question = { { code: 220, text: "Choose your most important supportive contextual influences" } }
       promptQuestionCode = { 210 }
-      outputQuestionCode = { 230 }
+      outputQuestionCode = { 240 }
       impactFilter = { IMPACT_SUPPORTIVE }
       description = { QUES_220_DESC }
       instructions = "Choose your top 5 supportive influences"
@@ -68,11 +68,11 @@ export default class Module2 extends React.Component {
   // -------------------------
   // Top 5 Inhibiting
   // Module 2: 2B for inhibiting influences
-  exercise_221 = (
+  exercise_230 = (
     <InfluencesTop5CT
-      question = { { code: 221, text: "Choose your most important inhibiting contextual influences" } }
+      question = { { code: 230, text: "Choose your most important inhibiting contextual influences" } }
       promptQuestionCode = { 210 }
-      outputQuestionCode = { 240 }
+      outputQuestionCode = { 250 }
       impactFilter = { IMPACT_INHIBITING }
       description = { QUES_220_DESC }
       instructions = "Choose your top 5 inhibiting influences"
@@ -82,21 +82,9 @@ export default class Module2 extends React.Component {
   // -------------------------
   // Madlibs: Supportive
   // Module 2: 3A for supportive
-  exercise_230 = (
-    <NarrativeCT
-      question = { { code: 230, text: "Relating Your Values and Beliefs to Those of Your Supportive Influences" } }
-      promptQuestionCode = { 0 }
-      description = { QUES_230_DESC }
-      instructions = { QUES_230_DESC }
-    /> )
-
-
-  // -------------------------
-  // M<adlibs: Inhibiting
-  // Module 2: 3A for inhibiting
   exercise_240 = (
     <NarrativeCT
-      question = { { code: 240, text: "Relating Your Values and Beliefs to Those of Your Inhibiting Influences" } }
+      question = { { code: 240, text: "Relating Your Values and Beliefs to Those of Your Supportive Influences" } }
       promptQuestionCode = { 0 }
       description = { QUES_240_DESC }
       instructions = { QUES_240_DESC }
@@ -104,60 +92,50 @@ export default class Module2 extends React.Component {
 
 
   // -------------------------
-  // Narrative Supportive
-  // Module 2: 3B
+  // Madlibs: Inhibiting
+  // Module 2: 3A for inhibiting
   exercise_250 = (
     <NarrativeCT
-      question = { { code: 250, text: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement" } }
-      promptQuestionCode = { 230 }
+      question = { { code: 250, text: "Relating Your Values and Beliefs to Those of Your Inhibiting Influences" } }
+      promptQuestionCode = { 0 }
       description = { QUES_250_DESC }
       instructions = { QUES_250_DESC }
     /> )
 
-  // -------------------------
-  // Narrative Inhibiting
-  // Module 2: 3C
-  exercise_260 = (
-    <NarrativeCT
-      question = { { code: 260, text: "Synthesize Your Values and Beliefs into a Self-Inhibiting Statement" } }
-      promptQuestionCode = { 240 }
-      description = { QUES_260_DESC }
-      instructions = { QUES_260_DESC }
-    /> )
 
   // -------------------------
   // Module 2: 4A
-  shortAnswers_270 = [
-    <ShortAnswersCT question={ { code: 271, text: "As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is." } } />,
-    <ShortAnswersCT question={ { code: 272, text: "Which core values and beliefs are most meaningful to you?" } } />,
-    <ShortAnswersCT question={ { code: 273, text: "What things beyond yourself could be served if you more intentionally lived by your core values and beliefs?" } } />,
-    <ShortAnswersCT question={ { code: 274, text: "What areas of personal growth are needed to fill your life with more of your core values and beliefs?" } } />,
-    <ShortAnswersCT question={ { code: 275, text: "Which relationships that you either currently have or need to develop in the future (to any people, groups, practices, experiences, etc.) are most needed to support your core values and beliefs?" } } />,
-    <ShortAnswersCT question={ { code: 276, text: "What areas of engagement could your core values and beliefs lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?" } } />,
+  shortAnswers_260 = [
+    <ShortAnswersCT question={ { code: 261, text: "As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is." } } />,
+    <ShortAnswersCT question={ { code: 262, text: "Which core values and beliefs are most meaningful to you?" } } />,
+    <ShortAnswersCT question={ { code: 263, text: "What things beyond yourself could be served if you more intentionally lived by your core values and beliefs?" } } />,
+    <ShortAnswersCT question={ { code: 264, text: "What areas of personal growth are needed to fill your life with more of your core values and beliefs?" } } />,
+    <ShortAnswersCT question={ { code: 265, text: "Which relationships that you either currently have or need to develop in the future (to any people, groups, practices, experiences, etc.) are most needed to support your core values and beliefs?" } } />,
+    <ShortAnswersCT question={ { code: 266, text: "What areas of engagement could your core values and beliefs lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?" } } />,
   ]
 
-  exercise_270 = (
+  exercise_260 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
-      subComponents = {this.shortAnswers_270}
-      description = { QUES_270_DESC }
+      subComponents = {this.shortAnswers_260}
+      description = { QUES_260_DESC }
     /> )
 
 
   // -------------------------
   // Module 2: 4B
-  transitions_280 = [
-    <TransitionsCT question = { { code: 281, text: "Values and Beliefs" } } />,
-    <TransitionsCT question = { { code: 282, text: "Primary Influences" } } />,
-    <TransitionsCT question = { { code: 283, text: "Relationships" } } />,
-    <TransitionsCT question = { { code: 284, text: "Commitments" } } />,
+  transitions_270 = [
+    <TransitionsCT question = { { code: 271, text: "Values and Beliefs" } } />,
+    <TransitionsCT question = { { code: 272, text: "Primary Influences" } } />,
+    <TransitionsCT question = { { code: 273, text: "Relationships" } } />,
+    <TransitionsCT question = { { code: 274, text: "Commitments" } } />,
   ]
 
-  exercise_280 = (
+  exercise_270 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_TRANSITIONS}
-      subComponents = {this.transitions_280}
-      description = { QUES_280_DESC }
+      subComponents = {this.transitions_270}
+      description = { QUES_270_DESC }
     /> )
 
   _module = MODULES.filter(m => m.id === 2)[0]
@@ -175,47 +153,37 @@ export default class Module2 extends React.Component {
       id: 220,
       module_id: 2,
       title: "Top 5 Supportive Influences",
-      exercise: this.exercise_220
+      exercise: this.exercise_220,
+      subComponents: [240]
     },
     {
-      id: 221,
+      id: 230,
       module_id: 2,
       title: "Top 5 Inhibiting Influences",
-      exercise: this.exercise_221
+      exercise: this.exercise_230,
+      subComponents: [250]
     },
-    // CUT 2.2.A
-    // {
-    //   id: 230,
-    //   module_id: 2,
-    //   title: "Relating Your Values and Beliefs to Those of Your Supportive Influencers",
-    //   exercise: this.exercise_230,
-    // },
-    // CUT 2.3.A
-    // {
-    //   id: 240,
-    //   module_id: 2,
-    //   title: "Relating Your Values and Beliefs to Those of Your Inhibiting Influencers",
-    //   exercise: this.exercise_240,
-    // },
+    {
+      id: 240,
+      title: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement",
+      exercise: this.exercise_240,
+    },
     {
       id: 250,
-      title: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement",
+      title: "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement",
       exercise: this.exercise_250,
     },
     {
       id: 260,
-      title: "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement",
+      title: "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement",
       exercise: this.exercise_260,
+      subComponents: [261,262,263,264,265,266]
     },
     {
       id: 270,
-      title: "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement",
-      exercise: this.exercise_270,
-    },
-    {
-      id: 280,
       title: "Breaking and building",
-      exercise: this.exercise_280,
+      exercise: this.exercise_270,
+      subComponents: [271,272,273,274]
     },
   ]
 

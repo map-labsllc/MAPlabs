@@ -12,14 +12,15 @@ import { getUserJwt } from '../user/actions'
 const URL = process.env.REACT_APP_DB_URL
 
 const redirectFirebaseErrors = (dispatch, error) => {
-  if (error.message.match(/Firebase/)){
+  if (error.message && error.message.match(/Firebase|Unauthorized/)){
     console.error("Firebase Auth error")
     // log them out
     dispatch({ type: REMOVE_TOKEN })
   }
   else {
-    console.error( "FETCH ERROR", error )
-    dispatch( { type: ANSWERS_ERROR_DB, payload: error } )
+    console.error( "FETCH ANSWERS ERROR", error.message )
+    dispatch( { type: ANSWERS_ERROR_DB, payload: error.message } )
+    dispatch({ type: REMOVE_TOKEN }) // hack, since this is most likely due to firebase auth
   }
 }
 
@@ -66,7 +67,7 @@ export const loadAllAnswersAC = ( userId ) => {
           return response.json()        
         }
 
-        throw new Error(response.text());
+        throw new Error(response.statusText);
       })
       .then(answers => {
         console.log("answers", answers)
@@ -120,7 +121,7 @@ export const persistAnswersAC = ( userId, question_code, question_type, answers 
           return response.json()        
         }
 
-        throw new Error(response.text());
+        throw new Error(response.statusText);
       })
       .then(message => {
         console.log( "post response message", message )
