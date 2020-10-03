@@ -117,6 +117,7 @@ export default class InfluencesTop5 extends React.Component {
           <table className="table">
             <thead>
               <tr>
+                <th></th>
                 <th scope="col" className="text-left">Relationship</th>
                 <th scope="col" className="text-left">Individual</th>
                 <th scope="col" className="text-left">Belief/Value</th>
@@ -145,6 +146,7 @@ export default class InfluencesTop5 extends React.Component {
         <table className="table">
           <thead>
             <tr>
+              <th scope="col" className="text-left"></th>
               <th scope="col" className="text-left">Relationship</th>
               <th scope="col" className="text-left">Individual</th>
               <th scope="col" className="text-left">Belief/Value</th>

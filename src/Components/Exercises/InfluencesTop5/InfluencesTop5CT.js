@@ -154,20 +154,10 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   ******************************************** */
  function persistMadlibs(userId, outputQuestionCode, impactFilter, newInfluences) {
 
-  let madlibs = ''
-  newInfluences.forEach(influence => {
-    const { name, belief, impact } = influence
-    if (impact === impactFilter) {
-      // TODO Fix
-      const madlib = `From ${name} I appropriated ${belief}, which makes me feel EMOTION. The effect of this value/belief is that it ${impact} me from PERSONAL_DESIRE because I see myself as IDENTITY_DESCRIPTOR who can/should ACTION_BEHAVIOR so that RESULT. Moving forward, I would like to DESIRED_CHANGE by PERSONAL_INTENTION.`
-      if (madlibs.length)
-        madlibs += '\n\n'
-      madlibs += madlib
-    }
-  })
+  let madlibs = newInfluences.filter(influence => influence.impact === impactFilter).map(influence => JSON.stringify(influence))
 
   // store wants 2D array of strings, in this case we're just adding one narrative string
-  const twoDimArrayOfString = [ [ madlibs ] ]
+  const twoDimArrayOfString = [ [ '', madlibs ] ]
 
   console.log('-- persisting:')
   console.log(JSON.stringify(twoDimArrayOfString))

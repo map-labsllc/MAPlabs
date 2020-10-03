@@ -56,6 +56,7 @@ export default function Influence(props) {
   if ( !isDynamic ) {
     return (
       <tr>
+        <td></td>
         <td className="text-left">{relationship}</td>
         <td className="text-left">{name}</td>
         <td className="text-left">{belief}</td>
@@ -77,6 +78,7 @@ export default function Influence(props) {
       </td>
       <td className="text-left">{relationship}</td>
       <td className="text-left">{name}</td>
+      <td className="text-left">{belief}</td>
     </tr>
   )
 
