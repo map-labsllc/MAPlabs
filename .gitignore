@@ -23,7 +23,8 @@
 .firebase
 .firebaserc
 firebase.json
-
+.swp
+*.swp
 
 npm-debug.log*
 yarn-debug.log*
