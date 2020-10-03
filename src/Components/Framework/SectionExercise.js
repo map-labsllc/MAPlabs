@@ -125,7 +125,7 @@ class SectionExercise extends React.Component {
               {(currentModule < +moduleNum || 
               (currentModule === +moduleNum && currentSection > +sectionNum)) &&
                 <div className="text-right">
-                  <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>Next</Link>
+                  <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>Next &rarr;</Link>
                 </div>
               }
             </div>

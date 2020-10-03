@@ -140,13 +140,13 @@ export default class Questions extends React.Component {
 
         <div className="bgButton text-center">
           {currIdx > 0 && 
-            <Button className="previousButton" onClick={this.onclickLeft}>Previous</Button>
+            <Button className="previousButton" onClick={this.onclickLeft}>&larr; Previous</Button>
           }
 
           <Button className="closeButton" type="button" onClick={this.onclickClose}>Save</Button>
 
           {currIdx < subComponentsWithIsDynamic.length - 1 && 
-            <Button className="nextButton" onClick={this.onclickRight}>Next</Button>
+            <Button className="nextButton" onClick={this.onclickRight}>&rarr; Next</Button>
           }
         </div>
       </>
