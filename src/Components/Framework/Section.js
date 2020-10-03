@@ -29,7 +29,7 @@ export default class Section extends React.Component {
 
   render() {
     // let { isVisible } = this.state
-    let { number, user, isVisible, moduleNum, sectionNum, sectionTitle, section, exercise } = this.props
+    let { number, user, isVisible, moduleNum, sectionNum, sectionTitle, section_ids, exercise } = this.props
     // const isVisible = this.canUserView(user, moduleNum, sectionNum)
 
     return (
@@ -42,7 +42,7 @@ export default class Section extends React.Component {
           {isVisible && (
             <Card.Body >
               <div className="container-fluid contain">
-                <SectionExerciseCT moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} section={section} />
+                <SectionExerciseCT moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} section_ids={section_ids} />
               </div>
             </Card.Body>
           )}

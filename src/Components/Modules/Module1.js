@@ -164,14 +164,14 @@ export default class Module1 extends React.Component {
       module_id: 1,
       title: "Compare your 'current situation' statement to your 'future desired situation' statement",
       exercise: this.exercise_150,
-      subComponents: [151,152,153,154,155,156]
+      section_ids: [151,152,153,154,155,156]
     },
     {
       id: 160,
       module_id: 1,
       title: "Breaking and building",
       exercise: this.exercise_160,
-      subComponents: [161,162,163,164]
+      section_ids: [161,162,163,164]
     },
   ]
 

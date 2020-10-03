@@ -52,7 +52,7 @@ const mapStateToProps = ( state, passedProps ) => {
     number,
     sectionTitle,
     exercise,
-    section
+    section_ids: section.section_ids
   }
 }
 

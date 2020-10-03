@@ -77,7 +77,7 @@ export default class Bracket extends React.Component {
               <Button className="bracketing" id='prompt1' onClick={this.promptClick(1)} >
                 {this.state.prompts[0]}
               </Button>
-              {" VS "}
+              {" versus "}
               <Button className="bracketing" id='prompt2' onClick={this.promptClick(0)} >
                 {this.state.prompts[1]}
               </Button>
@@ -85,7 +85,6 @@ export default class Bracket extends React.Component {
           </p>
           :
           (this.state.prompts.length > 0 && <p>You desire: {this.state.prompts[0]}.
-           Click 'Next' to continue the exercise, or 'Save' to save your work.
           </p>)
         }
       </div>

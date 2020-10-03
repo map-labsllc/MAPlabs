@@ -148,13 +148,15 @@ export default class Module3 extends React.Component {
       id: 310,
       module_id: 3,
       title: "Deep Desires",
-      exercise: this.exercise_310
+      exercise: this.exercise_310,
+      section_ids: [311,312,313,314,315,316,317,318]
     },
     {
       id: 320,
       module_id: 3,
       title: "Make tradeoffs within each category",
-      exercise: this.exercise_320
+      exercise: this.exercise_320,
+      section_ids: [321,322,323,324,325,326,327,328]
     },
     {
       id: 330,
@@ -172,13 +174,15 @@ export default class Module3 extends React.Component {
       id: 350,
       module_id: 3,
       title: "Reflect of your stated desires",
-      exercise: this.exercise_350
+      exercise: this.exercise_350,
+      section_ids: [351,352,353,354,355,356]
     },
     {
       id: 360,
       module_id: 3,
       title: "Break and building",
-      exercise: this.exercise_360
+      exercise: this.exercise_360,
+      section_ids: [361,362,363]
     },
   ]
 

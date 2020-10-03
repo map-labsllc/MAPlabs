@@ -154,14 +154,14 @@ export default class Module2 extends React.Component {
       module_id: 2,
       title: "Top 5 Supportive Influences",
       exercise: this.exercise_220,
-      subComponents: [240]
+      section_ids: [240]
     },
     {
       id: 230,
       module_id: 2,
       title: "Top 5 Inhibiting Influences",
       exercise: this.exercise_230,
-      subComponents: [250]
+      section_ids: [250]
     },
     {
       id: 240,
@@ -177,13 +177,13 @@ export default class Module2 extends React.Component {
       id: 260,
       title: "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement",
       exercise: this.exercise_260,
-      subComponents: [261,262,263,264,265,266]
+      section_ids: [261,262,263,264,265,266]
     },
     {
       id: 270,
       title: "Breaking and building",
       exercise: this.exercise_270,
-      subComponents: [271,272,273,274]
+      section_ids: [271,272,273,274]
     },
   ]
 

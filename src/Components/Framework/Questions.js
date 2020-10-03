@@ -146,7 +146,7 @@ export default class Questions extends React.Component {
           <Button className="closeButton" type="button" onClick={this.onclickClose}>Save</Button>
 
           {currIdx < subComponentsWithIsDynamic.length - 1 && 
-            <Button className="nextButton" onClick={this.onclickRight}>&rarr; Next</Button>
+            <Button className="nextButton" onClick={this.onclickRight}>Next &rarr;</Button>
           }
         </div>
       </>

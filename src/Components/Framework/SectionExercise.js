@@ -53,7 +53,7 @@ class SectionExercise extends React.Component {
   render() {
 
     let { isVisible } = this.state
-    const { user, sectionNum, moduleNum, answersRD, userRD, exercise, section } = this.props
+    const { user, sectionNum, moduleNum, answersRD, userRD, exercise, section_ids } = this.props
     let currentModule = user.curr_module
     let currentSection = user.curr_section
 
@@ -82,8 +82,8 @@ class SectionExercise extends React.Component {
     // is this module started?
     const isStarted = () => {
       if (answer.length > 0) { return true }
-      if (section.subComponents) {
-        return section.subComponents.some(childSectionId => getAnswers(answersRD, childSectionId).length)
+      if (section_ids) {
+        return section_ids.some(childSectionId => getAnswers(answersRD, childSectionId).length)
       }
       return false 
     }
@@ -93,8 +93,8 @@ class SectionExercise extends React.Component {
     const answersComplete = () => {
       if (answer.length > 0) return true
 
-      if (section.subComponents) {
-        return section.subComponents.every(childSectionId => getAnswers(answersRD, childSectionId).length)
+      if (section_ids) {
+        return section_ids.every(childSectionId => getAnswers(answersRD, childSectionId).length)
       }
       return false 
 
