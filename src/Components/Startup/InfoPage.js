@@ -6,8 +6,9 @@ import { NavLink } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import Tips from './Tips'
+import { isLoggedIn } from '../../store/user/reducer'
 
-const InfoPage = ({ user }) => {
+const InfoPage = ({ user, isLoggedIn }) => {
 
   return (
     <div className="reading-wrapper">
@@ -60,7 +61,7 @@ const InfoPage = ({ user }) => {
         <Tips />
 
         <div className="text-center">
-        { user && user.login_token ? 
+        { isLoggedIn ? 
           <Button className="btn btn-primary"><NavLink to="/modules/list">Continue</NavLink></Button>
           :
           <Button className="btn btn-primary"><NavLink to="/signup">Sign Up</NavLink></Button>
@@ -74,7 +75,8 @@ const InfoPage = ({ user }) => {
 const mapStateToProps = state => {
   const { user } = state.userRD
   return {
-    user
+    user,
+    isLoggedIn: isLoggedIn(state.userRD),
   }
 }
 
