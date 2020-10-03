@@ -23,9 +23,11 @@ const Logout = ({ isLoggedIn, userLogout }) => {
   }
 
   useEffect(() => {
-    userLogout().then(() => {
-      setLoggedout(true)
-    })
+    if (!loggedOut) {
+      userLogout().then(() => {
+        setLoggedout(true)
+      })
+    }
   });
 
   return (
