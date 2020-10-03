@@ -17,7 +17,7 @@ const ModuleIntro = ({ user, sectionCompleteCB, moduleNum, description, firstSec
     <div className="text-center">
       <p className="reading" dangerouslySetInnerHTML={{ __html: description }} />
       <div className="text-center">
-        <Link to={firstSectionHref} className="btn" onClick={advanceSection}>
+        <Link to={firstSectionHref} className="btn btn-primary" onClick={advanceSection}>
           Get Started &rarr;
         </Link>
       </div>
