@@ -105,7 +105,12 @@ export const persistAnswersAC = ( userId, question_code, question_type, answers 
   return async dispatch => {
     const jwtGetter = getUserJwt()
     const jwt = await jwtGetter(dispatch)
-    
+
+    if (!userId || !question_code || !question_type) {
+      console.error("Attempting to peristAnswer without ids")
+      return
+    }
+
     return fetch( `${URL}/answers/${userId}/${question_code}/${question_type}`, {
         method: 'POST',
         body: JSON.stringify( { answers } ),
