@@ -19,6 +19,7 @@ import {
   USER_UPDATE_CURR_SECTION,
   USER_UPDATE_CURR_SECTION_NO_CHANGE,
   USER_UPDATE_ERROR,
+  USER_UPDATE_SUCCESS,
   REMOVE_TOKEN
 } from './constants'
 
@@ -125,13 +126,7 @@ export const getNextModuleSection = ( userRD, currModuleNum, currSectionNum ) =>
   console.log( "  orderOfSections: ", orderOfSections )
   console.log( "  sections: ", sections )
 
-  // Properly set currSectionNum to the first section if it was 0.
-  //   It was set to 0 when moving forward from last Module at which time
-  //   we didn't know the first section number of the next module.
-  if ( currSectionNum === 0 )
-    currSectionNum = sections[0]
-
-  const idx = sections.indexOf( currSectionNum )
+  const idx = sections.indexOf(currSectionNum) || 0
 
   let newModuleNum = currModuleNum
   let newSectionNum = 0
@@ -141,6 +136,7 @@ export const getNextModuleSection = ( userRD, currModuleNum, currSectionNum ) =>
     newModuleNum = currModuleNum + 1
     newSectionNum = 0
   }
+
   return {
     moduleNum: newModuleNum,
     sectionNum: newSectionNum,
@@ -193,10 +189,14 @@ export const userRD = ( state = initialState, action ) => {
         password:payload
       }
       return {...state, user:password}
+
     case LOGIN_USER:
       return {...state, loading: true, errorMessage: '', message: '' }
+
+    case USER_UPDATE_SUCCESS:
     case LOGIN_USER_SUCCESS:
       return {...state, user: {...payload}, loading: false }
+
     case LOGIN_USER_FAIL:
       return { ...state, user: {}, errorMessage: 'Authentication Failed. Please check username/password.', password: '', loading: false }
     case FORGOT_PASSWORD:

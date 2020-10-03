@@ -3,13 +3,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const ModuleIntro = ({ user, sectionCompleteCB, moduleNum, description, firstSectionHref, advanceSection }) => {
+const ModuleIntro = ({ user, sectionCompletedCB, moduleNum, description, firstSectionHref, advanceSection }) => {
   advanceSection = (e) => {
-    console.log("advancing section")
-    if (+user.curr_module === +moduleNum && +user.curr_section === 0)
+    console.log("advancing section", user.curr_module, +moduleNum, +user.curr_section)
+    if (+user.curr_module === +moduleNum && +user.curr_section === 0 )
     {
-      console.log("calling sectionCompleteCB", user, moduleNum, 0)
-      sectionCompleteCB(user, moduleNum, 0)
+      console.log("calling sectionCompletedCB", user, moduleNum, 0)
+      sectionCompletedCB(user, moduleNum, 0)
     }
   }
 

@@ -19,11 +19,24 @@ import {
   USER_UPDATE_CURR_SECTION,
   USER_UPDATE_CURR_SECTION_NO_CHANGE,
   USER_UPDATE_ERROR,
+  USER_UPDATE_SUCCESS
 } from './constants'
 
 import { getNextModuleSection } from './reducer'
 
 const URL = process.env.REACT_APP_DB_URL
+
+/* ************************************************
+  checkResponse
+*/
+const checkResponse = (response) => {
+  if(response.ok)
+  {
+    return response        
+  }
+
+  throw new Error(response.statusText);
+}
 
 /* ************************************************
     persistCurrModuleAndSection
@@ -46,6 +59,7 @@ export const persistCurrModuleAndSection = (user, moduleNum, sectionNum ) => {
     console.log( "---- UPDATING user: ", JSON.stringify( body ) )
 
     const jwt = JSON.parse( localStorage.getItem( 'jwt' ) )
+
     return fetch( `${URL}/users/${user.id}`, {
         method: 'PATCH',
         body: JSON.stringify( body ),
@@ -55,6 +69,13 @@ export const persistCurrModuleAndSection = (user, moduleNum, sectionNum ) => {
           Authorization: `Token: ${jwt}`
         },
       } )
+      .then(checkResponse)
+      .then(response => response.json())
+      .then(data => {
+        dispatch( {
+          type: USER_UPDATE_SUCCESS,
+          payload: data } )
+      })
       .catch( ( error ) => {
         console.log( "---- error" )
         console.log( "-- FETCH ERROR", error )
@@ -194,6 +215,7 @@ export const setPersistedUser = ( fireBaseUser ) => {
       }
     } ).then( async( res ) => {
       const userFromDatabase = await res.json()
+      console.log('userFromDatabase', userFromDatabase)
       loginUserSuccess( dispatch, userFromDatabase )
     } )
     .catch( function(){
@@ -238,17 +260,9 @@ export const loginUser = ( { email, password}  ) => {
             Authorization: `Token: ${jwt}`
           }
           } )
-          .then(response => {
-            if(response.ok)
-            {
-              return response        
-            }
-            throw new Error(response.statusText);
-          })
-          .then( async( res ) => {
-            const userFromDatabase = await res.json()
-            loginUserSuccess( dispatch, userFromDatabase )
-          } )
+          .then(checkResponse)
+          .then(response => response.json())
+          .then(data => loginUserSuccess(dispatch, data))
         } )
         .catch( function(){
           loginUserFail( dispatch )
@@ -268,6 +282,8 @@ const loginUserSuccess = async( dispatch, user ) => {
     payload: user
   } )
 }
+
+
 
 export const signUpUser = ( user ) => {
   let payload = user
@@ -301,13 +317,8 @@ export const signUpUser = ( user ) => {
                   },
                   body: body
                 })
-                .then(response => {
-                  if(response.ok)
-                  {
-                    return response.json()       
-                  }
-                  throw new Error(response.statusText);
-                })
+                .then(checkResponse)
+                .then(response => response.json())
                 .then(user => {
                   payload.user = user
                   loginUserSuccess( dispatch, payload.user )

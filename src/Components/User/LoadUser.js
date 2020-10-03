@@ -9,6 +9,7 @@ const LoadUser = ({ setPersistedUser }) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
+        console.log('setPersistedUser fired', user)
         setPersistedUser(user)
         authCheckComplete()
       } else {

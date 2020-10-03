@@ -1,12 +1,5 @@
 import React from 'react'
-
-import {
-  Button,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
-} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 
 /* **************************************************
@@ -32,7 +25,7 @@ import {
 export default class Questions extends React.Component {
 
   state = {
-    currIdx: 0,
+    currIdx: 0
   }
 
   // ******************************************
@@ -58,7 +51,7 @@ export default class Questions extends React.Component {
   // ******************************************
   // called when left button clicked
   onclickLeft = () => {
-    // console.log( "Questions::onclicLeft()" )
+    // console.log( "Questions::onclickLeft()" )
 
     const { currIdx } = this.state
 
@@ -104,7 +97,6 @@ export default class Questions extends React.Component {
               <h4>{idx + 1}. {subComponent.props.question.text}</h4>
               {subComponent}
             </div>
-
           ) )}
         </>
       )
