@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import FormCard from '../layout/FormCard'
 
-const ForgotPassword = ({ login_token, errorMessage, message, forgotPassword }) => {
+const ForgotPassword = ({ errorMessage, message, forgotPassword }) => {
   const [email, setEmail] = useState('')
 
   const onSubmit = (e) => {
