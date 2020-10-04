@@ -37,7 +37,7 @@ export default class MadLibs extends React.Component {
   render() {
     const { madlibs, isDynamic } = this.state
 
-    const { question, onUpdateStoreCB } = this.props
+    const { question, onUpdateStoreCB, onUpdateAnswerCB } = this.props
 
     if (!isDynamic) {
       return (
@@ -58,7 +58,7 @@ export default class MadLibs extends React.Component {
     }
 
     let MadLibComponents = madlibs.reduce((acc, madlib) => {
-      acc.push(<MadLib question={question} madlib={madlib} />)
+      acc.push(<MadLib question={question} madlib={madlib} onUpdateStoreCB={onUpdateStoreCB}/>)
       return acc
     }, [])
     
@@ -67,7 +67,7 @@ export default class MadLibs extends React.Component {
       <QuestionsCT
         question={question}
         questionType={QUESTION_TYPE_MADLIBS}
-        onCloseModalCB={() => {}} 
+        onCloseModalCB={onUpdateAnswerCB}
         subComponents={MadLibComponents}
         isDynamic={true}
       />
@@ -83,5 +83,6 @@ MadLibs.propTypes = {
   madlibs: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
   onUpdateAnswerCB: PropTypes.func,
+  onUpdateStoreCB: PropTypes.func,
   copyParentAnswers: PropTypes.func 
 }

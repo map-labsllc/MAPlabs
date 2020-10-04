@@ -150,7 +150,6 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
     // save
     //dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_STRENGTH, twoDimArrayOfString ) )
-
   }
 
   /* *****************************************

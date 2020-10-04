@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { MadLibHtml } from './MadLibHtml'
 
 import {
   Button,
@@ -10,28 +11,6 @@ import {
 
 const Label = FormLabel
 
-export const MadLibToHtml = (madlib) => {
-  const {name,
-    action,
-    belief,
-    emotion,
-    desire,
-    identity,
-    result,
-    impact,
-    change,
-    intention } = madlib
-
-  return (
-  <p>
-    From <span className="madlib">{name}</span>I appropriated <span className="madlib">{belief}</span>, which makes me feel <span className="madlib">{emotion}</span>. 
-    <br />
-    The effect of this value/belief is that it <span className="madlib">{impact}</span> me from <span className="madlib">{desire}</span> because I see myself as <span className="madlib">{identity}</span> who can/should <span className="madlib">{action}</span> so that <span className="madlib">{result}</span>. 
-    <br />
-    Moving forward, I would like to <span className="madlib">{change}</span> by <span className="madlib">{intention}</span>.
-  </p>
-  )
-}
 
 /* **************************************************
   MadLib component
@@ -55,8 +34,9 @@ export const MadLibToHtml = (madlib) => {
 
 ***************************************************** */
 export default function MadLib(props) {
-  const { madlib, isDynamic } = props
+  const { madlib, isDynamic, onUpdateStoreCB } = props
 
+    
   const [name, setName] = useState(madlib.name);
   const [belief, setBelief] = useState(madlib.belief);
   const [emotion, setEmotion] = useState(madlib.emotion);
@@ -74,12 +54,23 @@ export default function MadLib(props) {
     e - target.id is a key into the influence object:  'relationship', 'name', 'belief', or 'impact'
   ************************************************ */
   const onChange = (e) => {
-    console.log("InfluenceTop5::onChange(), e.target.checked:", e.target.checked)
-    const newInfluence = {
-      ...props.influence,
-    }
+    console.log("MadLib::onChange()")
+    e.preventDefault()
+
+    // get data from state variables
+    let data = { name,
+      action,
+      belief,
+      emotion,
+      desire,
+      identity,
+      result,
+      impact,
+      change,
+      intention } 
+ 
     const { id, updateMadLibCB } = props
-    updateMadLibCB(id, newInfluence)
+    onUpdateStoreCB(id, data)
   }
 
   // **********************************************
@@ -88,20 +79,20 @@ export default function MadLib(props) {
 
   // static
   if (!isDynamic ) {
-    return MadLibToHtml(madlib)
+    return MadLibHtml(madlib)
   }
 
   // dynamic render
   return (
-    <Form className="text-left">
+    <Form className="text-left" onChange={onChange}>
       <Label>From</Label>
-      <FormControl id="name" placeholder="name" value={name} onChange={ (e) => setName(e.target.value.trim()) }/>
+      <FormControl disabled={true} id="name" placeholder="name" value={name} onChange={ (e) => setName(e.target.value.trim()) }/>
       <Label>I appropriated</Label> 
-      <FormControl id="belief" placeholder="belief" value={belief} onChange={ (e) => setBelief(e.target.value.trim()) }/> 
+      <FormControl disabled={true} id="belief" placeholder="belief" value={belief} onChange={ (e) => setBelief(e.target.value.trim()) }/> 
       <Label>which makes me feel </Label>
       <FormControl id="emotion" placeholder="emotion" value={emotion} onChange={ (e) => setEmotion(e.target.value.trim()) }/> 
       <Label>The effect of this value/belief is that it</Label>
-      <FormControl id="impact" placeholder="impact" value={impact} onChange={ (e) => setImpact(e.target.value.trim()) }/> 
+      <FormControl disabled={true} id="impact" placeholder="impact" value={impact} onChange={ (e) => setImpact(e.target.value.trim()) }/> 
       <Label>me from</Label> 
       <FormControl id="desire" placeholder="personal desire" value={desire} onChange={ (e) => setDesire(e.target.value.trim()) }/> 
       <Label>because I see myself as</Label> 
@@ -126,6 +117,6 @@ MadLib.propTypes = {
   } ).isRequired,
   madlib: PropTypes.object.isRequired,
   isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func, 
+  onUpdateStoreCB: PropTypes.func.isRequired
 }
 
