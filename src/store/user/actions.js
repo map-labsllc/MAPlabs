@@ -291,56 +291,56 @@ export const signUpUser = ( user ) => {
 
   return async ( dispatch ) => {
 
-      //firebase sends back a user but we do not use it here.
-      //user and jwt are taken from result of onAuthStateChanged
-      await firebase
-        .auth()
-        .createUserWithEmailAndPassword( email, password )
-        .then(async () => {
-          await firebase.auth().onAuthStateChanged( async( fireBaseUser ) => {
-            if ( fireBaseUser ) {
-              console.log('fireBaseUser', fireBaseUser)
-              const jwt = await fireBaseUser.getIdToken()
+    //firebase sends back a user but we do not use it here.
+    //user and jwt are taken from result of onAuthStateChanged
+    await firebase
+      .auth()
+      .createUserWithEmailAndPassword( email, password )
+      .then(async () => {
+        await firebase.auth().onAuthStateChanged( async( fireBaseUser ) => {
+          if ( fireBaseUser ) {
+            console.log('fireBaseUser', fireBaseUser)
+            const jwt = await fireBaseUser.getIdToken()
+  
+            localStorage.setItem('jwt', JSON.stringify( jwt ))
+  
+            const body = JSON.stringify( {
+              fname:payload.fname,
+              lname:payload.lname
+            } )
+  
+            await fetch(`${process.env.REACT_APP_DB_URL}/users`, 
+              {
+                  method:'POST',
+                  headers:{"Content-Type":"application/json",
+                  Authorization: `Token: ${jwt}`
+                },
+                body: body
+              })
+              .then(checkResponse)
+              .then(response => response.json())
+              .then(user => {
+                payload.user = user
+                loginUserSuccess( dispatch, payload.user )
     
-              localStorage.setItem('jwt', JSON.stringify( jwt ))
-    
-              const body = JSON.stringify( {
-                fname:payload.fname,
-                lname:payload.lname
-              } )
-    
-              await fetch( `${process.env.REACT_APP_DB_URL}/users`, 
-                  {
-                    method:'POST',
-                    headers:{"Content-Type":"application/json",
-                    Authorization: `Token: ${jwt}`
-                  },
-                  body: body
-                })
-                .then(checkResponse)
-                .then(response => response.json())
-                .then(user => {
-                  payload.user = user
-                  loginUserSuccess( dispatch, payload.user )
-      
-                  dispatch( {
-                    type: SIGNUP,
-                    payload
-                  } )
-                })
-                .catch(err => {
-                  console.err(err)
-                  throw new Error(err.message);
-                })
-          }
-        })
-        .catch(err => {
-          console.error("createUser error", err)
-          dispatch( {
-            type: SIGNUP_FAIL,
-            payload: { errorMessage: err.message }
-          })
-        })
+                dispatch( {
+                  type: SIGNUP,
+                  payload
+                } )
+              })
+              .catch(err => {
+                console.err(err)
+                throw new Error(err.message);
+              })
+        }
+      })
+    })
+    .catch(err => {
+      console.error("createUser error", err)
+      dispatch( {
+        type: SIGNUP_FAIL,
+        payload: { errorMessage: err.message }
+      })
     })
   }
 }

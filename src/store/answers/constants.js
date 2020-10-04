@@ -15,3 +15,4 @@ export const QUESTION_TYPE_BRACKET         = 5
 export const QUESTION_TYPE_INFLUENCES      = 6
 export const QUESTION_TYPE_STRENGTH        = 7
 export const QUESTION_TYPE_STRENGTH_EM_IM  = 8
+export const QUESTION_TYPE_MADLIBS = 9

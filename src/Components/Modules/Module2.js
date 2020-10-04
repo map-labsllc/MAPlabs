@@ -3,7 +3,7 @@ import React from 'react'
 import QuestionsCT from '../Framework/QuestionsCT'
 
 import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
-import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
+import MadLibsCT from '../Exercises/MadLibs/MadLibsCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import InfluencesCT from '../Exercises/Influences/InfluencesCT'
 import InfluencesTop5CT from '../Exercises/InfluencesTop5/InfluencesTop5CT'
@@ -83,21 +83,23 @@ export default class Module2 extends React.Component {
   // Madlibs: Supportive
   // Module 2: 3A for supportive
   exercise_240 = (
-    <NarrativeCT
+    <MadLibsCT
       question = { { code: 240, text: "Relating Your Values and Beliefs to Those of Your Supportive Influences" } }
-      promptQuestionCode = { 0 }
+      promptQuestionCode = { 210 }
+      impactFilter = { IMPACT_SUPPORTIVE }
       description = { QUES_240_DESC }
       instructions = { QUES_240_DESC }
     /> )
 
-
+    
   // -------------------------
   // Madlibs: Inhibiting
   // Module 2: 3A for inhibiting
   exercise_250 = (
-    <NarrativeCT
+    <MadLibsCT
       question = { { code: 250, text: "Relating Your Values and Beliefs to Those of Your Inhibiting Influences" } }
-      promptQuestionCode = { 0 }
+      promptQuestionCode = { 210 }
+      impactFilter = { IMPACT_INHIBITING }
       description = { QUES_250_DESC }
       instructions = { QUES_250_DESC }
     /> )
@@ -154,14 +156,14 @@ export default class Module2 extends React.Component {
       module_id: 2,
       title: "Top 5 Supportive Influences",
       exercise: this.exercise_220,
-      section_ids: [240]
+      section_ids: [210]
     },
     {
       id: 230,
       module_id: 2,
       title: "Top 5 Inhibiting Influences",
       exercise: this.exercise_230,
-      section_ids: [250]
+      section_ids: [210]
     },
     {
       id: 240,
