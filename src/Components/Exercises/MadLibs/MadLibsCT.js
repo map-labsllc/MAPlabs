@@ -17,7 +17,9 @@ import {
 
   IMPACT_SUPPORTIVE,
   IMPACT_INHIBITING,
-  SELECTED
+  IMPACT_SUPPORTS,
+  IMPACT_INHIBITS,
+  SELECTED, 
 } from '../Influences/InfluencesConstants.js'
 
 // indexes into the data structure coming from the store
@@ -46,10 +48,15 @@ const mapStateToProps = ( state, passedProps ) => {
   let answerRecords = getAnswers( state.answersRD, question.code )
   console.log(`getAnswers(${question.code}): `, answerRecords )
 
+  let data = answerRecords.map(answer => {
+    console.log("JSON to rehydrate", answer)
+    return JSON.parse(answer)
+  })
+
   return {
     number,
     question,
-    madlibs: answerRecords,
+    madlibs: data,
     isDynamic,
   }
 }
@@ -60,7 +67,7 @@ const mapStateToProps = ( state, passedProps ) => {
    passedProps -- see mapStateToProps above
 ******************************************** */
 const mapDispatchToProps = ( dispatch, passedProps ) => {
-  const { question, userId, promptQuestionCode } = passedProps
+  const { question, userId, promptQuestionCode, impactFilter } = passedProps
 
   function copyParentAnswers() {
 
@@ -69,32 +76,49 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   
       // get parent answers
       let parentAnswers = getAnswers(state.answersRD, promptQuestionCode)
+        .filter(answer => answer[IDX_SELECTED] === SELECTED) // filter out selected ones
+        .filter(answer =>answer[IDX_IMPACT] === impactFilter) // supports/inhbits
 
-      // filter out selected ones
-      parentAnswers = parentAnswers.filter(answer => answer[IDX_SELECTED] === SELECTED)
-      
-      console.log('parentAnswers', parentAnswers)
+      // reformat into object
+      let data = parentAnswers
+        .map(answer => {
+          let impact
+          switch(answer[IDX_IMPACT]) {
+            case IMPACT_SUPPORTIVE:
+              impact = IMPACT_SUPPORTS
+              break
+            case IMPACT_INHIBITING:
+              impact = IMPACT_INHIBITS
+              break
+          } 
 
-      // reformat into objects for json
-      let data = parentAnswers.map(answer => {
-        return {
-          belief: answer[IDX_BELIEF],
-          relationship: answer[IDX_RELATIONSHIP],
-          name: answer[IDX_NAME],
-          impact: answer[IDX_IMPACT],
-          emotion: '',
-          desire: '',
-          identity: '',
-          action: '',
-          result: '',
-          change: '',
-          intention: ''
-        }
-      })
+          return JSON.stringify({
+            belief: answer[IDX_BELIEF],
+            relationship: answer[IDX_RELATIONSHIP],
+            name: answer[IDX_NAME],
+            impact,
+            emotion: '',
+            desire: '',
+            identity: '',
+            action: '',
+            result: '',
+            change: '',
+            intention: ''
+          })
+        })
 
-      await dispatch(updateAnswersAC(question.code, data))
-      await dispatch(persistAnswersAC(userId, question.code, QUESTION_TYPE_MADLIBS, parentAnswers ) )
+      // move into proper index
+      let records = data.reduce((acc, item) => {
+        let arr = []
+        arr[IDX_JSON] = item
+        acc.push(item)
+        return acc
+      }, [])
 
+      console.log('records', records)
+
+      await dispatch(updateAnswersAC(question.code, records))
+      await dispatch(persistAnswersAC(userId, question.code, QUESTION_TYPE_MADLIBS, records) )
     }
   }
 

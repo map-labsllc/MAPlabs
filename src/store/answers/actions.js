@@ -107,7 +107,7 @@ export const persistAnswersAC = ( userId, question_code, question_type, answers 
     const jwt = await jwtGetter(dispatch)
 
     if (!userId || !question_code || !question_type) {
-      console.error("Attempting to peristAnswer without ids")
+      console.error("Attempting to peristAnswer without ids: userId, question_code, question_type", userId, question_code, question_type)
       return
     }
 

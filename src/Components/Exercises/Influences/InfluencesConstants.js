@@ -15,6 +15,8 @@ export const IDX_SELECTED     = 5 // 'selected' or ''
 // legal values for an impact
 export const IMPACT_SUPPORTIVE = 'supportive'
 export const IMPACT_INHIBITING = 'inhibiting'
+export const IMPACT_SUPPORTS = 'supports'
+export const IMPACT_INHIBITS = 'inhibits'
 
 // field value when slecting top 5
 export const SELECTED = 'selected' 
