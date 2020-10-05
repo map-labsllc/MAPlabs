@@ -36,7 +36,6 @@ const Label = FormLabel
 export default function MadLib(props) {
   const { madlib, isDynamic, onUpdateStoreCB } = props
 
-    
   const [name, setName] = useState(madlib.name);
   const [belief, setBelief] = useState(madlib.belief);
   const [emotion, setEmotion] = useState(madlib.emotion);
@@ -70,7 +69,7 @@ export default function MadLib(props) {
       intention } 
  
     const { id, onUpdateStoreCB } = props
-    console.log("onUpdateStoreCB with data=", data)
+    // console.log("onUpdateStoreCB with data=", id, data)
 
     await onUpdateStoreCB(id, data)
   }
@@ -88,25 +87,25 @@ export default function MadLib(props) {
   return (
     <Form className="text-left" onChange={onChange}>
       <Label>From</Label>
-      <FormControl disabled={true} id="name" placeholder="name" value={name} onChange={ (e) => setName(e.target.value.trim()) }/>
+      <FormControl disabled={true} id="name" placeholder="name" value={name} onChange={ (e) => setName(e.target.value) }/>
       <Label>I appropriated</Label> 
-      <FormControl disabled={true} id="belief" placeholder="belief" value={belief} onChange={ (e) => setBelief(e.target.value.trim()) }/> 
+      <FormControl disabled={true} id="belief" placeholder="belief" value={belief} onChange={ (e) => setBelief(e.target.value) }/> 
       <Label>which makes me feel </Label>
-      <FormControl id="emotion" placeholder="emotion" value={emotion} onChange={ (e) => setEmotion(e.target.value.trim()) }/> 
+      <FormControl id="emotion" placeholder="emotion" value={emotion} onChange={ (e) => setEmotion(e.target.value) }/> 
       <Label>The effect of this value/belief is that it</Label>
-      <FormControl disabled={true} id="impact" placeholder="impact" value={impact} onChange={ (e) => setImpact(e.target.value.trim()) }/> 
+      <FormControl disabled={true} id="impact" placeholder="impact" value={impact} onChange={ (e) => setImpact(e.target.value) }/> 
       <Label>me from</Label> 
-      <FormControl id="desire" placeholder="personal desire" value={desire} onChange={ (e) => setDesire(e.target.value.trim()) }/> 
+      <FormControl id="desire" placeholder="personal desire" value={desire} onChange={ (e) => setDesire(e.target.value) }/> 
       <Label>because I see myself as</Label> 
-      <FormControl id="identity" placeholder="identity descriptor" value={identity} onChange={ (e) => setIdentity(e.target.value.trim()) }/> 
+      <FormControl id="identity" placeholder="identity descriptor" value={identity} onChange={ (e) => setIdentity(e.target.value) }/> 
       <Label>who can/should </Label>
-      <FormControl id="action" placeholder="action/behavior" value={action} onChange={ (e) => setAction(e.target.value.trim()) } /> 
+      <FormControl id="action" placeholder="action/behavior" value={action} onChange={ (e) => setAction(e.target.value) } /> 
       <Label>so that</Label> 
-      <FormControl id="result" placeholder="result" value={result} onChange={ (e) => setResult(e.target.value.trim()) }/>
+      <FormControl id="result" placeholder="result" value={result} onChange={ (e) => setResult(e.target.value) }/>
       <Label>Moving forward, I would like to</Label> 
-      <FormControl id="change" placeholder="desired change" value={change} onChange={ (e) => setChange(e.target.value.trim()) }/>
+      <FormControl id="change" placeholder="desired change" value={change} onChange={ (e) => setChange(e.target.value) }/>
       <Label>by</Label>
-      <FormControl id="intention" as="textarea" row={4} placeholder="personal intention" value={intention} onChange={ (e) => setIntention(e.target.value.trim()) } />
+      <FormControl id="intention" placeholder="personal intention" value={intention} onChange={ (e) => setIntention(e.target.value) } />
     </Form>
   )
 }

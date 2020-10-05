@@ -105,6 +105,17 @@ class SectionExercise extends React.Component {
     let nextModule = next.moduleNum
     let nextSection = next.sectionNum || 'intro'
 
+    const isCurrentSection = (currentModule, moduleNum, currentSection, sectionNum) => {
+      console.log('checking isCurrentSection', currentModule,+moduleNum, currentSection, +sectionNum )
+
+      return currentModule === +moduleNum && currentSection === +sectionNum
+    }
+
+    const showNextSection = (currentModule, moduleNum, currentSection, sectionNum) => {
+      return (currentModule < +moduleNum || 
+        (currentModule === +moduleNum && currentSection > +sectionNum))
+    }
+
     return (
       <>
         {/* display instructions */ }
@@ -115,15 +126,14 @@ class SectionExercise extends React.Component {
               <hr className="divider" />
               {exerciseStatic}
 
-              {currentModule === +moduleNum && currentSection === +sectionNum &&
+              {isCurrentSection(currentModule, moduleNum, currentSection, sectionNum) &&
                 <div className="text-center">
                   <Button className="btn btn-primary" type="button" onClick={this.onclickStart}>{buttonLabel}</Button>
                   { answersComplete(answer) && <SectionCompleteButton onClick={this.onComplete} /> }
                 </div>
               }
 
-              {(currentModule < +moduleNum || 
-              (currentModule === +moduleNum && currentSection > +sectionNum)) &&
+              {showNextSection(currentModule, moduleNum, currentSection, sectionNum) &&
                 <div className="text-right">
                   <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>Next &rarr;</Link>
                 </div>

@@ -122,9 +122,9 @@ export const getNextModuleSection = ( userRD, currModuleNum, currSectionNum ) =>
   const { orderOfSections } = userRD
   const sections = orderOfSections[currModuleNum]
 
-  console.log( `userRD::getNextModuleSection(state, ${currModuleNum}, ${currSectionNum})` )
-  console.log( "  orderOfSections: ", orderOfSections )
-  console.log( "  sections: ", sections )
+  // console.log( `userRD::getNextModuleSection(state, ${currModuleNum}, ${currSectionNum})` )
+  // console.log( "  orderOfSections: ", orderOfSections )
+  // console.log( "  sections: ", sections )
 
   const idx = sections.indexOf(currSectionNum) || 0
 

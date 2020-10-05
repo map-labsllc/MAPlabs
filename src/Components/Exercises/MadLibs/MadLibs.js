@@ -20,15 +20,13 @@ import { QUESTION_TYPE_MADLIBS } from "../../../store/answers/constants"
 export default class MadLibs extends React.Component {
 
   state = {
-    madlibs: this.props.madlibs,
     isDynamic: this.props.isDynamic,
     madlibsSet: false
   }
 
   async componentDidMount() {
-    let { copyParentAnswersCB, question } = this.props
-    console.log('MadLibs componentDidMount', this.state.madlibs.length, this.state.madlibsSet )
-    if (!this.state.madlibs.length && !this.state.madlibsSet) {
+    let { copyParentAnswersCB, question, madlibs } = this.props
+    if (!madlibs.length && !this.state.madlibsSet) {
       console.log('answers not set, copying parent')
       await copyParentAnswersCB(question)
     }
@@ -36,16 +34,16 @@ export default class MadLibs extends React.Component {
   }
 
   onSave = () => {
-    console.log("MadLibs onSave with")
-    const { onUpdateAnswerCB } = this.props
-    onUpdateAnswerCB()
+    // const { onUpdateAnswerCB } = this.props
+    // onUpdateAnswerCB()
+    // Note: QuestionCT will persistAnswers
+
     this.setState({isDynamic: false})
   }
 
   render() {
-    const { madlibs, isDynamic } = this.state
-
-    const { question, onUpdateStoreCB, onUpdateAnswerCB, impactFilter } = this.props
+    const { isDynamic } = this.state
+    const { madlibs, question, onUpdateStoreCB, impactFilter } = this.props
 
     if (!isDynamic) {
       return (
@@ -56,7 +54,7 @@ export default class MadLibs extends React.Component {
                 {impactFilter}
               </h3>
               <div>
-                <MadLib question={question} madlib={madlib} onUpdateStoreCB={onUpdateStoreCB} />
+                <MadLib question={question} madlib={madlibs[i]} onUpdateStoreCB={onUpdateStoreCB} />
               </div>
             </ListGroupItem>
           ))
@@ -66,7 +64,7 @@ export default class MadLibs extends React.Component {
     }
 
     let MadLibComponents = madlibs.reduce((acc, madlib, idx) => {
-      acc.push(<MadLib id={idx} question={question} madlib={madlib} onUpdateStoreCB={onUpdateStoreCB}/>)
+      acc.push(<MadLib id={idx} question={question} madlib={madlibs[idx]} onUpdateStoreCB={onUpdateStoreCB}/>)
       return acc
     }, [])
     

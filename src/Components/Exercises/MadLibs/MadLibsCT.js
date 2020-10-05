@@ -155,8 +155,10 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
           let arr = []
           arr[IDX_JSON] = JSON.stringify(newData)
           acc.push(arr)
+        } else {
+          acc.push(answer)
         }
-        acc.push(answer)
+
         return acc
       }, [])
 
