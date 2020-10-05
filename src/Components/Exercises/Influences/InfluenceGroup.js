@@ -69,6 +69,7 @@ export default function InfluenceGroup( props ) {
         {influencesWithKeys.length === 0 &&
           <p>Not started.</p>
         }
+        {influencesWithKeys.length > 0 &&
         <table className="table">
           <thead>
             <tr>
@@ -93,6 +94,7 @@ export default function InfluenceGroup( props ) {
             )}
           </tbody>
         </table>
+        }
 
         {isDynamic &&
           <>

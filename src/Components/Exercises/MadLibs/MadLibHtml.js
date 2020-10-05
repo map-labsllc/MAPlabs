@@ -13,7 +13,7 @@ export const MadLibHtml = (madlib) => {
     change,
     intention } = madlib
 
-  const BLANK = '    '
+  const BLANK = '_____'
 
   return (
   <p>

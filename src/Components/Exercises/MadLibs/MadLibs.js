@@ -27,6 +27,7 @@ export default class MadLibs extends React.Component {
 
   async componentDidMount() {
     let { copyParentAnswersCB, question } = this.props
+    console.log('MadLibs componentDidMount', this.state.madlibs.length, this.state.madlibsSet )
     if (!this.state.madlibs.length && !this.state.madlibsSet) {
       console.log('answers not set, copying parent')
       await copyParentAnswersCB(question)
@@ -34,10 +35,17 @@ export default class MadLibs extends React.Component {
     this.state.madlibsSet = true
   }
 
+  onSave = () => {
+    console.log("MadLibs onSave with")
+    const { onUpdateAnswerCB } = this.props
+    onUpdateAnswerCB()
+    this.setState({isDynamic: false})
+  }
+
   render() {
     const { madlibs, isDynamic } = this.state
 
-    const { question, onUpdateStoreCB, onUpdateAnswerCB } = this.props
+    const { question, onUpdateStoreCB, onUpdateAnswerCB, impactFilter } = this.props
 
     if (!isDynamic) {
       return (
@@ -45,10 +53,10 @@ export default class MadLibs extends React.Component {
           {madlibs.map((madlib, i) => (
             <ListGroupItem key={i}>
               <h3>
-                {i + 1}. {}
+                {impactFilter}
               </h3>
               <div>
-                <MadLib question={question} madlib={madlib} />
+                <MadLib question={question} madlib={madlib} onUpdateStoreCB={onUpdateStoreCB} />
               </div>
             </ListGroupItem>
           ))
@@ -57,8 +65,8 @@ export default class MadLibs extends React.Component {
       )
     }
 
-    let MadLibComponents = madlibs.reduce((acc, madlib) => {
-      acc.push(<MadLib question={question} madlib={madlib} onUpdateStoreCB={onUpdateStoreCB}/>)
+    let MadLibComponents = madlibs.reduce((acc, madlib, idx) => {
+      acc.push(<MadLib id={idx} question={question} madlib={madlib} onUpdateStoreCB={onUpdateStoreCB}/>)
       return acc
     }, [])
     
@@ -67,7 +75,7 @@ export default class MadLibs extends React.Component {
       <QuestionsCT
         question={question}
         questionType={QUESTION_TYPE_MADLIBS}
-        onCloseModalCB={onUpdateAnswerCB}
+        onCloseModalCB={this.onSave}
         subComponents={MadLibComponents}
         isDynamic={true}
       />

@@ -53,8 +53,8 @@ export default function MadLib(props) {
 
     e - target.id is a key into the influence object:  'relationship', 'name', 'belief', or 'impact'
   ************************************************ */
-  const onChange = (e) => {
-    console.log("MadLib::onChange()")
+  const onChange = async (e) => {
+    // console.log("MadLib::onChange()")
     e.preventDefault()
 
     // get data from state variables
@@ -69,8 +69,10 @@ export default function MadLib(props) {
       change,
       intention } 
  
-    const { id, updateMadLibCB } = props
-    onUpdateStoreCB(id, data)
+    const { id, onUpdateStoreCB } = props
+    console.log("onUpdateStoreCB with data=", data)
+
+    await onUpdateStoreCB(id, data)
   }
 
   // **********************************************

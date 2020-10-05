@@ -85,7 +85,7 @@ export default function Influence( props )  {
         onChange={onChange}
         as="select"
       >
-        <option value='' disabled hidden>- relationship -</option>
+        <option value='' disabled hidden>-- select relationship --</option>
         {relationships.map((relationship, idx) =>
           <option key={relationship.id} value={relationship.value}>{relationship.value}</option>
         )}
@@ -105,7 +105,7 @@ export default function Influence( props )  {
         onChange={onChange}
         as="select"
       >
-        <option value='' disabled hidden>- belief/value -</option>
+        <option value='' disabled hidden>-- select belief/value --</option>
         {/*'key' added to suppress react warning*/}
         {beliefs.map((belief, idx) =>
           <option key={belief.id} value={belief.value}>{belief.value}</option>
@@ -118,7 +118,7 @@ export default function Influence( props )  {
         onChange={onChange}
         as="select"
       >
-        <option value='' disabled hidden>- impact -</option>
+        <option value='' disabled hidden>-- select impact --</option>
         <option value={IMPACT_SUPPORTIVE}>{IMPACT_SUPPORTIVE}</option>
         <option value={IMPACT_INHIBITING}>{IMPACT_INHIBITING}</option>
       </FormControl>

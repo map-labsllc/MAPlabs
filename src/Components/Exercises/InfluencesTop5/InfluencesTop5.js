@@ -110,7 +110,7 @@ export default class InfluencesTop5 extends React.Component {
         influenceWithKey.item.selected === SELECTED
       )
       if (selectedInfluencesWithKeys.length === 0)
-        return <p>No data provided.</p>
+        return <p>Not started.</p>
 
       return (
         <>

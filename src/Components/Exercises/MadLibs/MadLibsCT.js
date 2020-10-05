@@ -1,6 +1,8 @@
 import { connect } from 'react-redux'
 import MadLibs from './MadLibs'
 import { getAnswers } from '../../../store/answers/reducer'
+import { getUser } from '../../../store/user/reducer'
+
 import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
 import { QUESTION_TYPE_MADLIBS } from '../../../store/answers/constants'
 import { bindActionCreators } from 'redux';
@@ -9,7 +11,6 @@ import { bindActionCreators } from 'redux';
 
 import {
   IDX_RELATIONSHIP,
-  IDX_GROUP,
   IDX_NAME,
   IDX_BELIEF,
   IDX_IMPACT,
@@ -41,6 +42,9 @@ const mapStateToProps = ( state, passedProps ) => {
     isDynamic
   } = passedProps
 
+  // get userId
+  const userId = getUser(state.userRD).id
+
   // validate params
   if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
@@ -48,9 +52,8 @@ const mapStateToProps = ( state, passedProps ) => {
   let answerRecords = getAnswers( state.answersRD, question.code )
   console.log(`getAnswers(${question.code}): `, answerRecords )
 
-  let data = answerRecords.map(answer => {
-    console.log("JSON to rehydrate", answer)
-    return JSON.parse(answer)
+  let data = answerRecords.map(answer=> {
+    return JSON.parse(answer[IDX_JSON])
   })
 
   return {
@@ -58,6 +61,7 @@ const mapStateToProps = ( state, passedProps ) => {
     question,
     madlibs: data,
     isDynamic,
+    userId
   }
 }
 
@@ -67,13 +71,16 @@ const mapStateToProps = ( state, passedProps ) => {
    passedProps -- see mapStateToProps above
 ******************************************** */
 const mapDispatchToProps = ( dispatch, passedProps ) => {
-  const { question, userId, promptQuestionCode, impactFilter } = passedProps
+  const { question, promptQuestionCode, impactFilter } = passedProps
 
   function copyParentAnswers() {
 
     return async(dispatch, getState) => {
       let state = getState()
-  
+
+      // get userId
+      const userId = getUser(state.userRD).id
+
       // get parent answers
       let parentAnswers = getAnswers(state.answersRD, promptQuestionCode)
         .filter(answer => answer[IDX_SELECTED] === SELECTED) // filter out selected ones
@@ -107,15 +114,16 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
           })
         })
 
+        console.log('parentCopy data', data)
       // move into proper index
       let records = data.reduce((acc, item) => {
         let arr = []
-        arr[IDX_JSON] = item
-        acc.push(item)
+        arr[IDX_JSON] = item  // should be stringified already
+        acc.push(arr)
         return acc
       }, [])
 
-      console.log('records', records)
+      console.log('parentCopy records', records)
 
       await dispatch(updateAnswersAC(question.code, records))
       await dispatch(persistAnswersAC(userId, question.code, QUESTION_TYPE_MADLIBS, records) )
@@ -127,36 +135,69 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
      Save the new data to store.  Does NOT persist.
      newTransitions -- array of transitinos
   ******************************************** */
-  function onUpdateStore( newData ) {
-    console.log( `MadLibsCT::onUpdate`, newData )
+  function onUpdateStore(id, newData ) {
 
-    const { question, userId } = passedProps
+    return async(dispatch, getState) => {
+      console.log( `MadLibsCT::onUpdate`, newData )
 
-    // store wants 2D array of strings, so map newData into that format
-    const twoDimArrayOfString = []
+      const { question, userId } = passedProps
 
-    if (newData.madlib) {
-      newData.madlibs.forEach((madlib) => {
-        const newRecord = []
-        newRecord[IDX_JSON] = JSON.stringify(newData.madlib)
+      const state = getState()
 
-        twoDimArrayOfString.push(newRecord)
-      })
+      let answers = getAnswers(state.answersRD, question.code)
+
+      // store wants 2D array of strings, so map newData into that format
+      const twoDimArrayOfString = answers.reduce((acc, answer, idx) => {
+        // replace with new data
+        if (idx === id) {
+          console.log('replacing?', idx, id, idx === id, newData)
+
+          let arr = []
+          arr[IDX_JSON] = JSON.stringify(newData)
+          acc.push(arr)
+        }
+        acc.push(answer)
+        return acc
+      }, [])
+
+      console.log('dispatching store update for MadLibs', twoDimArrayOfString)
+
+      // update store
+      dispatch(updateAnswersAC(question.code, twoDimArrayOfString))
     }
-
-    console.log(twoDimArrayOfString)
-
-    // update store
-    dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
-    // save
-    //dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_STRENGTH, twoDimArrayOfString ) )
   }
+
+  const onUpdateAnswer = () => {
+    const { question } = passedProps
+
+    return async(dispatch, getState) => {
+      
+      const state  = getState()
+      const userId = getUser(state.userRD).id
+
+      // pull current state
+      let answers = getAnswers(state.answersRD, question.code)
+
+      let persistAnswers = answers.reduce((acc, answer) => {
+        let arr = []
+        arr[IDX_JSON] = answer
+        acc.push(arr)
+        return acc
+      }, [])
+
+      console.log('onUpdateAnswer', persistAnswers)
+      // save
+      dispatch(persistAnswersAC( userId, question.code, QUESTION_TYPE_MADLIBS, persistAnswers ) )
+    }
+  }
+
 
   /* *****************************************
      The props being passed down
   ******************************************** */
   return {
-    onUpdateStoreCB: onUpdateStore,
+    onUpdateStoreCB: bindActionCreators(onUpdateStore, dispatch),
+    onUpdateAnswerCB: bindActionCreators(onUpdateAnswer, dispatch), 
     copyParentAnswersCB: bindActionCreators(copyParentAnswers, dispatch)
   }
 

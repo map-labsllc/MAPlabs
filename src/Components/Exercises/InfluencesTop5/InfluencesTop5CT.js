@@ -140,33 +140,6 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   }
 
   /* *****************************************
-    persistMadlibs()
-
-    Create madlibs and add to store and persist to outputQuestionCode.
-      Note: old contents of outputQuestionCode are overwritten without warning,
-      so if user had worked on them, then come back and made different selections
-      here then their old work will be overwritten.
-
-    userId
-    promptQuestionCode
-    impactFilter -- only create the mad libs for IMPACT_SUPPORTIVE or IMPACT_INHIBITING
-    newInfluences -- same format as the object that was passed down in props as "allInfluences"
-  ******************************************** */
- function persistMadlibs(userId, outputQuestionCode, impactFilter, newInfluences) {
-
-  let madlibs = newInfluences.filter(influence => influence.impact === impactFilter).map(influence => JSON.stringify(influence))
-
-  // store wants 2D array of strings, in this case we're just adding one narrative string
-  const twoDimArrayOfString = [ [ '', madlibs ] ]
-
-  console.log('-- persisting:')
-  console.log(JSON.stringify(twoDimArrayOfString))
-
-  dispatch( updateAnswersAC( outputQuestionCode, twoDimArrayOfString ) )
-  dispatch( persistAnswersAC( userId, outputQuestionCode, QUESTION_TYPE_NARRATIVE, twoDimArrayOfString ) )
-}
-
-  /* *****************************************
     onPersist()
 
     Update store and persist both the 'selections' and new madlibs.
@@ -183,14 +156,6 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     persistSelections(
       userId,
       promptQuestionCode,
-      newInfluences
-    )
-
-    // persist the madlibs to outputQuestionCode
-    persistMadlibs(
-      userId,
-      outputQuestionCode,
-      impactFilter,
       newInfluences
     )
   }
