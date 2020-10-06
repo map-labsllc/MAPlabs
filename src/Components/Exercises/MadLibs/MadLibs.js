@@ -34,10 +34,6 @@ export default class MadLibs extends React.Component {
   }
 
   onSave = () => {
-    // const { onUpdateAnswerCB } = this.props
-    // onUpdateAnswerCB()
-    // Note: QuestionCT will persistAnswers
-
     this.setState({isDynamic: false})
   }
 
@@ -88,7 +84,6 @@ MadLibs.propTypes = {
   }).isRequired,
   madlibs: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func,
   onUpdateStoreCB: PropTypes.func,
   copyParentAnswers: PropTypes.func 
 }

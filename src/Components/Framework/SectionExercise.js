@@ -91,11 +91,17 @@ class SectionExercise extends React.Component {
     let buttonLabel = isStarted() ? 'Continue' : 'Start'
 
     const answersComplete = () => {
-      if (answer.length > 0) return true
+      if (answer.length > 0) {
+        console.log('answersComplete has length', 1)
+        return true
+      }
 
       if (section_ids) {
+        console.log('answersComplete checking answersComplete', 2)
         return section_ids.every(childSectionId => getAnswers(answersRD, childSectionId).length)
       }
+
+      console.log('answersComplete false', 3)
       return false 
 
     }
@@ -119,6 +125,7 @@ class SectionExercise extends React.Component {
     return (
       <>
         {/* display instructions */ }
+        {console.log('isVisible sectionExercise', isVisible)}
         {!isVisible && (
           <>
             <div>

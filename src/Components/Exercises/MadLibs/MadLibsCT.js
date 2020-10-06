@@ -114,7 +114,6 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
           })
         })
 
-        console.log('parentCopy data', data)
       // move into proper index
       let records = data.reduce((acc, item) => {
         let arr = []
@@ -169,29 +168,29 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     }
   }
 
-  const onUpdateAnswer = () => {
-    const { question } = passedProps
+  // const onUpdateAnswer = () => {
+  //   const { question } = passedProps
 
-    return async(dispatch, getState) => {
+  //   return async(dispatch, getState) => {
       
-      const state  = getState()
-      const userId = getUser(state.userRD).id
+  //     const state  = getState()
+  //     const userId = getUser(state.userRD).id
 
-      // pull current state
-      let answers = getAnswers(state.answersRD, question.code)
+  //     // pull current state
+  //     let answers = getAnswers(state.answersRD, question.code)
 
-      let persistAnswers = answers.reduce((acc, answer) => {
-        let arr = []
-        arr[IDX_JSON] = answer
-        acc.push(arr)
-        return acc
-      }, [])
+  //     let persistAnswers = answers.reduce((acc, answer) => {
+  //       let arr = []
+  //       arr[IDX_JSON] = answer
+  //       acc.push(arr)
+  //       return acc
+  //     }, [])
 
-      console.log('onUpdateAnswer', persistAnswers)
-      // save
-      dispatch(persistAnswersAC( userId, question.code, QUESTION_TYPE_MADLIBS, persistAnswers ) )
-    }
-  }
+  //     console.log('onUpdateAnswer', persistAnswers)
+  //     // save
+  //     dispatch(persistAnswersAC( userId, question.code, QUESTION_TYPE_MADLIBS, persistAnswers ) )
+  //   }
+  // }
 
 
   /* *****************************************
@@ -199,7 +198,6 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   ******************************************** */
   return {
     onUpdateStoreCB: bindActionCreators(onUpdateStore, dispatch),
-    onUpdateAnswerCB: bindActionCreators(onUpdateAnswer, dispatch), 
     copyParentAnswersCB: bindActionCreators(copyParentAnswers, dispatch)
   }
 
