@@ -168,31 +168,6 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     }
   }
 
-  // const onUpdateAnswer = () => {
-  //   const { question } = passedProps
-
-  //   return async(dispatch, getState) => {
-      
-  //     const state  = getState()
-  //     const userId = getUser(state.userRD).id
-
-  //     // pull current state
-  //     let answers = getAnswers(state.answersRD, question.code)
-
-  //     let persistAnswers = answers.reduce((acc, answer) => {
-  //       let arr = []
-  //       arr[IDX_JSON] = answer
-  //       acc.push(arr)
-  //       return acc
-  //     }, [])
-
-  //     console.log('onUpdateAnswer', persistAnswers)
-  //     // save
-  //     dispatch(persistAnswersAC( userId, question.code, QUESTION_TYPE_MADLIBS, persistAnswers ) )
-  //   }
-  // }
-
-
   /* *****************************************
      The props being passed down
   ******************************************** */

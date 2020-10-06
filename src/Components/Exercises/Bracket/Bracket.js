@@ -27,10 +27,17 @@ import { Button } from 'react-bootstrap'
      onUpdateStoreCB() -- this is a function in BracketCT to update the Store with winner
 ***************************************************** */
 export default class Bracket extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      prompts: props.prompts
+  state = {
+    prompts: this.props.prompts,
+    promptSet: false
+  }
+
+  componentDidMount() {
+    if (!this.state.promptSet && this.state.prompts.length === 1) {
+      // add first prompt to store if only one
+      const firstPrompt = this.state.prompts[0]
+      this.updateStore([ firstPrompt ])
+      this.setState({promptSet: true})
     }
   }
 

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
-
+import { Button, ProgressBar } from 'react-bootstrap'
 
 /* **************************************************
    Questions component
@@ -116,8 +115,10 @@ export default class Questions extends React.Component {
       )
     } )
 
+    const progressAmount = Math.round(100 * currIdx / subComponents.length)
     return (
       <>
+        <ProgressBar variant="success" now={progressAmount} label={`${progressAmount}%`} />
         {subComponentsWithIsDynamic.map( ( subComponent, idx ) => (
           <div key={idx}>
             {( idx === currIdx ) && ( 
