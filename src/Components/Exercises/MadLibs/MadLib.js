@@ -17,8 +17,6 @@ const Label = FormLabel
 
   Displays a single influence
 
-
-
    props:
      id -- integer id for the question (poorman's UUID)
     influence

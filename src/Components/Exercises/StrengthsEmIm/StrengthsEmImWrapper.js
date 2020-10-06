@@ -26,12 +26,13 @@ export default class StrengthsEmImWrapper extends React.Component {
     strengthsSet: false
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     let { copyParentAnswersCB } = this.props
     if (!this.state.strengths.length && !this.state.strengthsSet) {
       console.log('answers not set, copying parent')
-      copyParentAnswersCB().then(() => console.log("done with parent copy"))
+      await copyParentAnswersCB()
     }
+
     this.state.strengthsSet = true
   }
 
@@ -46,10 +47,10 @@ export default class StrengthsEmImWrapper extends React.Component {
           {strengths.map((strength, i) => (
             <ListGroupItem key={i}>
               <h3>
-                {i + 1}. {listIdToValue(strengthsList, strength)}
+                {i + 1}. {listIdToValue(strengthsList, strengths[i])}
               </h3>
               <div>
-                <StrengthsEmImCT question={question} strength={strength } />
+                <StrengthsEmImCT question={question} strength={strengths[i] } />
               </div>
             </ListGroupItem>
           ))
@@ -58,8 +59,8 @@ export default class StrengthsEmImWrapper extends React.Component {
       )
     }
 
-    let EmImReflections = strengths.reduce((acc, strength) => {
-      acc.push(<StrengthsEmImCT question={question} strength={listIdToValue(strengthsList, strength)} />)
+    let EmImReflections = strengths.reduce((acc, strength, idx) => {
+      acc.push(<StrengthsEmImCT question={question} strength={listIdToValue(strengthsList, strength[idx])} />)
       return acc
     }, [])
     

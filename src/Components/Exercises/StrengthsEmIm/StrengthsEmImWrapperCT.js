@@ -3,6 +3,7 @@ import StrengthsEmImWrapper from './StrengthsEmImWrapper'
 import { getAnswers } from '../../../store/answers/reducer'
 import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
 import { QUESTION_TYPE_STRENGTH_EM_IM } from '../../../store/answers/constants'
+import { bindActionCreators } from 'redux';
 
 // legal values for the IDX_EFFECT field of the
 export const EFFECT_BROADLY = 'broadly'
@@ -50,18 +51,20 @@ const mapStateToProps = ( state, passedProps ) => {
    passedProps -- see mapStateToProps above
 ******************************************** */
 const mapDispatchToProps = ( dispatch, passedProps ) => {
-  const { question, userId } = passedProps
+  const { question, userId, promptQuestionCode } = passedProps
 
-  function copyParentAnswers(question) {
+  function copyParentAnswers() {
+    console.log("copyParentAnswers called", promptQuestionCode)
+
     return async(dispatch, getState) => {
       let state = getState()
-  
+  console.log("HERE", promptQuestionCode)
       // get parent answers
-      const parentAnswers = getAnswers(state.answersRD, question.parent_code )
+      const parentAnswers = getAnswers(state.answersRD, promptQuestionCode)
       console.log('parentAnswers', parentAnswers)
   
       await dispatch(updateAnswersAC(question.code, parentAnswers))
-      await dispatch(persistAnswersAC(userId, question.code, QUESTION_TYPE_STRENGTH_EM_IM, parentAnswers ) )
+      await dispatch(persistAnswersAC(userId, question.code, QUESTION_TYPE_STRENGTH_EM_IM, parentAnswers))
 
     }
   }
@@ -103,8 +106,8 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
      The props being passed down
   ******************************************** */
   return {
-    onUpdateStoreCB: onUpdateStore,
-    copyParentAnswersCB: () => copyParentAnswers(question)
+    onUpdateStoreCB: bindActionCreators(onUpdateStore, dispatch),
+    copyParentAnswersCB: bindActionCreators(copyParentAnswers, dispatch)
   }
 
 }

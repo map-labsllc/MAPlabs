@@ -47,11 +47,12 @@ export default class Module4 extends React.Component {
     /> )
 
   exercise_420 = (
-    // note, this exercise is child of 410
+    // note, this exercise is a child of 410
     // this could be fixed with a better DB structure
     <StrengthsEmImWrapperCT
-      question = { { code: 420, parent_code: 410, text: "Embodiments and Impediments" } }
+      question = { { code: 420, text: "Embodiments and Impediments" } }
       description = { QUES_420_DESC }
+      promptQuestionCode = { 410 }
     /> )
 
   _module = MODULES.filter(m => m.id === 4)[0]
