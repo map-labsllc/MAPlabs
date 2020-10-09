@@ -149,7 +149,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
       const twoDimArrayOfString = answers.reduce((acc, answer, idx) => {
         // replace with new data
         if (idx === id) {
-          console.log('replacing?', idx, id, idx === id, newData)
+          // console.log('replacing?', idx, id, idx === id, newData)
 
           let arr = []
           arr[IDX_JSON] = JSON.stringify(newData)
