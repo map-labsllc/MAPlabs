@@ -18,17 +18,17 @@ import { listIdToValue } from "../../../store/lists/actions"
      isDynamic
      onUpdateStoreCB() -- callback to update the store
 ***************************************************** */
+const IDX_STRENGTH = 0
 export default class StrengthsEmImWrapper extends React.Component {
 
   state = {
-    strengths: this.props.strengths,
     isDynamic: this.props.isDynamic,
     strengthsSet: false
   }
 
   async componentDidMount() {
-    let { copyParentAnswersCB } = this.props
-    if (!this.state.strengths.length && !this.state.strengthsSet) {
+    let { copyParentAnswersCB, strengths } = this.props
+    if (!strengths.length && !this.state.strengthsSet) {
       console.log('answers not set, copying parent')
       await copyParentAnswersCB()
     }
@@ -36,10 +36,14 @@ export default class StrengthsEmImWrapper extends React.Component {
     this.state.strengthsSet = true
   }
 
-  render() {
-    const { strengths, strengthsList, isDynamic } = this.state
+  onSave = () => {
+    this.setState({isDynamic: false})
+  }
 
-    const { question, onUpdateStoreCB } = this.props
+  render() {
+    const { isDynamic } = this.state
+
+    const { strengths, strengthsList, question, onUpdateStoreCB } = this.props
 
     if (!isDynamic) {
       return (
@@ -47,10 +51,10 @@ export default class StrengthsEmImWrapper extends React.Component {
           {strengths.map((strength, i) => (
             <ListGroupItem key={i}>
               <h3>
-                {i + 1}. {listIdToValue(strengthsList, strengths[i])}
+                {i + 1}. {listIdToValue(strengthsList, strengths[i][IDX_STRENGTH])}
               </h3>
               <div>
-                <StrengthsEmImCT question={question} strength={strengths[i] } />
+                <StrengthsEmImCT question={question} strength={strengths[i]} strengthValue={listIdToValue(strengthsList, strengths[i])}/>
               </div>
             </ListGroupItem>
           ))
@@ -59,8 +63,8 @@ export default class StrengthsEmImWrapper extends React.Component {
       )
     }
 
-    let EmImReflections = strengths.reduce((acc, strength, idx) => {
-      acc.push(<StrengthsEmImCT question={question} strength={listIdToValue(strengthsList, strength[idx])} />)
+    let EmImReflections = strengths.reduce((acc, strength, i) => {
+      acc.push(<StrengthsEmImCT question={question} onUpdateStoreCB={onUpdateStoreCB} strength={strengths[i]} strengthValue={listIdToValue(strengthsList, strengths[i])} />)
       return acc
     }, [])
     
@@ -69,9 +73,9 @@ export default class StrengthsEmImWrapper extends React.Component {
       <QuestionsCT
         question={question}
         questionType={QUESTION_TYPE_STRENGTH}
-        onCloseModalCB={() => {}} 
+        onCloseModalCB={this.onSave} 
         subComponents={EmImReflections}
-        isDynamic={true}
+        isDynamic={isDynamic}
       />
     )
   }
@@ -82,9 +86,10 @@ StrengthsEmImWrapper.propTypes = {
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired
   }).isRequired,
+  promptQuestionCode: PropTypes.number.isRequired,
   strengths: PropTypes.array.isRequired,
   strengthsList: PropTypes.array.isRequired,
-  isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func,
-  copyParentAnswers: PropTypes.func 
+  isDynamic: PropTypes.bool.isRequired,
+  onUpdateStoreCB: PropTypes.func,
+  copyParentAnswers: PropTypes.func.isRequired 
 }

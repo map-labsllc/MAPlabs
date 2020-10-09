@@ -47,8 +47,6 @@ export default class Module4 extends React.Component {
     /> )
 
   exercise_420 = (
-    // note, this exercise is a child of 410
-    // this could be fixed with a better DB structure
     <StrengthsEmImWrapperCT
       question = { { code: 420, text: "Embodiments and Impediments" } }
       description = { QUES_420_DESC }

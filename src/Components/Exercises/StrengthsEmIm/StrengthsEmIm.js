@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Form, FormControl, Dropdown, Button, FormLabel, FormGroup, Container, Col, Row } from "react-bootstrap"
-//import { UUID } from "../../Utils/UUID"
 import { listIdToValue } from "../../../store/lists/actions"
 
 // legal values for an effect
@@ -20,45 +19,30 @@ export const EFFECT_EMBODIMENT = "embodiment"
    props:
      number -- number of the question in <Questions> when isDynamic, 1-based
      question -- { code: 50, text: "Question 50" }
-     previousData --  {
-                        strength: "honest",
-                        broadly: "broad thoughts",
-                        reflections: [ { reflection: "str", effect: "impediment/embodiment" }, {...} ]
-                      }
+    strength -- {strength, reflections: []}
      isDynamic -- undefined - render static version in <PopUp>
                   true - render dynamic version <ModalX>
      onUpdateStoreCB() -- callback to update the store
 ***************************************************** */
-export default class StrengthEmim extends React.Component {
+export default class StrengthEmIm extends React.Component {
   state = {
     isDirty: false,
-    strength: this.props.strength,
-    reflections: this.props.previousData.reflections,
+    reflections: this.props.reflections,
     phrases: [ { reflection: "", effect: "" } ],
   }
 
   // **********************************************
   // tell parent to update data to store
   updateData = () => {
-    console.log(`Strength::updateData()`)
 
-    const { onUpdateStoreCB } = this.props
+    const { strength, onUpdateStoreCB } = this.props
 
     const newData = {}
-    newData.strength = this.state.strength
+    newData.strength = strength
     newData.reflections = this.state.reflections
 
+    console.log(`StrengthEmIm::updateData()`, newData )
     onUpdateStoreCB(newData)
-  }
-
-  onBlur = () => {
-    const { isDirty } = this.state
-    if (isDirty) {
-      this.updateData()
-      this.setState({
-        isDirty: false
-      })
-    }
   }
 
   addReflection = () => {
@@ -68,45 +52,43 @@ export default class StrengthEmim extends React.Component {
     }));
   }
 
-  handlePhraseChange = (e, idx) => {
-    let reflections = [...this.state.reflections]
+  handlePhraseChange = (idx) => {
+    return (e) => {
+      let reflections = [...this.state.reflections]
     
-    reflections[idx].reflection = e.target.value
-    this.setState((prevState) => ({
-      isDirty: true, 
-      reflections 
-    }))
-    this.updateData()
+      reflections[idx].reflection = e.target.value
+      this.setState((prevState) => ({
+        isDirty: true, 
+        reflections 
+      }))
+      this.updateData()
+    }
   }
 
-  handleEIMChange = (e, idx) => {
-    let reflections = [...this.state.reflections]
-    reflections[idx].effect = e.target.value
-    this.setState((prevState) => ({ 
-      isDirty: true,
-      reflections 
-    }))
-    this.updateData()
+  handleEIMChange = (idx) => {
+    return (e) => {
+      let reflections = [...this.state.reflections]
+      reflections[idx].effect = e.target.value
+      this.setState((prevState) => ({ 
+        isDirty: true,
+        reflections 
+      }))
+      this.updateData()
+    }
   }
 
-
-  // **********************************************
-  // render!
   render() {
-    console.log("StrengthsEmIm::render()")
-    const { reflections, strengthsList } = this.state
-    const { strength, number, question, isDynamic } = this.props
+    const { reflections } = this.state
+    const { strengthValue, strength, number, question, isDynamic } = this.props
 
-    console.log("reflections", reflections)
-    console.log("this.props.previousData", this.props.previousData)
 
     if (!isDynamic) {
       return (
         <>
         { reflections.map((reflection, idx) => (
             <Row key={idx}>
-              <Col>{ reflection.reflection }</Col>
-              <Col>{ reflection.effect }</Col> 
+              {/* <Col>{ strengthValue }</Col> */}
+              <Col>{ reflections[idx].reflection } - { reflections[idx].effect }</Col> 
             </Row>
           ))
         }
@@ -118,7 +100,7 @@ export default class StrengthEmim extends React.Component {
 
     return (
       <Container>
-        <h3>{ listIdToValue(strengthsList, strength) }</h3>
+        <h3>{ strengthValue }</h3>
         <Form onSubmit={this.onSubmit} >
           <Container >
             { reflections ? reflections.map((reflection, idx) => {
@@ -128,19 +110,16 @@ export default class StrengthEmim extends React.Component {
                     <FormControl 
                       as="textarea"
                       id={idx}
-                      value={reflection.phrase}
+                      value={reflections[idx].reflection}
                       placeholder='Write about a situation where you were able or unable to use this strength.' 
-                      onChange={(e) => this.handlePhraseChange(e, idx)}
-                      onBlur={this.onBlur}
+                      onChange={this.handlePhraseChange(idx)}
                     />
                   </Col>
                   <Col md={2}>
                     <FormControl
                       as="select" 
-                      onChange={(e) => this.handleEIMChange(e, idx)}
-                      onBlur={this.onBlur}
-                      placeholder="Embodiment or Impendiment" 
-                      value={reflection.effect}
+                      onChange={this.handleEIMChange(idx)}
+                      value={reflections[idx].effect}
                     >
                       <option>-- select --</option>
                       <option key={EFFECT_EMBODIMENT} value={EFFECT_EMBODIMENT}>{EFFECT_EMBODIMENT}</option>
@@ -167,12 +146,14 @@ export default class StrengthEmim extends React.Component {
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
-StrengthEmim.propTypes = {
+StrengthEmIm.propTypes = {
   question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired
   }).isRequired,
-  previousData: PropTypes.object.isRequired,
-  isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func // required, injected by <Popup>
+  strength: PropTypes.string.isRequired,
+  relfections: PropTypes.array.isRequired,
+  strengthValue: PropTypes.string.isRequired,
+  isDynamic: PropTypes.bool.isRequired,
+  onUpdateStoreCB: PropTypes.func 
 }

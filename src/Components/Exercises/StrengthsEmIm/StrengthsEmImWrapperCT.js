@@ -4,14 +4,8 @@ import { getAnswers } from '../../../store/answers/reducer'
 import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
 import { QUESTION_TYPE_STRENGTH_EM_IM } from '../../../store/answers/constants'
 import { bindActionCreators } from 'redux';
-
-// legal values for the IDX_EFFECT field of the
-export const EFFECT_BROADLY = 'broadly'
-
-// indexes into the data structure coming from the store
-const IDX_STRENGTH = 0
-const IDX_PHRASE = 1
-const IDX_EFFECT = 2
+import { getUser } from '../../../store/user/reducer'
+import { IDX_STRENGTH,IDX_PHRASE, IDX_EFFECT } from './StrengthsEmImConstants'
 
 /* *****************************************
    mapStateToProps()
@@ -54,11 +48,11 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   const { question, userId, promptQuestionCode } = passedProps
 
   function copyParentAnswers() {
-    console.log("copyParentAnswers called", promptQuestionCode)
 
     return async(dispatch, getState) => {
       let state = getState()
-  console.log("HERE", promptQuestionCode)
+      // get userId
+      const userId = getUser(state.userRD).id
       // get parent answers
       const parentAnswers = getAnswers(state.answersRD, promptQuestionCode)
       console.log('parentAnswers', parentAnswers)
@@ -72,33 +66,54 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   /* *****************************************
      onUpdateStore()
      Save the new transitions to store.  Does NOT persist.
-     newTransitions -- array of transitinos
+     id -- strength id to replace
+     newData - {strength, relfections: []}
   ******************************************** */
-  function onUpdateStore( newData ) {
-    console.log( `StrengthsEmImCT::onUpdate`, newData )
+  function onUpdateStore(newData ) {
 
-    const { question, userId } = passedProps
+    return async(dispatch, getState) => {
+      console.log( `StrengthsEmImWrapper::onUpdate`, newData )
 
-    // store wants 2D array of strings, so map newData into that format
-    // NOTE: this is super crappy
-    const twoDimArrayOfString = []
+      const { question, userId } = passedProps
 
-    if (newData.strength) {
-      newData.reflections.forEach((reflection) => {
-        const newRecord = []
-        newRecord[IDX_STRENGTH] = newData.strength
-        newRecord[IDX_PHRASE] = reflection.reflection
-        newRecord[IDX_EFFECT] = reflection.effect
-        twoDimArrayOfString.push(newRecord)
-      })
+      const state = getState()
+
+      let answers = getAnswers(state.answersRD, question.code)
+
+      const strength_id = newData.strength
+      // store wants 2D array of strings, so map newData into that format
+      let reflectionsSet = false
+      const twoDimArrayOfString = answers.reduce((acc, answer) => {
+        // replace with new data
+        if (+answer[IDX_STRENGTH]=== +strength_id) {
+
+          console.log("FOUND MATCHY MATCH", )
+
+          if (!reflectionsSet) { 
+
+            //  map reflections into individaul rows
+            newData.reflections.map((reflection) => {
+              let arr = []
+              arr[IDX_STRENGTH] = newData.strength
+              arr[IDX_PHRASE] = reflection.reflection
+              arr[IDX_EFFECT] = reflection.effect
+              console.log('adding a reflection', arr)
+              acc.push(arr)
+            })
+            reflectionsSet = true
+          }
+        } else {
+          acc.push(answer)
+        }
+
+        return acc
+      }, [])
+
+      console.log('dispatching store update for StrengthsEmImWrapper', twoDimArrayOfString)
+
+      // update store
+      dispatch(updateAnswersAC(question.code, twoDimArrayOfString))
     }
-
-    console.log(twoDimArrayOfString)
-
-    // update store
-    dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
-    // save
-    //dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_STRENGTH, twoDimArrayOfString ) )
 
   }
 

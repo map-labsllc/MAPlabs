@@ -2,118 +2,69 @@ import { connect } from 'react-redux'
 import StrengthsEmIm from './StrengthsEmIm'
 import { getAnswers } from '../../../store/answers/reducer'
 import { updateAnswersAC } from '../../../store/answers/actions'
-
-// indexes into the data structure coming from the store
-const IDX_STRENGTH = 0
-const IDX_PHRASE = 1
-const IDX_EFFECT = 2
+import { IDX_STRENGTH, IDX_PHRASE, IDX_EFFECT } from './StrengthsEmImConstants'
+import { bindActionCreators } from 'redux';
 
 /* *****************************************
    mapStateToProps()
-   passedProps:
+   props:
      number -- number of the question in <Questions>, 1-based
      question -- { code: 50, text: "question 50" }
      isDynamic -- undefined - rendering static version in <Popup>
                   true - rendering dynamic verison in <ModalX>
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
+const mapStateToProps = ( state, props ) => {
 
   const {
     number,
     question,
     isDynamic,
-    strength
-  } = passedProps
+    strength // answerRecord format
+  } = props
 
   // validate params
-  if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
+  if ( !question || !question.code ) throw new Error( "missing question code: ", props.question_code )
 
-  // get previous data, if any
-  const answerRecords = getAnswers( state.answersRD, question.code ).filter((answer => answer[0] === strength))
-  console.log( `getAnswers(${question.code}): `, answerRecords )
+  let strength_id = strength[IDX_STRENGTH]
+  let reflections = []
 
-  // data structure to pass down in props
-  const previousData = {
-    strength: "",
-    reflections: [],  // array of objects in form { reflection: "str", effect: "impediment/embodiment" }
-  }
+  // get all the records with this strength_id
+  const answerRecords = getAnswers( state.answersRD, question.code).filter((answer => +answer[IDX_STRENGTH] === +strength_id))
+  // console.log( `getAnswers(${question.code}) wtih ${strength_id}: `, answerRecords )
 
   // translate data from the 2D array of strings to
-  //   the object structure to pass down as prop to <Strength>
   if (answerRecords.length) {
-
-    // STRENGTH
-    // --------
-    previousData.strength = answerRecords[0][IDX_STRENGTH]
-
     // check that each record has the same strength
-    if (!answerRecords.every(record => record[0] === previousData.strength)) {
+    if (!answerRecords.every(record => +record[IDX_STRENGTH] === +strength_id)) {
       console.error("ERROR, question.code:", question.code, "records should all have the same strength")
     }
 
     // REFLECTIONS array
     // ----------------
-    const reflections = []
-    for (let i = 1; i < answerRecords.length; i++) {
-      reflections.push({
-        reflection: answerRecords[i][IDX_PHRASE],
-        effect:     answerRecords[i][IDX_EFFECT]
-      })
-    }
-    previousData.reflections = reflections
+    reflections = answerRecords.map((record, i) => {
+      return { 
+        reflection: record[IDX_PHRASE],
+        effect: record[IDX_EFFECT]
+      }
+    })
   }
 
   return {
     number,
     question,
-    previousData,
     isDynamic,
-    strengthsList: state.listsRD.lists.strengths
+    strength: strength_id,
+    reflections
   }
 }
 
 /* *****************************************
    mapDispatchToProps()
-   passedProps -- see mapStateToProps above
+   props -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => {
+const mapDispatchToProps = ( dispatch, props ) => {
 
-  /* *****************************************
-     onUpdateStore()
-     Save to store.  Does NOT persist.
-     
-  ******************************************** */
-  function onUpdateStore( newData ) {
-    console.log( `StrengthsEmImCT::onUpdate(${newData})` )
-
-    const { question } = passedProps
-
-    // store wants 2D array of strings, so map newData into that format
-    const twoDimArrayOfString = []
-
-    if (newData.strength) {
-      newData.reflections.forEach((reflection) => {
-        const newRecord = []
-        newRecord[IDX_STRENGTH] = newData.strength
-        newRecord[IDX_PHRASE] = reflection.reflection
-        newRecord[IDX_EFFECT] = reflection.effect
-        twoDimArrayOfString.push(newRecord)
-      })
-    }
-
-    console.log("Will update store with: ")
-    console.log(twoDimArrayOfString)
-
-    // update store
-    dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
-  }
-
-  /* *****************************************
-     The props being passed down
-  ******************************************** */
-  return {
-    onUpdateStoreCB: onUpdateStore,
-  }
+  return {}
 
 }
 
