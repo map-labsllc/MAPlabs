@@ -71,8 +71,6 @@ export function persist( dispatch, question, userId, newStrengths ) {
   const twoDimArrayOfString = newStrengths.map(str => [str])
   
   dispatch( updateAnswersAC( question.code, twoDimArrayOfString ))
-  console.log('-------------------- persisting')
-  console.log(JSON.stringify(twoDimArrayOfString))
   dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_STRENGTH, twoDimArrayOfString ) )
 }
 
