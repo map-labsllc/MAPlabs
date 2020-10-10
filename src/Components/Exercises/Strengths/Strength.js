@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Form, FormControl } from "react-bootstrap"
+import { FormControl } from "react-bootstrap"
 import { listIdToValue } from "../../../store/lists/actions"
 
 /* **************************************************

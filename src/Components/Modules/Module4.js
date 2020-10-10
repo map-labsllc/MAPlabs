@@ -6,6 +6,7 @@ import QuestionsCT from '../Framework/QuestionsCT'
 
 import StrengthsCT from '../Exercises/Strengths/StrengthsCT'
 import StrengthsEmImWrapperCT from '../Exercises/StrengthsEmIm/StrengthsEmImWrapperCT'
+import ReflectionsTop5CT from '../Exercises/ReflectionsTop5/ReflectionsTop5CT'
 
 // import StrengthsEmImCT from '../Exercises/StrengthsEmIm/StrengthsEmImCT'
 import ModuleLayout from './ModuleLayout'
@@ -30,6 +31,7 @@ import {
 
 import {
 } from 'react-bootstrap'
+import { EFFECT_EMBODIMENT, EFFECT_IMPEDIMENT } from '../Exercises/StrengthsEmIm/StrengthsEmImConstants'
 
 /* **************************************************
    Used to test components during development
@@ -51,6 +53,28 @@ export default class Module4 extends React.Component {
       question = { { code: 420, text: "Embodiments and Impediments" } }
       description = { QUES_420_DESC }
       promptQuestionCode = { 410 }
+    /> )
+
+  // -------------------------
+  // Top5 Embodiments
+  // Module
+  exercise_430 = (
+    <ReflectionsTop5CT
+      question = { { code: 430, text: "Choose your most important embodiments of strength." } }
+      promptQuestionCode = { 420 }
+      filter = { EFFECT_EMBODIMENT }
+      description = { QUES_430_DESC }
+    /> )
+
+  // -------------------------
+  // Top 5 Impediments
+  // Module
+  exercise_440 = (
+    <ReflectionsTop5CT
+      question = { { code: 440, text: "Choose your most important impediments of strength." } }
+      promptQuestionCode = { 420 }
+      filter = { EFFECT_IMPEDIMENT }
+      description = { QUES_440_DESC }
     /> )
 
   _module = MODULES.filter(m => m.id === 4)[0]
