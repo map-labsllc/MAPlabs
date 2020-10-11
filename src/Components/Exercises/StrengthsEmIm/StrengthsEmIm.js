@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Form, FormControl, Dropdown, Button, FormLabel, FormGroup, Container, Col, Row } from "react-bootstrap"
+import { Form, FormControl, Button, ButtonGroup, FormLabel, FormGroup, Container, Col, Row } from "react-bootstrap"
 import { listIdToValue } from "../../../store/lists/actions"
 
 import { EFFECT_IMPEDIMENT, EFFECT_EMBODIMENT } from './StrengthsEmImConstants'
@@ -26,7 +26,6 @@ export default class StrengthEmIm extends React.Component {
   state = {
     isDirty: false,
     reflections: this.props.reflections,
-    phrases: [ { reflection: "", effect: "" } ],
   }
 
   // **********************************************
@@ -46,7 +45,7 @@ export default class StrengthEmIm extends React.Component {
   addReflection = () => {
     let reflections = this.state.reflections || []
     this.setState((prevState) => ({
-      reflections: [ ...reflections, { reflection: "", effect: "", id: reflections.length } ],
+      reflections: [ ...reflections, { reflection: "", effect: EFFECT_EMBODIMENT, id: reflections.length } ],
     }));
   }
 
@@ -64,9 +63,10 @@ export default class StrengthEmIm extends React.Component {
   }
 
   handleEIMChange = (idx) => {
-    return (e) => {
+    return (effect) => {
       let reflections = [...this.state.reflections]
-      reflections[idx].effect = e.target.value
+      reflections[idx].effect = effect
+      console.log("setting effect", idx, effect)
       this.setState((prevState) => ({ 
         isDirty: true,
         reflections 
@@ -85,9 +85,9 @@ export default class StrengthEmIm extends React.Component {
         <>
         { reflections.map((reflection, idx) => (
             <Row key={idx}>
-              {/* <Col>{ strengthValue }</Col> */}
-              <Col>{ reflections[idx].reflection }</Col>
-              <Col>{ reflections[idx].effect }</Col> 
+              <Col md={1}></Col>
+              <Col md={3}>{ reflections[idx].reflection }</Col>
+              <Col md={3}>{ reflections[idx].effect }</Col> 
             </Row>
           ))
         }
@@ -103,6 +103,9 @@ export default class StrengthEmIm extends React.Component {
         <Form onSubmit={this.onSubmit} >
           <Container >
             { reflections ? reflections.map((reflection, idx) => {
+              let btnStyleEm = reflections[idx].effect === EFFECT_EMBODIMENT ? 'btn-fill' : ''
+              let btnStyleIm = reflections[idx].effect === EFFECT_IMPEDIMENT ? 'btn-fill' : ''
+
               return (
                 <FormGroup as={Row} key={idx}>
                   <Col md={6}>
@@ -114,16 +117,22 @@ export default class StrengthEmIm extends React.Component {
                       onChange={this.handlePhraseChange(idx)}
                     />
                   </Col>
-                  <Col md={2}>
-                    <FormControl
-                      as="select" 
-                      onChange={this.handleEIMChange(idx)}
-                      value={reflections[idx].effect}
-                    >
-                      <option>-- select --</option>
-                      <option key={EFFECT_EMBODIMENT} value={EFFECT_EMBODIMENT}>{EFFECT_EMBODIMENT}</option>
-                      <option key={EFFECT_IMPEDIMENT} value={EFFECT_IMPEDIMENT}>{EFFECT_IMPEDIMENT}</option>
-                    </FormControl>                                     
+                  <Col md={4}>
+                    <ButtonGroup>
+                      <Button
+                        onClick = { () => {this.handleEIMChange(idx)(EFFECT_EMBODIMENT) } }
+                        className = { btnStyleEm }
+                      >        
+                        <strong>{ EFFECT_EMBODIMENT }</strong>
+                      </Button>
+
+                      <Button
+                        onClick = { () => { this.handleEIMChange(idx)(EFFECT_IMPEDIMENT) } }
+                        className = { btnStyleIm }
+                      >
+                        <strong>{ EFFECT_IMPEDIMENT }</strong>
+                      </Button>
+                   </ButtonGroup>                                 
                   </Col>
                 </FormGroup>
               )
@@ -151,7 +160,7 @@ StrengthEmIm.propTypes = {
     text: PropTypes.string.isRequired
   }).isRequired,
   strength: PropTypes.string.isRequired,
-  relfections: PropTypes.array.isRequired,
+  reflections: PropTypes.array.isRequired,
   strengthValue: PropTypes.string.isRequired,
   isDynamic: PropTypes.bool,
   onUpdateStoreCB: PropTypes.func 

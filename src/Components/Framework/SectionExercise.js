@@ -118,7 +118,6 @@ console.log("HERE onSave called which should toggle isVisible")
     return (
       <>
         {/* display instructions */ }
-        {console.log('isVisible sectionExercise', isVisible)}
         {!isVisible && (
           <>
             <div>

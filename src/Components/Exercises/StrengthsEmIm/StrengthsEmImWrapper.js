@@ -91,7 +91,7 @@ StrengthsEmImWrapper.propTypes = {
   promptQuestionCode: PropTypes.number.isRequired,
   strengths: PropTypes.array.isRequired,
   strengthsList: PropTypes.array.isRequired,
-  isDynamic: PropTypes.bool.isRequired,
+  isDynamic: PropTypes.bool,
   onUpdateStoreCB: PropTypes.func,
   copyParentAnswers: PropTypes.func.isRequired 
 }

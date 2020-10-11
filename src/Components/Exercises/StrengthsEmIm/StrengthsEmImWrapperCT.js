@@ -28,18 +28,20 @@ const mapStateToProps = ( state, passedProps ) => {
 
   // get previous data, if any
   let answerRecords = getAnswers( state.answersRD, question.code )
-  console.log(`getAnswers(${question.code}): `, answerRecords )
+  console.log(`BEFORE getAnswers(${question.code}): `, answerRecords )
 
   // filter to unique set of strength ids, reflections are adding in component
   let strengths = []
   let strengthIds = []
   answerRecords.map(answer => {
     let strength_id = answer[IDX_STRENGTH]
-    if (!strengthIds.includes[strength_id]) {
+    if (!strengthIds.includes(strength_id)) {
       strengths.push(answer)
       strengthIds.push(strength_id)
     }
   })
+
+  console.log("AFTER strengths", strengths)
 
   return {
     number,
@@ -80,7 +82,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
      onUpdateStore()
      Save the new transitions to store.  Does NOT persist.
      id -- strength id to replace
-     newData - {strength, relfections: []}
+     newData - {strength, reflections: []}
   ******************************************** */
   function onUpdateStore(newData ) {
 
@@ -119,8 +121,6 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
         return acc
       }, [])
-
-      console.log('dispatching store update for StrengthsEmImWrapper', twoDimArrayOfString)
 
       // update store
       dispatch(updateAnswersAC(question.code, twoDimArrayOfString))
