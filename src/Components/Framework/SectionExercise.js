@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { getAnswers } from '../../store/answers/reducer'
 import SectionCompleteButton from './SectionCompleteButton'
-import { getNextModuleSection } from '../../store/user/reducer'
+import { getNextModuleSection, showNextSection, isCurrentSection } from '../../store/user/reducer'
 
 /* **************************************************
    SectionExercise component
@@ -26,6 +26,10 @@ class SectionExercise extends React.Component {
     isVisible: false,
   }
 
+  setVisible = (isVisible) => {
+    this.setState({ isVisible })
+  }
+
   // **************************************************
   // Show the complex interactive component
   onclickStart = () => {
@@ -39,13 +43,13 @@ class SectionExercise extends React.Component {
 
     this.setState({ isVisible: false })
   }
-
+  
   // Save
   onSave = () => {
     const { exercise, onPersistQuestionCB } = this.props
-
+console.log("HERE onSave called which should toggle isVisible")
     onPersistQuestionCB(exercise.question_code)
-    this.setState({ isVisible: false })
+    this.setVisible(false)
   }
 
   // **************************************************
@@ -65,7 +69,7 @@ class SectionExercise extends React.Component {
       exercise,
       {
         onCloseModalCB: this.onSave,
-        isDynamic: true
+        isDynamic: SVGComponentTransferFunctionElement,
       }
     )
 
@@ -92,16 +96,16 @@ class SectionExercise extends React.Component {
 
     const answersComplete = () => {
       if (answer.length > 0) {
-        console.log('answersComplete has length', 1)
+        console.log('answersComplete has length')
         return true
       }
 
       if (section_ids) {
-        console.log('answersComplete checking answersComplete', 2)
+        console.log('answersComplete checking answersComplete')
         return section_ids.every(childSectionId => getAnswers(answersRD, childSectionId).length)
       }
 
-      console.log('answersComplete false', 3)
+      console.log('answersComplete false')
       return false 
 
     }
@@ -110,17 +114,6 @@ class SectionExercise extends React.Component {
     let next = getNextModuleSection(userRD, +moduleNum, +sectionNum)  
     let nextModule = next.moduleNum
     let nextSection = next.sectionNum || 'intro'
-
-    const isCurrentSection = (currentModule, moduleNum, currentSection, sectionNum) => {
-      console.log('checking isCurrentSection', currentModule,+moduleNum, currentSection, +sectionNum )
-
-      return currentModule === +moduleNum && currentSection === +sectionNum
-    }
-
-    const showNextSection = (currentModule, moduleNum, currentSection, sectionNum) => {
-      return (currentModule < +moduleNum || 
-        (currentModule === +moduleNum && currentSection > +sectionNum))
-    }
 
     return (
       <>

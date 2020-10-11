@@ -3,9 +3,7 @@ import PropTypes from "prop-types"
 import { Form, FormControl, Dropdown, Button, FormLabel, FormGroup, Container, Col, Row } from "react-bootstrap"
 import { listIdToValue } from "../../../store/lists/actions"
 
-// legal values for an effect
-export const EFFECT_IMPEDIMENT = "impediment"
-export const EFFECT_EMBODIMENT = "embodiment"
+import { EFFECT_IMPEDIMENT, EFFECT_EMBODIMENT } from './StrengthsEmImConstants'
 
 /* **************************************************
    Strength component
@@ -88,7 +86,8 @@ export default class StrengthEmIm extends React.Component {
         { reflections.map((reflection, idx) => (
             <Row key={idx}>
               {/* <Col>{ strengthValue }</Col> */}
-              <Col>{ reflections[idx].reflection } - { reflections[idx].effect }</Col> 
+              <Col>{ reflections[idx].reflection }</Col>
+              <Col>{ reflections[idx].effect }</Col> 
             </Row>
           ))
         }
@@ -154,6 +153,6 @@ StrengthEmIm.propTypes = {
   strength: PropTypes.string.isRequired,
   relfections: PropTypes.array.isRequired,
   strengthValue: PropTypes.string.isRequired,
-  isDynamic: PropTypes.bool.isRequired,
+  isDynamic: PropTypes.bool,
   onUpdateStoreCB: PropTypes.func 
 }

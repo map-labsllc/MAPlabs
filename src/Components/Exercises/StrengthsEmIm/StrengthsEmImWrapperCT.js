@@ -30,10 +30,21 @@ const mapStateToProps = ( state, passedProps ) => {
   let answerRecords = getAnswers( state.answersRD, question.code )
   console.log(`getAnswers(${question.code}): `, answerRecords )
 
+  // filter to unique set of strength ids, reflections are adding in component
+  let strengths = []
+  let strengthIds = []
+  answerRecords.map(answer => {
+    let strength_id = answer[IDX_STRENGTH]
+    if (!strengthIds.includes[strength_id]) {
+      strengths.push(answer)
+      strengthIds.push(strength_id)
+    }
+  })
+
   return {
     number,
     question,
-    strengths: answerRecords,
+    strengths,
     strengthsList: state.listsRD.lists.strengths,
     isDynamic,
   }
@@ -51,8 +62,10 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
     return async(dispatch, getState) => {
       let state = getState()
+
       // get userId
       const userId = getUser(state.userRD).id
+
       // get parent answers
       const parentAnswers = getAnswers(state.answersRD, promptQuestionCode)
       console.log('parentAnswers', parentAnswers)
@@ -86,8 +99,6 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
       const twoDimArrayOfString = answers.reduce((acc, answer) => {
         // replace with new data
         if (+answer[IDX_STRENGTH]=== +strength_id) {
-
-          console.log("FOUND MATCHY MATCH", )
 
           if (!reflectionsSet) { 
 

@@ -149,12 +149,14 @@ export default class Module4 extends React.Component {
       module_id: 4,
       title: "Compare your “embodiment” themes to your “impediment” themes.",
       exercise: this.exercise_450,
+      section_ids: [451, 452, 453, 454, 455, 456]
     },
     {
       id: 460,
       module_id: 4,
       title: "Breaking and building",
       exercise: this.exercise_460,
+      section_ids: [461, 462, 463, 464]
     },
   ]
 

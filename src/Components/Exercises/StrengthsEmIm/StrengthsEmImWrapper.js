@@ -37,6 +37,8 @@ export default class StrengthsEmImWrapper extends React.Component {
   }
 
   onSave = () => {
+    const { onCloseModalCB } = this.props
+    onCloseModalCB() // call parent onCloseModalCB
     this.setState({isDynamic: false})
   }
 
@@ -54,7 +56,7 @@ export default class StrengthsEmImWrapper extends React.Component {
                 {i + 1}. {listIdToValue(strengthsList, strengths[i][IDX_STRENGTH])}
               </h3>
               <div>
-                <StrengthsEmImCT question={question} strength={strengths[i]} strengthValue={listIdToValue(strengthsList, strengths[i])}/>
+                <StrengthsEmImCT question={question} strength={strengths[i]} strengthValue={listIdToValue(strengthsList, strengths[i][IDX_STRENGTH])}/>
               </div>
             </ListGroupItem>
           ))
@@ -64,7 +66,7 @@ export default class StrengthsEmImWrapper extends React.Component {
     }
 
     let EmImReflections = strengths.reduce((acc, strength, i) => {
-      acc.push(<StrengthsEmImCT question={question} onUpdateStoreCB={onUpdateStoreCB} strength={strengths[i]} strengthValue={listIdToValue(strengthsList, strengths[i])} />)
+      acc.push(<StrengthsEmImCT question={question} onUpdateStoreCB={onUpdateStoreCB} strength={strengths[i]} strengthValue={listIdToValue(strengthsList, strengths[i][IDX_STRENGTH])} />)
       return acc
     }, [])
     

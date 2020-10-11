@@ -143,6 +143,17 @@ export const getNextModuleSection = ( userRD, currModuleNum, currSectionNum ) =>
   }
 }
 
+// is this module the user's current section
+export const isCurrentSection = (currentModule, moduleNum, currentSection, sectionNum) => {
+  return currentModule === +moduleNum && currentSection === +sectionNum
+}
+
+// can we show the next section
+export const showNextSection = (currentModule, moduleNum, currentSection, sectionNum) => {
+  return (currentModule < +moduleNum || 
+    (currentModule === +moduleNum && currentSection > +sectionNum))
+}
+
 /* ***********************************************
   userRD
 ************************************************** */
