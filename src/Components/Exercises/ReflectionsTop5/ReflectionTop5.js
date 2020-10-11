@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { FormControl } from 'react-bootstrap'
+import { Form, FormControl } from 'react-bootstrap'
+import {  SELECTED } from '../StrengthsEmIm/StrengthsEmImConstants.js'
 
 /* **************************************************
    Top5 component
@@ -34,7 +35,7 @@ export default function StrengthEmImTop5(props) {
   }
 
   // render!
-  const { relection, isDynamic } = props
+  const { reflection, isDynamic } = props
   const { selected, strength, strengthValue, phrase, effect } = reflection
 
   // static
@@ -57,7 +58,7 @@ export default function StrengthEmImTop5(props) {
           <input 
             onChange={onChange}
             type="checkbox" 
-            checked={selected.length!==0 ? true : false}
+            checked={selected ? true : false}
           />
         </Form>
       </td>

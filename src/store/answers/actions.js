@@ -99,8 +99,7 @@ export const loadAllAnswersAC = ( userId ) => {
                 [ [ "narrative" ] ]
 ******************************************************** */
 export const persistAnswersAC = ( userId, question_code, question_type, answers ) => {
-  console.log( `persistAnswersAC(${question_code}, ${question_type})` )
-  console.log( "persisting: ", answers )
+  console.log( `persistAnswersAC(${question_code}, ${question_type})`, answers )
 
   return async dispatch => {
     const jwtGetter = getUserJwt()

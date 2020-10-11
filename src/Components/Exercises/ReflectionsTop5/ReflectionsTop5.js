@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {  Button,} from 'react-bootstrap'
 import {  SELECTED } from '../StrengthsEmIm/StrengthsEmImConstants.js'
-import ReflectionTop5 from './ReflectionsTop5'
+import ReflectionTop5 from './ReflectionTop5'
 import { UUID } from '../../Utils/UUID'
 
 
 /* **************************************************
    ReflectionsTop5 component
 
-   Displays three sections for entering an influence
+   Displays three sections for entering an reflection
      -- three sections
      -- Save button
 
@@ -102,11 +102,11 @@ export default class ReflectionsTop5 extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {filteredWithKeys.map(reflection =>
+              {selectedReflectionsWithKeys.map(reflection =>
                 <ReflectionTop5 
                     key={reflection.key}
                     id={reflection.key}
-                    influence={reflection.item}
+                    reflection={reflection.item}
                     isDynamic={isDynamic}
                     updateReflectionCB={this.updateReflection}
                 />
@@ -125,9 +125,9 @@ export default class ReflectionsTop5 extends React.Component {
           <thead>
             <tr>
               <th scope="col" className="text-left"></th>
-              <th scope="col" className="text-left">Relationship</th>
-              <th scope="col" className="text-left">Individual</th>
-              <th scope="col" className="text-left">Belief/Value</th>
+              <th scope="col" className="text-left">Strength</th>
+              <th scope="col" className="text-left">Phrase</th>
+              <th scope="col" className="text-left">Effect</th>
             </tr>
           </thead>
           <tbody>

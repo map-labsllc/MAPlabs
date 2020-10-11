@@ -32,7 +32,7 @@ const ModuleList = ( { user } ) => {
     sectionPosition = +sectionPosition
     let percentComplete = Math.floor(100 * (sectionPosition - 1)/sectionCount)
 
-    console.log(moduleId, currentSection, sectionPosition, sectionCount, 'completion', percentComplete)
+    console.log('completion:', moduleId, currentSection, sectionPosition, sectionCount, 'completion', percentComplete)
     return percentComplete
   }
 

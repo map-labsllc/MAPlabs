@@ -15,7 +15,7 @@ import { IDX_STRENGTH, IDX_PHRASE, IDX_EFFECT, IDX_SELECTED } from '../Strengths
       question -- { code: 50, text: "question 50" }
       promptQuestionCode -- where to get the list of influences to choose from
       outputQuestionCode -- where to output the madlibs
-      impactFilter -- filter the influences to IMPACT_SUPPORTIVE or IMPACT_INHIBITING
+      filter -- filter the reflections to impediment/embodiment
       instructions
       isDynamic -- undefined - rendering static version in <Popup>
                   true - rendering dynamic verison in <ModalX>
@@ -46,10 +46,9 @@ const mapStateToProps = ( state, passedProps ) => {
       strengthValue: listIdToValue(strengthsList, record[IDX_STRENGTH]),
       phrase: record[IDX_PHRASE],
       effect: record[IDX_EFFECT],
+      selected: record[IDX_SELECTED],
     })
   )
-
-  console.log('reflections going into props', reflections)
 
   return {
     userId,
@@ -89,13 +88,15 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     const twoDimArrayOfString = []
     newReflections.forEach(reflection => {
       const record = []
-      record[IDX_STRENGTH] = reflection.group
+      record[IDX_STRENGTH] = reflection.strength
       record[IDX_PHRASE] = reflection.phrase
       record[IDX_EFFECT] = reflection.effect
       record[IDX_SELECTED] = reflection.selected
       twoDimArrayOfString.push(record)
     })
 
+    // note: these answers are saved to the promptQuestionCode
+    // console.log("preparing to dispatch ids", userId, promptQuestionCode, QUESTION_TYPE_STRENGTH_EM_IM, )
     dispatch( updateAnswersAC( promptQuestionCode, twoDimArrayOfString ) )
     dispatch( persistAnswersAC( userId, promptQuestionCode, QUESTION_TYPE_STRENGTH_EM_IM, twoDimArrayOfString ) )
   }
