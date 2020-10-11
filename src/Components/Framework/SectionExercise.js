@@ -47,7 +47,6 @@ class SectionExercise extends React.Component {
   // Save
   onSave = () => {
     const { exercise, onPersistQuestionCB } = this.props
-console.log("HERE onSave called which should toggle isVisible")
     onPersistQuestionCB(exercise.question_code)
     this.setVisible(false)
   }

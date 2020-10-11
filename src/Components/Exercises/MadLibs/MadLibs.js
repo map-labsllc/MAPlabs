@@ -34,7 +34,9 @@ export default class MadLibs extends React.Component {
   }
 
   onSave = () => {
+    const { onCloseModalCB } = this.props
     this.setState({isDynamic: false})
+    onCloseModalCB()
   }
 
   render() {
