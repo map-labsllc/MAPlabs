@@ -131,9 +131,8 @@ export default class Transitions extends React.Component {
           >
           </Transition>
         )}
-        <hr />
         <div className="text-center">
-          <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add transition</Button>
+          <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add Transition</Button>
         </div>
         <hr />
       </>

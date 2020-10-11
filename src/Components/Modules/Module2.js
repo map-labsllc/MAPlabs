@@ -156,7 +156,7 @@ export default class Module2 extends React.Component {
       module_id: 2,
       title: "Top 5 Supportive Influences",
       exercise: this.exercise_220,
-      section_ids: [210]
+      section_ids: [210] // hack so completion looks at parent
     },
     {
       id: 230,

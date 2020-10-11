@@ -21,16 +21,16 @@ export default class MadLibs extends React.Component {
 
   state = {
     isDynamic: this.props.isDynamic,
-    madlibsSet: false
+    madlibsSet: {}
   }
 
   async componentDidMount() {
-    let { copyParentAnswersCB, question, madlibs } = this.props
-    if (!madlibs.length && !this.state.madlibsSet) {
+    let { copyParentAnswersCB, question, madlibs, impactFilter } = this.props
+    if (!madlibs.length && !this.state.madlibsSet[impactFilter]) {
       console.log('answers not set, copying parent')
       await copyParentAnswersCB(question)
     }
-    this.state.madlibsSet = true
+    this.state.madlibsSet[impactFilter] = true
   }
 
   onSave = () => {
