@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { MadLibHtml } from './MadLibHtml'
 
 import {
-  Button,
   Form,
   FormControl,
   FormLabel

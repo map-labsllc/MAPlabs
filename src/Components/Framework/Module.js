@@ -1,8 +1,5 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import ShowMoreLess from '../Utils/ShowMoreLess'
-import {
-} from 'react-bootstrap'
 
 /* **************************************************
    Module

@@ -2,9 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   Button,
-  Checkbox,
-  Col,
-  ControlLabel,
   Form,
   FormControl,
   FormGroup
@@ -91,8 +88,8 @@ export default class Transition extends React.Component {
     // console.log("Transition::render()")
 
     // initialize
-    let { transition, isDirty } = this.state
-    const { id, isDynamic } = this.props
+    let { transition } = this.state
+    const { isDynamic } = this.props
 
     if (!isDynamic) {
 

@@ -1,13 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {
-  Button,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
-} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import Prompts from '../../Framework/Prompts'
 import MultiLineString from '../../Utils/MultiLineString'
 import '../../../CSS/ModalNavButtons.css'
@@ -72,7 +66,7 @@ export default class Narrative extends React.Component {
   render() {
 
     // initialize
-    const { question, prompts, instructions, isDynamic } = this.props
+    const { prompts, instructions, isDynamic } = this.props
     const { answer } = this.state
 
     // static render
@@ -115,9 +109,15 @@ export default class Narrative extends React.Component {
   }
 }
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
+const style = {
+  closeButton: {
+    marginRight: "auto",
+    marginLeft: "auto",
+  },
+  contain: {
+    width: "100%",
+  }
+}
 
 Narrative.propTypes = {
   question: PropTypes.shape( {
@@ -135,12 +135,4 @@ Narrative.propTypes = {
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
-const style = {
-  closeButton: {
-    marginRight: "auto",
-    marginLeft: "auto",
-  },
-  contain: {
-    width: "100%",
-  }
-}
+
