@@ -1,8 +1,6 @@
 import React from 'react'
 
 import ModuleLayout from './ModuleLayout'
-import ModuleCT from '../Framework/ModuleCT'
-import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
