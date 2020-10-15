@@ -49,10 +49,13 @@ export default class Narrative extends React.Component {
     this.updateAndPersist()
   }
 
+  onSave = () => {
+    this.updateAndPersist()
+  }
+
   /* ******************************************************** */
   // helper, update the store and persist
   updateAndPersist = () => {
-
     this.setState( { isDirty: false } )
 
     const { onPersistCB, onCloseModalCB, userId } = this.props
@@ -70,7 +73,7 @@ export default class Narrative extends React.Component {
     const { answer } = this.state
 
     // static render
-    if ( !isDynamic ) {
+    if ( !isDynamic) {
         return (
           <MultiLineString str={answer} />   
         )
@@ -101,7 +104,7 @@ export default class Narrative extends React.Component {
             />
           </div>
           <div className="text-center">
-            <Button className="closeButton btn"  type="button" style={style.closeButton}>Save</Button>
+            <Button type="button" onClick={style.onSave}>Save</Button>
           </div>
         </form>
       </>
@@ -110,10 +113,6 @@ export default class Narrative extends React.Component {
 }
 
 const style = {
-  closeButton: {
-    marginRight: "auto",
-    marginLeft: "auto",
-  },
   contain: {
     width: "100%",
   }
