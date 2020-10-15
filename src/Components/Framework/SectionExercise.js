@@ -26,10 +26,6 @@ class SectionExercise extends React.Component {
     isVisible: false,
   }
 
-  setVisible = (isVisible) => {
-    this.setState({ isVisible })
-  }
-
   // **************************************************
   // Show the complex interactive component
   onclickStart = () => {
@@ -48,7 +44,6 @@ class SectionExercise extends React.Component {
   onSave = () => {
     const { exercise, onPersistQuestionCB } = this.props
     onPersistQuestionCB(exercise.question_code)
-    this.setVisible(false)
   }
 
   // **************************************************
