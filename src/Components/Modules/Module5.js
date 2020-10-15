@@ -3,6 +3,8 @@ import React from 'react'
 import QuestionsCT from '../Framework/QuestionsCT'
 
 import BracketCT from '../Exercises/Bracket/BracketCT'
+import ThemesTop5CT from '../Exercises/ThemesTop5/ThemesTop5CT'
+
 import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
@@ -51,11 +53,11 @@ export default class Module5 extends React.Component {
   // -------------------------
   // Module 5.1.B
   exercise_520 = (
-    <BracketCT 
+    <ThemesTop5CT 
       question = { { code: 520, text: "Add to your Dashboard your key insights about meaning." } }
       promptQuestionCodes = { [151, 261, 351, 451] }
       description = { QUES_520_DESC }
-      instructions = "Complete sentences that are important to you."
+      instructions = "Select the top 5 themes that are most important to you."
     /> )
 
   // -------------------------
@@ -135,7 +137,7 @@ export default class Module5 extends React.Component {
     { 
       id: 520,
       module_id: 5,
-      title: "Add to your Dashboard your key themes",
+      title: "Determine your key themes",
       exercise: this.exercise_520,
     },
     {
