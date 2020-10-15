@@ -7,31 +7,16 @@ import {
   persistAnswersAC
 } from '../../../store/answers/actions'
 
-import {
-  QUESTION_TYPE_INFLUENCES,
-  QUESTION_TYPE_NARRATIVE,
- } from '../../../store/answers/constants'
+import { QUESTION_TYPE_INFLUENCES } from '../../../store/answers/constants'
 
 import {
-  GROUP_PERSONAL,
-  GROUP_SOCIAL,
-  GROUP_WIDER,
-
   IDX_RELATIONSHIP,
   IDX_GROUP,
   IDX_NAME,
   IDX_BELIEF,
   IDX_IMPACT,
   IDX_SELECTED,
-
-  IMPACT_SUPPORTIVE,
-  IMPACT_INHIBITING,
-} from '../Influences/InfluencesConstants.js'
-
-import {
-  getInfluences,
-  persist,
-} from '../Influences/InfluencesCT'
+} from '../../../constants'
 
  
 /* *****************************************
@@ -94,10 +79,6 @@ const mapStateToProps = ( state, passedProps ) => {
     onCloseModalCB,
   }
 }
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
 
 /* *****************************************
    mapDispatchToProps()

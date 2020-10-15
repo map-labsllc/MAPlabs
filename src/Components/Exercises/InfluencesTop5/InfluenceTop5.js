@@ -9,7 +9,7 @@ import {
 
 import {
   SELECTED
-} from '../Influences/InfluencesConstants'
+} from '../../../constants'
 
 import '../../../CSS/ModalNavButtons.css'
 

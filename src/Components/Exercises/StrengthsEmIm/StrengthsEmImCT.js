@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import StrengthsEmIm from './StrengthsEmIm'
 import { getAnswers } from '../../../store/answers/reducer'
 import { updateAnswersAC } from '../../../store/answers/actions'
-import { IDX_STRENGTH, IDX_PHRASE, IDX_EFFECT } from './StrengthsEmImConstants'
+import { IDX_STRENGTH, IDX_PHRASE, IDX_EFFECT } from '../../../constants'
 import { bindActionCreators } from 'redux';
 
 /* *****************************************

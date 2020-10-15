@@ -22,7 +22,7 @@ import {
   IDX_BELIEF,
   IDX_IMPACT,
   IDX_SELECTED,
-} from './InfluencesConstants.js'
+} from '../../../constants'
 
  // *******************************************************
  // getInfluences()

@@ -8,7 +8,7 @@ import {
   GROUP_PERSONAL,
   GROUP_SOCIAL,
   GROUP_WIDER, 
-} from './InfluencesConstants.js'
+} from '../../../constants'
 import { UUID } from '../../Utils/UUID'
 
 

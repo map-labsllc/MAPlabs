@@ -5,7 +5,7 @@ import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/action
 import { QUESTION_TYPE_STRENGTH_EM_IM } from '../../../store/answers/constants'
 import { bindActionCreators } from 'redux';
 import { getUser } from '../../../store/user/reducer'
-import { IDX_STRENGTH,IDX_PHRASE, IDX_EFFECT } from './StrengthsEmImConstants'
+import { IDX_STRENGTH,IDX_PHRASE, IDX_EFFECT } from '../../../constants'
 
 /* *****************************************
    mapStateToProps()

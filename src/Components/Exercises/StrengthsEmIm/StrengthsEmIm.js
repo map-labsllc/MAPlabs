@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { Form, FormControl, Button, ButtonGroup, FormLabel, FormGroup, Container, Col, Row } from "react-bootstrap"
 import { listIdToValue } from "../../../store/lists/actions"
 
-import { EFFECT_IMPEDIMENT, EFFECT_EMBODIMENT } from './StrengthsEmImConstants'
+import { EFFECT_IMPEDIMENT, EFFECT_EMBODIMENT } from '../../../constants'
 
 /* **************************************************
    Strength component

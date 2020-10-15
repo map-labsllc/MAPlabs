@@ -10,7 +10,7 @@ import {
 import {
   IMPACT_SUPPORTIVE,
   IMPACT_INHIBITING
-} from './InfluencesConstants'
+} from '../../../constants'
 
 import '../../../CSS/ModalNavButtons.css'
 
