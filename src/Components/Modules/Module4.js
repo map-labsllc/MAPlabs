@@ -33,7 +33,7 @@ import {
 
 import {
 } from 'react-bootstrap'
-import { EFFECT_EMBODIMENT, EFFECT_IMPEDIMENT } from '../Exercises/StrengthsEmIm/StrengthsEmImConstants'
+import { EFFECT_EMBODIMENT, EFFECT_IMPEDIMENT } from '../../../constants'
 
 /* **************************************************
    Used to test components during development
