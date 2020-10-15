@@ -44,6 +44,7 @@ class SectionExercise extends React.Component {
   onSave = () => {
     const { exercise, onPersistQuestionCB } = this.props
     onPersistQuestionCB(exercise.question_code)
+    this.setState({ isVisible: false })
   }
 
   // **************************************************
@@ -86,7 +87,7 @@ class SectionExercise extends React.Component {
       return false 
     }
 
-    let buttonLabel = isStarted() ? 'Continue' : 'Start'
+    let buttonLabel = isStarted() ? 'Edit' : 'Start'
 
     const answersComplete = () => {
       if (answer.length > 0) {
@@ -121,10 +122,13 @@ class SectionExercise extends React.Component {
 
               {isCurrentSection(currentModule, moduleNum, currentSection, sectionNum) &&
                 <div className="text-center">
-                  <Button className="btn btn-primary" type="button" onClick={this.onclickStart}>{buttonLabel}</Button>
-                  { answersComplete(answer) && <SectionCompleteButton onClick={this.onComplete} /> }
+                  <Button className="mr-5" type="button" onClick={this.onclickStart}>{buttonLabel}</Button>
+                  <span className="ml-5">
+                    { answersComplete(answer) && <SectionCompleteButton onClick={this.onComplete} /> }
+                  </span>
                 </div>
               }
+
 
               {showNextSection(currentModule, moduleNum, currentSection, sectionNum) &&
                 <div className="text-right">
