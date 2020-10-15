@@ -62,9 +62,9 @@ const InfoPage = ({ user, isLoggedIn }) => {
 
         <div className="text-center">
         { isLoggedIn ? 
-          <Button className="btn btn-primary"><NavLink to="/modules/list">Continue</NavLink></Button>
+          <NavLink to="/modules/list" className="btn btn-primary">Continue</NavLink>
           :
-          <Button className="btn btn-primary"><NavLink to="/signup">Sign Up</NavLink></Button>
+          <NavLink className="btn btn-primary" to="/signup">Sign Up</NavLink>
         }  
         </div>
       </div >
