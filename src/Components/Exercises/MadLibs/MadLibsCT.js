@@ -21,7 +21,7 @@ import {
   IMPACT_SUPPORTS,
   IMPACT_INHIBITS,
   SELECTED, 
-} from '../Influences/InfluencesConstants.js'
+} from '../../../constants'
 
 // indexes into the data structure coming from the store
 const IDX_JSON = 0
