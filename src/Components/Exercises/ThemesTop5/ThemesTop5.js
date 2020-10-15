@@ -1,20 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Button,
-} from 'react-bootstrap'
-import {
-  GROUP_PERSONAL,
-  GROUP_SOCIAL,
-  GROUP_WIDER, 
-  SELECTED,
-} from '../Influences/InfluencesConstants.js'
-import InfluenceTop5 from './InfluenceTop5'
+import { Button } from 'react-bootstrap'
+import { SELECTED } from '../../../constants.js'
+import Top5 from './Top5'
 import { UUID } from '../../Utils/UUID'
 
 
 /* **************************************************
-   InfluencesTop5 component
+   ThemesTop5 component
 
    Displays three sections for entering an influence
      -- three sections
@@ -22,7 +15,7 @@ import { UUID } from '../../Utils/UUID'
 
    state:
     isDirty -- decide if we need to persist to db
-    allInfluencesWithKeys --
+    data --
       [ key: 1,
         item: { 
           relationship:'brother', 
@@ -37,21 +30,18 @@ import { UUID } from '../../Utils/UUID'
      userId
      question -- { code: 50, text: "Question 50" }
      instructions
-     impactFilter -- user wull select from IMPACT_SUPPORTIVE or IMPACT_INHIBITING  influences
-     allInfluences --  see above
+     previousAnswers
      isDynamic -- undefined - render static version in <PopUp>
                   true - render dynamic version <ModalX>
      onPersistCB() -- callback to update the store and persist data
      onCloseModalCB -- when user clicks Close button
 ***************************************************** */
-export default class InfluencesTop5 extends React.Component {
-  
-
+export default class ThemesTop5 extends React.Component {
   uuid = new UUID() // provides unique keys for <ShortAnswer> components
 
   state = {
     isDirty: false,
-    allInfluencesWithKeys: this.uuid.addKeys(this.props.allInfluences),
+    previousAnswers: this.uuid.addKeys(this.props.previousAnswers),
   }
 
   // **********************************************
@@ -60,28 +50,26 @@ export default class InfluencesTop5 extends React.Component {
 
   // **********************************************
   onclickClose = () => {
-    // console.log( "Influences::onclickClose()" )
-
     const { userId, onPersistCB, onCloseModalCB } = this.props
-    const { isDirty, allInfluencesWithKeys } = this.state
+    const { isDirty, allThemesWithKeys } = this.state
 
     if (isDirty)
       onPersistCB(
         userId,
-        this.uuid.stripKeys(allInfluencesWithKeys)
+        this.uuid.stripKeys(allThemesWithKeys)
       )
 
     onCloseModalCB()
   }
 
   // **********************************************
-  updateInfluence = (keyToUpdate, newInfluence) => {
-    // console.log(`InfluencesTop5::updateData()`)
+  update = (keyToUpdate, data) => {
+    // console.log(`ThemesTop5::updateData()`)
 
-    const { allInfluencesWithKeys } = this.state
+    const { allThemesWithKeys } = this.state
 
-    const newAllInfluencesWithKeys = allInfluencesWithKeys.map((influenceWithKey) =>
-      (influenceWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: newInfluence } : influenceWithKey)
+    const newAllThemesWithKeys = allThemesWithKeys.map((influenceWithKey) =>
+      (influenceWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: data } : influenceWithKey)
 
     this.setState({
       isDirty: true,
@@ -89,20 +77,10 @@ export default class InfluencesTop5 extends React.Component {
     })
   }
 
-  // **********************************************
-  // render!
   render() {
-    // console.log("InfluencesTop5::render()")
-    // console.log("this.props.influences", this.props.influences)
-
-    const { question, impactFilter, instructions, isDynamic } = this.props
+    const { question, impactFilter, instructions, isDynamic, title } = this.props
 
     const { allInfluencesWithKeys } = this.state
-
-    // filter to just the influences matching the impactFilter
-    const impactInfluencesWithKeys = allInfluencesWithKeys.filter(influenceWithKey =>
-      influenceWithKey.item.impact === impactFilter
-    )
 
     // static render
     if (!isDynamic) {
@@ -118,20 +96,17 @@ export default class InfluencesTop5 extends React.Component {
             <thead>
               <tr>
                 <th></th>
-                <th scope="col" className="text-left">Relationship</th>
-                <th scope="col" className="text-left">Individual</th>
-                <th scope="col" className="text-left">Belief/Value</th>
-                <th scope="col" className="text-left">Impact</th>
+                <th scope="col" className="text-left">{title}</th>
               </tr>
             </thead>
             <tbody>
               {selectedInfluencesWithKeys.map(influenceWithKey =>
-                <InfluenceTop5 
+                <Top5 
                     key={influenceWithKey.key}
                     id={influenceWithKey.key}
-                    influence={influenceWithKey.item}
+                    data={influenceWithKey.item}
                     isDynamic={isDynamic}
-                    updateInfluenceCB={this.updateInfluence}
+                    updateCB={this.update}
                 />
               )}
             </tbody>
@@ -148,16 +123,12 @@ export default class InfluencesTop5 extends React.Component {
           <thead>
             <tr>
               <th scope="col" className="text-left"></th>
-              <th scope="col" className="text-left">Relationship</th>
-              <th scope="col" className="text-left">Individual</th>
-              <th scope="col" className="text-left">Belief/Value</th>
-              <th scope="col" className="text-left">Impact</th>
-
+              <th scope="col" className="text-left">Theme</th>
             </tr>
           </thead>
           <tbody>
             {impactInfluencesWithKeys.map(influenceWithKey =>
-              <InfluenceTop5 
+              <ThemeTop5 
                 key={influenceWithKey.key}
                 id={influenceWithKey.key}
                 influence={influenceWithKey.item}
@@ -174,20 +145,13 @@ export default class InfluencesTop5 extends React.Component {
   }
 }
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
+ThemesTop5.propTypes = {
+  question: PropTypes.shape( {
+    code: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  } ).isRequired,
+  Themes: PropTypes.object.isRequired,
+  isDynamic: PropTypes.bool,
+  onUpdateAnswerCB: PropTypes.func
+}
 
-// InfluencesTop5.propTypes = {
-//   question: PropTypes.shape( {
-//     code: PropTypes.number.isRequired,
-//     text: PropTypes.string.isRequired,
-//   } ).isRequired,
-//   influences: PropTypes.object.isRequired,
-//   isDynamic: PropTypes.bool,
-//   onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
-// }
-
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////

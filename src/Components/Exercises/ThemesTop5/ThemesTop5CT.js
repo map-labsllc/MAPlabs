@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import InfluencesTop5 from './InfluencesTop5'
+import ThemesTop5 from './ThemesTop5'
 import { getAnswers } from '../../../store/answers/reducer'
 import { getUser } from '../../../store/user/reducer'
 import {
@@ -7,33 +7,9 @@ import {
   persistAnswersAC
 } from '../../../store/answers/actions'
 
-import {
-  QUESTION_TYPE_INFLUENCES,
-  QUESTION_TYPE_NARRATIVE,
- } from '../../../store/answers/constants'
+import { QUESTION_TYPE_TOP_THEMES } from '../../../store/answers/constants'
 
-import {
-  GROUP_PERSONAL,
-  GROUP_SOCIAL,
-  GROUP_WIDER,
 
-  IDX_RELATIONSHIP,
-  IDX_GROUP,
-  IDX_NAME,
-  IDX_BELIEF,
-  IDX_IMPACT,
-  IDX_SELECTED,
-
-  IMPACT_SUPPORTIVE,
-  IMPACT_INHIBITING,
-} from '../Influences/InfluencesConstants.js'
-
-import {
-  getInfluences,
-  persist,
-} from '../Influences/InfluencesCT'
-
- 
 /* *****************************************
    mapStateToProps()
 
@@ -52,7 +28,7 @@ const mapStateToProps = ( state, passedProps ) => {
 
   const {
     question,
-    promptQuestionCode,
+    promptQuestionCodes,
     impactFilter,
     instructions,
     isDynamic,
@@ -65,39 +41,42 @@ const mapStateToProps = ( state, passedProps ) => {
   // get userId
   const userId = getUser( state.userRD ).id
 
-  // get influence record from earlier question
+   // find previous answers, if any, to display when static
+   const answers = getAnswers( state.answersRD, question.code )
+
+   // pull answers out of 2D array of strings to an simple array of strings
+   const previousAnswers = answers.map(answerArray => answerArray[0])
+ 
+   let prompts = []
+   promptQuestionCodes.forEach( (questionCode) => {
+     prompts = prompts.concat( getAnswers( state.answersRD, questionCode ) )
+   } )
+
+  console.log("prompts", prompts)
   const answerRecords = getAnswers( state.answersRD, promptQuestionCode )
 
-  let allInfluences = answerRecords.map(record => (
+  const IDX_LABEL = 0
+  const IDX_SELECTED = 1
+
+  let selectedAnswers = answerRecords.map(record => (
     {
-      group:        record[IDX_GROUP],
-      relationship: record[IDX_RELATIONSHIP],
-      name:         record[IDX_NAME],
-      belief:       record[IDX_BELIEF],
-      impact:       record[IDX_IMPACT],
+      label:        record[IDX_LABEL],
       selected:     record[IDX_SELECTED],
     })
   )
-
-  allInfluences = allInfluences.sort((a, b) =>
-      a.name.localeCompare(b.name))
-
-  console.log('InfluencesTop5CT::influences: ', allInfluences)
 
   return {
     userId,
     question,
     instructions,
-    impactFilter,
-    allInfluences,
+    previousAnswers,
+    prompts,
+    selectedAnswers,
     isDynamic,
     onCloseModalCB,
+    title: 'Themes'
   }
 }
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
 
 /* *****************************************
    mapDispatchToProps()
@@ -136,7 +115,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     console.log(JSON.stringify(twoDimArrayOfString))
 
     dispatch( updateAnswersAC( promptQuestionCode, twoDimArrayOfString ) )
-    dispatch( persistAnswersAC( userId, promptQuestionCode, QUESTION_TYPE_INFLUENCES, twoDimArrayOfString ) )
+    dispatch( persistAnswersAC( userId, promptQuestionCode, QUESTION_TYPE_TOP_THEMES, twoDimArrayOfString ) )
   }
 
   /* *****************************************
@@ -148,7 +127,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     newInfluences -- same format as the object that was passed down in props as "allInfluences"
   ******************************************** */
   function onPersist( userId, newInfluences ) {
-    console.log( 'InfluencesTop5CT::onPersist(newInfluences)',  newInfluences  )
+    console.log( 'ThemesTop5CT::onPersist(newInfluences)',  newInfluences  )
 
     const { promptQuestionCode, outputQuestionCode, impactFilter } = passedProps
 
@@ -171,4 +150,4 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( InfluencesTop5 )
+)( ThemesTop5 )
