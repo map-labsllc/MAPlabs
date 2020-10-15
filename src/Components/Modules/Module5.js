@@ -2,7 +2,7 @@ import React from 'react'
 
 import QuestionsCT from '../Framework/QuestionsCT'
 
-import LifeDescriptorsCT from '../Exercises/LifeDescriptors/LifeDescriptorsCT'
+import BracketCT from '../Exercises/Bracket/BracketCT'
 import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
@@ -37,26 +37,26 @@ export default class Module5 extends React.Component {
 
 
   // -------------------------
-  // Module 4
+  // Module 5.1.A
 
   exercise_510 = (
     <NarrativeCT
-      question = { { code: 520, text: "Review and revise your Current Situation statement" } }
+      question = { { code: 510, text: "Review and revise your Current Situation statement" } }
       promptQuestionCode = { 120 }
       description = { QUES_510_DESC }
-      instructions = "Revise and consolidate this statement down into a simple, to-the-point synopsis of only the most important concepts in a few sentences."
+      instructions = "Review your responses about what you found most meaningful."
     /> )
 
 
   // -------------------------
-  // Module 1: 3B-D
-  exercise_530 = (
-    <LifeDescriptorsCT
-      question = { { code: 530, text: "Imagine your future desired situation" } }
-      description = { QUES_530_DESC }
+  // Module 5.1.B
+  exercise_520 = (
+    <BracketCT 
+      question = { { code: 520, text: "Add to your Dashboard your key insights about meaning." } }
+      promptQuestionCodes = { [151, 261, 351, 451] }
+      description = { QUES_520_DESC }
       instructions = "Complete sentences that are important to you."
     /> )
-
 
   // -------------------------
   // Module 1: 3E

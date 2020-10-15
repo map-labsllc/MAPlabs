@@ -30,8 +30,6 @@ const mapStateToProps = ( state, passedProps ) => {
   // find prompts, if any
   let prompts = []
   if ( promptQuestionCode ) {
-    console.log("prompts:", prompts)
-
     prompts = getAnswers( state.answersRD, promptQuestionCode )
   }
 

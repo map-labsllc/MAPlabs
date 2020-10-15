@@ -46,7 +46,6 @@ export default class Bracket extends React.Component {
   }
 
   promptClick = index => e => {
-
     const newPrompts = this.state.prompts.slice()
     newPrompts.splice(index, 1)
 

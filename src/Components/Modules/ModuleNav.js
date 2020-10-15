@@ -58,16 +58,18 @@ const ModuleNav = ( { user, moduleId, sections, title, sectionLoading } ) => {
                     sectionLoading(moduleId, section.id)
                     return (
                       <tr key={section.id}>
-                        <td className="text-left align-bottom">
+                        <td className="text-left align-middle">
                           <h2>{section.id}</h2>
                         </td>
-                        <td className="text-left align-bottom">
+                        <td className="text-left align-middle">
                           <h4>
                             {createLink(moduleId, section.id, section.title)}
                           </h4>
                         </td>
-                        <td className="text-left align-bottom">
-                          { SectionProgress(currentModule, currentSection, moduleId, section.id) }
+                        <td className="text-left align-middle">
+                          <div style={{paddingTop: "38px"}}>
+                            { SectionProgress(currentModule, currentSection, moduleId, section.id) }
+                          </div>
                         </td>
                       </tr>
                     )

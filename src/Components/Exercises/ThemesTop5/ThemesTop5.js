@@ -46,6 +46,7 @@ import { UUID } from '../../Utils/UUID'
 ***************************************************** */
 export default class InfluencesTop5 extends React.Component {
   
+
   uuid = new UUID() // provides unique keys for <ShortAnswer> components
 
   state = {
@@ -173,13 +174,20 @@ export default class InfluencesTop5 extends React.Component {
   }
 }
 
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 
-InfluencesTop5.propTypes = {
-  question: PropTypes.shape( {
-    code: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired,
-  } ).isRequired,
-  influences: PropTypes.object.isRequired,
-  isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
-}
+// InfluencesTop5.propTypes = {
+//   question: PropTypes.shape( {
+//     code: PropTypes.number.isRequired,
+//     text: PropTypes.string.isRequired,
+//   } ).isRequired,
+//   influences: PropTypes.object.isRequired,
+//   isDynamic: PropTypes.bool,
+//   onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
+// }
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
