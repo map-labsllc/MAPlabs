@@ -78,17 +78,15 @@ export default class Bracket extends React.Component {
         <p>Compare the desires and make a tradeoff between each set of two, choosing one to carry into the next round.
           Click a desire to choose it</p>
         {this.state.prompts[1] ?
-          <p className='prompts'>
-            <div className="text-center">
-              <Button className="bracketing" id='prompt1' onClick={this.promptClick(1)} >
-                {this.state.prompts[0]}
-              </Button>
-              {" versus "}
-              <Button className="bracketing" id='prompt2' onClick={this.promptClick(0)} >
-                {this.state.prompts[1]}
-              </Button>
-            </div>
-          </p>
+          <div className='prompts text-center'>
+            <Button className="bracketing" id='prompt1' onClick={this.promptClick(1)} >
+              {this.state.prompts[0]}
+            </Button>
+            {" versus "}
+            <Button className="bracketing" id='prompt2' onClick={this.promptClick(0)} >
+              {this.state.prompts[1]}
+            </Button>
+          </div>
           :
           (this.state.prompts.length > 0 && <p>You desire: {this.state.prompts[0]}.
           </p>)
