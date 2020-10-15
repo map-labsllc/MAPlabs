@@ -5,7 +5,7 @@ import { getUser } from '../../../store/user/reducer'
 import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
 import { listIdToValue } from "../../../store/lists/actions"
 import { QUESTION_TYPE_STRENGTH_EM_IM } from '../../../store/answers/constants'
-import { IDX_STRENGTH, IDX_PHRASE, IDX_EFFECT, IDX_SELECTED } from '../StrengthsEmIm/StrengthsEmImConstants.js'
+import { IDX_STRENGTH, IDX_PHRASE, IDX_EFFECT, IDX_SELECTED } from '../../../constants'
 
  
 /* *****************************************

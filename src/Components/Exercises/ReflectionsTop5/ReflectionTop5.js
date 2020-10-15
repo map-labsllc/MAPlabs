@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Form, FormControl } from 'react-bootstrap'
-import {  SELECTED } from '../StrengthsEmIm/StrengthsEmImConstants.js'
+import {  SELECTED } from '../../../constants'
 
 /* **************************************************
    Top5 component
