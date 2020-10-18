@@ -35,9 +35,10 @@ export default function Top5(props) {
   const { data, isDynamic, fields } = props
   const { selected } = data
 
-  const fieldsToCells = () => {fields.map(field => 
+  console.log('Top5 render', data, fields)
+  const fieldsToCells = () => (fields.map(field => 
     <td className="text-left">{data[field]}</td>
-  )}
+  ))
 
   // static
   if ( !isDynamic ) {

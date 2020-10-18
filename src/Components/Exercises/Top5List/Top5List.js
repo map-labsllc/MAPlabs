@@ -47,25 +47,28 @@ export default class Top5List extends React.Component {
     const { userId, onPersistCB, onCloseModalCB } = this.props
     const { isDirty, allItemsWithKeys } = this.state
 
-    if (isDirty)
+    if (isDirty) {
       onPersistCB(
         userId,
         this.uuid.stripKeys(allItemsWithKeys)
       )
+    }
 
     onCloseModalCB()
   }
 
-  update = (keyToUpdate, data) => {
+  update = (key, data) => {
 
+    console.log("update", key, data)
     const { allItemsWithKeys } = this.state
 
-    const newAllItemsWithKeys = allItemsWithKeys.map((itemWithKey) =>
-      (itemWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: data } : itemWithKey)
+    const newAllItemsWithKeys = allItemsWithKeys.map((item) =>
+      (item.key === key) ? { key: key, item: data } : item)
 
+    console.log("after update", newAllItemsWithKeys)
     this.setState({
       isDirty: true,
-      allitemsWithKeys: newAllItemsWithKeys,
+      allItemsWithKeys: newAllItemsWithKeys,
     })
   }
 
@@ -132,8 +135,9 @@ export default class Top5List extends React.Component {
               <Top5 
                 key={item.key}
                 id={item.key}
-                data={item}
-                fields={['theme']} // move to prop
+                data={item.item}
+                fields={fields}
+                selected={item.seleted}
                 isDynamic={isDynamic}
                 updateCB={this.update}
               />
