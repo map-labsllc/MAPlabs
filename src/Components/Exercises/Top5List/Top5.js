@@ -4,18 +4,18 @@ import { Form } from 'react-bootstrap'
 import { SELECTED } from '../../../constants'
 
 /* **************************************************
-   Top5 component
+   Top5 Checkbox component
 
-   Displays a single influence
+   Displays a single selection
      -- checkbox to select the top 5
-     -- data
+     -- field attributes of the data
 
    props:
      id -- integer id for the question (poorman's UUID)
      data -- { selected:'selected'/'', label:'this is a label' }
+     fields -- [field1, feild2] field attributes to display
      isDynamic -- not defined or true
-     updateInfluenceCB -- call for all changes
-     deleteInfluenceCB -- click trash can
+     updateCB -- call for all changes
 ***************************************************** */
 export default function Top5(props) {
 
@@ -24,7 +24,6 @@ export default function Top5(props) {
     e - target.id is a key into the data object:
     *********************************************** */
   const onChange = (e) => {
-    console.log("Top5::onChange(), e.target.checked:", e.target.checked)
     const newData = {
       ...props.data,
       selected: (e.target.checked ? SELECTED : '')
@@ -33,19 +32,19 @@ export default function Top5(props) {
     updateCB(id, newData)
   }
 
-  // **********************************************
-  // render!
-  // console.log("ThemeTop::render(): ", props.influence)
+  const { data, isDynamic, fields } = props
+  const { selected } = data
 
-  const { data, isDynamic } = props
-  const { selected, label } = data
+  const fieldsToCells = () => {fields.map(field => 
+    <td className="text-left">{data[field]}</td>
+  )}
 
   // static
   if ( !isDynamic ) {
     return (
       <tr>
         <td></td>
-        <td className="text-left">{label}</td>
+        { fieldsToCells() }
       </tr>
     )
   }
@@ -62,19 +61,16 @@ export default function Top5(props) {
           />
         </Form>
       </td>
-      <td className="text-left">{label}</td>
+      { fieldsToCells() }
     </tr>
   )
 }
 
 
 Top5.propTypes = {
-  question: PropTypes.shape( {
-    code: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired,
-  } ).isRequired,
+  id: PropTypes.number.isRequired,
   data: PropTypes.object.isRequired,
-  label: PropTypes.string.isRequired,
+  fields: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
   updateCB: PropTypes.func,
 }

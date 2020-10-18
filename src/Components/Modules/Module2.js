@@ -18,7 +18,7 @@ import {
 import {
   IMPACT_SUPPORTIVE,
   IMPACT_INHIBITING,
-} from '../../../constants'
+} from '../../constants'
 
 import {
   QUES_210_DESC,

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import ThemesTop5 from './ThemesTop5'
+import Top5List from '../Top5List/Top5List'
 import { getAnswers } from '../../../store/answers/reducer'
 import { getUser } from '../../../store/user/reducer'
 import {
@@ -8,7 +8,7 @@ import {
 } from '../../../store/answers/actions'
 
 import { QUESTION_TYPE_TOP_THEMES } from '../../../store/answers/constants'
-
+import { IDX_THEME, IDX_SELECTED } from '../../../constants'
 
 /* *****************************************
    mapStateToProps()
@@ -29,7 +29,6 @@ const mapStateToProps = ( state, passedProps ) => {
   const {
     question,
     promptQuestionCodes,
-    impactFilter,
     instructions,
     isDynamic,
     onCloseModalCB,
@@ -41,40 +40,32 @@ const mapStateToProps = ( state, passedProps ) => {
   // get userId
   const userId = getUser( state.userRD ).id
 
-   // find previous answers, if any, to display when static
-   const answers = getAnswers( state.answersRD, question.code )
-
-   // pull answers out of 2D array of strings to an simple array of strings
-   const previousAnswers = answers.map(answerArray => answerArray[0])
- 
-   let prompts = []
-   promptQuestionCodes.forEach( (questionCode) => {
-     prompts = prompts.concat( getAnswers( state.answersRD, questionCode ) )
-   } )
-
-  console.log("prompts", prompts)
-  const answerRecords = getAnswers( state.answersRD, promptQuestionCode )
-
-  const IDX_LABEL = 0
-  const IDX_SELECTED = 1
-
-  let selectedAnswers = answerRecords.map(record => (
-    {
-      label:        record[IDX_LABEL],
-      selected:     record[IDX_SELECTED],
+  // format answers for checkbox selector
+  const formatAnswer = (answer) => ({
+      label: answer[IDX_THEME],
+      selected: answer[IDX_SELECTED]
     })
-  )
+
+  let prompts = []
+  promptQuestionCodes.reduce(questionCode => {
+    prompts = prompts.concat( getAnswers( state.answersRD, questionCode ) )
+  })
+  prompts = prompts.map(formatAnswer)
+
+  // find previous answers, if any, to display when static
+  const answers = getAnswers( state.answersRD, question.code )
+  let selectedAnswers = answers.map(formatAnswer)
 
   return {
     userId,
     question,
     instructions,
-    previousAnswers,
     prompts,
     selectedAnswers,
-    isDynamic,
+    isDynamic: !!isDynamic,
     onCloseModalCB,
-    title: 'Themes'
+    fields: ['label'],
+    headings: ['Theme']
   }
 }
 
@@ -102,12 +93,12 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     const twoDimArrayOfString = []
     newInfluences.forEach(influence => {
       const record = []
-      record[IDX_GROUP]        = influence.group
-      record[IDX_RELATIONSHIP] = influence.relationship
-      record[IDX_NAME]         = influence.name
-      record[IDX_BELIEF]       = influence.belief
-      record[IDX_IMPACT]       = influence.impact
-      record[IDX_SELECTED]     = influence.selected
+      // record[IDX_GROUP]        = influence.group
+      // record[IDX_RELATIONSHIP] = influence.relationship
+      // record[IDX_NAME]         = influence.name
+      // record[IDX_BELIEF]       = influence.belief
+      // record[IDX_IMPACT]       = influence.impact
+      // record[IDX_SELECTED]     = influence.selected
       twoDimArrayOfString.push(record)
     })
 
@@ -127,7 +118,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     newInfluences -- same format as the object that was passed down in props as "allInfluences"
   ******************************************** */
   function onPersist( userId, newInfluences ) {
-    console.log( 'ThemesTop5CT::onPersist(newInfluences)',  newInfluences  )
+    console.log( 'Top5ListCT::onPersist(newInfluences)',  newInfluences  )
 
     const { promptQuestionCode, outputQuestionCode, impactFilter } = passedProps
 
@@ -150,4 +141,4 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( ThemesTop5 )
+)( Top5List )

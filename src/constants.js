@@ -21,11 +21,15 @@ export const IMPACT_INHIBITING = 'inhibiting'
 export const IMPACT_SUPPORTS = 'supports'
 export const IMPACT_INHIBITS = 'inhibits'
 
+// Strengths
 export const IDX_STRENGTH = 0
 export const IDX_PHRASE = 1
 export const IDX_EFFECT = 2
-// export const IDX_SELECTED = 3
 
 // legal values for an effect
 export const EFFECT_IMPEDIMENT = "impediment"
 export const EFFECT_EMBODIMENT = "embodiment"
+
+// index of various fields
+export const IDX_MEANING = 0
+export const IDX_THEME = 0
