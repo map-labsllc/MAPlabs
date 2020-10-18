@@ -1,11 +1,9 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export class UUID {
-
-  // don't access this directly, JS 'class' is such crap
-  uuid = 1;
-
   // get new UUID
   getUUID = () => {
-    return this.uuid++
+    return uuidv4()
   }
 
   // make a new itemWithKey
