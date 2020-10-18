@@ -28,11 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eslinter": "./node_modules/.bin/eslint . --fix "
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "test": "react-scripts test"
   },
   "browserslist": [
     ">0.2%",
@@ -47,12 +43,6 @@
     "chai-enzyme": "^1.0.0-beta.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.8.0",
-    "eslint": "^7.2.0",
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.20.3",
-    "eslint-plugin-react-hooks": "^4.0.0",
     "fetch-mock": "^7.3.0",
     "redux-mock-store": "^1.5.3",
     "sinon": "^7.2.3"
