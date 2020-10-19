@@ -2,8 +2,8 @@ import React from 'react'
 
 import QuestionsCT from '../Framework/QuestionsCT'
 
-import ThemesTop5CT from '../Exercises/ThemesTop5/ThemesTop5CT'
-import InsightsTop5CT from '../Exercises/InsightsTop5/InsightsTop5CT'
+import ThemesTop5 from '../Exercises/ThemesTop5/ThemesTop5'
+import InsightsTop5 from '../Exercises/InsightsTop5/InsightsTop5'
 
 import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
@@ -53,7 +53,7 @@ export default class Module5 extends React.Component {
   // -------------------------
   // Module 5.1.B
   exercise_520 = (
-    <ThemesTop5CT 
+    <ThemesTop5
       question = { { code: 520, text: "Add to your Dashboard your key themes" } }
       promptQuestionCodes = { [151, 261, 351, 451] }
       description = { QUES_520_DESC }
@@ -74,7 +74,7 @@ export default class Module5 extends React.Component {
    // -------------------------
   // Module 5.2.A
    exercise_540 = (
-    <InsightsTop5CT 
+    <InsightsTop5 
       question = { { code: 540, text: "Add to your Dashboard your key insights about meaning." } }
       promptQuestionCodes = { [152, 262, 352, 452] }
       description = { QUES_540_DESC }
