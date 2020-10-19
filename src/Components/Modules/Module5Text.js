@@ -57,11 +57,11 @@ Add to your Dashboard your key themes. At the end of each module you were asked 
 </li>Note which themes seem most critical to you, and which seem secondary. If your themes seem to overlap, try to consolidate them. Then choose only the most critical themes that you would like to add to your dashboard. Listing too many themes will cause you to lose focus, so try to only choose the most important 1 - 3 themes for your dashboard.</li>
 </ol>`
 
-export const QUES_530_DESC = `TODO`
+export const QUES_530_DESC = `Add any summarizing thoughts or directives that you feel will be helpful to you in the future as a quick reference, reminder, or accountability statement about your key themes.`
 
 export const QUES_540_DESC = `TODO`
 
-export const QUES_550_DESC = `TODO`
+export const QUES_550_DESC = `Review your Desires Statement and revise or edit it to more accurately reflect your current self-knowledge and understanding. If possible, consolidate your statement down into a simple, to-the-point synopsis of only the most important desires in a few sentences.`
 
 export const QUES_560_DESC = `TODO`
 

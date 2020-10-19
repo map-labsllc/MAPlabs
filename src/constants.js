@@ -33,3 +33,4 @@ export const EFFECT_EMBODIMENT = "embodiment"
 // index of various fields
 export const IDX_MEANING = 0
 export const IDX_THEME = 0
+export const IDX_INSIGHT = 0
