@@ -6,9 +6,25 @@ import {
   updateAnswersAC,
   persistAnswersAC
 } from '../../../store/answers/actions'
+import { bindActionCreators } from 'redux';
 
 import { QUESTION_TYPE_TOP_THEMES } from '../../../store/answers/constants'
-import { IDX_THEME, IDX_SELECTED } from '../../../constants'
+import { SELECTED, IDX_THEME, IDX_SELECTED } from '../../../constants'
+
+// format answers for checkbox selector
+const hydrateAnswer = (answer) => ({
+  theme: answer[IDX_THEME],
+  selected: answer[IDX_SELECTED]
+})
+
+// format item into answer for saving
+const dehydrateAnswer = (item) => {
+  const record = []
+  record[IDX_THEME] = item.theme
+  record[IDX_SELECTED] = item.selected
+
+  return record
+}
 
 /* *****************************************
    mapStateToProps()
@@ -24,7 +40,7 @@ import { IDX_THEME, IDX_SELECTED } from '../../../constants'
       onCloseModalCB -- call when user clicks Save button
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
-  console.log( "InfluencesCT::mapStateToProps()" )
+  console.log( "ThemesTop5CT::mapStateToProps()" )
 
   const {
     question,
@@ -40,21 +56,25 @@ const mapStateToProps = ( state, passedProps ) => {
   // get userId
   const userId = getUser( state.userRD ).id
 
-  // format answers for checkbox selector
-  const formatAnswer = (answer) => ({
-      label: answer[IDX_THEME],
-      selected: answer[IDX_SELECTED]
-    })
-
-  let prompts = []
-  promptQuestionCodes.reduce(questionCode => {
-    prompts = prompts.concat( getAnswers( state.answersRD, questionCode ) )
-  })
-  prompts = prompts.map(formatAnswer)
-
   // find previous answers, if any, to display when static
   const answers = getAnswers( state.answersRD, question.code )
-  let selectedAnswers = answers.map(formatAnswer)
+  let selectedAnswers = answers.map(hydrateAnswer)
+
+  // make array of selected themes
+  let selectedThemes = selectedAnswers.map(answer => answer.theme)
+  console.log('selectedThemes', selectedThemes)
+  const isSelected = (theme) => selectedThemes.includes(theme)
+
+  // get all possible answers for prompts
+  let prompts = []
+  promptQuestionCodes.map(questionCode => {
+    prompts = prompts.concat(getAnswers( state.answersRD, questionCode ) )
+  })
+
+  console.log("prompts", prompts)
+  prompts = prompts.map(hydrateAnswer)
+    // set selectedAnswers as "selected"
+    .map(answer => ({...answer, selected: isSelected(answer.theme) ? SELECTED : ''}))
 
   return {
     userId,
@@ -64,7 +84,7 @@ const mapStateToProps = ( state, passedProps ) => {
     selectedAnswers,
     isDynamic: !!isDynamic,
     onCloseModalCB,
-    fields: ['label'],
+    fields: ['theme'],
     headings: ['Theme']
   }
 }
@@ -77,7 +97,7 @@ const mapStateToProps = ( state, passedProps ) => {
 const mapDispatchToProps = ( dispatch, passedProps ) => {
 
   /* *****************************************
-    persistSelections()
+    onSave()
 
     Save the checkbox selections back to the promptQuestionCode.  This Component added
       the 'selection' field to the existing influence records from the prompQuestionCode,
@@ -85,56 +105,39 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
     userId
     promptQuestionCode
-    newInfluences -- same format as the object that was passed down in props as "allInfluences"
+    newData -- same format as the object that was passed down in props as "prompts"
   ******************************************** */
- function persistSelections(userId, promptQuestionCode, newInfluences) {
+ function onSave(newData) {
 
-    // store wants 2D array of strings, so map the object into that format
-    const twoDimArrayOfString = []
-    newInfluences.forEach(influence => {
-      const record = []
-      // record[IDX_GROUP]        = influence.group
-      // record[IDX_RELATIONSHIP] = influence.relationship
-      // record[IDX_NAME]         = influence.name
-      // record[IDX_BELIEF]       = influence.belief
-      // record[IDX_IMPACT]       = influence.impact
-      // record[IDX_SELECTED]     = influence.selected
-      twoDimArrayOfString.push(record)
-    })
+  return async(dispatch, getState) => {
+    let state = getState()
+    // get userId
+    const userId = getUser( state.userRD ).id
+
+    const { question } = passedProps
+
+    const twoDimArrayOfString = newData.reduce((acc, item) => {
+      // only save selected items
+      if (item.selected) {
+        acc.push(dehydrateAnswer(item))
+      }
+      return acc
+    }, [])
 
     console.log('-- persisting:')
     console.log(JSON.stringify(twoDimArrayOfString))
 
-    dispatch( updateAnswersAC( promptQuestionCode, twoDimArrayOfString ) )
-    dispatch( persistAnswersAC( userId, promptQuestionCode, QUESTION_TYPE_TOP_THEMES, twoDimArrayOfString ) )
+    console.log('updateAnswersAC')
+    await dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
+    console.log('persistAnswersAC')
+    await dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_TOP_THEMES, twoDimArrayOfString ) )
   }
-
-  /* *****************************************
-    onPersist()
-
-    Update store and persist both the 'selections' and new madlibs.
-
-    userId -- integer
-    newInfluences -- same format as the object that was passed down in props as "allInfluences"
-  ******************************************** */
-  function onPersist( userId, newInfluences ) {
-    console.log( 'Top5ListCT::onPersist(newInfluences)',  newInfluences  )
-
-    const { promptQuestionCode, outputQuestionCode, impactFilter } = passedProps
-
-    // persist 'selections' back to promptQuestionCode
-    persistSelections(
-      userId,
-      promptQuestionCode,
-      newInfluences
-    )
-  }
-
-  /* *****************************************
+ }
+  /* ****************************************
      The props being passed down
   ******************************************** */
   return {
-    onPersistCB: onPersist,
+    onSaveCB: bindActionCreators(onSave, dispatch),
   }
 }
 

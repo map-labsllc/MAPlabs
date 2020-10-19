@@ -18,11 +18,10 @@ import { SELECTED } from '../../../constants'
      updateCB -- call for all changes
 ***************************************************** */
 export default function Top5(props) {
+  const { data, isDynamic, fields } = props
+  const { selected } = data
+  // console.log('Top5 render', data, fields)
 
-  /* **********************************************
-    onChange()
-    e - target.id is a key into the data object:
-    *********************************************** */
   const onChange = (e) => {
     const newData = {
       ...props.data,
@@ -32,20 +31,18 @@ export default function Top5(props) {
     updateCB(id, newData)
   }
 
-  const { data, isDynamic, fields } = props
-  const { selected } = data
-
-  console.log('Top5 render', data, fields)
-  const fieldsToCells = () => (fields.map(field => 
-    <td className="text-left">{data[field]}</td>
+  const fieldsToCells = () => (fields.map((field, idx) => 
+    <td className="text-left" key={idx}>{data[field]}</td>
   ))
 
   // static
   if ( !isDynamic ) {
     return (
       <tr>
-        <td></td>
-        { fieldsToCells() }
+        <td key="-1"></td>
+        <>
+          { fieldsToCells() }
+        </>
       </tr>
     )
   }
@@ -53,7 +50,7 @@ export default function Top5(props) {
   // dynamic render
   return (
     <tr>
-      <td className="text-left">
+      <td className="text-left" key="-1">
         <Form inline>
           <input 
             onChange={onChange}
@@ -69,7 +66,7 @@ export default function Top5(props) {
 
 
 Top5.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   data: PropTypes.object.isRequired,
   fields: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,

@@ -32,64 +32,63 @@ import { UUID } from '../../Utils/UUID'
      prompts
      isDynamic -- undefined - render static version in <PopUp>
                   true - render dynamic version <ModalX>
-     onPersistCB() -- callback to update the store and persist data
+     onSave() -- callback to update the store and persist data
      onCloseModalCB -- when user clicks Close button
 ***************************************************** */
 export default class Top5List extends React.Component {
-  uuid = new UUID() // provides unique keys for <ShortAnswer> components
+  uuid = new UUID()
 
   state = {
     isDirty: false,
     allItemsWithKeys: this.uuid.addKeys(this.props.prompts),
   }
-
-  onclickClose = () => {
-    const { userId, onPersistCB, onCloseModalCB } = this.props
+  
+  onclickClose = async () => {
+    const { userId, onSaveCB, onCloseModalCB } = this.props
     const { isDirty, allItemsWithKeys } = this.state
 
     if (isDirty) {
-      onPersistCB(
-        userId,
-        this.uuid.stripKeys(allItemsWithKeys)
-      )
-    }
+      let selectedData = this.filterSelected(allItemsWithKeys)
+      let newSelections = this.uuid.stripKeys(allItemsWithKeys)
 
-    onCloseModalCB()
+      await onSaveCB(newSelections)
+      await onCloseModalCB()
+    }
   }
 
-  update = (key, data) => {
+  filterSelected = (allItemsWithKeys) => allItemsWithKeys.filter(itemWithKey =>
+    itemWithKey.item.selected === SELECTED
+  )
 
+  update = (key, data) => {
     console.log("update", key, data)
     const { allItemsWithKeys } = this.state
 
     const newAllItemsWithKeys = allItemsWithKeys.map((item) =>
       (item.key === key) ? { key: key, item: data } : item)
 
-    console.log("after update", newAllItemsWithKeys)
     this.setState({
       isDirty: true,
-      allItemsWithKeys: newAllItemsWithKeys,
+      allItemsWithKeys: newAllItemsWithKeys
     })
   }
 
   render() {
-    const { question, instructions, isDynamic, fields, headings } = this.props
-
+    const { question, instructions, isDynamic, fields, headings, prompts } = this.props
+    
     const { allItemsWithKeys } = this.state
 
     console.log("renderin'", allItemsWithKeys)
 
     const headingsToTh = () => {
-      return headings.map(heading => (
-        <th scope="col" className="text-left">{heading}</th>
+      return headings.map((heading, idx) => (
+        <th scope="col" className="text-left" key={idx}>{heading}</th>
       ))
     }
 
     // static render
     if (!isDynamic) {
-      const selectedItemsWithKeys = allItemsWithKeys.filter(itemWithKey =>
-        itemWithKey.item.selected === SELECTED
-      )
+      const selectedItemsWithKeys = this.filterSelected(allItemsWithKeys)
 
       if (selectedItemsWithKeys.length === 0) {
         return <p>Not started.</p>
@@ -161,6 +160,7 @@ Top5List.propTypes = {
   fields: PropTypes.array.isRequired,
   headings: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func
+  onCloseModalCB: PropTypes.func,
+  onSaveCB: PropTypes.func
 }
 
