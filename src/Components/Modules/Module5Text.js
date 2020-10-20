@@ -66,3 +66,6 @@ export const QUES_550_DESC = `Review your Desires Statement and revise or edit i
 export const QUES_560_DESC = `TODO`
 
 export const QUES_570_DESC = `TODO`
+
+export const QUES_580_DESC = `TODO`
+export const QUES_590_DESC = `TODO`

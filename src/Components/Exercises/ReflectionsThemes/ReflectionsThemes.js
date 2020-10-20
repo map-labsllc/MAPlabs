@@ -2,14 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Top5ListCT from '../Top5List/Top5ListCT'
 
-import { QUESTION_TYPE_TOP_THEMES } from '../../../store/answers/constants'
+import { QUESTION_TYPE_EMIM_THEMES } from '../../../store/answers/constants'
 import { IDX_THEME, IDX_SELECTED } from '../../../constants'
 import { hydrater, dehydrater } from '../../../store/answers/reducer'
 
 /* **************************************************
-   ThemesTop5  component
-
-   Displays a single selection
+   ReflectionsThemes componenReflections Displays a single selection
      -- checkbox to select the top 5
      -- field attributes of the data
 
@@ -20,8 +18,7 @@ import { hydrater, dehydrater } from '../../../store/answers/reducer'
      isDynamic -- not defined or true
      updateCB -- call for all changes
 ***************************************************** */
-export default function ThemesTop5(props) {
-
+export default function ReflectionsThemes(props) {
   const answerShape = {
     IDX_THEME: 'theme',
     IDX_SELECTED: 'selected'
@@ -49,7 +46,7 @@ export default function ThemesTop5(props) {
   
 }
 
-ThemesTop5.propTypes = {
+ReflectionsThemes.propTypes = {
   selectedAttribute: PropTypes.string.isRequired,
   headings: PropTypes.array.isRequired,
   fields: PropTypes.array.isRequired,

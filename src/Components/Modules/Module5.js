@@ -1,20 +1,15 @@
 import React from 'react'
 
-import QuestionsCT from '../Framework/QuestionsCT'
-
-import ThemesTop5 from '../Exercises/ThemesTop5/ThemesTop5'
 import InsightsTop5 from '../Exercises/InsightsTop5/InsightsTop5'
+import ReflectionsTop5 from '../Exercises/ReflectionsTop5/ReflectionsTop5'
+import StrengthsTop5 from '../Exercises/StrengthsTop5/StrengthsTop5'
+import ThemesTop5 from '../Exercises/ThemesTop5/ThemesTop5'
 
-import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
-import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 
 import ModuleLayout from './ModuleLayout'
 
-import {
-  QUESTION_TYPE_SHORT_ANSWERS,
-  QUESTION_TYPE_TRANSITIONS,
- } from '../../store/answers/constants'
+import { EFFECT_EMBODIMENT, EFFECT_IMPEDIMENT } from '../../constants'
 
 import {
   QUES_510_DESC,
@@ -24,6 +19,7 @@ import {
   QUES_550_DESC,
   QUES_560_DESC,
   QUES_570_DESC,
+  QUES_580_DESC
  } from './Module5Text'
 
 import { MODULES } from './ModuleData'
@@ -34,11 +30,8 @@ import { MODULES } from './ModuleData'
 export default class Module5 extends React.Component {
 
 
-  // Define questions and excercises for Module 1
-  // ---------------------------------------------------------------------
+  // Define questions and excercises for Module 5
 
-
-  // -------------------------
   // Module 5.1.A
 
   exercise_510 = (
@@ -50,7 +43,6 @@ export default class Module5 extends React.Component {
     /> )
 
 
-  // -------------------------
   // Module 5.1.B
   exercise_520 = (
     <ThemesTop5
@@ -60,7 +52,6 @@ export default class Module5 extends React.Component {
       instructions = "Select the top 5 themes that are most important to you."
     /> )
 
-  // -------------------------
   // Module 5.1.C
   exercise_530 = (
     <NarrativeCT
@@ -70,8 +61,6 @@ export default class Module5 extends React.Component {
       instructions = "Write your summarizing thoughts or directives below."
     /> )
 
-
-   // -------------------------
   // Module 5.2.A
    exercise_540 = (
     <InsightsTop5 
@@ -81,7 +70,6 @@ export default class Module5 extends React.Component {
       instructions = "Select the top 5 insights that are most useful to you."
     /> )
 
-  // -------------------------
   // Module 5.2.B
   exercise_550 = (
     <NarrativeCT
@@ -91,6 +79,36 @@ export default class Module5 extends React.Component {
       instructions = "Review what your desire statement and revise your statement below."
     /> )
 
+  // Strengths
+  // Module 5.2.C
+  exercise_560 = (
+    <StrengthsTop5
+      question = { { code: 560, text: "Review your top 5 strengths" } }
+      promptQuestionCodes = { [420] }
+      description = { QUES_560_DESC }
+      instructions = "Select the top 5 that are most useful to you."
+    /> )
+
+  // Module 5.2.C
+  exercise_570 = (
+    <ReflectionsTop5
+      question = { { code: 570, text: "Select and review most important embodiment themes" } }
+      promptQuestionCodes = { [430] }
+      description = { QUES_570_DESC }
+      filter = { EFFECT_EMBODIMENT }
+      instructions = "Select the top 5 that are most useful to you."
+    /> )
+
+  // Module 5.2.C
+  exercise_580 = (
+    <ReflectionsTop5
+      question = { { code: 580, text: "Select and review most important impediment themes" } }
+      promptQuestionCodes = { [430] }
+      description = { QUES_580_DESC }
+      filter = { EFFECT_IMPEDIMENT }
+      instructions = "Select the top 5 that are most useful to you."
+    /> )
+  
 
   _module = MODULES.filter(m => m.id === 5)[0]
 
@@ -130,10 +148,28 @@ export default class Module5 extends React.Component {
     {
       id: 560,
       module_id: 5,
-      title: "Breaking and building",
-      exercise: this.exercise_560,
-      section_ids: [161,162,163,164]
+      title: "Strengths",
+      exercise: this.exercise_560
     },
+    {
+      id: 570,
+      module_id: 5,
+      title: "Strength Embodiments",
+      exercise: this.exercise_570
+    },
+    {
+      id: 580,
+      module_id: 5,
+      title: "Strength Impediments",
+      exercise: this.exercise_580
+    },
+    // {
+    //   id: 560,
+    //   module_id: 5,
+    //   title: "Breaking and building",
+    //   exercise: this.exercise_560,
+    //   section_ids: [161,162,163,164]
+    // },
   ]
 
   render() {

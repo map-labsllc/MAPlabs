@@ -4,7 +4,7 @@ import {
   ANSWERS_UPDATE,
   ANSWERS_ERROR_DB,
   ANSWERS_PERSIST,
- } from './constants'
+} from './constants'
 
 /*
   answersRD: {
@@ -26,6 +26,32 @@ const initialState = {
   errorMessage: '',
   questions: {},
 }
+
+// helpers for switching between array and object format
+export const hydrater = (shape) => {
+  // shape = {key: attr, ...}
+  return (answer) => (
+    // answer = ['value1', 'value2']
+    Object.keys(shape).reduce((obj, key) => {
+      let attr = shape[key]
+      obj[attr] = answer[key]
+      return obj
+    }, {})
+  )
+}
+
+export const dehydrater = (shape) => {
+  // shape = {key: attr, ...}
+  return (item) => (
+    // item = {attr1: value1, attr2: value2}
+    Object.keys(shape).reduce((arr, key) => {
+      let attr = shape[key]
+      arr[key] = item[attr]
+      return arr
+    }, [])
+  )
+}
+
 
 /* ***********************************************
    getAnswers()

@@ -1,30 +1,11 @@
 import { connect } from 'react-redux'
-import Top5List from '../Top5List/Top5List'
+import Top5List from './Top5List'
 import { getAnswers } from '../../../store/answers/reducer'
 import { getUser } from '../../../store/user/reducer'
-import {
-  updateAnswersAC,
-  persistAnswersAC
-} from '../../../store/answers/actions'
+import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
 import { bindActionCreators } from 'redux';
+import { SELECTED } from '../../../constants'
 
-import { QUESTION_TYPE_TOP_THEMES } from '../../../store/answers/constants'
-import { SELECTED, IDX_THEME, IDX_SELECTED } from '../../../constants'
-
-// format answers for checkbox selector
-const hydrateAnswer = (answer) => ({
-  theme: answer[IDX_THEME],
-  selected: answer[IDX_SELECTED]
-})
-
-// format item into answer for saving
-const dehydrateAnswer = (item) => {
-  const record = []
-  record[IDX_THEME] = item.theme
-  record[IDX_SELECTED] = item.selected
-
-  return record
-}
 
 /* *****************************************
    mapStateToProps()
@@ -48,6 +29,10 @@ const mapStateToProps = ( state, passedProps ) => {
     instructions,
     isDynamic,
     onCloseModalCB,
+    hydrateAnswer,
+    fields,
+    headings,
+    selectedAttribute,
   } = passedProps
 
   // validate params
@@ -60,10 +45,9 @@ const mapStateToProps = ( state, passedProps ) => {
   const answers = getAnswers( state.answersRD, question.code )
   let selectedAnswers = answers.map(hydrateAnswer)
 
-  // make array of selected themes
-  let selectedThemes = selectedAnswers.map(answer => answer.theme)
-  console.log('selectedThemes', selectedThemes)
-  const isSelected = (theme) => selectedThemes.includes(theme)
+  // make array of selected values
+  let selectedValues = selectedAnswers.map(answer => answer[selectedAttribute])
+  const isSelected = (value) => selectedValues.includes(value)
 
   // get all possible answers for prompts
   let prompts = []
@@ -74,7 +58,7 @@ const mapStateToProps = ( state, passedProps ) => {
   console.log("prompts", prompts)
   prompts = prompts.map(hydrateAnswer)
     // set selectedAnswers as "selected"
-    .map(answer => ({...answer, selected: isSelected(answer.theme) ? SELECTED : ''}))
+    .map(answer => ({...answer, selected: isSelected(answer[selectedAttribute]) ? SELECTED : ''}))
 
   return {
     userId,
@@ -84,8 +68,8 @@ const mapStateToProps = ( state, passedProps ) => {
     selectedAnswers,
     isDynamic: !!isDynamic,
     onCloseModalCB,
-    fields: ['theme'],
-    headings: ['Theme']
+    fields,
+    headings
   }
 }
 
@@ -95,6 +79,11 @@ const mapStateToProps = ( state, passedProps ) => {
    passedProps -- see mapStateToProps above
 ******************************************** */
 const mapDispatchToProps = ( dispatch, passedProps ) => {
+
+  const {
+    dehydrateAnswer,
+    question_type
+  } = passedProps
 
   /* *****************************************
     onSave()
@@ -130,7 +119,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     console.log('updateAnswersAC')
     await dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
     console.log('persistAnswersAC')
-    await dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_TOP_THEMES, twoDimArrayOfString ) )
+    await dispatch( persistAnswersAC( userId, question.code, question_type, twoDimArrayOfString ) )
   }
  }
   /* ****************************************
