@@ -132,6 +132,7 @@ export default class ShortAnswers extends React.Component {
             previousAnswer={answerWithKey.item}
             updateAnswerCB={this.updateAnswer}
             deleteAnswerCB={this.deleteAnswer}
+            placeholder={ question.placeholder }
             isDynamic={isDynamic}
           >
           </ShortAnswer>

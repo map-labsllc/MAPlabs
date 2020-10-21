@@ -40,7 +40,7 @@ export default class Top5List extends React.Component {
 
   state = {
     isDirty: false,
-    allItemsWithKeys: this.uuid.addKeys(this.props.prompts),
+    allItemsWithKeys: this.uuid.addKeys(this.props.prompts || []),
   }
   
   onclickClose = async () => {

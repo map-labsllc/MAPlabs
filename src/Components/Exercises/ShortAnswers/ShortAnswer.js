@@ -68,7 +68,7 @@ export default class ShortAnswer extends React.Component {
 
     // initialize
     let { answer, isDirty } = this.state
-    const { id, isDynamic } = this.props
+    const { id, isDynamic, placeholder } = this.props
 
     if (!isDynamic) {
       return answer.length > 0 && <> { answer } </>
@@ -84,7 +84,7 @@ export default class ShortAnswer extends React.Component {
               onChange={this.onChange}
               onBlur={this.onBlur}
               value={answer}
-              placeholder="Please enter an answer"
+              placeholder={placeholder ? "Please enter an answer" : ''}
               rows="2"
               cols="50"
             />
@@ -105,6 +105,7 @@ export default class ShortAnswer extends React.Component {
 ShortAnswer.propTypes = {
   id: PropTypes.number.isRequired,
   previousAnswer: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   isDynamic: PropTypes.bool,
   updateAnswerCB: PropTypes.func.isRequired,
   deleteAnswerCB: PropTypes.func.isRequired,

@@ -49,7 +49,7 @@ export const QUES_510_DESC = `<p>Building your MAPmaker Dashboard. Over the last
 <p><b>Revise and condense your Current Situation Statement.</b> Make sure this statement encompasses what you have learned through the first four modules so that it accurately reflects all of your understanding at this point. Does your description of your Current Situation feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave it as it is. If not, revise or edit it to more accurately reflect your current self-knowledge and understanding. Since this statement will now become part of your “quick-reference” dashboard, try to consolidate it down into a simple, to-the-point synopsis of only the most important concepts in a few sentences.
 </p>`
 
-export const QUES_520_DESC = `<p>
+export const QUES_511_DESC = `<p>
 Add to your Dashboard your key themes. At the end of each module you were asked to articulate any key themes that arose for you around each module’s subject: feeling and experiences, values and beliefs, desires, and strengths. Review the themes that you wrote.
 </p>
 <ol>
@@ -57,15 +57,24 @@ Add to your Dashboard your key themes. At the end of each module you were asked 
 </li>Note which themes seem most critical to you, and which seem secondary. If your themes seem to overlap, try to consolidate them. Then choose only the most critical themes that you would like to add to your dashboard. Listing too many themes will cause you to lose focus, so try to only choose the most important 1 - 3 themes for your dashboard.</li>
 </ol>`
 
-export const QUES_530_DESC = `Add any summarizing thoughts or directives that you feel will be helpful to you in the future as a quick reference, reminder, or accountability statement about your key themes.`
+export const QUES_512_DESC = `Add any summarizing thoughts or directives that you feel will be helpful to you in the future as a quick reference, reminder, or accountability statement about your key themes.`
+
+export const QUES_520_DESC = `TODO`
+
+export const QUES_521_DESC = `Review your Desires Statement and revise or edit it to more accurately reflect your current self-knowledge and understanding. If possible, consolidate your statement down into a simple, to-the-point synopsis of only the most important desires in a few sentences.`
+
+export const QUES_522_DESC = `TODO`
+export const QUES_523_DESC = `TODO`
+export const QUES_524_DESC = `TODO`
+
+export const QUES_530_DESC = `TODO`
+export const QUES_531_DESC = `TODO`
 
 export const QUES_540_DESC = `TODO`
 
-export const QUES_550_DESC = `Review your Desires Statement and revise or edit it to more accurately reflect your current self-knowledge and understanding. If possible, consolidate your statement down into a simple, to-the-point synopsis of only the most important desires in a few sentences.`
+export const QUES_550_DESC = `TODO`
+export const QUES_551_DESC = `TODO`
+export const QUES_552_DESC = `TODO`
 
 export const QUES_560_DESC = `TODO`
-
-export const QUES_570_DESC = `TODO`
-
-export const QUES_580_DESC = `TODO`
-export const QUES_590_DESC = `TODO`
+export const QUES_561_DESC = `TODO`
