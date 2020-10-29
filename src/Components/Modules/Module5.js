@@ -2,7 +2,7 @@ import React from 'react'
 
 import ReflectionsTop5 from '../Exercises/ReflectionsTop5/ReflectionsTop5'
 import StrengthsTop5 from '../Exercises/StrengthsTop5/StrengthsTop5'
-import Top5ListCT from '../Exercises/Top5List/Top5List'
+import Top5ListCT from '../Exercises/Top5List/Top5ListCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import QuestionsCT from '../Framework/QuestionsCT'
@@ -15,6 +15,8 @@ import {
   QUESTION_TYPE_TOP_MEANING,
   QUESTION_TYPE_TOP_THEMES,
   QUESTION_TYPE_TOP_PERSONAL_GROWTH,
+  QUESTION_TYPE_TOP_RELATIONSHIPS,
+  QUESTION_TYPE_TOP_ENGAGEMENT_MASTERY,
   QUESTION_TYPE_SHORT_ANSWERS
 } from '../../store/answers/constants'
 
@@ -31,6 +33,8 @@ import {
   QUES_530_DESC,
   QUES_540_DESC,
   QUES_550_DESC,
+  QUES_551_DESC,
+  QUES_552_DESC,
   QUES_560_DESC,
  } from './Module5Text'
 
@@ -128,7 +132,7 @@ export default class Module5 extends React.Component {
   exercise_530 = (
     <Top5ListCT
       question = { { code: 530, text: "Add to your Dashboard your key insights about beyond-the-self service." } }
-      promptQuestionCodes = { [[153, 263, 353, 453]] }
+      promptQuestionCodes = { [153, 263, 353, 453] }
       description = { QUES_530_DESC }
       headings = { ['Beyond-Self-Service']}
       question_type = {QUESTION_TYPE_TOP_BEYOND_SELF}
@@ -175,16 +179,34 @@ export default class Module5 extends React.Component {
   exercise_550 = (
     <Top5ListCT
       question = { { code: 550, text: "Add to your Dashboard your key commitments about personal growth." } }
-      promptQuestionCodes = { [[154, 264, 354, 454]] }
+      promptQuestionCodes = { [154, 264, 354, 454] }
       description = { QUES_550_DESC }
       headings = { ['Personal Growth']}
       question_type = {QUESTION_TYPE_TOP_PERSONAL_GROWTH}
-      instructions = "Review your personal growth commitments to consider how accurately they reflect your current self-knowledge and understanding."
+      instructions = ""
     /> )
 
   // Module 5.5.B
+  exercise_551 = (
+    <Top5ListCT
+      question = { { code: 551, text: "Add to your Dashboard your key relationships." } }
+      promptQuestionCodes = { [155, 265, 355, 455] }
+      description = { QUES_551_DESC }
+      headings = { ['Relationship']}
+      question_type = {QUESTION_TYPE_TOP_RELATIONSHIPS}
+      instructions = ""
+    /> )
 
-
+  // Module 5.5.C
+  exercise_552 = (
+    <Top5ListCT
+      question = { { code: 552, text: "Add to your Dashboard your key engagement mastery." } }
+      promptQuestionCodes = { [156, 266, 356, 456] }
+      description = { QUES_552_DESC }
+      headings = { ['Engagement Mastery']}
+      question_type = {QUESTION_TYPE_TOP_ENGAGEMENT_MASTERY}
+      instructions = ""
+    /> )
 
   _module = MODULES.filter(m => m.id === 5)[0]
 
@@ -225,13 +247,13 @@ export default class Module5 extends React.Component {
       id: 522,
       module_id: 5,
       title: "Strengths",
-      exercise: this.exercise_530
+      exercise: this.exercise_522
     },
     {
       id: 523,
       module_id: 5,
       title: "Strength Embodiments",
-      exercise: this.exercise_531
+      exercise: this.exercise_523
     },
     {
       id: 524,
@@ -254,31 +276,31 @@ export default class Module5 extends React.Component {
     {
       id: 540,
       module_id: 5,
-      title: "Breaking and building",
+      title: "Personal Life Purpose Statement",
       exercise: this.exercise_540,
     },
     {
       id: 550,
       module_id: 5,
-      title: "",
+      title: "Personal Growth",
       exercise: this.exercise_550,
     },
     {
       id: 551,
       module_id: 5,
-      title: "",
+      title: "Relationships",
       exercise: this.exercise_551,
     },
     {
       id: 552,
       module_id: 5,
-      title: "",
+      title: "Engagement Mastery",
       exercise: this.exercise_552,
     },
     {
       id: 560,
       module_id: 5,
-      title: "",
+      title: "Build and Break",
       exercise: this.exercise_560,
     },
     {
@@ -286,6 +308,18 @@ export default class Module5 extends React.Component {
       module_id: 5,
       title: "",
       exercise: this.exercise_561,
+    },
+    {
+      id: 570,
+      module_id: 5,
+      title: "Dashboard",
+      exercise: this.exercise_570,
+    },
+    {
+      id: 580,
+      module_id: 5,
+      title: "MAPPERS Model",
+      exercise: this.exercise_580,
     }
   ]
 

@@ -9,9 +9,10 @@ import { hydrater, dehydrater } from '../../../store/answers/reducer'
 
 // defaults for answer in first field
 const DEFAULT_FIELD = 'field1'
+
 const defaultAnswerShape = {
-  IDX_DEFAULT: DEFAULT_FIELD,
-  IDX_SELECTED: 'selected'
+  [IDX_DEFAULT]: DEFAULT_FIELD,
+  [IDX_SELECTED]: 'selected'
 }
 
 /* *****************************************
@@ -35,16 +36,11 @@ const mapStateToProps = ( state, passedProps ) => {
     instructions,
     isDynamic,
     onCloseModalCB,
-    hydrateAnswer,
-    fields,
+    hydrateAnswer = hydrater(defaultAnswerShape),
+    fields = [DEFAULT_FIELD],
     headings,
-    selectedAttribute,
+    selectedAttribute = DEFAULT_FIELD,
   } = passedProps
-
-  // defaults
-  hydrateAnswer = hydrateAnswer || hydrater(defaultAnswerShape)
-  selectedAttribute = selectedAttribute || DEFAULT_FIELD
-  fields = fields || [DEFAULT_FIELD]
 
   // validate params
   if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
@@ -63,10 +59,12 @@ const mapStateToProps = ( state, passedProps ) => {
   // get all possible answers for prompts
   let prompts = []
   promptQuestionCodes.map(questionCode => {
-    prompts = prompts.concat(getAnswers( state.answersRD, questionCode ) )
+    console.log("adding", questionCode, getAnswers(state.answersRD, questionCode))
+    prompts = prompts.concat(getAnswers(state.answersRD, questionCode))
   })
 
-  console.log("prompts", prompts)
+  console.log(state.answersRD)
+  console.log("prompts for", promptQuestionCodes, prompts)
   prompts = prompts.map(hydrateAnswer)
     // set selectedAnswers as "selected"
     .map(answer => ({...answer, selected: isSelected(answer[selectedAttribute]) ? SELECTED : ''}))
@@ -92,7 +90,8 @@ const mapStateToProps = ( state, passedProps ) => {
 const mapDispatchToProps = ( dispatch, passedProps ) => {
 
   const {
-    dehydrateAnswer,
+    dehydrateAnswer = dehydrater(defaultAnswerShape),
+    question,
     question_type
   } = passedProps
 
@@ -113,11 +112,6 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     let state = getState()
     // get userId
     const userId = getUser( state.userRD ).id
-
-    const { question, dehydrateAnswer } = passedProps
-  
-    // default 
-    dehydrateAnswer = dehydrateAnswer || dehydrater(defaultAnswerShape)
 
     const twoDimArrayOfString = newData.reduce((acc, item) => {
       // only save selected items

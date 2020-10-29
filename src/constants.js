@@ -7,6 +7,8 @@ export const GROUP_PERSONAL = 'personal'
 export const GROUP_SOCIAL   = 'social'
 export const GROUP_WIDER    = 'wider'
 
+export const IDX_DEFAULT = 0
+
 // indexes into the columns of the 2D data structure coming from the store
 export const IDX_GROUP        = 0 // personal / social / wider
 export const IDX_RELATIONSHIP = 1 // brother

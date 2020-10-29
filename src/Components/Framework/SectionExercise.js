@@ -64,7 +64,7 @@ class SectionExercise extends React.Component {
       exercise,
       {
         onCloseModalCB: this.onSave,
-        isDynamic: SVGComponentTransferFunctionElement,
+        isDynamic: true,
       }
     )
 
