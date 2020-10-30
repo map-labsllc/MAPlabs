@@ -31,6 +31,7 @@ export const IDX_EFFECT = 2
 // Transitions
 export const IDX_FROM = 0
 export const IDX_TO = 1
+export const IDX_TRANSITION = 2
 
 // legal values for an effect
 export const EFFECT_IMPEDIMENT = "impediment"

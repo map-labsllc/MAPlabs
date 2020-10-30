@@ -48,11 +48,14 @@ export default class Transitions extends React.Component {
   updateTransition = (key, newTransition) => {
     console.log(`Transitions::updateTransition(${key}, ${newTransition})`)
 
-    const { onUpdateStoreCB } = this.props
+    const { onUpdateStoreCB, question } = this.props
     const { transitionsWithKeys } = this.state
 
+    // add transition area here
+    let area = question.text
+
     const newTransitionsWithKeys = transitionsWithKeys.map(transitionWithKey =>
-      (transitionWithKey.key === key) ? { key: key, item: newTransition } : transitionWithKey)
+      (transitionWithKey.key === key) ? { key: key, item: {area, ...newTransition} } : transitionWithKey)
 
     onUpdateStoreCB(this.uuid.stripKeys(newTransitionsWithKeys))
     this.setState({ transitionsWithKeys: newTransitionsWithKeys })

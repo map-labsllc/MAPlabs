@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import Transitions from './Transitions'
 import { getAnswers } from '../../../store/answers/reducer'
 import { updateAnswersAC } from '../../../store/answers/actions'
+import { IDX_FROM, IDX_TO, IDX_TRANSITION } from '../../../constants'
+import { hydrater, dehydrater } from '../../../store/answers/reducer'
 
 /* *****************************************
    mapStateToProps()
@@ -13,6 +15,18 @@ import { updateAnswersAC } from '../../../store/answers/actions'
      isDynamic -- undefined or true
                   rendering static version in Popup or dynamic verison in Modal
 ******************************************** */
+const answerShape = {
+  [IDX_FROM]: 'from',
+  [IDX_TO]: 'to',
+  [IDX_TRANSITION]: 'area'
+}
+
+// format answers for checkbox selector
+const hydrateAnswer = hydrater(answerShape)
+
+// format item into answer for saving
+const dehydrateAnswer = dehydrater(answerShape)
+
 const mapStateToProps = ( state, passedProps ) => {
   //console.log( "TransitionsCT::mapStateToProps()" )
 
@@ -28,7 +42,7 @@ const mapStateToProps = ( state, passedProps ) => {
   // get previous transitions, if any
   const answers = getAnswers( state.answersRD, question.code )
   console.log( `getAnswers(${question.code}): `, answers )
-  const previousTransitions = answers.map(answerArray => ({ from: answerArray[0], to: answerArray[1] }))
+  const previousTransitions = answers.map(hydrateAnswer)
 
   //console.log('TransitionsCT::previousTransitions: ', previousTransitions);
 
@@ -69,7 +83,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     const { question } = passedProps
 
     // store wants 2D array of strings, so map the array of transitions into that format
-    const twoDimArrayOfString = filterOutBlanks( newTransitions ).map(transition => [transition.from, transition.to])
+    const twoDimArrayOfString = filterOutBlanks( newTransitions ).map(dehydrateAnswer)
 
     // update store
     dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
