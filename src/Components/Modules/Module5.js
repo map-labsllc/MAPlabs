@@ -1,6 +1,8 @@
 import React from 'react'
 
 import ReflectionsTop5 from '../Exercises/ReflectionsTop5/ReflectionsTop5'
+import TransitionsTop from '../Exercises/TransitionsTop/TransitionsTop'
+
 import StrengthsTop5 from '../Exercises/StrengthsTop5/StrengthsTop5'
 import Top5ListCT from '../Exercises/Top5List/Top5ListCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
@@ -17,7 +19,8 @@ import {
   QUESTION_TYPE_TOP_PERSONAL_GROWTH,
   QUESTION_TYPE_TOP_RELATIONSHIPS,
   QUESTION_TYPE_TOP_ENGAGEMENT_MASTERY,
-  QUESTION_TYPE_SHORT_ANSWERS
+  QUESTION_TYPE_SHORT_ANSWERS,
+  QUESTION_TYPE_TOP_TRANSITIONS
 } from '../../store/answers/constants'
 
 import {
@@ -36,6 +39,7 @@ import {
   QUES_551_DESC,
   QUES_552_DESC,
   QUES_560_DESC,
+  QUES_561_DESC
  } from './Module5Text'
 
 import { MODULES } from './ModuleData'
@@ -54,6 +58,7 @@ export default class Module5 extends React.Component {
     <NarrativeCT
       question = { { code: 510, text: "Review and revise your Current Situation statement" } }
       promptQuestionCode = { 120 }
+      copyPrompt = { true }
       description = { QUES_510_DESC }
       instructions = "Review your responses about what you found most meaningful."
     /> )
@@ -74,6 +79,7 @@ export default class Module5 extends React.Component {
     <NarrativeCT
       question = { { code: 513, text: "Summarize the context of your purpose-seeking life" } }
       promptQuestionCode = { 520 }
+      copyPrompt = { true }
       description = { QUES_512_DESC }
       instructions = "Write your summarizing thoughts or directives below."
     /> )
@@ -83,7 +89,7 @@ export default class Module5 extends React.Component {
     <Top5ListCT 
       question = { { code: 520, text: "Add to your Dashboard your key insights about meaning." } }
       promptQuestionCodes = { [152, 262, 352, 452] }
-      description = { QUES_540_DESC }      
+      description = { QUES_520_DESC }      
       headings = { ['Meaning'] }
       question_type={QUESTION_TYPE_TOP_MEANING}
       instructions = "Select the top 5 insights that are most useful to you."
@@ -94,6 +100,7 @@ export default class Module5 extends React.Component {
     <NarrativeCT
       question = { { code: 521, text: "Add to your Dashboard your key insights about your desires." } }
       promptQuestionCode = { 340 }
+      copyPrompt = { true }
       description = { QUES_521_DESC }
       instructions = "Review what your desire statement and revise your statement below."
     /> )
@@ -144,6 +151,7 @@ export default class Module5 extends React.Component {
     <NarrativeCT
       question = { { code: 531, text: `Summarize the "what" of your purpose.` } }
       promptQuestionCode = { 530 }
+      copyPrompt = { true }
       description = { QUES_531_DESC }
       instructions = "Add any summarizing thoughts or directives that you feel will be helpful to you in the future as a quick reference, reminder, or accountability statement about what you care about and want to serve that is beyond yourself."
     /> )
@@ -206,6 +214,30 @@ export default class Module5 extends React.Component {
       headings = { ['Engagement Mastery']}
       question_type = {QUESTION_TYPE_TOP_ENGAGEMENT_MASTERY}
       instructions = ""
+    /> )
+
+  // Module 5.6.A
+  exercise_560 = (
+    <TransitionsTop
+      question = { { code: 560, text: "Review your Break and Build Matrix." } }
+      promptQuestionCodes = { [
+        161,162,163,164, // M1
+        271,272,273,274, // M2
+        361,362,363, // M3
+        461, 462, 463, 464 // M4
+      ] }
+      description = { QUES_560_DESC }
+      instructions = "TODO"
+    /> )
+
+  // Module 5.6.B
+  exercise_561 = (
+    <NarrativeCT
+      question = { { code: 561, text: "Review and revise your Desired Future Situation statement" } }
+      promptQuestionCode = { 140 }
+      copyPrompt = { true }
+      description = { QUES_561_DESC }
+      instructions = "Revise your statement in the box below"
     /> )
 
   _module = MODULES.filter(m => m.id === 5)[0]
@@ -306,7 +338,7 @@ export default class Module5 extends React.Component {
     {
       id: 561,
       module_id: 5,
-      title: "",
+      title: "Desired Future Situation",
       exercise: this.exercise_561,
     },
     {

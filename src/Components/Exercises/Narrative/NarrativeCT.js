@@ -3,9 +3,7 @@ import Narrative from './Narrative'
 import { getUser } from '../../../store/user/reducer'
 import { getAnswers } from '../../../store/answers/reducer'
 import { QUESTION_TYPE_NARRATIVE } from '../../../store/answers/constants'
-import {
-  updateAnswersAC,
-  persistAnswersAC } from '../../../store/answers/actions'
+import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
 
 /* *****************************************
    mapStateToProps()
@@ -21,7 +19,7 @@ import {
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
   // console.log( "NarrativeCT::mapStateToProps()" )
-  const { promptQuestionCode, question, instructions, isDynamic, onCloseModalCB } = passedProps
+  const { copyPrompt, promptQuestionCode, question, instructions, isDynamic, onCloseModalCB } = passedProps
   if ( !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
   // get userId
@@ -43,7 +41,11 @@ const mapStateToProps = ( state, passedProps ) => {
   }
 
   // unpack the string from answers[0][0] default to '' if there was no previous answer
-  const previousAnswer = (answers[0] && answers[0][0]) || ''
+  let previousAnswer = (answers[0] && answers[0][0]) || ''
+
+  if (!previousAnswer && copyPrompt) {
+    previousAnswer = prompts.join('. ')
+  }
 
   return {
     userId,

@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Top5ListCT from '../Top5List/Top5ListCT'
 
-import { QUESTION_TYPE_TOP_STRENGTHS } from '../../../store/answers/constants'
-import { IDX_STRENGTH, IDX_SELECTED } from '../../../constants'
+import { QUESTION_TYPE_TOP_TRANSITIONS} from '../../../store/answers/constants'
+import { IDX_FROM, IDX_TO } from '../../../constants'
 import { hydrater, dehydrater } from '../../../store/answers/reducer'
 
 /* **************************************************
-   StrengthsTop5CT componenReflections Displays a single selection
+     Displays a single selection
      -- checkbox to select the top 5
      -- field attributes of the data
 
@@ -18,10 +18,10 @@ import { hydrater, dehydrater } from '../../../store/answers/reducer'
      isDynamic -- not defined or true
      updateCB -- call for all changes
 ***************************************************** */
-export default function StrengthsTop5(props) {
+export default function TransitionsTop(props) {
   const answerShape = {
-    [IDX_STRENGTH]: 'strength',
-    [IDX_SELECTED]: 'selected'
+    [IDX_FROM]: 'from',
+    [IDX_TO]: 'to'
   }
 
   // format answers for checkbox selector
@@ -30,9 +30,9 @@ export default function StrengthsTop5(props) {
   // format item into answer for saving
   const dehydrateAnswer = dehydrater(answerShape)
 
-  const headings = ['Strength']
-  const fields = ['strength']
-  const selectedAttribute = 'strength'
+  const headings = ['Area', 'From', 'To']
+  const fields = ['from', 'to']
+  const selectedAttribute = 'from'
 
   return <Top5ListCT
     {...props}
@@ -41,12 +41,12 @@ export default function StrengthsTop5(props) {
     fields={fields}
     headings={headings}
     selectedAttribute={selectedAttribute}
-    question_type={QUESTION_TYPE_TOP_STRENGTHS}
+    question_type={QUESTION_TYPE_TOP_TRANSITIONS}
   />
   
 }
 
-StrengthsTop5.propTypes = {
+TransitionsTop.propTypes = {
   selectedAttribute: PropTypes.string.isRequired,
   headings: PropTypes.array.isRequired,
   fields: PropTypes.array.isRequired,

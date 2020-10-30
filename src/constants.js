@@ -28,6 +28,10 @@ export const IDX_STRENGTH = 0
 export const IDX_PHRASE = 1
 export const IDX_EFFECT = 2
 
+// Transitions
+export const IDX_FROM = 0
+export const IDX_TO = 1
+
 // legal values for an effect
 export const EFFECT_IMPEDIMENT = "impediment"
 export const EFFECT_EMBODIMENT = "embodiment"
