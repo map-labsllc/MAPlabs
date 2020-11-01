@@ -59,7 +59,6 @@ export default class Transition extends React.Component {
     })
   }
 
-
   // **************************************************
   // pass to parent to update value and clear isDirty
   onBlur = (e) => {

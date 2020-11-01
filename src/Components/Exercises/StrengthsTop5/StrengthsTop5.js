@@ -5,6 +5,7 @@ import Top5ListCT from '../Top5List/Top5ListCT'
 import { QUESTION_TYPE_TOP_STRENGTHS } from '../../../store/answers/constants'
 import { IDX_STRENGTH, IDX_SELECTED } from '../../../constants'
 import { hydrater, dehydrater } from '../../../store/answers/reducer'
+import { listIdToValue } from "../../../store/lists/actions"
 
 /* **************************************************
    StrengthsTop5CT componenReflections Displays a single selection
@@ -24,14 +25,24 @@ export default function StrengthsTop5(props) {
     [IDX_SELECTED]: 'selected'
   }
 
+  const { strengthOptions } = props
+  console.log('strengthOptions'
+    , strengthOptions)
   // format answers for checkbox selector
-  const hydrateAnswer = hydrater(answerShape)
+  const hydrateAnswer = (answer) => {
+    let hydrated = hydrater(answerShape)(answer)
+  
+    // add strength value
+    return ({
+      strengthValue: listIdToValue(strengthOptions, answer[IDX_STRENGTH]), ...hydrated
+    })
+  }
   
   // format item into answer for saving
   const dehydrateAnswer = dehydrater(answerShape)
-
+  
   const headings = ['Strength']
-  const fields = ['strength']
+  const fields = ['strengthValue']
   const selectedAttribute = 'strength'
 
   return <Top5ListCT

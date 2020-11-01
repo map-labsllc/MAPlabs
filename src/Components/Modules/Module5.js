@@ -1,9 +1,9 @@
 import React from 'react'
 
-import ReflectionsTop5 from '../Exercises/ReflectionsTop5/ReflectionsTop5'
+import ReflectionsTop5CT from '../Exercises/ReflectionsTop5/ReflectionsTop5CT'
 import TransitionsTop from '../Exercises/TransitionsTop/TransitionsTop'
 
-import StrengthsTop5 from '../Exercises/StrengthsTop5/StrengthsTop5'
+import StrengthsTop5CT from '../Exercises/StrengthsTop5/StrengthsTop5CT'
 import Top5ListCT from '../Exercises/Top5List/Top5ListCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
@@ -104,7 +104,7 @@ export default class Module5 extends React.Component {
   // Strengths
   // Module 5.2.C
   exercise_522 = (
-    <StrengthsTop5
+    <StrengthsTop5CT
       question = { { code: 522, text: "Review your top 5 strengths" } }
       promptQuestionCodes = { [420] }
       description = { QUES_522_DESC }
@@ -113,9 +113,9 @@ export default class Module5 extends React.Component {
 
   // Module 5.2.C
   exercise_523 = (
-    <ReflectionsTop5
-      question = { { code: 523, text: "Select and review most important embodiment themes" } }
-      promptQuestionCodes = { [430] }
+    <ReflectionsTop5CT
+      question = { { code: 523, text: "Review your most important embodiment themes" } }
+      promptQuestionCode = { 420 }
       description = { QUES_523_DESC }
       filter = { EFFECT_EMBODIMENT }
       instructions = "Select the top 5 that are most useful to you."
@@ -123,9 +123,9 @@ export default class Module5 extends React.Component {
 
   // Module 5.2.C
   exercise_524 = (
-    <ReflectionsTop5
+    <ReflectionsTop5CT
       question = { { code: 524, text: "Select and review most important impediment themes" } }
-      promptQuestionCodes = { [430] }
+      promptQuestionCode = { 420 }
       description = { QUES_524_DESC }
       filter = { EFFECT_IMPEDIMENT }
       instructions = "Select the top 5 that are most useful to you."
@@ -147,7 +147,7 @@ export default class Module5 extends React.Component {
     <NarrativeCT
       question = { { code: 531, text: `Summarize the "what" of your purpose.` } }
       promptQuestionCode = { 530 }
-      copyPrompt = { true }
+      copyPrompt = { false }
       description = { QUES_531_DESC }
       instructions = "Add any summarizing thoughts or directives that you feel will be helpful to you in the future as a quick reference, reminder, or accountability statement about what you care about and want to serve that is beyond yourself."
     /> )
@@ -319,6 +319,7 @@ export default class Module5 extends React.Component {
       module_id: 5,
       title: "Personal Life Purpose Statement",
       exercise: this.exercise_540,
+      section_ids: [541, 542, 543, 544]
     },
     {
       id: 550,
@@ -343,6 +344,7 @@ export default class Module5 extends React.Component {
       module_id: 5,
       title: "Building and Breaking",
       exercise: this.exercise_560,
+      section_ids: [561, 562, 563, 564]
     },
     {
       id: 565,

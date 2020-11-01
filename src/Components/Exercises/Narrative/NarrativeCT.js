@@ -32,7 +32,7 @@ const mapStateToProps = ( state, passedProps ) => {
   }
 
   // find previous answer, if any
-  //   Note: getAnswers() returns an array but narrative should have at most one answer
+  // Note: getAnswers() returns an array but narrative should have at most one answer
   const answers = getAnswers( state.answersRD, question.code )
   // console.log( `getAnswers( ${question.code} ): `, answers )
   if ( 1 < answers.length ) {
@@ -44,7 +44,6 @@ const mapStateToProps = ( state, passedProps ) => {
   let previousAnswer = (answers[0] && answers[0][0]) || ''
 
   if (!previousAnswer && copyPrompt) {
-    console.log("prompts", prompts)
     previousAnswer = prompts.map(p => p[0]).filter(answer => !!answer).join('. ')
   }
 

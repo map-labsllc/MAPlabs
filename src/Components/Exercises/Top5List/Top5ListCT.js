@@ -59,7 +59,6 @@ const mapStateToProps = ( state, passedProps ) => {
   // get all possible answers for prompts
   let prompts = []
   promptQuestionCodes.map(questionCode => {
-    console.log("adding", questionCode, getAnswers(state.answersRD, questionCode))
     prompts = prompts.concat(getAnswers(state.answersRD, questionCode))
   })
 
