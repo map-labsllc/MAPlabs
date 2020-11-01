@@ -72,6 +72,8 @@ const mapStateToProps = ( state, passedProps ) => {
 ******************************************** */
 const mapDispatchToProps = ( dispatch, passedProps ) => {
 
+  const { saveToPrompt, question } = passedProps 
+
   /* *****************************************
     persistSelections()
 
@@ -95,10 +97,13 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
       twoDimArrayOfString.push(record)
     })
 
+    const saveQuestionCode = saveToPrompt ? promptQuestionCode : question.code
+
+    console.log()
     // note: these answers are saved to the promptQuestionCode
     // console.log("preparing to dispatch ids", userId, promptQuestionCode, QUESTION_TYPE_STRENGTH_EM_IM, )
-    dispatch( updateAnswersAC( promptQuestionCode, twoDimArrayOfString ) )
-    dispatch( persistAnswersAC( userId, promptQuestionCode, QUESTION_TYPE_STRENGTH_EM_IM, twoDimArrayOfString ) )
+    dispatch( updateAnswersAC( saveQuestionCode, twoDimArrayOfString ) )
+    dispatch( persistAnswersAC( userId, saveQuestionCode, QUESTION_TYPE_STRENGTH_EM_IM, twoDimArrayOfString ) )
   }
 
   /* *****************************************
