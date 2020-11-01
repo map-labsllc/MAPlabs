@@ -98,7 +98,6 @@ export default class Top5List extends React.Component {
         <table className="table">
           <thead>
             <tr>
-              <th></th>
               { headingsToTh(headings) }
             </tr>
           </thead>

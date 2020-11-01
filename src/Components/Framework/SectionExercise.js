@@ -77,7 +77,7 @@ class SectionExercise extends React.Component {
     const { description } = exerciseStatic.props
 
     const answer = getAnswers(answersRD, sectionNum)
-
+    console.log("ander in SectinExercise for answersComplete check", answer)
     // is this module started?
     const isStarted = () => {
       if (answer.length > 0) { return true }

@@ -76,6 +76,6 @@ export const QUES_550_DESC = `Review your personal growth commitments to conside
 export const QUES_551_DESC = `Review your relationships to consider how accurately they reflect your current self-knowledge and understanding. Choose only the 5 most critical relationships in column I and copy them into the boxes below. You may also revise the statements to better fit with your current self-knowledge and understanding.`
 export const QUES_552_DESC = `Review your engagement mastery to consider how accurately these themes reflect your current self-knowledge and understanding. Choose only the 5 most critical themes in column O and copy them into the boxes below. You may also revise the statements to better fit with your current self-knowledge and understanding.`
 
-export const QUES_560_DESC = `TODO`
-export const QUES_561_DESC = `Revise and consolidate this statement down into a simple, to-the-point synopsis of only the most important concepts in a few sentences.
+export const QUES_560_DESC = `Review your responses to how you would like to alter how you engage in these areas. Choose only the 10 most critical changes. You may also revise the statements to better fit with your current self-knowledge and understanding.`
+export const QUES_565_DESC = `Revise and consolidate this statement down into a simple, to-the-point synopsis of only the most important concepts in a few sentences.
 `

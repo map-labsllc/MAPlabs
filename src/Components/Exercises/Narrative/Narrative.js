@@ -62,6 +62,7 @@ export default class Narrative extends React.Component {
     const { answer } = this.state
 
     onPersistCB( userId, answer )
+    console.log('onCloseModalCB', onCloseModalCB)
     onCloseModalCB()
   }
 

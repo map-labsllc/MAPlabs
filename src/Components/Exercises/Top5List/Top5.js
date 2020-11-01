@@ -31,36 +31,41 @@ export default function Top5(props) {
     updateCB(id, newData)
   }
 
-  const fieldsToCells = () => (fields.map((field, idx) => 
-    <td className="text-left" key={idx}>{data[field]}</td>
-  ))
+  const fieldsToCells = () => (
+    <>
+      { fields.map((field, idx) => 
+        <td className="text-left" key={idx}>{data[field]}</td>)
+      }
+    </>
+  )
 
   // static
   if ( !isDynamic ) {
     return (
-      <tr>
-        <td key="-1"></td>
-        <>
+      <>
+        <tr>
           { fieldsToCells() }
-        </>
-      </tr>
+        </tr>
+      </>
     )
   }
 
   // dynamic render
   return (
-    <tr>
-      <td className="text-left" key="-1">
-        <Form inline>
-          <input 
-            onChange={onChange}
-            type="checkbox" 
-            checked={selected ? true : false}
-          />
-        </Form>
-      </td>
-      { fieldsToCells() }
-    </tr>
+    <>
+      <tr>
+        <td className="text-left" key="-1">
+          <Form inline>
+            <input 
+              onChange={onChange}
+              type="checkbox" 
+              checked={selected ? true : false}
+            />
+          </Form>
+        </td>
+        { fieldsToCells() }
+      </tr>
+    </>
   )
 }
 

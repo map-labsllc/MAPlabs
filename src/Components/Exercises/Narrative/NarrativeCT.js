@@ -44,7 +44,8 @@ const mapStateToProps = ( state, passedProps ) => {
   let previousAnswer = (answers[0] && answers[0][0]) || ''
 
   if (!previousAnswer && copyPrompt) {
-    previousAnswer = prompts.join('. ')
+    console.log("prompts", prompts)
+    previousAnswer = prompts.map(p => p[0]).filter(answer => !!answer).join('. ')
   }
 
   return {

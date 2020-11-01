@@ -39,7 +39,7 @@ import {
   QUES_551_DESC,
   QUES_552_DESC,
   QUES_560_DESC,
-  QUES_561_DESC
+  QUES_565_DESC
  } from './Module5Text'
 
 import { MODULES } from './ModuleData'
@@ -49,11 +49,7 @@ import { MODULES } from './ModuleData'
 ***************************************************** */
 export default class Module5 extends React.Component {
 
-
-  // Define questions and excercises for Module 5
-
   // Module 5.1.A
-
   exercise_510 = (
     <NarrativeCT
       question = { { code: 510, text: "Review and revise your Current Situation statement" } }
@@ -77,9 +73,9 @@ export default class Module5 extends React.Component {
   // Module 5.1.C
   exercise_512 = (
     <NarrativeCT
-      question = { { code: 513, text: "Summarize the context of your purpose-seeking life" } }
-      promptQuestionCode = { 520 }
-      copyPrompt = { true }
+      question = { { code: 512, text: "Summarize the context of your purpose-seeking life" } }
+      promptQuestionCode = { 511 }
+      copyPrompt = { false }
       description = { QUES_512_DESC }
       instructions = "Write your summarizing thoughts or directives below."
     /> )
@@ -217,26 +213,39 @@ export default class Module5 extends React.Component {
     /> )
 
   // Module 5.6.A
-  exercise_560 = (
+  transitions_560 = [
     <TransitionsTop
-      question = { { code: 560, text: "Review your Break and Build Matrix." } }
-      promptQuestionCodes = { [
-        161,162,163,164, // M1
-        271,272,273,274, // M2
-        361,362,363, // M3
-        461, 462, 463, 464 // M4
-      ] }
+      question = { { code: 561, text: "Module 1" } }
+      promptQuestionCodes = { [161,162,163,164, ] }
+    />,
+    <TransitionsTop
+      question = { { code: 562, text: "Module 2" } }
+      promptQuestionCodes = { [ 271,272,273,274 ] }
+    />,
+    <TransitionsTop
+      question = { { code: 563, text: "Module 3" } }
+      promptQuestionCodes = { [ 361,362,363 ] }
+    />,
+    <TransitionsTop
+      question = { { code: 564, text: "Module 4" } }
+      promptQuestionCodes = { [ 461, 462, 463, 464 ] }
+    />
+  ]
+
+  exercise_560 = (
+    <QuestionsCT
+      questionType = {QUESTION_TYPE_TOP_TRANSITIONS}
       description = { QUES_560_DESC }
-      instructions = "TODO"
-    /> )
+      subComponents = {this.transitions_560}
+  /> )
 
   // Module 5.6.B
-  exercise_561 = (
+  exercise_565 = (
     <NarrativeCT
-      question = { { code: 561, text: "Review and revise your Desired Future Situation statement" } }
+      question = { { code: 565, text: "Review and revise your Desired Future Situation statement" } }
       promptQuestionCode = { 140 }
       copyPrompt = { true }
-      description = { QUES_561_DESC }
+      description = { QUES_565_DESC }
       instructions = "Revise your statement in the box below"
     /> )
 
@@ -267,7 +276,7 @@ export default class Module5 extends React.Component {
       id: 520,
       module_id: 5,
       title: "Determine your key insights about meaning",
-      exercise: this.exercise_540
+      exercise: this.exercise_520
     },
     {
       id: 521,
@@ -291,7 +300,7 @@ export default class Module5 extends React.Component {
       id: 524,
       module_id: 5,
       title: "Strength Impediments",
-      exercise: this.exercise_532
+      exercise: this.exercise_524
     },
     { 
       id: 530,
@@ -332,14 +341,14 @@ export default class Module5 extends React.Component {
     {
       id: 560,
       module_id: 5,
-      title: "Build and Break",
+      title: "Building and Breaking",
       exercise: this.exercise_560,
     },
     {
-      id: 561,
+      id: 565,
       module_id: 5,
       title: "Desired Future Situation",
-      exercise: this.exercise_561,
+      exercise: this.exercise_565,
     },
     {
       id: 570,
