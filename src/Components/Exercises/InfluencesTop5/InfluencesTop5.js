@@ -1,17 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Button,
-} from 'react-bootstrap'
-import {
-  GROUP_PERSONAL,
-  GROUP_SOCIAL,
-  GROUP_WIDER, 
-  SELECTED,
-} from '../../../constants'
+import { Button } from 'react-bootstrap'
+import { SELECTED } from '../../../constants'
 import InfluenceTop5 from './InfluenceTop5'
 import { UUID } from '../../Utils/UUID'
-
 
 /* **************************************************
    InfluencesTop5 component

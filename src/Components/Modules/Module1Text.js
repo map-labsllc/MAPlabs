@@ -45,18 +45,3 @@ List any areas of <i>engagement</i> or <i>mastery</i> (either in your life’s w
 export const QUES_160_DESC = `Now let’s make this very concrete. Consider what needs to be 'broken from' in your current situation, what needs to be 'built toward' to create your desired future life, and fill in the following blanks.
 <br><br>
 In order to transform my current situation into my desired future life, I need to change my:`
-
-
-export const QUES_170_DESC = `Based on your top key words, phrases, or other insights provoked by this module, think about what specifically motivated you to enroll in Based on your top key words, phrases, or other insights provoked by this module, think about what specifically motivated you to enroll in
-<br><br>
-Let’s make this very concrete.  Look ahead and imagine yourself having completed the MAPmaker program.  In a broad sense:
-<br><br>
-1. What changes would you like to see in your everyday life?
-<br><br>
-2. What changes would you like to see in your personal growth?
-<br><br>
-3. What changes would you like to see in your relationships?
-<br><br>
-4. What changes would you like to see in your life’s work (your vocation)?
-<br><br>
-5. What changes would you like to see outside of your work (your avocational pursuits)?`

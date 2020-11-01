@@ -58,7 +58,7 @@ const mapStateToProps = ( state, passedProps ) => {
    passedProps -- see mapStateToProps above
 ******************************************** */
 const mapDispatchToProps = ( dispatch, passedProps ) => {
-  const { question, userId, promptQuestionCode } = passedProps
+  const { question, promptQuestionCode } = passedProps
 
   function copyParentAnswers() {
 

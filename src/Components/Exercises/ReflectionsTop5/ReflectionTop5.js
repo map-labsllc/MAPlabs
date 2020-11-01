@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Form, FormControl } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import {  SELECTED } from '../../../constants'
 
 /* **************************************************
@@ -36,7 +36,7 @@ export default function StrengthEmImTop5(props) {
 
   // render!
   const { reflection, isDynamic } = props
-  const { selected, strength, strengthValue, phrase, effect } = reflection
+  const { selected, strengthValue, phrase, effect } = reflection
 
   // static
   if ( !isDynamic ) {

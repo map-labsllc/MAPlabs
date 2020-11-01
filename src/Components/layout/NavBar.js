@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
+import { Nav } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { loadAllAnswersAC } from '../../store/answers/actions'

@@ -97,6 +97,8 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
             case IMPACT_INHIBITING:
               impact = IMPACT_INHIBITS
               break
+            default:
+              break;
           } 
 
           return JSON.stringify({
@@ -139,7 +141,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     return async(dispatch, getState) => {
       console.log( `MadLibsCT::onUpdate`, newData )
 
-      const { question, userId } = passedProps
+      const { question } = passedProps
 
       const state = getState()
 

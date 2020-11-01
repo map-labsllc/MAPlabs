@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {  Button,} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import {  SELECTED } from '../../../constants'
 import ReflectionTop5 from './ReflectionTop5'
 import { UUID } from '../../Utils/UUID'

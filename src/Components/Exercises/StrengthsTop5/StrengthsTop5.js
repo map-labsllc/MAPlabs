@@ -26,13 +26,11 @@ export default function StrengthsTop5(props) {
   }
 
   const { strengthOptions } = props
-  console.log('strengthOptions'
-    , strengthOptions)
   // format answers for checkbox selector
   const hydrateAnswer = (answer) => {
     let hydrated = hydrater(answerShape)(answer)
   
-    // add strength value
+    // add strength value to object
     return ({
       strengthValue: listIdToValue(strengthOptions, answer[IDX_STRENGTH]), ...hydrated
     })

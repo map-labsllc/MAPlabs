@@ -1,8 +1,6 @@
 import React from 'react'
 import SectionExerciseCT from './SectionExerciseCT'
 import { Card } from 'react-bootstrap'
-import { sectionLoadingAC } from '../../store/user/actions'
-import '../../CSS/light-bootstrap-dashboard.css'
 
 /* **************************************************
    Section
@@ -28,9 +26,7 @@ export default class Section extends React.Component {
   // }
 
   render() {
-    // let { isVisible } = this.state
-    let { number, user, isVisible, moduleNum, sectionNum, sectionTitle, section_ids, exercise } = this.props
-    // const isVisible = this.canUserView(user, moduleNum, sectionNum)
+    let { number, isVisible, moduleNum, sectionNum, sectionTitle, section_ids, exercise } = this.props
 
     return (
       <div className="background">

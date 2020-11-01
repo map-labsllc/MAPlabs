@@ -175,12 +175,6 @@ export default class LifeDescriptors extends Component {
     let thisPage = []
     const startIdx = page * NUM_PER_PAGE
     const endIdx = Math.min( ( ( page + 1 ) * NUM_PER_PAGE ), lifeDescriptors.length )
-    const lastPage = lifeDescriptors.length/NUM_PER_PAGE - 1
-
-    // console.log('pages', page, 'of', lifeDescriptors.length/NUM_PER_PAGE)
-    // console.log('indexes to show', startIdx, endIdx)
-    // console.log('descriptors length', lifeDescriptors.length)
-    // console.log(startIdx/lifeDescriptors.length)
 
     for ( let i = startIdx ; i < endIdx ; i++ ) {
       thisPage.push( (

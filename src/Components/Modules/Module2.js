@@ -27,8 +27,7 @@ import {
   QUES_240_DESC,
   QUES_250_DESC,
   QUES_260_DESC,
-  QUES_270_DESC,
-  QUES_280_DESC,
+  QUES_270_DESC
 } from './Module2Text'
 
 import {
@@ -74,7 +73,7 @@ export default class Module2 extends React.Component {
       promptQuestionCode = { 210 }
       outputQuestionCode = { 250 }
       impactFilter = { IMPACT_INHIBITING }
-      description = { QUES_220_DESC }
+      description = { QUES_230_DESC }
       instructions = "Choose your top 5 inhibiting influences"
     /> )
 

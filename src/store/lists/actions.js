@@ -9,7 +9,7 @@ const URL = process.env.REACT_APP_DB_URL
 export const listIdToValue = (list, id) => {
   if (!list) return undefined
   
-  let option = list.filter(option => option.id == id)
+  let option = list.filter(option => +option.id === +id)
   return option.length ? option[0].value : undefined
 }
 

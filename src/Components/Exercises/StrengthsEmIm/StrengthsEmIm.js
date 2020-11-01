@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Form, FormControl, Button, ButtonGroup, FormLabel, FormGroup, Container, Col, Row } from "react-bootstrap"
-import { listIdToValue } from "../../../store/lists/actions"
+import { Form, FormControl, Button, ButtonGroup, FormGroup, Container, Col, Row } from "react-bootstrap"
 
 import { EFFECT_IMPEDIMENT, EFFECT_EMBODIMENT } from '../../../constants'
 
@@ -77,7 +76,7 @@ export default class StrengthEmIm extends React.Component {
 
   render() {
     const { reflections } = this.state
-    const { strengthValue, strength, number, question, isDynamic } = this.props
+    const { strengthValue, isDynamic } = this.props
 
 
     if (!isDynamic) {

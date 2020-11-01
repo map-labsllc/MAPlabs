@@ -44,11 +44,10 @@ export default class Top5List extends React.Component {
   }
   
   onclickClose = async () => {
-    const { userId, onSaveCB, onCloseModalCB } = this.props
+    const { onSaveCB, onCloseModalCB } = this.props
     const { isDirty, allItemsWithKeys } = this.state
 
     if (isDirty) {
-      let selectedData = this.filterSelected(allItemsWithKeys)
       let newSelections = this.uuid.stripKeys(allItemsWithKeys)
 
       await onSaveCB(newSelections)
@@ -74,7 +73,7 @@ export default class Top5List extends React.Component {
   }
 
   render() {
-    const { question, instructions, isDynamic, fields, headings, prompts } = this.props
+    const { instructions, isDynamic, fields, headings } = this.props
     
     const { allItemsWithKeys } = this.state
 

@@ -1,7 +1,4 @@
 import React from 'react'
-
-import ModuleCT from '../Framework/ModuleCT'
-import SectionCT from '../Framework/SectionCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 
 import StrengthsCT from '../Exercises/Strengths/StrengthsCT'
@@ -17,8 +14,6 @@ import { MODULES } from './ModuleData'
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
-  QUESTION_TYPE_BRACKET,
-  QUESTION_TYPE_STRENGTH,
  } from '../../store/answers/constants'
 
 
@@ -66,6 +61,7 @@ export default class Module4 extends React.Component {
       promptQuestionCode = { 420 }
       filter = { EFFECT_EMBODIMENT }
       description = { QUES_430_DESC }
+      saveToPrompt = { true }
     /> )
 
   // -------------------------
