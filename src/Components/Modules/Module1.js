@@ -21,7 +21,6 @@ import {
   QUES_140_DESC,
   QUES_150_DESC,
   QUES_160_DESC,
-  QUES_170_DESC,
  } from './Module1Text'
 
 import { MODULES } from './ModuleData'
@@ -30,11 +29,6 @@ import { MODULES } from './ModuleData'
    Used to test components during development
 ***************************************************** */
 export default class Module1 extends React.Component {
-
-
-  // Define questions and excercises for Module 1
-  // ---------------------------------------------------------------------
-
 
   // -------------------------
   // Module 1: 2C-F
@@ -111,24 +105,6 @@ export default class Module1 extends React.Component {
       description = { QUES_160_DESC }
       subComponents = {this.transitions_160}
     /> )
-
-
-  // -------------------------
-  // Module 1: 5A
-
-  // shortAnswers_170 = [
-  //   <ShortAnswersCT question={ { code: 171, text: "What changes would you like to see in your everyday life?" } } />,
-  //   <ShortAnswersCT question={ { code: 172, text: "What changes would you like to see in your personal growth?" } } />,
-  //   <ShortAnswersCT question={ { code: 173, text: "What changes would you like to see in your relationships?" } } />,
-  //   <ShortAnswersCT question={ { code: 174, text: "What changes would you like to see in your life’s work (your vocation)?" } } />,
-  //   <ShortAnswersCT question={ { code: 175, text: "What changes would you like to see in your avocational pursuits?" } } />,
-  // ]
-  // exercise_170 = (
-  //   <QuestionsCT
-  //     questionType = {QUESTION_TYPE_SHORT_ANSWERS}
-  //     description = { QUES_170_DESC }
-  //     subComponents = { this.shortAnswers_170 }
-  //   /> )
 
   _module = MODULES.filter(m => m.id === 1)[0]
 
