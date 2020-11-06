@@ -77,15 +77,14 @@ export default class Questions extends React.Component {
   }
 
 
-
   // ******************************************
   render() {
     // console.log( "ShortAnswers::render()" )
 
-    const { subComponents, isDynamic } = this.props
+    const { subComponents, isDynamic, showNumbers = false } = this.props
     const { currIdx } = this.state
 
-
+console.log('HERE showNumbers', showNumbers)
     // ******************************************
     // render static version in <Popup>
     if ( !isDynamic && subComponents ) {
@@ -93,7 +92,7 @@ export default class Questions extends React.Component {
         <>
           {subComponents.map( ( subComponent, idx ) => (
             <div className="text-left" key={idx}>
-              <h4>{idx + 1}. {subComponent.props.question.text}</h4>
+              <h5>{showNumbers ? `${idx + 1}. ` : ''} {subComponent.props.question.text}</h5>
               {subComponent}
             </div>
           ) )}

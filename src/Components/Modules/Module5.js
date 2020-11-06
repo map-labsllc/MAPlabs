@@ -169,7 +169,7 @@ export default class Module5 extends React.Component {
     <ShortAnswersCT question = { { 
       code: 541, 
       text: "My life is most meaningful when I experience or embrace", 
-      placeholder: "Source(s) of meaning" } } />,
+      placeholder: "Sources of meaning" } } />,
     <ShortAnswersCT question = { { 
       code: 542, 
       text: "That is why my greatest desire is to", 
@@ -190,6 +190,7 @@ export default class Module5 extends React.Component {
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
       description = { QUES_540_DESC }
       subComponents = {this.shortAnswers_540}
+      showNumbers = { false }
     /> )
 
   // Module 5.5.A
@@ -251,6 +252,7 @@ export default class Module5 extends React.Component {
   exercise_560 = (
     <QuestionsCT
       summaryTitle = 'Break / build commitments'
+      showNumbers = { false }
       questionType = {QUESTION_TYPE_TOP_TRANSITIONS}
       description = { QUES_560_DESC }
       subComponents = {this.transitions_560}

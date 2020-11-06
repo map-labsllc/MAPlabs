@@ -80,4 +80,4 @@ export const QUES_560_DESC = `Review your responses to how you would like to alt
 export const QUES_565_DESC = `Revise and consolidate this statement down into a simple, to-the-point synopsis of only the most important concepts in a few sentences.
 `
 
-export const QUES_570_DESC = `Summary of information`
+export const QUES_570_DESC = ``

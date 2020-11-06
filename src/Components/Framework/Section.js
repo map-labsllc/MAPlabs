@@ -18,13 +18,6 @@ import { Card } from 'react-bootstrap'
 ***************************************************** */
 export default class Section extends React.Component {
 
-  // check that user has gotten up to this module and section
-  // canUserView = ( user, moduleNum, sectionNum ) => {
-  //   if ( moduleNum < user.curr_module ) return true
-  //   if ( user.curr_module < moduleNum ) return false
-  //   return sectionNum <= user.curr_section
-  // }
-
   render() {
     let { number, isVisible, moduleNum, sectionNum, sectionTitle, section_ids, exercise } = this.props
 
