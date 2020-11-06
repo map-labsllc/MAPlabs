@@ -135,20 +135,12 @@ export default function InfluenceGroup( props ) {
 
 }
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-
-// InfluenceGroup.propTypes = {
-//   question: PropTypes.shape( {
-//     code: PropTypes.number.isRequired,
-//     text: PropTypes.string.isRequired,
-//   } ).isRequired,
-//   previousData: PropTypes.object.isRequired,
-//   isDynamic: PropTypes.bool,
-//   onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
-// }
-
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
+InfluenceGroup.propTypes = {
+  question: PropTypes.shape( {
+    code: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  } ).isRequired,
+  previousData: PropTypes.object.isRequired,
+  isDynamic: PropTypes.bool,
+  onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
+}

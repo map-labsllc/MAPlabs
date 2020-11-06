@@ -131,20 +131,13 @@ export default function Influence( props )  {
 
 //export default Influence
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
 
-// Influence.propTypes = {
-//   question: PropTypes.shape( {
-//     code: PropTypes.number.isRequired,
-//     text: PropTypes.string.isRequired,
-//   } ).isRequired,
-//   previousData: PropTypes.object.isRequired,
-//   isDynamic: PropTypes.bool,
-//   onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
-// }
-
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
+Influence.propTypes = {
+  question: PropTypes.shape( {
+    code: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  } ).isRequired,
+  previousData: PropTypes.object.isRequired,
+  isDynamic: PropTypes.bool,
+  onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
+}
