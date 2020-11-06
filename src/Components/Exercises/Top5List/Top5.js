@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState} from 'react'
 import PropTypes from 'prop-types'
-import { Form } from 'react-bootstrap'
+import { Form, FormControl } from 'react-bootstrap'
 import { SELECTED } from '../../../constants'
 
 /* **************************************************
@@ -18,23 +18,47 @@ import { SELECTED } from '../../../constants'
      updateCB -- call for all changes
 ***************************************************** */
 export default function Top5(props) {
-  const { data, isDynamic, fields } = props
-  const { selected } = data
-  // console.log('Top5 render', data, fields)
+  const { id, updateCB, data, isDynamic, fields } = props
 
-  const onChange = (e) => {
+  const [formData, setData] = useState(data);
+
+  const onCheck = (e) => {
     const newData = {
       ...props.data,
       selected: (e.target.checked ? SELECTED : '')
     }
-    const { id, updateCB } = props
-    updateCB(id, newData)
+
+    setData(newData)
+    updateCB(id, formData)
+  }
+
+  const onChange = (e, attribute) => {
+    let value = e.target.value
+    console.log('onChanging', attribute, value)
+    const newData = {
+      ...formData,
+      [attribute]: value,
+    }
+
+    setData(newData)
+    console.log("formData after setting", formData)
+    updateCB(id, formData)
   }
 
   const fieldsToCells = () => (
     <>
       { fields.map((field, idx) => 
-        <td className="text-left" key={idx}>{data[field]}</td>)
+        <td className="text-left" key={idx}>
+          {isDynamic ?
+            <Form inline>
+              <FormControl 
+                onChange={(e) => onChange(e, field)}
+                type="text" 
+                value={formData[field]}
+              />
+            </Form>
+            : <>{formData[field]}</> }
+        </td>)
       }
     </>
   )
@@ -57,9 +81,9 @@ export default function Top5(props) {
         <td className="text-left" key="-1">
           <Form inline>
             <input 
-              onChange={onChange}
+              onChange={onCheck}
               type="checkbox" 
-              checked={selected ? true : false}
+              checked={!!formData.selected}
             />
           </Form>
         </td>

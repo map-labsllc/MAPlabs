@@ -79,3 +79,5 @@ export const QUES_552_DESC = `Review your engagement mastery to consider how acc
 export const QUES_560_DESC = `Review your responses to how you would like to alter how you engage in these areas. Choose only the 10 most critical changes. You may also revise the statements to better fit with your current self-knowledge and understanding.`
 export const QUES_565_DESC = `Revise and consolidate this statement down into a simple, to-the-point synopsis of only the most important concepts in a few sentences.
 `
+
+export const QUES_570_DESC = `Summary of information`
