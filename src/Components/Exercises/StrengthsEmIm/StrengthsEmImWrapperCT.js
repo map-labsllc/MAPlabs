@@ -89,7 +89,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     return async(dispatch, getState) => {
       console.log( `StrengthsEmImWrapper::onUpdate`, newData )
 
-      const { question, userId } = passedProps
+      const { question } = passedProps
 
       const state = getState()
 
