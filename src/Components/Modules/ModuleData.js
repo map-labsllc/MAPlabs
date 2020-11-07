@@ -13,7 +13,7 @@ export const MODULES = [
   },
   {
     id: 2,
-    title: "Your Social Context",
+    title: "Social Context",
     description: MOD_2_DESC,
     sectionCount: 9  // TODO this should be DB
   },
