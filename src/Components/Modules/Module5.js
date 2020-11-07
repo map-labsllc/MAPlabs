@@ -8,8 +8,8 @@ import Top5ListCT from '../Exercises/Top5List/Top5ListCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import QuestionsCT from '../Framework/QuestionsCT'
-import SummaryCT from '../Framework/SummaryCT'
-
+import Summary from '../Framework/Summary'
+import Mappers from '../Exercises/Mappers/Mappers'
 import ModuleLayout from './ModuleLayout'
 
 import { EFFECT_EMBODIMENT, EFFECT_IMPEDIMENT } from '../../constants'
@@ -41,7 +41,8 @@ import {
   QUES_552_DESC,
   QUES_560_DESC,
   QUES_565_DESC,
-  QUES_570_DESC
+  QUES_570_DESC,
+  QUES_580_DESC
  } from './Module5Text'
 
 import { MODULES } from './ModuleData'
@@ -271,10 +272,36 @@ export default class Module5 extends React.Component {
 
   // dashboard
   exercise_570 = (
-    <SummaryCT
+    <Summary
       description = { QUES_570_DESC }
-      isDynamice = { false }
+      isDynamic = { false }
       subComponents = {[
+        this.exercise_510,
+        this.exercise_511,
+        this.exercise_512,
+        this.exercise_520,
+        this.exercise_521,
+        this.exercise_522,
+        this.exercise_523,
+        this.exercise_524,
+        this.exercise_530,
+        this.exercise_531,
+        this.exercise_540,
+        this.exercise_550,
+        this.exercise_551,
+        this.exercise_552,
+        this.exercise_560,
+        this.exercise_565, // at top  in spreadsheet
+      ]}
+    />
+  )
+
+  // mappers
+  exercise_580 = (
+    <Mappers
+      description = { QUES_580_DESC }
+      isDynamic = { false }
+      subSections = {[
         this.exercise_510,
         this.exercise_565, // intentional order
         this.exercise_511,

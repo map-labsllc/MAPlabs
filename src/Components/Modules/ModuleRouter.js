@@ -5,7 +5,7 @@ import Module3 from './Module3'
 import Module4 from './Module4'
 import Module5 from './Module5'
 
-function ModuleRouter(props) {
+const ModuleRouter = (props) => {
   const moduleList = {
     1: Module1,
     2: Module2,

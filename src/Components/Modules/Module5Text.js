@@ -81,3 +81,4 @@ export const QUES_565_DESC = `Revise and consolidate this statement down into a 
 `
 
 export const QUES_570_DESC = ``
+export const QUES_580_DESC = ``

@@ -84,7 +84,6 @@ export default class Questions extends React.Component {
     const { subComponents, isDynamic, showNumbers = false } = this.props
     const { currIdx } = this.state
 
-console.log('HERE showNumbers', showNumbers)
     // ******************************************
     // render static version in <Popup>
     if ( !isDynamic && subComponents ) {

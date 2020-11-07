@@ -25,6 +25,7 @@ const Router = () => {
       
       <PrivateRoute exact path='/dashboard' component={Dashboard} />
       <PrivateRoute path='/modules/list' component={ModuleList} />
+      <PrivateRoute path='/modules/:moduleId/section/:sectionId/subsection/:subSectionId' component={ModuleRouter} />
       <PrivateRoute path='/modules/:moduleId/section/:sectionId' component={ModuleRouter} />
       <PrivateRoute path='/modules/:moduleId' component={ModuleRouter} />
       <Route path='/' component={HomePage} />

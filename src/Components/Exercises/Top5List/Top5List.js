@@ -77,7 +77,7 @@ export default class Top5List extends React.Component {
     
     const { allItemsWithKeys } = this.state
 
-    console.log("renderin'", allItemsWithKeys)
+    //console.log("renderin'", allItemsWithKeys)
 
     const headingsToTh = () => {
       return headings.map((heading, idx) => (
