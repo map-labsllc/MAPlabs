@@ -5,6 +5,7 @@ import { getUser } from '../../store/user/reducer'
 import { connect } from 'react-redux'
 import { Col, Row } from 'react-bootstrap'
 import { useRouteMatch } from "react-router-dom"
+import Section from '../Framework/Section'
 
 const SectionNav = ({  moduleId, sectionId, subSections }) => {
   const match = useRouteMatch();
@@ -15,23 +16,24 @@ const SectionNav = ({  moduleId, sectionId, subSections }) => {
     <NavLink to={`/modules/${moduleId}/section/${sectionId}/subsection/${subSectionId}`}>{title}</NavLink>
   )
 
-  const links = subSections.map((subSection, idx) => {
-    return {
-      id: idx,
-      title: subSection.props.summaryTitle
-    }
-  })
+  // const links = subSections.map((subSection, idx) => {
+  //   return {
+  //     id: idsubx,
+  //     title: subSection.title || subSection.props.summaryTitle
+  //   }
+  // })
 
-  const displaySubSection = (subSectionId) => (
-    subSections.filter((section, idx) => idx === subSectionId).shift() 
-  )
+  const displaySubSection = (subSectionId) => {
+    let selected = subSections.filter((section, idx) => section.id === subSectionId).shift() 
+    return selected && selected.exercise ? selected.exercise : ''
+  }
 
   
   return (
     <Row>
       <Col md={4}>
         <ul className="nav ml-auto">
-          {links.map((subSection, idx) => (
+          {subSections.map((subSection, idx) => (
             <li className="nav-item" key={idx}>
               {subSectionLink(subSection.id, subSection.title)}
             </li>
@@ -40,7 +42,6 @@ const SectionNav = ({  moduleId, sectionId, subSections }) => {
         </ul>
       </Col>
       <Col md={8}>
-        SubSection Goes here: {subSectionId}
         { displaySubSection(subSectionId) }
       </Col>
     </Row>
