@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { getUser } from '../../store/user/reducer'
@@ -7,14 +7,13 @@ import { Col, Row } from 'react-bootstrap'
 import { useRouteMatch } from "react-router-dom"
 
 const SectionNav = ({  moduleId, sectionId, subSections }) => {
-
-  let match = useRouteMatch();
+  const match = useRouteMatch();
+  let { subSectionId = 0 } = match.params
+  subSectionId = +subSectionId
 
   const subSectionLink = (subSectionId, title) => (
     <NavLink to={`/modules/${moduleId}/section/${sectionId}/subsection/${subSectionId}`}>{title}</NavLink>
   )
-
-  console.log('subSections', subSections)
 
   const links = subSections.map((subSection, idx) => {
     return {
@@ -23,11 +22,10 @@ const SectionNav = ({  moduleId, sectionId, subSections }) => {
     }
   })
 
-  // const Module = moduleList[props.match.params.moduleId || 1]
+  const displaySubSection = (subSectionId) => (
+    subSections.filter((section, idx) => idx === subSectionId).shift() 
+  )
 
-  // return <Module moduleId={props.match.params.moduleId} sectionId={props.match.params.sectionId} />
-
-  const subSectionId = match.params || 0
   
   return (
     <Row>
@@ -35,9 +33,7 @@ const SectionNav = ({  moduleId, sectionId, subSections }) => {
         <ul className="nav ml-auto">
           {links.map((subSection, idx) => (
             <li className="nav-item" key={idx}>
-              <h4>
-                {subSectionLink(subSection.id, subSection.title)}
-              </h4>
+              {subSectionLink(subSection.id, subSection.title)}
             </li>
             ))
           }       
@@ -45,10 +41,9 @@ const SectionNav = ({  moduleId, sectionId, subSections }) => {
       </Col>
       <Col md={8}>
         SubSection Goes here: {subSectionId}
+        { displaySubSection(subSectionId) }
       </Col>
     </Row>
-
-
 
   )
 }
@@ -70,7 +65,8 @@ SectionNav.propTypes = {
   subSections: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      title: PropTypes.string
+      title: PropTypes.string,
+      exercise: PropTypes.object
     })
   ).isRequired
 }
