@@ -29,9 +29,9 @@ const Mappers = ({ moduleId, sectionId }) => {
       <SectionNav {...navIds} 
         subSections= {[
           { 
-            id: 521,
+            id: 565,
             title: `In order to reach my future desired situation`,
-            exercise: EXERCISE_521
+            exercise: EXERCISE_565
           },
         ]}
       />
@@ -124,9 +124,9 @@ const Mappers = ({ moduleId, sectionId }) => {
             exercise: EXERCISE_520
           },
           { 
-            id: 552,
+            id: 522,
             title: `By using my top strengths`,
-            exercise: EXERCISE_552
+            exercise: EXERCISE_522
           },
           { 
             id: 521,
