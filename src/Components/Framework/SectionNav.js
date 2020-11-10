@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { getUser } from '../../store/user/reducer'
 import { connect } from 'react-redux'
 import { Col, Row } from 'react-bootstrap'
 import { useRouteMatch } from "react-router-dom"
-import Section from '../Framework/Section'
 
 const SectionNav = ({  moduleId, sectionId, subSections }) => {
   const match = useRouteMatch();
@@ -15,13 +14,6 @@ const SectionNav = ({  moduleId, sectionId, subSections }) => {
   const subSectionLink = (subSectionId, title) => (
     <NavLink to={`/modules/${moduleId}/section/${sectionId}/subsection/${subSectionId}`}>{title}</NavLink>
   )
-
-  // const links = subSections.map((subSection, idx) => {
-  //   return {
-  //     id: idsubx,
-  //     title: subSection.title || subSection.props.summaryTitle
-  //   }
-  // })
 
   const displaySubSection = (subSectionId) => {
     let selected = subSections.filter((section, idx) => section.id === subSectionId).shift() 

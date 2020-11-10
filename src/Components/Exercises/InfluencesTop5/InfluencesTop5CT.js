@@ -131,7 +131,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   function onPersist( userId, newInfluences ) {
     console.log( 'InfluencesTop5CT::onPersist(newInfluences)',  newInfluences  )
 
-    const { promptQuestionCode, outputQuestionCode, impactFilter } = passedProps
+    const { promptQuestionCode } = passedProps
 
     // persist 'selections' back to promptQuestionCode
     persistSelections(

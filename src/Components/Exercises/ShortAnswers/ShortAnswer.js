@@ -67,8 +67,8 @@ export default class ShortAnswer extends React.Component {
     //console.log("ShortAnswer::render()")
 
     // initialize
-    let { answer, isDirty } = this.state
-    const { id, isDynamic, placeholder } = this.props
+    let { answer } = this.state
+    const { isDynamic, placeholder } = this.props
 
     if (!isDynamic) {
       return answer.length > 0 && <> { answer } </>

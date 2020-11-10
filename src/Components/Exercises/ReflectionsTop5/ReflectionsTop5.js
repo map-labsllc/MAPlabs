@@ -74,7 +74,7 @@ export default class ReflectionsTop5 extends React.Component {
   }
 
   render() {
-    const { question, filter, instructions, isDynamic } = this.props
+    const { filter, instructions, isDynamic } = this.props
     const { reflectionsWithKeys } = this.state
 
     // filter to just the StrengthEmIm matching the filter

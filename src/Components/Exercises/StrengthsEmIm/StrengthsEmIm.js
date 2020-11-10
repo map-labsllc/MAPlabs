@@ -94,8 +94,6 @@ export default class StrengthEmIm extends React.Component {
       )
     }
 
-    const options= []
-
     return (
       <Container>
         <h3>{ strengthValue }</h3>
@@ -148,10 +146,6 @@ export default class StrengthEmIm extends React.Component {
     )
   }
 }
-
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
 
 StrengthEmIm.propTypes = {
   question: PropTypes.shape({

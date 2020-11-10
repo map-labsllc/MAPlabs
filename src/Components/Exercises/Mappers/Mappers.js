@@ -1,7 +1,6 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
 import { PropTypes } from 'prop-types'
-import SectionNav from '../../Modules/SectionNav'
+import SectionNav from '../../Framework/SectionNav'
 import {
     EXERCISE_510,
     EXERCISE_565,

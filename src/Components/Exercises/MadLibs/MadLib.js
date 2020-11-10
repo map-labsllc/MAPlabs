@@ -31,7 +31,7 @@ const Label = FormLabel
 
 ***************************************************** */
 export default function MadLib(props) {
-  const { madlib, isDynamic, onUpdateStoreCB } = props
+  const { madlib, isDynamic } = props
 
   const [name, setName] = useState(madlib.name);
   const [belief, setBelief] = useState(madlib.belief);

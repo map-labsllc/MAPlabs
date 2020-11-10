@@ -148,13 +148,9 @@ export default class Influences extends React.Component {
     })
   }
 
-  // **********************************************
-  // render!
   render() {
-    // console.log("Influences::render()")
-    // console.log("this.props.influences", this.props.influences)
 
-    const { question, beliefs, relationships, instructions, influences, isDynamic } = this.props
+    const { beliefs, relationships, instructions, isDynamic } = this.props
 
     const { influencesWithKeys } = this.state
 
@@ -214,7 +210,7 @@ Influences.propTypes = {
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
   } ).isRequired,
-  influences: PropTypes.object.isRequired,
+  relationships: PropTypes.object.isRequired,
   isDynamic: PropTypes.bool,
   onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
 }

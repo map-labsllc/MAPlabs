@@ -39,20 +39,17 @@ export default class Top5List extends React.Component {
   uuid = new UUID()
 
   state = {
-    isDirty: false,
     allItemsWithKeys: this.uuid.addKeys(this.props.prompts || []),
   }
   
   onclickClose = async () => {
     const { onSaveCB, onCloseModalCB } = this.props
-    const { isDirty, allItemsWithKeys } = this.state
+    const { allItemsWithKeys } = this.state
 
-    if (isDirty) {
-      let newSelections = this.uuid.stripKeys(allItemsWithKeys)
+    let newSelections = this.uuid.stripKeys(allItemsWithKeys)
 
-      await onSaveCB(newSelections)
-      await onCloseModalCB()
-    }
+    await onSaveCB(newSelections)
+    await onCloseModalCB()
   }
 
   filterSelected = (allItemsWithKeys) => allItemsWithKeys.filter(itemWithKey =>
@@ -60,24 +57,20 @@ export default class Top5List extends React.Component {
   )
 
   update = (key, data) => {
-    console.log("update", key, data)
+    // console.log("update", key, data)
     const { allItemsWithKeys } = this.state
 
     const newAllItemsWithKeys = allItemsWithKeys.map((item) =>
       (item.key === key) ? { key: key, item: data } : item)
 
     this.setState({
-      isDirty: true,
       allItemsWithKeys: newAllItemsWithKeys
     })
   }
 
   render() {
     const { instructions, isDynamic, fields, headings, selectedAttribute } = this.props
-    
     const { allItemsWithKeys } = this.state
-
-    //console.log("renderin'", allItemsWithKeys)
 
     const headingsToTh = () => {
       return headings.map((heading, idx) => (

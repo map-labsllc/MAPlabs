@@ -86,7 +86,7 @@ export default class InfluencesTop5 extends React.Component {
     // console.log("InfluencesTop5::render()")
     // console.log("this.props.influences", this.props.influences)
 
-    const { question, impactFilter, instructions, isDynamic } = this.props
+    const { impactFilter, instructions, isDynamic } = this.props
 
     const { allInfluencesWithKeys } = this.state
 
