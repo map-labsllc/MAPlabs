@@ -117,7 +117,7 @@ export default class Module4 extends React.Component {
     {
       id: 410,
       module_id: 4,
-      title: "Determine your Top 5 Strengths",
+      title: "Determine Your Top 5 Strengths",
       exercise: this.exercise_410
     },
     {
@@ -136,21 +136,21 @@ export default class Module4 extends React.Component {
     {
       id: 440,
       module_id: 4,
-      title: "Top 5 Impediments of Strength",
+      title: "Top 5 Impediments to Strength",
       exercise: this.exercise_440,
       section_ids: [420]
     },
     {
       id: 450,
       module_id: 4,
-      title: "Compare your “embodiment” themes to your “impediment” themes.",
+      title: "Compare Your 'Embodiment' Themes to Your 'Impediment' Themes",
       exercise: this.exercise_450,
       section_ids: [451, 452, 453, 454, 455, 456]
     },
     {
       id: 460,
       module_id: 4,
-      title: "Breaking and building",
+      title: "Breaking and Building",
       exercise: this.exercise_460,
       section_ids: [461, 462, 463, 464]
     },
