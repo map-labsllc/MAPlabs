@@ -89,6 +89,7 @@ const mapStateToProps = ( state, passedProps ) => {
     instructions,
     prompts: allPrompts,
     selectedAnswers,
+    selectedAttribute,
     isDynamic: !!isDynamic,
     onCloseModalCB,
     fields,

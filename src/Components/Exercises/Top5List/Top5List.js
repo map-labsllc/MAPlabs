@@ -73,7 +73,7 @@ export default class Top5List extends React.Component {
   }
 
   render() {
-    const { instructions, isDynamic, fields, headings } = this.props
+    const { instructions, isDynamic, fields, headings, selectedAttribute } = this.props
     
     const { allItemsWithKeys } = this.state
 
@@ -135,6 +135,7 @@ export default class Top5List extends React.Component {
                 data={item.item}
                 fields={fields}
                 selected={item.seleted}
+                selectedAttribute={selectedAttribute}
                 isDynamic={isDynamic}
                 updateCB={this.update}
               />
@@ -153,6 +154,7 @@ Top5List.propTypes = {
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
   } ).isRequired,
+  selectedAttribute: PropTypes.string.isRequired,
   selectedAnswers: PropTypes.array.isRequired,
   prompts: PropTypes.array.isRequired,
   fields: PropTypes.array.isRequired,
