@@ -42,18 +42,28 @@ const mapStateToProps = ( state, passedProps ) => {
     selectedAttribute = DEFAULT_FIELD,
   } = passedProps
 
+  // sort based on selectedAttribute
+  const compare = (a,b) => {
+    if (a[selectedAttribute] < b[selectedAttribute])
+      return -1;
+    else if (a[selectedAttribute] > b[selectedAttribute])
+      return 1;
+    else 
+      return 0;
+  }
+
   // validate params
   if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
   // get userId
   const userId = getUser( state.userRD ).id
 
-  // find previous answers, if any, to display when static
-  const answers = getAnswers( state.answersRD, question.code )
+  // find previous answers
+  const answers = getAnswers(state.answersRD, question.code)
   let selectedAnswers = answers.map(hydrateAnswer)
 
-  // make array of selected values
-  let selectedValues = selectedAnswers.map(answer => answer[selectedAttribute])
+  // make array of answers for comparison values
+  let selectedValues = selectedAnswers.map(JSON.stringify)
   const isSelected = (value) => selectedValues.includes(value)
 
   // get all possible answers for prompts
@@ -63,17 +73,21 @@ const mapStateToProps = ( state, passedProps ) => {
     return
   })
 
-  console.log(state.answersRD)
-  console.log("prompts for", promptQuestionCodes, prompts)
-  prompts = prompts.map(hydrateAnswer)
-    // set selectedAnswers as "selected"
-    .map(answer => ({...answer, selected: isSelected(answer[selectedAttribute]) ? SELECTED : ''}))
+  // determine any prompts that haven't been selected
+  // note: bug: if prompt is editted then it reappears as a select option
+  const unselectedPrompts = 
+    prompts.map(hydrateAnswer)
+      .filter(answer => !isSelected(JSON.stringify({...answer, selected: SELECTED})))
+  
+  // add prompts to answers that were already saved
+  const allPrompts = [...answers.map(hydrateAnswer), ...unselectedPrompts].sort(compare)
+  console.log("all prompts for", promptQuestionCodes, allPrompts)
 
   return {
     userId,
     question,
     instructions,
-    prompts,
+    prompts: allPrompts,
     selectedAnswers,
     isDynamic: !!isDynamic,
     onCloseModalCB,

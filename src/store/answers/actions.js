@@ -20,7 +20,7 @@ const redirectFirebaseErrors = (dispatch, error) => {
   else {
     console.error( "FETCH ANSWERS ERROR", error.message )
     dispatch( { type: ANSWERS_ERROR_DB, payload: error.message } )
-    dispatch({ type: REMOVE_TOKEN }) // hack, since this is most likely due to firebase auth
+    // dispatch({ type: REMOVE_TOKEN }) // hack, since this is most likely due to firebase auth
   }
 }
 
@@ -57,6 +57,11 @@ export const loadAllAnswersAC = ( userId ) => {
     const jwtGetter = getUserJwt()
     const jwt = await jwtGetter(dispatch)
     
+    if (!userId || !jwt) {
+      console.error("Attempting to get answers without ids: userId, jwt", userId, jwt)
+      return
+    }
+
     return fetch( `${URL}/answers/${userId}`, {
         headers: {Authorization: `Token: ${jwt}`}
       })
