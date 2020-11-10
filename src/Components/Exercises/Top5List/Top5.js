@@ -25,11 +25,12 @@ export default function Top5(props) {
   const onCheck = (e) => {
     const newData = {
       ...props.data,
-      selected: (e.target.checked ? SELECTED : '')
+      selected: (e.target.checked ? SELECTED : '') 
     }
 
     setData(newData)
-    updateCB(id, formData)
+    updateCB(id, newData)
+    console.log(e.target.checked, formData)
   }
 
   const onChange = (e, attribute) => {
@@ -41,8 +42,8 @@ export default function Top5(props) {
     }
 
     setData(newData)
+    updateCB(id, newData)
     console.log("formData after setting", formData)
-    updateCB(id, formData)
   }
 
   const fieldsToCells = () => (
