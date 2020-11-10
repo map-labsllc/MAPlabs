@@ -18,7 +18,7 @@ import { SELECTED } from '../../../constants'
      updateCB -- call for all changes
 ***************************************************** */
 export default function Top5(props) {
-  const { id, updateCB, data, isDynamic, fields } = props
+  const { id, updateCB, data, isDynamic, fields, editFields = [] } = props
 
   const [formData, setData] = useState(data);
 
@@ -30,12 +30,10 @@ export default function Top5(props) {
 
     setData(newData)
     updateCB(id, newData)
-    console.log(e.target.checked, formData)
   }
 
   const onChange = (e, attribute) => {
     let value = e.target.value
-    console.log('onChanging', attribute, value)
     const newData = {
       ...formData,
       [attribute]: value,
@@ -43,14 +41,13 @@ export default function Top5(props) {
 
     setData(newData)
     updateCB(id, newData)
-    console.log("formData after setting", formData)
   }
 
   const fieldsToCells = () => (
     <>
       { fields.map((field, idx) => 
         <td className="text-left" key={idx}>
-          {isDynamic ?
+          {isDynamic && editFields.includes(field) ?
             <Form inline>
               <FormControl 
                 onChange={(e) => onChange(e, field)}

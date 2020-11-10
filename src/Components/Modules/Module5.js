@@ -411,12 +411,14 @@ export default class Module5 extends React.Component {
       module_id: 5,
       title: "Dashboard",
       exercise: EXERCISE_570,
+      section_ids: [565] // if 565 is done, then this is done
     },
     {
       id: 580,
       module_id: 5,
       title: "MAPPERS Model",
       exercise: EXERCISE_580,
+      section_ids: [565] // if 565 is done, then this is done
     }
   ]
 
