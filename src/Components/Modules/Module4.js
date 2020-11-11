@@ -80,9 +80,9 @@ export default class Module4 extends React.Component {
   shortAnswers_450 = [
     <ShortAnswersCT question={ { code: 451, text: "As you compare the two sets of themes, list the most important overarching themes that impact how your life is most well lived from your strengths." } } />,
     <ShortAnswersCT question={ { code: 452, text: "Which embodiments provide you with the most personal senses of the meaning in your life?" } } />,
-    <ShortAnswersCT question={ { code: 453, text: "What people or things beyond yourself would you like to serve if you more intentionally lived through your Signature Strengths?" } } />,
-    <ShortAnswersCT question={ { code: 454, text: "Which relationships that you either currently have or need to develop in the future (to any people, groups, practices, experiences, etc.) are most needed to support your living from your Signature Strengths?" } } />,
-    <ShortAnswersCT question={ { code: 455, text: "What areas of engagement could your Signature Strengths lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?" } } />,
+    <ShortAnswersCT question={ { code: 453, text: "What people or things beyond yourself would you like to serve if you more intentionally lived through your signature strengths?" } } />,
+    <ShortAnswersCT question={ { code: 454, text: "Which relationships that you either currently have or need to develop in the future (to any people, groups, practices, experiences, etc.) are most needed to support your living from your signature strengths?" } } />,
+    <ShortAnswersCT question={ { code: 455, text: "What areas of engagement could your signature strengths lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?" } } />,
     <ShortAnswersCT question={ { code: 456, text: "What areas of engagement could your core values and beliefs lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?" } } />,
   ]
 

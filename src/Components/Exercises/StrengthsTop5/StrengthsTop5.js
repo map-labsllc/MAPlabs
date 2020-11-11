@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Top5ListCT from '../Top5List/Top5ListCT'
 
 import { QUESTION_TYPE_TOP_STRENGTHS } from '../../../store/answers/constants'
 import { IDX_STRENGTH, IDX_SELECTED } from '../../../constants'
 import { hydrater, dehydrater } from '../../../store/answers/reducer'
-import { listIdToValue } from "../../../store/lists/actions"
+import { listIdToValue } from '../../../store/lists/actions'
 
 /* **************************************************
    StrengthsTop5CT componenReflections Displays a single selection
@@ -42,6 +42,16 @@ export default function StrengthsTop5(props) {
   const headings = ['Strength']
   const fields = ['strengthValue']
   const selectedAttribute = 'strength'
+
+  const [answersCopied, setAnswersCopied] = useState(false);
+
+  // if first time, copy answers from parent
+  useEffect(() => {
+    if (!answersCopied) {
+      // TODO add copy answers here
+    }
+    setAnswersCopied(true)
+  });
 
   return <Top5ListCT
     {...props}

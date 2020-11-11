@@ -6,6 +6,7 @@ import { QUESTION_TYPE_STRENGTH_EM_IM } from '../../../store/answers/constants'
 import { bindActionCreators } from 'redux';
 import { getUser } from '../../../store/user/reducer'
 import { IDX_STRENGTH,IDX_PHRASE, IDX_EFFECT } from '../../../constants'
+import { copyParentAnswers } from '../../../store/answers/actions'
 
 /* *****************************************
    mapStateToProps()
@@ -59,24 +60,25 @@ const mapStateToProps = ( state, passedProps ) => {
 ******************************************** */
 const mapDispatchToProps = ( dispatch, passedProps ) => {
   const { question, promptQuestionCode } = passedProps
+  const type = QUESTION_TYPE_STRENGTH_EM_IM
 
-  function copyParentAnswers() {
+  // function copyParentAnswers() {
 
-    return async(dispatch, getState) => {
-      let state = getState()
+  //   return async(dispatch, getState) => {
+  //     let state = getState()
 
-      // get userId
-      const userId = getUser(state.userRD).id
+  //     // get userId
+  //     const userId = getUser(state.userRD).id
 
-      // get parent answers
-      const parentAnswers = getAnswers(state.answersRD, promptQuestionCode)
-      console.log('parentAnswers', parentAnswers)
+  //     // get parent answers
+  //     const parentAnswers = getAnswers(state.answersRD, promptQuestionCode)
+  //     console.log('parentAnswers', parentAnswers)
   
-      await dispatch(updateAnswersAC(question.code, parentAnswers))
-      await dispatch(persistAnswersAC(userId, question.code, QUESTION_TYPE_STRENGTH_EM_IM, parentAnswers))
+  //     await dispatch(updateAnswersAC(question.code, parentAnswers))
+  //     await dispatch(persistAnswersAC(userId, question.code, QUESTION_TYPE_STRENGTH_EM_IM, parentAnswers))
 
-    }
-  }
+  //   }
+  // }
 
   /* *****************************************
      onUpdateStore()
@@ -133,7 +135,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   ******************************************** */
   return {
     onUpdateStoreCB: bindActionCreators(onUpdateStore, dispatch),
-    copyParentAnswersCB: bindActionCreators(copyParentAnswers, dispatch)
+    copyParentAnswersCB: bindActionCreators(() => copyParentAnswers(question, promptQuestionCode, type), dispatch)
   }
 
 }

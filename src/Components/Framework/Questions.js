@@ -70,7 +70,7 @@ export default class Questions extends React.Component {
     const { subComponents } = this.props
 
     // aready at the end, do nothing
-    if ( currIdx === ( subComponents.length - 1 ) ) return
+    if (currIdx === ( subComponents.length - 1 )) return
 
     this.persistCurrent()
     this.setState( { currIdx: currIdx + 1 } )
@@ -86,12 +86,12 @@ export default class Questions extends React.Component {
 
     // ******************************************
     // render static version in <Popup>
-    if ( !isDynamic && subComponents ) {
+    if (!isDynamic && subComponents) {
       return (
         <>
           {subComponents.map( ( subComponent, idx ) => (
             <div className="text-left" key={idx}>
-              <h5>{showNumbers ? `${idx + 1}. ` : ''} {subComponent.props.question.text}</h5>
+              <h4>{showNumbers ? `${idx + 1}. ` : ''} {subComponent.props.question.text}</h4>
               {subComponent}
             </div>
           ) )}
@@ -100,7 +100,6 @@ export default class Questions extends React.Component {
     }
 
     // ******************************************
-    // render dynamic verison in <ModalX>
 
     // inject isDynamic into props so the subCompoent will render its dynamic version
     const subComponentsWithIsDynamic = subComponents.map( ( subComponent, idx ) => {
@@ -113,7 +112,7 @@ export default class Questions extends React.Component {
       )
     } )
 
-    const progressAmount = Math.round(100 * currIdx / subComponents.length)
+    const progressAmount = Math.round(100 * (currIdx + 1) / subComponents.length)
     return (
       <>
         <ProgressBar variant="success" now={progressAmount} label={`${progressAmount}%`} />

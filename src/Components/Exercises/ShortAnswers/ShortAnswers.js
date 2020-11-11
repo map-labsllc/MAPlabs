@@ -139,7 +139,7 @@ export default class ShortAnswers extends React.Component {
         )}
 
         <div>
-          <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add answer</Button>
+          <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add Answer</Button>
         </div>
         <hr />
       </div>

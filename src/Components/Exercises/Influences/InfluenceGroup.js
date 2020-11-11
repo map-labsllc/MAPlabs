@@ -98,7 +98,7 @@ export default function InfluenceGroup( props ) {
 
         {isDynamic &&
           <>
-            &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={onclickAdd}>+ Add</Button>
+            &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={onclickAdd}>Add Answer</Button>
             <p>&nbsp;</p>
           </>
         }
@@ -127,7 +127,7 @@ export default function InfluenceGroup( props ) {
         )}
 
         <>
-          &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={onclickAdd}>+ Add</Button>
+          &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={onclickAdd}>Add Answer</Button>
           <p>&nbsp;</p>
         </>
     </>

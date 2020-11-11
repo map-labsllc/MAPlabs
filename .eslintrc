@@ -74,6 +74,6 @@
       "space-before-function-paren": ["warn"],
       "space-in-parens": ["warn"],
       "space-infix-ops": ["warn"],
-      "spaced-comment": ["warn"],
+      "spaced-comment": ["warn"]
    }
 }

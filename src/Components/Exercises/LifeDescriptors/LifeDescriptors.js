@@ -192,7 +192,7 @@ export default class LifeDescriptors extends Component {
       )
     }
 
-    const progressAmount = Math.round(100 * startIdx / lifeDescriptors.length)
+    const progressAmount = Math.round(100 * (startIdx + 1) / lifeDescriptors.length)
 
     return (
       <>
