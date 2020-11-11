@@ -311,31 +311,31 @@ export default class Module5 extends React.Component {
     {
       id: 510,
       module_id: 5,
-      title: "Review and revise your current situation statement",
+      title: "Review and Revise Your Current Situation Statement",
       exercise: EXERCISE_510,
     },
     { 
       id: 511,
       module_id: 5,
-      title: "Determine your key themes",
+      title: "Determine Your Key Themes",
       exercise: EXERCISE_511,
     },
     {
       id: 512,
       module_id: 5,
-      title: "Summarize the themes of your life",
+      title: "Summarize the Themes of Your Life",
       exercise: EXERCISE_512,
     },
     {
       id: 520,
       module_id: 5,
-      title: "Determine your key insights about meaning",
+      title: "Determine Your Key Insights About Meaning",
       exercise: EXERCISE_520
     },
     {
       id: 521,
       module_id: 5,
-      title: "Desire statement",
+      title: "Desire Statement",
       exercise: EXERCISE_521
     },
     {
@@ -359,13 +359,13 @@ export default class Module5 extends React.Component {
     { 
       id: 530,
       module_id: 5,
-      title: "Determine your insights about beyond-the-self service",
+      title: "Determine Your Insights About Beyond-the-Self Service",
       exercise: EXERCISE_530,
     },
     {
       id: 531,
       module_id: 5,
-      title: "Summarize the themes of your life",
+      title: "Summarize the Themes of Your Life",
       exercise: EXERCISE_531,
     },
     {

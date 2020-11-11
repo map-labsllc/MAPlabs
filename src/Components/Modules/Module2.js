@@ -166,23 +166,23 @@ export default class Module2 extends React.Component {
     },
     {
       id: 240,
-      title: "Synthesize Your Values and Beliefs into a Supportive Self-Acceptance Statement",
+      title: "Synthesize Your Values and Beliefs Into a Supportive Self-Acceptance Statement",
       exercise: this.exercise_240,
     },
     {
       id: 250,
-      title: "Synthesize Your Values and Beliefs into an Self-Inhibiting Statement",
+      title: "Synthesize Your Values and Beliefs Into a Self-Inhibiting Statement",
       exercise: this.exercise_250,
     },
     {
       id: 260,
-      title: "Compare your 'Supportive Self-Acceptance' statement to your 'Self-Inhibiting' statement",
+      title: "Compare Your 'Supportive Self-Acceptance' Statement to Your 'Self-Inhibiting' Statement",
       exercise: this.exercise_260,
       section_ids: [261,262,263,264,265,266]
     },
     {
       id: 270,
-      title: "Breaking and building",
+      title: "Breaking and Building",
       exercise: this.exercise_270,
       section_ids: [271,272,273,274]
     },
