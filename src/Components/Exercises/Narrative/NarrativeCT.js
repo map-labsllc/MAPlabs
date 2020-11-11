@@ -35,7 +35,7 @@ const mapStateToProps = ( state, passedProps ) => {
   // Note: getAnswers() returns an array but narrative should have at most one answer
   const answers = getAnswers( state.answersRD, question.code )
   // console.log( `getAnswers( ${question.code} ): `, answers )
-  if ( 1 < answers.length ) {
+  if (answers.length > 1) {
     console.log( "ERROR: more than one narrative answer: ", question.code, answers )
     throw new Error( `more than one narrative answer:  ${question.code}, ${answers}` )
   }
