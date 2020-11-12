@@ -75,7 +75,7 @@ export default class Module1 extends React.Component {
   // -------------------------
   // Module 1: 4A
   shortAnswers_150 = [
-    <ShortAnswersCT question = { { code: 151, text: "List the most important overarching themes that impact how meaningful and purposeful your life is." } } />,
+    <ShortAnswersCT question = { { code: 151, text: "As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is." } } />,
     <ShortAnswersCT question = { { code: 152, text: "Which core feelings and experiences are most important to providing you with personal senses of the meaning in your life?" } } />,
     <ShortAnswersCT question = { { code: 153, text: "Name some things beyond yourself that you could serve if you lived with more of your core feelings and experiences." } } />,
     <ShortAnswersCT question = { { code: 154, text: "List the areas of personal growth that will enable your life to be more filled with the core feelings and experiences you desire." } } />,

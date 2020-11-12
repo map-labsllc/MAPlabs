@@ -56,19 +56,7 @@ export const QUES_330_DESC = `Now that you have distilled your desires to what i
 export const QUES_340_DESC = `When you are finished, you will be able to see all of your final desires for each category in one place. Think about them for a few minutes. Taken together, what do they suggest about the life that you desire? Also think about how you prioritized each category in your second tradeoff exercise. In the space provided, write a short statement that brings together all the desires from each category and captures the essence of what this exercise has revealed to you, using the phrases themselves. As you organize the statement, pay attention to how you prioritized among these desires.`
 
 
-export const QUES_350_DESC = `Review the 'desires statement' you created in Exercise 4 and consider how well the statement captures your most authentic self.
-<br><br>
-List any important <i>themes<i> that you noticed across your 7 categories and in your ultimate choices about which of your desires are most important.
-<br><br>
-Which desires provide you with the most personal senses of the <i>meaning</i> and 'intrinsic' motivation in your life?
-<br><br>
-Name some <i>things beyond yourself</> that you could serve if you lived more authentically  from your deepest and truest desires.
-<br><br>
-List the areas of <i>personal growth</i> that will enable your life to be more expressive of your desires.
-<br><br>
-List which <i>relationships</i> that you either currently have or need to develop in the future (to any influence, such as people, groups, practices, experiences, etc.) are most important to supporting your life being lived our of your most authentic desires.
-<br><br>
-List any areas of <i>engagement</i> or <i>mastery</i> (either in your life’s work or avocationally) that could express or fulfill your deepest desires.`
+export const QUES_350_DESC = `Review the 'desires statement' you created in Exercise 4 and consider how well the statement captures your most authentic self.`
 
 
 export const QUES_360_DESC = `In order to create more personal Autonomy, consider which desires are less authentic and need to be 'broken from,' and which desires are more authentic and need to be 'built toward.' Fill in the following blanks:
