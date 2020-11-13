@@ -48,10 +48,7 @@ export default function TransitionsTop(props) {
 }
 
 TransitionsTop.propTypes = {
-  selectedAttribute: PropTypes.string.isRequired,
-  headings: PropTypes.array.isRequired,
-  fields: PropTypes.array.isRequired,
-  hydrateAnswer: PropTypes.func.isRequired,
-  dehydrateAnswer: PropTypes.func.isRequired,
+  question: PropTypes.object.isRequired,
+  promptQuestionCodes: PropTypes.arrayOf(PropTypes.number).isRequired
 }
 
