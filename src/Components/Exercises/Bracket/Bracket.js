@@ -88,7 +88,7 @@ export default class Bracket extends React.Component {
             </Button>
           </div>
           :
-          (this.state.prompts.length > 0 && <p>You desire: {this.state.prompts[0]}.
+          (this.state.prompts.length > 0 && <p>You desire: <b>{this.state.prompts[0]}</b>.
           </p>)
         }
       </div>
@@ -96,12 +96,9 @@ export default class Bracket extends React.Component {
   }
 }
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
 
 Bracket.propTypes = {
-  prompts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  prompts: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
   question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,

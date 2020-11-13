@@ -2,8 +2,7 @@ import Bracket from './Bracket'
 
 import { connect } from 'react-redux'
 import { getAnswers } from '../../../store/answers/reducer'
-import {
-  updateAnswersAC } from '../../../store/answers/actions'
+import { updateAnswersAC } from '../../../store/answers/actions'
  
 /* *****************************************
    mapStateToProps()
@@ -36,6 +35,11 @@ function mapStateToProps( state, { promptQuestionCodes, question, isDynamic } ) 
     prompts = prompts.concat( getAnswers( state.answersRD, questionCode ) )
   } )
 
+  // pull out first field
+  prompts = prompts.map(answer => [answer[0]])
+
+  console.log('prompts', prompts)
+
   return {
     prompts,
     question,
@@ -43,10 +47,6 @@ function mapStateToProps( state, { promptQuestionCodes, question, isDynamic } ) 
     isDynamic
   }
 }
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
 
 /* *****************************************
    mapDispatchToProps()
