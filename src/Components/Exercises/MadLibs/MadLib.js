@@ -83,30 +83,42 @@ export default function MadLib(props) {
   // dynamic render
   return (
     <Form className="text-left" onChange={onChange}>
-      <Label>From</Label>
+      <Label className="madlib-label" style={style.label}>From</Label>
       <FormControl disabled={true} id="name" placeholder="name" value={name} onChange={ (e) => setName(e.target.value) }/>
-      <Label>I appropriated</Label> 
+      
+      <Label className="madlib-label"style={style.label}>I appropriated</Label> 
       <FormControl disabled={true} id="belief" placeholder="belief" value={belief} onChange={ (e) => setBelief(e.target.value) }/> 
-      <Label>which makes me feel </Label>
+      
+      <Label className="madlib-label" style={style.label}>which makes me feel </Label>
       <FormControl id="emotion" placeholder="emotion" value={emotion} onChange={ (e) => setEmotion(e.target.value) }/> 
-      <Label>The effect of this value/belief is that it</Label>
+      
+      <Label className="madlib-label" style={style.label}>The effect of this value/belief is that it</Label>
       <FormControl disabled={true} id="impact" placeholder="impact" value={impact} onChange={ (e) => setImpact(e.target.value) }/> 
-      <Label>me from</Label> 
+      
+      <Label className="madlib-label" style={style.label}>me from/to</Label> 
       <FormControl id="desire" placeholder="personal desire" value={desire} onChange={ (e) => setDesire(e.target.value) }/> 
-      <Label>because I see myself as</Label> 
+      
+      <Label className="madlib-label" style={style.label}>because I see myself as</Label> 
       <FormControl id="identity" placeholder="identity descriptor" value={identity} onChange={ (e) => setIdentity(e.target.value) }/> 
-      <Label>who can/should </Label>
+      
+      <Label className="madlib-label" style={style.label}>who can/should </Label>
       <FormControl id="action" placeholder="action/behavior" value={action} onChange={ (e) => setAction(e.target.value) } /> 
-      <Label>so that</Label> 
+      
+      <Label className="madlib-label" style={style.label}>so that</Label> 
       <FormControl id="result" placeholder="result" value={result} onChange={ (e) => setResult(e.target.value) }/>
-      <Label>Moving forward, I would like to</Label> 
+      
+      <Label className="madlib-label" style={style.label}>Moving forward, I would like to</Label> 
       <FormControl id="change" placeholder="desired change" value={change} onChange={ (e) => setChange(e.target.value) }/>
-      <Label>by</Label>
+      
+      <Label className="madlib-label" style={style.label}>by</Label>
       <FormControl id="intention" placeholder="personal intention" value={intention} onChange={ (e) => setIntention(e.target.value) } />
     </Form>
   )
 }
 
+const style = {
+  label: { color: "rgb(41, 41, 41)" } 
+}
 
 MadLib.propTypes = {
   question: PropTypes.shape( {

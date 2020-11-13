@@ -31,3 +31,8 @@
 .madlib {
   text-decoration: underline;
 }
+
+.madlib-label {
+  margin-top: 0.5em;
+  color: rgb(41, 41, 41);
+}
