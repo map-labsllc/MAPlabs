@@ -54,10 +54,6 @@ const mapStateToProps = ( state, passedProps ) => {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
 /* *****************************************
    mapDispatchToProps()
 
@@ -77,16 +73,14 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
      newTransitions -- array of transitinos
   ******************************************** */
-  function onUpdateStore( newTransitions ) {
-    console.log( `TransitionsCT::onUpdate(${newTransitions})` );
+  function onUpdateStore(newTransitions) {
+    console.log(`TransitionsCT::onUpdate(${newTransitions})`);
 
     const { question } = passedProps
 
-    // store wants 2D array of strings, so map the array of transitions into that format
-    const twoDimArrayOfString = filterOutBlanks( newTransitions ).map(dehydrateAnswer)
+    const data = filterOutBlanks(newTransitions).map(dehydrateAnswer)
 
-    // update store
-    dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
+    dispatch(updateAnswersAC(question.code, data))
   }
 
   /* *****************************************

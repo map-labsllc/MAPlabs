@@ -110,7 +110,7 @@ export const EXERCISE_522 = (
   <StrengthsTop5CT
     summaryTitle = 'Key strengths'
     question = { { code: 522, text: "Review your top 5 strengths" } }
-    promptQuestionCodes = { [420] }
+    promptQuestionCodes = { [410] }
     description = { QUES_522_DESC }
     instructions = "Select the top 5 that are most useful to you."
   /> )

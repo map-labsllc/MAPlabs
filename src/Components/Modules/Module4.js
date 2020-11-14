@@ -73,6 +73,7 @@ export default class Module4 extends React.Component {
       promptQuestionCode = { 420 }
       filter = { EFFECT_IMPEDIMENT }
       description = { QUES_440_DESC }
+      saveToPrompt = { true }
     /> )
 
   // -------------------------

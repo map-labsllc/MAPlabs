@@ -27,7 +27,7 @@ const ModuleList = ( { user } ) => {
     // determine how many sections completed
     let sectionCount  = MODULES.filter(m => m.id === +(moduleId))[0].sectionCount
 
-    // this is a hack, but middle digit of section should correspond the where we are at
+    // this is a hack, but middle digit of section should correspond to where we are at
     let sectionPosition = `${currentSection}`.split('')[1]
     sectionPosition = +sectionPosition
     let percentComplete = Math.floor(100 * (sectionPosition - 1)/sectionCount)

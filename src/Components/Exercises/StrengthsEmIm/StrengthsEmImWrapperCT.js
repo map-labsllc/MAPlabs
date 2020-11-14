@@ -106,7 +106,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
           if (!reflectionsSet) { 
 
-            //  map reflections into individaul rows
+            //  map reflections into individual rows
             newData.reflections.map((reflection) => {
               let arr = []
               arr[IDX_STRENGTH] = newData.strength

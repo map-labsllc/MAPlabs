@@ -82,6 +82,7 @@ export default class ReflectionsTop5 extends React.Component {
       reflectionWithKey.item.effect === filter
     )
 
+
     // static render
     if (!isDynamic) {
       const selectedReflectionsWithKeys = filteredWithKeys

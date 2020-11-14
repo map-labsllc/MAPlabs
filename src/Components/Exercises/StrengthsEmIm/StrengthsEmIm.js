@@ -44,7 +44,7 @@ export default class StrengthEmIm extends React.Component {
   addReflection = () => {
     let reflections = this.state.reflections || []
     this.setState((prevState) => ({
-      reflections: [ ...reflections, { reflection: "", effect: EFFECT_EMBODIMENT, id: reflections.length } ],
+      reflections: [...reflections, { reflection: '', effect: EFFECT_EMBODIMENT, id: reflections.length } ],
     }));
   }
 
@@ -78,18 +78,17 @@ export default class StrengthEmIm extends React.Component {
     const { reflections } = this.state
     const { strengthValue, isDynamic } = this.props
 
-
     if (!isDynamic) {
       return (
         <>
-        { reflections.map((reflection, idx) => (
+          { reflections.map((reflection, idx) => (
             <Row key={idx}>
               <Col md={1}></Col>
               <Col md={3}>{ reflections[idx].reflection }</Col>
               <Col md={3}>{ reflections[idx].effect }</Col> 
             </Row>
-          ))
-        }
+        ))
+          }
         </>
       )
     }

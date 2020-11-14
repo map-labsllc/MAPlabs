@@ -18,7 +18,7 @@ import {  SELECTED } from '../../../constants'
      updateInfluenceCB -- call for all changes
      deleteInfluenceCB -- click trash can
 ***************************************************** */
-export default function StrengthEmImTop5(props) {
+export default function ReflectionTop5(props) {
 
   /* **********************************************
     onChange()
@@ -70,10 +70,10 @@ export default function StrengthEmImTop5(props) {
 }
 
 // love me some propTypes
-StrengthEmImTop5.propTypes = {
+ReflectionTop5.propTypes = {
   reflection: PropTypes.object.isRequired,
   isDynamic: PropTypes.bool,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   updateReflectionCB: PropTypes.func,  
 }
 

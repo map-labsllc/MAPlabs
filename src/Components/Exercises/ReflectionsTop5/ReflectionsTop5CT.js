@@ -1,18 +1,17 @@
 import { connect } from 'react-redux'
 import ReflectionsTop5 from './ReflectionsTop5'
-import { getAnswers } from '../../../store/answers/reducer'
 import { getUser } from '../../../store/user/reducer'
 import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
-import { listIdToValue } from "../../../store/lists/actions"
+import { listIdToValue } from '../../../store/lists/actions'
 import { QUESTION_TYPE_STRENGTH_EM_IM } from '../../../store/answers/constants'
 import { IDX_STRENGTH, IDX_PHRASE, IDX_EFFECT, IDX_SELECTED } from '../../../constants'
-
+import { getAnswers, hydrater, dehydrater } from '../../../store/answers/reducer'
  
 /* *****************************************
    mapStateToProps()
 
    passedProps:
-      question -- { code: 50, text: "question 50" }
+      question -- { code: 50, text: 'question 50' }
       promptQuestionCode -- where to get the list of influences to choose from
       outputQuestionCode -- where to output the madlibs
       filter -- filter the reflections to impediment/embodiment
@@ -21,34 +20,57 @@ import { IDX_STRENGTH, IDX_PHRASE, IDX_EFFECT, IDX_SELECTED } from '../../../con
                   true - rendering dynamic verison in <ModalX>
       onCloseModalCB -- call when user clicks Save button
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
 
+const answerShape = {
+  [IDX_STRENGTH]: 'strength',
+  [IDX_PHRASE]: 'phrase',
+  [IDX_SELECTED]: 'selected',
+  [IDX_EFFECT]: 'effect'
+}
+
+// format item into answer for saving
+const dehydrateAnswer = dehydrater(answerShape)
+
+const mapStateToProps = (state, passedProps) => {
   const {
     question,
     promptQuestionCode,
     filter,
     isDynamic,
     onCloseModalCB,
+    saveToPrompt
   } = passedProps
 
   // validate params
-  if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
+  if (!question || !question.code) throw new Error('missing question code: ', passedProps.question_code)
 
   // get userId
   const userId = getUser(state.userRD).id
 
-  // get influence record from earlier question
-  const answerRecords = getAnswers(state.answersRD, promptQuestionCode)
+  // get prompts from earlier question
+  const prompts = getAnswers(state.answersRD, promptQuestionCode)
+  let answerRecords 
 
-  const strengthsList = state.listsRD.lists.strengths
-  let reflections = answerRecords.map(record => ({
-      strength: record[IDX_STRENGTH],
-      strengthValue: listIdToValue(strengthsList, record[IDX_STRENGTH]),
-      phrase: record[IDX_PHRASE],
-      effect: record[IDX_EFFECT],
-      selected: record[IDX_SELECTED],
+  if (saveToPrompt) {
+    answerRecords = prompts
+  } else {
+    // get current answers
+    answerRecords = getAnswers(state.answersRD, question.code)
+
+    if (answerRecords.length === 0) {
+      answerRecords = prompts
+    }
+  }
+
+  const strengthOptions = state.listsRD.lists.strengths
+  const hydrateAnswer = (answer) => {
+    let hydrated = hydrater(answerShape)(answer)
+    return ({
+      strengthValue: listIdToValue(strengthOptions, answer[IDX_STRENGTH]), ...hydrated
     })
-  )
+  }
+
+  const reflections = answerRecords.map(hydrateAnswer)
 
   return {
     userId,
@@ -61,18 +83,13 @@ const mapStateToProps = ( state, passedProps ) => {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
 /* *****************************************
    mapDispatchToProps()
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => {
-
-  const { saveToPrompt, question } = passedProps 
+const mapDispatchToProps = (dispatch, passedProps) => {
+  const { saveToPrompt, question } = passedProps
 
   /* *****************************************
     persistSelections()
@@ -84,26 +101,12 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     userId
     promptQuestionCode
   ******************************************** */
- function persistSelections(userId, promptQuestionCode, newReflections) {
-
-    // store wants 2D array of strings, so map the object into that format
-    const twoDimArrayOfString = []
-    newReflections.forEach(reflection => {
-      const record = []
-      record[IDX_STRENGTH] = reflection.strength
-      record[IDX_PHRASE] = reflection.phrase
-      record[IDX_EFFECT] = reflection.effect
-      record[IDX_SELECTED] = reflection.selected
-      twoDimArrayOfString.push(record)
-    })
-
+  const persistSelections = (userId, promptQuestionCode, newReflections) => {
+    const data = newReflections.map(dehydrateAnswer)
     const saveQuestionCode = saveToPrompt ? promptQuestionCode : question.code
 
-    console.log()
-    // note: these answers are saved to the promptQuestionCode
-    // console.log("preparing to dispatch ids", userId, promptQuestionCode, QUESTION_TYPE_STRENGTH_EM_IM, )
-    dispatch( updateAnswersAC( saveQuestionCode, twoDimArrayOfString ) )
-    dispatch( persistAnswersAC( userId, saveQuestionCode, QUESTION_TYPE_STRENGTH_EM_IM, twoDimArrayOfString ) )
+    dispatch(updateAnswersAC(saveQuestionCode, data))
+    dispatch(persistAnswersAC(userId, saveQuestionCode, QUESTION_TYPE_STRENGTH_EM_IM, data))
   }
 
   /* *****************************************
@@ -112,10 +115,9 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     Update store and persist both the 'selections' and new madlibs.
 
     userId -- integer
-    newReflections -- same format as the object that was passed down in props as "allInfluences"
+    newReflections -- same format as the object that was passed down in props as 'allInfluences'
   ******************************************** */
-  function onPersist( userId, newReflections ) {
-
+  function onPersist(userId, newReflections) {
     const { promptQuestionCode } = passedProps
 
     // persist 'selections' back to promptQuestionCode
@@ -137,4 +139,4 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( ReflectionsTop5 )
+)(ReflectionsTop5)
