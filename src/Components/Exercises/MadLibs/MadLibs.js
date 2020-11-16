@@ -25,7 +25,8 @@ export default class MadLibs extends React.Component {
   }
 
   async componentDidMount() {
-    let { copyParentAnswersCB, question, madlibs, impactFilter } = this.props
+    const { copyParentAnswersCB, question, madlibs, impactFilter } = this.props
+
     if (!madlibs.length && !this.state.madlibsSet[impactFilter]) {
       console.log('answers not set, copying parent')
       await copyParentAnswersCB(question)
@@ -43,6 +44,7 @@ export default class MadLibs extends React.Component {
     const { isDynamic } = this.state
     const { madlibs, question, onUpdateStoreCB, impactFilter } = this.props
 
+    console.log("MadLibs question", question)
     if (!isDynamic) {
       return (
         <ListGroup className="text-left">

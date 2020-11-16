@@ -7,8 +7,6 @@ import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/action
 import { QUESTION_TYPE_MADLIBS } from '../../../store/answers/constants'
 import { bindActionCreators } from 'redux';
 
-
-
 import {
   IDX_RELATIONSHIP,
   IDX_NAME,
@@ -20,7 +18,7 @@ import {
   IMPACT_INHIBITING,
   IMPACT_SUPPORTS,
   IMPACT_INHIBITS,
-  SELECTED, 
+  SELECTED,
 } from '../../../constants'
 
 // indexes into the data structure coming from the store
@@ -35,7 +33,6 @@ const IDX_JSON = 0
                   true - rendering dynamic verison in <ModalX>
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
-
   const {
     number,
     question,
@@ -46,10 +43,10 @@ const mapStateToProps = ( state, passedProps ) => {
   const userId = getUser(state.userRD).id
 
   // validate params
-  if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
+  if (!question || !question.code) throw new Error("missing question code: ", passedProps.question_code)
 
   // get previous data, if any
-  let answerRecords = getAnswers( state.answersRD, question.code )
+  let answerRecords = getAnswers(state.answersRD, question.code)
   console.log(`getAnswers(${question.code}): `, answerRecords )
 
   let data = answerRecords.map(answer=> {

@@ -50,7 +50,7 @@ export default function MadLib(props) {
     e - target.id is a key into the influence object:  'relationship', 'name', 'belief', or 'impact'
   ************************************************ */
   const onChange = async (e) => {
-    // console.log("MadLib::onChange()")
+    console.log("MadLib::onChange()")
     e.preventDefault()
 
     // get data from state variables
@@ -111,7 +111,7 @@ export default function MadLib(props) {
       <FormControl id="change" placeholder="desired change" value={change} onChange={ (e) => setChange(e.target.value) }/>
       
       <Label className="madlib-label" style={style.label}>by</Label>
-      <FormControl id="intention" placeholder="personal intention" value={intention} onChange={ (e) => setIntention(e.target.value) } />
+      <FormControl id="intention" placeholder="personal intention" value={intention} onChange={ (e) => setIntention(e.target.value) } onBlur={onChange}/>
     </Form>
   )
 }
