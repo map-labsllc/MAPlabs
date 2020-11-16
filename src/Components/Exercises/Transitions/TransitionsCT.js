@@ -1,10 +1,9 @@
 import { connect } from 'react-redux'
 
 import Transitions from './Transitions'
-import { getAnswers } from '../../../store/answers/reducer'
 import { updateAnswersAC } from '../../../store/answers/actions'
 import { IDX_FROM, IDX_TO, IDX_TRANSITION } from '../../../constants'
-import { hydrater, dehydrater } from '../../../store/answers/reducer'
+import { getAnswers, hydrater, dehydrater } from '../../../store/answers/reducer'
 
 /* *****************************************
    mapStateToProps()

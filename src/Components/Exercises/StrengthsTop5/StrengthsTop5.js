@@ -43,7 +43,7 @@ export default function StrengthsTop5(props) {
   const fields = ['strengthValue']
   const selectedAttribute = 'strength'
 
-  const [answersCopied, setAnswersCopied] = useState(false);
+  const [answersCopied, setAnswersCopied] = useState(false)
 
   // if first time, copy answers from parent
   useEffect(() => {

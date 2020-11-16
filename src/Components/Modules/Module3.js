@@ -47,6 +47,7 @@ export default class Module3 extends React.Component {
     <ShortAnswersCT question = { { code: 317, text: "Physical/Health/Recreational" } } />,
     <ShortAnswersCT question = { { code: 318, text: "Other" } } />,
   ]
+  
   exercise_310 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
