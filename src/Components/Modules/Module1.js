@@ -114,38 +114,38 @@ export default class Module1 extends React.Component {
     {
       id: 110,
       module_id: 1,
-      title: "Reflect on your current situation",
+      title: "Reflect on Your Current Situation",
       exercise: this.exercise_110,
     },
     { 
       id: 120,
       module_id: 1,
-      title: "Describe your current situation",
+      title: "Describe Your Current Situation",
       exercise: this.exercise_120,
     },
     {
       id: 130,
       module_id: 1,
-      title: "Imagine your future desired situation",
+      title: "Imagine Your Future Desired Situation",
       exercise: this.exercise_130,
     },
     {
       id: 140,
       module_id: 1,
-      title: "Describe your future situation",
+      title: "Describe Your Future Situation",
       exercise: this.exercise_140
     },
     {
       id: 150,
       module_id: 1,
-      title: "Compare your 'current situation' statement to your 'future desired situation' statement",
+      title: "Compare Your 'Current Situation' Statement to Your 'Future Desired Situation' Statement",
       exercise: this.exercise_150,
       section_ids: [151,152,153,154,155,156]
     },
     {
       id: 160,
       module_id: 1,
-      title: "Breaking and building",
+      title: "Breaking and Building",
       exercise: this.exercise_160,
       section_ids: [161,162,163,164]
     },

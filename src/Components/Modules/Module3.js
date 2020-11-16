@@ -153,33 +153,33 @@ export default class Module3 extends React.Component {
     {
       id: 320,
       module_id: 3,
-      title: "Make tradeoffs within each category",
+      title: "Make Tradeoffs Within Each Category",
       exercise: this.exercise_320,
       section_ids: [321,322,323,324,325,326,327,328]
     },
     {
       id: 330,
       module_id: 3,
-      title: "Make tradeoffs between each category",
+      title: "Make Tradeoffs Between Each Category",
       exercise: this.exercise_330
     },
     {
       id: 340,
       module_id: 3,
-      title: "Synthesize into a Desires Statement",
+      title: "Synthesize Into a Desires Statement",
       exercise: this.exercise_340
     },
     {
       id: 350,
       module_id: 3,
-      title: "Reflect of your stated desires",
+      title: "Reflect on Your Stated Desires",
       exercise: this.exercise_350,
       section_ids: [351,352,353,354,355,356]
     },
     {
       id: 360,
       module_id: 3,
-      title: "Break and building",
+      title: "Breaking and Building",
       exercise: this.exercise_360,
       section_ids: [361,362,363]
     },
