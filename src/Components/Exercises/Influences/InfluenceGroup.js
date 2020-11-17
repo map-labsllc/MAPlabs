@@ -111,7 +111,7 @@ export default function InfluenceGroup( props ) {
     <>
       <h4>{heading}</h4>
       {influencesWithKeys.length === 0 &&
-        <p>No data provided.</p>
+        <p>Not started.</p>
       }
         {influencesWithKeys.map((influenceWithKey) =>
           <Influence
@@ -140,7 +140,6 @@ InfluenceGroup.propTypes = {
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
   } ).isRequired,
-  previousData: PropTypes.object.isRequired,
   isDynamic: PropTypes.bool,
   onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
 }
