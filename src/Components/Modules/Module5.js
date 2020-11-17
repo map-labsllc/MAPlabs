@@ -11,6 +11,7 @@ import QuestionsCT from '../Framework/QuestionsCT'
 import Summary from '../Framework/Summary'
 import Mappers from '../Exercises/Mappers/Mappers'
 import ModuleLayout from './ModuleLayout'
+import ModuleIntro from './ModuleIntro'
 
 import { EFFECT_EMBODIMENT, EFFECT_IMPEDIMENT } from '../../constants'
 import {
@@ -42,8 +43,9 @@ import {
   QUES_560_DESC,
   QUES_565_DESC,
   QUES_570_DESC,
-  QUES_580_DESC
- } from './Module5Text'
+  QUES_580_DESC,
+  QUES_590_DESC
+} from './Module5Text'
 
 import { MODULES } from './ModuleData'
 
@@ -56,7 +58,7 @@ export const EXERCISE_510 = (
     copyPrompt = { true }
     description = { QUES_510_DESC }
     instructions = 'Review your responses about what you found most meaningful.'
-  /> )
+  />)
 
 // Module 5.1.B
 export const EXERCISE_511 = (
@@ -153,7 +155,7 @@ export const EXERCISE_530 = (
 export const EXERCISE_531 = (
   <NarrativeCT
     summaryTitle = 'Summarizing Thoughts or Directives.'
-    question = { { code: 531, text: `Summarize the 'what' of your purpose.` } }
+    question = { { code: 531, text: `Summarize the "what" of your purpose.` } }
     promptQuestionCode = { 530 }
     copyPrompt = { false }
     description = { QUES_531_DESC }
@@ -162,22 +164,22 @@ export const EXERCISE_531 = (
 
 // Module 5.4.A
 const shortAnswers_540 = [
-  <ShortAnswersCT question = { { 
+  <ShortAnswersCT question = { {
     code: 541, 
     text: 'My life is most meaningful when I experience or embrace', 
-    placeholder: 'Sources of meaning' } } />,
-  <ShortAnswersCT question = { { 
+    placeholder: 'Sources of meaning' }} />,
+  <ShortAnswersCT question = { {
     code: 542, 
-    text: 'That is why my greatest desire is to', 
+    text: 'That is why my greatest desire is to',
     placeholder: '(Desire)' } } />,
-  <ShortAnswersCT question = { { 
-    code: 543, 
-    text: 'by using my', 
-    placeholder: '(Strength)' } } />,
-  <ShortAnswersCT question = { { 
+  <ShortAnswersCT question = { {
+    code: 543,
+    text: 'by using my',
+    placeholder: '(Strength)' }} />,
+  <ShortAnswersCT question = { {
     code: 544, 
-    text: 'in service of', 
-    placeholder: '(Something or someone beyond the self)'} } />,
+    text: 'in service of',
+    placeholder: '(Something or someone beyond the self)'}} />,
 ]
 
 export const EXERCISE_540 = (
@@ -301,6 +303,14 @@ const EXERCISE_580 = (
   />
 )
 
+const EXERCISE_590 = (
+  <ModuleIntro
+    description = { QUES_590_DESC }
+    moduleId = {5}
+    showLink = {false}
+  />
+)
+
 export default class Module5 extends React.Component {
   _module = MODULES.filter(m => m.id === 5)[0]
 
@@ -417,6 +427,13 @@ export default class Module5 extends React.Component {
       module_id: 5,
       title: 'MAPPERS Model',
       exercise: EXERCISE_580,
+      section_ids: [565] // if 565 is done, then this is done
+    },
+    {
+      id: 590,
+      module_id: 5,
+      title: 'Conclusion',
+      exercise: EXERCISE_590,
       section_ids: [565] // if 565 is done, then this is done
     }
   ]

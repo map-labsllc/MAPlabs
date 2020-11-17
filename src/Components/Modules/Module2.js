@@ -58,7 +58,6 @@ export default class Module2 extends React.Component {
     <InfluencesTop5CT
       question = { { code: 220, text: "Choose your most important supportive contextual influences" } }
       promptQuestionCode = { 210 }
-      outputQuestionCode = { 240 }
       impactFilter = { IMPACT_SUPPORTIVE }
       description = { QUES_220_DESC }
       instructions = "Choose your top 5 supportive influences"
@@ -71,12 +70,11 @@ export default class Module2 extends React.Component {
     <InfluencesTop5CT
       question = { { code: 230, text: "Choose your most important inhibiting contextual influences" } }
       promptQuestionCode = { 210 }
-      outputQuestionCode = { 250 }
       impactFilter = { IMPACT_INHIBITING }
       description = { QUES_230_DESC }
       instructions = "Choose your top 5 inhibiting influences"
-    /> )
-
+    />
+    )
 
   // -------------------------
   // Madlibs: Supportive
@@ -89,7 +87,6 @@ export default class Module2 extends React.Component {
       description = { QUES_240_DESC }
       instructions = { QUES_240_DESC }
     /> )
-
     
   // -------------------------
   // Madlibs: Inhibiting
