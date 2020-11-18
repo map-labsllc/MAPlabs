@@ -49,6 +49,7 @@ export default function StrengthsTop5(props) {
   useEffect(() => {
     if (!answersCopied) {
       // TODO add copy answers here
+      
     }
     setAnswersCopied(true)
   });
