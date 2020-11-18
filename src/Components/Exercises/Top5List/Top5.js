@@ -18,7 +18,7 @@ import { SELECTED } from '../../../constants'
      updateCB -- call for all changes
 ***************************************************** */
 export default function Top5(props) {
-  const { id, updateCB, data, isDynamic, fields, selectedAttribute } = props
+  const { id, updateCB, data, isDynamic, fields, selectedAttribute, editFields = [] } = props
 
   const [formData, setData] = useState(data);
 
@@ -43,19 +43,20 @@ export default function Top5(props) {
     updateCB(id, newData)
   }
 
-  console.log('selectedAttribute', selectedAttribute)
+  if (!editFields.length) {
+    editFields.push(selectedAttribute)
+  }
+
   const fieldsToCells = () => (
     <>
       { fields.map((field, idx) => 
         <td className="text-left" key={idx}>
-          {isDynamic && field === selectedAttribute ?
-            <Form inline>
-              <FormControl 
-                onChange={(e) => onChange(e, field)}
-                type="text" 
-                value={formData[field]}
-              />
-            </Form>
+          {isDynamic && editFields.includes(field) ?
+            <FormControl 
+              onChange={(e) => onChange(e, field)}
+              type="text" 
+              value={formData[field]}
+            />
             : <>{formData[field]}</> }
         </td>)
       }
@@ -78,13 +79,11 @@ export default function Top5(props) {
     <>
       <tr>
         <td className="text-left" key="-1">
-          <Form inline>
-            <input 
-              onChange={onCheck}
-              type="checkbox" 
-              checked={!!formData.selected}
-            />
-          </Form>
+          <input 
+            onChange={onCheck}
+            type="checkbox" 
+            checked={!!formData.selected}
+          />
         </td>
         { fieldsToCells() }
       </tr>
@@ -99,6 +98,7 @@ Top5.propTypes = {
   fields: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
   updateCB: PropTypes.func,
-  selectedAttribute: PropTypes.string
+  selectedAttribute: PropTypes.string,
+  editFields: PropTypes.array
 }
 

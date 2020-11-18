@@ -21,14 +21,13 @@ const defaultAnswerShape = {
    passedProps:
       question -- { code: 50, text: "question 50" }
       promptQuestionCode -- where to get the list of influences to choose from
-      outputQuestionCode -- where to output the madlibs
-      impactFilter -- filter the influences to IMPACT_SUPPORTIVE or IMPACT_INHIBITING
+=      impactFilter -- filter the influences to IMPACT_SUPPORTIVE or IMPACT_INHIBITING
       instructions
       isDynamic -- undefined - rendering static version in <Popup>
                   true - rendering dynamic verison in <ModalX>
       onCloseModalCB -- call when user clicks Save button
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
+const mapStateToProps = (state, passedProps) => {
 
   const {
     question,
@@ -61,16 +60,16 @@ const mapStateToProps = ( state, passedProps ) => {
   // find previous answers
   const answers = getAnswers(state.answersRD, question.code)
   let selectedAnswers = answers.map(hydrateAnswer)
-
+  console.log('selectedAnswers', selectedAnswers)
+  
   // make array of answers for comparison values
-  let selectedValues = selectedAnswers.map(JSON.stringify)
+  const selectedValues = selectedAnswers.map(JSON.stringify)
   const isSelected = (value) => selectedValues.includes(value)
 
   // get all possible answers for prompts
   let prompts = []
   promptQuestionCodes.map(questionCode => {
     prompts = prompts.concat(getAnswers(state.answersRD, questionCode))
-    return
   })
 
   // determine any prompts that haven't been selected
@@ -78,7 +77,7 @@ const mapStateToProps = ( state, passedProps ) => {
   const unselectedPrompts = 
     prompts.map(hydrateAnswer)
       .filter(answer => !isSelected(JSON.stringify({...answer, selected: SELECTED})))
-  
+
   // add prompts to answers that were already saved
   const allPrompts = [...answers.map(hydrateAnswer), ...unselectedPrompts].sort(compare)
   console.log("all prompts for", promptQuestionCodes, allPrompts)
@@ -103,7 +102,6 @@ const mapStateToProps = ( state, passedProps ) => {
    passedProps -- see mapStateToProps above
 ******************************************** */
 const mapDispatchToProps = ( dispatch, passedProps ) => {
-
   const {
     dehydrateAnswer = dehydrater(defaultAnswerShape),
     question,
@@ -121,35 +119,55 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     promptQuestionCode
     newData -- same format as the object that was passed down in props as "prompts"
   ******************************************** */
- function onSave(newData) {
+  const onSave = (newData) => {
+    return async(dispatch, getState) => {
+      const state = getState()
+      // get userId
+      const userId = getUser( state.userRD ).id
 
-  return async(dispatch, getState) => {
-    let state = getState()
-    // get userId
-    const userId = getUser( state.userRD ).id
+      const twoDimArrayOfString = newData.reduce((acc, item) => {
+        // only save selected items
+        if (item.selected) {
+          acc.push(dehydrateAnswer(item))
+        }
+        return acc
+      }, [])
 
-    const twoDimArrayOfString = newData.reduce((acc, item) => {
-      // only save selected items
-      if (item.selected) {
-        acc.push(dehydrateAnswer(item))
-      }
-      return acc
-    }, [])
+      // console.log('-- persisting:')
+      // console.log(JSON.stringify(twoDimArrayOfString))
 
-    console.log('-- persisting:')
-    console.log(JSON.stringify(twoDimArrayOfString))
-
-    console.log('updateAnswersAC')
-    await dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
-    console.log('persistAnswersAC')
-    await dispatch( persistAnswersAC( userId, question.code, question_type, twoDimArrayOfString ) )
+      // console.log('updateAnswersAC')
+      await dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
+      // console.log('persistAnswersAC')
+      await dispatch( persistAnswersAC( userId, question.code, question_type, twoDimArrayOfString ) )
+    }
   }
- }
+
+  const onUpdate = (newData) => {
+    // keep the store up to date
+    return async(dispatch, getState) => {
+      const state = getState()
+      // get userId
+      const userId = getUser( state.userRD ).id
+
+      const twoDimArrayOfString = newData.reduce((acc, item) => {
+        // only save selected items
+        if (item.selected) {
+          acc.push(dehydrateAnswer(item))
+        }
+        return acc
+      }, [])
+
+      await dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
+    }
+  }
+
   /* ****************************************
      The props being passed down
   ******************************************** */
   return {
     onSaveCB: bindActionCreators(onSave, dispatch),
+    onUpdateCB: bindActionCreators(onUpdate, dispatch)
   }
 }
 

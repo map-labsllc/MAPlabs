@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import { SELECTED } from '../../../constants.js'
 import Top5 from './Top5'
 import { UUID } from '../../Utils/UUID'
@@ -39,9 +39,9 @@ export default class Top5List extends React.Component {
   uuid = new UUID()
 
   state = {
-    allItemsWithKeys: this.uuid.addKeys(this.props.prompts || []),
+    allItemsWithKeys: this.uuid.addKeys(this.props.prompts || [])
   }
-  
+
   onclickClose = async () => {
     const { onSaveCB, onCloseModalCB } = this.props
     const { allItemsWithKeys } = this.state
@@ -50,6 +50,17 @@ export default class Top5List extends React.Component {
 
     await onSaveCB(newSelections)
     await onCloseModalCB()
+  }
+
+  // keep store up to date (but don't save to DB yet)
+  onChange = async () => {
+    const { onUpdateCB } = this.props
+    const { allItemsWithKeys } = this.state
+
+    let newSelections = this.uuid.stripKeys(allItemsWithKeys)
+
+    await onUpdateCB(newSelections)
+    console.log("onChange called")
   }
 
   filterSelected = (allItemsWithKeys) => allItemsWithKeys.filter(itemWithKey =>
@@ -69,7 +80,7 @@ export default class Top5List extends React.Component {
   }
 
   render() {
-    const { instructions, isDynamic, fields, headings, selectedAttribute } = this.props
+    const { instructions, isDynamic, fields, editFields, headings, selectedAttribute, showSave = true } = this.props
     const { allItemsWithKeys } = this.state
 
     const headingsToTh = () => {
@@ -95,7 +106,7 @@ export default class Top5List extends React.Component {
           </thead>
           <tbody>
             {selectedItemsWithKeys.map(item =>
-              <Top5 
+              <Top5
                 key={item.key}
                 id={item.key}
                 data={item.item}
@@ -113,6 +124,7 @@ export default class Top5List extends React.Component {
     return (
       <>
         <p>{instructions}</p>
+        <Form onChange={this.onChange}>
         <table className="table">
           <thead>
             <tr>
@@ -122,11 +134,12 @@ export default class Top5List extends React.Component {
           </thead>
           <tbody>
             {allItemsWithKeys.map(item =>
-              <Top5 
+              <Top5
                 key={item.key}
                 id={item.key}
                 data={item.item}
                 fields={fields}
+                editFields={editFields}
                 selected={item.seleted}
                 selectedAttribute={selectedAttribute}
                 isDynamic={isDynamic}
@@ -135,25 +148,31 @@ export default class Top5List extends React.Component {
             )}
           </tbody>
         </table>
-        
-        <Button type="button" onClick={this.onclickClose}>Save</Button>
+
+        {showSave &&
+          <Button type="button" onClick={this.onclickClose}>Save</Button>
+        }
+        </Form>
       </>
     )
   }
 }
 
 Top5List.propTypes = {
-  question: PropTypes.shape( {
+  question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-  } ).isRequired,
+  }).isRequired,
   selectedAttribute: PropTypes.string.isRequired,
   selectedAnswers: PropTypes.array.isRequired,
+  editFields: PropTypes.array,
   prompts: PropTypes.array.isRequired,
   fields: PropTypes.array.isRequired,
   headings: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
   onCloseModalCB: PropTypes.func,
-  onSaveCB: PropTypes.func
+  onSaveCB: PropTypes.func,
+  onUpdate: PropTypes.func,
+  showSave: PropTypes.bool
 }
 

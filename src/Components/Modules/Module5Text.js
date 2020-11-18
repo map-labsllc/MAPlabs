@@ -139,7 +139,7 @@ At the end of each module you were asked to identify areas of personal growth in
   <li>Do your responses feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise, edit, or add new ones to them to more accurately reflect your current self-knowledge and understanding.
   <li>Note which responses seem most critical to you achieving your life purpose statement, and which seem secondary. If your responses seem to overlap, feel free to consolidate them.
     <ol>
-      <li>Choosethe1-3mostcriticalareasofpersonalgrowththatarenecessary,andto which you are willing to commit, in order to support the development of your life purpose. These commitments will make up your primary commitments in order to focus you on the most critical areas of growth and personal investment. Add them to your Dashboard.</li>
+      <li>Choose the 1-3 most critical areas of personal growth that aren ecessary, and to which you are willing to commit, in order to support the development of your life purpose. These commitments will make up your primary commitments in order to focus you on the most critical areas of growth and personal investment. Add them to your Dashboard.</li>
       <li>If you also have personal growth commitments beyond your top 3 that are critical to fulfilling your purpose, you may attach them to the “Other Commitments” section of your dashboard.</li>
     </ol>
   </li>
