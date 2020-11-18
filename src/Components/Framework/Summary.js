@@ -11,10 +11,10 @@ const Summary = ({ subComponents }) => (
             <Card.Title><h4>{subComponent.props.summaryTitle}</h4></Card.Title>
           </Card.Header>
           <Card.Body>
-            <div className="container-fluid contain"> 
+            <div className="container-fluid contain">
               {subComponent}
             </div>
-          </Card.Body>  
+          </Card.Body>
         </Card>
       </div>
     ) )}

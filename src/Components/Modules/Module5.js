@@ -177,7 +177,7 @@ const shortAnswers_540 = [
     text: 'by using my',
     placeholder: '(Strength)' }} />,
   <ShortAnswersCT question = { {
-    code: 544, 
+    code: 544,
     text: 'in service of',
     placeholder: '(Something or someone beyond the self)'}} />,
 ]
@@ -231,19 +231,23 @@ export const EXERCISE_552 = (
 const transitions_560 = [
   <TransitionsTop
     question = { { code: 561, text: 'Meaning and Motivations' } }
-    promptQuestionCodes = { [161,162,163,164, ] }
+    promptQuestionCodes = { [161,162,163,164,] }
+    showSave = {false}
   />,
   <TransitionsTop
     question = { { code: 562, text: 'Social Context' } }
-    promptQuestionCodes = { [ 271,272,273,274 ] }
+    promptQuestionCodes = { [271, 272, 273, 274] }
+    showSave = {false}
   />,
   <TransitionsTop
     question = { { code: 563, text: 'Personal Desires' } }
-    promptQuestionCodes = { [ 361,362,363 ] }
+    promptQuestionCodes = { [361, 362, 363] }
+    showSave = {false}
   />,
   <TransitionsTop
     question = { { code: 564, text: 'Personal Strengths' } }
-    promptQuestionCodes = { [ 461, 462, 463, 464 ] }
+    promptQuestionCodes = { [461, 462, 463, 464] }
+    showSave = {false}
   />
 ]
 
