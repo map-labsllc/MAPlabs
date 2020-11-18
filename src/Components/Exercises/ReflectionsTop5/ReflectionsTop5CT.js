@@ -13,7 +13,6 @@ import { getAnswers, hydrater, dehydrater } from '../../../store/answers/reducer
    passedProps:
       question -- { code: 50, text: 'question 50' }
       promptQuestionCode -- where to get the list of influences to choose from
-      outputQuestionCode -- where to output the madlibs
       filter -- filter the reflections to impediment/embodiment
       instructions
       isDynamic -- undefined - rendering static version in <Popup>

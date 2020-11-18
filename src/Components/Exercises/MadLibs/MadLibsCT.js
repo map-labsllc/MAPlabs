@@ -13,7 +13,6 @@ import {
   IDX_BELIEF,
   IDX_IMPACT,
   IDX_SELECTED,
-
   IMPACT_SUPPORTIVE,
   IMPACT_INHIBITING,
   IMPACT_SUPPORTS,
@@ -62,7 +61,6 @@ const mapStateToProps = ( state, passedProps ) => {
   }
 }
 
-
 /* *****************************************
    mapDispatchToProps()
    passedProps -- see mapStateToProps above
@@ -71,7 +69,6 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   const { question, promptQuestionCode, impactFilter } = passedProps
 
   function copyParentAnswers() {
-
     return async(dispatch, getState) => {
       let state = getState()
 
