@@ -1,12 +1,10 @@
 import React from 'react'
-import {
-  Button,
-} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
 import { getAnswers } from '../../store/answers/reducer'
 import SectionCompleteButton from './SectionCompleteButton'
 import { getNextModuleSection, showNextSection, isCurrentSection } from '../../store/user/reducer'
+import PropTypes from 'prop-types'
 
 /* **************************************************
    SectionExercise component
@@ -21,7 +19,6 @@ import { getNextModuleSection, showNextSection, isCurrentSection } from '../../s
      exercise -- component user will interact with
 ***************************************************** */
 class SectionExercise extends React.Component {
-
   state = {
     isVisible: false,
   }
@@ -39,7 +36,7 @@ class SectionExercise extends React.Component {
 
     this.setState({ isVisible: false })
   }
-  
+
   // Save
   onSave = () => {
     const { exercise, onPersistQuestionCB } = this.props
@@ -56,7 +53,7 @@ class SectionExercise extends React.Component {
     let currentModule = user.curr_module
     let currentSection = user.curr_section
 
-    // Link the <exersise> to this instance of the SectionExercise Component.
+    // Link the <exercise> to this instance of the SectionExercise Component.
     //   - onCloseModalCB() is called when exercise completes to tell us to close ModalX
     //   - isDynamic flag directs exercise to go live and take user input.  This flag
     //       doesn't exist (is undefined) in <exercise>.
@@ -67,6 +64,12 @@ class SectionExercise extends React.Component {
         isDynamic: true,
       }
     )
+
+    // show the Edit/Save button default to true
+    const showEdit = exercise.props.showEdit === undefined ? true : exercise.props.showEdit
+    
+    // very last exercise
+    const theEnd = !!exercise.props.theEnd
 
     // By default <exercise> does not have the isDynamic prop and will
     //   render itself in a static format for display in <SectionExercise>.
@@ -105,7 +108,7 @@ class SectionExercise extends React.Component {
     }
 
     // next Module in sequence
-    let next = getNextModuleSection(userRD, +moduleNum, +sectionNum)  
+    let next = getNextModuleSection(userRD, +moduleNum, +sectionNum)
     let nextModule = next.moduleNum
     let nextSection = next.sectionNum || 'intro'
 
@@ -119,21 +122,23 @@ class SectionExercise extends React.Component {
               <hr className="divider" />
               {exerciseStatic}
 
-              {isCurrentSection(currentModule, moduleNum, currentSection, sectionNum) &&
+              {!theEnd && isCurrentSection(currentModule, moduleNum, currentSection, sectionNum) &&
                 <div className="text-center">
-                  <Button className="mr-5" type="button" onClick={this.onclickStart}>{buttonLabel}</Button>
+                  { showEdit &&
+                    <Button className="mr-5" type="button" onClick={this.onclickStart}>{buttonLabel}</Button>
+                  }
                   <span className="ml-5">
                     { answersComplete(answer) && <SectionCompleteButton onClick={this.onComplete} /> }
                   </span>
                 </div>
               }
 
-
-              {showNextSection(currentModule, moduleNum, currentSection, sectionNum) &&
+              {!theEnd && showNextSection(currentModule, moduleNum, currentSection, sectionNum) &&
                 <div className="text-right">
                   <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>Next &rarr;</Link>
                 </div>
               }
+
             </div>
           </>
         )}
@@ -154,3 +159,13 @@ class SectionExercise extends React.Component {
 }
 
 export default SectionExercise
+
+SectionExercise.propTypes = {
+  user: PropTypes.object.isRequired,
+  sectionNum: PropTypes.number.isRequired,
+  moduleNum: PropTypes.number.isRequired,
+  answersRD: PropTypes.object.isRequired,
+  userRD: PropTypes.object.isRequired,
+  exercise: PropTypes.object.isRequired,
+  section_ids: PropTypes.array
+}

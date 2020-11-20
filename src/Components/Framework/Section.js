@@ -20,7 +20,7 @@ import SectionId from '../Utils/SectionId'
 export default class Section extends React.Component {
 
   render() {
-    let { number, isVisible, moduleNum, sectionNum, sectionTitle, section_ids, exercise } = this.props
+    const { number, isVisible, moduleNum, sectionNum, sectionTitle, section_ids, exercise, showEdit } = this.props
 
     return (
       <div className="background">

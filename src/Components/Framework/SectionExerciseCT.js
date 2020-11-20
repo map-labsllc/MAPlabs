@@ -3,7 +3,7 @@ import SectionExercise from './SectionExercise'
 import { getUser } from '../../store/user/reducer'
 import { sectionCompletedAC } from '../../store/user/actions'
 import { persistAnswersAC } from '../../store/answers/actions'
-import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux'
 
 /* *****************************************
    mapStateToProps()

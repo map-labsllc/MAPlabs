@@ -14,8 +14,6 @@ import { bindActionCreators } from 'redux';
      exercise -- component user will interact with
 ******************************************** */
 const mapStateToProps = ( state, passedProps ) => {
-  // console.log( "SectionExerciseCT::mapStateToProps()" )
-
   const { moduleNum } = passedProps
 
   // get user

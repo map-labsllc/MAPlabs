@@ -268,7 +268,7 @@ export const EXERCISE_565 = (
     promptQuestionCode = { 140 }
     copyPrompt = { true }
     description = { QUES_565_DESC }
-    instructions = 'Revise your statement in the box below'
+    instructions = 'Revise your statement below'
   />)
 
 // dashboard
@@ -276,6 +276,7 @@ const EXERCISE_570 = (
   <Summary
     description = { QUES_570_DESC }
     isDynamic = { false }
+    showEdit = { false }
     subComponents = {[
       EXERCISE_510,
       EXERCISE_511,
@@ -302,7 +303,7 @@ const EXERCISE_580 = (
   <Mappers
     description = { QUES_580_DESC }
     isDynamic = { false }
-    moduleId = {5}
+    showEdit = { false }
     sectionId = {580}
   />
 )
@@ -312,6 +313,7 @@ const EXERCISE_590 = (
     description = { QUES_590_DESC }
     moduleId = {5}
     showLink = {false}
+    showEdit = { false }
   />
 )
 
@@ -438,7 +440,8 @@ export default class Module5 extends React.Component {
       module_id: 5,
       title: 'Conclusion',
       exercise: EXERCISE_590,
-      section_ids: [565] // if 565 is done, then this is done
+      section_ids: [565], // if 565 is done, then this is done
+      theEnd: true
     }
   ]
 
