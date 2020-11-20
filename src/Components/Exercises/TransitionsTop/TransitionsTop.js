@@ -34,6 +34,7 @@ export default function TransitionsTop(props) {
   const headings = ['Area', 'From', 'To']
   const fields = ['area', 'from', 'to']
   const selectedAttribute = 'from' // TODO, fix
+  const editFields = ['from', 'to']
 
   return <Top5ListCT
     {...props}
@@ -43,8 +44,8 @@ export default function TransitionsTop(props) {
     headings={headings}
     selectedAttribute={selectedAttribute}
     question_type={QUESTION_TYPE_TOP_TRANSITIONS}
+    editFields={editFields}
   />
-  
 }
 
 TransitionsTop.propTypes = {
