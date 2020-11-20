@@ -6,11 +6,12 @@ import { connect } from 'react-redux'
 import { Col, Row } from 'react-bootstrap'
 import { useRouteMatch } from "react-router-dom"
 
-const SectionNav = ({  moduleId, sectionId, subSections }) => {
+const SectionNav = ({ moduleId, sectionId, subSections }) => {
   const match = useRouteMatch();
   let { subSectionId = 0 } = match.params
   subSectionId = +subSectionId
 
+  console.log('>> sectionId', sectionId)
   const subSectionLink = (subSectionId, title) => (
     <NavLink to={`/modules/${moduleId}/section/${sectionId}/subsection/${subSectionId}`}>{title}</NavLink>
   )

@@ -1,6 +1,7 @@
 import React from 'react'
 import SectionExerciseCT from './SectionExerciseCT'
 import { Card } from 'react-bootstrap'
+import SectionId from '../Utils/SectionId'
 
 /* **************************************************
    Section
@@ -25,7 +26,7 @@ export default class Section extends React.Component {
       <div className="background">
         <Card>
           <Card.Header>
-            <Card.Title><div className="text-center">{number}. {sectionTitle}</div></Card.Title>
+            <Card.Title><div className="text-center"><SectionId sectionId={number}/> {sectionTitle}</div></Card.Title>
           </Card.Header>
 
           {isVisible && (

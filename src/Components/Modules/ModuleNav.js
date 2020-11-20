@@ -6,6 +6,7 @@ import { getUser } from '../../store/user/reducer'
 import { sectionLoadingAC } from '../../store/user/actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import SectionId from '../Utils/SectionId'
 
 const ModuleNav = ( { user, moduleId, sections, title, sectionLoading } ) => {
   const currentModule = +(user.curr_module)
@@ -35,7 +36,7 @@ const ModuleNav = ( { user, moduleId, sections, title, sectionLoading } ) => {
   return (
     <div className="card">
       <div className="card-header">
-        <h3>{title}</h3>
+        <h4>{title}</h4>
       </div>
       <div className="card-body ">
         <div className="table-full-width">
@@ -43,7 +44,7 @@ const ModuleNav = ( { user, moduleId, sections, title, sectionLoading } ) => {
               <tbody>
                 <tr>
                   <td className="text-left align-bottom">
-                    <h2></h2>
+                    <h4></h4>
                   </td>
                   <td className="text-left align-bottom">
                     <h4>
@@ -59,7 +60,7 @@ const ModuleNav = ( { user, moduleId, sections, title, sectionLoading } ) => {
                     return (
                       <tr key={section.id}>
                         <td className="text-left align-middle">
-                          <h2>{section.id}</h2>
+                          <h4><SectionId sectionId={section.id} /></h4>
                         </td>
                         <td className="text-left align-middle">
                           <h4>

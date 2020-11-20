@@ -42,7 +42,7 @@ const ModuleList = ( { user } ) => {
  
       <div className="card">
         <div className="card-header">
-          <h3>Modules</h3>
+          <h4>Modules</h4>
         </div>
         <div className="card-body ">
           <div className="table-full-width">
@@ -64,7 +64,7 @@ const ModuleList = ( { user } ) => {
                   { MODULES.map((mod) => (
                     <tr key={mod.id}>
                       <td className="text-left align-bottom">
-                        <h2>{mod.id}</h2>
+                        <h4>{mod.id}</h4>
                       </td>
                       <td className="text-left align-bottom">
                         <h4>
