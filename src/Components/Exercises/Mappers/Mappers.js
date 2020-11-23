@@ -21,12 +21,10 @@ import {
 } from '../../Modules/Module5'
 import { Card } from 'react-bootstrap'
 
-const Mappers = ({ moduleId, sectionId }) => {
-  const navIds = {moduleId, sectionId}
-
+const Mappers = () => {
   return (
     <div>
-      <SectionNav {...navIds}
+      <SectionNav
         subSections= {[
           {
             id: 565,
@@ -44,7 +42,7 @@ const Mappers = ({ moduleId, sectionId }) => {
           <Card.Body>
             <div className="container-fluid contain"> 
               <h5>Goals - I will need to change my beavior</h5>
-              <SectionNav {...navIds} 
+              <SectionNav
                 subSections= {[
                   { 
                     id: 560,
@@ -55,7 +53,7 @@ const Mappers = ({ moduleId, sectionId }) => {
               />
 
               <h5>Commitments</h5>
-              <SectionNav {...navIds} 
+              <SectionNav
                 subSections= {[
                   { 
                     id: 550,
@@ -75,7 +73,7 @@ const Mappers = ({ moduleId, sectionId }) => {
                 ]}
               />
 
-              <SectionNav {...navIds} 
+              <SectionNav 
                 subSections= {[
                   { 
                     id: 540,
@@ -97,9 +95,7 @@ const Mappers = ({ moduleId, sectionId }) => {
           <Card.Body>
             <div className="container-fluid contain">
               <h5>Focus Beyond Self</h5>
-              <SectionNav {...navIds} 
-                sectionId={sectionId}
-                moduleId={moduleId}
+              <SectionNav
                 subSections= {[
                   { 
                     id: 531,
@@ -119,7 +115,7 @@ const Mappers = ({ moduleId, sectionId }) => {
                 ]}
               />
             </div>
-          </Card.Body>  
+          </Card.Body>
         </Card>
       </div>
 
@@ -131,9 +127,7 @@ const Mappers = ({ moduleId, sectionId }) => {
           <Card.Body>
             <div className="container-fluid contain">
               <h5>My Meaning</h5>
-              <SectionNav {...navIds} 
-                sectionId={sectionId}
-                moduleId={moduleId}
+              <SectionNav
                 subSections= {[
                   { 
                     id: 520,
@@ -153,7 +147,7 @@ const Mappers = ({ moduleId, sectionId }) => {
                 ]}
               />
 
-              <SectionNav {...navIds} 
+              <SectionNav
                 subSections= {[
                   {
                     id: 511,
@@ -179,6 +173,4 @@ const Mappers = ({ moduleId, sectionId }) => {
 export default Mappers
 
 Mappers.propTypes = {
-  moduleId: PropTypes.number.isRequired,
-  sectionId: PropTypes.number.isRequired,
 }
