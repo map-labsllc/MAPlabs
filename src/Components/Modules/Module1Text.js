@@ -27,19 +27,7 @@ export const QUES_130_DESC = `Today you will do essentially the same exercise yo
 export const QUES_140_DESC = `Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your future desired state of being as you begin MAPmaker.  Create this description in your own image capturing how you want to feel, what you will think of your future situation, what will be good and bad, and how you would describe your future self to your current self.  The goal of this exercise is to ground you in deep self-reflection about your future possibilities, and to give you a sense of your future aspirations and how your future can differ from your current condition.  So be as honest, thorough, and descriptive as you can be.`
 
 
-export const QUES_150_DESC = `Review and compare the statement from Exercise 2E to the statement from Exercise 3E.  Look for ways in which the two statements reflect each other, and for ways in which they reflect differing things from each other, and record in your workbook.
-<br><br>
-As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is.
-<br><br>
-Which core feelings and experiences are most important to providing you with personal senses of the <i>meaning</i> in your life?
-<br><br>
-Name some <i>things beyond yourself</i> that you could serve if you lived with more of your core feelings and experiences.
-<br><br>
-List the areas of <i>personal growth</i> that will enable your life to be more filled with the core feelings and experiences you desire.
-<br><br>
-List which <i>relationships</i> that you either currently have or need to develop in the future (to any influence, such as people, groups, practices, experiences, etc.) are most important to supporting your life being lived with more of your core feelings and experiences.
-<br><br>
-List any areas of <i>engagement</i> or <i>mastery</i> (either in your life’s work or avocationally) that would provide you with more of your core feelings and experiences.`
+export const QUES_150_DESC = `Review and compare the statement from Exercise 2E to the statement from Exercise 3E.  Look for ways in which the two statements reflect each other, and for ways in which they reflect differing things from each other, and record in your workbook.`
 
 
 export const QUES_160_DESC = `Now let’s make this very concrete. Consider what needs to be 'broken from' in your current situation, what needs to be 'built toward' to create your desired future life, and fill in the following blanks.
