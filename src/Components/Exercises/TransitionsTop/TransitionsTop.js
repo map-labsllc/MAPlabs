@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Top5ListCT from '../Top5List/Top5ListCT'
 
 import { QUESTION_TYPE_TOP_TRANSITIONS} from '../../../store/answers/constants'
-import { IDX_FROM, IDX_TO, IDX_TRANSITION } from '../../../constants'
+import { IDX_FROM, IDX_SELECTED, IDX_TO, IDX_TRANSITION, SELECTED } from '../../../constants'
 import { hydrater, dehydrater } from '../../../store/answers/reducer'
 
 /* **************************************************
@@ -22,7 +22,8 @@ export default function TransitionsTop(props) {
   const answerShape = {
     [IDX_FROM]: 'from',
     [IDX_TO]: 'to',
-    [IDX_TRANSITION]: 'area'
+    [IDX_TRANSITION]: 'area',
+    [IDX_SELECTED]: SELECTED
   }
 
   // format answers for checkbox selector
