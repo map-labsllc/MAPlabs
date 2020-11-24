@@ -144,15 +144,11 @@ export const getNextModuleSection = ( userRD, currModuleNum, currSectionNum ) =>
 }
 
 // is this module the user's current section
-export const isCurrentSection = (currentModule, moduleNum, currentSection, sectionNum) => {
-  return currentModule === +moduleNum && currentSection === +sectionNum
-}
+export const isCurrentSection = (currentModule, moduleNum, currentSection, sectionNum) => currentModule === +moduleNum && currentSection === +sectionNum
 
 // can we show the next section
-export const showNextSection = (currentModule, moduleNum, currentSection, sectionNum) => {
-  return (currentModule < +moduleNum || 
+export const showNextSection = (currentModule, moduleNum, currentSection, sectionNum) => (currentModule < +moduleNum || 
     (currentModule === +moduleNum && currentSection > +sectionNum))
-}
 
 
 /* ***********************************************
@@ -178,25 +174,25 @@ export const userRD = ( state = initialState, action ) => {
       }
     }
     case FIRSTNAME_CHANGED:
-      let user = {
+      const user = {
         ...state.user,
         fname: payload,
       }
       return {...state, user}
     case LASTNAME_CHANGED:
-      let last = {
+      const last = {
         ...state.user,
         lname: payload,
       }
       return {...state, user:last}
     case EMAIL_CHANGED:
-      let email = {
+      const email = {
         ...state.user,
         email: payload,
       }
       return {...state, user:email }
     case PASSWORD_CHANGED:
-      let password = {
+      const password = {
         ...state.user,
         password:payload
       }

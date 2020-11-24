@@ -33,7 +33,7 @@ export default function Top5(props) {
   }
 
   const onChange = (e, attribute) => {
-    let value = e.target.value
+    const {value} = e.target
     const newData = {
       ...formData,
       [attribute]: value,

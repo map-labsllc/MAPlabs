@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'react-bootstrap'
+import { Alert, Button } from 'react-bootstrap'
 import { SELECTED } from '../../../constants'
 import InfluenceTop5 from './InfluenceTop5'
 import { UUID } from '../../Utils/UUID'
@@ -43,10 +43,7 @@ export default class InfluencesTop5 extends React.Component {
   state = {
     isDirty: false,
     allInfluencesWithKeys: this.uuid.addKeys(this.props.allInfluences),
-  }
-
-  // **********************************************
-  componentDidMount = () => {
+    message: ''
   }
 
   // **********************************************
@@ -56,11 +53,14 @@ export default class InfluencesTop5 extends React.Component {
     const { userId, onPersistCB, onCloseModalCB } = this.props
     const { isDirty, allInfluencesWithKeys } = this.state
 
-    if (isDirty)
-      onPersistCB(
-        userId,
-        this.uuid.stripKeys(allInfluencesWithKeys)
-      )
+    if (isDirty) {
+      onPersistCB(userId, this.uuid.stripKeys(allInfluencesWithKeys))
+    }
+
+    const notValid = true
+    if (notValid) {
+      this.setState({message: 'Please complete 5 supporting and 5 inhibiting influences.'})
+    }
 
     onCloseModalCB()
   }
@@ -72,11 +72,12 @@ export default class InfluencesTop5 extends React.Component {
     const { allInfluencesWithKeys } = this.state
 
     const newAllInfluencesWithKeys = allInfluencesWithKeys.map((influenceWithKey) =>
-      (influenceWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: newInfluence } : influenceWithKey)
+      ((influenceWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: newInfluence } : influenceWithKey))
 
     this.setState({
       isDirty: true,
       allInfluencesWithKeys: newAllInfluencesWithKeys,
+      message: ''
     })
   }
 
@@ -88,7 +89,7 @@ export default class InfluencesTop5 extends React.Component {
 
     const { impactFilter, instructions, isDynamic } = this.props
 
-    const { allInfluencesWithKeys } = this.state
+    const { allInfluencesWithKeys, message } = this.state
 
     // filter to just the influences matching the impactFilter
     const impactInfluencesWithKeys = allInfluencesWithKeys.filter(influenceWithKey =>
@@ -101,7 +102,7 @@ export default class InfluencesTop5 extends React.Component {
         influenceWithKey.item.selected === SELECTED
       )
       if (selectedInfluencesWithKeys.length === 0)
-        return <p>Not started.</p>
+        {return <p>Not started.</p>}
 
       return (
         <>
@@ -159,6 +160,11 @@ export default class InfluencesTop5 extends React.Component {
           </tbody>
         </table>
         
+        {message &&
+          <Alert variant="danger">
+            { message }
+          </Alert>
+        }
         <Button type="button" onClick={this.onclickClose}>Save</Button>
       </>
     )

@@ -42,15 +42,14 @@ export default class StrengthEmIm extends React.Component {
   }
 
   addReflection = () => {
-    let reflections = this.state.reflections || []
+    const reflections = this.state.reflections || []
     this.setState((prevState) => ({
       reflections: [...reflections, { reflection: '', effect: EFFECT_EMBODIMENT, id: reflections.length } ],
     }));
   }
 
-  handlePhraseChange = (idx) => {
-    return (e) => {
-      let reflections = [...this.state.reflections]
+  handlePhraseChange = (idx) => (e) => {
+      const reflections = [...this.state.reflections]
     
       reflections[idx].reflection = e.target.value
       this.setState((prevState) => ({
@@ -59,11 +58,9 @@ export default class StrengthEmIm extends React.Component {
       }))
       this.updateData()
     }
-  }
 
-  handleEIMChange = (idx) => {
-    return (effect) => {
-      let reflections = [...this.state.reflections]
+  handleEIMChange = (idx) => (effect) => {
+      const reflections = [...this.state.reflections]
       reflections[idx].effect = effect
       console.log("setting effect", idx, effect)
       this.setState((prevState) => ({ 
@@ -72,7 +69,6 @@ export default class StrengthEmIm extends React.Component {
       }))
       this.updateData()
     }
-  }
 
   render() {
     const { reflections } = this.state
@@ -99,8 +95,8 @@ export default class StrengthEmIm extends React.Component {
         <Form onSubmit={this.onSubmit} >
           <Container >
             { reflections ? reflections.map((reflection, idx) => {
-              let btnStyleEm = reflections[idx].effect === EFFECT_EMBODIMENT ? 'btn-fill' : ''
-              let btnStyleIm = reflections[idx].effect === EFFECT_IMPEDIMENT ? 'btn-fill' : ''
+              const btnStyleEm = reflections[idx].effect === EFFECT_EMBODIMENT ? 'btn-fill' : ''
+              const btnStyleIm = reflections[idx].effect === EFFECT_IMPEDIMENT ? 'btn-fill' : ''
 
               return (
                 <FormGroup as={Row} key={idx}>

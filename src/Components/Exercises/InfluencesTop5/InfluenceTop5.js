@@ -49,7 +49,7 @@ export default function Influence(props) {
   const { selected, relationship, name, belief, impact } = influence
 
   // static
-  if ( !isDynamic ) {
+  if (!isDynamic) {
     return (
       <tr>
         <td></td>
@@ -69,7 +69,7 @@ export default function Influence(props) {
           <input 
             onChange={onChange}
             type="checkbox" 
-            checked={selected.length!==0 ? true : false}
+            checked={selected.length!==0}
           />
         </Form>
       </td>

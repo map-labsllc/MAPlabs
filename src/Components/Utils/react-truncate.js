@@ -312,18 +312,18 @@ export default class Truncate extends Component {
   renderLine(line, i, arr) {
     if (i === arr.length - 1) {
       return <span key={i}>{line}</span>;
-    } else {
-      const br = <br key={i + 'br'} />;
+    } 
+      const br = <br key={`${i  }br`} />;
 
       if (line) {
         return [
           <span key={i}>{line}</span>,
           br
         ];
-      } else {
+      } 
         return br;
-      }
-    }
+      
+    
   }
 
   render() {
@@ -400,4 +400,4 @@ export default class Truncate extends Component {
       left: 0
     }
   };
-};
+}

@@ -2,16 +2,16 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 import { ProgressBar } from 'react-bootstrap'
+import { connect } from 'react-redux'
 import { MODULES } from './ModuleData'
 import { getUser } from '../../store/user/reducer'
-import { connect } from 'react-redux'
 
 const ModuleList = ( { user } ) => {
   const currentModule = +(user.curr_module)
   const currentSection = +(user.curr_section)
 
   const createLink = (moduleId, title) => {
-    let disabled = +(moduleId) > currentModule
+    const disabled = +(moduleId) > currentModule
 
     return (
       disabled ? <>{title}</> : 
@@ -25,12 +25,12 @@ const ModuleList = ( { user } ) => {
     if (moduleId > currentModule) { return 0 }
 
     // determine how many sections completed
-    let sectionCount  = MODULES.filter(m => m.id === +(moduleId))[0].sectionCount
+    const {sectionCount} = MODULES.filter(m => m.id === +(moduleId))[0]
 
     // this is a hack, but middle digit of section should correspond to where we are at
     let sectionPosition = `${currentSection}`.split('')[1]
     sectionPosition = +sectionPosition
-    let percentComplete = Math.floor(100 * (sectionPosition - 1)/sectionCount)
+    const percentComplete = Math.floor(100 * (sectionPosition - 1)/sectionCount)
 
     console.log('completion:', moduleId, currentSection, sectionPosition, sectionCount, 'completion', percentComplete)
     return percentComplete

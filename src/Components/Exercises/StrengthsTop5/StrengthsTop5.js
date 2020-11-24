@@ -28,7 +28,7 @@ export default function StrengthsTop5(props) {
   const { strengthOptions } = props
   // format answers for checkbox selector
   const hydrateAnswer = (answer) => {
-    let hydrated = hydrater(answerShape)(answer)
+    const hydrated = hydrater(answerShape)(answer)
   
     // add strength value to object
     return ({

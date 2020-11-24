@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import StrengthsEmImWrapper from './StrengthsEmImWrapper'
 import { getAnswers } from '../../../store/answers/reducer'
 import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
 import { QUESTION_TYPE_STRENGTH_EM_IM } from '../../../store/answers/constants'
-import { bindActionCreators } from 'redux';
 import { getUser } from '../../../store/user/reducer'
 import { IDX_STRENGTH,IDX_PHRASE, IDX_EFFECT } from '../../../constants'
 import { copyParentAnswers } from '../../../store/answers/actions'
@@ -28,14 +28,14 @@ const mapStateToProps = ( state, passedProps ) => {
   if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
 
   // get previous data, if any
-  let answerRecords = getAnswers( state.answersRD, question.code )
+  const answerRecords = getAnswers( state.answersRD, question.code )
   console.log(`BEFORE getAnswers(${question.code}): `, answerRecords )
 
   // filter to unique set of strength ids, reflections are adding in component
-  let strengths = []
-  let strengthIds = []
+  const strengths = []
+  const strengthIds = []
   answerRecords.map(answer => {
-    let strength_id = answer[IDX_STRENGTH]
+    const strength_id = answer[IDX_STRENGTH]
     if (!strengthIds.includes(strength_id)) {
       strengths.push(answer)
       strengthIds.push(strength_id)
@@ -95,7 +95,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
       const state = getState()
 
-      let answers = getAnswers(state.answersRD, question.code)
+      const answers = getAnswers(state.answersRD, question.code)
 
       const strength_id = newData.strength
       // store wants 2D array of strings, so map newData into that format
@@ -108,7 +108,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
             //  map reflections into individual rows
             newData.reflections.map((reflection) => {
-              let arr = []
+              const arr = []
               arr[IDX_STRENGTH] = newData.strength
               arr[IDX_PHRASE] = reflection.reflection
               arr[IDX_EFFECT] = reflection.effect

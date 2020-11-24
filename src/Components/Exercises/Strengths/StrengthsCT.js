@@ -48,7 +48,7 @@ const mapStateToProps = ( state, passedProps ) => {
 
   const strengthValues = getStrengths(state, question.code)
 
-  let strengths = strengthValues.map((value, key) => value[0])
+  const strengths = strengthValues.map((value, key) => value[0])
     .reduce((acc, v) => { acc.push(v); return acc }, [])
 
   console.log('StrengthsCT::Strengths: ', strengths)

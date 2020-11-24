@@ -1,5 +1,4 @@
 import React from 'react'
-import ModalX from './ModalX'
 import {
   Button,
   Checkbox,
@@ -9,6 +8,7 @@ import {
   FormControl,
   FormGroup,
 } from 'react-bootstrap'
+import ModalX from './ModalX'
 import ShowMoreLess from '../Utils/ShowMoreLess'
 // import '../../CSS/Section.css'
 import { sectionCompletedAC } from '../../store/user/actions'
@@ -66,8 +66,8 @@ export default class Popup extends React.Component {
   render() {
     // console.log("Popup::render()")
 
-    let { isVisible } = this.state
-    let { sectionTitle, exercise } = this.props
+    const { isVisible } = this.state
+    const { sectionTitle, exercise } = this.props
 
     // Link the <exersise> to this instance of the Popup Component.
     //   - onCloseModalCB() is called when exercise completes to tell us to close ModalX

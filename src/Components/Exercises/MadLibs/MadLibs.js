@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { ListGroup, ListGroupItem } from 'react-bootstrap'
 import MadLib from "./MadLib"
 import QuestionsCT from "../../Framework/QuestionsCT"
-import { ListGroup, ListGroupItem } from 'react-bootstrap'
 import { QUESTION_TYPE_MADLIBS } from "../../../store/answers/constants"
 
 /* **************************************************
@@ -63,7 +63,7 @@ export default class MadLibs extends React.Component {
       )
     }
 
-    let MadLibComponents = madlibs.reduce((acc, madlib, idx) => {
+    const MadLibComponents = madlibs.reduce((acc, madlib, idx) => {
       acc.push(<MadLib id={idx} question={question} madlib={madlibs[idx]} onUpdateStoreCB={onUpdateStoreCB}/>)
       return acc
     }, [])

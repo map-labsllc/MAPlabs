@@ -4,9 +4,7 @@ import {
   ListGroup
 } from 'react-bootstrap'
 
-const Tips = () => {
-
-  return (
+const Tips = () => (
 
     <ListGroup id="0" accordian="true">
 
@@ -124,7 +122,6 @@ const Tips = () => {
 
     </ListGroup>
   )
-}
 
 const style = {
   TipText: { padding: '1em' },

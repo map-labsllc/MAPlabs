@@ -4,20 +4,20 @@ import { Route, Redirect, withRouter } from "react-router-dom";
 import { isLoggedIn } from '../../store/user/reducer'
 
 const PrivateRoute = ({ component, isAuthenticated, authCheckPending, ...rest }) => {
-  let ComponentToRender = component;
+  const ComponentToRender = component;
 
   return (
     <Route
       {...rest}
       render={props =>
-        isAuthenticated || authCheckPending ? 
+        (isAuthenticated || authCheckPending ? 
           ( <ComponentToRender {...props} /> )
           : 
           (
             <Redirect
               to={{ pathname: "/login", state: { from: props.location } }}
             />
-          )
+          ))
       }
     />
   );

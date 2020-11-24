@@ -45,7 +45,7 @@ export default class Strength extends React.Component {
     const { strength } = this.state
     const { isDynamic, strengthOptions } = this.props
 
-    let strengthValue = listIdToValue(strengthOptions, strength)
+    const strengthValue = listIdToValue(strengthOptions, strength)
     if (!isDynamic) {
       return (
         <>

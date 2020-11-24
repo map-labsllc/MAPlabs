@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
-import { getUser } from '../../store/user/reducer'
 import { connect } from 'react-redux'
 import { Col, Row } from 'react-bootstrap'
 import { useRouteMatch } from "react-router-dom"
+import { getUser } from '../../store/user/reducer'
 
 const SectionNav = ({ subSections }) => {
   const match = useRouteMatch();
@@ -13,14 +13,12 @@ const SectionNav = ({ subSections }) => {
   
   const { moduleId, sectionId } = match.params
 
-  console.log(moduleId, sectionId)
-  console.log('>> sectionId', subSectionId)
   const subSectionLink = (subSectionId, title) => (
     <NavLink to={`/modules/${moduleId}/section/${sectionId}/subsection/${subSectionId}`}>{title}</NavLink>
   )
 
   const displaySubSection = (subSectionId) => {
-    let selected = subSections.filter((section, idx) => section.id === subSectionId).shift() 
+    const selected = subSections.filter((section, idx) => section.id === subSectionId).shift() 
     return selected && selected.exercise ? selected.exercise : ''
   }
 

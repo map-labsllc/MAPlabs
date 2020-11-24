@@ -48,7 +48,7 @@ export default class ShowMoreLess extends Component {
 
   toggleLines = event => {
     event.preventDefault()
-    var _self = this
+    const _self = this
     this.setState( {
       expanded: !this.state.expanded
     }, () => {

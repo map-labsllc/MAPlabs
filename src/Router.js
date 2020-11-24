@@ -12,9 +12,7 @@ import ForgotPassword from './Components/User/ForgotPassword'
 import Dashboard from './Components/Framework/Dashboard'
 import PrivateRoute from './Components/User/PrivateRoute'
 
-const Router = () => {
-
-  return (
+const Router = () => (
     <Switch>
       <Route exact path='/splash' component={SplashPage} />
       <Route exact path='/login' component={Login} />
@@ -31,6 +29,5 @@ const Router = () => {
       <Route path='/' component={HomePage} />
     </Switch>
   )
-}
 
 export default Router

@@ -52,10 +52,10 @@ export default class Transitions extends React.Component {
     const { transitionsWithKeys } = this.state
 
     // add transition area here
-    let area = question.text
+    const area = question.text
 
     const newTransitionsWithKeys = transitionsWithKeys.map(transitionWithKey =>
-      (transitionWithKey.key === key) ? { key: key, item: {area, ...newTransition} } : transitionWithKey)
+      ((transitionWithKey.key === key) ? { key, item: {area, ...newTransition} } : transitionWithKey))
 
     onUpdateStoreCB(this.uuid.stripKeys(newTransitionsWithKeys))
     this.setState({ transitionsWithKeys: newTransitionsWithKeys })
@@ -96,8 +96,8 @@ export default class Transitions extends React.Component {
     const { number, question, isDynamic } = this.props
     const { transitionsWithKeys } = this.state
 
-    //console.log("transitionsWithKeys", transitionsWithKeys)
-    //console.log("this.props.previousTransitions", this.props.previousTransitions)
+    // console.log("transitionsWithKeys", transitionsWithKeys)
+    // console.log("this.props.previousTransitions", this.props.previousTransitions)
 
     if ( !isDynamic ) {
 
@@ -143,9 +143,9 @@ export default class Transitions extends React.Component {
   }
 }
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
 
 Transitions.propTypes = {
   question: PropTypes.shape( {
@@ -156,6 +156,6 @@ Transitions.propTypes = {
   isDynamic: PropTypes.bool,
 }
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////

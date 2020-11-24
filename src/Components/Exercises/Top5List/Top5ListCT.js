@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import Top5List from './Top5List'
 import { getAnswers } from '../../../store/answers/reducer'
 import { getUser } from '../../../store/user/reducer'
 import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
-import { bindActionCreators } from 'redux';
 import { IDX_DEFAULT, IDX_SELECTED, SELECTED } from '../../../constants'
 import { hydrater, dehydrater } from '../../../store/answers/reducer'
 
@@ -44,11 +44,10 @@ const mapStateToProps = (state, passedProps) => {
   // sort based on selectedAttribute
   const compare = (a,b) => {
     if (a[selectedAttribute] < b[selectedAttribute])
-      return -1;
-    else if (a[selectedAttribute] > b[selectedAttribute])
-      return 1;
-    else 
-      return 0;
+      {return -1;}
+    if (a[selectedAttribute] > b[selectedAttribute])
+      {return 1;}
+    return 0;
   }
 
   // validate params
@@ -59,7 +58,7 @@ const mapStateToProps = (state, passedProps) => {
 
   // find previous answers
   const answers = getAnswers(state.answersRD, question.code)
-  let selectedAnswers = answers.map(hydrateAnswer)
+  const selectedAnswers = answers.map(hydrateAnswer)
   console.log('selectedAnswers', selectedAnswers)
   
   // make array of answers for comparison values
@@ -119,8 +118,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     promptQuestionCode
     newData -- same format as the object that was passed down in props as "prompts"
   ******************************************** */
-  const onSave = (newData) => {
-    return async(dispatch, getState) => {
+  const onSave = (newData) => async(dispatch, getState) => {
       const state = getState()
       // get userId
       const userId = getUser( state.userRD ).id
@@ -141,11 +139,10 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
       // console.log('persistAnswersAC')
       await dispatch( persistAnswersAC( userId, question.code, question_type, twoDimArrayOfString ) )
     }
-  }
 
-  const onUpdate = (newData) => {
+  const onUpdate = (newData) => 
     // keep the store up to date
-    return async(dispatch, getState) => {
+     async(dispatch, getState) => {
       const state = getState()
       // get userId
       const userId = getUser( state.userRD ).id
@@ -160,7 +157,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
       await dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
     }
-  }
+  
 
   /* ****************************************
      The props being passed down

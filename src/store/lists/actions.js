@@ -9,7 +9,7 @@ const URL = process.env.REACT_APP_DB_URL
 export const listIdToValue = (list, id) => {
   if (!list) return undefined
   
-  let option = list.filter(option => +option.id === +id)
+  const option = list.filter(option => +option.id === +id)
   return option.length ? option[0].value : undefined
 }
 
@@ -25,9 +25,7 @@ export const loadListsAC = () => {
 
     return fetch(url)
     .then(response => response.json())
-    .then(data => {
-      return dispatch( { type: LISTS_LOAD, payload: data } )
-    })
+    .then(data => dispatch( { type: LISTS_LOAD, payload: data } ))
     .catch( ( error ) => {
       console.log( "FETCH ERROR", error )
       dispatch( { type: LISTS_ERROR_DB, payload: error } )

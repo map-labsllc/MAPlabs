@@ -16,11 +16,9 @@ const MultiLineString = ( props ) => {
 
    return (
     <>
-      {str.split('\n').map(function(para, key) {
-        return (
+      {str.split('\n').map((para, key) => (
           <p key={key}>{para}</p>
-        )
-      })}    
+        ))}    
     </>    
   )
 }

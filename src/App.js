@@ -21,8 +21,7 @@ class App extends Component {
     }
   }
 
-  render = () => {
-    return (
+  render = () => (
       <BrowserRouter>
         <div>
           <LoadUser />
@@ -42,7 +41,6 @@ class App extends Component {
         </div>
       </BrowserRouter>
     )
-  }
 }
 
 export default App

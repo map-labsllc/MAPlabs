@@ -31,7 +31,7 @@ import { UUID } from '../../Utils/UUID'
 ***************************************************** */
 
 
-///////////////////////////////////////////
+/// ////////////////////////////////////////
 export default class ShortAnswers extends React.Component {
 
   uuid = new UUID() // provides unique keys for <ShortAnswer> components
@@ -58,7 +58,7 @@ export default class ShortAnswers extends React.Component {
     const { answersWithKeys } = this.state
 
     const newAnswersWithKeys = answersWithKeys.map(answerWithKey =>
-      (answerWithKey.key === key) ? { key: key, item: newAnswer } : answerWithKey)
+      ((answerWithKey.key === key) ? { key, item: newAnswer } : answerWithKey))
 
     onUpdateStoreCB(this.uuid.stripKeys(newAnswersWithKeys))
     this.setState({ answersWithKeys: newAnswersWithKeys })
@@ -94,7 +94,7 @@ export default class ShortAnswers extends React.Component {
   // **********************************************
   // render!
   render() {
-    //console.log("ShortAnswers::render()")
+    // console.log("ShortAnswers::render()")
 
     const { number, question, isDynamic } = this.props
     const { answersWithKeys } = this.state
@@ -148,9 +148,9 @@ export default class ShortAnswers extends React.Component {
   }
 }
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
 
 ShortAnswers.propTypes = {
   question: PropTypes.shape( {
@@ -162,9 +162,9 @@ ShortAnswers.propTypes = {
   onUpdateAnswerCB: PropTypes.func, // required, injevted by <Popup>
 }
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
 
 const style = {
   h4: { marginTop: '1em' },

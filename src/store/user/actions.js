@@ -149,7 +149,7 @@ export const sectionCompletedAC = ( user, completedModuleNum, completedSectionNu
           moduleNum: nextModuleSectionObj.moduleNum,
           sectionNum: nextModuleSectionObj.sectionNum }
       } )
-      return //
+       //
     }
 
     else {
@@ -160,7 +160,7 @@ export const sectionCompletedAC = ( user, completedModuleNum, completedSectionNu
         type: USER_UPDATE_CURR_SECTION_NO_CHANGE,
         payload: { }
       } )
-      return //
+       //
     }
   }
 }
@@ -169,43 +169,31 @@ export const sectionCompletedAC = ( user, completedModuleNum, completedSectionNu
 /* ************************************************
 
 *************************************************** */
-export const firstNameChanged = ( text ) => {
-  return {
+export const firstNameChanged = ( text ) => ({
     type: FIRSTNAME_CHANGED,
     payload: text
-  }
-}
+  })
 
-export const lastNameChanged = ( text ) => {
-  return {
+export const lastNameChanged = ( text ) => ({
     type: LASTNAME_CHANGED,
     payload: text
-  }
-}
+  })
 
-export const emailChanged = ( text ) => {
-  return {
+export const emailChanged = ( text ) => ({
     type: EMAIL_CHANGED,
     payload: text
-  }
-}
+  })
 
-export const passwordChanged = ( text ) => {
-  return {
+export const passwordChanged = ( text ) => ({
     type: PASSWORD_CHANGED,
     payload: text
-  }
-}
+  })
 
-export const authCheckComplete = (  ) => {
-  return {
+export const authCheckComplete = (  ) => ({
     type: AUTH_CHECK_COMPLETE
-  }
-}
+  })
 
-export const setPersistedUser = ( fireBaseUser ) => {
-
-  return async ( dispatch ) => {
+export const setPersistedUser = ( fireBaseUser ) => async ( dispatch ) => {
     const jwt = await fireBaseUser.getIdToken()
 
     await fetch( `${URL}/users/`, {
@@ -218,15 +206,12 @@ export const setPersistedUser = ( fireBaseUser ) => {
       console.log('userFromDatabase', userFromDatabase)
       loginUserSuccess( dispatch, userFromDatabase )
     } )
-    .catch( function(){
+    .catch( () => {
       loginUserFail( dispatch )
     })
   }
-}
 
-export const forgotPassword = ({ email }) => {
-
-  return async ( dispatch ) => {
+export const forgotPassword = ({ email }) => async ( dispatch ) => {
     dispatch( { type: FORGOT_PASSWORD } ) 
 
     await firebase.auth().sendPasswordResetEmail(email).then(() => {
@@ -238,18 +223,15 @@ export const forgotPassword = ({ email }) => {
       }) 
     })
   }
-}
 
-export const loginUser = ( { email, password}  ) => {
-
-  return async ( dispatch ) => {
+export const loginUser = ( { email, password}  ) => async ( dispatch ) => {
 
     // clear error
     dispatch( { type: LOGIN_USER } ) 
 
     await firebase.auth().signInWithEmailAndPassword( email, password )
-    //user is nested in an object
-    //alias as fireBaseUser to avoid overloaded term user
+    // user is nested in an object
+    // alias as fireBaseUser to avoid overloaded term user
     .then ( async ( { user: fireBaseUser } ) => {
       const jwt = await fireBaseUser.getIdToken()
 
@@ -264,11 +246,10 @@ export const loginUser = ( { email, password}  ) => {
           .then(response => response.json())
           .then(data => loginUserSuccess(dispatch, data))
         } )
-        .catch( function(){
+        .catch( () => {
           loginUserFail( dispatch )
         } )
   }
-}
 
 const loginUserFail = ( dispatch ) => {
   dispatch( {
@@ -286,13 +267,13 @@ const loginUserSuccess = async( dispatch, user ) => {
 
 
 export const signUpUser = ( user ) => {
-  let payload = user
-  let { email, password } = user
+  const payload = user
+  const { email, password } = user
 
   return async ( dispatch ) => {
 
-    //firebase sends back a user but we do not use it here.
-    //user and jwt are taken from result of onAuthStateChanged
+    // firebase sends back a user but we do not use it here.
+    // user and jwt are taken from result of onAuthStateChanged
     await firebase
       .auth()
       .createUserWithEmailAndPassword( email, password )
@@ -315,7 +296,7 @@ export const signUpUser = ( user ) => {
                   headers:{"Content-Type":"application/json",
                   Authorization: `Token: ${jwt}`
                 },
-                body: body
+                body
               })
               .then(checkResponse)
               .then(response => response.json())
@@ -345,23 +326,19 @@ export const signUpUser = ( user ) => {
   }
 }
 
-export const userLogout = (  ) => {
-  return async ( dispatch ) => {
-    firebase.auth().signOut().then(function() {
+export const userLogout = (  ) => async ( dispatch ) => {
+    firebase.auth().signOut().then(() => {
       localStorage.clear()
 
       dispatch( {
         type: LOGOUT,
       } )
-    }).catch(function(error) {
+    }).catch((error) => {
       console.error('logoutUser error', error)
     })
   }
-}
 
-export const getUserJwt = () => {
-
-  return async ( dispatch ) => {
+export const getUserJwt = () => async ( dispatch ) => {
     // fresh token
     await firebase.auth().onAuthStateChanged( async( fireBaseUser ) => {
       if ( fireBaseUser ) {
@@ -377,4 +354,3 @@ export const getUserJwt = () => {
     return JSON.parse(localStorage.getItem('jwt'))
 
   }
-}

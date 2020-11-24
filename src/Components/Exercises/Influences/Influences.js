@@ -67,14 +67,14 @@ export default class Influences extends React.Component {
     const { isDirty, influencesWithKeys } = this.state
 
     if (isDirty)
-      onPersistCB(
+      {onPersistCB(
         userId,
         {
           [GROUP_PERSONAL]: this.uuid.stripKeys(influencesWithKeys[GROUP_PERSONAL]),
           [GROUP_SOCIAL]:   this.uuid.stripKeys(influencesWithKeys[GROUP_SOCIAL]),
           [GROUP_WIDER]:    this.uuid.stripKeys(influencesWithKeys[GROUP_WIDER]),
         }
-      )
+      )}
 
     onCloseModalCB()
   }
@@ -137,7 +137,7 @@ export default class Influences extends React.Component {
     const { influencesWithKeys } = this.state
 
     const newGroupInfluencesWithKeys = influencesWithKeys[groupId].map((influenceWithKey) =>
-      (influenceWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: newInfluence } : influenceWithKey)
+      ((influenceWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: newInfluence } : influenceWithKey))
 
     this.setState({
       isDirty: true,

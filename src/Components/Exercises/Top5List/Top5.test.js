@@ -10,7 +10,7 @@ import Top5 from './Top5'
 Enzyme.configure( { adapter: new Adapter() } )
 chai.use( chaiEnzyme() )
 
-const shallow = Enzyme.shallow
+const {shallow} = Enzyme
 const { expect } = chai
 
 const props = {
@@ -22,13 +22,13 @@ const props = {
 describe('<Top5 />', () => {
     it('renders field attribute when not isDynamic', () => {
         const wrapper = shallow( <Top5 {...props} isDynamic={false}/> )
-        let field = props.fields[0]
+        const field = props.fields[0]
         expect(wrapper.find('tr').contains([<td>{ props.data[field] }</td>]))
     })
 
     it( 'renders checkbox and field attribute',  () => {
         const wrapper = shallow( <Top5 {...props} isDynamic={true}/> )
-        let field = props.fields[0]
+        const field = props.fields[0]
         expect(wrapper.exists({ type: 'checkbox' }))
         expect(wrapper.find('tr').contains([<td>{ props.data[field] }</td>]))
     } )

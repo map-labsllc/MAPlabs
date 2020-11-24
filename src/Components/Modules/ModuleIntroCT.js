@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import ModuleIntro from './ModuleIntro'
 import { getUser } from '../../store/user/reducer'
 import { sectionCompletedAC } from '../../store/user/actions'
-import { bindActionCreators } from 'redux';
 
 /* *****************************************
    mapStateToProps()
@@ -25,20 +25,18 @@ const mapStateToProps = ( state, passedProps ) => {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
 
 /* *****************************************
    mapDispatchToProps()
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => {
-  return {
+const mapDispatchToProps = ( dispatch, passedProps ) => ({
     sectionCompletedCB: bindActionCreators(sectionCompletedAC, dispatch)
-  }
-}
+  })
 
 export default connect(
   mapStateToProps,

@@ -28,29 +28,29 @@ const initialState = {
 }
 
 // helpers for switching between array and object format
-export const hydrater = (shape) => {
+export const hydrater = (shape) => 
   // shape = {key: attr, ...}
-  return (answer) => (
+   (answer) => (
     // answer = ['value1', 'value2']
     Object.keys(shape).reduce((obj, key) => {
-      let attr = shape[key]
+      const attr = shape[key]
       obj[attr] = answer[key]
       return obj
     }, {})
   )
-}
 
-export const dehydrater = (shape) => {
+
+export const dehydrater = (shape) => 
   // shape = {key: attr, ...}
-  return (item) => (
+   (item) => (
     // item = {attr1: value1, attr2: value2}
     Object.keys(shape).reduce((arr, key) => {
-      let attr = shape[key]
+      const attr = shape[key]
       arr[key] = item[attr]
       return arr
     }, [])
   )
-}
+
 
 
 /* ***********************************************
@@ -79,15 +79,16 @@ export const getAnswers = ( state, question_code ) =>
     //   used when switching users.
     case ANSWERS_LOADING:
       // console.log( "answersRD::LOADING" )
+      // Payload, 2D array of strings:
+      //  {
+      //    1: [ [ 'narrative, so only one answer' ] ],
+      //    2: [ [ 'from', 'to' ],
+      //         [ 'east', 'west' ]
+      //       ]
+      //  }
       return initialState
 
-    // Payload, 2D array of strings:
-    //  {
-    //    1: [ [ 'narrative, so only one answer' ] ],
-    //    2: [ [ 'from', 'to' ],
-    //         [ 'east', 'west' ]
-    //       ]
-    //  }
+
     case ANSWERS_LOAD:
       // console.log( "answersRD::LOAD" )
       return {

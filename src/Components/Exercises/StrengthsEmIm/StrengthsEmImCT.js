@@ -23,7 +23,7 @@ const mapStateToProps = ( state, props ) => {
   // validate params
   if ( !question || !question.code ) throw new Error( "missing question code: ", props.question_code )
 
-  let strength_id = strength[IDX_STRENGTH]
+  const strength_id = strength[IDX_STRENGTH]
   let reflections = []
 
   // get all the records with this strength_id
@@ -39,12 +39,10 @@ const mapStateToProps = ( state, props ) => {
 
     // REFLECTIONS array
     // ----------------
-    reflections = answerRecords.map((record, i) => {
-      return { 
+    reflections = answerRecords.map((record, i) => ({ 
         reflection: record[IDX_PHRASE],
         effect: record[IDX_EFFECT]
-      }
-    })
+      }))
   }
 
   return {
@@ -60,11 +58,7 @@ const mapStateToProps = ( state, props ) => {
    mapDispatchToProps()
    props -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, props ) => {
-
-  return {}
-
-}
+const mapDispatchToProps = ( dispatch, props ) => ({})
 
 export default connect(
   mapStateToProps,

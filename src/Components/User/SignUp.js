@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signUpUser } from '../../store/user/actions'
 import { Redirect, Link } from 'react-router-dom'
+import { signUpUser } from '../../store/user/actions'
 import FormCard from '../layout/FormCard'
 import { isLoggedIn } from '../../store/user/reducer'
 
@@ -23,11 +23,11 @@ class SignUp extends Component {
 
   userSignup = e => {
     e.preventDefault()
-    let { fname, lname, email, password, verify_password } = this.state
+    const { fname, lname, email, password, verify_password } = this.state
 
     if (!password || password !== verify_password || !verify_password) {
       this.setState({
-        passwordClasses: this.state.passwordClasses + ' is-invalid',
+        passwordClasses: `${this.state.passwordClasses  } is-invalid`,
         passwordIsValid: false
       })
 
@@ -39,7 +39,7 @@ class SignUp extends Component {
         passwordClasses: 'form-control',
       })
 
-      let newUser = { fname, lname, email, password }
+      const newUser = { fname, lname, email, password }
       this.props.signUpUser(newUser)
     }
   }

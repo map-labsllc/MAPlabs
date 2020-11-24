@@ -63,7 +63,7 @@ const mapStateToProps = (state, passedProps) => {
 
   const strengthOptions = state.listsRD.lists.strengths
   const hydrateAnswer = (answer) => {
-    let hydrated = hydrater(answerShape)(answer)
+    const hydrated = hydrater(answerShape)(answer)
     return ({
       strengthValue: listIdToValue(strengthOptions, answer[IDX_STRENGTH]), ...hydrated
     })

@@ -4,12 +4,9 @@ import StrengthsTop5 from './StrengthsTop5'
 /* *****************************************
    mapStateToProps()
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
-
-  return {
+const mapStateToProps = ( state, passedProps ) => ({
     strengthOptions: state.listsRD.lists.strengths
-  }
-}
+  })
 
 /* *****************************************
    mapDispatchToProps()

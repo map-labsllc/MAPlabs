@@ -106,7 +106,7 @@ export default function Influence( props )  {
         as="select"
       >
         <option value='' disabled hidden>-- select belief/value --</option>
-        {/*'key' added to suppress react warning*/}
+        {/* 'key' added to suppress react warning */}
         {beliefs.map((belief, idx) =>
           <option key={belief.id} value={belief.value}>{belief.value}</option>
         )}
@@ -129,7 +129,7 @@ export default function Influence( props )  {
   )
 }
 
-//export default Influence
+// export default Influence
 
 
 Influence.propTypes = {

@@ -1,11 +1,11 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import SectionProgress from '../Framework/SectionProgress'
 import { getUser } from '../../store/user/reducer'
 import { sectionLoadingAC } from '../../store/user/actions'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
 import SectionId from '../Utils/SectionId'
 
 const ModuleNav = ( { user, moduleId, sections, title, sectionLoading } ) => {
@@ -18,7 +18,7 @@ const ModuleNav = ( { user, moduleId, sections, title, sectionLoading } ) => {
     moduleId = +(moduleId)
     // console.log(currentModule, currentSection, moduleId, sectionId)
 
-    let show = 
+    const show = 
 
       // previous module
       moduleId < currentModule || 
@@ -93,10 +93,8 @@ const mapStateToProps = ( state, passedProps ) => {
   }
 }
 
-const mapDispatchToProps = ( dispatch, passedProps ) => {
-  return {
+const mapDispatchToProps = ( dispatch, passedProps ) => ({
     sectionLoading: bindActionCreators(sectionLoadingAC, dispatch)
-  }
-}
+  })
 
 export default connect( mapStateToProps, mapDispatchToProps)(ModuleNav)

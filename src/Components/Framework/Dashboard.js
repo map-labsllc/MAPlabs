@@ -1,8 +1,7 @@
 import React from 'react'
 // import { Col, Row, Card, Grid } from 'react-bootstrap'
 
-const Dashboard = () => {
-  return (
+const Dashboard = () => (
     <div style={style.backgroundDash}>
       <div style={style.title} className="text-center container-fluid">
         <h2>Dashboard</h2>
@@ -107,7 +106,6 @@ const Dashboard = () => {
     //   </Grid>
     // </div >
   )
-}
 
 const style = {
   backgroundDash: {

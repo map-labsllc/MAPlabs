@@ -87,9 +87,7 @@ export default class LifeDescriptors extends Component {
     } = this.props
     const { aOrB_Selections } = this.state
 
-    const sentences = Object.keys( aOrB_Selections ).map( ( idx ) => {
-      return this.makeSentence( lifeDescriptors[idx], aOrB_Selections[ idx ] )
-    } )
+    const sentences = Object.keys( aOrB_Selections ).map( ( idx ) => this.makeSentence( lifeDescriptors[idx], aOrB_Selections[ idx ] ) )
 
     onPersistCB( userId, sentences )
     onCloseModalCB()
@@ -134,9 +132,7 @@ export default class LifeDescriptors extends Component {
 
      return completed sentence - "My life does feel full of meaning"
   ************************************************* */
-  makeSentence = ( lifeDescriptor, aOrB ) => {
-    return lifeDescriptor.firstPart + ( aOrB === 'a' ? lifeDescriptor.a : lifeDescriptor.b ) + lifeDescriptor.lastPart
-  }
+  makeSentence = ( lifeDescriptor, aOrB ) => lifeDescriptor.firstPart + ( aOrB === 'a' ? lifeDescriptor.a : lifeDescriptor.b ) + lifeDescriptor.lastPart
   /* **********************************************
      render
   ************************************************* */
@@ -172,7 +168,7 @@ export default class LifeDescriptors extends Component {
 
     // Dynamic version of the exercise
     // -------------------------------
-    let thisPage = []
+    const thisPage = []
     const startIdx = page * NUM_PER_PAGE
     const endIdx = Math.min( ( ( page + 1 ) * NUM_PER_PAGE ), lifeDescriptors.length )
 
@@ -245,9 +241,9 @@ export default class LifeDescriptors extends Component {
   }
 }
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////
 
 const style = {
   right: {

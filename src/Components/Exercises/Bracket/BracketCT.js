@@ -1,6 +1,6 @@
+import { connect } from 'react-redux'
 import Bracket from './Bracket'
 
-import { connect } from 'react-redux'
 import { getAnswers } from '../../../store/answers/reducer'
 import { updateAnswersAC } from '../../../store/answers/actions'
  
@@ -55,7 +55,7 @@ function mapStateToProps( state, { promptQuestionCodes, question, isDynamic } ) 
 ******************************************** */
 function mapDispatchToProps( dispatch ) {
   return  {
-    onUpdateStoreCB: function( questionCode, prompts ) {
+    onUpdateStoreCB( questionCode, prompts ) {
 
       // store wants 2D array of strings, so map the array of strings into that format
       const twoDimArrayOfString = prompts.map(str => [str])

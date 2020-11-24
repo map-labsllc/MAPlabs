@@ -1,8 +1,8 @@
 import React, { useState} from 'react'
 import { connect } from 'react-redux'
-import { loginUser } from '../../store/user/actions'
 import { Redirect, Link } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
+import { loginUser } from '../../store/user/actions'
 import FormCard from '../layout/FormCard'
 import { isLoggedIn } from '../../store/user/reducer'
 

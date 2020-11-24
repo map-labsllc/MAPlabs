@@ -80,9 +80,7 @@ export default class Module3 extends React.Component {
   // -------------------------
   // Module 3: 4A
 
-  promptCodes_330 = this.brackets_320.reduce( ( acc, bracketCT ) => {
-    return [ ...acc, bracketCT.props.question.code ]
-  }, [ ] )
+  promptCodes_330 = this.brackets_320.reduce( ( acc, bracketCT ) => [ ...acc, bracketCT.props.question.code ], [ ] )
 
   bracket_330 = <BracketCT promptQuestionCodes = {this.promptCodes_330}  question = { { code: 330, text: "Make tradeoffs between each category." } } />
 

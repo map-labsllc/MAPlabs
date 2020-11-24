@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import { getAnswers } from '../../store/answers/reducer'
 import SectionCompleteButton from './SectionCompleteButton'
 import { getNextModuleSection, showNextSection, isCurrentSection } from '../../store/user/reducer'
-import PropTypes from 'prop-types'
 
 /* **************************************************
    SectionExercise component
@@ -31,7 +31,9 @@ class SectionExercise extends React.Component {
 
   // Complete
   onComplete = () => {
-    const { user, moduleNum, sectionNum, sectionCompletedCB} = this.props
+    const {
+      user, moduleNum, sectionNum, sectionCompletedCB
+    } = this.props
     sectionCompletedCB(user, moduleNum, sectionNum)
 
     this.setState({ isVisible: false })
@@ -47,11 +49,12 @@ class SectionExercise extends React.Component {
   // **************************************************
   // render!
   render() {
-
-    let { isVisible } = this.state
-    const { user, sectionNum, moduleNum, answersRD, userRD, exercise, section_ids } = this.props
-    let currentModule = user.curr_module
-    let currentSection = user.curr_section
+    const { isVisible } = this.state
+    const {
+      user, sectionNum, moduleNum, answersRD, userRD, exercise, section_ids, showComplete = true
+    } = this.props
+    const currentModule = user.curr_module
+    const currentSection = user.curr_section
 
     // Link the <exercise> to this instance of the SectionExercise Component.
     //   - onCloseModalCB() is called when exercise completes to tell us to close ModalX
@@ -67,7 +70,7 @@ class SectionExercise extends React.Component {
 
     // show the Edit/Save button default to true
     const showEdit = exercise.props.showEdit === undefined ? true : exercise.props.showEdit
-    
+
     // very last exercise
     const theEnd = !!exercise.props.theEnd
 
@@ -87,10 +90,10 @@ class SectionExercise extends React.Component {
       if (section_ids) {
         return section_ids.some(childSectionId => getAnswers(answersRD, childSectionId).length)
       }
-      return false 
+      return false
     }
 
-    let buttonLabel = isStarted() ? 'Edit' : 'Start'
+    const buttonLabel = isStarted() ? 'Edit' : 'Start'
 
     const answersComplete = () => {
       if (answer.length > 0) {
@@ -104,13 +107,13 @@ class SectionExercise extends React.Component {
       }
 
       console.log('answersComplete false')
-      return false 
+      return false
     }
 
     // next Module in sequence
-    let next = getNextModuleSection(userRD, +moduleNum, +sectionNum)
-    let nextModule = next.moduleNum
-    let nextSection = next.sectionNum || 'intro'
+    const next = getNextModuleSection(userRD, +moduleNum, +sectionNum)
+    const nextModule = next.moduleNum
+    const nextSection = next.sectionNum || 'intro'
 
     return (
       <>
@@ -127,9 +130,11 @@ class SectionExercise extends React.Component {
                   { showEdit &&
                     <Button className="mr-5" type="button" onClick={this.onclickStart}>{buttonLabel}</Button>
                   }
-                  <span className="ml-5">
-                    { answersComplete(answer) && <SectionCompleteButton onClick={this.onComplete} /> }
-                  </span>
+                  { showComplete &&
+                    <span className="ml-5">
+                      { answersComplete(answer) && <SectionCompleteButton onClick={this.onComplete} /> }
+                    </span>
+                  }
                 </div>
               }
 
@@ -143,7 +148,7 @@ class SectionExercise extends React.Component {
           </>
         )}
 
-        {/* display the exercise */ }  
+        {/* display the exercise */ }
         {isVisible && (
           <>
             <div>

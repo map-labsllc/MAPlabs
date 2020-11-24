@@ -1,5 +1,6 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
+import { Card } from 'react-bootstrap'
 import SectionNav from '../../Framework/SectionNav'
 import {
     EXERCISE_510,
@@ -19,10 +20,8 @@ import {
     EXERCISE_552,
     EXERCISE_560,
 } from '../../Modules/Module5'
-import { Card } from 'react-bootstrap'
 
-const Mappers = () => {
-  return (
+const Mappers = () => (
     <div>
       <SectionNav
         subSections= {[
@@ -168,7 +167,6 @@ const Mappers = () => {
 
     </div>
   )
-}
 
 export default Mappers
 

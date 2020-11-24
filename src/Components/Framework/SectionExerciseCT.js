@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import SectionExercise from './SectionExercise'
 import { getUser } from '../../store/user/reducer'
 import { sectionCompletedAC } from '../../store/user/actions'
 import { persistAnswersAC } from '../../store/answers/actions'
-import { bindActionCreators } from 'redux'
 
 /* *****************************************
    mapStateToProps()
@@ -33,21 +33,19 @@ const mapStateToProps = ( state, passedProps ) => {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
 
 /* *****************************************
    mapDispatchToProps()
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => {
-  return {
+const mapDispatchToProps = ( dispatch, passedProps ) => ({
     onPersistQuestionCB: bindActionCreators(persistAnswersAC, dispatch),
     sectionCompletedCB: bindActionCreators(sectionCompletedAC, dispatch)
-  }
-}
+  })
 
 export default connect(
   mapStateToProps,

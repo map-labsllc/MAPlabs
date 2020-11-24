@@ -24,10 +24,10 @@ function loadstaticJSON( section ) {
   // console.log( `loadstaticJSON: ${url}` );
   return fetch( url )
     .then( response => response.json() )
-    .then( ( jsonData ) => {
+    .then( ( jsonData ) => 
       // console.log(section, jsonData)
-      return { section, jsonData }
-    } )
+       ({ section, jsonData })
+     )
     .catch( ( error ) => {
       console.log( "FETCH ERROR", error )
       return Promise.reject( error )
@@ -40,10 +40,10 @@ function loadstaticJSON( section ) {
    Load all staticdata from the json files in the backend /public directory.
    Called by NavBar::onComponentDidMount()
 ******************************************************** */
-export const loadAllStaticdataAC = () => {
+export const loadAllStaticdataAC = () => 
   // console.log( "loadAC()" )
 
-  return async dispatch => {
+   async dispatch => {
     dispatch( { type: STATICDATA_LOADING } )
 
     const p1 = loadstaticJSON( LIFEDESCRIPTIONS_FN )
@@ -57,12 +57,12 @@ export const loadAllStaticdataAC = () => {
         payload[result[0].section] = result[0].jsonData
 
         dispatch( { type: STATICDATA_LOAD, payload } )
-        return //
+         //
       } )
       .catch( ( error ) => {
         console.log( "PROMISE.ALL ERROR", error )
         dispatch( { type: STATICDATA_ERROR_DB, payload: error } )
-        return //
+         //
       } )
   }
-}
+

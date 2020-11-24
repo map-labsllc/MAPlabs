@@ -1,9 +1,9 @@
 import React, { useState} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { forgotPassword } from '../../store/user/actions'
 import { Link } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
+import { forgotPassword } from '../../store/user/actions'
 import FormCard from '../layout/FormCard'
 
 const ForgotPassword = ({ errorMessage, message, forgotPassword }) => {

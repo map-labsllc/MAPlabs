@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import firebase from 'firebase'
-import { authCheckComplete, setPersistedUser } from '../../store/user/actions'
 import { bindActionCreators } from 'redux'
+import { authCheckComplete, setPersistedUser } from '../../store/user/actions'
 
 const LoadUser = ({ setPersistedUser }) => {
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log('setPersistedUser fired', user)
         setPersistedUser(user)
@@ -31,8 +31,6 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-const mapStateToProps = state => {
-  return {}
-}
+const mapStateToProps = state => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoadUser)

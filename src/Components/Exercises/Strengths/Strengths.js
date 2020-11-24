@@ -67,7 +67,7 @@ class Strengths extends React.Component {
 
   // update individual strength in list of strengths
   updateStrengthCB = (index, value) => {
-    let strengths = [...this.state.strengths.slice(0, index), value, ...this.state.strengths.slice(index + 1)]
+    const strengths = [...this.state.strengths.slice(0, index), value, ...this.state.strengths.slice(index + 1)]
     this.setState({
       isDirty: true, 
       strengths

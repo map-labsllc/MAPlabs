@@ -25,7 +25,6 @@ import {
    passedProps:
       question -- { code: 50, text: "question 50" }
       promptQuestionCode -- where to get the list of influences to choose from
-      outputQuestionCode -- where to output the madlibs
       impactFilter -- filter the influences to IMPACT_SUPPORTIVE or IMPACT_INHIBITING
       instructions
       isDynamic -- undefined - rendering static version in <Popup>
@@ -55,17 +54,17 @@ const mapStateToProps = ( state, passedProps ) => {
 
   let allInfluences = answerRecords.map(record => (
     {
-      group:        record[IDX_GROUP],
+      group: record[IDX_GROUP],
       relationship: record[IDX_RELATIONSHIP],
-      name:         record[IDX_NAME],
-      belief:       record[IDX_BELIEF],
-      impact:       record[IDX_IMPACT],
-      selected:     record[IDX_SELECTED],
+      name: record[IDX_NAME],
+      belief: record[IDX_BELIEF],
+      impact: record[IDX_IMPACT],
+      selected: record[IDX_SELECTED],
     })
   )
 
   allInfluences = allInfluences.sort((a, b) =>
-      a.name.localeCompare(b.name))
+    a.name.localeCompare(b.name))
 
   console.log('InfluencesTop5CT::influences: ', allInfluences)
 

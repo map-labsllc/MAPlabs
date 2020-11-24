@@ -5,9 +5,7 @@ import { connect } from 'react-redux'
 import Tips from './Tips'
 import { isLoggedIn } from '../../store/user/reducer'
 
-const InfoPage = ({ user, isLoggedIn }) => {
-
-  return (
+const InfoPage = ({ user, isLoggedIn }) => (
     <div className="reading-wrapper">
       <div className="container-fluid text-center reading">
 
@@ -67,7 +65,6 @@ const InfoPage = ({ user, isLoggedIn }) => {
       </div >
     </div >
   )
-}
 
 const mapStateToProps = state => {
   const { user } = state.userRD

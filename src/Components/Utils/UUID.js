@@ -2,9 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export class UUID {
   // get new UUID
-  getUUID = () => {
-    return uuidv4()
-  }
+  getUUID = () => uuidv4()
 
   // make a new itemWithKey
   getNewItemWithKey = item => ( { key: this.getUUID(), item } )

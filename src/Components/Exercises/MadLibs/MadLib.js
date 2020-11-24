@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { MadLibHtml } from './MadLibHtml'
-
 import {
   Form,
   FormControl,
   FormLabel
 } from 'react-bootstrap'
+import { MadLibHtml } from './MadLibHtml'
+
 
 const Label = FormLabel
 
@@ -54,7 +54,7 @@ export default function MadLib(props) {
     e.preventDefault()
 
     // get data from state variables
-    let data = { name,
+    const data = { name,
       action,
       belief,
       emotion,

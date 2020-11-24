@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { Button } from 'react-bootstrap'
-import { getUser } from '../../store/user/reducer'
 import { connect } from 'react-redux'
+import { getUser } from '../../store/user/reducer'
 import { sectionCompletedAC } from '../../store/user/actions'
 
 const SectionCompleteButton = ( { user, onClick } ) => {

@@ -10,7 +10,7 @@ import Bracket from './Bracket'
 Enzyme.configure( { adapter: new Adapter() } )
 chai.use( chaiEnzyme() )
 
-const shallow = Enzyme.shallow
+const {shallow} = Enzyme
 const { expect } = chai
 
 const props = {
@@ -56,8 +56,8 @@ describe( '<Bracket /> with isDynamic=true', () => {
     // } )
     it( 'renders question.text in a p with id question.code',  () => {
         const wrapper = shallow( <Bracket {...props} isDynamic={true}/> )
-        expect( wrapper.find( 'p#question' + props.question.code ) ).to.have.lengthOf( 1 )
-        expect( wrapper.find( 'p#question' + props.question.code ).text() ).to.equal( props.question.text )
+        expect( wrapper.find( `p#question${  props.question.code}` ) ).to.have.lengthOf( 1 )
+        expect( wrapper.find( `p#question${  props.question.code}` ).text() ).to.equal( props.question.text )
     } )
     it( 'renders two children in a p with prompts class if isDynamic',  () => {
         const wrapper = shallow( <Bracket {...props} isDynamic={true}/> )
@@ -70,16 +70,16 @@ describe( '<Bracket /> with isDynamic=true', () => {
         const firstChild = prompts.childAt( 0 )
         const secondChild = prompts.childAt( 1 )
 
-        //check initial values of children
+        // check initial values of children
         expect( firstChild.text() ).to.equal( props.prompts[0] )
         expect( secondChild.text() ).to.equal( props.prompts[1] )
 
-        //click first child
+        // click first child
         firstChild.simulate( "click", {} )
 
-        //expect first child is still first child
+        // expect first child is still first child
         expect( wrapper.find( '.prompts' ).childAt( 0 ).text() ).to.equal( props.prompts[0] )
-        //expect second child third prompt
+        // expect second child third prompt
         expect( wrapper.find( '.prompts' ).childAt( 1 ).text() ).to.equal( props.prompts[2] )
     } )
     it( 'handles click on second prompt and re-renders with second prompt in place of first, and new prompt in place of second',  () => {
@@ -89,15 +89,15 @@ describe( '<Bracket /> with isDynamic=true', () => {
         const firstChild = prompts.childAt( 0 )
         const secondChild = prompts.childAt( 1 )
 
-        //check initial values of children
+        // check initial values of children
         expect( firstChild.text() ).to.equal( props.prompts[0] )
         expect( secondChild.text() ).to.equal( props.prompts[1] )
 
         secondChild.simulate( "click", {} )
 
-        //expect first child is prior second child
+        // expect first child is prior second child
         expect( wrapper.find( '.prompts' ).childAt( 0 ).text() ).to.equal( props.prompts[1] )
-        //expect second child is third prompt
+        // expect second child is third prompt
         expect( wrapper.find( '.prompts' ).childAt( 1 ).text() ).to.equal( props.prompts[2] )
     } )
     // it( 'invokes onUpdateStoreCB with the userId, promptCode, prompts when a prompt is clicked',  () => {

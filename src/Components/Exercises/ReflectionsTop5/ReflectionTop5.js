@@ -58,7 +58,7 @@ export default function ReflectionTop5(props) {
           <input 
             onChange={onChange}
             type="checkbox" 
-            checked={selected ? true : false}
+            checked={!!selected}
           />
         </Form>
       </td>

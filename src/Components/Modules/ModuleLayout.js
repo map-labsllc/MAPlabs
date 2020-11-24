@@ -1,11 +1,11 @@
 import React from 'react'
 
+import { Alert } from 'react-bootstrap'
 import ModuleCT from '../Framework/ModuleCT'
 import SectionCT from '../Framework/SectionCT'
 
 import ModuleNav from './ModuleNav'
 import ModuleIntroCT from './ModuleIntroCT'
-import { Alert } from 'react-bootstrap'
 
 const ModuleWrapper = ( {moduleId, title, description, sectionId, sections} ) => {
 

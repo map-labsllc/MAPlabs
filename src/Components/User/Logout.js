@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux'
 
 import { Button } from 'react-bootstrap'
 import { PropTypes } from 'prop-types'
+import { createBrowserHistory } from 'history';
 import FormCard from '../layout/FormCard'
 import { userLogout } from '../../store/user/actions'
-import { createBrowserHistory } from 'history';
 import { isLoggedIn } from '../../store/user/reducer'
 
 export const browserHistory = createBrowserHistory();

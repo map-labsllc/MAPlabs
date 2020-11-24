@@ -1,6 +1,6 @@
 import React from 'react'
-import SectionExerciseCT from './SectionExerciseCT'
 import { Card } from 'react-bootstrap'
+import SectionExerciseCT from './SectionExerciseCT'
 import SectionId from '../Utils/SectionId'
 
 /* **************************************************

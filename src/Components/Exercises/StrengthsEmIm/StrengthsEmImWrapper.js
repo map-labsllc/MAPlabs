@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { ListGroup, ListGroupItem } from 'react-bootstrap'
 import StrengthsEmImCT from "./StrengthsEmImCT"
 import QuestionsCT from "../../Framework/QuestionsCT"
-import { ListGroup, ListGroupItem } from 'react-bootstrap'
 import { QUESTION_TYPE_STRENGTH } from "../../../store/answers/constants"
 import { listIdToValue } from "../../../store/lists/actions"
 
@@ -27,7 +27,7 @@ export default class StrengthsEmImWrapper extends React.Component {
   }
 
   async componentDidMount() {
-    let { copyParentAnswersCB, strengths } = this.props
+    const { copyParentAnswersCB, strengths } = this.props
     if (!strengths.length && !this.state.strengthsSet) {
       console.log('answers not set, copying parent')
       await copyParentAnswersCB()
@@ -65,7 +65,7 @@ export default class StrengthsEmImWrapper extends React.Component {
       )
     }
 
-    let EmImReflections = strengths.reduce((acc, strength, i) => {
+    const EmImReflections = strengths.reduce((acc, strength, i) => {
       acc.push(<StrengthsEmImCT question={question} onUpdateStoreCB={onUpdateStoreCB} strength={strengths[i]} strengthValue={listIdToValue(strengthsList, strengths[i][IDX_STRENGTH])} />)
       return acc
     }, [])

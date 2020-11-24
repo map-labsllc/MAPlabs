@@ -2,8 +2,7 @@ import React from 'react'
 import { Button, ButtonToolbar } from 'react-bootstrap'
 
 import aboutText from './aboutText'
-const SplashPage = () => {
-    return (
+const SplashPage = () => (
         <div style={style.background}>
             <div className="container-fluid">
                 <h1 style={style.title} className="text-center"><span style={style.map}>MAP</span>Maker</h1>
@@ -33,7 +32,6 @@ But science is helping to identifying new approaches, like focusing not on the s
             </div>
         </div >
     )
-}
 
 const style = {
     title: {
@@ -70,7 +68,7 @@ const style = {
     background: {
         backgroundImage: 'url("MAPmaker.jpg")',
         backgroundSize: "cover",
-        //marginTop: "2%",
+        // marginTop: "2%",
         padding: "6px",
         color: "#AAABB8",
     },

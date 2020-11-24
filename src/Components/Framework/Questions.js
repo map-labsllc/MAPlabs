@@ -102,15 +102,13 @@ export default class Questions extends React.Component {
     // ******************************************
 
     // inject isDynamic into props so the subCompoent will render its dynamic version
-    const subComponentsWithIsDynamic = subComponents.map( ( subComponent, idx ) => {
-      return React.cloneElement(
+    const subComponentsWithIsDynamic = subComponents.map( ( subComponent, idx ) => React.cloneElement(
         subComponent,
         {
           isDynamic: true,
           number: idx + 1,
         }
-      )
-    } )
+      ) )
 
     const progressAmount = Math.round(100 * (currIdx + 1) / subComponents.length)
     return (

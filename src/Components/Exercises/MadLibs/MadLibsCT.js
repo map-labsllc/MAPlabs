@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import MadLibs from './MadLibs'
 import { getAnswers } from '../../../store/answers/reducer'
 import { getUser } from '../../../store/user/reducer'
 
 import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
 import { QUESTION_TYPE_MADLIBS } from '../../../store/answers/constants'
-import { bindActionCreators } from 'redux';
 
 import {
   IDX_RELATIONSHIP,
@@ -45,12 +45,10 @@ const mapStateToProps = ( state, passedProps ) => {
   if (!question || !question.code) throw new Error("missing question code: ", passedProps.question_code)
 
   // get previous data, if any
-  let answerRecords = getAnswers(state.answersRD, question.code)
+  const answerRecords = getAnswers(state.answersRD, question.code)
   console.log(`getAnswers(${question.code}): `, answerRecords )
 
-  let data = answerRecords.map(answer=> {
-    return JSON.parse(answer[IDX_JSON])
-  })
+  const data = answerRecords.map(answer=> JSON.parse(answer[IDX_JSON]))
 
   return {
     number,
@@ -70,18 +68,18 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
   function copyParentAnswers() {
     return async(dispatch, getState) => {
-      let state = getState()
+      const state = getState()
 
       // get userId
       const userId = getUser(state.userRD).id
 
       // get parent answers
-      let parentAnswers = getAnswers(state.answersRD, promptQuestionCode)
+      const parentAnswers = getAnswers(state.answersRD, promptQuestionCode)
         .filter(answer => answer[IDX_SELECTED] === SELECTED) // filter out selected ones
         .filter(answer =>answer[IDX_IMPACT] === impactFilter) // supports/inhbits
 
       // reformat into object
-      let data = parentAnswers
+      const data = parentAnswers
         .map(answer => {
           let impact
           switch(answer[IDX_IMPACT]) {
@@ -111,8 +109,8 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
         })
 
       // move into proper index
-      let records = data.reduce((acc, item) => {
-        let arr = []
+      const records = data.reduce((acc, item) => {
+        const arr = []
         arr[IDX_JSON] = item  // should be stringified already
         acc.push(arr)
         return acc
@@ -139,7 +137,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
       const state = getState()
 
-      let answers = getAnswers(state.answersRD, question.code)
+      const answers = getAnswers(state.answersRD, question.code)
 
       // store wants 2D array of strings, so map newData into that format
       const twoDimArrayOfString = answers.reduce((acc, answer, idx) => {
@@ -147,7 +145,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
         if (idx === id) {
           // console.log('replacing?', idx, id, idx === id, newData)
 
-          let arr = []
+          const arr = []
           arr[IDX_JSON] = JSON.stringify(newData)
           acc.push(arr)
         } else {

@@ -22,11 +22,9 @@ const Prompts = (props) => {
       <>
         <p><b>Prompts</b></p>
         <ul className="list-group">
-          {removeDblNewLine.split('\n').map(function(para, key) {
-            return (
+          {removeDblNewLine.split('\n').map((para, key) => (
               <li className="list-group-item" key={key}>{para}</li>
-            )
-          })}  
+            ))}  
         </ul>  
       </>
     )

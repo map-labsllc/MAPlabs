@@ -46,7 +46,7 @@ export default class Top5List extends React.Component {
     const { onSaveCB, onCloseModalCB } = this.props
     const { allItemsWithKeys } = this.state
 
-    let newSelections = this.uuid.stripKeys(allItemsWithKeys)
+    const newSelections = this.uuid.stripKeys(allItemsWithKeys)
 
     await onSaveCB(newSelections)
     await onCloseModalCB()
@@ -57,7 +57,7 @@ export default class Top5List extends React.Component {
     const { onUpdateCB } = this.props
     const { allItemsWithKeys } = this.state
 
-    let newSelections = this.uuid.stripKeys(allItemsWithKeys)
+    const newSelections = this.uuid.stripKeys(allItemsWithKeys)
 
     await onUpdateCB(newSelections)
     console.log("onChange called")
@@ -72,7 +72,7 @@ export default class Top5List extends React.Component {
     const { allItemsWithKeys } = this.state
 
     const newAllItemsWithKeys = allItemsWithKeys.map((item) =>
-      (item.key === key) ? { key: key, item: data } : item)
+      ((item.key === key) ? { key, item: data } : item))
 
     this.setState({
       allItemsWithKeys: newAllItemsWithKeys
@@ -83,11 +83,9 @@ export default class Top5List extends React.Component {
     const { instructions, isDynamic, fields, editFields, headings, selectedAttribute, showSave = true } = this.props
     const { allItemsWithKeys } = this.state
 
-    const headingsToTh = () => {
-      return headings.map((heading, idx) => (
+    const headingsToTh = () => headings.map((heading, idx) => (
         <th scope="col" className="text-left" key={idx}>{heading}</th>
       ))
-    }
 
     // static render
     if (!isDynamic) {

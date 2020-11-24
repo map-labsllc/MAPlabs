@@ -52,10 +52,10 @@ export default class ReflectionsTop5 extends React.Component {
     const { isDirty, reflectionsWithKeys } = this.state
 
     if (isDirty)
-      onPersistCB(
+      {onPersistCB(
         userId,
         this.uuid.stripKeys(reflectionsWithKeys)
-      )
+      )}
 
     onCloseModalCB()
   }
@@ -65,7 +65,7 @@ export default class ReflectionsTop5 extends React.Component {
     const { reflectionsWithKeys } = this.state
 
     const newReflectionsWithKeys = reflectionsWithKeys.map((reflectionWithKey) =>
-      (reflectionWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: newInfluence } : reflectionWithKey)
+      ((reflectionWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: newInfluence } : reflectionWithKey))
 
     this.setState({
       isDirty: true,
@@ -89,7 +89,7 @@ export default class ReflectionsTop5 extends React.Component {
         .filter(reflectionWithKey => reflectionWithKey.item.selected === SELECTED)
 
       if (selectedReflectionsWithKeys.length === 0)
-        return <p>Not started.</p>
+        {return <p>Not started.</p>}
 
       return (
         <>

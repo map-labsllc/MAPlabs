@@ -27,7 +27,7 @@ const hydrateAnswer = hydrater(answerShape)
 const dehydrateAnswer = dehydrater(answerShape)
 
 const mapStateToProps = ( state, passedProps ) => {
-  //console.log( "TransitionsCT::mapStateToProps()" )
+  // console.log( "TransitionsCT::mapStateToProps()" )
 
   const {
     number,
@@ -43,7 +43,7 @@ const mapStateToProps = ( state, passedProps ) => {
   console.log( `getAnswers(${question.code}): `, answers )
   const previousTransitions = answers.map(hydrateAnswer)
 
-  //console.log('TransitionsCT::previousTransitions: ', previousTransitions);
+  // console.log('TransitionsCT::previousTransitions: ', previousTransitions);
 
   return {
     number,

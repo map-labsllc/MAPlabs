@@ -36,12 +36,10 @@ const redirectFirebaseErrors = (dispatch, error) => {
    quesion_code - integer
    answers - array of answer strings
 ******************************************************** */
-export const updateAnswersAC = (question_code, answers) => {
-  return {
+export const updateAnswersAC = (question_code, answers) => ({
     type: ANSWERS_UPDATE,
     payload: { question_code, answers },
-  }
-}
+  })
 
 /* *****************************************************
    loadAllAnswersAC()
@@ -142,8 +140,7 @@ export const persistAnswersAC = ( userId, question_code, question_type, answers 
 }
 
 /* copy parent answers to current question helper */
-export const copyParentAnswers = (question, promptQuestionCode, type) => {
-  return async(dispatch, getState) => {
+export const copyParentAnswers = (question, promptQuestionCode, type) => async(dispatch, getState) => {
     const state = getState()
 
     // get userId
@@ -156,4 +153,3 @@ export const copyParentAnswers = (question, promptQuestionCode, type) => {
     await dispatch(updateAnswersAC(question.code, parentAnswers))
     await dispatch(persistAnswersAC(userId, question.code, type, parentAnswers))
   }
-}

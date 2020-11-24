@@ -18,10 +18,8 @@ const initialState = {
 
    return -- t/f
 ************************************************** */
-export const isLoading = ( store ) => {
-  return ( store.staticdataRD.isLoading
+export const isLoading = ( store ) => ( store.staticdataRD.isLoading
     || store.answersRD.isLoading )
-}
 
 /* ***********************************************
   uiRD

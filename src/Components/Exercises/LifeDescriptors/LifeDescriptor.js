@@ -29,8 +29,8 @@ const LifeDescriptor = ( props ) => {
     onAddSelectionCB,
   } = props
 
-  let btnStyleA = ( isSelectedA ) ? 'btn-fill' : ''
-  let btnStyleB = ( isSelectedB ) ? 'btn-fill' : ''
+  const btnStyleA = ( isSelectedA ) ? 'btn-fill' : ''
+  const btnStyleB = ( isSelectedB ) ? 'btn-fill' : ''
 
   // render
   return (

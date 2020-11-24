@@ -94,7 +94,7 @@ export default class Module4 extends React.Component {
       description = { QUES_450_DESC }
     /> )
 
-   // -------------------------
+  // -------------------------
   // Module 4: transitions
   transitions_460 = [
     <TransitionsCT question = { { code: 461, text: "Strengths" } } />,
