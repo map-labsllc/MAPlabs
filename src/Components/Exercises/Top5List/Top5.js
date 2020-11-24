@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Form, FormControl } from 'react-bootstrap'
 import { SELECTED } from '../../../constants'
@@ -18,14 +18,16 @@ import { SELECTED } from '../../../constants'
      updateCB -- call for all changes
 ***************************************************** */
 export default function Top5(props) {
-  const { id, updateCB, data, isDynamic, fields, selectedAttribute, editFields = [] } = props
+  const {
+    id, updateCB, data, isDynamic, fields, selectedAttribute, editFields = []
+  } = props
 
   const [formData, setData] = useState(data);
 
   const onCheck = (e) => {
     const newData = {
       ...props.data,
-      selected: (e.target.checked ? SELECTED : '') 
+      selected: (e.target.checked ? SELECTED : '')
     }
 
     setData(newData)
@@ -33,7 +35,7 @@ export default function Top5(props) {
   }
 
   const onChange = (e, attribute) => {
-    const {value} = e.target
+    const { value } = e.target
     const newData = {
       ...formData,
       [attribute]: value,
@@ -49,22 +51,21 @@ export default function Top5(props) {
 
   const fieldsToCells = () => (
     <>
-      { fields.map((field, idx) => 
-        <td className="text-left" key={idx}>
-          {isDynamic && editFields.includes(field) ?
-            <FormControl 
-              onChange={(e) => onChange(e, field)}
-              type="text" 
-              value={formData[field]}
-            />
-            : <>{formData[field]}</> }
-        </td>)
+      { fields.map((field, idx) => <td className="text-left" key={idx}>
+        {isDynamic && editFields.includes(field) ?
+          <FormControl
+            onChange={(e) => onChange(e, field)}
+            type="text"
+            value={formData[field]}
+          />
+          : <>{formData[field]}</> }
+      </td>)
       }
     </>
   )
 
   // static
-  if ( !isDynamic ) {
+  if (!isDynamic) {
     return (
       <>
         <tr>
@@ -79,9 +80,9 @@ export default function Top5(props) {
     <>
       <tr>
         <td className="text-left" key="-1">
-          <input 
+          <input
             onChange={onCheck}
-            type="checkbox" 
+            type="checkbox"
             checked={!!formData.selected}
           />
         </td>
@@ -90,7 +91,6 @@ export default function Top5(props) {
     </>
   )
 }
-
 
 Top5.propTypes = {
   id: PropTypes.string.isRequired,
@@ -101,4 +101,3 @@ Top5.propTypes = {
   selectedAttribute: PropTypes.string,
   editFields: PropTypes.array
 }
-

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { isLoggedIn } from '../../store/user/reducer'
 
-const SideBar = ( { isLoggedIn }) => (
+const SideBar = ({ isLoggedIn }) => (
   <div className="sidebar has-image" data-color="blue" data-image="/assets/img/sidebar-5.jpg">
     <div className="sidebar-wrapper">
       <div className="logo">
@@ -11,54 +11,54 @@ const SideBar = ( { isLoggedIn }) => (
           M.A.P. Labs
         </a>
       </div>
-    
-      {isLoggedIn ? 
-      <ul className="nav ml-auto">       
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/infopage">
-            <i className="nc-icon nc-explore-2"></i>
+
+      {isLoggedIn ?
+        <ul className="nav ml-auto">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/infopage">
+              <i className="nc-icon nc-explore-2"></i>
             Program Introduction
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/modules/list">
-            <i className="nc-icon nc-layers-3"></i>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/modules/list">
+              <i className="nc-icon nc-layers-3"></i>
             Module Overview
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/modules/1">
-            <i className="nc-icon nc-compass-05"></i>
-            <p>Module 1</p>
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/modules/2">
-            <i className="nc-icon nc-compass-05"></i>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/modules/1">
+              <i className="nc-icon nc-compass-05"></i>
+              <p>Module 1</p>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/modules/2">
+              <i className="nc-icon nc-compass-05"></i>
             Module 2
             </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/modules/3">
-            <i className="nc-icon nc-compass-05"></i>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/modules/3">
+              <i className="nc-icon nc-compass-05"></i>
             Module 3
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/modules/4">
-            <i className="nc-icon nc-compass-05"></i>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/modules/4">
+              <i className="nc-icon nc-compass-05"></i>
             Module 4
-          </NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/modules/5">
-            <i className="nc-icon nc-compass-05"></i>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/modules/5">
+              <i className="nc-icon nc-compass-05"></i>
             Module 5
-          </NavLink>
-        </li>
-      </ul>
-      :
-      null 
+            </NavLink>
+          </li>
+        </ul>
+        :
+        null
       }
     </div>
     <div className="sidebar-background" style={style.SidebarBackground}></div>
@@ -66,23 +66,22 @@ const SideBar = ( { isLoggedIn }) => (
 )
 
 const style = {
-  SidebarBackground: { backgroundImage: `url(/assets/img/sidebar-5.jpg)` }
+  SidebarBackground: { backgroundImage: 'url(/assets/img/sidebar-5.jpg)' }
 }
 
 const mapStateToProps = state => {
   const { user } = state.userRD
   return {
-    user, 
+    user,
     isLoggedIn: isLoggedIn(state.userRD),
   }
 }
 
-const mapDispatchToProps = dispatch => ( {
+const mapDispatchToProps = dispatch => ({
   dispatch,
-} )
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( SideBar )
-
+)(SideBar)

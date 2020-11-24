@@ -21,7 +21,6 @@ import {
      deleteAnswerCB -- callback when user clicks the Delete button
 ***************************************************** */
 export default class ShortAnswer extends React.Component {
-
   state = {
     isDirty: false,
 
@@ -42,7 +41,7 @@ export default class ShortAnswer extends React.Component {
   // **************************************************
   // pass to parent to update value and clear isDirty
   onBlur = (e) => {
-    console.log("ShortAnswer::onBlur(), e: ", e.target.value)
+    console.log('ShortAnswer::onBlur(), e: ', e.target.value)
     const { updateAnswerCB, id } = this.props
     const { isDirty } = this.state
     if (isDirty) {
@@ -84,11 +83,11 @@ export default class ShortAnswer extends React.Component {
               onChange={this.onChange}
               onBlur={this.onBlur}
               value={answer}
-              placeholder={placeholder ? "Please enter an answer" : ''}
+              placeholder={placeholder ? 'Please enter an answer' : ''}
               rows="2"
               cols="50"
             />
-            {"   "}
+            {'   '}
             <Button style={style.inline} type="button" onClick={this.onclickDelete}><i className="nc-icon nc-simple-remove"></i></Button>
 
           </div>
@@ -117,8 +116,8 @@ ShortAnswer.propTypes = {
 
 const style = {
   inline: {
-    verticalAlign: "top",
-    display: "inline",
-    marginLeft: "1%"
+    verticalAlign: 'top',
+    display: 'inline',
+    marginLeft: '1%'
   }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Form } from 'react-bootstrap'
-import {  SELECTED } from '../../../constants'
+import { SELECTED } from '../../../constants'
 
 /* **************************************************
    Top5 component
@@ -19,11 +19,10 @@ import {  SELECTED } from '../../../constants'
      deleteInfluenceCB -- click trash can
 ***************************************************** */
 export default function ReflectionTop5(props) {
-
   /* **********************************************
     onChange()
 
-    e - target.id is a key into the  object: 
+    e - target.id is a key into the  object:
   ************************************************ */
   const onChange = (e) => {
     const newReflection = {
@@ -36,10 +35,12 @@ export default function ReflectionTop5(props) {
 
   // render!
   const { reflection, isDynamic } = props
-  const { selected, strengthValue, phrase, effect } = reflection
+  const {
+    selected, strengthValue, phrase, effect
+  } = reflection
 
   // static
-  if ( !isDynamic ) {
+  if (!isDynamic) {
     return (
       <tr>
         <td></td>
@@ -55,9 +56,9 @@ export default function ReflectionTop5(props) {
     <tr>
       <td className="text-left">
         <Form inline>
-          <input 
+          <input
             onChange={onChange}
-            type="checkbox" 
+            type="checkbox"
             checked={!!selected}
           />
         </Form>
@@ -74,7 +75,5 @@ ReflectionTop5.propTypes = {
   reflection: PropTypes.object.isRequired,
   isDynamic: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  updateReflectionCB: PropTypes.func,  
+  updateReflectionCB: PropTypes.func,
 }
-
-

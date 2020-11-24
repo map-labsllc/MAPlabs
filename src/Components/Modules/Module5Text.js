@@ -58,7 +58,7 @@ Add to your Dashboard your key themes. At the end of each module you were asked 
 <li>Note which themes seem most critical to you, and which seem secondary. If your themes seem to overlap, try to consolidate them. Then choose only the most critical themes that you would like to add to your dashboard. Listing too many themes will cause you to lose focus, so try to only choose the most important 1 - 3 themes for your dashboard.</li>
 </ol>`
 
-export const QUES_512_DESC = `Summarize the context of your purpose-seeking life. Based on your final reflection on your Current Situation and your articulated themes, add any summarizing thoughts, statements, phrases, or directives to your Dashboard about your macro context that you feel will be helpful to you in the future as a quick reference, reminder, or accountability statement.`
+export const QUES_512_DESC = 'Summarize the context of your purpose-seeking life. Based on your final reflection on your Current Situation and your articulated themes, add any summarizing thoughts, statements, phrases, or directives to your Dashboard about your macro context that you feel will be helpful to you in the future as a quick reference, reminder, or accountability statement.'
 
 export const QUES_520_DESC = `
 <h3>The Who of Your Purpose</h3>
@@ -75,11 +75,11 @@ export const QUES_521_DESC = `<p>At the end of Module 3 you encapsulated into a 
 </ol>
 `
 
-export const QUES_522_DESC = `Review your 5 top Signature Strengths as revealed to you in the VIA Strengths Survey and consider how they relate to your senses of meaning and your desires. Add only your most important Signature Strengths to your Dashboard (you may also add any other strengths you feel should be considered a Signature Strength, but try not to exceed 5 strengths total).`
+export const QUES_522_DESC = 'Review your 5 top Signature Strengths as revealed to you in the VIA Strengths Survey and consider how they relate to your senses of meaning and your desires. Add only your most important Signature Strengths to your Dashboard (you may also add any other strengths you feel should be considered a Signature Strength, but try not to exceed 5 strengths total).'
 
-export const QUES_523_DESC = `Review your “embodiment” themes. Do your themes feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise or edit them to more accurately reflect your current self-knowledge and understanding. Add only the most important embodiment themes to your Dashboard.`
+export const QUES_523_DESC = 'Review your “embodiment” themes. Do your themes feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise or edit them to more accurately reflect your current self-knowledge and understanding. Add only the most important embodiment themes to your Dashboard.'
 
-export const QUES_524_DESC = `Review your “impediment” themes. Do your themes feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise or edit them to more accurately reflect your current self-knowledge and understanding. Add only the most important impediment themes to your Dashboard.`
+export const QUES_524_DESC = 'Review your “impediment” themes. Do your themes feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise or edit them to more accurately reflect your current self-knowledge and understanding. Add only the most important impediment themes to your Dashboard.'
 
 export const QUES_530_DESC = `
 <h3>The What of Your Purpose</h3>
@@ -92,7 +92,7 @@ that module’s subject. Review your responses about what things beyond yourself
   <li>Note which responses seem most critical to you, and which seem secondary. If your responses seem to overlap, try to consolidate them. Then choose the most critical things beyond yourself that you would like to add to your dashboard.</li>
 </ol>`
 
-export const QUES_531_DESC = `Add any summarizing thoughts, statements, phrases, or directives to your Dashboard that you feel will be helpful to you in the future as a quick reference, reminder, or accountability statement about what you care about and want to serve that is beyond yourself.`
+export const QUES_531_DESC = 'Add any summarizing thoughts, statements, phrases, or directives to your Dashboard that you feel will be helpful to you in the future as a quick reference, reminder, or accountability statement about what you care about and want to serve that is beyond yourself.'
 
 export const QUES_540_DESC = `
 <h3>Your Purpose Statement</h3>
@@ -144,7 +144,6 @@ At the end of each module you were asked to identify areas of personal growth in
     </ol>
   </li>
 </ol>`
-
 
 export const QUES_551_DESC = `<p>Relationships provide the support for our personal growth and the context for fulfilling life purpose. No one is an island, and without the support of positive relationships from friends, family, mentors, teachers, and others, none of us are able to grow in the ways necessary to accomplish our purposes. So your next commitment is to the relationships
 that will support you in your personal growth and that will provide the appropriate context for the fulfillment of your purpose.

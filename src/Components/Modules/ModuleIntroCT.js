@@ -13,11 +13,11 @@ import { sectionCompletedAC } from '../../store/user/actions'
      sectionTitle -- title of the section for redisplay in modal
      exercise -- component user will interact with
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
+const mapStateToProps = (state, passedProps) => {
   const { moduleNum } = passedProps
 
   // get user
-  const user = getUser( state.userRD )
+  const user = getUser(state.userRD)
 
   return {
     moduleNum,
@@ -34,11 +34,11 @@ const mapStateToProps = ( state, passedProps ) => {
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => ({
-    sectionCompletedCB: bindActionCreators(sectionCompletedAC, dispatch)
-  })
+const mapDispatchToProps = (dispatch, passedProps) => ({
+  sectionCompletedCB: bindActionCreators(sectionCompletedAC, dispatch)
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( ModuleIntro )
+)(ModuleIntro)

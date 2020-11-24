@@ -32,8 +32,7 @@ import Influence from './Influence'
      deleteInfluenceCB -- click trash can
      addInfluenceCB -- click add button
 ***************************************************** */
-export default function InfluenceGroup( props ) {
-
+export default function InfluenceGroup(props) {
   // **********************************************
   const updateInfluence = (keyToUpdate, newInfluence) => {
     console.log(`InfluenceGroup::updateInfluence(${keyToUpdate}, ${newInfluence})`)
@@ -59,7 +58,9 @@ export default function InfluenceGroup( props ) {
   // render!
   // console.log("InfluenceGroup::render()")
 
-  const { heading, beliefs, relationships, isDynamic, influencesWithKeys } = props
+  const {
+    heading, beliefs, relationships, isDynamic, influencesWithKeys
+  } = props
 
   // static render
   if (!isDynamic) {
@@ -80,18 +81,16 @@ export default function InfluenceGroup( props ) {
             </tr>
           </thead>
           <tbody>
-            {influencesWithKeys.map((influenceWithKey) =>
-              <Influence
-                key={influenceWithKey.key}
-                id={influenceWithKey.key}
-                beliefs={beliefs}
-                relationships={relationships}
-                influence={influenceWithKey.item}
-                isDynamic={isDynamic}
-                updateInfluenceCB={updateInfluence}
-                deleteInfluenceCB={deleteInfluence}
-              />
-            )}
+            {influencesWithKeys.map((influenceWithKey) => <Influence
+              key={influenceWithKey.key}
+              id={influenceWithKey.key}
+              beliefs={beliefs}
+              relationships={relationships}
+              influence={influenceWithKey.item}
+              isDynamic={isDynamic}
+              updateInfluenceCB={updateInfluence}
+              deleteInfluenceCB={deleteInfluence}
+            />)}
           </tbody>
         </table>
         }
@@ -105,7 +104,7 @@ export default function InfluenceGroup( props ) {
       </>
     )
   }
-    
+
   // dynamic render
   return (
     <>
@@ -113,33 +112,30 @@ export default function InfluenceGroup( props ) {
       {influencesWithKeys.length === 0 &&
         <p>Not started.</p>
       }
-        {influencesWithKeys.map((influenceWithKey) =>
-          <Influence
-            key={influenceWithKey.key}
-            id={influenceWithKey.key}
-            beliefs={beliefs}
-            relationships={relationships}
-            influence={influenceWithKey.item}
-            isDynamic={isDynamic}
-            updateInfluenceCB={updateInfluence}
-            deleteInfluenceCB={deleteInfluence}
-          />
-        )}
+      {influencesWithKeys.map((influenceWithKey) => <Influence
+        key={influenceWithKey.key}
+        id={influenceWithKey.key}
+        beliefs={beliefs}
+        relationships={relationships}
+        influence={influenceWithKey.item}
+        isDynamic={isDynamic}
+        updateInfluenceCB={updateInfluence}
+        deleteInfluenceCB={deleteInfluence}
+      />)}
 
-        <>
+      <>
           &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={onclickAdd}>Add Answer</Button>
-          <p>&nbsp;</p>
-        </>
+        <p>&nbsp;</p>
+      </>
     </>
   )
-
 }
 
 InfluenceGroup.propTypes = {
-  question: PropTypes.shape( {
+  question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-  } ).isRequired,
+  }).isRequired,
   isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
+  onUpdateAnswerCB: PropTypes.func, // required, injected by <Popup>
 }

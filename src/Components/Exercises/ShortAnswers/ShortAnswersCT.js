@@ -3,7 +3,6 @@ import ShortAnswers from './ShortAnswers'
 import { getAnswers } from '../../../store/answers/reducer'
 import { updateAnswersAC } from '../../../store/answers/actions'
 
-
 /* *****************************************
    mapStateToProps()
 
@@ -14,7 +13,7 @@ import { updateAnswersAC } from '../../../store/answers/actions'
                   undefined: render static version in Popup
                   true: render dynamic/interactive verison in Modal
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
+const mapStateToProps = (state, passedProps) => {
   // console.log( "ShortAnswersCT::mapStateToProps()" )
 
   const {
@@ -24,10 +23,10 @@ const mapStateToProps = ( state, passedProps ) => {
   } = passedProps
 
   // validation
-  if ( !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
+  if (!question.code) throw new Error('missing question code: ', passedProps.question_code)
 
   // get previous answers, if any
-  const answers = getAnswers( state.answersRD, question.code )
+  const answers = getAnswers(state.answersRD, question.code)
   // console.log( `getAnswers(${question.code}): `, answers )
   // answers are an array of arrays:
   //   [["one"],["two"]]
@@ -51,11 +50,10 @@ const mapStateToProps = ( state, passedProps ) => {
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => {
-
+const mapDispatchToProps = (dispatch, passedProps) => {
   // helper function
-  function filterOutBlanks( answers ) {
-    return answers.filter( answer => answer.trim().length )
+  function filterOutBlanks(answers) {
+    return answers.filter(answer => answer.trim().length)
   }
 
   /* *****************************************
@@ -65,16 +63,16 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
      newAnswers -- array of strings
   ******************************************** */
-  function onUpdateStore( newAnswers ) {
+  function onUpdateStore(newAnswers) {
     // console.log( `ShortAnswersCT::onUpdate(${newAnswers})` )
 
     const { question } = passedProps
 
     // store wants 2D array of strings, so map the array of strings into that format
-    const twoDimArrayOfString = filterOutBlanks( newAnswers ).map(str => [str])
+    const twoDimArrayOfString = filterOutBlanks(newAnswers).map(str => [str])
 
     // update store
-    dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
+    dispatch(updateAnswersAC(question.code, twoDimArrayOfString))
   }
 
   /* *****************************************
@@ -83,10 +81,9 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   return {
     onUpdateStoreCB: onUpdateStore,
   }
-
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( ShortAnswers )
+)(ShortAnswers)

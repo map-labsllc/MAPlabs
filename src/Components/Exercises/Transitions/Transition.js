@@ -23,7 +23,6 @@ import {
      deleteTransitionCB -- callback when user clicks the Delete button
 ***************************************************** */
 export default class Transition extends React.Component {
-
   state = {
     isDirty: false,
 
@@ -62,7 +61,7 @@ export default class Transition extends React.Component {
   // **************************************************
   // pass to parent to update value and clear isDirty
   onBlur = (e) => {
-    console.log("Transition::onBlur(), e: ", e.target.value)
+    console.log('Transition::onBlur(), e: ', e.target.value)
     const { updateTransitionCB, id } = this.props
     const { isDirty, transition } = this.state
     if (isDirty) {
@@ -76,7 +75,7 @@ export default class Transition extends React.Component {
   // **************************************************
   // pass to parent to delete
   onclickDelete = () => {
-    console.log("Transition::onclickDelete()")
+    console.log('Transition::onclickDelete()')
     const { deleteTransitionCB, id } = this.props
     deleteTransitionCB(id)
   }
@@ -91,9 +90,8 @@ export default class Transition extends React.Component {
     const { isDynamic } = this.props
 
     if (!isDynamic) {
-
       // nothing to display
-      if ( !transition.from.length ) {
+      if (!transition.from.length) {
         return (
           <></>
         )
@@ -130,7 +128,7 @@ export default class Transition extends React.Component {
               placeholder="Please enter a to"
             />
           </FormGroup>
-          {" "}
+          {' '}
           <Button type="button" onClick={this.onclickDelete}><i className="nc-icon nc-simple-remove"></i></Button>
         </div>
       </Form>
@@ -145,9 +143,9 @@ export default class Transition extends React.Component {
 Transition.propTypes = {
   id: PropTypes.number.isRequired,
   previousTransition: PropTypes.object.isRequired,
-  isDynamic: PropTypes.bool,       // required but injected by <Popup>
-  updateAnswerCB: PropTypes.func,  // required but injected by <Popup>
-  deleteAnswerCB: PropTypes.func,  // required but injected by <Popup>
+  isDynamic: PropTypes.bool, // required but injected by <Popup>
+  updateAnswerCB: PropTypes.func, // required but injected by <Popup>
+  deleteAnswerCB: PropTypes.func, // required but injected by <Popup>
 }
 
 /// /////////////////////////////////////////////////////////////
@@ -156,9 +154,9 @@ Transition.propTypes = {
 
 const style = {
   size: {
-    fontSize: "18pt",
+    fontSize: '18pt',
   },
   width: {
-    width: "280px",
+    width: '280px',
   }
 }

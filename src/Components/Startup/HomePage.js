@@ -1,17 +1,17 @@
-import React from "react"
+import React from 'react'
 import {
   Jumbotron,
   Button,
   Row,
   Col,
   Card
-} from "react-bootstrap"
-import { Link } from "react-router-dom"
+} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 class HomePage extends React.Component {
   render() {
     return (
-      <div  className="pageContainer">
+      <div className="pageContainer">
         <Jumbotron style={style.jumboimage}>
           <div className="subheader">
             <p className="subText">The science of meaning and purpose.</p>
@@ -21,7 +21,7 @@ class HomePage extends React.Component {
               Discover how to inform, empower, and fulfill your life.
             </h1>
           </div>
-          <div style={{marginTop: '3em'}}>
+          <div style={{ marginTop: '3em' }}>
             <Row>
               <Col md={4}>
                 <Card style={style.Card}>
@@ -36,7 +36,7 @@ class HomePage extends React.Component {
                         variant="light"
                       >
                       MAPmaker
-                    </Button>
+                      </Button>
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -47,14 +47,14 @@ class HomePage extends React.Component {
                   <Card.Body>
                     <Card.Text>
                         Find out more about this program.
-                      <Link style={style.CardButton} className="btn btn-info btn-fill" to="/infopage">Get Started</Link> 
+                      <Link style={style.CardButton} className="btn btn-info btn-fill" to="/infopage">Get Started</Link>
                     </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
 
               <Col md={4}>
-              <Card style={style.Card}>
+                <Card style={style.Card}>
                   <Card.Body>
                     <Card.Text>
                         Already have an account?
@@ -75,10 +75,11 @@ class HomePage extends React.Component {
 const style = {
   Card: { minHeight: '160px' },
 
-  CardButton: { 
+  CardButton: {
     marginTop: '1em',
-    verticalAlign: 'bottom', 
-    display: 'block' }
+    verticalAlign: 'bottom',
+    display: 'block'
+  }
 }
 
 export default HomePage

@@ -28,7 +28,6 @@ import { UUID } from '../../Utils/UUID'
      onUpdateStoreCB(newTransitions) -- callback to update the store
 ***************************************************** */
 export default class Transitions extends React.Component {
-
   uuid = new UUID() // provides unique keys for <Transition> components
 
   state = {
@@ -54,8 +53,7 @@ export default class Transitions extends React.Component {
     // add transition area here
     const area = question.text
 
-    const newTransitionsWithKeys = transitionsWithKeys.map(transitionWithKey =>
-      ((transitionWithKey.key === key) ? { key, item: {area, ...newTransition} } : transitionWithKey))
+    const newTransitionsWithKeys = transitionsWithKeys.map(transitionWithKey => ((transitionWithKey.key === key) ? { key, item: { area, ...newTransition } } : transitionWithKey))
 
     onUpdateStoreCB(this.uuid.stripKeys(newTransitionsWithKeys))
     this.setState({ transitionsWithKeys: newTransitionsWithKeys })
@@ -70,8 +68,7 @@ export default class Transitions extends React.Component {
     const { onUpdateStoreCB } = this.props
     const { transitionsWithKeys } = this.state
 
-    const newTransitionsWithKeys = transitionsWithKeys.filter((transitionWithKey) =>
-      keyToDelete !== transitionWithKey.key)
+    const newTransitionsWithKeys = transitionsWithKeys.filter((transitionWithKey) => keyToDelete !== transitionWithKey.key)
 
     onUpdateStoreCB(this.uuid.stripKeys(newTransitionsWithKeys))
     this.setState({ transitionsWithKeys: newTransitionsWithKeys })
@@ -99,21 +96,18 @@ export default class Transitions extends React.Component {
     // console.log("transitionsWithKeys", transitionsWithKeys)
     // console.log("this.props.previousTransitions", this.props.previousTransitions)
 
-    if ( !isDynamic ) {
-
+    if (!isDynamic) {
       return (
         <>
-          {transitionsWithKeys.map((transitionWithKey) =>
-            <Transition
-              key={transitionWithKey.key}
-              id={transitionWithKey.key}
-              previousTransition={transitionWithKey.item}
-              isDynamic={isDynamic}
-              updateTransitionCB={this.updateTransition}
-              deleteTransitionCB={this.deleteTransition}
-            >
-            </Transition>
-          )}
+          {transitionsWithKeys.map((transitionWithKey) => <Transition
+            key={transitionWithKey.key}
+            id={transitionWithKey.key}
+            previousTransition={transitionWithKey.item}
+            isDynamic={isDynamic}
+            updateTransitionCB={this.updateTransition}
+            deleteTransitionCB={this.deleteTransition}
+          >
+          </Transition>)}
         </>
       )
     }
@@ -123,17 +117,15 @@ export default class Transitions extends React.Component {
         <div className="text-center">
           <h4>{number}. {question.text}</h4>
         </div>
-        {transitionsWithKeys.map((transitionWithKey) =>
-          <Transition
-            key={transitionWithKey.key}
-            id={transitionWithKey.key}
-            previousTransition={transitionWithKey.item}
-            isDynamic={isDynamic}
-            updateTransitionCB={this.updateTransition}
-            deleteTransitionCB={this.deleteTransition}
-          >
-          </Transition>
-        )}
+        {transitionsWithKeys.map((transitionWithKey) => <Transition
+          key={transitionWithKey.key}
+          id={transitionWithKey.key}
+          previousTransition={transitionWithKey.item}
+          isDynamic={isDynamic}
+          updateTransitionCB={this.updateTransition}
+          deleteTransitionCB={this.deleteTransition}
+        >
+        </Transition>)}
         <div className="text-center">
           <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add Transition</Button>
         </div>
@@ -148,10 +140,10 @@ export default class Transitions extends React.Component {
 /// /////////////////////////////////////////////////////////////
 
 Transitions.propTypes = {
-  question: PropTypes.shape( {
+  question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-  } ).isRequired,
+  }).isRequired,
   previousTransitions: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
 }

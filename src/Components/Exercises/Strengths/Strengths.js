@@ -4,7 +4,7 @@ import {
   Button, ListGroup, ListGroupItem
 } from 'react-bootstrap'
 import StrengthCT from './StrengthCT'
-import { listIdToValue } from "../../../store/lists/actions"
+import { listIdToValue } from '../../../store/lists/actions'
 
 const STRENGTH_LIMIT = 5
 
@@ -15,7 +15,7 @@ const STRENGTH_LIMIT = 5
 
    state:
     isDirty -- decide if we need to persist to db
-    strengths -- 
+    strengths --
       { key: 3,
         item: {
           personal: [ { relationship:'brother', name:"Tim", belief:"Charity", impact:"supportive", selected:'selected'}, {...} ]
@@ -35,7 +35,6 @@ const STRENGTH_LIMIT = 5
      onCloseModalCB -- when user clicks Close button
 ***************************************************** */
 class Strengths extends React.Component {
-
   state = {
     isDirty: false,
     strengths: this.props.strengths || []
@@ -47,12 +46,12 @@ class Strengths extends React.Component {
 
   // **********************************************
   onclickClose = () => {
-    console.log( "Strengths::onclickClose()" )
+    console.log('Strengths::onclickClose()')
 
     const { userId, onPersistCB, onCloseModalCB } = this.props
     const { isDirty, strengths } = this.state
 
-    console.log("saving strengths", strengths)
+    console.log('saving strengths', strengths)
     if (isDirty) onPersistCB(userId, strengths)
 
     onCloseModalCB()
@@ -60,7 +59,7 @@ class Strengths extends React.Component {
 
   addStrength = () => {
     this.setState({
-      isDirty: true, 
+      isDirty: true,
       strengths: [...this.state.strengths, '']
     })
   }
@@ -69,29 +68,30 @@ class Strengths extends React.Component {
   updateStrengthCB = (index, value) => {
     const strengths = [...this.state.strengths.slice(0, index), value, ...this.state.strengths.slice(index + 1)]
     this.setState({
-      isDirty: true, 
+      isDirty: true,
       strengths
     })
   }
 
   // **********************************************
   render() {
-  
-    const { question, instructions, isDynamic, strengthOptions } = this.props
+    const {
+      question, instructions, isDynamic, strengthOptions
+    } = this.props
 
     const { strengths } = this.state
-    console.log("strengths", strengths)
+    console.log('strengths', strengths)
 
     return (
       <>
         {isDynamic &&
-          (<>  
+          (<>
             <p>{instructions}</p>
 
             <ol>
               { strengths.map((strength, i) => (
                 <li key={i}>
-                  <StrengthCT 
+                  <StrengthCT
                     number={i}
                     strength={strength}
                     question={question}
@@ -99,7 +99,7 @@ class Strengths extends React.Component {
                     isDynamic={true}
                   />
                 </li>
-                ))
+              ))
               }
             </ol>
 
@@ -112,7 +112,6 @@ class Strengths extends React.Component {
               </>
             }
 
-
             <hr />
             <div className="text-center">
               <Button type="button" onClick={this.onclickClose}>Save</Button>
@@ -121,11 +120,11 @@ class Strengths extends React.Component {
           )
         }
 
-        {!isDynamic && 
+        {!isDynamic &&
           (
             <ListGroup className="text-left">
               {strengths
-                .map((_strength)=> listIdToValue(strengthOptions, _strength))
+                .map((_strength) => listIdToValue(strengthOptions, _strength))
                 .map((_strength, i) => (
                   <ListGroupItem key={i}>
                     {i + 1}. {_strength}
@@ -141,14 +140,13 @@ class Strengths extends React.Component {
 }
 
 Strengths.propTypes = {
-   question: PropTypes.shape( {
-     code: PropTypes.number.isRequired,
-     text: PropTypes.string.isRequired,
-   } ).isRequired,
-   strengths: PropTypes.array.isRequired,
-   isDynamic: PropTypes.bool,
-   onUpdateAnswerCB: PropTypes.func,
+  question: PropTypes.shape({
+    code: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  }).isRequired,
+  strengths: PropTypes.array.isRequired,
+  isDynamic: PropTypes.bool,
+  onUpdateAnswerCB: PropTypes.func,
 }
 
 export default Strengths
-

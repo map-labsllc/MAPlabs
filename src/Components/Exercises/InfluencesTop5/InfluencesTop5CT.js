@@ -18,7 +18,6 @@ import {
   IDX_SELECTED,
 } from '../../../constants'
 
- 
 /* *****************************************
    mapStateToProps()
 
@@ -31,8 +30,8 @@ import {
                   true - rendering dynamic verison in <ModalX>
       onCloseModalCB -- call when user clicks Save button
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
-  console.log( "InfluencesCT::mapStateToProps()" )
+const mapStateToProps = (state, passedProps) => {
+  console.log('InfluencesCT::mapStateToProps()')
 
   const {
     question,
@@ -44,13 +43,13 @@ const mapStateToProps = ( state, passedProps ) => {
   } = passedProps
 
   // validate params
-  if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
+  if (!question || !question.code) throw new Error('missing question code: ', passedProps.question_code)
 
   // get userId
-  const userId = getUser( state.userRD ).id
+  const userId = getUser(state.userRD).id
 
   // get influence record from earlier question
-  const answerRecords = getAnswers( state.answersRD, promptQuestionCode )
+  const answerRecords = getAnswers(state.answersRD, promptQuestionCode)
 
   let allInfluences = answerRecords.map(record => (
     {
@@ -60,11 +59,9 @@ const mapStateToProps = ( state, passedProps ) => {
       belief: record[IDX_BELIEF],
       impact: record[IDX_IMPACT],
       selected: record[IDX_SELECTED],
-    })
-  )
+    }))
 
-  allInfluences = allInfluences.sort((a, b) =>
-    a.name.localeCompare(b.name))
+  allInfluences = allInfluences.sort((a, b) => a.name.localeCompare(b.name))
 
   console.log('InfluencesTop5CT::influences: ', allInfluences)
 
@@ -84,8 +81,7 @@ const mapStateToProps = ( state, passedProps ) => {
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => {
-
+const mapDispatchToProps = (dispatch, passedProps) => {
   /* *****************************************
     persistSelections()
 
@@ -97,26 +93,25 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     promptQuestionCode
     newInfluences -- same format as the object that was passed down in props as "allInfluences"
   ******************************************** */
- function persistSelections(userId, promptQuestionCode, newInfluences) {
-
+  function persistSelections(userId, promptQuestionCode, newInfluences) {
     // store wants 2D array of strings, so map the object into that format
     const twoDimArrayOfString = []
     newInfluences.forEach(influence => {
       const record = []
-      record[IDX_GROUP]        = influence.group
+      record[IDX_GROUP] = influence.group
       record[IDX_RELATIONSHIP] = influence.relationship
-      record[IDX_NAME]         = influence.name
-      record[IDX_BELIEF]       = influence.belief
-      record[IDX_IMPACT]       = influence.impact
-      record[IDX_SELECTED]     = influence.selected
+      record[IDX_NAME] = influence.name
+      record[IDX_BELIEF] = influence.belief
+      record[IDX_IMPACT] = influence.impact
+      record[IDX_SELECTED] = influence.selected
       twoDimArrayOfString.push(record)
     })
 
     console.log('-- persisting:')
     console.log(JSON.stringify(twoDimArrayOfString))
 
-    dispatch( updateAnswersAC( promptQuestionCode, twoDimArrayOfString ) )
-    dispatch( persistAnswersAC( userId, promptQuestionCode, QUESTION_TYPE_INFLUENCES, twoDimArrayOfString ) )
+    dispatch(updateAnswersAC(promptQuestionCode, twoDimArrayOfString))
+    dispatch(persistAnswersAC(userId, promptQuestionCode, QUESTION_TYPE_INFLUENCES, twoDimArrayOfString))
   }
 
   /* *****************************************
@@ -127,8 +122,8 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     userId -- integer
     newInfluences -- same format as the object that was passed down in props as "allInfluences"
   ******************************************** */
-  function onPersist( userId, newInfluences ) {
-    console.log( 'InfluencesTop5CT::onPersist(newInfluences)',  newInfluences  )
+  function onPersist(userId, newInfluences) {
+    console.log('InfluencesTop5CT::onPersist(newInfluences)', newInfluences)
 
     const { promptQuestionCode } = passedProps
 
@@ -151,4 +146,4 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( InfluencesTop5 )
+)(InfluencesTop5)

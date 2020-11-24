@@ -1,9 +1,9 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
-import MadLib from "./MadLib"
-import QuestionsCT from "../../Framework/QuestionsCT"
-import { QUESTION_TYPE_MADLIBS } from "../../../store/answers/constants"
+import MadLib from './MadLib'
+import QuestionsCT from '../../Framework/QuestionsCT'
+import { QUESTION_TYPE_MADLIBS } from '../../../store/answers/constants'
 
 /* **************************************************
    MadLibs component
@@ -18,14 +18,15 @@ import { QUESTION_TYPE_MADLIBS } from "../../../store/answers/constants"
      onUpdateStoreCB() -- callback to update the store
 ***************************************************** */
 export default class MadLibs extends React.Component {
-
   state = {
     isDynamic: this.props.isDynamic,
     madlibsSet: {}
   }
 
   async componentDidMount() {
-    const { copyParentAnswersCB, question, madlibs, impactFilter } = this.props
+    const {
+      copyParentAnswersCB, question, madlibs, impactFilter
+    } = this.props
 
     if (!madlibs.length && !this.state.madlibsSet[impactFilter]) {
       console.log('answers not set, copying parent')
@@ -36,15 +37,17 @@ export default class MadLibs extends React.Component {
 
   onSave = () => {
     const { onCloseModalCB } = this.props
-    this.setState({isDynamic: false})
+    this.setState({ isDynamic: false })
     onCloseModalCB()
   }
 
   render() {
     const { isDynamic } = this.state
-    const { madlibs, question, onUpdateStoreCB, impactFilter } = this.props
+    const {
+      madlibs, question, onUpdateStoreCB, impactFilter
+    } = this.props
 
-    console.log("MadLibs question", question)
+    console.log('MadLibs question', question)
     if (!isDynamic) {
       return (
         <ListGroup className="text-left">
@@ -67,7 +70,7 @@ export default class MadLibs extends React.Component {
       acc.push(<MadLib id={idx} question={question} madlib={madlibs[idx]} onUpdateStoreCB={onUpdateStoreCB}/>)
       return acc
     }, [])
-    
+
     return (
       // previous/next wrapper for each MadLibs
       <QuestionsCT
@@ -89,5 +92,5 @@ MadLibs.propTypes = {
   madlibs: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
   onUpdateStoreCB: PropTypes.func,
-  copyParentAnswers: PropTypes.func 
+  copyParentAnswers: PropTypes.func
 }

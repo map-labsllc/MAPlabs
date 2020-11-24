@@ -12,10 +12,12 @@ import { isLoggedIn } from '../../store/user/reducer'
      moduleDescription -- could be many lines, is we need paragraphs then will need to set innerHTML
      children -- the Section components to display
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
+const mapStateToProps = (state, passedProps) => {
   // console.log( "ModuleCT::mapStateToProps()" )
 
-  const { moduleNum, moduleTitle, moduleDescription, children } = passedProps
+  const {
+    moduleNum, moduleTitle, moduleDescription, children
+  } = passedProps
 
   return {
     isLoggedIn: isLoggedIn(state.userRD),
@@ -37,11 +39,11 @@ const mapStateToProps = ( state, passedProps ) => {
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => ({
-    dispatch,
-  })
+const mapDispatchToProps = (dispatch, passedProps) => ({
+  dispatch,
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( Module )
+)(Module)

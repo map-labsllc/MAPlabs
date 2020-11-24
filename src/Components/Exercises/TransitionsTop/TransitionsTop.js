@@ -2,8 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Top5ListCT from '../Top5List/Top5ListCT'
 
-import { QUESTION_TYPE_TOP_TRANSITIONS} from '../../../store/answers/constants'
-import { IDX_FROM, IDX_SELECTED, IDX_TO, IDX_TRANSITION, SELECTED } from '../../../constants'
+import { QUESTION_TYPE_TOP_TRANSITIONS } from '../../../store/answers/constants'
+import {
+  IDX_FROM, IDX_SELECTED, IDX_TO, IDX_TRANSITION, SELECTED
+} from '../../../constants'
 import { hydrater, dehydrater } from '../../../store/answers/reducer'
 
 /* **************************************************
@@ -28,7 +30,7 @@ export default function TransitionsTop(props) {
 
   // format answers for checkbox selector
   const hydrateAnswer = hydrater(answerShape)
-  
+
   // format item into answer for saving
   const dehydrateAnswer = dehydrater(answerShape)
 
@@ -53,4 +55,3 @@ TransitionsTop.propTypes = {
   question: PropTypes.object.isRequired,
   promptQuestionCodes: PropTypes.arrayOf(PropTypes.number).isRequired
 }
-

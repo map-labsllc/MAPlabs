@@ -14,13 +14,15 @@ import { persistAnswersAC } from '../../store/answers/actions'
      sectionTitle -- title of the section for redisplay in modal
      exercise -- component user will interact with
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
+const mapStateToProps = (state, passedProps) => {
   // console.log( "SectionExerciseCT::mapStateToProps()" )
 
-  const { moduleNum, sectionNum, sectionTitle, exercise } = passedProps
+  const {
+    moduleNum, sectionNum, sectionTitle, exercise
+  } = passedProps
 
   // get user
-  const user = getUser( state.userRD )
+  const user = getUser(state.userRD)
 
   return {
     user,
@@ -42,12 +44,12 @@ const mapStateToProps = ( state, passedProps ) => {
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => ({
-    onPersistQuestionCB: bindActionCreators(persistAnswersAC, dispatch),
-    sectionCompletedCB: bindActionCreators(sectionCompletedAC, dispatch)
-  })
+const mapDispatchToProps = (dispatch, passedProps) => ({
+  onPersistQuestionCB: bindActionCreators(persistAnswersAC, dispatch),
+  sectionCompletedCB: bindActionCreators(sectionCompletedAC, dispatch)
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( SectionExercise )
+)(SectionExercise)

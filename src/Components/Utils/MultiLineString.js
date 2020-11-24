@@ -8,18 +8,17 @@ import React from 'react'
    props:
      str
 ***************************************************** */
-const MultiLineString = ( props ) => {
-
+const MultiLineString = (props) => {
   const {
     str
-   } = props
+  } = props
 
-   return (
+  return (
     <>
       {str.split('\n').map((para, key) => (
-          <p key={key}>{para}</p>
-        ))}    
-    </>    
+        <p key={key}>{para}</p>
+      ))}
+    </>
   )
 }
 export default MultiLineString

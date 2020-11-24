@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { getUser } from '../../store/user/reducer'
 import { sectionCompletedAC } from '../../store/user/actions'
 
-const SectionCompleteButton = ( { user, onClick } ) => {
+const SectionCompleteButton = ({ user, onClick }) => {
   const currentModule = +(user.curr_module)
   const currentSection = +(user.curr_section)
 
@@ -22,7 +22,7 @@ const SectionCompleteButton = ( { user, onClick } ) => {
   )
 }
 
-const mapStateToProps = ( state, passedProps ) => {
+const mapStateToProps = (state, passedProps) => {
   const user = getUser(state.userRD)
 
   return {
@@ -31,4 +31,3 @@ const mapStateToProps = ( state, passedProps ) => {
 }
 
 export default connect(mapStateToProps)(SectionCompleteButton)
-

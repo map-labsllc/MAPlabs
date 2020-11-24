@@ -22,7 +22,6 @@ import { Button, ProgressBar } from 'react-bootstrap'
 
 ***************************************************** */
 export default class Questions extends React.Component {
-
   state = {
     currIdx: 0
   }
@@ -33,7 +32,7 @@ export default class Questions extends React.Component {
     const { subComponents, onPersistQuestionCB } = this.props
     const { currIdx } = this.state
 
-    onPersistQuestionCB( subComponents[currIdx].props.question )
+    onPersistQuestionCB(subComponents[currIdx].props.question)
   }
 
   // ******************************************
@@ -55,10 +54,10 @@ export default class Questions extends React.Component {
     const { currIdx } = this.state
 
     // already at the start, do nothing
-    if ( currIdx === 0 ) return
+    if (currIdx === 0) return
 
     this.persistCurrent()
-    this.setState( { currIdx: currIdx - 1 } )
+    this.setState({ currIdx: currIdx - 1 })
   }
 
   // ******************************************
@@ -70,12 +69,11 @@ export default class Questions extends React.Component {
     const { subComponents } = this.props
 
     // aready at the end, do nothing
-    if (currIdx === ( subComponents.length - 1 )) return
+    if (currIdx === (subComponents.length - 1)) return
 
     this.persistCurrent()
-    this.setState( { currIdx: currIdx + 1 } )
+    this.setState({ currIdx: currIdx + 1 })
   }
-
 
   // ******************************************
   render() {
@@ -89,12 +87,12 @@ export default class Questions extends React.Component {
     if (!isDynamic && subComponents) {
       return (
         <>
-          {subComponents.map( ( subComponent, idx ) => (
+          {subComponents.map((subComponent, idx) => (
             <div className="text-left" key={idx}>
               <h4>{showNumbers ? `${idx + 1}. ` : ''} {subComponent.props.question.text}</h4>
               {subComponent}
             </div>
-          ) )}
+          ))}
         </>
       )
     }
@@ -102,38 +100,38 @@ export default class Questions extends React.Component {
     // ******************************************
 
     // inject isDynamic into props so the subCompoent will render its dynamic version
-    const subComponentsWithIsDynamic = subComponents.map( ( subComponent, idx ) => React.cloneElement(
-        subComponent,
-        {
-          isDynamic: true,
-          number: idx + 1,
-        }
-      ) )
+    const subComponentsWithIsDynamic = subComponents.map((subComponent, idx) => React.cloneElement(
+      subComponent,
+      {
+        isDynamic: true,
+        number: idx + 1,
+      }
+    ))
 
     const progressAmount = Math.round(100 * (currIdx + 1) / subComponents.length)
     return (
       <>
         <ProgressBar variant="success" now={progressAmount} label={`${progressAmount}%`} />
-        {subComponentsWithIsDynamic.map( ( subComponent, idx ) => (
+        {subComponentsWithIsDynamic.map((subComponent, idx) => (
           <div key={idx}>
-            {( idx === currIdx ) && ( 
+            {(idx === currIdx) && (
               <>
                 {subComponent}
               </>
             )}
           </div>
-        ) )}
+        ))}
 
         <br />
 
         <div className="bgButton text-center">
-          {currIdx > 0 && 
+          {currIdx > 0 &&
             <Button className="previousButton" onClick={this.onclickLeft}>&larr; Previous</Button>
           }
 
           <Button className="closeButton" type="button" onClick={this.onclickClose}>Save</Button>
 
-          {currIdx < subComponentsWithIsDynamic.length - 1 && 
+          {currIdx < subComponentsWithIsDynamic.length - 1 &&
             <Button className="nextButton" onClick={this.onclickRight}>Next &rarr;</Button>
           }
         </div>

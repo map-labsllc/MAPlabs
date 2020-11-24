@@ -15,9 +15,7 @@ import { Redirect } from 'react-router-dom'
      children -- the Section components to display
 ***************************************************** */
 export default class Module extends React.Component {
-
   render() {
-
     // if not logged in, redirect to root
     const { isLoggedIn } = this.props
     if (!isLoggedIn) {
@@ -28,9 +26,9 @@ export default class Module extends React.Component {
 
     // if still loading, show spinner
     const { isLoading } = this.props
-    if ( isLoading ) {
+    if (isLoading) {
       return (
-          <div>Loading...</div>
+        <div>Loading...</div>
       )
     }
 
@@ -45,7 +43,3 @@ export default class Module extends React.Component {
     )
   }
 }
-
-
-
-

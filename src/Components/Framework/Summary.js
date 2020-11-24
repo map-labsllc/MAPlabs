@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types'
 
 const Summary = ({ subComponents }) => (
   <>
-    {subComponents.map( ( subComponent, idx ) => (
+    {subComponents.map((subComponent, idx) => (
       <div className="background text-left" key={idx}>
         <Card>
           <Card.Header>
@@ -17,7 +17,7 @@ const Summary = ({ subComponents }) => (
           </Card.Body>
         </Card>
       </div>
-    ) )}
+    ))}
   </>
 )
 

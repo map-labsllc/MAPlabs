@@ -8,7 +8,6 @@ In Module 2, a primary takeaway was that often our inhibiting values and beliefs
 <br><br>
 In Module 3 we will continue our process by building on the intrinsic values and beliefs that we identified in Module 2 to help lead us to the deepest desires we have for our lives across a battery of life elements.`
 
-
 export const QUES_310_DESC = `In this exercise you will articulate your deepest desires in life. We have given you 7 different categories of life to guide your reflection (plus room for “other”). The categories are:
 <br><br>
 - financial/material
@@ -36,7 +35,6 @@ Some categories may prove much more fertile than others, but you should strive t
 <br><br>
 <b>Brainstorm and list your desires in each category.</b> In each of the 7 categories listed, insert words or short phrases that describe specific desires you have for each category.  Please be as specific as you can and do not combine multiple desires into any one entry (for instance, instead of listing 'connecting to and benefiting other people,' create 2 entries, one for 'connecting to other people' and one for 'benefiting other people').`
 
-
 export const QUES_320_DESC = `Listing your desires is an important first step, one that can be hard. But there is more to do here. The next step is to go through a process of filtering that will allow you to decide which desires are most important to you within each category.
 <br><br>
 Within each category, compare the desires you listed, and make a tradeoff between each set of two, choosing only one of the two desires to carry into the next round.  For example, if you listed ten desires in one category, then compare your first listed desire to your second listed desire, and choose only one of them.  Then do the same for desires three and four, etc… At the end of round 1 you will have culled your desires in this category from ten to five.  Then do the same in the next round, and so on, until you only have one primary desire within the category.  Do this exercise for all seven categories until you only have one primary desire for each category.
@@ -49,15 +47,11 @@ Second, and more deeply, this exercise will give you an opportunity to be viscer
 <br><br>
 <i>A caveat:<i> when you get down to your last few desires, you may find that they are equally important, and you may want to combine some of them to come up with an optimal final desire. There will be an opportunity for you to make this kind of revision in the last two rounds.`
 
+export const QUES_330_DESC = 'Now that you have distilled your desires to what is most important to you within each of the 7 categories, it is now time to compare and prioritize between the categories themselves. The process here works the same way as the previous tradeoffs, but here we get to compare parts of our lives that are distinct and decide what role and proportion they each have in our lives. Again, you will make tradeoffs between the final desires of the 7 categories until only one desire remains. As before, there will be an opportunity for you to revise your last few desires in the final two rounds.'
 
-export const QUES_330_DESC = `Now that you have distilled your desires to what is most important to you within each of the 7 categories, it is now time to compare and prioritize between the categories themselves. The process here works the same way as the previous tradeoffs, but here we get to compare parts of our lives that are distinct and decide what role and proportion they each have in our lives. Again, you will make tradeoffs between the final desires of the 7 categories until only one desire remains. As before, there will be an opportunity for you to revise your last few desires in the final two rounds.`
+export const QUES_340_DESC = 'When you are finished, you will be able to see all of your final desires for each category in one place. Think about them for a few minutes. Taken together, what do they suggest about the life that you desire? Also think about how you prioritized each category in your second tradeoff exercise. In the space provided, write a short statement that brings together all the desires from each category and captures the essence of what this exercise has revealed to you, using the phrases themselves. As you organize the statement, pay attention to how you prioritized among these desires.'
 
-
-export const QUES_340_DESC = `When you are finished, you will be able to see all of your final desires for each category in one place. Think about them for a few minutes. Taken together, what do they suggest about the life that you desire? Also think about how you prioritized each category in your second tradeoff exercise. In the space provided, write a short statement that brings together all the desires from each category and captures the essence of what this exercise has revealed to you, using the phrases themselves. As you organize the statement, pay attention to how you prioritized among these desires.`
-
-
-export const QUES_350_DESC = `Review the 'desires statement' you created in Exercise 4 and consider how well the statement captures your most authentic self.`
-
+export const QUES_350_DESC = 'Review the \'desires statement\' you created in Exercise 4 and consider how well the statement captures your most authentic self.'
 
 export const QUES_360_DESC = `In order to create more personal Autonomy, consider which desires are less authentic and need to be 'broken from,' and which desires are more authentic and need to be 'built toward.' Fill in the following blanks:
 <br><br>

@@ -46,7 +46,6 @@ Logout.propTypes = {
   userLogout: PropTypes.func.isRequired
 }
 
-
 function mapDispatchToProps(dispatch) {
   return {
     userLogout: bindActionCreators(userLogout, dispatch)

@@ -19,7 +19,7 @@ import { persistAnswersAC } from '../../store/answers/actions'
      onCloseModalCB -- call to close the modal this control resides in
 
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
+const mapStateToProps = (state, passedProps) => {
   // console.log( "QuestionsCT::mapStateToProps()" )
 
   const {
@@ -28,13 +28,12 @@ const mapStateToProps = ( state, passedProps ) => {
   } = passedProps
 
   // validation
-  if ( !subComponents.length ) throw new Error( "no questions passed to QuestionsCT" )
+  if (!subComponents.length) throw new Error('no questions passed to QuestionsCT')
 
   return {
     isDynamic,
     subComponents,
   }
-
 }
 
 /// /////////////////////////////////////////////////////////////////////////////
@@ -46,15 +45,14 @@ const mapStateToProps = ( state, passedProps ) => {
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => {
-
+const mapDispatchToProps = (dispatch, passedProps) => {
   /* *****************************************
      onCloseModal()
 
      User clicked the Close button, tell modal to close
   ******************************************** */
   function onCloseModal() {
-    console.log( `QuestionsCT::onCloseModal()` )
+    console.log('QuestionsCT::onCloseModal()')
 
     const { onCloseModalCB } = passedProps
     if (onCloseModalCB) {
@@ -71,17 +69,16 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
        question -- { code: 50, text: "The question" }
 
   ******************************************** */
-  function persistQuestionAC( question ) {
-    console.log( `QuestionsCT::persistQuestion` )
+  function persistQuestionAC(question) {
+    console.log('QuestionsCT::persistQuestion')
 
-    return ( dispatch, getStore ) => {
-
+    return (dispatch, getStore) => {
       const store = getStore()
       const { questionType } = passedProps
-      const userId = getUser( store.userRD ).id
-      const twoDimArrayOfString = getAnswers( store.answersRD, question.code )
+      const userId = getUser(store.userRD).id
+      const twoDimArrayOfString = getAnswers(store.answersRD, question.code)
 
-      dispatch( persistAnswersAC( userId, question.code, questionType, twoDimArrayOfString ) )
+      dispatch(persistAnswersAC(userId, question.code, questionType, twoDimArrayOfString))
     }
   }
 
@@ -90,10 +87,10 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 
      Persist a question from Store to Db
   ******************************************** */
-  function onPersistQuestion( question ) {
-    console.log( `QuestionsCT::onPersistQuestion()` )
+  function onPersistQuestion(question) {
+    console.log('QuestionsCT::onPersistQuestion()')
 
-    dispatch( persistQuestionAC( question ) )
+    dispatch(persistQuestionAC(question))
   }
 
   /* *****************************************
@@ -108,4 +105,4 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( Questions )
+)(Questions)

@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'react-bootstrap'
-import {  SELECTED } from '../../../constants'
+import { SELECTED } from '../../../constants'
 import ReflectionTop5 from './ReflectionTop5'
 import { UUID } from '../../Utils/UUID'
-
 
 /* **************************************************
    ReflectionsTop5 component
@@ -17,12 +16,12 @@ import { UUID } from '../../Utils/UUID'
     isDirty -- decide if we need to persist to db
     reflectionsWithKeys --
       [ key: 1,
-        item: { 
+        item: {
           strength: '1234'
           strengthValue: 'Bravery',
           phrase: 'I was young and dumb',
           effect: 'embodiment'
-          selected:'selected'}, 
+          selected:'selected'},
         {...},
       ]
 
@@ -38,7 +37,6 @@ import { UUID } from '../../Utils/UUID'
      onCloseModalCB -- when user clicks Close button
 ***************************************************** */
 export default class ReflectionsTop5 extends React.Component {
-
   uuid = new UUID() // provides unique keys for <ShortAnswer> components
 
   state = {
@@ -47,25 +45,23 @@ export default class ReflectionsTop5 extends React.Component {
   }
 
   onclickClose = () => {
-
     const { userId, onPersistCB, onCloseModalCB } = this.props
     const { isDirty, reflectionsWithKeys } = this.state
 
-    if (isDirty)
-      {onPersistCB(
+    if (isDirty) {
+      onPersistCB(
         userId,
         this.uuid.stripKeys(reflectionsWithKeys)
-      )}
+      )
+    }
 
     onCloseModalCB()
   }
 
   updateReflection = (keyToUpdate, newInfluence) => {
-
     const { reflectionsWithKeys } = this.state
 
-    const newReflectionsWithKeys = reflectionsWithKeys.map((reflectionWithKey) =>
-      ((reflectionWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: newInfluence } : reflectionWithKey))
+    const newReflectionsWithKeys = reflectionsWithKeys.map((reflectionWithKey) => ((reflectionWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: newInfluence } : reflectionWithKey))
 
     this.setState({
       isDirty: true,
@@ -78,18 +74,14 @@ export default class ReflectionsTop5 extends React.Component {
     const { reflectionsWithKeys } = this.state
 
     // filter to just the StrengthEmIm matching the filter
-    const filteredWithKeys = reflectionsWithKeys.filter(reflectionWithKey =>
-      reflectionWithKey.item.effect === filter
-    )
-
+    const filteredWithKeys = reflectionsWithKeys.filter(reflectionWithKey => reflectionWithKey.item.effect === filter)
 
     // static render
     if (!isDynamic) {
       const selectedReflectionsWithKeys = filteredWithKeys
         .filter(reflectionWithKey => reflectionWithKey.item.selected === SELECTED)
 
-      if (selectedReflectionsWithKeys.length === 0)
-        {return <p>Not started.</p>}
+      if (selectedReflectionsWithKeys.length === 0) { return <p>Not started.</p> }
 
       return (
         <>
@@ -103,15 +95,13 @@ export default class ReflectionsTop5 extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {selectedReflectionsWithKeys.map(reflection =>
-                <ReflectionTop5 
-                    key={reflection.key}
-                    id={reflection.key}
-                    reflection={reflection.item}
-                    isDynamic={isDynamic}
-                    updateReflectionCB={this.updateReflection}
-                />
-              )}
+              {selectedReflectionsWithKeys.map(reflection => <ReflectionTop5
+                key={reflection.key}
+                id={reflection.key}
+                reflection={reflection.item}
+                isDynamic={isDynamic}
+                updateReflectionCB={this.updateReflection}
+              />)}
             </tbody>
           </table>
         </>
@@ -132,33 +122,29 @@ export default class ReflectionsTop5 extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {filteredWithKeys.map(reflectionWithKey =>
-              <ReflectionTop5 
-                key={reflectionWithKey.key}
-                id={reflectionWithKey.key}
-                reflection={reflectionWithKey.item}
-                isDynamic={isDynamic}
-                updateReflectionCB={this.updateReflection}
-              />
-            )}
+            {filteredWithKeys.map(reflectionWithKey => <ReflectionTop5
+              key={reflectionWithKey.key}
+              id={reflectionWithKey.key}
+              reflection={reflectionWithKey.item}
+              isDynamic={isDynamic}
+              updateReflectionCB={this.updateReflection}
+            />)}
           </tbody>
         </table>
-        
+
         <Button type="button" onClick={this.onclickClose}>Save</Button>
       </>
     )
   }
 }
 
-
 ReflectionsTop5.propTypes = {
-  question: PropTypes.shape( {
+  question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-  } ).isRequired,
+  }).isRequired,
   reflections: PropTypes.array.isRequired,
   filter: PropTypes.string.isRequired,
   isDynamic: PropTypes.bool,
   onUpdateAnswerCB: PropTypes.func,
 }
-

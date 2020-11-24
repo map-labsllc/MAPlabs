@@ -30,10 +30,8 @@ import { UUID } from '../../Utils/UUID'
      onUpdateStoreCB(newAnswers) -- callback to update the store
 ***************************************************** */
 
-
 /// ////////////////////////////////////////
 export default class ShortAnswers extends React.Component {
-
   uuid = new UUID() // provides unique keys for <ShortAnswer> components
 
   state = {
@@ -48,7 +46,6 @@ export default class ShortAnswers extends React.Component {
     if (previousAnswers.length === 0) this.onclickAdd()
   }
 
-
   // **********************************************
   // tell parent to update array of answers to store
   updateAnswer = (key, newAnswer) => {
@@ -57,8 +54,7 @@ export default class ShortAnswers extends React.Component {
     const { onUpdateStoreCB } = this.props
     const { answersWithKeys } = this.state
 
-    const newAnswersWithKeys = answersWithKeys.map(answerWithKey =>
-      ((answerWithKey.key === key) ? { key, item: newAnswer } : answerWithKey))
+    const newAnswersWithKeys = answersWithKeys.map(answerWithKey => ((answerWithKey.key === key) ? { key, item: newAnswer } : answerWithKey))
 
     onUpdateStoreCB(this.uuid.stripKeys(newAnswersWithKeys))
     this.setState({ answersWithKeys: newAnswersWithKeys })
@@ -73,8 +69,7 @@ export default class ShortAnswers extends React.Component {
     const { onUpdateStoreCB } = this.props
     const { answersWithKeys } = this.state
 
-    const newAnswersWithKeys = answersWithKeys.filter((answerWithKey) =>
-      keyToDelete !== answerWithKey.key)
+    const newAnswersWithKeys = answersWithKeys.filter((answerWithKey) => keyToDelete !== answerWithKey.key)
 
     onUpdateStoreCB(this.uuid.stripKeys(newAnswersWithKeys))
     this.setState({ answersWithKeys: newAnswersWithKeys })
@@ -100,23 +95,21 @@ export default class ShortAnswers extends React.Component {
     const { answersWithKeys } = this.state
 
     // render static version
-  
+
     if (!isDynamic) {
       console.log(number, question, answersWithKeys)
       return (
         <ul className="list-group text-left">
-          { answersWithKeys.map((answerWithKey) =>
-            <li className="list-group-item" key={answerWithKey.key}>
-              <ShortAnswer
-                key={answerWithKey.key}
-                id={answerWithKey.key}
-                previousAnswer={answerWithKey.item}
-                updateAnswerCB={this.updateAnswer}
-                deleteAnswerCB={this.deleteAnswer}
-                isDynamic={isDynamic}
-              />
-            </li>
-          )}
+          { answersWithKeys.map((answerWithKey) => <li className="list-group-item" key={answerWithKey.key}>
+            <ShortAnswer
+              key={answerWithKey.key}
+              id={answerWithKey.key}
+              previousAnswer={answerWithKey.item}
+              updateAnswerCB={this.updateAnswer}
+              deleteAnswerCB={this.deleteAnswer}
+              isDynamic={isDynamic}
+            />
+          </li>)}
         </ul>
       )
     }
@@ -125,25 +118,23 @@ export default class ShortAnswers extends React.Component {
     return (
       <div className="text-left">
         <h4 style={style.h4}>{number}. {question.text}</h4>
-        {answersWithKeys.map((answerWithKey) =>
-          <ShortAnswer
-            key={answerWithKey.key}
-            id={answerWithKey.key}
-            previousAnswer={answerWithKey.item}
-            updateAnswerCB={this.updateAnswer}
-            deleteAnswerCB={this.deleteAnswer}
-            placeholder={ question.placeholder }
-            isDynamic={isDynamic}
-          >
-          </ShortAnswer>
-        )}
+        {answersWithKeys.map((answerWithKey) => <ShortAnswer
+          key={answerWithKey.key}
+          id={answerWithKey.key}
+          previousAnswer={answerWithKey.item}
+          updateAnswerCB={this.updateAnswer}
+          deleteAnswerCB={this.deleteAnswer}
+          placeholder={ question.placeholder }
+          isDynamic={isDynamic}
+        >
+        </ShortAnswer>)}
 
         <div>
           <Button className="addAnswerButton" type="button" onClick={this.onclickAdd}>Add Answer</Button>
         </div>
         <hr />
       </div>
-        
+
     )
   }
 }
@@ -153,10 +144,10 @@ export default class ShortAnswers extends React.Component {
 /// /////////////////////////////////////////////////////////////
 
 ShortAnswers.propTypes = {
-  question: PropTypes.shape( {
+  question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-  } ).isRequired,
+  }).isRequired,
   previousAnswers: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
   onUpdateAnswerCB: PropTypes.func, // required, injevted by <Popup>
@@ -169,7 +160,7 @@ ShortAnswers.propTypes = {
 const style = {
   h4: { marginTop: '1em' },
   centering: {
-    marginLeft: "45%",
-    marginRight: "45%",
+    marginLeft: '45%',
+    marginRight: '45%',
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormCard = ( {title, children}) => (
+const FormCard = ({ title, children }) => (
   <div className="content">
     <div className="container-fluid">
       <div className="row">
@@ -20,6 +20,3 @@ const FormCard = ( {title, children}) => (
 )
 
 export default FormCard
-
-
-               

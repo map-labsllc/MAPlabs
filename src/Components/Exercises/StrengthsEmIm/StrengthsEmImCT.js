@@ -11,8 +11,7 @@ import { IDX_STRENGTH, IDX_PHRASE, IDX_EFFECT } from '../../../constants'
      isDynamic -- undefined - rendering static version in <Popup>
                   true - rendering dynamic verison in <ModalX>
 ******************************************** */
-const mapStateToProps = ( state, props ) => {
-
+const mapStateToProps = (state, props) => {
   const {
     number,
     question,
@@ -21,28 +20,28 @@ const mapStateToProps = ( state, props ) => {
   } = props
 
   // validate params
-  if ( !question || !question.code ) throw new Error( "missing question code: ", props.question_code )
+  if (!question || !question.code) throw new Error('missing question code: ', props.question_code)
 
   const strength_id = strength[IDX_STRENGTH]
   let reflections = []
 
   // get all the records with this strength_id
-  const answerRecords = getAnswers( state.answersRD, question.code).filter((answer => +answer[IDX_STRENGTH] === +strength_id))
+  const answerRecords = getAnswers(state.answersRD, question.code).filter((answer => +answer[IDX_STRENGTH] === +strength_id))
   // console.log( `getAnswers(${question.code}) wtih ${strength_id}: `, answerRecords )
 
   // translate data from the 2D array of strings to
   if (answerRecords.length) {
     // check that each record has the same strength
     if (!answerRecords.every(record => +record[IDX_STRENGTH] === +strength_id)) {
-      console.error("ERROR, question.code:", question.code, "records should all have the same strength")
+      console.error('ERROR, question.code:', question.code, 'records should all have the same strength')
     }
 
     // REFLECTIONS array
     // ----------------
-    reflections = answerRecords.map((record, i) => ({ 
-        reflection: record[IDX_PHRASE],
-        effect: record[IDX_EFFECT]
-      }))
+    reflections = answerRecords.map((record, i) => ({
+      reflection: record[IDX_PHRASE],
+      effect: record[IDX_EFFECT]
+    }))
   }
 
   return {
@@ -58,9 +57,9 @@ const mapStateToProps = ( state, props ) => {
    mapDispatchToProps()
    props -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, props ) => ({})
+const mapDispatchToProps = (dispatch, props) => ({})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( StrengthsEmIm )
+)(StrengthsEmIm)

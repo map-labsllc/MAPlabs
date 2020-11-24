@@ -18,9 +18,10 @@ import SectionId from '../Utils/SectionId'
      exercise -- component user will interact with
 ***************************************************** */
 export default class Section extends React.Component {
-
   render() {
-    const { number, isVisible, moduleNum, sectionNum, sectionTitle, section_ids, exercise, showEdit } = this.props
+    const {
+      number, isVisible, moduleNum, sectionNum, sectionTitle, section_ids, exercise, showEdit
+    } = this.props
 
     return (
       <div className="background">

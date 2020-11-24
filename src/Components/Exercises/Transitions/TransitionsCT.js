@@ -26,7 +26,7 @@ const hydrateAnswer = hydrater(answerShape)
 // format item into answer for saving
 const dehydrateAnswer = dehydrater(answerShape)
 
-const mapStateToProps = ( state, passedProps ) => {
+const mapStateToProps = (state, passedProps) => {
   // console.log( "TransitionsCT::mapStateToProps()" )
 
   const {
@@ -36,11 +36,11 @@ const mapStateToProps = ( state, passedProps ) => {
   } = passedProps
 
   // validation
-  if ( !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
+  if (!question.code) throw new Error('missing question code: ', passedProps.question_code)
 
   // get previous transitions, if any
-  const answers = getAnswers( state.answersRD, question.code )
-  console.log( `getAnswers(${question.code}): `, answers )
+  const answers = getAnswers(state.answersRD, question.code)
+  console.log(`getAnswers(${question.code}): `, answers)
   const previousTransitions = answers.map(hydrateAnswer)
 
   // console.log('TransitionsCT::previousTransitions: ', previousTransitions);
@@ -58,11 +58,10 @@ const mapStateToProps = ( state, passedProps ) => {
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => {
-
+const mapDispatchToProps = (dispatch, passedProps) => {
   // helper function
-  function filterOutBlanks( transition ) {
-    return transition.filter( transitions => ( transitions.from.trim().length + transitions.to.trim().length ) )
+  function filterOutBlanks(transition) {
+    return transition.filter(transitions => (transitions.from.trim().length + transitions.to.trim().length))
   }
 
   /* *****************************************
@@ -88,10 +87,9 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   return {
     onUpdateStoreCB: onUpdateStore,
   }
-
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( Transitions )
+)(Transitions)

@@ -1,10 +1,10 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
-import StrengthsEmImCT from "./StrengthsEmImCT"
-import QuestionsCT from "../../Framework/QuestionsCT"
-import { QUESTION_TYPE_STRENGTH } from "../../../store/answers/constants"
-import { listIdToValue } from "../../../store/lists/actions"
+import StrengthsEmImCT from './StrengthsEmImCT'
+import QuestionsCT from '../../Framework/QuestionsCT'
+import { QUESTION_TYPE_STRENGTH } from '../../../store/answers/constants'
+import { listIdToValue } from '../../../store/lists/actions'
 
 /* **************************************************
    Strength component
@@ -20,7 +20,6 @@ import { listIdToValue } from "../../../store/lists/actions"
 ***************************************************** */
 const IDX_STRENGTH = 0
 export default class StrengthsEmImWrapper extends React.Component {
-
   state = {
     isDynamic: this.props.isDynamic,
     strengthsSet: false
@@ -39,13 +38,15 @@ export default class StrengthsEmImWrapper extends React.Component {
   onSave = () => {
     const { onCloseModalCB } = this.props
     onCloseModalCB() // call parent onCloseModalCB
-    this.setState({isDynamic: false})
+    this.setState({ isDynamic: false })
   }
 
   render() {
     const { isDynamic } = this.state
 
-    const { strengths, strengthsList, question, onUpdateStoreCB } = this.props
+    const {
+      strengths, strengthsList, question, onUpdateStoreCB
+    } = this.props
 
     if (!isDynamic) {
       return (
@@ -69,13 +70,13 @@ export default class StrengthsEmImWrapper extends React.Component {
       acc.push(<StrengthsEmImCT question={question} onUpdateStoreCB={onUpdateStoreCB} strength={strengths[i]} strengthValue={listIdToValue(strengthsList, strengths[i][IDX_STRENGTH])} />)
       return acc
     }, [])
-    
+
     return (
       // previous/next wrapper for each strength
       <QuestionsCT
         question={question}
         questionType={QUESTION_TYPE_STRENGTH}
-        onCloseModalCB={this.onSave} 
+        onCloseModalCB={this.onSave}
         subComponents={EmImReflections}
         isDynamic={isDynamic}
       />
@@ -93,5 +94,5 @@ StrengthsEmImWrapper.propTypes = {
   strengthsList: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
   onUpdateStoreCB: PropTypes.func,
-  copyParentAnswers: PropTypes.func.isRequired 
+  copyParentAnswers: PropTypes.func.isRequired
 }

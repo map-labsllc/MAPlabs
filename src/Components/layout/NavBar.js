@@ -9,7 +9,6 @@ import { isLoggedIn } from '../../store/user/reducer'
 
 // export default class NavBar extends React.Component {
 class NavBar extends React.Component {
-
   // TODO... REFACTOR this doesn't seem like the right place for the data loading to live
 
   /* ***********************************************
@@ -21,7 +20,7 @@ class NavBar extends React.Component {
   ************************************************** */
   loadUserData = (dispatch, user) => {
     // asynch calls to load user data from db
-    dispatch( loadAllAnswersAC( user.id ) )
+    dispatch(loadAllAnswersAC(user.id))
   }
 
   /* ***********************************************
@@ -30,8 +29,7 @@ class NavBar extends React.Component {
   This is only needed when we're using the backdoor to start the app with
   an initial user.  We can't wait for componentDidUpdate() b/c it's not called.
   ************************************************** */
-  componentDidMount( prevProps, prevState ) {
-
+  componentDidMount(prevProps, prevState) {
     const { dispatch, user, isLoggedIn } = this.props
 
     // load user data
@@ -39,9 +37,9 @@ class NavBar extends React.Component {
       this.loadUserData(dispatch, user)
     }
 
-    // load life descriptors and lists 
-    dispatch( loadAllStaticdataAC() )
-    dispatch( loadListsAC() )
+    // load life descriptors and lists
+    dispatch(loadAllStaticdataAC())
+    dispatch(loadListsAC())
   }
 
   /* ***********************************************
@@ -50,9 +48,9 @@ class NavBar extends React.Component {
   Catches changes to the user's login status which will trigger loading
   the new user's data.
   ************************************************** */
-  componentDidUpdate( prevProps, prevState ) {
+  componentDidUpdate(prevProps, prevState) {
     // console.log( "NavBar::componentDidUpdate()" )
-    if ( this.props.isLoggedIn !== prevProps.isLoggedIn ) {
+    if (this.props.isLoggedIn !== prevProps.isLoggedIn) {
       const { dispatch, user } = this.props
       this.loadUserData(dispatch, user)
     }
@@ -64,49 +62,48 @@ class NavBar extends React.Component {
   ************************************************** */
 
   render() {
-
     const { user, isLoggedIn } = this.props
 
     // user logged in, show the navbar
     return (
       <nav className="navbar navbar-expand-lg" color-on-scroll="500">
         <div className="container-fluid">
-          <div className="collapse navbar-collapse justify-content-end" id="navigation"> 
+          <div className="collapse navbar-collapse justify-content-end" id="navigation">
             <Nav className="navbar-nav ml-auto pull-right">
               { isLoggedIn ?
               // logged in
-              (
-              <>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/account">
-                    <i className="nc-icon nc-single-02 "></i>
-                    <span style={style.account}>{`${user.fname} ${user.lname}`}</span>
-                  </NavLink>
-                </li>
-                <li as="Link" className="nav-item">
-                  <NavLink className="nav-link" to="/logout">
-                    <span className="no-icon">Logout</span>
-                  </NavLink>
-                </li>
-              </>
-              ) :
+                (
+                  <>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/account">
+                        <i className="nc-icon nc-single-02 "></i>
+                        <span style={style.account}>{`${user.fname} ${user.lname}`}</span>
+                      </NavLink>
+                    </li>
+                    <li as="Link" className="nav-item">
+                      <NavLink className="nav-link" to="/logout">
+                        <span className="no-icon">Logout</span>
+                      </NavLink>
+                    </li>
+                  </>
+                ) :
               // not logged in
-              (
-              <>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/signup">
-                    <i className="no-icon"></i>
-                    <span>Sign Up</span>
-                  </NavLink>
-                </li>
-                <li as="Link" className="nav-item">
-                  <NavLink className="nav-link" to="/login">
-                    <span className="no-icon">Login</span>
-                  </NavLink>
-                </li>
-              </>
-              )
-            }
+                (
+                  <>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/signup">
+                        <i className="no-icon"></i>
+                        <span>Sign Up</span>
+                      </NavLink>
+                    </li>
+                    <li as="Link" className="nav-item">
+                      <NavLink className="nav-link" to="/login">
+                        <span className="no-icon">Login</span>
+                      </NavLink>
+                    </li>
+                  </>
+                )
+              }
             </Nav>
           </div>
         </div>
@@ -116,7 +113,7 @@ class NavBar extends React.Component {
 }
 
 const style = {
-  account: {marginLeft: '3px'}
+  account: { marginLeft: '3px' }
 }
 
 /// //////////////////////////////////////////////////
@@ -135,11 +132,11 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => ( {
+const mapDispatchToProps = dispatch => ({
   dispatch,
-} )
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( NavBar )
+)(NavBar)

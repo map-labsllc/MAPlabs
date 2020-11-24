@@ -1,12 +1,9 @@
 /*
 
-
 This is from version 1.0.4:
 
 - github: https://github.com/devzonetech/react-show-more-text/blob/master/src/ShowMoreText.js
 - npm: https://www.npmjs.com/package/react-show-more-text
-
-
 
 */
 import React, { Component } from 'react'
@@ -39,23 +36,23 @@ export default class ShowMoreLess extends Component {
   }
 
   handleTruncate = truncated => {
-    if ( truncated !== this.state.truncated ) {
-      this.setState( {
+    if (truncated !== this.state.truncated) {
+      this.setState({
         truncated
-      } )
+      })
     }
   }
 
   toggleLines = event => {
     event.preventDefault()
     const _self = this
-    this.setState( {
+    this.setState({
       expanded: !this.state.expanded
     }, () => {
-      if ( _self.props.onClick ) {
-        _self.props.onClick( _self.state.expanded )
+      if (_self.props.onClick) {
+        _self.props.onClick(_self.state.expanded)
       }
-    } )
+    })
   }
 
   render() {

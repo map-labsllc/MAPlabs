@@ -4,18 +4,17 @@ import { Button } from 'react-bootstrap'
 /* **************************************************
    Arrow component
 
-   Display Left or Right arrow button and call CB when clicked 
+   Display Left or Right arrow button and call CB when clicked
 
    props:
      direction - 'left' or 'right'
      onClickCB
 ***************************************************** */
-const Arrow = ( props ) => {
-
+const Arrow = (props) => {
   const {
     direction,
     onClickCB,
-   } = props
+  } = props
 
   return (
     <Button

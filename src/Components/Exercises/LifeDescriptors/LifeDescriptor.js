@@ -2,9 +2,9 @@ import React from 'react'
 import {
   Button,
   ButtonGroup,
- } from 'react-bootstrap'
+} from 'react-bootstrap'
 
- /* **************************************************
+/* **************************************************
     LifeDescriptor component
 
     Displays a single life descriptor with:
@@ -20,8 +20,7 @@ import {
       isCheckedB - t/f is the b option should be selected
       onAddSelectionCB - CB when a selection is made
  ***************************************************** */
-const LifeDescriptor = ( props ) => {
-
+const LifeDescriptor = (props) => {
   const {
     lifeDescriptor,
     isSelectedA,
@@ -29,8 +28,8 @@ const LifeDescriptor = ( props ) => {
     onAddSelectionCB,
   } = props
 
-  const btnStyleA = ( isSelectedA ) ? 'btn-fill' : ''
-  const btnStyleB = ( isSelectedB ) ? 'btn-fill' : ''
+  const btnStyleA = (isSelectedA) ? 'btn-fill' : ''
+  const btnStyleB = (isSelectedB) ? 'btn-fill' : ''
 
   // render
   return (
@@ -42,28 +41,26 @@ const LifeDescriptor = ( props ) => {
       {/* ----------------------------- */}
       { lifeDescriptor.firstPart }
 
-
       {/* ----------------------------- */}
       {/* A / B BUTTONS                 */}
       {/* ----------------------------- */}
       <ButtonGroup>
 
         <Button
-          onClick = { () => { onAddSelectionCB( 'a' ) } }
+          onClick = { () => { onAddSelectionCB('a') } }
           className = { btnStyleA }
         >
           <strong>{ lifeDescriptor.a }</strong>
         </Button>
 
         <Button
-          onClick = { () => { onAddSelectionCB( 'b' ) } }
+          onClick = { () => { onAddSelectionCB('b') } }
           className = { btnStyleB }
         >
           <strong>{ lifeDescriptor.b }</strong>
         </Button>
 
       </ButtonGroup>
-
 
       {/* ----------------------------- */}
       {/* SECOND PART OF SENTENCE       */}

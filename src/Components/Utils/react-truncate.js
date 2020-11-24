@@ -1,14 +1,11 @@
 /*
 
-
 This is from version 2.4.0:
 
 - github: https://github.com/One-com/react-truncate/blob/master/src/Truncate.js
 - npm: https://www.npmjs.com/package/react-truncate
 
-
 Modified render() to show dangerous HTML so the <br>s render.
-
 
 */
 
@@ -312,18 +309,16 @@ export default class Truncate extends Component {
   renderLine(line, i, arr) {
     if (i === arr.length - 1) {
       return <span key={i}>{line}</span>;
-    } 
-      const br = <br key={`${i  }br`} />;
+    }
+    const br = <br key={`${i}br`} />;
 
-      if (line) {
-        return [
-          <span key={i}>{line}</span>,
-          br
-        ];
-      } 
-        return br;
-      
-    
+    if (line) {
+      return [
+        <span key={i}>{line}</span>,
+        br
+      ];
+    }
+    return br;
   }
 
   render() {

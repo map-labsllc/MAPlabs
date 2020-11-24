@@ -1,7 +1,7 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { FormControl } from "react-bootstrap"
-import { listIdToValue } from "../../../store/lists/actions"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { FormControl } from 'react-bootstrap'
+import { listIdToValue } from '../../../store/lists/actions'
 
 /* **************************************************
    Strength component
@@ -16,14 +16,13 @@ import { listIdToValue } from "../../../store/lists/actions"
      question -- { code: 50, text: "Question 50" }
      previousData --  {
                         strength: "honest",
-  
+
                       }
      isDynamic -- undefined - render static version
                   true - render dynamic version
      onUpdateStoreCB() -- callback to update the store
 ***************************************************** */
 export default class Strength extends React.Component {
-
   state = {
     number: this.props.number, // display number
     strength: this.props.strength
@@ -66,8 +65,7 @@ export default class Strength extends React.Component {
             <option key={option.id} value={option.id}>
               { option.value }
             </option>
-            )
-          )}
+          ))}
         </FormControl>
       </>
     )

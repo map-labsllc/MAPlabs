@@ -1,13 +1,5 @@
 import React from 'react'
-import {
-  Button,
-  Checkbox,
-  Col,
-  ControlLabel,
-  Form,
-  FormControl,
-  FormGroup,
-} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import ModalX from './ModalX'
 import ShowMoreLess from '../Utils/ShowMoreLess'
 // import '../../CSS/Section.css'
@@ -26,7 +18,6 @@ import { sectionCompletedAC } from '../../store/user/actions'
      exercise -- component user will interact with
 ***************************************************** */
 export default class Popup extends React.Component {
-
   state = {
     isVisible: false,
   }
@@ -34,16 +25,18 @@ export default class Popup extends React.Component {
   // **************************************************
   // Show the complex interactive component
   onclickStart = () => {
-    console.log("Popup::onclickStart()")
+    console.log('Popup::onclickStart()')
     this.setState({ isVisible: true })
   }
 
   // **************************************************
   // CB from the <exercise> when its close/save button is clicked
   onCloseModal = () => {
-    console.log("Popup::onCloseModal()")
+    console.log('Popup::onCloseModal()')
 
-    const { dispatch, user, moduleNum, sectionNum } = this.props
+    const {
+      dispatch, user, moduleNum, sectionNum
+    } = this.props
     dispatch(sectionCompletedAC(user, moduleNum, sectionNum))
 
     this.setState({ isVisible: false })
@@ -52,13 +45,14 @@ export default class Popup extends React.Component {
   // **************************************************
   // CB from <Modal>
   onModalClosing = () => {
-    console.log("Popup::onModalClosing()")
+    console.log('Popup::onModalClosing()')
     // this.setState( { isVisible: false } )
   }
+
   // **************************************************
   // CB from <Modal>
   onModalOpening = () => {
-    console.log("Popup::onModalOpening()")
+    console.log('Popup::onModalOpening()')
   }
 
   // **************************************************
@@ -119,12 +113,12 @@ export default class Popup extends React.Component {
 }
 const style = {
   inner: {
-    marginLeft: "5%",
-    marginRight: "5%",
+    marginLeft: '5%',
+    marginRight: '5%',
   }
 }
 
-        // return (
+// return (
 //   <>
 //     <h6><i>..Popup controller manages starting a section..</i></h6>
 //     {!isVisible && (
@@ -143,7 +137,6 @@ const style = {
 //     )}
 //   </>
 // )
-
 
 // WORKING CODE pre-modal
 // May need to pass a prop to Popup to decide if the exercise should be wrapped

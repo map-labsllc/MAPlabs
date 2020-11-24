@@ -1,11 +1,10 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import Top5List from './Top5List'
-import { getAnswers } from '../../../store/answers/reducer'
+import { getAnswers, hydrater, dehydrater } from '../../../store/answers/reducer'
 import { getUser } from '../../../store/user/reducer'
 import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
 import { IDX_DEFAULT, IDX_SELECTED, SELECTED } from '../../../constants'
-import { hydrater, dehydrater } from '../../../store/answers/reducer'
 
 // defaults for answer in first field
 const DEFAULT_FIELD = 'field1'
@@ -28,7 +27,6 @@ const defaultAnswerShape = {
       onCloseModalCB -- call when user clicks Save button
 ******************************************** */
 const mapStateToProps = (state, passedProps) => {
-
   const {
     question,
     promptQuestionCodes,
@@ -42,25 +40,23 @@ const mapStateToProps = (state, passedProps) => {
   } = passedProps
 
   // sort based on selectedAttribute
-  const compare = (a,b) => {
-    if (a[selectedAttribute] < b[selectedAttribute])
-      {return -1;}
-    if (a[selectedAttribute] > b[selectedAttribute])
-      {return 1;}
+  const compare = (a, b) => {
+    if (a[selectedAttribute] < b[selectedAttribute]) { return -1; }
+    if (a[selectedAttribute] > b[selectedAttribute]) { return 1; }
     return 0;
   }
 
   // validate params
-  if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
+  if (!question || !question.code) throw new Error('missing question code: ', passedProps.question_code)
 
   // get userId
-  const userId = getUser( state.userRD ).id
+  const userId = getUser(state.userRD).id
 
   // find previous answers
   const answers = getAnswers(state.answersRD, question.code)
   const selectedAnswers = answers.map(hydrateAnswer)
   console.log('selectedAnswers', selectedAnswers)
-  
+
   // make array of answers for comparison values
   const selectedValues = selectedAnswers.map(JSON.stringify)
   const isSelected = (value) => selectedValues.includes(value)
@@ -73,13 +69,13 @@ const mapStateToProps = (state, passedProps) => {
 
   // determine any prompts that haven't been selected
   // note: bug: if prompt is editted then it reappears as a select option
-  const unselectedPrompts = 
+  const unselectedPrompts =
     prompts.map(hydrateAnswer)
-      .filter(answer => !isSelected(JSON.stringify({...answer, selected: SELECTED})))
+      .filter(answer => !isSelected(JSON.stringify({ ...answer, selected: SELECTED })))
 
   // add prompts to answers that were already saved
   const allPrompts = [...answers.map(hydrateAnswer), ...unselectedPrompts].sort(compare)
-  console.log("all prompts for", promptQuestionCodes, allPrompts)
+  console.log('all prompts for', promptQuestionCodes, allPrompts)
 
   return {
     userId,
@@ -100,7 +96,7 @@ const mapStateToProps = (state, passedProps) => {
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => {
+const mapDispatchToProps = (dispatch, passedProps) => {
   const {
     dehydrateAnswer = dehydrater(defaultAnswerShape),
     question,
@@ -118,34 +114,34 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     promptQuestionCode
     newData -- same format as the object that was passed down in props as "prompts"
   ******************************************** */
-  const onSave = (newData) => async(dispatch, getState) => {
-      const state = getState()
-      // get userId
-      const userId = getUser( state.userRD ).id
+  const onSave = (newData) => async (dispatch, getState) => {
+    const state = getState()
+    // get userId
+    const userId = getUser(state.userRD).id
 
-      const twoDimArrayOfString = newData.reduce((acc, item) => {
-        // only save selected items
-        if (item.selected) {
-          acc.push(dehydrateAnswer(item))
-        }
-        return acc
-      }, [])
+    const twoDimArrayOfString = newData.reduce((acc, item) => {
+      // only save selected items
+      if (item.selected) {
+        acc.push(dehydrateAnswer(item))
+      }
+      return acc
+    }, [])
 
-      // console.log('-- persisting:')
-      // console.log(JSON.stringify(twoDimArrayOfString))
+    // console.log('-- persisting:')
+    // console.log(JSON.stringify(twoDimArrayOfString))
 
-      // console.log('updateAnswersAC')
-      await dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
-      // console.log('persistAnswersAC')
-      await dispatch( persistAnswersAC( userId, question.code, question_type, twoDimArrayOfString ) )
-    }
+    // console.log('updateAnswersAC')
+    await dispatch(updateAnswersAC(question.code, twoDimArrayOfString))
+    // console.log('persistAnswersAC')
+    await dispatch(persistAnswersAC(userId, question.code, question_type, twoDimArrayOfString))
+  }
 
-  const onUpdate = (newData) => 
+  const onUpdate = (newData) =>
     // keep the store up to date
-     async(dispatch, getState) => {
+    async (dispatch, getState) => {
       const state = getState()
       // get userId
-      const userId = getUser( state.userRD ).id
+      const userId = getUser(state.userRD).id
 
       const twoDimArrayOfString = newData.reduce((acc, item) => {
         // only save selected items
@@ -155,9 +151,8 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
         return acc
       }, [])
 
-      await dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
+      await dispatch(updateAnswersAC(question.code, twoDimArrayOfString))
     }
-  
 
   /* ****************************************
      The props being passed down
@@ -171,4 +166,4 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( Top5List )
+)(Top5List)

@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux'
 import { authCheckComplete, setPersistedUser } from '../../store/user/actions'
 
 const LoadUser = ({ setPersistedUser }) => {
-
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {

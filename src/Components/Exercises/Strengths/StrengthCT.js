@@ -8,7 +8,7 @@ import Strength from './Strength'
      isDynamic -- undefined - rendering static version in <Popup>
                   true - rendering dynamic verison in <ModalX>
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
+const mapStateToProps = (state, passedProps) => {
   console.log('passedProps', passedProps)
   const {
     number,
@@ -35,11 +35,11 @@ const mapStateToProps = ( state, passedProps ) => {
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => ({
-    onUpdateStoreCB: passedProps.onUpdateStoreCB
-  })
+const mapDispatchToProps = (dispatch, passedProps) => ({
+  onUpdateStoreCB: passedProps.onUpdateStoreCB
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( Strength )
+)(Strength)

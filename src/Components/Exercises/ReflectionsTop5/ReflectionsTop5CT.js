@@ -4,9 +4,11 @@ import { getUser } from '../../../store/user/reducer'
 import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
 import { listIdToValue } from '../../../store/lists/actions'
 import { QUESTION_TYPE_STRENGTH_EM_IM } from '../../../store/answers/constants'
-import { IDX_STRENGTH, IDX_PHRASE, IDX_EFFECT, IDX_SELECTED } from '../../../constants'
+import {
+  IDX_STRENGTH, IDX_PHRASE, IDX_EFFECT, IDX_SELECTED
+} from '../../../constants'
 import { getAnswers, hydrater, dehydrater } from '../../../store/answers/reducer'
- 
+
 /* *****************************************
    mapStateToProps()
 
@@ -48,7 +50,7 @@ const mapStateToProps = (state, passedProps) => {
 
   // get prompts from earlier question
   const prompts = getAnswers(state.answersRD, promptQuestionCode)
-  let answerRecords 
+  let answerRecords
 
   if (saveToPrompt) {
     answerRecords = prompts

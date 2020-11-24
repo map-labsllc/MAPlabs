@@ -26,7 +26,6 @@ import '../../../CSS/ModalNavButtons.css'
      onCloseModalCB -- call to close the modal this control resides in
 ***************************************************** */
 export default class Narrative extends React.Component {
-
   state = {
     isDirty: false,
 
@@ -36,11 +35,11 @@ export default class Narrative extends React.Component {
 
   /* ******************************************************** */
   // set isDirty and controlled answer field
-  onChange = ( e ) => {
-    this.setState( {
+  onChange = (e) => {
+    this.setState({
       isDirty: true,
       answer: e.target.value,
-    } )
+    })
   }
 
   /* ******************************************************** */
@@ -56,26 +55,25 @@ export default class Narrative extends React.Component {
   /* ******************************************************** */
   // helper, update the store and persist
   updateAndPersist = () => {
-    this.setState( { isDirty: false } )
+    this.setState({ isDirty: false })
 
     const { onPersistCB, onCloseModalCB, userId } = this.props
     const { answer } = this.state
 
-    onPersistCB( userId, answer )
+    onPersistCB(userId, answer)
     onCloseModalCB()
   }
 
   /* ******************************************************** */
   render() {
-
     // initialize
     const { prompts, instructions, isDynamic } = this.props
     const { answer } = this.state
 
     // static render
-    if ( !isDynamic) {
+    if (!isDynamic) {
       return (
-        <MultiLineString str={answer} />   
+        <MultiLineString str={answer} />
       )
     }
 
@@ -114,24 +112,22 @@ export default class Narrative extends React.Component {
 
 const style = {
   contain: {
-    width: "100%",
+    width: '100%',
   }
 }
 
 Narrative.propTypes = {
-  question: PropTypes.shape( {
+  question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-  } ).isRequired,
-  prompts: PropTypes.arrayOf( PropTypes.array ).isRequired,
+  }).isRequired,
+  prompts: PropTypes.arrayOf(PropTypes.array).isRequired,
   instructions: PropTypes.string.isRequired,
   previousAnswer: PropTypes.string.isRequired,
   isDynamic: PropTypes.bool,
-  onCloseModalCB: PropTypes.func,  // this is required but injected by <Popup>
+  onCloseModalCB: PropTypes.func, // this is required but injected by <Popup>
 }
 
 /// /////////////////////////////////////////////////////////////
 /// /////////////////////////////////////////////////////////////
 /// /////////////////////////////////////////////////////////////
-
-

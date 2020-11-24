@@ -11,10 +11,10 @@ import React from 'react'
 const Prompts = (props) => {
   const { prompts } = props
   // no prompts
-  if ( !prompts.length ) return null
+  if (!prompts.length) return null
 
-  // kludge/special case: handle the mutiline prompt generated 
-  //   from completing the madlibs.  That prompt is a single 
+  // kludge/special case: handle the mutiline prompt generated
+  //   from completing the madlibs.  That prompt is a single
   //   string with mutltiple paragrahs (split with '\n\n', newlines).
   if (prompts.length === 1 && prompts[0][0].includes('\n')) {
     const removeDblNewLine = prompts[0][0].replace(/\n\n/g, '\n')
@@ -23,9 +23,9 @@ const Prompts = (props) => {
         <p><b>Prompts</b></p>
         <ul className="list-group">
           {removeDblNewLine.split('\n').map((para, key) => (
-              <li className="list-group-item" key={key}>{para}</li>
-            ))}  
-        </ul>  
+            <li className="list-group-item" key={key}>{para}</li>
+          ))}
+        </ul>
       </>
     )
   }
@@ -35,11 +35,9 @@ const Prompts = (props) => {
     <>
       <p><b>Prompts</b></p>
       <ul className="list-group text-left">
-      {prompts.map( ( prompt, idx ) =>
-        <li className="list-group-item" key={idx}>
+        {prompts.map((prompt, idx) => <li className="list-group-item" key={idx}>
           {prompt[0]}
-        </li>
-      )}
+        </li>)}
       </ul>
     </>
   )

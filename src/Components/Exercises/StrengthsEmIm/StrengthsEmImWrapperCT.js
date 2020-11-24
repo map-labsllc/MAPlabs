@@ -2,11 +2,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import StrengthsEmImWrapper from './StrengthsEmImWrapper'
 import { getAnswers } from '../../../store/answers/reducer'
-import { updateAnswersAC, persistAnswersAC } from '../../../store/answers/actions'
+import { updateAnswersAC, persistAnswersAC, copyParentAnswers } from '../../../store/answers/actions'
 import { QUESTION_TYPE_STRENGTH_EM_IM } from '../../../store/answers/constants'
 import { getUser } from '../../../store/user/reducer'
-import { IDX_STRENGTH,IDX_PHRASE, IDX_EFFECT } from '../../../constants'
-import { copyParentAnswers } from '../../../store/answers/actions'
+import { IDX_STRENGTH, IDX_PHRASE, IDX_EFFECT } from '../../../constants'
 
 /* *****************************************
    mapStateToProps()
@@ -16,8 +15,7 @@ import { copyParentAnswers } from '../../../store/answers/actions'
      isDynamic -- undefined - rendering static version in <Popup>
                   true - rendering dynamic verison in <ModalX>
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
-
+const mapStateToProps = (state, passedProps) => {
   const {
     number,
     question,
@@ -25,11 +23,11 @@ const mapStateToProps = ( state, passedProps ) => {
   } = passedProps
 
   // validate params
-  if ( !question || !question.code ) throw new Error( "missing question code: ", passedProps.question_code )
+  if (!question || !question.code) throw new Error('missing question code: ', passedProps.question_code)
 
   // get previous data, if any
-  const answerRecords = getAnswers( state.answersRD, question.code )
-  console.log(`BEFORE getAnswers(${question.code}): `, answerRecords )
+  const answerRecords = getAnswers(state.answersRD, question.code)
+  console.log(`BEFORE getAnswers(${question.code}): `, answerRecords)
 
   // filter to unique set of strength ids, reflections are adding in component
   const strengths = []
@@ -42,7 +40,7 @@ const mapStateToProps = ( state, passedProps ) => {
     }
   })
 
-  console.log("AFTER strengths", strengths)
+  console.log('AFTER strengths', strengths)
 
   return {
     number,
@@ -53,12 +51,11 @@ const mapStateToProps = ( state, passedProps ) => {
   }
 }
 
-
 /* *****************************************
    mapDispatchToProps()
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => {
+const mapDispatchToProps = (dispatch, passedProps) => {
   const { question, promptQuestionCode } = passedProps
   const type = QUESTION_TYPE_STRENGTH_EM_IM
 
@@ -73,7 +70,7 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
   //     // get parent answers
   //     const parentAnswers = getAnswers(state.answersRD, promptQuestionCode)
   //     console.log('parentAnswers', parentAnswers)
-  
+
   //     await dispatch(updateAnswersAC(question.code, parentAnswers))
   //     await dispatch(persistAnswersAC(userId, question.code, QUESTION_TYPE_STRENGTH_EM_IM, parentAnswers))
 
@@ -86,10 +83,9 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
      id -- strength id to replace
      newData - {strength, reflections: []}
   ******************************************** */
-  function onUpdateStore(newData ) {
-
-    return async(dispatch, getState) => {
-      console.log( `StrengthsEmImWrapper::onUpdate`, newData )
+  function onUpdateStore(newData) {
+    return async (dispatch, getState) => {
+      console.log('StrengthsEmImWrapper::onUpdate', newData)
 
       const { question } = passedProps
 
@@ -102,10 +98,8 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
       let reflectionsSet = false
       const twoDimArrayOfString = answers.reduce((acc, answer) => {
         // replace with new data
-        if (+answer[IDX_STRENGTH]=== +strength_id) {
-
-          if (!reflectionsSet) { 
-
+        if (+answer[IDX_STRENGTH] === +strength_id) {
+          if (!reflectionsSet) {
             //  map reflections into individual rows
             newData.reflections.map((reflection) => {
               const arr = []
@@ -127,7 +121,6 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
       // update store
       dispatch(updateAnswersAC(question.code, twoDimArrayOfString))
     }
-
   }
 
   /* *****************************************
@@ -137,10 +130,9 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
     onUpdateStoreCB: bindActionCreators(onUpdateStore, dispatch),
     copyParentAnswersCB: bindActionCreators(() => copyParentAnswers(question, promptQuestionCode, type), dispatch)
   }
-
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( StrengthsEmImWrapper )
+)(StrengthsEmImWrapper)

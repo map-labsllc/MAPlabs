@@ -1,4 +1,3 @@
-
 import { connect } from 'react-redux'
 
 import LifeDescriptors from './LifeDescriptors'
@@ -21,19 +20,20 @@ import {
                  rendering static version in Popup or dynamic verison in Modal
     onCloseModalCB -- call to close the modal
 ******************************************** */
-const mapStateToProps = ( state, passedProps ) => {
-  console.log( 'state', state )
+const mapStateToProps = (state, passedProps) => {
+  console.log('state', state)
   const {
     question,
     description,
     instructions,
     isDynamic,
-    onCloseModalCB } = passedProps
+    onCloseModalCB
+  } = passedProps
   const { lifeDescriptors } = state.staticdataRD
-  const userId = getUser( state.userRD ).id
+  const userId = getUser(state.userRD).id
 
   // find previous answers, if any, to display when static
-  const answers = getAnswers( state.answersRD, question.code )
+  const answers = getAnswers(state.answersRD, question.code)
 
   // pull answers out of 2D array of strings to an simple array of strings
   const previousAnswers = answers.map(answerArray => answerArray[0])
@@ -59,17 +59,16 @@ const mapStateToProps = ( state, passedProps ) => {
 
    passedProps -- see mapStateToProps above
 ******************************************** */
-const mapDispatchToProps = ( dispatch, passedProps ) => {
-
-  const onPersist = ( userId, lifeDescriptors ) => {
+const mapDispatchToProps = (dispatch, passedProps) => {
+  const onPersist = (userId, lifeDescriptors) => {
     const { question } = passedProps
 
     // store wants 2D array of strings, so map the array of strings into that format
     const twoDimArrayOfString = lifeDescriptors.map(str => [str])
-    console.log("LifeDescriptors::onPersist(), 2darray ", twoDimArrayOfString)
+    console.log('LifeDescriptors::onPersist(), 2darray ', twoDimArrayOfString)
 
-    dispatch( updateAnswersAC( question.code, twoDimArrayOfString ) )
-    dispatch( persistAnswersAC( userId, question.code, QUESTION_TYPE_LIFEDESCRIPTORS, twoDimArrayOfString ) )
+    dispatch(updateAnswersAC(question.code, twoDimArrayOfString))
+    dispatch(persistAnswersAC(userId, question.code, QUESTION_TYPE_LIFEDESCRIPTORS, twoDimArrayOfString))
   }
 
   return {
@@ -80,4 +79,4 @@ const mapDispatchToProps = ( dispatch, passedProps ) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( LifeDescriptors )
+)(LifeDescriptors)

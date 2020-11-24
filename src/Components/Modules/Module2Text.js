@@ -1,4 +1,4 @@
-export const MOD_2_DESC = `Welcome to Module 2 of MAPmaker. This week you will examine your social context in order to assess what values and beliefs the people, places and groups in your life possess, and then you will reflect on how these social values and beliefs affect you.`
+export const MOD_2_DESC = 'Welcome to Module 2 of MAPmaker. This week you will examine your social context in order to assess what values and beliefs the people, places and groups in your life possess, and then you will reflect on how these social values and beliefs affect you.'
 
 export const QUES_210_DESC = `In this exercise, you will list the most important <i>contextual influences</i> that impact you in your life.  By contextual influences we mean the most important people, places, cultures, and ideas that are around you. Contextual influences are an important place to start a self-reflection process because we are all social beings who live among a continual throng of ideas, opinions, values, beliefs, and expectations. These influential voices shape us and inform how we live, think, and behave in our everyday life. This first exercise is designed to give you the opportunity to which of these surrounding influences are most important to you.
 <br><br>
@@ -27,11 +27,11 @@ Once you have completed the ranking of your 'supportive' values, do the same for
 
 export const QUES_230_DESC = QUES_220_DESC
 
-export const QUES_240_DESC = `Based on what you have written for your top 5 supportive and top 5 inhibiting influences, fill in the blanks of the statement provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.`
+export const QUES_240_DESC = 'Based on what you have written for your top 5 supportive and top 5 inhibiting influences, fill in the blanks of the statement provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.'
 
-export const QUES_250_DESC = `Based on what you have written for your top 5 supportive and top 5 inhibiting influences, fill in the blanks of the statement provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.`
+export const QUES_250_DESC = 'Based on what you have written for your top 5 supportive and top 5 inhibiting influences, fill in the blanks of the statement provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.'
 
-export const QUES_260_DESC = `Review and compare the 'supportive' and 'inhibiting' Self-Acceptance statements from Exercise 3.  Look for ways in which the two statements reflect each other, and for ways in which they reflect differing things from each other.`
+export const QUES_260_DESC = 'Review and compare the \'supportive\' and \'inhibiting\' Self-Acceptance statements from Exercise 3.  Look for ways in which the two statements reflect each other, and for ways in which they reflect differing things from each other.'
 
 export const QUES_270_DESC = `In order to create a more meaningful life, consider which values and beliefs need to be 'broken from,' and which values and beliefs need to be 'built toward.' Fill in the following blanks:
 <br><br>
