@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import '../../../CSS/ModalNavButtons.css'
 import { Button } from 'react-bootstrap'
 
-
 /* **************************************************
    Bracket component
 
@@ -12,7 +11,6 @@ import { Button } from 'react-bootstrap'
 
    state:
      maintain the list of prompts being whittled down to a single winner.
-
 
    props:
      question -- {
@@ -36,8 +34,8 @@ export default class Bracket extends React.Component {
     if (!this.state.promptSet && this.state.prompts.length === 1) {
       // add first prompt to store if only one
       const firstPrompt = this.state.prompts[0]
-      this.updateStore([ firstPrompt ])
-      this.setState({promptSet: true})
+      this.updateStore([firstPrompt])
+      this.setState({ promptSet: true })
     }
   }
 
@@ -45,7 +43,7 @@ export default class Bracket extends React.Component {
     this.props.onUpdateStoreCB(this.props.question.code, prompts)
   }
 
-  promptClick = index => e => {
+  promptClick = index => () => {
     const newPrompts = this.state.prompts.slice()
     newPrompts.splice(index, 1)
 
@@ -55,7 +53,6 @@ export default class Bracket extends React.Component {
       prompts: newPrompts
     })
   }
-
 
   render() {
     const { question: { code, text }, isDynamic } = this.props
@@ -74,7 +71,7 @@ export default class Bracket extends React.Component {
     // render dynamic content
     return (
       <div>
-        <p id={`question${  code}`}>{text}</p>
+        <p id={`question${code}`}>{text}</p>
         <p>Compare the desires and make a tradeoff between each set of two, choosing one to carry into the next round.
           Click a desire to choose it</p>
         {this.state.prompts[1] ?
@@ -82,7 +79,7 @@ export default class Bracket extends React.Component {
             <Button className="bracketing" id='prompt1' onClick={this.promptClick(1)} >
               {this.state.prompts[0]}
             </Button>
-            {" versus "}
+            {' versus '}
             <Button className="bracketing" id='prompt2' onClick={this.promptClick(0)} >
               {this.state.prompts[1]}
             </Button>
@@ -95,7 +92,6 @@ export default class Bracket extends React.Component {
     )
   }
 }
-
 
 Bracket.propTypes = {
   prompts: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
