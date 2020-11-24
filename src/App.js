@@ -22,25 +22,25 @@ class App extends Component {
   }
 
   render = () => (
-      <BrowserRouter>
-        <div>
-          <LoadUser />
-          <ScrollToTop />
-          <div className="wrapper">
-            <SideBar />
-              <div className="main-panel">
-              <NavBar />
-              <div className="content">
-                <div className="container-fluid">
-                  <Router />
-                </div>
+    <BrowserRouter>
+      <div>
+        <LoadUser />
+        <ScrollToTop />
+        <div className="wrapper">
+          <SideBar />
+          <div className="main-panel">
+            <NavBar />
+            <div className="content">
+              <div className="container-fluid">
+                <Router />
               </div>
-              <Footer />
             </div>
+            <Footer />
           </div>
         </div>
-      </BrowserRouter>
-    )
+      </div>
+    </BrowserRouter>
+  )
 }
 
 export default App

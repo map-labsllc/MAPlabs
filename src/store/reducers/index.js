@@ -5,10 +5,10 @@ import userRD from '../user/reducer'
 import uiRD from '../ui/reducer'
 import listsRD from '../lists/reducer'
 
-export default combineReducers( {
+export default combineReducers({
   answersRD,
   listsRD,
   staticdataRD,
   userRD,
   uiRD,
-} )
+})

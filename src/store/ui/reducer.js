@@ -1,6 +1,5 @@
 // need to mege with the user info coming from login
 
-
 /*
   uiRD: {
 
@@ -18,21 +17,19 @@ const initialState = {
 
    return -- t/f
 ************************************************** */
-export const isLoading = ( store ) => ( store.staticdataRD.isLoading
-    || store.answersRD.isLoading )
+export const isLoading = (store) => (store.staticdataRD.isLoading
+    || store.answersRD.isLoading)
 
 /* ***********************************************
   uiRD
 ************************************************** */
-export const uiRD = ( state = initialState, action ) => {
-
+export const uiRD = (state = initialState, action) => {
   const { type } = action
 
-  switch( type ) {
+  switch (type) {
+  default:
+    return state
+  }
+}
 
-    default:
-      return state
-   }
- }
-
- export default uiRD
+export default uiRD

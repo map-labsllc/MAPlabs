@@ -8,7 +8,7 @@ const URL = process.env.REACT_APP_DB_URL
 
 export const listIdToValue = (list, id) => {
   if (!list) return undefined
-  
+
   const option = list.filter(option => +option.id === +id)
   return option.length ? option[0].value : undefined
 }
@@ -17,18 +17,17 @@ export const listIdToValue = (list, id) => {
    loadListsAC() - Load all LISTS
 ******************************************************** */
 export const loadListsAC = () => {
+  const url = `${URL}/lists`
 
-  const url= `${URL}/lists`
-  
   return async dispatch => {
-    dispatch( { type: LISTS_LOADING } )
+    dispatch({ type: LISTS_LOADING })
 
     return fetch(url)
-    .then(response => response.json())
-    .then(data => dispatch( { type: LISTS_LOAD, payload: data } ))
-    .catch( ( error ) => {
-      console.log( "FETCH ERROR", error )
-      dispatch( { type: LISTS_ERROR_DB, payload: error } )
-    })
+      .then(response => response.json())
+      .then(data => dispatch({ type: LISTS_LOAD, payload: data }))
+      .catch((error) => {
+        console.log('FETCH ERROR', error)
+        dispatch({ type: LISTS_ERROR_DB, payload: error })
+      })
   }
 }

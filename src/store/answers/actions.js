@@ -37,9 +37,9 @@ const redirectFirebaseErrors = (dispatch, error) => {
    answers - array of answer strings
 ******************************************************** */
 export const updateAnswersAC = (question_code, answers) => ({
-    type: ANSWERS_UPDATE,
-    payload: { question_code, answers },
-  })
+  type: ANSWERS_UPDATE,
+  payload: { question_code, answers },
+})
 
 /* *****************************************************
    loadAllAnswersAC()
@@ -63,13 +63,11 @@ export const loadAllAnswersAC = (userId) => {
     }
 
     return fetch(`${URL}/answers/${userId}`, {
-        headers: { Authorization: `Token: ${jwt}` }
-      })
+      headers: { Authorization: `Token: ${jwt}` }
+    })
       .then(response => {
-        
-        if (response.ok)
-        {
-          return response.json()        
+        if (response.ok) {
+          return response.json()
         }
 
         throw new Error(response.statusText)
@@ -77,7 +75,7 @@ export const loadAllAnswersAC = (userId) => {
       .then(answers => {
         console.log('answers', answers)
         dispatch({ type: ANSWERS_LOAD, payload: answers })
-      } )
+      })
       .catch((error) => {
         redirectFirebaseErrors(dispatch, error)
       })
@@ -103,8 +101,8 @@ export const loadAllAnswersAC = (userId) => {
              Note:  only need to supply as many strings as are used, ex:
                 [ [ 'narrative' ] ]
 ******************************************************** */
-export const persistAnswersAC = ( userId, question_code, question_type, answers ) => {
-  console.log( `persistAnswersAC(${question_code}, ${question_type})`, answers )
+export const persistAnswersAC = (userId, question_code, question_type, answers) => {
+  console.log(`persistAnswersAC(${question_code}, ${question_type})`, answers)
 
   return async dispatch => {
     const jwtGetter = getUserJwt()
@@ -116,17 +114,17 @@ export const persistAnswersAC = ( userId, question_code, question_type, answers 
     }
 
     return fetch(`${URL}/answers/${userId}/${question_code}/${question_type}`, {
-        method: 'POST',
-        body: JSON.stringify( { answers } ),
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Authorization: `Token: ${jwt}`
-        },
-      } )
+      method: 'POST',
+      body: JSON.stringify({ answers }),
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Token: ${jwt}`
+      },
+    })
       .then(response => {
         if (response.ok) {
-          return response.json()        
+          return response.json()
         }
 
         throw new Error(response.statusText)
@@ -134,22 +132,22 @@ export const persistAnswersAC = ( userId, question_code, question_type, answers 
       .then(message => {
         console.log('post response message', message)
         dispatch({ type: ANSWERS_PERSIST })
-      } )
+      })
       .catch(error => redirectFirebaseErrors(dispatch, error))
   }
 }
 
 /* copy parent answers to current question helper */
-export const copyParentAnswers = (question, promptQuestionCode, type) => async(dispatch, getState) => {
-    const state = getState()
+export const copyParentAnswers = (question, promptQuestionCode, type) => async (dispatch, getState) => {
+  const state = getState()
 
-    // get userId
-    const userId = getUser(state.userRD).id
+  // get userId
+  const userId = getUser(state.userRD).id
 
-    // get parent answers
-    const parentAnswers = getAnswers(state.answersRD, promptQuestionCode)
-    // console.log('parentAnswers', parentAnswers)
+  // get parent answers
+  const parentAnswers = getAnswers(state.answersRD, promptQuestionCode)
+  // console.log('parentAnswers', parentAnswers)
 
-    await dispatch(updateAnswersAC(question.code, parentAnswers))
-    await dispatch(persistAnswersAC(userId, question.code, type, parentAnswers))
-  }
+  await dispatch(updateAnswersAC(question.code, parentAnswers))
+  await dispatch(persistAnswersAC(userId, question.code, type, parentAnswers))
+}

@@ -2,7 +2,7 @@ import {
   LISTS_LOADING,
   LISTS_LOAD,
   LISTS_ERROR_DB,
- } from './constants'
+} from './constants'
 
 /*
   listsRD: {  // loaded with fetch call to a file
@@ -25,39 +25,37 @@ const initialState = {
   lists: {}
 }
 
- /* ***********************************************
+/* ***********************************************
     listsRD
  ************************************************** */
- export const listsRD = ( state = initialState, action ) => {
-
+export const listsRD = (state = initialState, action) => {
   // console.log("listsRD", action )
   const { type, payload } = action
 
-  switch( type ) {
+  switch (type) {
+  // Reset the reducer to initial state
+  case LISTS_LOADING:
+    return initialState
 
-    // Reset the reducer to initial state
-    case LISTS_LOADING:
-      return initialState
-
-    case LISTS_LOAD:
-      return {
-        ...state,
-        isLoading: false,
-        lists: payload
-      }
+  case LISTS_LOAD:
+    return {
+      ...state,
+      isLoading: false,
+      lists: payload
+    }
 
     // Fetch error
-    case LISTS_ERROR_DB:
-      return {
-        ...state,
-        isLoading: false,
-        isError: true,
-        errorMessage: payload || "error loading lists",
-      }
+  case LISTS_ERROR_DB:
+    return {
+      ...state,
+      isLoading: false,
+      isError: true,
+      errorMessage: payload || 'error loading lists',
+    }
 
-    default:
-      return state
-   }
- }
+  default:
+    return state
+  }
+}
 
- export default listsRD
+export default listsRD
