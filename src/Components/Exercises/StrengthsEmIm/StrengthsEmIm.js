@@ -1,6 +1,8 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Form, FormControl, Button, ButtonGroup, FormGroup, Container, Col, Row } from "react-bootstrap"
+import React from 'react'
+import PropTypes from 'prop-types'
+import {
+  Form, FormControl, Button, ButtonGroup, FormGroup, Container, Col, Row
+} from 'react-bootstrap'
 
 import { EFFECT_IMPEDIMENT, EFFECT_EMBODIMENT } from '../../../constants'
 
@@ -30,45 +32,44 @@ export default class StrengthEmIm extends React.Component {
   // **********************************************
   // tell parent to update data to store
   updateData = () => {
-
     const { strength, onUpdateStoreCB } = this.props
 
     const newData = {}
     newData.strength = strength
     newData.reflections = this.state.reflections
 
-    console.log(`StrengthEmIm::updateData()`, newData )
+    console.log('StrengthEmIm::updateData()', newData)
     onUpdateStoreCB(newData)
   }
 
   addReflection = () => {
     const reflections = this.state.reflections || []
     this.setState((prevState) => ({
-      reflections: [...reflections, { reflection: '', effect: EFFECT_EMBODIMENT, id: reflections.length } ],
+      reflections: [...reflections, { reflection: '', effect: EFFECT_EMBODIMENT, id: reflections.length }],
     }));
   }
 
   handlePhraseChange = (idx) => (e) => {
-      const reflections = [...this.state.reflections]
-    
-      reflections[idx].reflection = e.target.value
-      this.setState((prevState) => ({
-        isDirty: true, 
-        reflections 
-      }))
-      this.updateData()
-    }
+    const reflections = [...this.state.reflections]
+
+    reflections[idx].reflection = e.target.value
+    this.setState((prevState) => ({
+      isDirty: true,
+      reflections
+    }))
+    this.updateData()
+  }
 
   handleEIMChange = (idx) => (effect) => {
-      const reflections = [...this.state.reflections]
-      reflections[idx].effect = effect
-      console.log("setting effect", idx, effect)
-      this.setState((prevState) => ({ 
-        isDirty: true,
-        reflections 
-      }))
-      this.updateData()
-    }
+    const reflections = [...this.state.reflections]
+    reflections[idx].effect = effect
+    console.log('setting effect', idx, effect)
+    this.setState((prevState) => ({
+      isDirty: true,
+      reflections
+    }))
+    this.updateData()
+  }
 
   render() {
     const { reflections } = this.state
@@ -81,9 +82,9 @@ export default class StrengthEmIm extends React.Component {
             <Row key={idx}>
               <Col md={1}></Col>
               <Col md={3}>{ reflections[idx].reflection }</Col>
-              <Col md={3}>{ reflections[idx].effect }</Col> 
+              <Col md={3}>{ reflections[idx].effect }</Col>
             </Row>
-        ))
+          ))
           }
         </>
       )
@@ -101,20 +102,20 @@ export default class StrengthEmIm extends React.Component {
               return (
                 <FormGroup as={Row} key={idx}>
                   <Col md={6}>
-                    <FormControl 
+                    <FormControl
                       as="textarea"
                       id={idx}
                       value={reflections[idx].reflection}
-                      placeholder='Write about a situation where you were able or unable to use this strength.' 
+                      placeholder='Write about a situation where you were able or unable to use this strength.'
                       onChange={this.handlePhraseChange(idx)}
                     />
                   </Col>
                   <Col md={4}>
                     <ButtonGroup>
                       <Button
-                        onClick = { () => {this.handleEIMChange(idx)(EFFECT_EMBODIMENT) } }
+                        onClick = { () => { this.handleEIMChange(idx)(EFFECT_EMBODIMENT) } }
                         className = { btnStyleEm }
-                      >        
+                      >
                         <strong>{ EFFECT_EMBODIMENT }</strong>
                       </Button>
 
@@ -124,11 +125,11 @@ export default class StrengthEmIm extends React.Component {
                       >
                         <strong>{ EFFECT_IMPEDIMENT }</strong>
                       </Button>
-                   </ButtonGroup>                                 
+                    </ButtonGroup>
                   </Col>
                 </FormGroup>
               )
-              }) : null
+            }) : null
             }
           </Container>
 
@@ -151,5 +152,5 @@ StrengthEmIm.propTypes = {
   reflections: PropTypes.array.isRequired,
   strengthValue: PropTypes.string.isRequired,
   isDynamic: PropTypes.bool,
-  onUpdateStoreCB: PropTypes.func 
+  onUpdateStoreCB: PropTypes.func
 }

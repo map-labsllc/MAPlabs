@@ -5,7 +5,6 @@ import { SELECTED } from '../../../constants.js'
 import Top5 from './Top5'
 import { UUID } from '../../Utils/UUID'
 
-
 /* **************************************************
    Top5List component
 
@@ -17,9 +16,9 @@ import { UUID } from '../../Utils/UUID'
     isDirty -- decide if we need to persist to db
     data --
       [ key: 1,
-        item: { 
+        item: {
           field: 'field',  // different for each one
-          selected:'selected'}, 
+          selected:'selected'},
         {...},
       ]
 
@@ -60,19 +59,16 @@ export default class Top5List extends React.Component {
     const newSelections = this.uuid.stripKeys(allItemsWithKeys)
 
     await onUpdateCB(newSelections)
-    console.log("onChange called")
+    console.log('onChange called')
   }
 
-  filterSelected = (allItemsWithKeys) => allItemsWithKeys.filter(itemWithKey =>
-    itemWithKey.item.selected === SELECTED
-  )
+  filterSelected = (allItemsWithKeys) => allItemsWithKeys.filter(itemWithKey => itemWithKey.item.selected === SELECTED)
 
   update = (key, data) => {
     // console.log("update", key, data)
     const { allItemsWithKeys } = this.state
 
-    const newAllItemsWithKeys = allItemsWithKeys.map((item) =>
-      ((item.key === key) ? { key, item: data } : item))
+    const newAllItemsWithKeys = allItemsWithKeys.map((item) => ((item.key === key) ? { key, item: data } : item))
 
     this.setState({
       allItemsWithKeys: newAllItemsWithKeys
@@ -80,15 +76,20 @@ export default class Top5List extends React.Component {
   }
 
   render() {
-    const { instructions, isDynamic, fields, editFields, headings, selectedAttribute, showSave = true } = this.props
-    const { allItemsWithKeys } = this.state
+    const {
+      instructions, isDynamic, fields, editFields, headings, selectedAttribute, showSave = true
+    } = this.props
+    let { allItemsWithKeys } = this.state
 
     const headingsToTh = () => headings.map((heading, idx) => (
-        <th scope="col" className="text-left" key={idx}>{heading}</th>
-      ))
+      <th scope="col" className="text-left" key={idx}>{heading}</th>
+    ))
 
     // static render
     if (!isDynamic) {
+      const { prompts } = this.props || []
+      allItemsWithKeys = this.uuid.addKeys(prompts) // get from props
+
       const selectedItemsWithKeys = this.filterSelected(allItemsWithKeys)
 
       if (selectedItemsWithKeys.length === 0) {
@@ -103,16 +104,14 @@ export default class Top5List extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {selectedItemsWithKeys.map(item =>
-              <Top5
-                key={item.key}
-                id={item.key}
-                data={item.item}
-                fields={fields}
-                isDynamic={isDynamic}
-                updateCB={this.update}
-              />
-            )}
+            {selectedItemsWithKeys.map(item => <Top5
+              key={item.key}
+              id={item.key}
+              data={item.item}
+              fields={fields}
+              isDynamic={isDynamic}
+              updateCB={this.update}
+            />)}
           </tbody>
         </table>
       )
@@ -123,16 +122,15 @@ export default class Top5List extends React.Component {
       <>
         <p>{instructions}</p>
         <Form onChange={this.onChange}>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col" className="text-left"></th>
-              { headingsToTh(headings) }
-            </tr>
-          </thead>
-          <tbody>
-            {allItemsWithKeys.map(item =>
-              <Top5
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col" className="text-left"></th>
+                { headingsToTh(headings) }
+              </tr>
+            </thead>
+            <tbody>
+              {allItemsWithKeys.map(item => <Top5
                 key={item.key}
                 id={item.key}
                 data={item.item}
@@ -142,14 +140,13 @@ export default class Top5List extends React.Component {
                 selectedAttribute={selectedAttribute}
                 isDynamic={isDynamic}
                 updateCB={this.update}
-              />
-            )}
-          </tbody>
-        </table>
+              />)}
+            </tbody>
+          </table>
 
-        {showSave &&
+          {showSave &&
           <Button type="button" onClick={this.onclickClose}>Save</Button>
-        }
+          }
         </Form>
       </>
     )
@@ -173,4 +170,3 @@ Top5List.propTypes = {
   onUpdate: PropTypes.func,
   showSave: PropTypes.bool
 }
-

@@ -29,16 +29,16 @@ export default function StrengthsTop5(props) {
   // format answers for checkbox selector
   const hydrateAnswer = (answer) => {
     const hydrated = hydrater(answerShape)(answer)
-  
+
     // add strength value to object
     return ({
       strengthValue: listIdToValue(strengthOptions, answer[IDX_STRENGTH]), ...hydrated
     })
   }
-  
+
   // format item into answer for saving
   const dehydrateAnswer = dehydrater(answerShape)
-  
+
   const headings = ['Strength']
   const fields = ['strengthValue']
   const selectedAttribute = 'strength'
@@ -49,7 +49,7 @@ export default function StrengthsTop5(props) {
   useEffect(() => {
     if (!answersCopied) {
       // TODO add copy answers here
-      
+
     }
     setAnswersCopied(true)
   });
@@ -63,7 +63,6 @@ export default function StrengthsTop5(props) {
     selectedAttribute={selectedAttribute}
     question_type={QUESTION_TYPE_TOP_STRENGTHS}
   />
-  
 }
 
 StrengthsTop5.propTypes = {
@@ -73,4 +72,3 @@ StrengthsTop5.propTypes = {
   hydrateAnswer: PropTypes.func.isRequired,
   dehydrateAnswer: PropTypes.func.isRequired,
 }
-
