@@ -16,7 +16,6 @@ import '../../../CSS/ModalNavButtons.css'
      -- checkbox to select the top 5
      -- influence
 
-
    props:
      id -- integer id for the question (poorman's UUID)
      influence -- { selected:'selected'/'' relationship: name:"Tim", belief:"Charity", impact:"supportive", selected:'selected' }
@@ -25,14 +24,13 @@ import '../../../CSS/ModalNavButtons.css'
      deleteInfluenceCB -- click trash can
 ***************************************************** */
 export default function Influence(props) {
-
   /* **********************************************
     onChange()
 
     e - target.id is a key into the influence object:  'relationship', 'name', 'belief', or 'impact'
   ************************************************ */
   const onChange = (e) => {
-    console.log("InfluenceTop5::onChange(), e.target.checked:", e.target.checked)
+    console.log('InfluenceTop5::onChange(), e.target.checked:', e.target.checked)
     const newInfluence = {
       ...props.influence,
       selected: (e.target.checked ? SELECTED : '')
@@ -46,7 +44,9 @@ export default function Influence(props) {
   // console.log("InfluenceTop5::render(): ", props.influence)
 
   const { influence, isDynamic } = props
-  const { selected, relationship, name, belief, impact } = influence
+  const {
+    selected, relationship, name, belief, impact
+  } = influence
 
   // static
   if (!isDynamic) {
@@ -66,10 +66,10 @@ export default function Influence(props) {
     <tr>
       <td className="text-left">
         <Form inline>
-          <input 
+          <input
             onChange={onChange}
-            type="checkbox" 
-            checked={selected.length!==0}
+            type="checkbox"
+            checked={selected.length !== 0}
           />
         </Form>
       </td>
@@ -79,17 +79,14 @@ export default function Influence(props) {
       <td className="text-left">{impact}</td>
     </tr>
   )
-
 }
 
-
 Influence.propTypes = {
-  question: PropTypes.shape( {
+  question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-  } ).isRequired,
+  }).isRequired,
   influence: PropTypes.object.isRequired,
   isDynamic: PropTypes.bool,
   onUpdateAnswerCB: PropTypes.func,
 }
-

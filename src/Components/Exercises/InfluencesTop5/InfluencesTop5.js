@@ -16,12 +16,12 @@ import { UUID } from '../../Utils/UUID'
     isDirty -- decide if we need to persist to db
     allInfluencesWithKeys --
       [ key: 1,
-        item: { 
-          relationship:'brother', 
-          name:"Tim", 
-          belief:"Charity", 
+        item: {
+          relationship:'brother',
+          name:"Tim",
+          belief:"Charity",
           impact:"supportive",
-          selected:'selected'}, 
+          selected:'selected'},
         {...},
       ]
 
@@ -37,7 +37,6 @@ import { UUID } from '../../Utils/UUID'
      onCloseModalCB -- when user clicks Close button
 ***************************************************** */
 export default class InfluencesTop5 extends React.Component {
-  
   uuid = new UUID() // provides unique keys for <ShortAnswer> components
 
   state = {
@@ -59,7 +58,7 @@ export default class InfluencesTop5 extends React.Component {
 
     const notValid = true
     if (notValid) {
-      this.setState({message: 'Please complete 5 supporting and 5 inhibiting influences.'})
+      this.setState({ message: 'Please complete 5 supporting and 5 inhibiting influences.' })
     }
 
     onCloseModalCB()
@@ -71,8 +70,7 @@ export default class InfluencesTop5 extends React.Component {
 
     const { allInfluencesWithKeys } = this.state
 
-    const newAllInfluencesWithKeys = allInfluencesWithKeys.map((influenceWithKey) =>
-      ((influenceWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: newInfluence } : influenceWithKey))
+    const newAllInfluencesWithKeys = allInfluencesWithKeys.map((influenceWithKey) => ((influenceWithKey.key === keyToUpdate) ? { key: keyToUpdate, item: newInfluence } : influenceWithKey))
 
     this.setState({
       isDirty: true,
@@ -92,17 +90,12 @@ export default class InfluencesTop5 extends React.Component {
     const { allInfluencesWithKeys, message } = this.state
 
     // filter to just the influences matching the impactFilter
-    const impactInfluencesWithKeys = allInfluencesWithKeys.filter(influenceWithKey =>
-      influenceWithKey.item.impact === impactFilter
-    )
+    const impactInfluencesWithKeys = allInfluencesWithKeys.filter(influenceWithKey => influenceWithKey.item.impact === impactFilter)
 
     // static render
     if (!isDynamic) {
-      const selectedInfluencesWithKeys = impactInfluencesWithKeys.filter(influenceWithKey =>
-        influenceWithKey.item.selected === SELECTED
-      )
-      if (selectedInfluencesWithKeys.length === 0)
-        {return <p>Not started.</p>}
+      const selectedInfluencesWithKeys = impactInfluencesWithKeys.filter(influenceWithKey => influenceWithKey.item.selected === SELECTED)
+      if (selectedInfluencesWithKeys.length === 0) { return <p>Not started.</p> }
 
       return (
         <>
@@ -117,15 +110,13 @@ export default class InfluencesTop5 extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {selectedInfluencesWithKeys.map(influenceWithKey =>
-                <InfluenceTop5 
-                    key={influenceWithKey.key}
-                    id={influenceWithKey.key}
-                    influence={influenceWithKey.item}
-                    isDynamic={isDynamic}
-                    updateInfluenceCB={this.updateInfluence}
-                />
-              )}
+              {selectedInfluencesWithKeys.map(influenceWithKey => <InfluenceTop5
+                key={influenceWithKey.key}
+                id={influenceWithKey.key}
+                influence={influenceWithKey.item}
+                isDynamic={isDynamic}
+                updateInfluenceCB={this.updateInfluence}
+              />)}
             </tbody>
           </table>
         </>
@@ -148,18 +139,16 @@ export default class InfluencesTop5 extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {impactInfluencesWithKeys.map(influenceWithKey =>
-              <InfluenceTop5 
-                key={influenceWithKey.key}
-                id={influenceWithKey.key}
-                influence={influenceWithKey.item}
-                isDynamic={isDynamic}
-                updateInfluenceCB={this.updateInfluence}
-              />
-            )}
+            {impactInfluencesWithKeys.map(influenceWithKey => <InfluenceTop5
+              key={influenceWithKey.key}
+              id={influenceWithKey.key}
+              influence={influenceWithKey.item}
+              isDynamic={isDynamic}
+              updateInfluenceCB={this.updateInfluence}
+            />)}
           </tbody>
         </table>
-        
+
         {message &&
           <Alert variant="danger">
             { message }
@@ -171,13 +160,12 @@ export default class InfluencesTop5 extends React.Component {
   }
 }
 
-
 InfluencesTop5.propTypes = {
-  question: PropTypes.shape( {
+  question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-  } ).isRequired,
+  }).isRequired,
   influences: PropTypes.object.isRequired,
   isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
+  onUpdateAnswerCB: PropTypes.func
 }
