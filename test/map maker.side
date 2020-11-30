@@ -56,7 +56,7 @@
         ["xpath=//div[@id='root']/div/div/div[2]/div/div/div/div/div/div/div/div[2]/div/form/div[3]/div[2]/div/input", "xpath:idRelative"],
         ["xpath=//div[3]/div[2]/div/input", "xpath:position"]
       ],
-      "value": "cquincy0@gmail.com"
+      "value": "cquincy0+1130@gmail.com"
     }, {
       "id": "36f5600b-0467-4c33-b5f3-0cff915abc1d",
       "comment": "",
@@ -133,7 +133,7 @@
         ["xpath=//div[@id='root']/div/div/div[2]/div/div/div/div/div/div/div/div[2]/div/form/div[3]/div[2]/div/input", "xpath:idRelative"],
         ["xpath=//div[3]/div[2]/div/input", "xpath:position"]
       ],
-      "value": "cquincy0+1120@gmail.com"
+      "value": "cquincy0+1130@gmail.com"
     }, {
       "id": "388cbe58-5c1c-4641-9b7e-379e3166156f",
       "comment": "",

@@ -93,7 +93,7 @@ export default class Transition extends React.Component {
       // nothing to display
       if (!transition.from.length) {
         return (
-          <></>
+          <p>Not started.</p>
         )
       }
 

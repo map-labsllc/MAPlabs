@@ -20,7 +20,7 @@ import { persistAnswersAC } from '../../store/answers/actions'
 
 ******************************************** */
 const mapStateToProps = (state, passedProps) => {
-  // console.log( "QuestionsCT::mapStateToProps()" )
+  // console.log( "QuestionsCT::mapStateToProps()", passedProps)
 
   const {
     isDynamic,
