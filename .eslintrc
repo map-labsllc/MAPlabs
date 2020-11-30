@@ -56,7 +56,7 @@
       "no-trailing-spaces": ["warn"],
       "no-underscore-dangle": ["off"],
       "no-unneeded-ternary": ["warn"],
-      "no-use-before-define": ["warn"],
+      "no-use-before-define": ["off"],
       "no-useless-return": ["warn"],
       "nonblock-statement-body-position": ["warn"],
       "object-curly-newline": ["warn"],
