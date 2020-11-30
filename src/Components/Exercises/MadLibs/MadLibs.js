@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
 import MadLib from './MadLib'
@@ -23,14 +23,25 @@ export default class MadLibs extends React.Component {
     madlibsSet: {}
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.parentCopyCheck()
+  }
+  
+  componentDidUpdate() {
+    this.parentCopyCheck();
+  }
+
+  async parentCopyCheck() {
     const {
       copyParentAnswersCB, question, madlibs, impactFilter
     } = this.props
 
     if (!madlibs.length && !this.state.madlibsSet[impactFilter]) {
-      console.log('answers not set, copying parent')
+      console.log('answers not set, copying parent', question)
       await copyParentAnswersCB(question)
+    }
+    else {
+      console.log("skipping parent copy", madlibs, this.state.madlibsSet, impactFilter)
     }
     this.state.madlibsSet[impactFilter] = true
   }
@@ -42,6 +53,7 @@ export default class MadLibs extends React.Component {
   }
 
   render() {
+    console.log("MadLibs props", this.props)
     const { isDynamic } = this.state
     const {
       madlibs, question, onUpdateStoreCB, impactFilter
