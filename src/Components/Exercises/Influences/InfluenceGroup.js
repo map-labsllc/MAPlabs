@@ -135,7 +135,7 @@ InfluenceGroup.propTypes = {
   question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
   isDynamic: PropTypes.bool,
   onUpdateAnswerCB: PropTypes.func, // required, injected by <Popup>
 }

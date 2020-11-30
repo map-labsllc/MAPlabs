@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
 import MadLib from './MadLib'
@@ -17,83 +17,59 @@ import { QUESTION_TYPE_MADLIBS } from '../../../store/answers/constants'
      isDynamic
      onUpdateStoreCB() -- callback to update the store
 ***************************************************** */
-export default class MadLibs extends React.Component {
-  state = {
-    isDynamic: this.props.isDynamic,
-    madlibsSet: {}
-  }
+const MadLibs = (props) => {
+  const { copyParentAnswersCB, question, madlibs, impactFilter, onCloseModalCB, onUpdateStoreCB } = props
 
-  componentDidMount() {
-    this.parentCopyCheck()
-  }
-  
-  componentDidUpdate() {
-    this.parentCopyCheck();
-  }
+  const [isDynamic, setIsDynamic] = useState(props.isDynamic)
+  const [parentCopied, setParentCopied] = useState({})
 
-  async parentCopyCheck() {
-    const {
-      copyParentAnswersCB, question, madlibs, impactFilter
-    } = this.props
-
-    if (!madlibs.length && !this.state.madlibsSet[impactFilter]) {
+  useEffect(() => {
+    if (!madlibs.length && !parentCopied[impactFilter]) {
       console.log('answers not set, copying parent', question)
-      await copyParentAnswersCB(question)
+      copyParentAnswersCB(question)
+      const parentCopyCheck = { ...parentCopied, [impactFilter]: true }
+      setParentCopied(parentCopyCheck)
     }
-    else {
-      console.log("skipping parent copy", madlibs, this.state.madlibsSet, impactFilter)
-    }
-    this.state.madlibsSet[impactFilter] = true
-  }
+  }, [madlibs, impactFilter])
 
-  onSave = () => {
-    const { onCloseModalCB } = this.props
-    this.setState({ isDynamic: false })
+  const onSave = () => {
+    setIsDynamic(false)
     onCloseModalCB()
   }
 
-  render() {
-    console.log("MadLibs props", this.props)
-    const { isDynamic } = this.state
-    const {
-      madlibs, question, onUpdateStoreCB, impactFilter
-    } = this.props
-
-    console.log('MadLibs question', question)
-    if (!isDynamic) {
-      return (
-        <ListGroup className="text-left">
-          {madlibs.map((madlib, i) => (
-            <ListGroupItem key={i}>
-              <h3>
-                {impactFilter}
-              </h3>
-              <div>
-                <MadLib question={question} madlib={madlibs[i]} onUpdateStoreCB={onUpdateStoreCB} />
-              </div>
-            </ListGroupItem>
-          ))
-          }
-        </ListGroup>
-      )
-    }
-
-    const MadLibComponents = madlibs.reduce((acc, madlib, idx) => {
-      acc.push(<MadLib id={idx} question={question} madlib={madlibs[idx]} onUpdateStoreCB={onUpdateStoreCB}/>)
-      return acc
-    }, [])
-
+  if (!isDynamic) {
     return (
-      // previous/next wrapper for each MadLibs
-      <QuestionsCT
-        question={question}
-        questionType={QUESTION_TYPE_MADLIBS}
-        onCloseModalCB={this.onSave}
-        subComponents={MadLibComponents}
-        isDynamic={true}
-      />
+      <ListGroup className="text-left">
+        {madlibs.map((madlib, i) => (
+          <ListGroupItem key={i}>
+            <h3>
+              {impactFilter}
+            </h3>
+            <div>
+              <MadLib question={question} madlib={madlibs[i]} onUpdateStoreCB={onUpdateStoreCB} />
+            </div>
+          </ListGroupItem>
+        ))
+        }
+      </ListGroup>
     )
   }
+
+  const MadLibComponents = madlibs.reduce((acc, madlib, idx) => {
+    acc.push(<MadLib id={idx} question={question} madlib={madlibs[idx]} onUpdateStoreCB={onUpdateStoreCB}/>)
+    return acc
+  }, [])
+
+  return (
+    // previous/next wrapper for each MadLibs
+    <QuestionsCT
+      question={question}
+      questionType={QUESTION_TYPE_MADLIBS}
+      onCloseModalCB={onSave}
+      subComponents={MadLibComponents}
+      isDynamic={true}
+    />
+  )
 }
 
 MadLibs.propTypes = {
@@ -106,3 +82,5 @@ MadLibs.propTypes = {
   onUpdateStoreCB: PropTypes.func,
   copyParentAnswers: PropTypes.func
 }
+
+export default MadLibs
