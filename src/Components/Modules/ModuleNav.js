@@ -2,15 +2,11 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
 import SectionProgress from '../Framework/SectionProgress'
 import { getUser } from '../../store/user/reducer'
-import { sectionLoadingAC } from '../../store/user/actions'
 import SectionId from '../Utils/SectionId'
 
-const ModuleNav = ({
-  user, moduleId, sections, title, sectionLoading
-}) => {
+const ModuleNav = ({ user, moduleId, sections, title }) => {
   const currentModule = +(user.curr_module)
   const currentSection = +(user.curr_section)
   moduleId = +(moduleId)
@@ -20,7 +16,6 @@ const ModuleNav = ({
     // console.log(currentModule, currentSection, moduleId, sectionId)
 
     const show =
-
       // previous module
       moduleId < currentModule ||
 
@@ -56,7 +51,6 @@ const ModuleNav = ({
                 </td>
               </tr>
               {sections.map((section, idx) => {
-                sectionLoading(moduleId, section.id)
                 return (
                   <tr key={section.id}>
                     <td className="text-left align-middle">
@@ -91,8 +85,4 @@ const mapStateToProps = (state, passedProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, passedProps) => ({
-  sectionLoading: bindActionCreators(sectionLoadingAC, dispatch)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ModuleNav)
+export default connect(mapStateToProps)(ModuleNav)

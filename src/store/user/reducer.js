@@ -4,24 +4,26 @@ import {
   AUTH_CHECK_COMPLETE,
   EMAIL_CHANGED,
   FIRSTNAME_CHANGED,
-  FORGOT_PASSWORD,
   FORGOT_PASSWORD_FAIL,
   FORGOT_PASSWORD_SUCCESS,
+  FORGOT_PASSWORD,
   LASTNAME_CHANGED,
-  LOGIN_USER,
   LOGIN_USER_FAIL,
   LOGIN_USER_SUCCESS,
+  LOGIN_USER,
   LOGOUT,
   PASSWORD_CHANGED,
-  SIGNUP,
+  REMOVE_TOKEN,
   SIGNUP_FAIL,
+  SIGNUP,
   USER_ADD_SECTION,
-  USER_UPDATE_CURR_SECTION,
   USER_UPDATE_CURR_SECTION_NO_CHANGE,
+  USER_UPDATE_CURR_SECTION,
   USER_UPDATE_ERROR,
   USER_UPDATE_SUCCESS,
-  REMOVE_TOKEN
 } from './constants'
+
+import { MODULES } from '../../Components/Modules/ModuleData'
 
 const LOGIN_TOKEN_LENGTH = 28;
 
@@ -50,15 +52,18 @@ const LOGIN_TOKEN_LENGTH = 28;
   }
 */
 
-let initialState = {}
+const sectionsByModId = MODULES.reduce((acc, mod) => {
+  acc[mod.id] = mod.sections // hash sections by module id
+  return acc
+}, [])
 
 // ------------------------------------------
-initialState = {
+let initialState = {
   authCheckPending: true,
   isLoading: false, // change to true when we connect with login process
   errorMessage: '',
   message: '',
-  orderOfSections: [],
+  orderOfSections: sectionsByModId,
   user: {}
 }
 
@@ -90,15 +95,6 @@ export const isLoggedIn = (state) => state.user && state.user.login_token && sta
    return -- t/f
 ************************************************** */
 export const isFirstSection = (state, moduleNum, sectionNum) => {
-  console.log('userRD::isFirstSection()')
-  // We should only be getting inquiries for Modules that have been loaded and thus
-  //   have a key/value pair in orderOfSections.  However some timing issue
-  //   with loading leads to this being called before the first section loads SOMETIMES!
-  if (!state.orderOfSections[moduleNum]) {
-    console.log('userRD::isFirstSection(), short circuit, unk moduleNum:', moduleNum)
-    return false
-  }
-
   // check if sectionNum is the first entry in array of sections for the module in question
   return state.orderOfSections[moduleNum].indexOf(sectionNum) === 0
 }
@@ -117,10 +113,6 @@ export const isFirstSection = (state, moduleNum, sectionNum) => {
 export const getNextModuleSection = (userRD, currModuleNum, currSectionNum) => {
   const { orderOfSections } = userRD
   const sections = orderOfSections[currModuleNum]
-
-  // console.log( `userRD::getNextModuleSection(state, ${currModuleNum}, ${currSectionNum})` )
-  // console.log( "  orderOfSections: ", orderOfSections )
-  // console.log( "  sections: ", sections )
 
   const idx = sections.indexOf(currSectionNum) || 0
 
@@ -143,7 +135,7 @@ export const getNextModuleSection = (userRD, currModuleNum, currSectionNum) => {
 export const isCurrentSection = (currentModule, moduleNum, currentSection, sectionNum) => currentModule === +moduleNum && currentSection === +sectionNum
 
 // can we show the next section
-export const showNextSection = (currentModule, moduleNum, currentSection, sectionNum) => (currentModule < +moduleNum ||
+export const showNextSection = (currentModule, moduleNum, currentSection, sectionNum) => (currentModule > +moduleNum ||
     (currentModule === +moduleNum && currentSection > +sectionNum))
 
 /* ***********************************************
@@ -222,19 +214,6 @@ export const userRD = (state = initialState, action) => {
     return state
   case USER_UPDATE_ERROR:
     return state
-  case USER_ADD_SECTION: {
-    const { moduleNum, sectionNum, } = payload
-    const newOrderOfSections = { ...state.orderOfSections }
-    const sections = newOrderOfSections[moduleNum] || []
-    if (!sections.includes(sectionNum)) sections.push(sectionNum)
-    newOrderOfSections[moduleNum] = sections
-
-    console.log(USER_ADD_SECTION, sections, newOrderOfSections)
-    return {
-      ...state,
-      orderOfSections: newOrderOfSections,
-    }
-  }
   case LOGOUT: {
     return { ...state, user: {}, errorMessage: '' }
   }

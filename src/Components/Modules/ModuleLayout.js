@@ -8,7 +8,6 @@ import ModuleNav from './ModuleNav'
 import ModuleIntroCT from './ModuleIntroCT'
 
 const ModuleLayout = ({ moduleId, title, description, sectionId, sections }) => {
-  console.log("got sections", sections)
   // find current section
   const section = sectionId ?
     sections.filter(sec => sec.id === +(sectionId))[0] : null;

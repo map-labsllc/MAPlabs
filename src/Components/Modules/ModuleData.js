@@ -42,3 +42,5 @@ export const MODULES = [
     sections: MODULE5_SECTIONS,
   }
 ]
+
+export const getModule = (moduleId) => MODULES.filter(m => m.id === moduleId)[0]

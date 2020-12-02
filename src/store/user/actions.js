@@ -15,7 +15,6 @@ import {
   PASSWORD_CHANGED,
   SIGNUP,
   SIGNUP_FAIL,
-  USER_ADD_SECTION,
   USER_UPDATE_CURR_SECTION,
   USER_UPDATE_CURR_SECTION_NO_CHANGE,
   USER_UPDATE_ERROR,
@@ -83,31 +82,6 @@ export const persistCurrModuleAndSection = (user, moduleNum, sectionNum ) => {
           type: USER_UPDATE_ERROR,
           payload: error } )
       } )
-  }
-}
-
-/* ************************************************
-    sectionLoadingAC
-
-    Called by Section's as they mount.  Builds an array of the order of
-      sections for each module to help enforce that user moves forward one
-      section at a time.
-
-    moduleNum - integer
-    sectionNum
-*************************************************** */
-export const sectionLoadingAC = ( moduleNum, sectionNum ) => {
-  moduleNum = +moduleNum
-  sectionNum = +sectionNum
-  
-  // console.log( `---- userRD::sectionLoadingAC(${moduleNum}, ${sectionNum})` )
-  return (dispatch, getState) => {
-    dispatch(
-      {
-        type: USER_ADD_SECTION,
-        payload: { moduleNum, sectionNum },
-      }
-    )
   }
 }
 

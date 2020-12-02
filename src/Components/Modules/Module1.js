@@ -1,5 +1,4 @@
 import React from 'react'
-
 import LifeDescriptorsCT from '../Exercises/LifeDescriptors/LifeDescriptorsCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import QuestionsCT from '../Framework/QuestionsCT'
