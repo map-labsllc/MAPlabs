@@ -130,7 +130,8 @@ class SignUp extends Component {
                       autoCapitalize="none"
                       onChange={(e) => { this.clearError(); this.setState({ password: e.target.value.trim() }) }}
                       value={ this.props.password }
-                      min-length="8"
+                      pattern="(?=^.{10,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" 
+                      title="Ten or more characters with a combo of uppercase, lowercase and numbers or special characters"
                       required
                     />
                   </div>
