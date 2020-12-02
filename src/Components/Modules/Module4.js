@@ -6,10 +6,6 @@ import StrengthsCT from '../Exercises/Strengths/StrengthsCT'
 import StrengthsEmImWrapperCT from '../Exercises/StrengthsEmIm/StrengthsEmImWrapperCT'
 import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 
-// import StrengthsEmImCT from '../Exercises/StrengthsEmIm/StrengthsEmImCT'
-import ModuleLayout from './ModuleLayout'
-import { MODULES } from './ModuleData'
-
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
@@ -24,8 +20,6 @@ import {
   QUES_460_DESC,
 } from './Module4Text'
 
-import {
-} from 'react-bootstrap'
 import { EFFECT_EMBODIMENT, EFFECT_IMPEDIMENT } from '../../constants'
 
 const exercise_410 = (
@@ -100,10 +94,8 @@ const exercise_460 = (
     description = { QUES_460_DESC }
   />)
 
-const _module = MODULES.filter(m => m.id === 4)[0]
-
 // interim refactor, needs to be in a DB
-const MODULE4_SECTIONS =
+export const MODULE4_SECTIONS =
 [
   {
     id: 410,
@@ -146,18 +138,3 @@ const MODULE4_SECTIONS =
     section_ids: [461, 462, 463, 464]
   },
 ]
-
-export default function Module4(props) {
-  const { moduleId, sectionId } = props
-
-  return (
-    <ModuleLayout
-      title = { _module.title }
-      description= { _module.description }
-      moduleId = { moduleId }
-      sections = { MODULE4_SECTIONS }
-      sectionId = { sectionId }
-    >
-    </ModuleLayout>
-  )
-}

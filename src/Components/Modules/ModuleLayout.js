@@ -7,9 +7,8 @@ import SectionCT from '../Framework/SectionCT'
 import ModuleNav from './ModuleNav'
 import ModuleIntroCT from './ModuleIntroCT'
 
-const ModuleWrapper = ({
-  moduleId, title, description, sectionId, sections
-}) => {
+const ModuleLayout = ({ moduleId, title, description, sectionId, sections }) => {
+  console.log("got sections", sections)
   // find current section
   const section = sectionId ?
     sections.filter(sec => sec.id === +(sectionId))[0] : null;
@@ -55,4 +54,4 @@ const ModuleWrapper = ({
   )
 }
 
-export default ModuleWrapper
+export default ModuleLayout

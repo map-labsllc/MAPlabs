@@ -1,6 +1,5 @@
 import React from 'react'
 import BracketCT from '../Exercises/Bracket/BracketCT'
-import ModuleLayout from './ModuleLayout'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
@@ -20,11 +19,6 @@ import {
   QUES_350_DESC,
   QUES_360_DESC,
 } from './Module3Text'
-import { MODULES } from './ModuleData'
-
-import {
-} from 'react-bootstrap'
-
 
 // -------------------------
 // Module 3: 1A
@@ -125,8 +119,6 @@ const exercise_360 = (
     subComponents = {transitions_360}
   />)
 
-const _module = MODULES.filter(m => m.id === 3)[0]
-
 // interim refactor, needs to be in a DB
 export const MODULE3_SECTIONS =
 [
@@ -172,17 +164,3 @@ export const MODULE3_SECTIONS =
   },
 ]
 
-export default function Module3(props) {
-  const { moduleId, sectionId } = props
-
-  return (
-    <ModuleLayout
-      title = { _module.title }
-      description= { _module.description }
-      moduleId = { moduleId }
-      sections = { MODULE3_SECTIONS }
-      sectionId = { sectionId }
-    >
-    </ModuleLayout>
-  )
-}

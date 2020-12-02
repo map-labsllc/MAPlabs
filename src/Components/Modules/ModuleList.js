@@ -24,7 +24,8 @@ const ModuleList = ({ user }) => {
     if (moduleId > currentModule) { return 0 }
 
     // determine how many sections completed
-    const { sectionCount } = MODULES.filter(m => m.id === +(moduleId))[0]
+    const { sections } = MODULES.filter(m => m.id === +(moduleId))[0]
+    const sectionCount = sections.length
 
     // this is a hack, but middle digit of section should correspond to where we are at
     let sectionPosition = `${currentSection}`.split('')[1]

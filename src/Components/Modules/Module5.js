@@ -1,7 +1,6 @@
 import React from 'react'
 import Mappers from '../Exercises/Mappers/Mappers'
 import ModuleIntro from './ModuleIntro'
-import ModuleLayout from './ModuleLayout'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 import ReflectionsTop5CT from '../Exercises/ReflectionsTop5/ReflectionsTop5CT'
@@ -44,8 +43,6 @@ import {
   QUES_580_DESC,
   QUES_590_DESC
 } from './Module5Text'
-
-import { MODULES } from './ModuleData'
 
 // Module 5.1.A
 export const EXERCISE_510 = (
@@ -319,8 +316,6 @@ const EXERCISE_590 = (
   />
 )
 
-const _module = MODULES.filter(m => m.id === 5)[0]
-
 export const MODULE5_SECTIONS =
 [
   {
@@ -444,18 +439,3 @@ export const MODULE5_SECTIONS =
     theEnd: true
   }
 ]
-
-export default function Module5(props) {
-  const { moduleId, sectionId } = props
-
-  return (
-    <ModuleLayout
-      title = { _module.title }
-      description= { _module.description }
-      moduleId = { moduleId }
-      sections = { MODULE5_SECTIONS }
-      sectionId = { sectionId }
-    >
-    </ModuleLayout>
-  )
-}

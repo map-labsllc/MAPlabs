@@ -1,22 +1,23 @@
 import React from 'react'
-import Module1 from './Module1'
-import Module2 from './Module2'
-import Module3 from './Module3'
-import Module4 from './Module4'
-import Module5 from './Module5'
+import ModuleLayout from './ModuleLayout'
+import { MODULES } from './ModuleData'
 
-const ModuleRouter = (props) => {
-  const moduleList = {
-    1: Module1,
-    2: Module2,
-    3: Module3,
-    4: Module4,
-    5: Module5,
-  }
+export default function ModuleRouter(props) {
+  const moduleId = +(props.match.params.moduleId ?? 1)
+  const sectionId = props.match.params.sectionId
 
-  const Module = moduleList[props.match.params.moduleId || 1]
+  const _module = MODULES.filter(m => m.id === moduleId)[0]
+  // console.log('MODULES', MODULES)
+  // console.log('_module', _module)
+  // console.log('_module.sections', _module.sections)
 
-  return <Module moduleId={props.match.params.moduleId} sectionId={props.match.params.sectionId} />
+  return (
+    <ModuleLayout
+      description= { _module.description }
+      moduleId = { moduleId }
+      sectionId = { sectionId }
+      sections = { _module.sections }
+      title = { _module.title }
+    />
+  )
 }
-
-export default ModuleRouter

@@ -130,7 +130,7 @@ const exercise_270 = (
     description = { QUES_270_DESC }
   />)
 
-const _module = MODULES.filter(m => m.id === 2)[0]
+// const _module = MODULES.filter(m => m.id === 2)[0]
 
 // interim refactor, needs to be in a DB
 export const MODULE2_SECTIONS =
@@ -179,17 +179,17 @@ export const MODULE2_SECTIONS =
   },
 ]
 
-export default function Module2(props) {
-  const { moduleId, sectionId } = props
+// export default function Module2(props) {
+//   const { moduleId, sectionId } = props
 
-  return (
-    <ModuleLayout
-      title = { _module.title }
-      description= { _module.description }
-      moduleId = { moduleId }
-      sections = { MODULE2_SECTIONS }
-      sectionId = { sectionId }
-    >
-    </ModuleLayout>
-  )
-}
+//   return (
+//     <ModuleLayout
+//       title = { _module.title }
+//       description= { _module.description }
+//       moduleId = { moduleId }
+//       sections = { MODULE2_SECTIONS }
+//       sectionId = { sectionId }
+//     >
+//     </ModuleLayout>
+//   )
+// }
