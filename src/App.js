@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import firebase from 'firebase'
 import { BrowserRouter } from 'react-router-dom'
+import { FIREBASE_CONFIG } from './config/FirebaseConfig'
+import ErrorBoundary from './Components/Utils/ErrorBoundary'
+import firebase from 'firebase'
+import Footer from './Components/layout/Footer'
+import LoadUser from './Components/User/LoadUser'
+import NavBar from './Components/layout/NavBar'
 import Router from './Router'
 import ScrollToTop from './Components/layout/ScrollToTop'
-import NavBar from './Components/layout/NavBar'
-import Footer from './Components/layout/Footer'
 import SideBar from './Components/layout/SideBar'
-import LoadUser from './Components/User/LoadUser'
-import { FIREBASE_CONFIG } from './config/FirebaseConfig'
 
 import './CSS/light-bootstrap-dashboard.css'
 import './CSS/custom.css'
@@ -32,7 +33,9 @@ class App extends Component {
             <NavBar />
             <div className="content">
               <div className="container-fluid">
-                <Router />
+                <ErrorBoundary>
+                  <Router />
+                </ErrorBoundary>
               </div>
             </div>
             <Footer />
