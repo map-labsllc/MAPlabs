@@ -153,7 +153,7 @@ export const EXERCISE_530 = (
 export const EXERCISE_531 = (
   <NarrativeCT
     summaryTitle = 'Summarizing Thoughts or Directives.'
-    question = { { code: 531, text: `Summarize the "what" of your purpose.` } }
+    question = { { code: 531, text: 'Summarize the "what" of your purpose.' } }
     promptQuestionCode = { 530 }
     copyPrompt = { false }
     description = { QUES_531_DESC }
@@ -163,21 +163,25 @@ export const EXERCISE_531 = (
 // Module 5.4.A
 const shortAnswers_540 = [
   <ShortAnswersCT question = { {
-    code: 541, 
-    text: 'My life is most meaningful when I experience or embrace', 
-    placeholder: 'Sources of meaning' }} />,
+    code: 541,
+    text: 'My life is most meaningful when I experience or embrace',
+    placeholder: 'Sources of meaning'
+  }} />,
   <ShortAnswersCT question = { {
-    code: 542, 
+    code: 542,
     text: 'That is why my greatest desire is to',
-    placeholder: '(Desire)' } } />,
+    placeholder: '(Desire)'
+  } } />,
   <ShortAnswersCT question = { {
     code: 543,
     text: 'by using my',
-    placeholder: '(Strength)' }} />,
+    placeholder: '(Strength)'
+  }} />,
   <ShortAnswersCT question = { {
     code: 544,
     text: 'in service of',
-    placeholder: '(Something or someone beyond the self)'}} />,
+    placeholder: '(Something or someone beyond the self)'
+  }} />,
 ]
 
 export const EXERCISE_540 = (
@@ -229,7 +233,7 @@ export const EXERCISE_552 = (
 const transitions_560 = [
   <TransitionsTop
     question = { { code: 561, text: 'Meaning and Motivations' } }
-    promptQuestionCodes = { [161,162,163,164,] }
+    promptQuestionCodes = { [161, 162, 163, 164] }
     showSave = {false}
   />,
   <TransitionsTop
@@ -315,134 +319,133 @@ const EXERCISE_590 = (
   />
 )
 
+const _module = MODULES.filter(m => m.id === 5)[0]
+
+export const MODULE5_SECTIONS =
+[
+  {
+    id: 510,
+    module_id: 5,
+    title: 'Review and Revise Your Current Situation Statement',
+    exercise: EXERCISE_510,
+  },
+  {
+    id: 511,
+    module_id: 5,
+    title: 'Determine Your Key Themes',
+    exercise: EXERCISE_511,
+  },
+  {
+    id: 512,
+    module_id: 5,
+    title: 'Summarize the Themes of Your Life',
+    exercise: EXERCISE_512,
+  },
+  {
+    id: 520,
+    module_id: 5,
+    title: 'Determine Your Key Insights About Meaning',
+    exercise: EXERCISE_520
+  },
+  {
+    id: 521,
+    module_id: 5,
+    title: 'Desire Statement',
+    exercise: EXERCISE_521
+  },
+  {
+    id: 522,
+    module_id: 5,
+    title: 'Strengths',
+    exercise: EXERCISE_522
+  },
+  {
+    id: 523,
+    module_id: 5,
+    title: 'Strength Embodiments',
+    exercise: EXERCISE_523
+  },
+  {
+    id: 524,
+    module_id: 5,
+    title: 'Strength Impediments',
+    exercise: EXERCISE_524
+  },
+  {
+    id: 530,
+    module_id: 5,
+    title: 'Determine Your Insights About Beyond-the-Self Service',
+    exercise: EXERCISE_530,
+  },
+  {
+    id: 531,
+    module_id: 5,
+    title: 'Summarize the "What" of Your Life',
+    exercise: EXERCISE_531
+  },
+  {
+    id: 540,
+    module_id: 5,
+    title: 'Personal Life Purpose Statement',
+    exercise: EXERCISE_540,
+    section_ids: [541, 542, 543, 544]
+  },
+  {
+    id: 550,
+    module_id: 5,
+    title: 'Personal Growth',
+    exercise: EXERCISE_550,
+  },
+  {
+    id: 551,
+    module_id: 5,
+    title: 'Relationships',
+    exercise: EXERCISE_551,
+  },
+  {
+    id: 552,
+    module_id: 5,
+    title: 'Engagement Mastery',
+    exercise: EXERCISE_552,
+  },
+  {
+    id: 560,
+    module_id: 5,
+    title: 'Building and Breaking',
+    exercise: EXERCISE_560,
+    section_ids: [561, 562, 563, 564]
+  },
+  {
+    id: 565,
+    module_id: 5,
+    title: 'Desired Future Situation',
+    exercise: EXERCISE_565,
+  },
+  {
+    id: 570,
+    module_id: 5,
+    title: 'Dashboard',
+    exercise: EXERCISE_570,
+    section_ids: [565] // if 565 is done, then this is done
+  },
+  {
+    id: 580,
+    module_id: 5,
+    title: 'MAPPERS Model',
+    exercise: EXERCISE_580,
+    section_ids: [565] // if 565 is done, then this is done
+  },
+  {
+    id: 590,
+    module_id: 5,
+    title: 'Conclusion',
+    exercise: EXERCISE_590,
+    section_ids: [565], // if 565 is done, then this is done
+    theEnd: true
+  }
+]
+
 export default function Module5(props) {
-  const _module = MODULES.filter(m => m.id === 5)[0]
-
-  // interim refactor, needs to be in a DB
-  const sections =
-  [
-    {
-      id: 510,
-      module_id: 5,
-      title: 'Review and Revise Your Current Situation Statement',
-      exercise: EXERCISE_510,
-    },
-    {
-      id: 511,
-      module_id: 5,
-      title: 'Determine Your Key Themes',
-      exercise: EXERCISE_511,
-    },
-    {
-      id: 512,
-      module_id: 5,
-      title: 'Summarize the Themes of Your Life',
-      exercise: EXERCISE_512,
-    },
-    {
-      id: 520,
-      module_id: 5,
-      title: 'Determine Your Key Insights About Meaning',
-      exercise: EXERCISE_520
-    },
-    {
-      id: 521,
-      module_id: 5,
-      title: 'Desire Statement',
-      exercise: EXERCISE_521
-    },
-    {
-      id: 522,
-      module_id: 5,
-      title: 'Strengths',
-      exercise: EXERCISE_522
-    },
-    {
-      id: 523,
-      module_id: 5,
-      title: 'Strength Embodiments',
-      exercise: EXERCISE_523
-    },
-    {
-      id: 524,
-      module_id: 5,
-      title: 'Strength Impediments',
-      exercise: EXERCISE_524
-    },
-    {
-      id: 530,
-      module_id: 5,
-      title: 'Determine Your Insights About Beyond-the-Self Service',
-      exercise: EXERCISE_530,
-    },
-    {
-      id: 531,
-      module_id: 5,
-      title: 'Summarize the "What" of Your Life',
-      exercise: EXERCISE_531
-    },
-    {
-      id: 540,
-      module_id: 5,
-      title: 'Personal Life Purpose Statement',
-      exercise: EXERCISE_540,
-      section_ids: [541, 542, 543, 544]
-    },
-    {
-      id: 550,
-      module_id: 5,
-      title: 'Personal Growth',
-      exercise: EXERCISE_550,
-    },
-    {
-      id: 551,
-      module_id: 5,
-      title: 'Relationships',
-      exercise: EXERCISE_551,
-    },
-    {
-      id: 552,
-      module_id: 5,
-      title: 'Engagement Mastery',
-      exercise: EXERCISE_552,
-    },
-    {
-      id: 560,
-      module_id: 5,
-      title: 'Building and Breaking',
-      exercise: EXERCISE_560,
-      section_ids: [561, 562, 563, 564]
-    },
-    {
-      id: 565,
-      module_id: 5,
-      title: 'Desired Future Situation',
-      exercise: EXERCISE_565,
-    },
-    {
-      id: 570,
-      module_id: 5,
-      title: 'Dashboard',
-      exercise: EXERCISE_570,
-      section_ids: [565] // if 565 is done, then this is done
-    },
-    {
-      id: 580,
-      module_id: 5,
-      title: 'MAPPERS Model',
-      exercise: EXERCISE_580,
-      section_ids: [565] // if 565 is done, then this is done
-    },
-    {
-      id: 590,
-      module_id: 5,
-      title: 'Conclusion',
-      exercise: EXERCISE_590,
-      section_ids: [565], // if 565 is done, then this is done
-      theEnd: true
-    }
-  ]
-
   const { moduleId, sectionId } = props
 
   return (
@@ -450,10 +453,9 @@ export default function Module5(props) {
       title = { _module.title }
       description= { _module.description }
       moduleId = { moduleId }
-      sections = { sections } 
+      sections = { MODULE5_SECTIONS }
       sectionId = { sectionId }
     >
     </ModuleLayout>
   )
-
 }
