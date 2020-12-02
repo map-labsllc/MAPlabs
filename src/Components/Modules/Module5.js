@@ -1,17 +1,15 @@
 import React from 'react'
-
-import ReflectionsTop5CT from '../Exercises/ReflectionsTop5/ReflectionsTop5CT'
-import TransitionsTop from '../Exercises/TransitionsTop/TransitionsTop'
-
-import StrengthsTop5CT from '../Exercises/StrengthsTop5/StrengthsTop5CT'
-import Top5ListCT from '../Exercises/Top5List/Top5ListCT'
-import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
-import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
-import QuestionsCT from '../Framework/QuestionsCT'
-import Summary from '../Framework/Summary'
 import Mappers from '../Exercises/Mappers/Mappers'
-import ModuleLayout from './ModuleLayout'
 import ModuleIntro from './ModuleIntro'
+import ModuleLayout from './ModuleLayout'
+import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
+import QuestionsCT from '../Framework/QuestionsCT'
+import ReflectionsTop5CT from '../Exercises/ReflectionsTop5/ReflectionsTop5CT'
+import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
+import StrengthsTop5CT from '../Exercises/StrengthsTop5/StrengthsTop5CT'
+import Summary from '../Framework/Summary'
+import Top5ListCT from '../Exercises/Top5List/Top5ListCT'
+import TransitionsTop from '../Exercises/TransitionsTop/TransitionsTop'
 
 import { EFFECT_EMBODIMENT, EFFECT_IMPEDIMENT } from '../../constants'
 import {
@@ -317,11 +315,11 @@ const EXERCISE_590 = (
   />
 )
 
-export default class Module5 extends React.Component {
-  _module = MODULES.filter(m => m.id === 5)[0]
+export default function Module5(props) {
+  const _module = MODULES.filter(m => m.id === 5)[0]
 
   // interim refactor, needs to be in a DB
-  sections =
+  const sections =
   [
     {
       id: 510,
@@ -445,18 +443,17 @@ export default class Module5 extends React.Component {
     }
   ]
 
-  render() {
-    const { moduleId, sectionId } = this.props
+  const { moduleId, sectionId } = props
 
-    return (
-      <ModuleLayout
-        title = { this._module.title }
-        description= { this._module.description }
-        moduleId = { moduleId }
-        sections = { this.sections } 
-        sectionId = { sectionId }
-      >
-      </ModuleLayout>
-    )
-  }
+  return (
+    <ModuleLayout
+      title = { _module.title }
+      description= { _module.description }
+      moduleId = { moduleId }
+      sections = { sections } 
+      sectionId = { sectionId }
+    >
+    </ModuleLayout>
+  )
+
 }

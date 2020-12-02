@@ -36,14 +36,14 @@ import {
 /* **************************************************
    Module 2 layout
 ***************************************************** */
-export default class Module2 extends React.Component {
+export default function Module2(props) {
   // Define questions and excercises for Module 3
   // ---------------------------------------------------------------------
 
   // -------------------------
   // Influences
   // Module 2: 1A-B
-  exercise_210 = (
+  const exercise_210 = (
     <InfluencesCT
       question = { { code: 210, text: 'List your most important contextual influences' } }
       description = { QUES_210_DESC }
@@ -53,7 +53,7 @@ export default class Module2 extends React.Component {
   // -------------------------
   // Top5 Supportive
   // Module 2: 2B for supportive influences
-  exercise_220 = (
+  const exercise_220 = (
     <InfluencesTop5CT
       question = { { code: 220, text: 'Choose your most important supportive contextual influences' } }
       promptQuestionCode = { 210 }
@@ -65,7 +65,7 @@ export default class Module2 extends React.Component {
   // -------------------------
   // Top 5 Inhibiting
   // Module 2: 2B for inhibiting influences
-  exercise_230 = (
+  const exercise_230 = (
     <InfluencesTop5CT
       question = { { code: 230, text: 'Choose your most important inhibiting contextual influences' } }
       promptQuestionCode = { 210 }
@@ -78,7 +78,7 @@ export default class Module2 extends React.Component {
   // -------------------------
   // Madlibs: Supportive
   // Module 2: 3A for supportive
-  exercise_240 = (
+  const exercise_240 = (
     <MadLibsCT
       question = { { code: 240, text: 'Relating Your Values and Beliefs to Those of Your Supportive Influences' } }
       promptQuestionCode = { 210 }
@@ -90,7 +90,7 @@ export default class Module2 extends React.Component {
   // -------------------------
   // Madlibs: Inhibiting
   // Module 2: 3A for inhibiting
-  exercise_250 = (
+  const exercise_250 = (
     <MadLibsCT
       question = { { code: 250, text: 'Relating Your Values and Beliefs to Those of Your Inhibiting Influences' } }
       promptQuestionCode = { 210 }
@@ -101,7 +101,7 @@ export default class Module2 extends React.Component {
 
   // -------------------------
   // Module 2: 4A
-  shortAnswers_260 = [
+  const shortAnswers_260 = [
     <ShortAnswersCT question={ { code: 261, text: 'As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is.' } } />,
     <ShortAnswersCT question={ { code: 262, text: 'Which core values and beliefs are most meaningful to you?' } } />,
     <ShortAnswersCT question={ { code: 263, text: 'What things beyond yourself could be served if you more intentionally lived by your core values and beliefs?' } } />,
@@ -110,90 +110,88 @@ export default class Module2 extends React.Component {
     <ShortAnswersCT question={ { code: 266, text: 'What areas of engagement could your core values and beliefs lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?' } } />,
   ]
 
-  exercise_260 = (
+  const exercise_260 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
-      subComponents = {this.shortAnswers_260}
+      subComponents = {shortAnswers_260}
       description = { QUES_260_DESC }
     />)
 
   // -------------------------
   // Module 2: 4B
-  transitions_270 = [
+  const transitions_270 = [
     <TransitionsCT question = { { code: 271, text: 'Values and Beliefs' } } />,
     <TransitionsCT question = { { code: 272, text: 'Primary Influences' } } />,
     <TransitionsCT question = { { code: 273, text: 'Relationships' } } />,
     <TransitionsCT question = { { code: 274, text: 'Commitments' } } />,
   ]
 
-  exercise_270 = (
+  const exercise_270 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_TRANSITIONS}
-      subComponents = {this.transitions_270}
+      subComponents = {transitions_270}
       description = { QUES_270_DESC }
     />)
 
-  _module = MODULES.filter(m => m.id === 2)[0]
+  const _module = MODULES.filter(m => m.id === 2)[0]
 
   // interim refactor, needs to be in a DB
-  sections =
+  const sections =
   [
     {
       id: 210,
       module_id: 2,
       title: 'Contextual Influences',
-      exercise: this.exercise_210
+      exercise: exercise_210
     },
     {
       id: 220,
       module_id: 2,
       title: 'Top 5 Supportive Influences',
-      exercise: this.exercise_220,
+      exercise: exercise_220,
       section_ids: [210] // hack so completion looks at parent
     },
     {
       id: 230,
       module_id: 2,
       title: 'Top 5 Inhibiting Influences',
-      exercise: this.exercise_230,
+      exercise: exercise_230,
       section_ids: [210]
     },
     {
       id: 240,
       title: 'Synthesize Your Values and Beliefs Into a Supportive Self-Acceptance Statement',
-      exercise: this.exercise_240,
+      exercise: exercise_240,
     },
     {
       id: 250,
       title: 'Synthesize Your Values and Beliefs Into a Self-Inhibiting Statement',
-      exercise: this.exercise_250,
+      exercise: exercise_250,
     },
     {
       id: 260,
       title: "Compare Your 'Supportive Self-Acceptance' Statement to Your 'Self-Inhibiting' Statement",
-      exercise: this.exercise_260,
+      exercise: exercise_260,
       section_ids: [261, 262, 263, 264, 265, 266]
     },
     {
       id: 270,
       title: 'Breaking and Building',
-      exercise: this.exercise_270,
+      exercise: exercise_270,
       section_ids: [271, 272, 273, 274]
     },
   ]
 
-  render() {
-    const { moduleId, sectionId } = this.props
+  const { moduleId, sectionId } = props
 
-    return (
-      <ModuleLayout
-        title = { this._module.title }
-        description= { this._module.description }
-        moduleId = { moduleId }
-        sections = { this.sections }
-        sectionId = { sectionId }
-      >
-      </ModuleLayout>
-    )
-  }
+  return (
+    <ModuleLayout
+      title = { _module.title }
+      description= { _module.description }
+      moduleId = { moduleId }
+      sections = { sections }
+      sectionId = { sectionId }
+    >
+    </ModuleLayout>
+  )
 }

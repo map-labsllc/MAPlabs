@@ -1,11 +1,10 @@
 import React from 'react'
-
-import ModuleLayout from './ModuleLayout'
-import QuestionsCT from '../Framework/QuestionsCT'
-import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
-import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
-import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import BracketCT from '../Exercises/Bracket/BracketCT'
+import ModuleLayout from './ModuleLayout'
+import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
+import QuestionsCT from '../Framework/QuestionsCT'
+import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
+import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
@@ -29,14 +28,14 @@ import {
 /* **************************************************
    Module 3 layout
 ***************************************************** */
-export default class Module3 extends React.Component {
+export default function Module3(props) {
   // Define questions and excercises for Module 3
   // ---------------------------------------------------------------------
 
   // -------------------------
   // Module 3: 1A
 
-  shortAnswers_310 = [
+  const shortAnswers_310 = [
     <ShortAnswersCT question = { { code: 311, text: 'Financial/Material' } } />,
     <ShortAnswersCT question = { { code: 312, text: 'Vocation/Career/Life Work' } } />,
     <ShortAnswersCT question = { { code: 313, text: 'Social/Community' } } />,
@@ -47,17 +46,17 @@ export default class Module3 extends React.Component {
     <ShortAnswersCT question = { { code: 318, text: 'Other' } } />,
   ]
 
-  exercise_310 = (
+  const exercise_310 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
       description = {QUES_310_DESC}
-      subComponents = {this.shortAnswers_310}
+      subComponents = {shortAnswers_310}
     />)
 
   // -------------------------
   // Module 3: 3A
 
-  brackets_320 = [
+  const brackets_320 = [
     <BracketCT promptQuestionCodes = { [311] } question = { { code: 321, text: 'Financial/Material' } } />,
     <BracketCT promptQuestionCodes = { [312] } question = { { code: 322, text: 'Vocation/Career/Life Work' } } />,
     <BracketCT promptQuestionCodes = { [313] } question = { { code: 323, text: 'Social/Community' } } />,
@@ -68,30 +67,30 @@ export default class Module3 extends React.Component {
     <BracketCT promptQuestionCodes = { [318] } question = { { code: 328, text: 'Other' } } />,
   ]
 
-  exercise_320 = (
+  const exercise_320 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_BRACKET}
       description = {QUES_320_DESC}
-      subComponents = {this.brackets_320}
+      subComponents = {brackets_320}
     />)
 
   // -------------------------
   // Module 3: 4A
 
-  promptCodes_330 = this.brackets_320.reduce((acc, bracketCT) => [...acc, bracketCT.props.question.code], [])
+  const promptCodes_330 = brackets_320.reduce((acc, bracketCT) => [...acc, bracketCT.props.question.code], [])
 
-  bracket_330 = <BracketCT promptQuestionCodes = {this.promptCodes_330} question = { { code: 330, text: 'Make tradeoffs between each category.' } } />
+  const bracket_330 = <BracketCT promptQuestionCodes = {promptCodes_330} question = { { code: 330, text: 'Make tradeoffs between each category.' } } />
 
-  exercise_330 = (
+  const exercise_330 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_BRACKET}
       description = {QUES_330_DESC}
-      subComponents = {[this.bracket_330]}
+      subComponents = {[bracket_330]}
     />)
 
   // -------------------------
   // Module 3: 4B
-  exercise_340 = (
+  const  exercise_340 = (
     <NarrativeCT
       question = { { code: 340, text: 'Synthesize into a Desires Statement.' } }
       promptQuestionCode = { 320 } // should the prompt be all of the winners from 320 or just 330?
@@ -101,8 +100,7 @@ export default class Module3 extends React.Component {
 
   // -------------------------
   // Module 3: 5A
-
-  shortAnswers_350 = [
+  const shortAnswers_350 = [
     <ShortAnswersCT question = { { code: 351, text: 'List any important themes that you noticed across your 7 categories and in your ultimate choices about which of your desires are most important.' } } />,
     <ShortAnswersCT question = { { code: 352, text: 'Which desires provide you with the most personal senses of the meaning and “intrinsic” motivation in your life?' } } />,
     <ShortAnswersCT question = { { code: 353, text: 'Name some things beyond yourself that you could serve if you lived more authentically  from your deepest and truest desires.' } } />,
@@ -111,87 +109,85 @@ export default class Module3 extends React.Component {
     <ShortAnswersCT question = { { code: 356, text: 'List any areas of engagement or mastery (either in your life’s work or avocationally) that could express or fulfill your deepest desires.' } } />,
   ]
 
-  exercise_350 = (
+  const exercise_350 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_SHORT_ANSWERS}
       description = { QUES_350_DESC }
-      subComponents = {this.shortAnswers_350}
+      subComponents = {shortAnswers_350}
     />)
 
   // -------------------------
   // Module 3: 5B
-  transitions_360 = [
+  const transitions_360 = [
     <TransitionsCT question = { { code: 361, text: 'Motivations' } } />,
     <TransitionsCT question = { { code: 362, text: 'Desires' } } />,
     <TransitionsCT question = { { code: 363, text: 'Commitments' } } />,
   ]
 
-  exercise_360 = (
+  const exercise_360 = (
     <QuestionsCT
       questionType = {QUESTION_TYPE_TRANSITIONS}
       description = { QUES_360_DESC }
-      subComponents = {this.transitions_360}
+      subComponents = {transitions_360}
     />)
 
-  _module = MODULES.filter(m => m.id === 3)[0]
+  const _module = MODULES.filter(m => m.id === 3)[0]
 
   // interim refactor, needs to be in a DB
-  sections =
+  const sections =
   [
     {
       id: 310,
       module_id: 3,
       title: 'Deep Desires',
-      exercise: this.exercise_310,
+      exercise: exercise_310,
       section_ids: [311, 312, 313, 314, 315, 316, 317, 318]
     },
     {
       id: 320,
       module_id: 3,
       title: 'Make Tradeoffs Within Each Category',
-      exercise: this.exercise_320,
+      exercise: exercise_320,
       section_ids: [321, 322, 323, 324, 325, 326, 327, 328]
     },
     {
       id: 330,
       module_id: 3,
       title: 'Make Tradeoffs Between Each Category',
-      exercise: this.exercise_330
+      exercise: exercise_330
     },
     {
       id: 340,
       module_id: 3,
       title: 'Synthesize Into a Desires Statement',
-      exercise: this.exercise_340
+      exercise: exercise_340
     },
     {
       id: 350,
       module_id: 3,
       title: 'Reflect on Your Stated Desires',
-      exercise: this.exercise_350,
+      exercise: exercise_350,
       section_ids: [351, 352, 353, 354, 355, 356]
     },
     {
       id: 360,
       module_id: 3,
       title: 'Breaking and Building',
-      exercise: this.exercise_360,
+      exercise: exercise_360,
       section_ids: [361, 362, 363]
     },
   ]
 
-  render() {
-    const { moduleId, sectionId } = this.props
+    const { moduleId, sectionId } = props
 
-    return (
-      <ModuleLayout
-        title = { this._module.title }
-        description= { this._module.description }
-        moduleId = { moduleId }
-        sections = { this.sections }
-        sectionId = { sectionId }
-      >
-      </ModuleLayout>
-    )
-  }
+  return (
+    <ModuleLayout
+      title = { _module.title }
+      description= { _module.description }
+      moduleId = { moduleId }
+      sections = { sections }
+      sectionId = { sectionId }
+    >
+    </ModuleLayout>
+  )
 }
