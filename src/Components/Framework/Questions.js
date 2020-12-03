@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, ProgressBar } from 'react-bootstrap'
+import { Alert, Button, ProgressBar } from 'react-bootstrap'
 
 /* **************************************************
    Questions component
@@ -23,7 +23,12 @@ import { Button, ProgressBar } from 'react-bootstrap'
 ***************************************************** */
 export default class Questions extends React.Component {
   state = {
-    currIdx: 0
+    currIdx: 0,
+    errorMessage: ''
+  }
+
+  clearError = () => {
+    this.setState({ errorMessage: '' })
   }
 
   // ******************************************
@@ -43,6 +48,7 @@ export default class Questions extends React.Component {
     const { onCloseModalCB } = this.props
 
     this.persistCurrent()
+
     onCloseModalCB()
   }
 
@@ -50,6 +56,7 @@ export default class Questions extends React.Component {
   // called when left button clicked
   onclickLeft = () => {
     // console.log( "Questions::onclickLeft()" )
+    this.clearError()
 
     const { currIdx } = this.state
 
@@ -64,6 +71,7 @@ export default class Questions extends React.Component {
   // called when right button clicked
   onclickRight = () => {
     // console.log( "Questions::onclickRight()" )
+    this.clearError()
 
     const { currIdx } = this.state
     const { subComponents } = this.props
@@ -72,15 +80,36 @@ export default class Questions extends React.Component {
     if (currIdx === (subComponents.length - 1)) return
 
     this.persistCurrent()
-    this.setState({ currIdx: currIdx + 1 })
+
+    if (this.isValid()) {
+      this.setState({ currIdx: currIdx + 1 })
+    }
+  }
+
+  isValid = () => {
+    const { currIdx } = this.state
+    const { subComponents, getAnswersForCodeCB } = this.props
+    const currentCode = subComponents[currIdx].props.question.code
+
+    this.clearError()
+
+    const currentAnswers = getAnswersForCodeCB(currentCode)
+
+    if (currentAnswers.length) {
+      this.clearError()
+      return true
+    }
+
+    this.setState({errorMessage: 'Please create at least one answer.'})
+    return false
   }
 
   // ******************************************
   render() {
-    // console.log( "ShortAnswers::render()" )
+    // console.log( 'ShortAnswers::render()" )
 
     const { subComponents, isDynamic, showNumbers = false } = this.props
-    const { currIdx } = this.state
+    const { currIdx, errorMessage } = this.state
 
     // ******************************************
     // render static version in <Popup>
@@ -123,6 +152,12 @@ export default class Questions extends React.Component {
         ))}
 
         <br />
+
+        {errorMessage &&
+          <div className="alert alert-danger">
+            <span>{errorMessage}</span>
+          </div>
+        }
 
         <div className="bgButton text-center">
           {currIdx > 0 &&

@@ -3,6 +3,7 @@ import Questions from './Questions'
 import { getUser } from '../../store/user/reducer'
 import { getAnswers } from '../../store/answers/reducer'
 import { persistAnswersAC } from '../../store/answers/actions'
+import { bindActionCreators } from 'redux'
 
 /* *****************************************
    mapStateToProps()
@@ -61,6 +62,16 @@ const mapDispatchToProps = (dispatch, passedProps) => {
   }
 
   /* *****************************************
+    presistQuestion()
+    */
+  function getAnswersForCode(questionCode) {
+    return (dispatch, getStore) => {
+      const store = getStore()
+      return getAnswers(store.answersRD, questionCode)
+    }
+  }
+
+  /* *****************************************
      presistQuestion()
 
      Helper that actually persists the data to the correct database table.
@@ -83,22 +94,12 @@ const mapDispatchToProps = (dispatch, passedProps) => {
   }
 
   /* *****************************************
-     onPersistQuestion()
-
-     Persist a question from Store to Db
-  ******************************************** */
-  function onPersistQuestion(question) {
-    console.log('QuestionsCT::onPersistQuestion()')
-
-    dispatch(persistQuestionAC(question))
-  }
-
-  /* *****************************************
      The props being passed down
   ******************************************** */
   return {
     onCloseModalCB: onCloseModal,
-    onPersistQuestionCB: onPersistQuestion,
+    onPersistQuestionCB: bindActionCreators(persistQuestionAC, dispatch),
+    getAnswersForCodeCB: bindActionCreators(getAnswersForCode, dispatch)
   }
 }
 
