@@ -16,7 +16,6 @@ import {
   REMOVE_TOKEN,
   SIGNUP_FAIL,
   SIGNUP,
-  USER_ADD_SECTION,
   USER_UPDATE_CURR_SECTION_NO_CHANGE,
   USER_UPDATE_CURR_SECTION,
   USER_UPDATE_ERROR,
@@ -52,8 +51,8 @@ const LOGIN_TOKEN_LENGTH = 28;
   }
 */
 
-const sectionsByModId = MODULES.reduce((acc, mod) => {
-  acc[mod.id] = mod.sections // hash sections by module id
+const sectionIdsByModId = MODULES.reduce((acc, mod) => {
+  acc[mod.id] = mod.sections.map(section => section.id) // hash section ids by module id
   return acc
 }, [])
 
@@ -63,7 +62,7 @@ let initialState = {
   isLoading: false, // change to true when we connect with login process
   errorMessage: '',
   message: '',
-  orderOfSections: sectionsByModId,
+  orderOfSections: sectionIdsByModId,
   user: {}
 }
 
