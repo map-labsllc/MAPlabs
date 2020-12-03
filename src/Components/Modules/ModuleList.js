@@ -3,12 +3,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ProgressBar } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { MODULES } from './ModuleData'
+import { getModule, MODULES } from './ModuleData'
 import { getUser } from '../../store/user/reducer'
 
 const ModuleList = ({ user }) => {
   const currentModule = +(user.curr_module)
-  const currentSection = +(user.curr_section)
+  const currentSection = user.curr_section
+
+  console.log("user", user)
+  console.log("currentModule", currentModule)
+  console.log("currentSection", currentSection)
 
   const createLink = (moduleId, title) => {
     const disabled = +(moduleId) > currentModule
@@ -22,9 +26,10 @@ const ModuleList = ({ user }) => {
   const completion = (moduleId) => {
     // not to this module yet
     if (moduleId > currentModule) { return 0 }
+    else if (moduleId < currentModule) { return 100 }
 
     // determine how many sections completed
-    const { sections } = MODULES.filter(m => m.id === +(moduleId))[0]
+    const { sections } = getModule(moduleId)
     const sectionCount = sections.length
 
     // this is a hack, but middle digit of section should correspond to where we are at
@@ -72,7 +77,9 @@ const ModuleList = ({ user }) => {
                       </h4>
                     </td>
                     <td className="text-left align-bottom">
-                      <ProgressBar className="sectionProgress" now={completion(mod.id)} label={`${completion(mod.id)}%`}/>
+                      <div style={{ paddingTop: '30px' }}>
+                        <ProgressBar className="sectionProgress" now={completion(mod.id)} label={`${completion(mod.id)}%`}/>
+                      </div>
                     </td>
                   </tr>
                 ))}
