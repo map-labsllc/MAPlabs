@@ -27,7 +27,13 @@ export default class Section extends React.Component {
       <div className="background">
         <Card>
           <Card.Header>
-            <Card.Title><div className="text-center"><SectionId sectionId={number}/> {sectionTitle}</div></Card.Title>
+            <Card.Title>
+              <div className="text-center">
+                <h2>
+                  <SectionId sectionId={number}/> {sectionTitle}
+                </h2>
+              </div>
+            </Card.Title>
           </Card.Header>
 
           {isVisible && (
