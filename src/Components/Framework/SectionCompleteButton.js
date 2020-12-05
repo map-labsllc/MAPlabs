@@ -18,7 +18,7 @@ const SectionCompleteButton = ({ user, onClick }) => {
   }
 
   return (
-    <Button type="button" onClick={onComplete}>Complete</Button>
+    <Button type="button" onClick={onComplete}>Complete Exercise</Button>
   )
 }
 

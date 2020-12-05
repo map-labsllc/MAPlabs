@@ -140,7 +140,7 @@ class SectionExercise extends React.Component {
 
               {!theEnd && showNextSection(currentModule, moduleNum, currentSection, sectionNum) &&
                 <div className="text-right">
-                  <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>Next &rarr;</Link>
+                  <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>Next Exercise &rarr;</Link>
                 </div>
               }
 
