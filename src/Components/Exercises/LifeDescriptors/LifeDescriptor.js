@@ -65,7 +65,7 @@ const LifeDescriptor = (props) => {
       {/* ----------------------------- */}
       {/* SECOND PART OF SENTENCE       */}
       {/* ----------------------------- */}
-      { lifeDescriptor.lastPart }
+      { lifeDescriptor.lastPart }.
 
     </>
   )
