@@ -32,13 +32,12 @@ export default class Module extends React.Component {
       )
     }
 
-    // good to go! layout the module
+    // layout the module
     const { moduleNum, moduleTitle, children } = this.props
     return (
       <div className="reading-wrapper">
-        <h1>Module {moduleNum}</h1>
-        <h2>{moduleTitle}</h2>
-        {children}
+        <h5>Module {moduleNum}: {moduleTitle}</h5>
+          {children}
       </div>
     )
   }
