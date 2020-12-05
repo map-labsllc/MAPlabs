@@ -1,5 +1,6 @@
 import React from 'react'
 import { Alert, Button, ProgressBar } from 'react-bootstrap'
+import ErrorAlert from '../Utils/ErrorAlert'
 
 /* **************************************************
    Questions component
@@ -154,9 +155,9 @@ export default class Questions extends React.Component {
         <br />
 
         {errorMessage &&
-          <div className="alert alert-danger">
-            <span>{errorMessage}</span>
-          </div>
+          <ErrorAlert>
+            {errorMessage}
+          </ErrorAlert>
         }
 
         <div className="bgButton text-center">
