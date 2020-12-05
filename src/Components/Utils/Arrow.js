@@ -17,11 +17,10 @@ const Arrow = (props) => {
   } = props
 
   return (
-    <Button
-      className={`slide-arrow ${direction}`}
-      onClick={onClickCB}>
-      <i className={`nc-icon nc-stre-${direction}`}></i>
-    </Button>
+    <>
+      {direction === 'left' ? <Button onClick={onClickCB}>&larr; Previous</Button> : ''}
+      {direction === 'right' ? <Button onClick={onClickCB} className="btn-fill">Next &rarr;</Button> : ''}
+    </>
   )
 }
 export default Arrow
