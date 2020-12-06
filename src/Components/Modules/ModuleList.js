@@ -10,9 +10,9 @@ const ModuleList = ({ user }) => {
   const currentModule = +(user.curr_module)
   const currentSection = user.curr_section
 
-  console.log("user", user)
-  console.log("currentModule", currentModule)
-  console.log("currentSection", currentSection)
+  // console.log("user", user)
+  // console.log("currentModule", currentModule)
+  // console.log("currentSection", currentSection)
 
   const createLink = (moduleId, title) => {
     const disabled = +(moduleId) > currentModule

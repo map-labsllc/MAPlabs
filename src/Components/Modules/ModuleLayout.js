@@ -12,7 +12,6 @@ const ModuleLayout = ({ moduleId, title, description, sectionId, sections }) => 
   const section = sectionId ?
     sections.filter(sec => sec.id === +(sectionId))[0] : null;
 
-  console.log('section', sectionId, section)
   // determine first section link
   const firstSectionHref = `/modules/${moduleId}/section/${sections[0].id}`
 
