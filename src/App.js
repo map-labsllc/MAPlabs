@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import firebase from 'firebase'
+import ReactGA from 'react-ga'
 import { FIREBASE_CONFIG } from './config/FirebaseConfig'
 import ErrorBoundary from './Components/Utils/ErrorBoundary'
-import firebase from 'firebase'
 import Footer from './Components/layout/Footer'
+import history from './history'
 import LoadUser from './Components/User/LoadUser'
 import NavBar from './Components/layout/NavBar'
 import Router from './Router'
@@ -22,6 +24,10 @@ class App extends Component {
     }
   }
 
+  componentDidMount = () => {
+    ReactGA.pageview(window.location.pathname)
+  }
+
   render = () => (
     <BrowserRouter>
       <div>
@@ -34,7 +40,7 @@ class App extends Component {
             <div className="content">
               <div className="container-fluid">
                 <ErrorBoundary>
-                  <Router />
+                  <Router history={history}/>
                 </ErrorBoundary>
               </div>
             </div>

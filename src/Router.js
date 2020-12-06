@@ -1,7 +1,5 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { createBrowserHistory } from 'history'
-import ReactGA from 'react-ga'
 import Dashboard from './Components/Framework/Dashboard'
 import ForgotPassword from './Components/User/ForgotPassword'
 import HomePage from './Components/Startup/HomePage'
@@ -13,12 +11,6 @@ import ModuleRouter from './Components/Modules/ModuleRouter'
 import PrivateRoute from './Components/User/PrivateRoute'
 import SignUp from './Components/User/SignUp'
 import SplashPage from './Components/Startup/SplashPage'
-
-const history = createBrowserHistory()
-history.listen(location => {
-  ReactGA.set({ page: location.pathname })
-  ReactGA.pageview(location.pathname)
-})
 
 const Router = () => (
   <Switch>
