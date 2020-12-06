@@ -1,11 +1,13 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import * as serviceWorker from './serviceWorker'
 import App from './App'
+import ReactDOM from 'react-dom'
+import ReactGA from 'react-ga'
 import store from "./store"
 
-
-import * as serviceWorker from './serviceWorker'
+const { REACT_GOOGLE_ANALYTICS_ID } = process.env
+ReactGA.initialize(REACT_GOOGLE_ANALYTICS_ID)
 
 ReactDOM.render(
   <Provider store={store}>
