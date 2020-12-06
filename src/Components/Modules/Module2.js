@@ -1,14 +1,10 @@
 import React from 'react'
-
-import QuestionsCT from '../Framework/QuestionsCT'
-
-import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
-import MadLibsCT from '../Exercises/MadLibs/MadLibsCT'
-import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import InfluencesCT from '../Exercises/Influences/InfluencesCT'
 import InfluencesTop5CT from '../Exercises/InfluencesTop5/InfluencesTop5CT'
-import ModuleLayout from './ModuleLayout'
-import { MODULES } from './ModuleData'
+import MadLibsCT from '../Exercises/MadLibs/MadLibsCT'
+import QuestionsCT from '../Framework/QuestionsCT'
+import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
+import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
@@ -70,7 +66,7 @@ const exercise_230 = (
     description = { QUES_230_DESC }
     instructions = "Choose your top 5 inhibiting influences"
   />
-  )
+)
 
 // -------------------------
 // Madlibs: Supportive
@@ -130,8 +126,6 @@ const exercise_270 = (
     description = { QUES_270_DESC }
   />)
 
-// const _module = MODULES.filter(m => m.id === 2)[0]
-
 // interim refactor, needs to be in a DB
 export const MODULE2_SECTIONS =
 [
@@ -178,18 +172,3 @@ export const MODULE2_SECTIONS =
     section_ids: [271, 272, 273, 274]
   },
 ]
-
-// export default function Module2(props) {
-//   const { moduleId, sectionId } = props
-
-//   return (
-//     <ModuleLayout
-//       title = { _module.title }
-//       description= { _module.description }
-//       moduleId = { moduleId }
-//       sections = { MODULE2_SECTIONS }
-//       sectionId = { sectionId }
-//     >
-//     </ModuleLayout>
-//   )
-// }
