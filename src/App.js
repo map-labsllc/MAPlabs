@@ -15,21 +15,21 @@ import SideBar from './Components/layout/SideBar'
 import './CSS/light-bootstrap-dashboard.css'
 import './CSS/custom.css'
 
-// const history = createBrowserHistory()
 class App extends Component {
   componentWillMount = () => {
-    console.log(FIREBASE_CONFIG)
+    // console.log(FIREBASE_CONFIG)
     if (!firebase.apps.length) {
       firebase.initializeApp(FIREBASE_CONFIG)
     }
   }
 
   componentDidMount = () => {
+    console.log('App componentDidMount')
     ReactGA.pageview(window.location.pathname)
   }
 
   render = () => (
-    <BrowserRouter>
+    <BrowserRouter history={history}>
       <div>
         <LoadUser />
         <ScrollToTop />
@@ -40,7 +40,7 @@ class App extends Component {
             <div className="content">
               <div className="container-fluid">
                 <ErrorBoundary>
-                  <Router history={history}/>
+                  <Router/>
                 </ErrorBoundary>
               </div>
             </div>

@@ -6,8 +6,10 @@ import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
 import store from "./store"
 
-const { REACT_GOOGLE_ANALYTICS_ID } = process.env
-ReactGA.initialize(REACT_GOOGLE_ANALYTICS_ID)
+const { REACT_APP_GOOGLE_ANALYTICS_ID } = process.env
+ReactGA.initialize(REACT_APP_GOOGLE_ANALYTICS_ID)
+
+console.log("REACT_APP_GOOGLE_ANALYTICS_ID", REACT_APP_GOOGLE_ANALYTICS_ID)
 
 ReactDOM.render(
   <Provider store={store}>
