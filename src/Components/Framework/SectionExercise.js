@@ -97,16 +97,16 @@ class SectionExercise extends React.Component {
 
     const answersComplete = () => {
       if (answer.length > 0) {
-        console.log('answersComplete has length')
+        // console.log('answersComplete has length')
         return true
       }
 
       if (section_ids) {
-        console.log('answersComplete checking answersComplete')
+        // console.log('answersComplete checking answersComplete')
         return section_ids.every(childSectionId => getAnswers(answersRD, childSectionId).length)
       }
 
-      console.log('answersComplete false')
+      // console.log('answersComplete false')
       return false
     }
 
@@ -167,7 +167,7 @@ export default SectionExercise
 
 SectionExercise.propTypes = {
   user: PropTypes.object.isRequired,
-  sectionNum: PropTypes.number.isRequired,
+  sectionNum: PropTypes.node.isRequired,
   moduleNum: PropTypes.number.isRequired,
   answersRD: PropTypes.object.isRequired,
   userRD: PropTypes.object.isRequired,
