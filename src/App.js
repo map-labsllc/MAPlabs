@@ -15,6 +15,13 @@ import SideBar from './Components/layout/SideBar'
 import './CSS/light-bootstrap-dashboard.css'
 import './CSS/custom.css'
 
+history.listen(({ action, location }) => {
+  console.log(
+    `The current URL is ${location.pathname}${location.search}${location.hash}`
+  );
+  console.log(`The last navigation action was ${action}`);
+});
+
 class App extends Component {
   componentWillMount = () => {
     // console.log(FIREBASE_CONFIG)
@@ -24,7 +31,6 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    console.log('App componentDidMount')
     ReactGA.pageview(window.location.pathname)
   }
 

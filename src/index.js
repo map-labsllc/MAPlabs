@@ -3,18 +3,14 @@ import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker'
 import App from './App'
 import ReactDOM from 'react-dom'
-import ReactGA from 'react-ga'
-import store from "./store"
+import ReatGAConfig from './config/ReactGAConfig'
+import store from './store'
 
-const { REACT_APP_GOOGLE_ANALYTICS_ID } = process.env
-ReactGA.initialize(REACT_APP_GOOGLE_ANALYTICS_ID)
-
-console.log("REACT_APP_GOOGLE_ANALYTICS_ID", REACT_APP_GOOGLE_ANALYTICS_ID)
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>, document.getElementById("root")
+  </Provider>, document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
