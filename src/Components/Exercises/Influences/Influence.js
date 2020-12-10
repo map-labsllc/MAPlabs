@@ -33,8 +33,7 @@ import '../../../CSS/ModalNavButtons.css'
      updateInfluenceCB -- call for all changes
      deleteInfluenceCB -- click trash can
 ***************************************************** */
-export default function Influence( props )  {
-
+export default function Influence(props) {
   /* **********************************************
     onChange()
 
@@ -64,7 +63,7 @@ export default function Influence( props )  {
   const { relationship, name, belief, impact } = influence
 
   // static render, note: no surrounding <table> tag, but still working
-  if ( !isDynamic ) {
+  if (!isDynamic) {
     return (
       <tr>
         <td className="text-left">{relationship}</td>
@@ -74,7 +73,6 @@ export default function Influence( props )  {
       </tr>
     )
   }
-  
 
   // dynamic render
   return (
@@ -86,8 +84,8 @@ export default function Influence( props )  {
         as="select"
       >
         <option value='' disabled hidden>-- select relationship --</option>
-        {relationships.map((relationship, idx) =>
-          <option key={relationship.id} value={relationship.value}>{relationship.value}</option>
+        {relationships.map((rel) =>
+          <option key={rel.id} value={rel.value}>{rel.value}</option>
         )}
       </FormControl>
 
@@ -107,7 +105,7 @@ export default function Influence( props )  {
       >
         <option value='' disabled hidden>-- select belief/value --</option>
         {/* 'key' added to suppress react warning */}
-        {beliefs.map((belief, idx) =>
+        {beliefs.map((belief) =>
           <option key={belief.id} value={belief.value}>{belief.value}</option>
         )}
       </FormControl>
@@ -123,21 +121,18 @@ export default function Influence( props )  {
         <option value={IMPACT_INHIBITING}>{IMPACT_INHIBITING}</option>
       </FormControl>
 
-      <Button type="button" onClick={onclickDelete}><i className="nc-icon nc-simple-remove"></i></Button>
+      <Button onClick={onclickDelete}><i className="nc-icon nc-simple-remove"></i></Button>
 
     </Form>
   )
 }
 
-// export default Influence
-
-
 Influence.propTypes = {
-  question: PropTypes.shape( {
+  question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-  } ).isRequired,
-  previousData: PropTypes.object.isRequired,
+  }).isRequired,
+  influence: PropTypes.object.isRequired,
   isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
+  onUpdateAnswerCB: PropTypes.func
 }

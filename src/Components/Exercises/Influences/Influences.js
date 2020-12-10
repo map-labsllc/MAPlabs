@@ -1,16 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import {
-  Button,
-} from 'react-bootstrap'
-import InfluenceGroup from './InfluenceGroup'
+import { UUID } from '../../Utils/UUID'
 import {
   GROUP_PERSONAL,
   GROUP_SOCIAL,
-  GROUP_WIDER, 
+  GROUP_WIDER
 } from '../../../constants'
-import { UUID } from '../../Utils/UUID'
-
+import { QUESTION_TYPE_INFLUENCES } from '../../../store/answers/constants'
+import InfluenceGroup from './InfluenceGroup'
+import PropTypes from 'prop-types'
+import QuestionsCT from '../../Framework/QuestionsCT'
 
 /* **************************************************
    Influences component
@@ -43,40 +41,38 @@ import { UUID } from '../../Utils/UUID'
      onCloseModalCB -- when user clicks Close button
 ***************************************************** */
 export default class Influences extends React.Component {
-
   uuid = new UUID() // provides unique keys for <ShortAnswer> components
 
   state = {
+    isDynamic: this.props.isDynamic,
     isDirty: false,
     influencesWithKeys: {
       [GROUP_PERSONAL]: this.uuid.addKeys(this.props.influences[GROUP_PERSONAL]),
-      [GROUP_SOCIAL]:   this.uuid.addKeys(this.props.influences[GROUP_SOCIAL]),
-      [GROUP_WIDER]:    this.uuid.addKeys(this.props.influences[GROUP_WIDER]),
+      [GROUP_SOCIAL]: this.uuid.addKeys(this.props.influences[GROUP_SOCIAL]),
+      [GROUP_WIDER]: this.uuid.addKeys(this.props.influences[GROUP_WIDER]),
     }
   }
 
-  // **********************************************
-  componentDidMount = () => {
-  }
-
-  // **********************************************
-  onclickClose = () => {
-    // console.log( "Influences::onclickClose()" )
-
+  onSave = () => {
     const { userId, onPersistCB, onCloseModalCB } = this.props
     const { isDirty, influencesWithKeys } = this.state
 
-    if (isDirty)
-      {onPersistCB(
-        userId,
-        {
-          [GROUP_PERSONAL]: this.uuid.stripKeys(influencesWithKeys[GROUP_PERSONAL]),
-          [GROUP_SOCIAL]:   this.uuid.stripKeys(influencesWithKeys[GROUP_SOCIAL]),
-          [GROUP_WIDER]:    this.uuid.stripKeys(influencesWithKeys[GROUP_WIDER]),
-        }
-      )}
+    console.log("+++onclickClose")
+    if (isDirty) {
+      const data = {
+        [GROUP_PERSONAL]: this.uuid.stripKeys(influencesWithKeys[GROUP_PERSONAL]),
+        [GROUP_SOCIAL]: this.uuid.stripKeys(influencesWithKeys[GROUP_SOCIAL]),
+        [GROUP_WIDER]: this.uuid.stripKeys(influencesWithKeys[GROUP_WIDER]),
+      }
 
+      console.log("data", isDirty, data)
+
+      onPersistCB(userId, data)
+    }
+
+    console.log(">>>>calling onCloseModalCB")
     onCloseModalCB()
+    this.setState({ isDynamic: false })
   }
 
   // **********************************************
@@ -86,12 +82,11 @@ export default class Influences extends React.Component {
 
     const { influencesWithKeys } = this.state
 
-    const newGroupInfluencesWithKeys = influencesWithKeys[groupId].filter((influenceWithKey) =>
-      keyToDelete !== influenceWithKey.key)
+    const newGroupInfluencesWithKeys = influencesWithKeys[groupId].filter((influenceWithKey) => keyToDelete !== influenceWithKey.key)
 
     this.setState({
-        isDirty: true,
-        influencesWithKeys:  {
+      isDirty: true,
+      influencesWithKeys: {
         ...this.state.influencesWithKeys,
         [groupId]: newGroupInfluencesWithKeys,
       }
@@ -101,29 +96,27 @@ export default class Influences extends React.Component {
   // **********************************************
   // groupId is the key into influencesWithKeys
   addInfluence = (groupId) => {
-    // console.log(`Influences::addInfluence(${groupId})`)
-
     const { influencesWithKeys } = this.state
 
     let previousName = ''
     let previousRelationship = ''
-    
+
     if (influencesWithKeys[groupId].length) {
       previousRelationship = influencesWithKeys[groupId][influencesWithKeys[groupId].length - 1].item.relationship
-      previousName         = influencesWithKeys[groupId][influencesWithKeys[groupId].length - 1].item.name
+      previousName = influencesWithKeys[groupId][influencesWithKeys[groupId].length - 1].item.name
     }
 
     const newGroupInfluencesWithKeys = influencesWithKeys[groupId].concat(this.uuid.getNewItemWithKey({
       relationship: previousRelationship,
       name: previousName,
       belief: '',
-      impact:'',
+      impact: '',
       selected: '',
     }))
 
     this.setState({
       isDirty: true,
-      influencesWithKeys:  {
+      influencesWithKeys: {
         ...this.state.influencesWithKeys,
         [groupId]: newGroupInfluencesWithKeys,
       }
@@ -132,7 +125,7 @@ export default class Influences extends React.Component {
 
   // **********************************************
   updateInfluence = (groupId, keyToUpdate, newInfluence) => {
-    // console.log(`Influences::updateData()`)
+    console.log(`>>>Influences::updateData()`, newInfluence)
 
     const { influencesWithKeys } = this.state
 
@@ -141,7 +134,7 @@ export default class Influences extends React.Component {
 
     this.setState({
       isDirty: true,
-      influencesWithKeys:  {
+      influencesWithKeys: {
         ...this.state.influencesWithKeys,
         [groupId]: newGroupInfluencesWithKeys,
       }
@@ -149,68 +142,58 @@ export default class Influences extends React.Component {
   }
 
   render() {
+    const { beliefs, relationships, question, description } = this.props
+    const { isDynamic, influencesWithKeys } = this.state
 
-    const { beliefs, relationships, instructions, isDynamic } = this.props
+    const groups = [
+      {
+        id: GROUP_PERSONAL,
+        heading: 'Personal Relationships'
+      },
+      {
+        id: GROUP_SOCIAL,
+        heading: 'Social Groups and Ideologies'
+      },
+      {
+        id: GROUP_WIDER,
+        heading: 'Wider Communities and Cultural Groups'
+      }
+    ]
 
-    const { influencesWithKeys } = this.state
+    const subComponents = groups.map(group => (
+      <InfluenceGroup
+        question={question}
+        heading={group.heading}
+        beliefs={beliefs}
+        relationships={relationships}
+        isDynamic={isDynamic}
+        influencesWithKeys={influencesWithKeys[group.id]}
+        groupId={group.id}
+        updateInfluenceCB={this.updateInfluence}
+        deleteInfluenceCB={this.deleteInfluence}
+        addInfluenceCB={this.addInfluence}
+      />
+    ))
 
     return (
-      <>
-        {isDynamic &&
-          <p>{instructions}</p>
-        }
-        <InfluenceGroup
-          heading="Personal Relationships"
-          beliefs={beliefs}
-          relationships={relationships}
-          isDynamic={isDynamic}
-          influencesWithKeys={influencesWithKeys[GROUP_PERSONAL]}
-          groupId={GROUP_PERSONAL}
-          updateInfluenceCB={this.updateInfluence}
-          deleteInfluenceCB={this.deleteInfluence}
-          addInfluenceCB={this.addInfluence}
-        />
-        <InfluenceGroup
-          heading="Social Groups and Ideologies"
-          beliefs={beliefs}
-          relationships={relationships}
-          isDynamic={isDynamic}
-          influencesWithKeys={influencesWithKeys[GROUP_SOCIAL]}
-          groupId={GROUP_SOCIAL}
-          updateInfluenceCB={this.updateInfluence}
-          deleteInfluenceCB={this.deleteInfluence}
-          addInfluenceCB={this.addInfluence}
-        />
-        <InfluenceGroup
-          heading="Wider Communities and Cultural Groups"
-          beliefs={beliefs}
-          relationships={relationships}
-          isDynamic={isDynamic}
-          influencesWithKeys={influencesWithKeys[GROUP_WIDER]}
-          groupId={GROUP_WIDER}
-          updateInfluenceCB={this.updateInfluence}
-          deleteInfluenceCB={this.deleteInfluence}
-          addInfluenceCB={this.addInfluence}
-        />
-
-        {isDynamic &&
-          <Button type="button" onClick={this.onclickClose}>Save</Button>
-        }
-        
-        {!isDynamic &&
-          <br></br>
-        }
-      </>
+      <QuestionsCT
+        question = { question }
+        questionType = { QUESTION_TYPE_INFLUENCES }
+        subComponents = { subComponents }
+        description = { description }
+        onCloseModalCB={this.onSave}
+        isDynamic={isDynamic}
+      />
     )
   }
 }
 
 Influences.propTypes = {
-  question: PropTypes.shape( {
+  question: PropTypes.shape({
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-  } ).isRequired,
+  }).isRequired,
   relationships: PropTypes.object.isRequired,
   isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func,  // required, injected by <Popup>
+  onUpdateAnswerCB: PropTypes.func
 }

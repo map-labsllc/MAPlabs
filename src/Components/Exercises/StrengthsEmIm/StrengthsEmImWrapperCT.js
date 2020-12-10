@@ -40,7 +40,7 @@ const mapStateToProps = (state, passedProps) => {
     }
   })
 
-  console.log('AFTER strengths', strengths)
+  // console.log('AFTER strengths', strengths)
 
   return {
     number,

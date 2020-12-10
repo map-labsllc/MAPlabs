@@ -96,10 +96,9 @@ export default function InfluenceGroup(props) {
         }
 
         {isDynamic &&
-          <>
-            &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={onclickAdd}>Add Answer</Button>
-            <p>&nbsp;</p>
-          </>
+          <div className="text-center">
+            <Button onClick={onclickAdd}>Add Answer</Button>
+          </div>
         }
       </>
     )
@@ -123,10 +122,9 @@ export default function InfluenceGroup(props) {
         deleteInfluenceCB={deleteInfluence}
       />)}
 
-      <>
-          &nbsp;&nbsp;&nbsp;<Button className="addAnswerButton" type="button" onClick={onclickAdd}>Add Answer</Button>
-        <p>&nbsp;</p>
-      </>
+      <div className="text-center">
+        <Button onClick={onclickAdd}>Add Answer</Button>
+      </div>
     </>
   )
 }
