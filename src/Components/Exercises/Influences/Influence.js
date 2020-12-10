@@ -83,7 +83,7 @@ export default function Influence(props) {
         onChange={onChange}
         as="select"
       >
-        <option value='' disabled hidden>-- select relationship --</option>
+        <option value='' disabled hidden>-- select influence --</option>
         {relationships.map((rel) =>
           <option key={rel.id} value={rel.value}>{rel.value}</option>
         )}

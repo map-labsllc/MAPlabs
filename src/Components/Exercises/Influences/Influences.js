@@ -142,21 +142,24 @@ export default class Influences extends React.Component {
   }
 
   render() {
-    const { beliefs, relationships, question, description } = this.props
+    const { beliefs, relationships, social_influences, wider_influences, question, description } = this.props
     const { isDynamic, influencesWithKeys } = this.state
 
     const groups = [
       {
         id: GROUP_PERSONAL,
-        heading: 'Personal Relationships'
+        heading: 'Personal Relationships',
+        relationships: relationships
       },
       {
         id: GROUP_SOCIAL,
-        heading: 'Social Groups and Ideologies'
+        heading: 'Social Groups and Ideologies',
+        relationships: social_influences
       },
       {
         id: GROUP_WIDER,
-        heading: 'Wider Communities and Cultural Groups'
+        heading: 'Wider Communities and Cultural Groups',
+        relationships: wider_influences
       }
     ]
 
@@ -165,7 +168,7 @@ export default class Influences extends React.Component {
         question={question}
         heading={group.heading}
         beliefs={beliefs}
-        relationships={relationships}
+        relationships={group.relationships}
         isDynamic={isDynamic}
         influencesWithKeys={influencesWithKeys[group.id]}
         groupId={group.id}

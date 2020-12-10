@@ -107,6 +107,8 @@ const mapStateToProps = (state, passedProps) => {
     instructions,
     beliefs: state.listsRD.lists.beliefs,
     relationships: state.listsRD.lists.relationships,
+    social_influences: state.listsRD.lists.social_influences,
+    wider_influences: state.listsRD.lists.wider_influences,
     influences,
     isDynamic,
     onCloseModalCB,
