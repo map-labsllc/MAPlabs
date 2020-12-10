@@ -8,19 +8,6 @@ import { listIdToValue } from '../../../store/lists/actions'
 
    Displays a single question with:
      -- Selection list of strengths (ex: 'honesty')
-   state:
-     Manage the strength
-
-   props:
-     number -- number of the question in <Questions> when isDynamic, 1-based
-     question -- { code: 50, text: "Question 50" }
-     previousData --  {
-                        strength: "honest",
-
-                      }
-     isDynamic -- undefined - render static version
-                  true - render dynamic version
-     onUpdateStoreCB() -- callback to update the store
 ***************************************************** */
 export default class Strength extends React.Component {
   state = {
@@ -73,13 +60,9 @@ export default class Strength extends React.Component {
 }
 
 Strength.propTypes = {
-  question: PropTypes.shape({
-    code: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired
-  }).isRequired,
-  number: PropTypes.number.isRequired,
-  strength: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired, // number 1-5
+  strength: PropTypes.string.isRequired, // selected strength
   isDynamic: PropTypes.bool,
-  strengthOptions: PropTypes.array,
-  onUpdateStoreCB: PropTypes.func
+  strengthOptions: PropTypes.array, // options for list
+  onUpdateStoreCB: PropTypes.func // call back to save
 }

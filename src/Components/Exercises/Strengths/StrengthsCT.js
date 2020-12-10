@@ -14,7 +14,6 @@ import { QUESTION_TYPE_STRENGTH } from '../../../store/answers/constants'
 export const getStrengths = (state, questionCode) => {
   // get previous data, if any
   const answerRecords = getAnswers(state.answersRD, questionCode)
-  console.log(`getAnswers(${questionCode}): `, answerRecords)
 
   return answerRecords || []
 }
@@ -30,8 +29,6 @@ export const getStrengths = (state, questionCode) => {
      onCloseModalCB -- call when user clicks Save button
 ******************************************** */
 const mapStateToProps = (state, passedProps) => {
-  console.log('StrengthsCT::mapStateToProps()')
-
   const {
     question,
     instructions,

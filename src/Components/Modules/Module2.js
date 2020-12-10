@@ -7,11 +7,15 @@ import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 
 import {
+  QUESTION_TYPE_INFLUENCES,
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
 } from '../../store/answers/constants'
 
 import {
+  GROUP_PERSONAL,
+  GROUP_SOCIAL,
+  GROUP_WIDER, 
   IMPACT_SUPPORTIVE,
   IMPACT_INHIBITING,
 } from '../../constants'
@@ -26,9 +30,6 @@ import {
   QUES_270_DESC
 } from './Module2Text'
 
-import {
-} from 'react-bootstrap'
-
 /* **************************************************
    Module 2 layout
 ***************************************************** */
@@ -36,6 +37,7 @@ import {
 // -------------------------
 // Influences
 // Module 2: 1A-B
+
 const exercise_210 = (
   <InfluencesCT
     question = { { code: 210, text: 'List your most important contextual influences' } }

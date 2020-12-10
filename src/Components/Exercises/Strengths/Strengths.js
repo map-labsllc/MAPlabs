@@ -104,17 +104,14 @@ class Strengths extends React.Component {
             </ol>
 
             { strengths.length < STRENGTH_LIMIT &&
-              <>
-                <hr />
-                <div className="text-center">
-                  <Button type="button" onClick={this.addStrength}>Add Strength</Button>
-                </div>
-              </>
+              <div className="text-center">
+                <Button onClick={this.addStrength}>Add Strength</Button>
+              </div>
             }
 
             <hr />
             <div className="text-center">
-              <Button type="button" onClick={this.onclickClose}>Save</Button>
+              <Button onClick={this.onclickClose}>Save</Button>
             </div>
           </>
           )
