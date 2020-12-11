@@ -196,7 +196,7 @@ Influences.propTypes = {
     code: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
   }).isRequired,
-  relationships: PropTypes.object.isRequired,
+  relationships: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
   onUpdateAnswerCB: PropTypes.func
 }

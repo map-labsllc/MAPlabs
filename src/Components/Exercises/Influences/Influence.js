@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import ErrorAlert from '../../Utils/ErrorAlert'
+
 import PropTypes from 'prop-types'
 
 import {
@@ -11,8 +13,6 @@ import {
   IMPACT_SUPPORTIVE,
   IMPACT_INHIBITING
 } from '../../../constants'
-
-import '../../../CSS/ModalNavButtons.css'
 
 /* **************************************************
    Influence component
@@ -34,6 +34,50 @@ import '../../../CSS/ModalNavButtons.css'
      deleteInfluenceCB -- click trash can
 ***************************************************** */
 export default function Influence(props) {
+  const { beliefs, relationships, influence, isDynamic } = props
+  const { relationship, name, belief, impact } = influence
+
+  // we use the help of useRef to test if it's the first render
+  const firstRender = useRef(true)
+
+  // set a state variable which can be used to disable the save/submit button
+  // we set it to true so that the form is disabled on first render
+  const [disable, setDisabled] = useState(true)
+
+  // we can also set error messages to display to the user
+  const [nameError, setNameError] = useState(null)
+  const [impactError, setImpactError] = useState(null)
+  const [beliefError, setBeliefError] = useState(null)
+  const [relationshipError, setRelationshipError] = useState(null)
+
+  // set initial state value(s) for example:
+  const [nameLabel, setNameLabel] = useState(name)
+
+  // for every change in our state this will be fired
+  // we add validation here and disable the save button if required
+  useEffect(() => {
+    // we want to skip validation on first render
+    if (firstRender.current) {
+      firstRender.current = false
+      return
+    }
+
+    setDisabled(checkFormErrors())
+  }, [relationship, name, belief, impact])
+
+  // here we run any validation, returning true/false
+  const checkFormErrors = () => {
+    setNameError(name ? null : 'Enter a name.')
+    setRelationshipError(relationship ? null : 'Select a relationship.')
+    setBeliefError(belief ? null : 'Select a belief.')
+    setImpactError(impact ? null : 'Select an impact.')
+    return errorExists()
+  }
+
+  const errorExists = () => (
+    nameError || relationshipError || beliefError || impactError
+  )
+
   /* **********************************************
     onChange()
 
@@ -55,12 +99,6 @@ export default function Influence(props) {
     const { id, deleteInfluenceCB } = props
     deleteInfluenceCB(id)
   }
-
-  // **********************************************
-  // console.log("Influence::render(): ", props.influence)
-
-  const { beliefs, relationships, influence, isDynamic } = props
-  const { relationship, name, belief, impact } = influence
 
   // static render, note: no surrounding <table> tag, but still working
   if (!isDynamic) {
@@ -84,9 +122,7 @@ export default function Influence(props) {
         as="select"
       >
         <option value='' disabled hidden>-- select influence --</option>
-        {relationships.map((rel) =>
-          <option key={rel.id} value={rel.value}>{rel.value}</option>
-        )}
+        {relationships.map((rel) => <option key={rel.id} value={rel.value}>{rel.value}</option>)}
       </FormControl>
 
       <FormControl
@@ -105,9 +141,7 @@ export default function Influence(props) {
       >
         <option value='' disabled hidden>-- select belief/value --</option>
         {/* 'key' added to suppress react warning */}
-        {beliefs.map((belief) =>
-          <option key={belief.id} value={belief.value}>{belief.value}</option>
-        )}
+        {beliefs.map((belief) => <option key={belief.id} value={belief.value}>{belief.value}</option>)}
       </FormControl>
 
       <FormControl
@@ -123,6 +157,16 @@ export default function Influence(props) {
 
       <Button onClick={onclickDelete}><i className="nc-icon nc-simple-remove"></i></Button>
 
+      { errorExists() &&
+        <ErrorAlert>
+          <ul>
+            {relationshipError && <li>{relationshipError}</li>}
+            {nameError && <li>{nameError}</li>}
+            {beliefError && <li>{beliefError}</li>}
+            {impactError && <li>{impactError}</li>}
+          </ul>
+        </ErrorAlert>
+      }
     </Form>
   )
 }

@@ -59,7 +59,7 @@ export default function InfluenceGroup(props) {
   // console.log("InfluenceGroup::render()")
 
   const {
-    heading, beliefs, relationships, isDynamic, influencesWithKeys
+    heading, beliefs, relationships, isDynamic, influencesWithKeys, question
   } = props
 
   // static render
@@ -82,6 +82,7 @@ export default function InfluenceGroup(props) {
           </thead>
           <tbody>
             {influencesWithKeys.map((influenceWithKey) => <Influence
+              question={question}
               key={influenceWithKey.key}
               id={influenceWithKey.key}
               beliefs={beliefs}
