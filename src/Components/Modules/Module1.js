@@ -35,7 +35,7 @@ const exercise_120 = (
     question = { { code: 120, text: 'Describe your current situation' } }
     promptQuestionCode = { 110 }
     description = { QUES_120_DESC }
-    instructions = "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your current state of mind, state of being, and general assessment of your current condition today as you begin MAPmaker."
+    instructions = "Using the phrases you chose, write a full description of your current state of mind, state of being, and general assessment of your current condition today as you begin MAPmaker."
   />)
 
 // -------------------------
@@ -54,17 +54,17 @@ const exercise_140 = (
     question = { { code: 140, text: 'Describe your future situation' } }
     promptQuestionCode = { 130 }
     description = { QUES_140_DESC }
-    instructions = "Using the phrases you chose, as well as the descriptions you created next to each one of them, write a full description of your future desired state of being as you begin MAPmaker. Create this description in your own image capturing how you want to feel, what you will think of your future situation, what will be good and bad, and how you would describe your future self to your current self. "
+    instructions = "Using the phrases you chose, write a full description of your future desired state of being."
   />)
 
 // -------------------------
 // Module 1: 4A
 const shortAnswers_150 = [
   <ShortAnswersCT question = { { code: 151, text: 'As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is.' } } />,
-  <ShortAnswersCT question = { { code: 152, text: 'Which core feelings and experiences are most important to providing you with personal senses of the meaning in your life?' } } />,
+  <ShortAnswersCT question = { { code: 152, text: 'Which core feelings and experiences provide you with the greatest sense of meaning in your life?' } } />,
   <ShortAnswersCT question = { { code: 153, text: 'Name some things beyond yourself that you could serve if you lived with more of your core feelings and experiences.' } } />,
   <ShortAnswersCT question = { { code: 154, text: 'List the areas of personal growth that will enable your life to be more filled with the core feelings and experiences you desire.' } } />,
-  <ShortAnswersCT question = { { code: 155, text: 'List which relationships that you either currently have or need to develop in the future (to any influence, such as people, groups, practices, experiences, etc.) are most important to supporting your life being lived with more of your core feelings and experiences.' } } />,
+  <ShortAnswersCT question = { { code: 155, text: 'List which relationships that you either currently have or need to develop in the future (to any influence, such as people, groups, etc.) are most important to supporting your life being lived with more of your core feelings and experiences.' } } />,
   <ShortAnswersCT question = { { code: 156, text: 'List any areas of engagement or mastery (either in your life’s work or avocationally) that would provide you with more of your core feelings and experiences.' } } />,
 ]
 
@@ -122,7 +122,7 @@ export const MODULE1_SECTIONS =
   {
     id: 150,
     module_id: 1,
-    title: "Compare Your 'Current Situation' Statement to Your 'Future Desired Situation' Statement",
+    title: "Reflect On Your \"Current Situation\" Statement and Your \"Future Desired Situation\" Statement",
     exercise: exercise_150,
     section_ids: [151, 152, 153, 154, 155, 156]
   },
