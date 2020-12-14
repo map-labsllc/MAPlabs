@@ -25,11 +25,17 @@ import ErrorAlert from '../Utils/ErrorAlert'
 export default class Questions extends React.Component {
   state = {
     currIdx: 0,
-    errorMessage: ''
+    errorMessage: '',
+    disableNext: false
   }
 
   clearError = () => {
     this.setState({ errorMessage: '' })
+  }
+
+  setDisableNext = (value) => {
+    console.log('setDisableNext called', value)
+    this.setState({disableNext: value})
   }
 
   // ******************************************
@@ -110,7 +116,7 @@ export default class Questions extends React.Component {
     // console.log( 'ShortAnswers::render()" )
 
     const { subComponents, isDynamic, showNumbers = false } = this.props
-    const { currIdx, errorMessage } = this.state
+    const { currIdx, errorMessage, disableNext } = this.state
 
     // ******************************************
     // render static version in <Popup>
@@ -135,6 +141,7 @@ export default class Questions extends React.Component {
       {
         isDynamic: true,
         number: idx + 1,
+        setDisableNext: this.setDisableNext
       }
     ))
 
@@ -168,7 +175,7 @@ export default class Questions extends React.Component {
           <Button className="closeButton" type="button" onClick={this.onclickClose}>Save</Button>
 
           {currIdx < subComponentsWithIsDynamic.length - 1 &&
-            <Button className="nextButton" onClick={this.onclickRight}>Next &rarr;</Button>
+            <Button className="nextButton" onClick={this.onclickRight} disabled={!!disableNext}>Next &rarr;</Button>
           }
         </div>
       </>
