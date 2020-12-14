@@ -32,7 +32,6 @@ export default ModuleIntro
 ModuleIntro.propTypes = {
   user: PropTypes.object,
   sectionCompletedCB: PropTypes.func,
-  moduleNum: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   firstSectionHref: PropTypes.string,
   showLink: PropTypes.bool
