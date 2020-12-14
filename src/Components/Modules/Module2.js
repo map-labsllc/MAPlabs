@@ -40,7 +40,7 @@ import {
 
 const exercise_210 = (
   <InfluencesCT
-    question = { { code: 210, text: 'List your most important contextual influences' } }
+    question = { { code: 210, text: '' } }
     description = { QUES_210_DESC }
     instructions = "Choose influences in your life, thier relationship to you, their beliefs / values, and if they were supportive or inhibiting."
   />)
