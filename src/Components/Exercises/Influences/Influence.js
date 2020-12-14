@@ -34,7 +34,7 @@ import {
      deleteInfluenceCB -- click trash can
 ***************************************************** */
 export default function Influence(props) {
-  const { beliefs, relationships, influence, isDynamic } = props
+  const { beliefs, relationships, influence, isDynamic, setDisableNext } = props
   const { relationship, name, belief, impact } = influence
 
   // we use the help of useRef to test if it's the first render
@@ -49,8 +49,8 @@ export default function Influence(props) {
   const [impactError, setImpactError] = useState(null)
   const [beliefError, setBeliefError] = useState(null)
   const [relationshipError, setRelationshipError] = useState(null)
+  const [formHasError, setFormHasError] = useState(false)
 
-  // set initial state value(s) for example:
   const [nameLabel, setNameLabel] = useState(name)
 
   // for every change in our state this will be fired
@@ -63,7 +63,8 @@ export default function Influence(props) {
     }
 
     setDisabled(checkFormErrors())
-  }, [relationship, name, belief, impact])
+    setDisableNext(formHasError)
+  }, [relationship, name, belief, impact, formHasError])
 
   // here we run any validation, returning true/false
   const checkFormErrors = () => {
@@ -71,12 +72,12 @@ export default function Influence(props) {
     setRelationshipError(relationship ? null : 'Select a relationship.')
     setBeliefError(belief ? null : 'Select a belief.')
     setImpactError(impact ? null : 'Select an impact.')
-    return errorExists()
-  }
 
-  const errorExists = () => (
-    nameError || relationshipError || beliefError || impactError
-  )
+    console.log("form error", nameError , relationshipError , beliefError , impactError)
+    setFormHasError(nameError || relationshipError || beliefError || impactError ? true : false)
+
+    return formHasError
+  }
 
   /* **********************************************
     onChange()
@@ -157,7 +158,7 @@ export default function Influence(props) {
 
       <Button onClick={onclickDelete}><i className="nc-icon nc-simple-remove"></i></Button>
 
-      { errorExists() &&
+      { formHasError &&
         <ErrorAlert>
           <ul>
             {relationshipError && <li>{relationshipError}</li>}
@@ -178,5 +179,6 @@ Influence.propTypes = {
   }).isRequired,
   influence: PropTypes.object.isRequired,
   isDynamic: PropTypes.bool,
-  onUpdateAnswerCB: PropTypes.func
+  onUpdateAnswerCB: PropTypes.func,
+  setDisableNext: PropTypes.func
 }

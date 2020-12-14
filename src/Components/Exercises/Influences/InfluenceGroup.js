@@ -59,7 +59,7 @@ export default function InfluenceGroup(props) {
   // console.log("InfluenceGroup::render()")
 
   const {
-    heading, beliefs, relationships, isDynamic, influencesWithKeys, question
+    setDisableNext, heading, beliefs, relationships, isDynamic, influencesWithKeys, question
   } = props
 
   // static render
@@ -121,6 +121,7 @@ export default function InfluenceGroup(props) {
         isDynamic={isDynamic}
         updateInfluenceCB={updateInfluence}
         deleteInfluenceCB={deleteInfluence}
+        setDisableNext={setDisableNext}
       />)}
 
       <div className="text-center">
