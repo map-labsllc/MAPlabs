@@ -1,14 +1,31 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { isLoggedIn } from '../../store/user/reducer'
+import { createBrowserHistory } from 'history'
+import { MODULES } from '../Modules/ModuleData'
+import ModuleLink from '../Modules/ModuleLink'
 
-const SideBar = ({ isLoggedIn }) => (
+const history = createBrowserHistory()
+console.log(history.location.pathname)
+
+const isActive = (moduleId, sectionId) => {
+  const { pathname } = history.location || '/'
+  const link = `/modules/${moduleId}${sectionId ? `/section/${sectionId}` : ''}`
+
+  return pathname === link
+}
+
+const isModuleActive = (moduleId,) => {
+  const { pathname } = history.location || '/'
+
+  return pathname.includes(`/modules/${moduleId}`)
+}
+
+const SideBar = ({ isLoggedIn, user, current_mod, current_sec }) => (
   <div className="sidebar has-image" data-color="blue" data-image="/assets/img/sidebar-5.jpg">
     <div className="sidebar-wrapper">
       <div className="logo">
         <a href="/" className="simple-text">
-          M.A.P. Labs
+            M.A.P. Labs
         </a>
       </div>
 
@@ -17,45 +34,42 @@ const SideBar = ({ isLoggedIn }) => (
           <li className="nav-item">
             <NavLink className="nav-link" to="/infopage">
               <i className="nc-icon nc-explore-2"></i>
-            Program Introduction
+              Program Introduction
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/modules/list">
               <i className="nc-icon nc-layers-3"></i>
-            Module Overview
+              Module Overview
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/modules/1">
-              <i className="nc-icon nc-compass-05"></i>
-              <p>Module 1</p>
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/modules/2">
-              <i className="nc-icon nc-compass-05"></i>
-            Module 2
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/modules/3">
-              <i className="nc-icon nc-compass-05"></i>
-            Module 3
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/modules/4">
-              <i className="nc-icon nc-compass-05"></i>
-            Module 4
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/modules/5">
-              <i className="nc-icon nc-compass-05"></i>
-            Module 5
-            </NavLink>
-          </li>
+          {MODULES.map(mod => {
+            const activeModule = isModuleActive(mod.id)
+
+            return (
+              <li className="nav-item" data-toggle="collapse" aria-expanded={activeModule ? true : false}>
+                <NavLink className={`nav-link ${activeModule ? 'active' : ''}`} to={`/modules/${mod.id}`}>
+                  <i className="nc-icon nc-compass-05"></i>
+                  <p>Module {mod.id}</p>
+                </NavLink>
+                <ul className="collapse">
+                  {mod.sections.map(section => {
+                    const active = isActive(mod.id, section.id) ? 'active' : ''
+
+                    return (<li className={active}>
+                      <ModuleLink
+                        moduleId={mod.id}
+                        sectionId={section.id}
+                        title={section.title}
+                      />
+                    </li>)
+                  })
+                  }
+                </ul>
+              </li>
+            )
+          })
+          }
         </ul>
         :
         null
@@ -69,19 +83,4 @@ const style = {
   SidebarBackground: { backgroundImage: 'url(/assets/img/sidebar-5.jpg)' }
 }
 
-const mapStateToProps = state => {
-  const { user } = state.userRD
-  return {
-    user,
-    isLoggedIn: isLoggedIn(state.userRD),
-  }
-}
-
-const mapDispatchToProps = dispatch => ({
-  dispatch,
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SideBar)
+export default SideBar

@@ -59,7 +59,7 @@
       "no-use-before-define": ["off"],
       "no-useless-return": ["warn"],
       "nonblock-statement-body-position": ["warn"],
-      "object-curly-newline": ["warn"],
+      "object-curly-newline": ["off"],
       "object-curly-spacing": ["warn"],
       "object-shorthand": ["warn"],
       "operator-linebreak": ["off"],

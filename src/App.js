@@ -10,7 +10,7 @@ import LoadUser from './Components/User/LoadUser'
 import NavBar from './Components/layout/NavBar'
 import Router from './Router'
 import ScrollToTop from './Components/layout/ScrollToTop'
-import SideBar from './Components/layout/SideBar'
+import SideBarCT from './Components/layout/SideBarCT'
 
 import './CSS/light-bootstrap-dashboard.css'
 import './CSS/custom.css'
@@ -40,7 +40,7 @@ class App extends Component {
         <LoadUser />
         <ScrollToTop />
         <div className="wrapper">
-          <SideBar />
+          <SideBarCT />
           <div className="main-panel">
             <NavBar />
             <div className="content">

@@ -107,7 +107,7 @@ export default class Questions extends React.Component {
       return true
     }
 
-    this.setState({errorMessage: 'Please create at least one answer.'})
+    this.setState({errorMessage: 'Please complete answers.'})
     return false
   }
 
