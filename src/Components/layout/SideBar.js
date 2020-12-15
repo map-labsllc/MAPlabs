@@ -1,6 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
+import { Nav, NavItem } from 'react-bootstrap'
+
 import { MODULES } from '../Modules/ModuleData'
 import ModuleLink from '../Modules/ModuleLink'
 
@@ -47,12 +49,12 @@ const SideBar = ({ isLoggedIn, user, current_mod, current_sec }) => (
             const activeModule = isModuleActive(mod.id)
 
             return (
-              <li className="nav-item" data-toggle="collapse" aria-expanded={activeModule ? true : false}>
+              <li className="nav-item">
                 <NavLink className={`nav-link ${activeModule ? 'active' : ''}`} to={`/modules/${mod.id}`}>
                   <i className="nc-icon nc-compass-05"></i>
                   <p>Module {mod.id}</p>
                 </NavLink>
-                <ul className="collapse">
+                <Nav className="flex-column">
                   {mod.sections.map(section => {
                     const active = isActive(mod.id, section.id) ? 'active' : ''
 
@@ -65,7 +67,7 @@ const SideBar = ({ isLoggedIn, user, current_mod, current_sec }) => (
                     </li>)
                   })
                   }
-                </ul>
+                </Nav>
               </li>
             )
           })
