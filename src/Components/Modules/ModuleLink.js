@@ -18,7 +18,7 @@ const ModuleLink = ({user, moduleId, sectionId, title}) => {
     (moduleId === currentModule && sectionId <= currentSection)
 
   return show ? <Link to={`/modules/${moduleId}/section/${sectionId}`}>{title}</Link>
-    : <>{title}</>
+    : <div>{title}</div>
 }
 
 /* redux, connect user */
