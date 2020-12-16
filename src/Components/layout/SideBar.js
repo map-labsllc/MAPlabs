@@ -1,12 +1,12 @@
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { Nav, NavItem } from 'react-bootstrap'
+import { Nav, Button } from 'react-bootstrap'
 import { MODULES } from '../Modules/ModuleData'
 import ModuleLink from '../Modules/ModuleLink'
 
-const SideBar = ({ isLoggedIn, user, current_mod, current_sec}) => {
+const SideBar = ({ isLoggedIn }) => {
   const location = useLocation()
-  const activeModClass = (modulePath) => isModuleActive(modulePath) ? 'nav-item active' : 'nav-item'
+  const activeModClass = (modulePath) => (isModuleActive(modulePath) ? 'nav-item active' : 'nav-item collapse')
 
   const activeSection = (moduleId, sectionId) => {
     const { pathname } = location || '/'
@@ -32,13 +32,13 @@ const SideBar = ({ isLoggedIn, user, current_mod, current_sec}) => {
 
         {isLoggedIn ?
           <ul className="nav ml-auto">
-            <li className={activeModClass(`/infopage`)}>
+            <li className={activeModClass('/infopage')}>
               <NavLink className="nav-link" to="/infopage">
                 <i className="nc-icon nc-explore-2"></i>
                 Program Introduction
               </NavLink>
             </li>
-            <li className={activeModClass(`/modules/list`)}>
+            <li className={activeModClass('/modules/list')}>
               <NavLink className="nav-link" to="/modules/list">
                 <i className="nc-icon nc-layers-3"></i>
                 Module Overview
@@ -46,13 +46,15 @@ const SideBar = ({ isLoggedIn, user, current_mod, current_sec}) => {
             </li>
             {MODULES.map(mod => {
               const modulePath = `/modules/${mod.id}`
+              const collapseId = `module-${mod.id}`
+
               return (
-                <li className={activeModClass(modulePath)}>
+                <li className={activeModClass(modulePath)} data-toggle="collapse" data-target={`#${collapseId}`}>
                   <NavLink className="nav-link" to={modulePath}>
                     <i className="nc-icon nc-compass-05"></i>
                     <p>Module {mod.id}</p>
                   </NavLink>
-                  <Nav className="flex-column" as="ul">
+                  <Nav className="flex-column collapse" id={collapseId} as="ul">
                     {mod.sections.map(section => {
                       const activeClass = activeSection(mod.id, section.id) ? 'nav-item active' : 'nav-item'
 
@@ -61,6 +63,7 @@ const SideBar = ({ isLoggedIn, user, current_mod, current_sec}) => {
                           moduleId={mod.id}
                           sectionId={section.id}
                           title={section.title}
+                          disabledClass="sidebar-section-title"
                         />
                       </li>)
                     })

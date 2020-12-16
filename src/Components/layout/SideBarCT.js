@@ -8,8 +8,8 @@ const mapStateToProps = state => {
   return {
     user,
     isLoggedIn: isLoggedIn(state.userRD),
-    curr_module: user.curr_module,
-    curr_section: user.curr_section
+    curr_module: +user.curr_module,
+    curr_section: +user.curr_section
   }
 }
 

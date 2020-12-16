@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-const ModuleLink = ({user, moduleId, sectionId, title}) => {
+const ModuleLink = ({ disabledClass, user, moduleId, sectionId, title }) => {
   const currentModule = +(user.curr_module) || 0
   const currentSection = +(user.curr_section) || 0
 
@@ -18,7 +18,7 @@ const ModuleLink = ({user, moduleId, sectionId, title}) => {
     (moduleId === currentModule && sectionId <= currentSection)
 
   return show ? <Link to={`/modules/${moduleId}/section/${sectionId}`}>{title}</Link>
-    : <div>{title}</div>
+    : <div className={disabledClass}>{title}</div>
 }
 
 /* redux, connect user */

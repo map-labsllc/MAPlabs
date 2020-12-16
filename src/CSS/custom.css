@@ -36,3 +36,10 @@
   margin-top: 0.5em;
   color: rgb(41, 41, 41);
 }
+
+.sidebar-section-title {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  color: rgb(212, 211, 211);
+}
