@@ -57,7 +57,7 @@ const sectionIdsByModId = MODULES.reduce((acc, mod) => {
 }, [])
 
 // ------------------------------------------
-let initialState = {
+const initialState = {
   authCheckPending: true,
   isLoading: false, // change to true when we connect with login process
   errorMessage: '',
@@ -93,10 +93,9 @@ export const isLoggedIn = (state) => state.user && state.user.login_token && sta
 
    return -- t/f
 ************************************************** */
-export const isFirstSection = (state, moduleNum, sectionNum) => {
+export const isFirstSection = (state, moduleNum, sectionNum) =>
   // check if sectionNum is the first entry in array of sections for the module in question
-  return state.orderOfSections[moduleNum].indexOf(sectionNum) === 0
-}
+  state.orderOfSections[moduleNum].indexOf(sectionNum) === 0
 
 /* ***********************************************
    getNextModuleSection()
