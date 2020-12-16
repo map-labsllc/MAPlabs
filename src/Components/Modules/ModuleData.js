@@ -13,7 +13,7 @@ import { MODULE5_SECTIONS } from './Module5'
 export const MODULES = [
   {
     id: 1,
-    title: 'Your Meanings and Motivations',
+    title: 'Meanings and Motivations',
     description: MOD_1_DESC,
     sections: MODULE1_SECTIONS,
   },
