@@ -16,7 +16,7 @@ const MultiLineString = (props) => {
   return (
     <>
       {str.split('\n').map((para, key) => (
-        <p key={key}>{para}</p>
+        <p key={key} className="text-left">{para}</p>
       ))}
     </>
   )
