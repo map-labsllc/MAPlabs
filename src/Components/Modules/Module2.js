@@ -13,9 +13,6 @@ import {
 } from '../../store/answers/constants'
 
 import {
-  GROUP_PERSONAL,
-  GROUP_SOCIAL,
-  GROUP_WIDER, 
   IMPACT_SUPPORTIVE,
   IMPACT_INHIBITING,
 } from '../../constants'
