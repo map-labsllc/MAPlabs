@@ -70,7 +70,7 @@ export default class ShortAnswer extends React.Component {
     const { isDynamic, placeholder } = this.props
 
     if (!isDynamic) {
-      return answer.length > 0 && <> { answer } </>
+      return answer.length > 0 && <div className="text-left"> { answer } </div>
     }
 
     return (

@@ -6,7 +6,7 @@ import ModuleLink from '../Modules/ModuleLink'
 
 const SideBar = ({ isLoggedIn }) => {
   const location = useLocation()
-  const activeModClass = (modulePath) => (isModuleActive(modulePath) ? 'nav-item active' : 'nav-item collapse')
+  const activeModClass = (modulePath) => (isModuleActive(modulePath) ? 'sidebar-module-heading nav-item active' : 'sidebar-module-heading nav-item collapse')
 
   const activeSection = (moduleId, sectionId) => {
     const { pathname } = location || '/'
@@ -54,11 +54,11 @@ const SideBar = ({ isLoggedIn }) => {
                     <i className="nc-icon nc-compass-05"></i>
                     <p>Module {mod.id}</p>
                   </NavLink>
-                  <Nav className="flex-column collapse" id={collapseId} as="ul">
+                  <Nav className="flex-column collapse sidebar-section" id={collapseId} as="ul">
                     {mod.sections.map(section => {
-                      const activeClass = activeSection(mod.id, section.id) ? 'nav-item active' : 'nav-item'
+                      const activeSectionClass = activeSection(mod.id, section.id) ? 'nav-item active' : 'nav-item'
 
-                      return (<li className={activeClass}>
+                      return (<li className={activeSectionClass}>
                         <ModuleLink
                           moduleId={mod.id}
                           sectionId={section.id}
