@@ -63,6 +63,10 @@
   font-weight: bold;
 }
 
+.sidebar li li.active {
+  background-color: #eeeeee;
+}
+
 .sidebar-module-heading {
   margin-top: 20px;
 }
