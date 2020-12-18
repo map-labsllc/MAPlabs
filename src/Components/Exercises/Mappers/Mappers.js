@@ -27,7 +27,7 @@ const CompassIcon = () => (<i className="lg nc-icon nc-compass-05"></i>)
 
 const VTE = (props) => (
   <VerticalTimelineElement
-    contentStyle={{ background: '#1F77D0' }}
+    contentStyle={{ background: '#1F77D0', color: 'black' }}
     contentArrowStyle={{ borderRight: '7px solid #1F77D0' }}
     iconStyle={{ background: '#1F77D0', color: '#fff', justifyContent: 'center', display: 'flex', alignItems: 'center' }}
     icon={<CompassIcon />}
@@ -114,7 +114,6 @@ const Mappers = () => (
         </div>
       </VTE>
       <VTE>
-
         <div className="background text-left">
           <Card>
             <Card.Header>
@@ -175,7 +174,16 @@ const Mappers = () => (
                     },
                   ]}
                 />
-
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+      </VTE>
+      <VTE>
+        <div className="background text-left">
+          <Card>
+            <Card.Body>
+              <div className="container-fluid contain">
                 <SectionNav
                   subSections= {[
                     {
