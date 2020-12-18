@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types'
 import { Card } from 'react-bootstrap'
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import SectionNav from '../../Framework/SectionNav'
-import 'react-vertical-timeline-component/style.min.css';
+
 import {
   EXERCISE_510,
   EXERCISE_565,
@@ -27,10 +27,9 @@ const CompassIcon = () => (<i className="lg nc-icon nc-compass-05"></i>)
 
 const VTE = (props) => (
   <VerticalTimelineElement
-    className="vertical-timeline-element--work"
-    contentStyle={{ background: '#1F77D0', color: '#ccc' }}
+    contentStyle={{ background: '#1F77D0' }}
     contentArrowStyle={{ borderRight: '7px solid #1F77D0' }}
-    iconStyle={{ background: '#1F77D0', color: '#fff' }}
+    iconStyle={{ background: '#1F77D0', color: '#fff', justifyContent: 'center', display: 'flex', alignItems: 'center' }}
     icon={<CompassIcon />}
   >
     {props.children}

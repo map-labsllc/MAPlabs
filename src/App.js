@@ -14,6 +14,7 @@ import SideBarCT from './Components/layout/SideBarCT'
 
 import './CSS/light-bootstrap-dashboard.css'
 import './CSS/custom.css'
+import 'react-vertical-timeline-component/style.min.css';
 
 history.listen(({ action, location }) => {
   console.log(
