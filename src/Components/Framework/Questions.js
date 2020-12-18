@@ -34,8 +34,9 @@ export default class Questions extends React.Component {
   }
 
   setDisableNext = (value) => {
-    console.log('setDisableNext called', value)
-    this.setState({disableNext: value})
+    // TODO ... fix
+    // console.log('setDisableNext called', value)
+    // this.setState({disableNext: value})
   }
 
   // ******************************************
