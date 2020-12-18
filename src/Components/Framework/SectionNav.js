@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink, useRouteMatch } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import { Col, Row } from 'react-bootstrap'
 
 import { getUser } from '../../store/user/reducer'
+import { UUID } from '../Utils/UUID'
 
 const SectionNav = ({ subSections }) => {
   const match = useRouteMatch();
+  const uuid = new UUID()
+
+  const [subSectionsWithKeys] = useState(uuid.addKeys(subSections))
+
   let { subSectionId = 0 } = match.params
-  subSectionId = +subSectionId
 
   const { moduleId, sectionId } = match.params
 
@@ -18,21 +22,29 @@ const SectionNav = ({ subSections }) => {
   )
 
   const displaySubSection = (subSectionId) => {
-    const selected = subSections.filter((section, idx) => section.id === subSectionId).shift()
+    console.log("displaying", subSectionId, subSectionsWithKeys)
+    const selected = subSectionsWithKeys.filter(({ key, item }) => key === subSectionId)
+      .map(({ key, item }) => item)
+      .shift()
+    console.log("attempting to display", selected)
     return selected && selected.exercise ? selected.exercise : ''
   }
 
   return (
     <Row>
       <Col md={4}>
-        <ul className="nav ml-auto">
-          {subSections.map((subSection, idx) => (
-            <li className="nav-item" key={idx}>
-              {subSectionLink(subSection.id, subSection.title)}
-            </li>
-          ))
-          }
-        </ul>
+        <Row>
+          <Col>
+            <ul className="nav ml-auto">
+              {subSectionsWithKeys.map(({ key, item }) => (
+                <li className="nav-item" key={key}>
+                  {subSectionLink(key, item.title)}
+                </li>
+              ))
+              }
+            </ul>
+          </Col>
+        </Row>
       </Col>
       <Col md={8}>
         { displaySubSection(subSectionId) }

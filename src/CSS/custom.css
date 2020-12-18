@@ -70,3 +70,8 @@
 .sidebar-module-heading {
   margin-top: 20px;
 }
+
+.mappers-layout .vertical-timeline-element-content p {
+  font-size: 12px;
+  color:rgb(41, 41, 41);
+}

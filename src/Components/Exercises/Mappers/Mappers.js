@@ -1,7 +1,9 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Card } from 'react-bootstrap'
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import SectionNav from '../../Framework/SectionNav'
+import 'react-vertical-timeline-component/style.min.css';
 import {
   EXERCISE_510,
   EXERCISE_565,
@@ -21,150 +23,180 @@ import {
   EXERCISE_560,
 } from '../../Modules/Module5'
 
+const CompassIcon = () => (<i className="lg nc-icon nc-compass-05"></i>)
+
+const VTE = (props) => (
+  <VerticalTimelineElement
+    className="vertical-timeline-element--work"
+    contentStyle={{ background: '#1F77D0', color: '#ccc' }}
+    contentArrowStyle={{ borderRight: '7px solid #1F77D0' }}
+    iconStyle={{ background: '#1F77D0', color: '#fff' }}
+    icon={<CompassIcon />}
+  >
+    {props.children}
+  </VerticalTimelineElement>
+)
+
 const Mappers = () => (
-  <div>
-    <SectionNav
-      subSections= {[
-        {
-          id: 565,
-          title: 'In order to reach my future desired situation',
-          exercise: EXERCISE_565
-        },
-      ]}
-    />
+  <div className="mappers-layout">
+    <VerticalTimeline layout="1-column-left">
+      <VTE>
+        <Card>
+          <Card.Body>
+            <div className="container-fluid contain">
+              <SectionNav
+                subSections= {[
+                  {
+                    id: 565,
+                    title: 'In order to reach my future desired situation',
+                    exercise: EXERCISE_565
+                  },
+                ]}
+              />
+            </div>
+          </Card.Body>
 
-    <div className="background text-left">
-      <Card>
-        <Card.Header>
-          <Card.Title><h4>HOW I'LL DO IT</h4></Card.Title>
-        </Card.Header>
-        <Card.Body>
-          <div className="container-fluid contain">
-            <h5>Goals - I will need to change my beavior</h5>
-            <SectionNav
-              subSections= {[
-                {
-                  id: 560,
-                  title: 'Breaking and Building',
-                  exercise: EXERCISE_560
-                },
-              ]}
-            />
+        </Card>
+      </VTE>
 
-            <h5>Commitments</h5>
-            <SectionNav
-              subSections= {[
-                {
-                  id: 550,
-                  title: 'I will need personal growth',
-                  exercise: EXERCISE_550
-                },
-                {
-                  id: 551,
-                  title: 'I will need supporting relationships',
-                  exercise: EXERCISE_551
-                },
-                {
-                  id: 552,
-                  title: 'I will need engagement mastery',
-                  exercise: EXERCISE_552
-                },
-              ]}
-            />
+      <VTE>
+        <div className="background text-left">
+          <Card>
+            <Card.Header>
+              <Card.Title><h4>HOW I'LL DO IT</h4></Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <div className="container-fluid contain">
+                <h4>Goals - I will need to change my beavior</h4>
+                <SectionNav
+                  subSections= {[
+                    {
+                      id: 560,
+                      title: 'Breaking and Building',
+                      exercise: EXERCISE_560
+                    },
+                  ]}
+                />
 
-            <SectionNav
-              subSections= {[
-                {
-                  id: 540,
-                  title: 'My "who" and "what" come together in my life purpose',
-                  exercise: EXERCISE_540
-                },
-              ]}
-            />
-          </div>
-        </Card.Body>
-      </Card>
-    </div>
+                <h4>Commitments</h4>
+                <SectionNav
+                  subSections= {[
+                    {
+                      id: 550,
+                      title: 'I will need personal growth',
+                      exercise: EXERCISE_550
+                    },
+                    {
+                      id: 551,
+                      title: 'I will need supporting relationships',
+                      exercise: EXERCISE_551
+                    },
+                    {
+                      id: 552,
+                      title: 'I will need engagement mastery',
+                      exercise: EXERCISE_552
+                    },
+                  ]}
+                />
 
-    <div className="background text-left">
-      <Card>
-        <Card.Header>
-          <Card.Title><h4>WHAT I CARE ABOUT</h4></Card.Title>
-        </Card.Header>
-        <Card.Body>
-          <div className="container-fluid contain">
-            <h5>Focus Beyond Self</h5>
-            <SectionNav
-              subSections= {[
-                {
-                  id: 531,
-                  title: 'These are my thoughts on "what" I care about',
-                  exercise: EXERCISE_531
-                },
-                {
-                  id: 530,
-                  title: 'I want to focus on something beyond myself',
-                  exercise: EXERCISE_530
-                },
-                {
-                  id: 512,
-                  title: 'I become a purpose-seeking person "who"',
-                  exercise: EXERCISE_512
-                },
-              ]}
-            />
-          </div>
-        </Card.Body>
-      </Card>
-    </div>
+                <h4>Purpose</h4>
+                <SectionNav
+                  subSections= {[
+                    {
+                      id: 540,
+                      title: 'My "who" and "what" come together in my life purpose',
+                      exercise: EXERCISE_540
+                    },
+                  ]}
+                />
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+      </VTE>
+      <VTE>
 
-    <div className="background text-left">
-      <Card>
-        <Card.Header>
-          <Card.Title><h4>WHO AM I</h4></Card.Title>
-        </Card.Header>
-        <Card.Body>
-          <div className="container-fluid contain">
-            <h5>My Meaning</h5>
-            <SectionNav
-              subSections= {[
-                {
-                  id: 520,
-                  title: 'By grounding myself in meaning',
-                  exercise: EXERCISE_520
-                },
-                {
-                  id: 522,
-                  title: 'By using my top strengths',
-                  exercise: EXERCISE_522
-                },
-                {
-                  id: 521,
-                  title: 'By living out my deepest desires',
-                  exercise: EXERCISE_521
-                },
-              ]}
-            />
+        <div className="background text-left">
+          <Card>
+            <Card.Header>
+              <Card.Title><h4>WHAT I CARE ABOUT</h4></Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <div className="container-fluid contain">
+                <h4>Focus Beyond Self</h4>
+                <SectionNav
+                  subSections= {[
+                    {
+                      id: 531,
+                      title: 'These are my thoughts on "what" I care about',
+                      exercise: EXERCISE_531
+                    },
+                    {
+                      id: 530,
+                      title: 'I want to focus on something beyond myself',
+                      exercise: EXERCISE_530
+                    },
+                    {
+                      id: 512,
+                      title: 'I become a purpose-seeking person "who"',
+                      exercise: EXERCISE_512
+                    },
+                  ]}
+                />
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+      </VTE>
+      <VTE>
+        <div className="background text-left">
+          <Card>
+            <Card.Header>
+              <Card.Title><h4>WHO AM I</h4></Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <div className="container-fluid contain">
+                <h4>My Meaning</h4>
+                <SectionNav
+                  subSections= {[
+                    {
+                      id: 520,
+                      title: 'By grounding myself in meaning',
+                      exercise: EXERCISE_520
+                    },
+                    {
+                      id: 22,
+                      title: 'By using my top strengths',
+                      exercise: EXERCISE_522
+                    },
+                    {
+                      id: 521,
+                      title: 'By living out my deepest desires',
+                      exercise: EXERCISE_521
+                    },
+                  ]}
+                />
 
-            <SectionNav
-              subSections= {[
-                {
-                  id: 511,
-                  title: 'I need to acknowledge these important themes',
-                  exercise: EXERCISE_511
-                },
-                {
-                  id: 510,
-                  title: 'In order to improve my current situation',
-                  exercise: EXERCISE_510
-                }
-              ]}
-            />
-          </div>
-        </Card.Body>
-      </Card>
-    </div>
-
+                <SectionNav
+                  subSections= {[
+                    {
+                      id: 511,
+                      title: 'I need to acknowledge these important themes',
+                      exercise: EXERCISE_511
+                    },
+                    {
+                      id: 510,
+                      title: 'In order to improve my current situation',
+                      exercise: EXERCISE_510
+                    }
+                  ]}
+                />
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+      </VTE>
+    </VerticalTimeline>
   </div>
 )
 
