@@ -18,7 +18,7 @@ const SectionNav = ({ subSections }) => {
   return (
     <>
       {subSectionsWithKeys.map(({ key, item }) => (
-        <Row>
+        <Row style={style.Row}>
           <Col md={5} className="nav-item" key={key}>
             <Button
               onClick={() => toggleOpen(key)}
@@ -40,6 +40,10 @@ const SectionNav = ({ subSections }) => {
       }
     </>
   )
+}
+
+const style = {
+  Row: { padding: '0.5em' }
 }
 
 export default SectionNav
