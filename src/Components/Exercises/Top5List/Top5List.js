@@ -97,7 +97,7 @@ export default class Top5List extends React.Component {
       }
 
       return (
-        <table className="table">
+        <table className="table" style={style.table}>
           <thead>
             <tr>
               { headingsToTh(headings) }
@@ -122,7 +122,7 @@ export default class Top5List extends React.Component {
       <>
         <p>{instructions}</p>
         <Form onChange={this.onChange}>
-          <table className="table">
+          <table className="table" style={style.table}>
             <thead>
               <tr>
                 <th scope="col" className="text-left"></th>
@@ -151,6 +151,10 @@ export default class Top5List extends React.Component {
       </>
     )
   }
+}
+
+const style = {
+  table: { tableLayout: 'fixed', width: '100%'}
 }
 
 Top5List.propTypes = {
