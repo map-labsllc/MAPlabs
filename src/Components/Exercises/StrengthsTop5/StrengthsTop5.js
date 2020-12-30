@@ -43,17 +43,6 @@ export default function StrengthsTop5(props) {
   const fields = ['strengthValue']
   const selectedAttribute = 'strength'
 
-  const [answersCopied, setAnswersCopied] = useState(false)
-
-  // if first time, copy answers from parent
-  useEffect(() => {
-    if (!answersCopied) {
-      // TODO add copy answers here
-
-    }
-    setAnswersCopied(true)
-  });
-
   return <Top5ListCT
     {...props}
     hydrateAnswer={hydrateAnswer}
