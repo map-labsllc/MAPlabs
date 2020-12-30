@@ -26,7 +26,7 @@ import { EFFECT_IMPEDIMENT, EFFECT_EMBODIMENT } from '../../../constants'
 export default class StrengthEmIm extends React.Component {
   state = {
     isDirty: false,
-    reflections: this.props.reflections,
+    reflections: this.props.reflections.map(reflection => ({...reflection, effect: reflection.effect ?? EFFECT_EMBODIMENT })) // default to embodiment
   }
 
   // **********************************************
