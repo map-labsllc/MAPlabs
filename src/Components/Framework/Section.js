@@ -20,7 +20,7 @@ import SectionId from '../Utils/SectionId'
 export default class Section extends React.Component {
   render() {
     const {
-      number, isVisible, moduleNum, sectionNum, sectionTitle, section_ids, exercise, showEdit
+      number, isVisible, moduleNum, sectionNum, sectionTitle, section_ids, exercise, theEnd
     } = this.props
 
     return (
@@ -39,7 +39,7 @@ export default class Section extends React.Component {
           {isVisible && (
             <Card.Body >
               <div className="container-fluid contain">
-                <SectionExerciseCT moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} section_ids={section_ids} />
+                <SectionExerciseCT moduleNum={moduleNum} sectionNum={sectionNum} sectionTitle={sectionTitle} exercise={exercise} section_ids={section_ids} theEnd={theEnd}/>
               </div>
             </Card.Body>
           )}

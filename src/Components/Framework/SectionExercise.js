@@ -51,7 +51,7 @@ class SectionExercise extends React.Component {
   render() {
     const { isVisible } = this.state
     const {
-      user, sectionNum, moduleNum, answersRD, userRD, exercise, section_ids, showComplete = true
+      user, sectionNum, moduleNum, answersRD, userRD, exercise, section_ids, showComplete = true, theEnd = false
     } = this.props
     const currentModule = user.curr_module
     const currentSection = user.curr_section
@@ -70,9 +70,6 @@ class SectionExercise extends React.Component {
 
     // show the Edit/Save button default to true
     const showEdit = exercise.props.showEdit === undefined ? true : exercise.props.showEdit
-
-    // very last exercise
-    const theEnd = !!exercise.props.theEnd
 
     // By default <exercise> does not have the isDynamic prop and will
     //   render itself in a static format for display in <SectionExercise>.
@@ -114,6 +111,7 @@ class SectionExercise extends React.Component {
     const next = getNextModuleSection(userRD, +moduleNum, +sectionNum)
     const nextModule = next.moduleNum
     const nextSection = next.sectionNum || 'intro'
+
 
     return (
       <>

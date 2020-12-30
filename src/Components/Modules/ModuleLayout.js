@@ -33,6 +33,7 @@ const ModuleLayout = ({ moduleId, title, description, sectionId, sections }) => 
           sectionTitle = { section.title }
           exercise = { section.exercise }
           section = { section }
+          theEnd = { section.theEnd}
         />
         :
         <Alert variant="warning">
