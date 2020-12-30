@@ -98,12 +98,12 @@ const Mappers = () => (
                   ]}
                 />
 
-                <h4>Purpose</h4>
+                <h4>Life Purpose</h4>
                 <SectionNav
                   subSections= {[
                     {
                       id: 540,
-                      title: 'My "who" and "what" come together in my life purpose',
+                      title: 'My "who" and "what"',
                       exercise: EXERCISE_540
                     },
                   ]}

@@ -19,7 +19,7 @@ const SectionNav = ({ subSections }) => {
     <>
       {subSectionsWithKeys.map(({ key, item }) => (
         <Row style={style.Row}>
-          <Col md={5} className="nav-item" key={key}>
+          <Col md={6} sm={12} className="nav-item" key={key}>
             <Button
               onClick={() => toggleOpen(key)}
               aria-controls={key}
@@ -28,7 +28,7 @@ const SectionNav = ({ subSections }) => {
               {item.title}
             </Button>
           </Col>
-          <Col md={7}>
+          <Col md={6} sm={12}>
             <Collapse in={!!open[key]}>
               <div id={key}>
                 {item.exercise}
