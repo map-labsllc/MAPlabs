@@ -23,10 +23,32 @@ class HomePage extends React.Component {
           </div>
           <div style={{ marginTop: '3em' }}>
             <Row>
-              <Col md={4}>
+              <Col md={6}>
                 <Card style={style.Card}>
-                  <Card.Body>
-                    <Card.Text>
+                  <Card.Body style={style.CardBody}>
+                    <Card.Text style={style.CardText}>
+                        Find out about this program.
+                      <Link style={style.CardButton} className="btn btn-info btn-fill" to="/infopage">Get Started</Link>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+
+              <Col md={6}>
+                <Card style={style.Card}>
+                  <Card.Body style={style.CardBody}>
+                    <Card.Text style={style.CardText}>
+                        Existing user with an account?
+                      <Link style={style.CardButton} className="btn btn-info btn-fill" to="/login">Login</Link>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+
+              {/* <Col md={4}>
+                <Card style={style.Card}>
+                  <Card.Body style={style.CardBody}>
+                    <Card.Text style={style.CardText}>
                       Visit our website to learn more about us.
 
                       <Button style={style.CardButton}
@@ -40,29 +62,7 @@ class HomePage extends React.Component {
                     </Card.Text>
                   </Card.Body>
                 </Card>
-              </Col>
-
-              <Col md={4}>
-                <Card style={style.Card}>
-                  <Card.Body>
-                    <Card.Text>
-                        Find out more about this program.
-                      <Link style={style.CardButton} className="btn btn-info btn-fill" to="/infopage">Get Started</Link>
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-              <Col md={4}>
-                <Card style={style.Card}>
-                  <Card.Body>
-                    <Card.Text>
-                        Already have an account?
-                      <Link style={style.CardButton} className="btn btn-info btn-fill" to="/login">Login here.</Link>
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
+              </Col> */}
             </Row>
           </div>
           <div style={style.coloroverlay} className="coloroverlay" />
@@ -73,10 +73,11 @@ class HomePage extends React.Component {
 }
 
 const style = {
-  Card: { minHeight: '160px' },
+  Card: { },
+  CardText: { minHeight: '', verticalAlign: 'bottom' },
 
   CardButton: {
-    marginTop: '1em',
+    marginTop: '2em',
     verticalAlign: 'bottom',
     display: 'block'
   }

@@ -11,13 +11,16 @@ const Footer = () => (
             </a>
           </li>
         </ul> */}
-        <p className="copyright text-center">
+        <a href="https://www.map-labs.com/map-maker-core-meaning-and-purpose-program.html">
+          <p className="copyright text-center">
             ©
-          <script>
+            <script>
             document.write(new Date().getFullYear())
-          </script>
+            </script>
+
           M.A.P. Labs
-        </p>
+          </p>
+        </a>
       </nav>
     </div>
   </footer>
