@@ -83,7 +83,7 @@ const  exercise_340 = (
     question = { { code: 340, text: 'Synthesize into a Desires Statement.' } }
     promptQuestionCode = { 320 } // should the prompt be all of the winners from 320 or just 330?
     description = { QUES_340_DESC }
-    instructions = "Write a short statement that brings together all the desires from each category and captures the essence of what this exercise has revealed to you using the phrases themselves. Note:  If there were desires that reached the final tradeoff round in Exercise 3 that are also really important, feel free to incorporate them as well. "
+    instructions = "Write a short statement that brings together your most important desires and captures the essence of what the past few exercises have revealed to you, using the phrases themselves. "
   />)
 
 // -------------------------
