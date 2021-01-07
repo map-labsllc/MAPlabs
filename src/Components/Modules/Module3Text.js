@@ -4,9 +4,19 @@ Desire plays an important role in well-being. In Module 3 we will focus on diffe
 <br><br>
 In Module 1 we differentiated between our current situation, which may have resulted from extrinsic motivations, and our desired future life, which can be built on intrinsic motivations.
 <br><br>
-In Module 2, a primary takeaway was that often our inhibiting values and beliefs make their way into our lives through the relational, social, and cultural influences around us. These 'adopted' values and beliefs can make us feel like we desire things (or should, at any rate) that actually lead to our dissatisfying current situation. Often this is because these extrinsic desires are not coming from our authentic, intrinsic values and beliefs.
+In Module 2, a primary takeaway was that often our inhibiting values and beliefs make their way into our lives through the relational, social, and cultural influences around us. These "adopted" values and beliefs can make us feel like we desire things (or should, at any rate) that actually lead to our dissatisfying current situation. Often this is because these extrinsic desires are not coming from our authentic, intrinsic values and beliefs.
 <br><br>
-In Module 3 we will continue our process by building on the intrinsic values and beliefs that we identified in Module 2 to help lead us to the deepest desires we have for our lives across a battery of life elements.`
+In Module 3 we will continue our process by building on the intrinsic values and beliefs that we identified in Module 2 to help lead us to the deepest desires we have for our lives.
+<br><br>
+But what exactly do we mean by “desires,” and how are they different from the values and beliefs that we examined in Module 2?
+<br><br>
+Values are defined as “a person's principles or standards of behavior.” A “principle” or a “standard” is nameable, definable, and shareable with others, just as a value is.
+<br><br>
+In comparison, desires are deeper, less definable, more ineffable. A desire is defined as “a strong feeling of wanting,” and its synonyms are words like “crave,” “yearn,” and “hanker.” Desires are more purely subjective and emotional, and may not be nameable, definable, or shareable with others.
+<br><br>
+You will only arrive at your deepest desires when you set your thoughts and assumptions aside, and make room for your most personal feelings to arise, even if they seem unexpected, nonsensical, crazy, radical, personally terrifying, or threatening to how you view yourself and the life that you currently lead.
+<br><br>
+We are focusing on desires in Module 3 to get to the deepest emotional roots of who you are as a person and what you care about most deeply. Since life meaning and purpose arise from authentic self-honesty, your raw, unconstrained desires are the quickest way for you to get to your most authentic and autonomous self.`
 
 export const QUES_310_DESC = `In this exercise you will articulate your deepest desires in life. We have given you 7 different categories of life to guide your reflection (plus room for “other”). The categories are:
 <br><br>
