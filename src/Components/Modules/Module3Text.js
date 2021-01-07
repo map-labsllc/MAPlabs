@@ -28,22 +28,21 @@ export const QUES_310_DESC = `In this exercise you will articulate your deepest 
 <br><br>
 - family
 <br><br>
-- mental/education
+- mental/educational
 <br><br>
 - spiritual/emotional/creative
 <br><br>
-- physical/health/recreation
-<br><br>
-- other
+- physical/health/recreational
 <br><br>
 Think of them as big containers. Together, they provide space for a wide range of possible desires, and anything you come up with can likely fit into them. In fact, we want you to articulate all the things you desire—no matter how trivial, selfish, far-fetched, or embarrassing they may seem.
 <br><br>
 The goal of this exercise is for you to be as honest as you can be about what you feel most in your heart of hearts. It is okay if you find that self-honesty does not just come gushing out initially. Often we need to work through our more “rational” mindset at first before we can dig down to what our emotional self wants.
 <br><br>
-So feel free to just put down every thought that comes to mind about what you desire from each category of your life. Ultimately you will eliminate the ones that are not very important to you. This is essentially a big data dump; no one else will ever see what you put down unless you want them to. Don't worry about whether your wants and desires make sense,
-Some categories may prove much more fertile than others, but you should strive to include at least 10 - 20 listings (and many more if appropriate) in each category. At this stage, the point is not to reach conclusions, but to create a list of all the desires and wants, even the little ones, that you have for each category of your life.
+So feel free to just put down every thought that comes to mind about what you desire from each category of your life. Ultimately you will eliminate the ones that are not very important to you. At first, you may feel like the things you desire seem really obvious, even cliché, but push yourself to keep writing and to roam widely in what you desire. Don't worry about whether your wants and desires make sense, seem achievable, or conflict with your current life. You are just getting your responses down for now and will cull through them later.
 <br><br>
-<b>Brainstorm and list your desires in each category.</b> In each of the 7 categories listed, insert words or short phrases that describe specific desires you have for each category.  Please be as specific as you can and do not combine multiple desires into any one entry (for instance, instead of listing 'connecting to and benefiting other people,' create 2 entries, one for 'connecting to other people' and one for 'benefiting other people').`
+Some categories may prove much more fertile than others, but you should strive to include at least 10 - 20 listings in each category. At this stage, the point is not to reach conclusions, but to create a list of all the desires and wants, even the little ones, that you have for each category of your life.
+<br><br>
+<b>Brainstorm and list your desires in each category.</b> In each of the categories listed, insert words or short phrases that describe specific desires you have for each category.  Please be as specific as you can and do not combine multiple desires into any one entry (for instance, instead of listing "connecting to and benefiting other people," create 2 entries, one for "connecting to other people" and one for "benefiting other people").`
 
 export const QUES_320_DESC = `Listing your desires is an important first step, one that can be hard. But there is more to do here. The next step is to go through a process of filtering that will allow you to decide which desires are most important to you within each category.
 <br><br>
