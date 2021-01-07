@@ -58,7 +58,7 @@ export const QUES_330_DESC = 'Now that you have distilled your desires to what i
 
 export const QUES_340_DESC = 'Now you will be able to see all of your final desires for each category in one place, along with your top overall desire. Think about them for a few minutes. Taken together, what do they suggest about the life that you desire? In the space provided, write a short statement that brings together your most important desires and captures the essence of what the past few exercises have revealed to you, using the phrases themselves. As you write the statement, pay particular attention to your top-ranked overall desire.'
 
-export const QUES_350_DESC = 'Review the \'desires statement\' you created in Exercise 4 and consider how well the statement captures your most authentic self.'
+export const QUES_350_DESC = 'Review the "Desires Statement" you created in the previous exercise, as well as your most important desires from Exercises 3.2.0 and 3.3.0. As you answer the questions below, consider how well these findings capture your most authentic self.'
 
 export const QUES_360_DESC = `In order to create more personal Autonomy, consider which desires are less authentic and need to be 'broken from,' and which desires are more authentic and need to be 'built toward.' Fill in the following blanks:
 <br><br>

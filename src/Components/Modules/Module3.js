@@ -89,11 +89,11 @@ const  exercise_340 = (
 // -------------------------
 // Module 3: 5A
 const shortAnswers_350 = [
-  <ShortAnswersCT question = { { code: 351, text: 'List any important themes that you noticed across your 7 categories and in your ultimate choices about which of your desires are most important.' } } />,
-  <ShortAnswersCT question = { { code: 352, text: 'Which desires provide you with the most personal senses of the meaning and “intrinsic” motivation in your life?' } } />,
+  <ShortAnswersCT question = { { code: 351, text: 'List any important themes that you noticed across all of your categories and in your ultimate choices about which of your desires are most important.' } } />,
+  <ShortAnswersCT question = { { code: 352, text: 'Which desires provide you with the greatest sense of meaning and “intrinsic” motivation in your life?' } } />,
   <ShortAnswersCT question = { { code: 353, text: 'Name some things beyond yourself that you could serve if you lived more authentically  from your deepest and truest desires.' } } />,
   <ShortAnswersCT question = { { code: 354, text: 'List the areas of personal growth that will enable your life to be more expressive of your desires.' } } />,
-  <ShortAnswersCT question = { { code: 355, text: 'List which relationships that you either currently have or need to develop in the future (to any influence, such as people, groups, practices, experiences, etc.) are most important to supporting your life being lived our of your most authentic desires.' } } />,
+  <ShortAnswersCT question = { { code: 355, text: 'List which relationships that you either currently have or need to develop in the future (to any influence, such as people, groups, etc.) are most important to helping you fulfill your most authentic desires.' } } />,
   <ShortAnswersCT question = { { code: 356, text: 'List any areas of engagement or mastery (either in your life’s work or avocationally) that could express or fulfill your deepest desires.' } } />,
 ]
 
