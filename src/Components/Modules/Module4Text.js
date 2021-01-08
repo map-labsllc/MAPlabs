@@ -25,7 +25,13 @@ Now that you have discovered your strengths, familiarize yourself with them. We 
 <br><br>
 Enter your top 5 strengths below, in the order they are reported in the VIA Survey.`
 
-export const QUES_420_DESC = `For each strength write a simple word or phrase that describes embodiment or impediment for that strength. List as many as you'd like for each. Define each sitation as an Embodiment (if you were able) or Impediment (if you were unable).`
+export const QUES_420_DESC = `Now we want to make this exploration of strengths more concrete, by examining the experiences in our lives where our strengths have been clearly embodied (and we found satisfaction), versus experiences where our strengths have been impeded or absent (and we found frustration).
+<br><br>
+An <b><i>embodiment</b></i> is a task, a practice, or an experience in your life that calls upon your strength. You may have previously just thought of such embodiments in isolation as things you are good at or that feel natural to you. When we use our core strengths to meet a challenge that pushes us near our limits, we often experience a state of “flow,” a pleasant state of total absorption in which we lose all sense of time. Flow is a key component of well-being, and a state of everyday engagement that anyone seeking life satisfaction should pursue.
+<br><br>
+An <b><i>impediment</b></i> is something about your circumstances, yourself, or others that prevents you from acting on your strengths. When we are unable to act on our strengths in our everyday lives, we may experience a debilitating feedback loop that is two-sided. On one side, we feel a sense of personal frustration, a lack of fulfillment, and even a feeling of being “controlled,” because our situation forces us to act unnaturally and focus on activities that require our weaknesses. On the other side, we don’t feel satisfied by the things we are pursuing because our true strengths are not called for, leading to a further diminished sense of control and investment because we never get the satisfaction of excelling at what we do best.
+<br><br>
+For each strength below, list as many examples of embodiments or impediments of that strength as you can think of. Something that comes to mind from ten or twenty years ago is just as eligible as something from ten minutes ago. Write a simple word or short phrase that describes each embodiment or impediment that you add.`
 
 export const QUES_430_DESC = `Select only your most important 5 embodiments from the previous exercise`
 
