@@ -37,6 +37,6 @@ export const QUES_430_DESC = `Now that you see them all together, determine whic
 
 export const QUES_440_DESC = `This exercise will follow the same general format as the previous exercise, but now you will focus on the impediments that most hinder your strengths. Select only your most important 5 impediments.`
 
-export const QUES_450_DESC = `Reflect on themes evident in your “embodiments” and “impediments”.`
+export const QUES_450_DESC = `Review your signature strengths, along with your top embodiments and impediments of these strengths, and allow them to guide you as you answer the questions below.`
 
 export const QUES_460_DESC = `In order to create a more meaningful and purposeful life, I want to increase my Environmental mastery by altering how I engage with my strengths, embodiments, impediments and goals.  Determine how to "break and build" in each of these categories.`
