@@ -10,11 +10,20 @@ Environmental mastery occurs when we know our personal values, beliefs, desires,
 <br><br>
 We all have core strengths and talents. But if we are not aware of them, our circumstances and habits can lead us to not act on some of our best attributes in our everyday lives. As we have already seen with our values, beliefs, and desires, it is common to find ourselves striving after things that others want for us or have influenced us to want. When we do so, it often causes us to be in situations where we use skills that may be highly esteemed, but that are not our core strengths. In fact, it is not uncommon for us to end up in jobs, careers, and other life situations that primarily demand our weaknesses or our middle strengths, rather than our core “signature” strengths. All the while, our true strengths lie dormant.
 <br><br>
-In the following exercises we will start by taking the VIA Survey of Character Strengths to discover our “signature strengths,” before examining the situations in our lives that embody and impede these strengths. Using this self-knowledge, we will consider how we can cultivate situations and specific opportunities to leverage our personal strengths in ways that allow both ourselves and the others we serve to flourish.
-`
+In the following exercises we will start by taking the VIA Survey of Character Strengths to discover our “signature strengths,” before examining the situations in our lives that embody and impede these strengths. Using this self-knowledge, we will consider how we can cultivate situations and specific opportunities to leverage our personal strengths in ways that allow both ourselves and the others we serve to flourish.`
 
 // TODO... This is needs to be updated
-export const QUES_410_DESC = `Determine your top 5 strengths by taking the  <a href="https://www.authentichappiness.sas.upenn.edu/" target="_blank">VIA Survey of Character Strengths</a>. Enter your top 5 strengths using the drop down menu in the order they are reported in the VIA Survey.`
+export const QUES_410_DESC = `Once we understand our signature strengths, we can choose our everyday activities to be the things that we care about most and are most equipped to do well.
+<br><br>
+So how do we identify our signature strengths? The VIA Survey of Character Strengths identifies character traits that are universally admired across cultures and that apply to all of life, not just work or career. Martin Seligman and colleagues developed this survey by examining longstanding traditions of values and character strengths, including religions, philosophies, political writings, cultures, and educational practices. From this process emerged a set of 24 universal strengths.
+<br><br>
+While your signature strengths are your most important strengths, each of us has all 24 of the strengths in some measure. Your lower strengths are not the same as weaknesses—rather, they may be less valued, come less naturally to you, or be used less consistently in comparison to your core strengths.
+<br><br>
+<b>Take the VIA Survey of Character Strengths.</b> The survey is available for free on the University of Pennsylvania’s <a href="https://www.authentichappiness.sas.upenn.edu/" target="_blank">Positive Psychology Center</a> website. Hover over the “Questionnaires” menu item, and click on the VIA Survey of Character Strengths (make sure to take the standard, adult version, not the “children” version).
+<br><br>
+Now that you have discovered your strengths, familiarize yourself with them. We highly recommend that you also read the more comprehensive definitions about your strengths for free on the <a href="https://www.viacharacter.org/character-strengths" target="_blank">VIA Institute of Character</a> website.
+<br><br>
+Enter your top 5 strengths below, in the order they are reported in the VIA Survey.`
 
 export const QUES_420_DESC = `For each strength write a simple word or phrase that describes embodiment or impediment for that strength. List as many as you'd like for each. Define each sitation as an Embodiment (if you were able) or Impediment (if you were unable).`
 

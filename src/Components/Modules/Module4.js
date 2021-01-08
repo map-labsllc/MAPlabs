@@ -26,7 +26,7 @@ const exercise_410 = (
   <StrengthsCT
     question = { { code: 410, text: 'Determine your top strengths' } }
     description = { QUES_410_DESC }
-    instructions = "Add 5 strengths and select the values from the drop down in order from the survey."
+    instructions = "Enter your top 5 strengths using the drop down menu provided."
   />)
 
 const exercise_420 = (
