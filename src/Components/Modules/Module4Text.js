@@ -39,4 +39,6 @@ export const QUES_440_DESC = `This exercise will follow the same general format 
 
 export const QUES_450_DESC = `Review your signature strengths, along with your top embodiments and impediments of these strengths, and allow them to guide you as you answer the questions below.`
 
-export const QUES_460_DESC = `In order to create a more meaningful and purposeful life, I want to increase my Environmental mastery by altering how I engage with my strengths, embodiments, impediments and goals.  Determine how to "break and build" in each of these categories.`
+export const QUES_460_DESC = `In order to create more personal Environmental mastery, consider which impediments are working against your strengths and need to be “broken from,” and which embodiments are most expressive of your strengths and need to be “built toward.” Fill in the following blanks with your responses.
+<br><br>
+In order to create a more meaningful and purposeful life, I want to increase my Environmental mastery by altering how I engage with my: `
