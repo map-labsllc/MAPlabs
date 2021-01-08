@@ -35,7 +35,7 @@ For each strength below, list as many examples of embodiments or impediments of 
 
 export const QUES_430_DESC = `Now that you see them all together, determine which embodiments most allow you to express your strengths. Select only your most important 5 embodiments from the previous exercise.`
 
-export const QUES_440_DESC = `Select only your most important 5 impediments from the previous Exercise.`
+export const QUES_440_DESC = `This exercise will follow the same general format as the previous exercise, but now you will focus on the impediments that most hinder your strengths. Select only your most important 5 impediments.`
 
 export const QUES_450_DESC = `Reflect on themes evident in your “embodiments” and “impediments”.`
 
