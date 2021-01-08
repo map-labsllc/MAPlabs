@@ -33,7 +33,7 @@ An <b><i>impediment</b></i> is something about your circumstances, yourself, or 
 <br><br>
 For each strength below, list as many examples of embodiments or impediments of that strength as you can think of. Something that comes to mind from ten or twenty years ago is just as eligible as something from ten minutes ago. Write a simple word or short phrase that describes each embodiment or impediment that you add.`
 
-export const QUES_430_DESC = `Select only your most important 5 embodiments from the previous exercise`
+export const QUES_430_DESC = `Now that you see them all together, determine which embodiments most allow you to express your strengths. Select only your most important 5 embodiments from the previous exercise.`
 
 export const QUES_440_DESC = `Select only your most important 5 impediments from the previous Exercise.`
 
