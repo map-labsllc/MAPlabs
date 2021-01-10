@@ -102,7 +102,7 @@ export default class Transitions extends React.Component {
           {transitionsWithKeys.map((transitionWithKey) => <Transition
             key={transitionWithKey.key}
             id={transitionWithKey.key}
-            previousTransition={transitionWithKey.item}
+            transition={transitionWithKey.item}
             isDynamic={isDynamic}
             updateTransitionCB={this.updateTransition}
             deleteTransitionCB={this.deleteTransition}
@@ -120,7 +120,7 @@ export default class Transitions extends React.Component {
         {transitionsWithKeys.map((transitionWithKey) => <Transition
           key={transitionWithKey.key}
           id={transitionWithKey.key}
-          previousTransition={transitionWithKey.item}
+          transition={transitionWithKey.item}
           isDynamic={isDynamic}
           updateTransitionCB={this.updateTransition}
           deleteTransitionCB={this.deleteTransition}
