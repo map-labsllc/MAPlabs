@@ -46,14 +46,12 @@ export default class ReflectionsTop5 extends React.Component {
 
   onclickClose = () => {
     const { userId, onPersistCB, onCloseModalCB } = this.props
-    const { isDirty, reflectionsWithKeys } = this.state
+    const { reflectionsWithKeys } = this.state
 
-    if (isDirty) {
-      onPersistCB(
-        userId,
-        this.uuid.stripKeys(reflectionsWithKeys)
-      )
-    }
+    onPersistCB(
+      userId,
+      this.uuid.stripKeys(reflectionsWithKeys)
+    )
 
     onCloseModalCB()
   }
