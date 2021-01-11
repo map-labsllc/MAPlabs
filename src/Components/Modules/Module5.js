@@ -52,7 +52,7 @@ export const EXERCISE_510 = (
     promptQuestionCode = { 120 }
     copyPrompt = { true }
     description = { QUES_510_DESC }
-    instructions = 'Review your responses about what you found most meaningful.'
+    instructions = 'Review and revise your Current Situation Statement.'
   />)
 
 // Module 5.1.B
@@ -64,7 +64,7 @@ export const EXERCISE_511 = (
     description = { QUES_511_DESC }
     headings = { ['Theme'] }
     question_type={QUESTION_TYPE_TOP_THEMES}
-    instructions = 'Select the top 5 themes that are most important to you.'
+    instructions = 'Select up to 5 themes that are most important to you.'
   />)
 
 // Module 5.1.C
