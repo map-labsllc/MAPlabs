@@ -71,7 +71,7 @@ that module’s subject. Review your responses about what things beyond yourself
 </p>
 <ol>
   <li>Do your responses feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise, edit, or add new ones to them to more accurately reflect your current self-knowledge and understanding, and what, beyond yourself, that you actually care about.</li>
-  <li>Note which responses seem most critical to you, and which seem secondary. If your responses seem to overlap, try to consolidate them. Then choose the most critical things beyond yourself that you would like to add to your dashboard.</li>
+  <li>Note which responses seem most critical to you, and which seem secondary. If your responses seem to overlap, try to consolidate them. Then choose the most critical things beyond yourself that you would like to add to your Dashboard.</li>
 </ol>`
 
 export const QUES_531_DESC = 'Add any summarizing thoughts, statements, phrases, or directives to your Dashboard that you feel will be helpful to you in the future as a quick reference, reminder, or accountability statement about what you care about and want to serve that is beyond yourself.'

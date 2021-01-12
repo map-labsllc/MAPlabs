@@ -143,7 +143,7 @@ export const EXERCISE_530 = (
     description = { QUES_530_DESC }
     headings = { ['Beyond-Self-Service']}
     question_type = {QUESTION_TYPE_TOP_BEYOND_SELF}
-    instructions = 'Review your beyond-the-self service themes to consider how accurately they reflect your current self-knowledge and understanding. '
+    instructions = 'Select up to 5 insights that are most important to you. '
   />)
 
 // Module 5.3.B
@@ -154,7 +154,7 @@ export const EXERCISE_531 = (
     promptQuestionCode = { 530 }
     copyPrompt = { false }
     description = { QUES_531_DESC }
-    instructions = 'Add any summarizing thoughts or directives that you feel will be helpful to you in the future as a quick reference, reminder, or accountability statement about what you care about and want to serve that is beyond yourself.'
+    instructions = 'Write your summarizing thoughts or directives below.'
   />)
 
 // Module 5.4.A
