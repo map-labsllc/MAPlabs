@@ -52,21 +52,16 @@ export const QUES_520_DESC = `
 <p>Add to your Dashboard your key insights about meaning. At the end of each module you were asked to articulate what was most meaningful for you about that module’s subject. Review your responses about what you found most meaningful.</p>
 <ol>
   <li>Do your responses feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise or edit them to more accurately reflect your current self-knowledge and understanding.</li>
-  <li>Note which responses seem most critical to you, and which seem secondary. If your responses seem to overlap, try to consolidate them. Then choose only the most critical sources of meaning that you would like to add to your dashboard.</li>
+  <li>Note which responses seem most critical to you, and which seem secondary. If your responses seem to overlap, try to consolidate them. Then choose only the most critical sources of meaning that you would like to add to your Dashboard.</li>
   </ol>`
 
-export const QUES_521_DESC = `<p>At the end of Module 3 you encapsulated into a Desires Statement what you desire most.</p>
-<ol>
-  <li>Review your Desires Statement. Does your Desires Statement feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave it as is. If not, revise or edit it to more accurately reflect your current self-knowledge and understanding.</li>
-  <li>Note which of your desires seem most compelling to you, and which seem secondary. If your responses seem to overlap, try to consolidate them. Then choose only the most compelling desires that you would like to add to your dashboard.</li>
-</ol>
-`
+export const QUES_521_DESC = `At the end of Module 3 you encapsulated into a Desires Statement what you desire most. Review your Desires Statement. Does this statement feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave it as is. If not, revise or edit it to more accurately reflect your current self-knowledge and understanding. Try to consolidate your statement down into a simple, to-the-point synopsis of only the most important desires in a few sentences.`
 
-export const QUES_522_DESC = 'Review your 5 top Signature Strengths as revealed to you in the VIA Strengths Survey and consider how they relate to your senses of meaning and your desires. Add only your most important Signature Strengths to your Dashboard (you may also add any other strengths you feel should be considered a Signature Strength, but try not to exceed 5 strengths total).'
+export const QUES_522_DESC = 'Review your 5 top signature strengths as revealed to you in the VIA Strengths Survey and consider how they relate to your senses of meaning and your desires. Add only your most important signature strengths to your Dashboard.'
 
-export const QUES_523_DESC = 'Review your “embodiment” themes. Do your themes feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise or edit them to more accurately reflect your current self-knowledge and understanding. Add only the most important embodiment themes to your Dashboard.'
+export const QUES_523_DESC = 'Review your “embodiments.” Do they feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise or edit them to more accurately reflect your current self-knowledge and understanding. Add only the most important embodiments to your Dashboard.'
 
-export const QUES_524_DESC = 'Review your “impediment” themes. Do your themes feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise or edit them to more accurately reflect your current self-knowledge and understanding. Add only the most important impediment themes to your Dashboard.'
+export const QUES_524_DESC = 'Review your “impediments.” Do they feel accurate, authentic, and comprehensive to you? If so, feel free to leave them as they are. If not, revise or edit them to more accurately reflect your current self-knowledge and understanding. Add only the most important impediments to your Dashboard.'
 
 export const QUES_530_DESC = `
 <h3>The What of Your Purpose</h3>

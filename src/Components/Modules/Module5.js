@@ -87,7 +87,7 @@ export const EXERCISE_520 = (
     description = { QUES_520_DESC }
     headings = { ['Meaning'] }
     question_type={QUESTION_TYPE_TOP_MEANING}
-    instructions = 'Select the top 5 insights that are most useful to you.'
+    instructions = 'Select up to 5 insights that are most useful to you.'
   />)
 
 // Module 5.2.B
@@ -98,7 +98,7 @@ export const EXERCISE_521 = (
     promptQuestionCode = { 340 }
     copyPrompt = { true }
     description = { QUES_521_DESC }
-    instructions = 'Review what your desire statement and revise your statement below.'
+    instructions = 'Review and revise your Desires Statement.'
   />)
 
 // Strengths
@@ -109,14 +109,14 @@ export const EXERCISE_522 = (
     question = { { code: 522, text: 'Review your top 5 strengths' } }
     promptQuestionCodes = { [410] }
     description = { QUES_522_DESC }
-    instructions = 'Select the top 5 that are most useful to you.'
+    instructions = 'Select the strengths that are most important to you.'
   />)
 
 // Module 5.2.C
 export const EXERCISE_523 = (
   <ReflectionsTop5CT
     summaryTitle = 'Embodiment themes'
-    question = { { code: 523, text: 'Review your most important embodiment themes' } }
+    question = { { code: 523, text: 'Select the embodiments that are most important to you.' } }
     promptQuestionCode = { 420 }
     description = { QUES_523_DESC }
     filter = { EFFECT_EMBODIMENT }
@@ -127,7 +127,7 @@ export const EXERCISE_523 = (
 export const EXERCISE_524 = (
   <ReflectionsTop5CT
     summaryTitle = 'Impediment themes'
-    question = { { code: 524, text: 'Select and review most important impediment themes' } }
+    question = { { code: 524, text: 'Select the impediments that are most important to you.' } }
     promptQuestionCode = { 420 }
     description = { QUES_524_DESC }
     filter = { EFFECT_IMPEDIMENT }
@@ -345,7 +345,7 @@ export const MODULE5_SECTIONS =
   {
     id: 521,
     module_id: 5,
-    title: 'Desire Statement',
+    title: 'Desires Statement',
     exercise: EXERCISE_521
   },
   {
