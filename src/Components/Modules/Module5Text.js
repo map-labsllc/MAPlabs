@@ -78,20 +78,20 @@ export const QUES_531_DESC = 'Add any summarizing thoughts, statements, phrases,
 
 export const QUES_540_DESC = `
 <h3>Your Purpose Statement</h3>
-<p>Bring the Dashboard elements together into a purpose statement. Our lives are most purposeful when a few things hold true: (1) we know what is most meaningful to us, (2) our desires arise out of this meaning, (3) we fulfill our desires through our personal strengths, and (4) we apply our strengths in service of something or someone beyond ourselves.
+<p>Bring the Dashboard elements together into a Purpose Statement. Our lives are most purposeful when a few things hold true: (1) we know what is most meaningful to us, (2) our desires arise out of this meaning, (3) we fulfill our desires through our personal strengths, and (4) we apply our strengths in service of something or someone beyond ourselves.
 </p>
 <p>
-In modules 1 - 4, you worked through a process of separating yourself from all the extrinsic influences that have fought for your attention all of your life. This allowed you to discover what is most intrinsically meaningful to you. From this place of self- understanding, you then worked through the trade-off exercise to discover what you most deeply desire. Then you took the VIA Survey of Character Strengths to understand which strengths you possess to animate your meaning and accomplish your desires. And all
+In Modules 1 - 4, you worked through a process of separating yourself from all the extrinsic influences that have fought for your attention all of your life. This allowed you to discover what is most intrinsically meaningful to you. From this place of self-understanding, you then worked through the trade-off exercise to discover what you most deeply desire. Then you took the VIA Survey of Character Strengths to understand which strengths you possess to animate your meaning and accomplish your desires. And all
 along, you considered how your meaning, desires, and strengths could apply to something beyond yourself.
 </p>
 <p>
 Your Dashboard now contains many elements of a purposeful life: the thematic elements that give your life a context, your grounded sense of what is most meaningful to you, your awareness and articulation of what you desire most, a list of your greatest strengths, and your outward-looking understanding of how these things can be channeled toward service beyond yourself. These elements can help you to articulate how to live your life more purposefully.
 </p>
 <p>
-It is now time for you to bring these elements together into a purpose statement.
+It is now time for you to bring these elements together into a Purpose Statement.
 </p>
 <p>
-Take some time to consider all of the elements on your Dashboard. Then articulate your own personal life purpose statement based on how who you are can meaningfully connect to what you care about in order to better serve yourself and something beyond yourself. Complete the following statement in the most authentic and precise way you can.</p>`
+Take some time to consider all of the elements on your Dashboard. Then articulate your own personal Life Purpose Statement based on how who you are can meaningfully connect to what you care about in order to better serve yourself and something beyond yourself. Complete the following statement in the most authentic and precise way you can.</p>`
 
 export const QUES_550_DESC = `
 <h3>The How of Purpose</h3>
