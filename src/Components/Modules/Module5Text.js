@@ -95,70 +95,55 @@ Take some time to consider all of the elements on your Dashboard. Then articulat
 
 export const QUES_550_DESC = `
 <h3>The How of Purpose</h3>
-<p>Now that you have articulated a life purpose statement, it is time to begin working on how it can materialize in your life.
+<p>Now that you have articulated a Life Purpose Statement, it is time to begin working on <i>how</i> it can materialize in your life.
 </p>
-<p>Focus on commitment. You may recall that commitment is another one of the core elements of the definition of purpose. At this point in your purpose journey, you may have discovered something to which you have been committed for a long time and just never realized it—or you may now have new insights that you did not have before about how you
+<p><b>Focus on commitment.</b> You may recall that commitment is another one of the core elements of the definition of purpose. At this point in your purpose journey, you may have discovered something to which you have been committed for a long time and just never realized it—or you may now have new insights that you did not have before about how you
 can direct your life to make it more meaningful and purposeful. Either way, commitment to developing your purpose (even when you do not know exactly how to execute it) is the critical next step.
 </p>
 <p>
-In order to progress from stating a life purpose, as you did in Exercise 4, to implementing your life of purpose, you will benefit from having a few specific commitments to which you are dedicated for the long term. By creating commitments out of the most important elements of personal growth, relationships, and engagement mastery that you developed in the previous modules, you will begin to architect your life into one that is capable of manifesting your life purpose, and seeing it through in a committed way.
+In order to progress from stating a life purpose, as you did in the last exercise, to implementing your life of purpose, you will benefit from having a few specific commitments to which you are dedicated for the long term. By creating commitments out of the most important elements of <i>personal growth</i>, <i>relationships</i>, and <i>engagement mastery</i> that you developed in the previous modules, you will begin to architect your life into one that is capable of manifesting your life purpose, and seeing it through in a committed way.
 </p>
 <p>
-The challenge in this section is to narrow your commitments down to only the most critical and salient efforts that will help you build toward your life purpose. For many people, this means having the clarity to choose just one primary commitment to which they are single- mindedly dedicated. For others, this may mean having two or three commitment areas that they need to further develop in order to be prepared or equipped to fulfill their purpose. But having too many commitments leads to too much diffusion of effort, and often leads to both a sense of being overwhelmed by how much there is to do, and to not seeing enough near- term progress on any one measure or initiative to develop positive momentum for one’s purpose.
+The challenge in this section is to narrow your commitments down to <i>only the most critical and salient</i> efforts that will help you build toward your life purpose. For many people, this means having the clarity to choose just one primary commitment to which they are single-mindedly dedicated. For others, this may mean having two or three commitment areas that they need to further develop in order to be prepared or equipped to fulfill their purpose. But having too many commitments leads to too much diffusion of effort, and often leads to both a sense of being overwhelmed by how much there is to do, and to not seeing enough near-term progress on any one measure or initiative to develop positive momentum for one’s purpose.
 </p>
 <p>
-The next xercises will lead you through a process of establishing your primary commitment(s). This process will anchor your efforts in your personal growth commitments, and then help you to attach to these commitments the relationships and masteries that are needed to see them through. As a result, your primary commitments will be multidimensional, contextualized by your relationships (existing and new), and well- supported by both your personal growth and your developing senses of mastery in order to give them greater definition and a greater chance of success.
+The next exercises will lead you through a process of establishing your primary commitment(s). This process will anchor your efforts in your <i>personal growth</i> commitments, and then help you to support these commitments with the <i>relationships</i> and <i>masteries</i> that are needed to see them through. As a result, your primary commitments will be multidimensional, contextualized by your relationships (existing and new), and well-supported by both your personal growth and your developing senses of mastery in order to give them greater definition and a greater chance of success.
+</p>
+<p>Personal growth is the most intrinsic of your commitments because it is focused on how you personally develop and who your personal self becomes. This is why you are starting the <i>how</i> of your purpose with <i>personal growth</i>, because personal growth not only develops you into a person who is qualified to accomplish your purposeful activities, but it also makes your purpose pathway sustainable. A sustainable life purpose is one that you personally love and benefit from because it intrinsically grows <i>you</i> in ways that you desire, and in ways that continually develop you for the next phases of your life of purpose. In this way, a purposeful life becomes regenerating. As you invest yourself in your purpose and in serving something beyond yourself, you also receive back through personal growth and development. Consequently, you will start your commitment process by anchoring on the most intrinsic type of commitments, the commitments to personal growth that are necessary for you to accomplish your stated purpose.
 </p>
 <p>
-All that said, we do want to offer one caveat: if, as you go through this process, you discover that other important commitments arise out of your relationships or engagement masteries that are different from the ones that arose out of your personal growth, you will have the opportunity to add them onto your dashboard as “other” commitments so that you have the flexibility to customize your commitments. Later, we will encourage you to make them multidimensional, contextualized, and supported by attaching them to the other types of commitments (i.e., personal growth, relationships, or engagement masteries) just as you will have done with the personal growth commitments.
-</p>
-<p>Personal growth is the most intrinsic of your commitments because it is focused on how you personally develop and who your personal self becomes. This is why you are starting the how of your purpose with personal growth, because personal growth not only develops you into the person who is qualified to accomplish your purposeful activities, but it also makes your purpose pathway sustainable. A sustainable life purpose is one that you personally love and benefit from because it intrinsically grows you in ways that you desire, and in ways that continually develop you for the next phases of your life of purpose. In this way, a purposeful life becomes regenerating. As you invest yourself in your purpose and in serving something beyond yourself, you also receive back through personal growth and development. Consequently, you will start your commitment process by anchoring on the most intrinsic type of commitments, the commitments to personal growth that are necessary for you to accomplish your stated purpose.
-</p>
-<p>
-At the end of each module you were asked to identify areas of personal growth in that module’s subject. Review your responses about areas of personal growth.
+At the end of each module you were asked to identify areas of <i>personal growth</i> in that module’s subject. Review your responses about areas of personal growth.
 </p>
 <ol>
-  <li>Do your responses feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise, edit, or add new ones to them to more accurately reflect your current self-knowledge and understanding.
-  <li>Note which responses seem most critical to you achieving your life purpose statement, and which seem secondary. If your responses seem to overlap, feel free to consolidate them.
-    <ol>
-      <li>Choose the 1-3 most critical areas of personal growth that aren ecessary, and to which you are willing to commit, in order to support the development of your life purpose. These commitments will make up your primary commitments in order to focus you on the most critical areas of growth and personal investment. Add them to your Dashboard.</li>
-      <li>If you also have personal growth commitments beyond your top 3 that are critical to fulfilling your purpose, you may attach them to the “Other Commitments” section of your dashboard.</li>
-    </ol>
-  </li>
+  <li>Do your responses feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise or edit them to more accurately reflect your current self-knowledge and understanding.
+  <li>Note which responses seem most critical to you achieving your Life Purpose Statement, and which seem secondary. If your responses seem to overlap, feel free to consolidate them.</li>
+  <li>Choose the 1 - 3 most critical areas of <i>personal growth</i> that are necessary, and to which you are willing to commit, in order to support the development of your life purpose. These commitments will make up your <i>primary</i> commitments in order to focus you on the most critical areas of growth and personal investment. The commitments you select will automatically be added to your Dashboard.</li>
 </ol>`
 
 export const QUES_551_DESC = `<p>Relationships provide the support for our personal growth and the context for fulfilling life purpose. No one is an island, and without the support of positive relationships from friends, family, mentors, teachers, and others, none of us are able to grow in the ways necessary to accomplish our purposes. So your next commitment is to the relationships
 that will support you in your personal growth and that will provide the appropriate context for the fulfillment of your purpose.
 </p>
 <p>
-At the end of each module you were asked what relationships you need to support that module’s subject. Review your responses about relationships.
+At the end of each module you were asked what <i>relationships</i> you need to support that module’s subject. Review your responses about relationships.
 </p>
 <ol>
-  <li>Do your responses feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise, edit, or add new ones to them to more accurately reflect your current self-knowledge and understanding.</li>
-  <li>Note which responses seem most critical not only to achieving your life purpose statement, but also to supporting the personal growth commitments you just chose. If your responses seem to overlap, feel free to consolidate them.
-    <ol>
-      <li>Choose the mostcriticalrelationships(thatyoueithercurrentlyhaveorthatyou need to develop in the future) that are necessary, and to which you are willing to commit, in order to support the areas of personal growth which you previously choose. Attach each relationship to the area of personal growth which it most supports on your dashboard.</li>
-      <li>If there are other relationships (that you either currently have or that you need to develop in the future) that are critical to fulfilling your purpose, but that are not attached to your personal growth, you may attach them to the “Other Commitments” section of your dashboard.</li>
-    </ol>
-  </li>
+  <li>Do your responses feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise or edit them to more accurately reflect your current self-knowledge and understanding.</li>
+  <li>Note which responses seem most critical not only to achieving your Life Purpose Statement, but also to supporting the personal growth commitments you just chose. If your responses seem to overlap, feel free to consolidate them.</li>
+  <li>Choose the 1 - 3 most critical <i>relationships</i> (that you either currently have or that you need to develop in the future) that are necessary, and to which you are willing to commit, in order to support the areas of personal growth which you previously chose.</li>
 </ol>
 `
 
 export const QUES_552_DESC = `
 <p>
-Thus far you have committed to both the personal growth that is necessary for you to accomplish your purpose, and to the relationships that will provide you with the support and context you need to continually grow and serve your purpose. Now you will commit to the ways in which your personal growth and relationships can lead you to engagement mastery, that is, to developing mastery in the skills, capabilities, or areas of expertise and knowledge that you need in order to manifest your purpose through your engagements.
+Thus far you have committed to both the <i>personal growth</i> that is necessary for you to accomplish your purpose, and to the <i>relationships</i> that will provide you with the support and context you need to continually grow and serve your purpose. Now you will commit to the ways in which your personal growth and relationships can lead you to <i>engagement mastery</i>, that is, to developing mastery in the skills, capabilities, or areas of expertise and knowledge that you need in order to manifest your purpose through your engagements.
 </p>
-<p>At the end of each module you were asked what engagement mastery you need in order to support that module’s subject. Review your responses about engagement mastery.
+<p>At the end of each module you were asked what <i>engagement mastery</i> you need in order to support that module’s subject. Review your responses about engagement mastery.
 </p>
 <ol>
-  <li>Do your responses feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise, edit, or add new ones to them to more accurately reflect your current self-knowledge and understanding.</li>
-  <li>Note which responses seem most critical to achieving your life purpose statement, and which seem secondary. If your responses seem to overlap, feel free to consolidate them.
-    <ol>
-      <li>Choose the most critical engagement masteries that are necessary, and to which you are willing to commit, in order to support your previously chosen commitments to personal growth and relationships. Attach each mastery to the area of personal growth which it most supports on your dashboard.</li>
-      <li>If there are other masteries that are critical to fulfilling your purpose, you may attach them to the “Other Commitments” section of your dashboard</li>
-    </ol>
-  </li>
-  </ol>
+  <li>Do your responses feel accurate, authentic, comprehensive, and empowering to you? If so, feel free to leave them as they are. If not, revise or edit them to more accurately reflect your current self-knowledge and understanding.</li>
+  <li>Note which responses seem most critical to achieving your Life Purpose Statement, and which seem secondary. If your responses seem to overlap, feel free to consolidate them.</li>
+  <li>Choose the 1 - 3 most critical <i>engagement masteries</i> that are necessary, and to which you are willing to commit, in order to support your previously chosen commitments to personal growth and relationships.</li>
+</ol>
 `
 
 export const QUES_560_DESC = `
