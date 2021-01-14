@@ -267,7 +267,7 @@ export const EXERCISE_565 = (
     promptQuestionCode = { 140 }
     copyPrompt = { true }
     description = { QUES_565_DESC }
-    instructions = 'Revise your statement below'
+    instructions = 'Review and revise your Future Desired Situation Statement.'
   />)
 
 // dashboard
@@ -406,14 +406,14 @@ export const MODULE5_SECTIONS =
   {
     id: 560,
     module_id: 5,
-    title: 'Building and Breaking',
+    title: 'Breaking and Building',
     exercise: EXERCISE_560,
     section_ids: [561, 562, 563, 564]
   },
   {
     id: 565,
     module_id: 5,
-    title: 'Desired Future Situation',
+    title: 'Future Desired Situation Statement',
     exercise: EXERCISE_565,
   },
   {
