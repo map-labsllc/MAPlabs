@@ -47,7 +47,7 @@ import {
 // Module 5.1.A
 export const EXERCISE_510 = (
   <NarrativeCT
-    summaryTitle = 'Current Situation'
+    summaryTitle = 'Current Situation Statement'
     question = { { code: 510, text: 'Review and revise your Current Situation statement' } }
     promptQuestionCode = { 120 }
     copyPrompt = { true }
@@ -93,7 +93,7 @@ export const EXERCISE_520 = (
 // Module 5.2.B
 export const EXERCISE_521 = (
   <NarrativeCT
-    summaryTitle = 'Desires statement'
+    summaryTitle = 'Desires Statement'
     question = { { code: 521, text: 'Add to your Dashboard your key insights about your desires.' } }
     promptQuestionCode = { 340 }
     copyPrompt = { true }
@@ -149,7 +149,7 @@ export const EXERCISE_530 = (
 // Module 5.3.B
 export const EXERCISE_531 = (
   <NarrativeCT
-    summaryTitle = 'Summarizing Thoughts or Directives.'
+    summaryTitle = 'Summarizing thoughts or directives'
     question = { { code: 531, text: 'Summarize the "what" of your purpose.' } }
     promptQuestionCode = { 530 }
     copyPrompt = { false }
@@ -252,7 +252,7 @@ const transitions_560 = [
 
 export const EXERCISE_560 = (
   <QuestionsCT
-    summaryTitle = 'Break / build commitments'
+    summaryTitle = 'Key commitments (breaking and building)'
     showNumbers = { false }
     questionType = {QUESTION_TYPE_TOP_TRANSITIONS}
     description = { QUES_560_DESC }
@@ -262,7 +262,7 @@ export const EXERCISE_560 = (
 // Module 5.6.B
 export const EXERCISE_565 = (
   <NarrativeCT
-    summaryTitle = 'Desired Future Statement'
+    summaryTitle = 'Future Desired Situation Statement'
     question = { { code: 565, text: 'Review and revise your Desired Future Situation statement' } }
     promptQuestionCode = { 140 }
     copyPrompt = { true }
