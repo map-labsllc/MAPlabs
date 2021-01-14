@@ -200,23 +200,23 @@ Review your Dashboard now and consider how you can use this distillation of your
 </p>
 `
 export const QUES_580_DESC = `
-<p>The MAPPERS Model takes the same critical Dashboard data and puts it into a visual model that demonstrates how your MAPmaker results come together into a process of intentional transformation for your life. This model is more visual than the Dashboard, and it provides descriptive phrases, arrows, and section headings to create a sense of movement and relationship about your process. The elements of your Dashboard do not exist in isolation. They will be most helpful to you if you know how they relate to the other elements, and how to use them in a comprehensive and coordinated effort to build a life of meaning and purpose.
+<p>The MAPPERS Model takes the same critical Dashboard data and puts it into a visual model that demonstrates how your MAPmaker results come together into a process of intentional transformation for your life. This model is more visual than the Dashboard, and it provides descriptive phrases and section headings to create a sense of movement and relationship about your process. The elements of your Dashboard do not exist in isolation. They will be most helpful to you if you know how they relate to the other elements, and how to use them in a comprehensive and coordinated effort to build a life of meaning and purpose.
 </p>
 <p>As you examine your model, and as you re-examine it in the future, consider the sense of narrative that it creates. We mention this now because the notion of narrative is used by many of the life meaning and purpose researchers and theorists. In a meta-review article entitled “A Roadmap for Meaning Research and Applications,” which overviews the leading research and theories of meaning, Paul T. P. Wong says the following about narrative as a device for structuring meaning:
 </p>
 <ul>
   <li>
-    “Narrativeconstructionallowsfortheexaminationandtransformationofnegativeevents into positives to make life meaningful. More important, it provides a framework that integrates the different fragments of one’s life to produce a coherent narrative identity.”
+    “Narrative construction allows for the examination and transformation of negative events into positives to make life meaningful. More important, it provides a framework that integrates the different fragments of one’s life to produce a coherent narrative identity.”
   </li>
   <li>
-    “...acoherentlifestoryhelpsmakesenseoflifeand‘providesbothtemporalandcausal explanations for events.... These well-defined narratives place the self contextually in space and time and integrate the person’s life experience and self-concept, thereby providing a sense of a self with purpose (McAdams, 2006).’”
+    “...a coherent life story helps make sense of life and ‘provides both temporal and causal explanations for events.... These well-defined narratives place the self contextually in space and time and integrate the person’s life experience and self-concept, thereby providing a sense of a self with purpose (McAdams, 2006).’”
   </li>
 </ul>
 
 <p>As you move from introspection and self-reflection into acting on your stated purpose, commitments, and goals, the MAPPERS Model can assist you in understanding how all of your key insights and discoveries work together. The MAPPERS Model inserts your key findings into a narrative to articulate how you will move from your current situation to your desired future situation. Seeing their relationship to each other, and how each builds upon
 another, you can begin to construct your own well-defined narrative that integrates the elements of your life into a coherent self-concept and identity.
 </p>
-<p>As one-off insights or discoveries, these elements of your self-conception are less apt to stand up to the forces of inertia that may work against them in this transitional stage of your current life. But as part of a greater narrative that articulates your more authentic self- conception and identity, each element is as strong as the whole, and this whole self will be able to establish and build its own momentum that can overcome and replace whatever current forces of inertia your “pre-purpose” life holds.
+<p>As one-off insights or discoveries, these elements of your self-conception are less apt to stand up to the forces of inertia that may work against them in this transitional stage of your current life. But as part of a greater narrative that articulates your more authentic self-conception and identity, each element is as strong as the whole, and this whole self will be able to establish and build its own momentum that can overcome and replace whatever current forces of inertia your “pre-purpose” life holds.
 </p>
 <p>Here are some suggestions about using the MAPPERS Model:</p>
 <ul>
@@ -224,9 +224,9 @@ another, you can begin to construct your own well-defined narrative that integra
   </li>
   <li>After reviewing the overall flow and narrative of the model, go back to the bottom and focus more deeply on each element sequentially. As you focus on each element, internally gauge whether or not you feel that you have resolution and comfort with that specific element of the model. If you feel that you have appropriated and resolved the needs of the first element, then move to the next one. But when you sense that there are unresolved issues or needs with an element, stop at that element, name the issues or needs that need to be faced, and focus on the ways you can address the needs. Do not be in a hurry to resolve the issue and move on. It is much more important that you truly deal with your specific issues than that you race through the model.
   </li>
-  <li>As you find yourself stopping at elements in the model that need further resolution, look to the top of the model to see if some of your stated commitments, goals, and break/build prescriptions point to ways of addressing and resolving the issues. If, for instance, you stop at the very first element in the model that includes your Current Situation statement because you feel that something is not resolved, then name the part of that statement that you want to address, and then see if the items you listed in your personal growth, relationships, or engagement mastery elements are relevant to resolving your named need.
+  <li>As you find yourself stopping at elements in the model that need further resolution, look to the top of the model to see if some of your stated commitments, goals, and break/build prescriptions point to ways of addressing and resolving the issues. If, for instance, you stop at the very first element in the model that includes your Current Situation Statement because you feel that something is not resolved, then name the part of that statement that you want to address, and then see if the items you listed in your personal growth, relationships, or engagement mastery elements are relevant to resolving your named need.
   </li>
-  <li>Like the Dashboard, the MAPPERS Model is a reference tool to be used over and again. Whether you review the model once a day, once a week, or once a month, use this model and the narrative it provides to continually alert yourself to your core needs and the intended actions you have planned to take you forward in your life toward living with more meaning and life purpose.
+  <li>Like the Dashboard, the MAPPERS Model is a reference tool to be used over and over again. Whether you review the model once a day, once a week, or once a month, use this model and the narrative it provides to continually alert yourself to your core needs and the intended actions you have planned to take you forward in your life toward living with more meaning and life purpose.
   </li>
 </ul>
 `

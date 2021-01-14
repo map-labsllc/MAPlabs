@@ -66,12 +66,12 @@ const Mappers = () => (
             </Card.Header>
             <Card.Body>
               <div className="container-fluid contain">
-                <h4>Goals - I will need to change my beavior</h4>
+                <h4>Goals - I will need to change my behavior</h4>
                 <SectionNav
                   subSections= {[
                     {
                       id: 560,
-                      title: 'Breaking and Building',
+                      title: 'Breaking and building',
                       exercise: EXERCISE_560
                     },
                   ]}
@@ -126,7 +126,7 @@ const Mappers = () => (
                   subSections= {[
                     {
                       id: 531,
-                      title: 'These are my thoughts on "what" I care about',
+                      title: 'These are my thoughts and directives on "what" I care about',
                       exercise: EXERCISE_531
                     },
                     {
@@ -136,7 +136,7 @@ const Mappers = () => (
                     },
                     {
                       id: 512,
-                      title: 'I become a purpose-seeking person "who"',
+                      title: 'These are my thoughts and directives about my context',
                       exercise: EXERCISE_512
                     },
                   ]}
@@ -150,7 +150,7 @@ const Mappers = () => (
         <div className="background text-left">
           <Card>
             <Card.Header>
-              <Card.Title><h4>WHO AM I</h4></Card.Title>
+              <Card.Title><h4>WHO I AM</h4></Card.Title>
             </Card.Header>
             <Card.Body>
               <div className="container-fluid contain">
