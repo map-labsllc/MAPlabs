@@ -26,7 +26,7 @@ const SideBar = ({ isLoggedIn }) => {
       <div className="sidebar-wrapper">
         <div className="logo">
           <a href="/" className="simple-text">
-              M.A.P. Labs
+              MAPlabs
           </a>
         </div>
 

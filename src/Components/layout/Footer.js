@@ -18,7 +18,7 @@ const Footer = () => (
             document.write(new Date().getFullYear())
             </script>
 
-          M.A.P. Labs
+          MAPlabs
           </p>
         </a>
       </nav>

@@ -535,7 +535,7 @@ body>.navbar-collapse .logo p {
 
 .sidebar .logo .simple-text,
 body>.navbar-collapse .logo .simple-text {
-    text-transform: uppercase;
+    text-transform: none;
     padding: 5px 0px;
     display: block;
     font-size: 18px;
