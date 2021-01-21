@@ -47,12 +47,12 @@ import {
 // Module 5.1.A
 export const EXERCISE_510 = (
   <NarrativeCT
-    summaryTitle = 'Current Situation'
+    summaryTitle = 'Current Situation Statement'
     question = { { code: 510, text: 'Review and revise your Current Situation statement' } }
     promptQuestionCode = { 120 }
     copyPrompt = { true }
     description = { QUES_510_DESC }
-    instructions = 'Review your responses about what you found most meaningful.'
+    instructions = 'Review and revise your Current Situation Statement.'
   />)
 
 // Module 5.1.B
@@ -64,7 +64,7 @@ export const EXERCISE_511 = (
     description = { QUES_511_DESC }
     headings = { ['Theme'] }
     question_type={QUESTION_TYPE_TOP_THEMES}
-    instructions = 'Select the top 5 themes that are most important to you.'
+    instructions = 'Select up to 5 themes that are most important to you.'
   />)
 
 // Module 5.1.C
@@ -87,18 +87,18 @@ export const EXERCISE_520 = (
     description = { QUES_520_DESC }
     headings = { ['Meaning'] }
     question_type={QUESTION_TYPE_TOP_MEANING}
-    instructions = 'Select the top 5 insights that are most useful to you.'
+    instructions = 'Select up to 5 insights that are most useful to you.'
   />)
 
 // Module 5.2.B
 export const EXERCISE_521 = (
   <NarrativeCT
-    summaryTitle = 'Desires statement'
+    summaryTitle = 'Desires Statement'
     question = { { code: 521, text: 'Add to your Dashboard your key insights about your desires.' } }
     promptQuestionCode = { 340 }
     copyPrompt = { true }
     description = { QUES_521_DESC }
-    instructions = 'Review what your desire statement and revise your statement below.'
+    instructions = 'Review and revise your Desires Statement.'
   />)
 
 // Strengths
@@ -109,14 +109,14 @@ export const EXERCISE_522 = (
     question = { { code: 522, text: 'Review your top 5 strengths' } }
     promptQuestionCodes = { [410] }
     description = { QUES_522_DESC }
-    instructions = 'Select the top 5 that are most useful to you.'
+    instructions = 'Select the strengths that are most important to you.'
   />)
 
 // Module 5.2.C
 export const EXERCISE_523 = (
   <ReflectionsTop5CT
     summaryTitle = 'Embodiment themes'
-    question = { { code: 523, text: 'Review your most important embodiment themes' } }
+    question = { { code: 523, text: 'Select the embodiments that are most important to you.' } }
     promptQuestionCode = { 420 }
     description = { QUES_523_DESC }
     filter = { EFFECT_EMBODIMENT }
@@ -127,7 +127,7 @@ export const EXERCISE_523 = (
 export const EXERCISE_524 = (
   <ReflectionsTop5CT
     summaryTitle = 'Impediment themes'
-    question = { { code: 524, text: 'Select and review most important impediment themes' } }
+    question = { { code: 524, text: 'Select the impediments that are most important to you.' } }
     promptQuestionCode = { 420 }
     description = { QUES_524_DESC }
     filter = { EFFECT_IMPEDIMENT }
@@ -143,18 +143,18 @@ export const EXERCISE_530 = (
     description = { QUES_530_DESC }
     headings = { ['Beyond-Self-Service']}
     question_type = {QUESTION_TYPE_TOP_BEYOND_SELF}
-    instructions = 'Review your beyond-the-self service themes to consider how accurately they reflect your current self-knowledge and understanding. '
+    instructions = 'Select up to 5 insights that are most important to you. '
   />)
 
 // Module 5.3.B
 export const EXERCISE_531 = (
   <NarrativeCT
-    summaryTitle = 'Summarizing Thoughts or Directives.'
+    summaryTitle = 'Summarizing thoughts or directives'
     question = { { code: 531, text: 'Summarize the "what" of your purpose.' } }
     promptQuestionCode = { 530 }
     copyPrompt = { false }
     description = { QUES_531_DESC }
-    instructions = 'Add any summarizing thoughts or directives that you feel will be helpful to you in the future as a quick reference, reminder, or accountability statement about what you care about and want to serve that is beyond yourself.'
+    instructions = 'Write your summarizing thoughts or directives below.'
   />)
 
 // Module 5.4.A
@@ -252,7 +252,7 @@ const transitions_560 = [
 
 export const EXERCISE_560 = (
   <QuestionsCT
-    summaryTitle = 'Break / build commitments'
+    summaryTitle = 'Key commitments (breaking and building)'
     showNumbers = { false }
     questionType = {QUESTION_TYPE_TOP_TRANSITIONS}
     description = { QUES_560_DESC }
@@ -262,12 +262,12 @@ export const EXERCISE_560 = (
 // Module 5.6.B
 export const EXERCISE_565 = (
   <NarrativeCT
-    summaryTitle = 'Desired Future Statement'
+    summaryTitle = 'Future Desired Situation Statement'
     question = { { code: 565, text: 'Review and revise your Desired Future Situation statement' } }
     promptQuestionCode = { 140 }
     copyPrompt = { true }
     description = { QUES_565_DESC }
-    instructions = 'Revise your statement below'
+    instructions = 'Review and revise your Future Desired Situation Statement.'
   />)
 
 // dashboard
@@ -345,7 +345,7 @@ export const MODULE5_SECTIONS =
   {
     id: 521,
     module_id: 5,
-    title: 'Desire Statement',
+    title: 'Desires Statement',
     exercise: EXERCISE_521
   },
   {
@@ -406,14 +406,14 @@ export const MODULE5_SECTIONS =
   {
     id: 560,
     module_id: 5,
-    title: 'Building and Breaking',
+    title: 'Breaking and Building',
     exercise: EXERCISE_560,
     section_ids: [561, 562, 563, 564]
   },
   {
     id: 565,
     module_id: 5,
-    title: 'Desired Future Situation',
+    title: 'Future Desired Situation Statement',
     exercise: EXERCISE_565,
   },
   {

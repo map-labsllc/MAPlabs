@@ -40,22 +40,26 @@ const Mappers = () => (
   <div className="mappers-layout">
     <VerticalTimeline layout="1-column-left">
       <VTE>
-        <Card>
-          <Card.Body>
-            <div className="container-fluid contain">
-              <SectionNav
-                subSections= {[
-                  {
-                    id: 565,
-                    title: 'In order to reach my future desired situation',
-                    exercise: EXERCISE_565
-                  },
-                ]}
-              />
-            </div>
-          </Card.Body>
-
-        </Card>
+        <div className="background text-left">
+          <Card>
+            <Card.Header>
+              <Card.Title><h4>WHERE I'M GOING</h4></Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <div className="container-fluid contain">
+                <SectionNav
+                  subSections= {[
+                    {
+                      id: 565,
+                      title: 'In order to reach my future desired situation',
+                      exercise: EXERCISE_565
+                    },
+                  ]}
+                />
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
       </VTE>
 
       <VTE>
@@ -66,12 +70,12 @@ const Mappers = () => (
             </Card.Header>
             <Card.Body>
               <div className="container-fluid contain">
-                <h4>Goals - I will need to change my beavior</h4>
+                <h4>Goals - I will need to change my behavior</h4>
                 <SectionNav
                   subSections= {[
                     {
                       id: 560,
-                      title: 'Breaking and Building',
+                      title: 'Breaking and building',
                       exercise: EXERCISE_560
                     },
                   ]}
@@ -97,13 +101,25 @@ const Mappers = () => (
                     },
                   ]}
                 />
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+      </VTE>
 
-                <h4>Life Purpose</h4>
+      <VTE>
+        <div className="background text-left">
+          <Card>
+            <Card.Header>
+              <Card.Title><h4>MY LIFE PURPOSE STATEMENT</h4></Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <div className="container-fluid contain">
                 <SectionNav
                   subSections= {[
                     {
                       id: 540,
-                      title: 'My "who" and "what"',
+                      title: 'My "who" and "what" come together in my life purpose',
                       exercise: EXERCISE_540
                     },
                   ]}
@@ -113,6 +129,7 @@ const Mappers = () => (
           </Card>
         </div>
       </VTE>
+
       <VTE>
         <div className="background text-left">
           <Card>
@@ -126,18 +143,13 @@ const Mappers = () => (
                   subSections= {[
                     {
                       id: 531,
-                      title: 'These are my thoughts on "what" I care about',
+                      title: 'These are my thoughts and directives on "what" I care about',
                       exercise: EXERCISE_531
                     },
                     {
                       id: 530,
                       title: 'I want to focus on something beyond myself',
                       exercise: EXERCISE_530
-                    },
-                    {
-                      id: 512,
-                      title: 'I become a purpose-seeking person "who"',
-                      exercise: EXERCISE_512
                     },
                   ]}
                 />
@@ -150,7 +162,7 @@ const Mappers = () => (
         <div className="background text-left">
           <Card>
             <Card.Header>
-              <Card.Title><h4>WHO AM I</h4></Card.Title>
+              <Card.Title><h4>WHO I AM</h4></Card.Title>
             </Card.Header>
             <Card.Body>
               <div className="container-fluid contain">
@@ -179,13 +191,22 @@ const Mappers = () => (
           </Card>
         </div>
       </VTE>
+
       <VTE>
         <div className="background text-left">
           <Card>
+            <Card.Header>
+              <Card.Title><h4>MY CONTEXT AS A PURPOSE-SEEKER</h4></Card.Title>
+            </Card.Header>
             <Card.Body>
               <div className="container-fluid contain">
                 <SectionNav
                   subSections= {[
+                    {
+                      id: 512,
+                      title: 'These are my thoughts and directives about my context',
+                      exercise: EXERCISE_512
+                    },
                     {
                       id: 511,
                       title: 'I need to acknowledge these important themes',
