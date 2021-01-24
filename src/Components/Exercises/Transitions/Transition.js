@@ -65,14 +65,14 @@ export default function Transition(props) {
   }
 
   return (
-    <Form inline onChange={onChange}>
+    <Form inline onBlur={onChange}>
       <div className="text-center" style={style.size}>
         <FormGroup>
           {'From this '}
           <FormControl
             type="text"
             onChange={ (e) => setFrom(e.target.value) }
-            value={transition.from}
+            value={from}
             style={style.width}
             placeholder="Please enter a from"
           />
@@ -80,7 +80,7 @@ export default function Transition(props) {
           <FormControl
             type="text"
             onChange={ (e) => setTo(e.target.value) }
-            value={transition.to}
+            value={to}
             style={style.width}
             placeholder="Please enter a to"
           />
