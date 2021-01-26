@@ -2944,12 +2944,14 @@ Copyright (c) 2015 Daniel Eden
 .card .table tbody td:first-child,
 .card .table thead th:first-child {
     padding-left: 15px;
+    width: 120px;
 }
 
 .card .table tbody td:last-child,
 .card .table thead th:last-child {
     padding-right: 15px;
     display: inline-flex;
+    width: 90%;
 }
 
 .card .alert {
