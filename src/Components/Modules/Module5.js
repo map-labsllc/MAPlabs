@@ -162,22 +162,22 @@ const shortAnswers_540 = [
   <ShortAnswersCT question = { {
     code: 541,
     text: 'My life is most meaningful when I experience or embrace',
-    placeholder: 'Sources of meaning'
+    placeholder: 'source of meaning'
   }} />,
   <ShortAnswersCT question = { {
     code: 542,
     text: 'That is why my greatest desire is to',
-    placeholder: '(Desire)'
+    placeholder: 'desire'
   } } />,
   <ShortAnswersCT question = { {
     code: 543,
     text: 'by using my',
-    placeholder: '(Strength)'
+    placeholder: 'strength'
   }} />,
   <ShortAnswersCT question = { {
     code: 544,
     text: 'in service of',
-    placeholder: '(Something or someone beyond the self)'
+    placeholder: 'something or someone beyond the self'
   }} />,
 ]
 

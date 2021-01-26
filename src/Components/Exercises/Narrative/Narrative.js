@@ -93,7 +93,7 @@ export default class Narrative extends React.Component {
               rows="10"
               style={style.contain}
               autoFocus={true}
-              placeholder="Please enter an answer and click Save"
+              placeholder="Please enter an answer and click Save."
               onChange={this.onChange}
               onBlur={this.onBlur}
               value={answer}
