@@ -83,7 +83,7 @@ export default class ShortAnswer extends React.Component {
               onChange={this.onChange}
               onBlur={this.onBlur}
               value={answer}
-              placeholder={placeholder ? 'Please enter an answer' : ''}
+              placeholder={placeholder ? placeholder : 'Please enter an answer.'}
               rows="2"
               cols="50"
             />
