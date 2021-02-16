@@ -39,7 +39,7 @@ const exercise_210 = (
   <InfluencesCT
     question = { { code: 210, text: '' } }
     description = { QUES_210_DESC }
-    instructions = "Choose influences in your life, thier relationship to you, their beliefs / values, and if they were supportive or inhibiting."
+    instructions = "On each line, select the relationship that your influence has to you, name the influence so you know who or what it is, choose the value/belief that you associate with this influence, and finally, note whether this influence supports or inhibits who you are and how you want to grow with regard to this value/belief."
   />)
 
 // -------------------------
@@ -51,7 +51,7 @@ const exercise_220 = (
     promptQuestionCode = { 210 }
     impactFilter = { IMPACT_SUPPORTIVE }
     description = { QUES_220_DESC }
-    instructions = "Choose your top 5 supportive influences"
+    instructions = "Choose your top 5 supportive influences."
   />)
 
 // -------------------------
@@ -63,7 +63,7 @@ const exercise_230 = (
     promptQuestionCode = { 210 }
     impactFilter = { IMPACT_INHIBITING }
     description = { QUES_230_DESC }
-    instructions = "Choose your top 5 inhibiting influences"
+    instructions = "Choose your top 5 inhibiting influences."
   />
 )
 
@@ -94,11 +94,11 @@ const exercise_250 = (
 // -------------------------
 // Module 2: 4A
 const shortAnswers_260 = [
-  <ShortAnswersCT question={ { code: 261, text: 'As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is.' } } />,
+  <ShortAnswersCT question={ { code: 261, text: 'As you reflect on your statements, list the most important overarching themes that impact how meaningful and purposeful your life is.' } } />,
   <ShortAnswersCT question={ { code: 262, text: 'Which core values and beliefs are most meaningful to you?' } } />,
   <ShortAnswersCT question={ { code: 263, text: 'What things beyond yourself could be served if you more intentionally lived by your core values and beliefs?' } } />,
   <ShortAnswersCT question={ { code: 264, text: 'What areas of personal growth are needed to fill your life with more of your core values and beliefs?' } } />,
-  <ShortAnswersCT question={ { code: 265, text: 'Which relationships that you either currently have or need to develop in the future (to any people, groups, practices, experiences, etc.) are most needed to support your core values and beliefs?' } } />,
+  <ShortAnswersCT question={ { code: 265, text: 'Which relationships that you either currently have or need to develop in the future (to any people, groups, etc.) are most needed to support your core values and beliefs?' } } />,
   <ShortAnswersCT question={ { code: 266, text: 'What areas of engagement could your core values and beliefs lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?' } } />,
 ]
 
@@ -150,17 +150,17 @@ export const MODULE2_SECTIONS =
   },
   {
     id: 240,
-    title: 'Synthesize Your Values and Beliefs Into a Supportive Self-Acceptance Statement',
+    title: 'Relate Your Supportive Influences to Your Authentic Values and Beliefs',
     exercise: exercise_240,
   },
   {
     id: 250,
-    title: 'Synthesize Your Values and Beliefs Into a Self-Inhibiting Statement',
+    title: 'Relate Your Inhibiting Influences to Your Authentic Values and Beliefs',
     exercise: exercise_250,
   },
   {
     id: 260,
-    title: "Compare Your 'Supportive Self-Acceptance' Statement to Your 'Self-Inhibiting' Statement",
+    title: "Reflect on Your Core Values and Beliefs",
     exercise: exercise_260,
     section_ids: [261, 262, 263, 264, 265, 266]
   },

@@ -105,7 +105,7 @@ export default class InfluencesTop5 extends React.Component {
                 <th></th>
                 <th scope="col" className="text-left">Relationship</th>
                 <th scope="col" className="text-left">Individual</th>
-                <th scope="col" className="text-left">Belief/Value</th>
+                <th scope="col" className="text-left">Value/Belief</th>
                 <th scope="col" className="text-left">Impact</th>
               </tr>
             </thead>
@@ -133,7 +133,7 @@ export default class InfluencesTop5 extends React.Component {
               <th scope="col" className="text-left"></th>
               <th scope="col" className="text-left">Relationship</th>
               <th scope="col" className="text-left">Individual</th>
-              <th scope="col" className="text-left">Belief/Value</th>
+              <th scope="col" className="text-left">Value/Belief</th>
               <th scope="col" className="text-left">Impact</th>
 
             </tr>
