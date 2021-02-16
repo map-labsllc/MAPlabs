@@ -22,12 +22,13 @@ Within each category, simply fill in the names of any influences that are meanin
 <br><br>
 You are free to fill in as many influences, values, and beliefs as you would like as long as they are meaningful and impactful to your current life or past development. And since any influence can offer several different values or beliefs, feel free to list any of your influences multiple times.`
 
-export const QUES_220_DESC = `In the previous exercise you listed the values and beliefs of the influences around you. Today you will choose which of these values and beliefs were most important to you. The values and beliefs have been separated into the two categories so that you can focus initially on the supportive values and beliefs that you want to 'build upon,' and then on the inhibiting values and beliefs that you would like to 'break from.'
+export const QUES_220_DESC = `In the previous exercise you listed the contextual influences in your life and how they have affected your growth. Now you will choose which of these influences have been most important for supporting or inhibiting who you are and who you want to become.
 <br><br>
-Choose your most important influences.  Choose your top 5 'supportive' values and beliefs according to how influential or important someone’s, or some group’s, values and beliefs have been upon you. For values and beliefs that you identified as similar to another influence (e.g., for parent 2 you wrote 'same as parent 1 supportive belief'), just choose one since you already chose those values and beliefs elsewhere.
-Once you have completed the ranking of your 'supportive' values, do the same for your top 5 'inhibiting' values.`
+In this exercise you will focus entirely on your supportive influences, before considering your inhibiting influences in the next exercise. Supportive influences play an important role in helping us to recognize, accept, and develop our most authentic values and beliefs. In this way, supportive influences can embolden us to grow and cultivate greater meaning in life.`
 
-export const QUES_230_DESC = QUES_220_DESC
+export const QUES_230_DESC = `In the previous exercise you selected the most important influences that have helped you grow by supporting your values and beliefs. Now you will choose which of your influences have most significantly inhibited your authentic values and beliefs.
+<br><br>
+By recognizing when others have prevented us from living through our deepest values and beliefs, we can begin to differentiate ourselves from our influences, strengthen our Self-acceptance, and take steps to live in alignment with our most authentic selves.`
 
 export const QUES_240_DESC = 'Based on what you have written for your top 5 supportive and top 5 inhibiting influences, fill in the blanks of the statement provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.'
 

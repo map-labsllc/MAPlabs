@@ -51,7 +51,7 @@ const exercise_220 = (
     promptQuestionCode = { 210 }
     impactFilter = { IMPACT_SUPPORTIVE }
     description = { QUES_220_DESC }
-    instructions = "Choose your top 5 supportive influences"
+    instructions = "Choose your top 5 supportive influences."
   />)
 
 // -------------------------
@@ -63,7 +63,7 @@ const exercise_230 = (
     promptQuestionCode = { 210 }
     impactFilter = { IMPACT_INHIBITING }
     description = { QUES_230_DESC }
-    instructions = "Choose your top 5 inhibiting influences"
+    instructions = "Choose your top 5 inhibiting influences."
   />
 )
 
