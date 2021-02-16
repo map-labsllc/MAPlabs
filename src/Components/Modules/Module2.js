@@ -94,11 +94,11 @@ const exercise_250 = (
 // -------------------------
 // Module 2: 4A
 const shortAnswers_260 = [
-  <ShortAnswersCT question={ { code: 261, text: 'As you compare the two statements, list the most important overarching themes that impact how meaningful and purposeful your life is.' } } />,
+  <ShortAnswersCT question={ { code: 261, text: 'As you reflect on your statements, list the most important overarching themes that impact how meaningful and purposeful your life is.' } } />,
   <ShortAnswersCT question={ { code: 262, text: 'Which core values and beliefs are most meaningful to you?' } } />,
   <ShortAnswersCT question={ { code: 263, text: 'What things beyond yourself could be served if you more intentionally lived by your core values and beliefs?' } } />,
   <ShortAnswersCT question={ { code: 264, text: 'What areas of personal growth are needed to fill your life with more of your core values and beliefs?' } } />,
-  <ShortAnswersCT question={ { code: 265, text: 'Which relationships that you either currently have or need to develop in the future (to any people, groups, practices, experiences, etc.) are most needed to support your core values and beliefs?' } } />,
+  <ShortAnswersCT question={ { code: 265, text: 'Which relationships that you either currently have or need to develop in the future (to any people, groups, etc.) are most needed to support your core values and beliefs?' } } />,
   <ShortAnswersCT question={ { code: 266, text: 'What areas of engagement could your core values and beliefs lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?' } } />,
 ]
 
@@ -160,7 +160,7 @@ export const MODULE2_SECTIONS =
   },
   {
     id: 260,
-    title: "Compare Your 'Supportive Self-Acceptance' Statement to Your 'Self-Inhibiting' Statement",
+    title: "Reflect on Your Core Values and Beliefs",
     exercise: exercise_260,
     section_ids: [261, 262, 263, 264, 265, 266]
   },

@@ -34,8 +34,8 @@ export const QUES_240_DESC = 'Based on what you have written for your top 5 supp
 
 export const QUES_250_DESC = 'Based on what you have written for your top 5 inhibiting influences, fill in the blanks of the statements provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.'
 
-export const QUES_260_DESC = 'Review and compare the \'supportive\' and \'inhibiting\' Self-Acceptance statements from Exercise 3.  Look for ways in which the two statements reflect each other, and for ways in which they reflect differing things from each other.'
+export const QUES_260_DESC = 'Review and compare the statements you wrote in the last two exercises about your supportive and inhibiting influences.  Look for ways in which these statements reflect each other, and for ways in which they reflect differing things from each other.'
 
-export const QUES_270_DESC = `In order to create a more meaningful life, consider which values and beliefs need to be 'broken from,' and which values and beliefs need to be 'built toward.' Fill in the following blanks:
+export const QUES_270_DESC = `In order to create a more meaningful life, consider which values, beliefs, and contextual influences need to be "broken from," and which of these things need to be "built toward." Fill in the following blanks with your responses.
 <br><br>
-In order to create a more meaningful life, I want to embrace more authentic Self-acceptance by altering my:`
+In order to create a more meaningful life, I want to embrace authentic Self-acceptance by altering my:`
