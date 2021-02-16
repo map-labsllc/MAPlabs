@@ -126,7 +126,7 @@ export const MODULE4_SECTIONS =
   {
     id: 450,
     module_id: 4,
-    title: "Reflect On Your Personal Strengths",
+    title: "Reflect on Your Personal Strengths",
     exercise: exercise_450,
     section_ids: [451, 452, 453, 454, 455, 456]
   },

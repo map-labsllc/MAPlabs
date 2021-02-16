@@ -122,7 +122,7 @@ export const MODULE1_SECTIONS =
   {
     id: 150,
     module_id: 1,
-    title: "Reflect On Your \"Current Situation\" Statement and Your \"Future Desired Situation\" Statement",
+    title: "Reflect on Your \"Current Situation\" Statement and Your \"Future Desired Situation\" Statement",
     exercise: exercise_150,
     section_ids: [151, 152, 153, 154, 155, 156]
   },
