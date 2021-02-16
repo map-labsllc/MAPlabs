@@ -150,12 +150,12 @@ export const MODULE2_SECTIONS =
   },
   {
     id: 240,
-    title: 'Synthesize Your Values and Beliefs Into a Supportive Self-Acceptance Statement',
+    title: 'Relate Your Supportive Influences to Your Authentic Values and Beliefs',
     exercise: exercise_240,
   },
   {
     id: 250,
-    title: 'Synthesize Your Values and Beliefs Into a Self-Inhibiting Statement',
+    title: 'Relate Your Inhibiting Influences to Your Authentic Values and Beliefs',
     exercise: exercise_250,
   },
   {

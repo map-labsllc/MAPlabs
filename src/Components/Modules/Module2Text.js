@@ -30,9 +30,9 @@ export const QUES_230_DESC = `In the previous exercise you selected the most imp
 <br><br>
 By recognizing when others have prevented us from living through our deepest values and beliefs, we can begin to differentiate ourselves from our influences, strengthen our Self-acceptance, and take steps to live in alignment with our most authentic selves.`
 
-export const QUES_240_DESC = 'Based on what you have written for your top 5 supportive and top 5 inhibiting influences, fill in the blanks of the statement provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.'
+export const QUES_240_DESC = 'Based on what you have written for your top 5 supportive influences, fill in the blanks of the statements provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.'
 
-export const QUES_250_DESC = 'Based on what you have written for your top 5 supportive and top 5 inhibiting influences, fill in the blanks of the statement provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.'
+export const QUES_250_DESC = 'Based on what you have written for your top 5 inhibiting influences, fill in the blanks of the statements provided in order to more fully understand the relationships between your own personal values and beliefs, and the values and beliefs of your top influences.'
 
 export const QUES_260_DESC = 'Review and compare the \'supportive\' and \'inhibiting\' Self-Acceptance statements from Exercise 3.  Look for ways in which the two statements reflect each other, and for ways in which they reflect differing things from each other.'
 
