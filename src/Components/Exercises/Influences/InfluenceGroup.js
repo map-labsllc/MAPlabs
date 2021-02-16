@@ -75,8 +75,8 @@ export default function InfluenceGroup(props) {
           <thead>
             <tr>
               <th scope="col" className="text-left">Relationship</th>
-              <th scope="col" className="text-left">Individual</th>
-              <th scope="col" className="text-left">Belief/Value</th>
+              <th scope="col" className="text-left">Influence</th>
+              <th scope="col" className="text-left">Value/Belief</th>
               <th scope="col" className="text-left">Impact</th>
             </tr>
           </thead>

@@ -39,7 +39,7 @@ const exercise_210 = (
   <InfluencesCT
     question = { { code: 210, text: '' } }
     description = { QUES_210_DESC }
-    instructions = "Choose influences in your life, thier relationship to you, their beliefs / values, and if they were supportive or inhibiting."
+    instructions = "On each line, select the relationship that your influence has to you, name the influence so you know who or what it is, choose the value/belief that you associate with this influence, and finally, note whether this influence supports or inhibits who you are and how you want to grow with regard to this value/belief."
   />)
 
 // -------------------------
