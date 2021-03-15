@@ -1,14 +1,15 @@
-import { MOD_1_DESC } from './Module1Text'
-import { MOD_2_DESC } from './Module2Text'
-import { MOD_3_DESC } from './Module3Text'
-import { MOD_4_DESC } from './Module4Text'
-import { MOD_5_DESC } from './Module5Text'
+/* eslint-disable import/no-cycle */
+import { MOD_1_DESC } from './Module1Text';
+import { MOD_2_DESC } from './Module2Text';
+import { MOD_3_DESC } from './Module3Text';
+import { MOD_4_DESC } from './Module4Text';
+import { MOD_5_DESC } from './Module5Text';
 
-import { MODULE1_SECTIONS } from './Module1'
-import { MODULE2_SECTIONS } from './Module2'
-import { MODULE3_SECTIONS } from './Module3'
-import { MODULE4_SECTIONS } from './Module4'
-import { MODULE5_SECTIONS } from './Module5'
+import MODULE1_SECTIONS from './Module1';
+import MODULE2_SECTIONS from './Module2';
+import MODULE3_SECTIONS from './Module3';
+import MODULE4_SECTIONS from './Module4';
+import { MODULE5_SECTIONS } from './Module5';
 
 export const MODULES = [
   {
@@ -40,7 +41,7 @@ export const MODULES = [
     title: 'Summary',
     description: MOD_5_DESC,
     sections: MODULE5_SECTIONS,
-  }
-]
+  },
+];
 
-export const getModule = (moduleId) => MODULES.filter(m => m.id === moduleId)[0]
+export const getModule = (moduleId) => MODULES.filter((m) => m.id === moduleId)[0];

@@ -1,3 +1,6 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-case-declarations */
 // need to mege with the user info coming from login
 
 import {
@@ -20,9 +23,9 @@ import {
   USER_UPDATE_CURR_SECTION,
   USER_UPDATE_ERROR,
   USER_UPDATE_SUCCESS,
-} from './constants'
+} from './constants';
 
-import { MODULES } from '../../Components/Modules/ModuleData'
+import { MODULES } from '../../Components/Modules/ModuleData';
 
 const LOGIN_TOKEN_LENGTH = 28;
 
@@ -52,9 +55,9 @@ const LOGIN_TOKEN_LENGTH = 28;
 */
 
 const sectionIdsByModId = MODULES.reduce((acc, mod) => {
-  acc[mod.id] = mod.sections.map(section => section.id) // hash section ids by module id
-  return acc
-}, [])
+  acc[mod.id] = mod.sections.map((section) => section.id); // hash section ids by module id
+  return acc;
+}, []);
 
 // ------------------------------------------
 const initialState = {
@@ -63,8 +66,8 @@ const initialState = {
   errorMessage: '',
   message: '',
   orderOfSections: sectionIdsByModId,
-  user: {}
-}
+  user: {},
+};
 
 /* ***********************************************
    getUser()
@@ -73,7 +76,7 @@ const initialState = {
 
    return -- user object
 ************************************************** */
-export const getUser = (state) => state.user
+export const getUser = (state) => state.user;
 
 /* ***********************************************
    isLoggedIn()
@@ -82,7 +85,8 @@ export const getUser = (state) => state.user
 
    return -- t/f
 ************************************************** */
-export const isLoggedIn = (state) => state.user && state.user.login_token && state.user.login_token.length === LOGIN_TOKEN_LENGTH
+export const isLoggedIn = (state) =>
+  state.user && state.user.login_token && state.user.login_token.length === LOGIN_TOKEN_LENGTH;
 
 /* ***********************************************
    isFirstSection()
@@ -95,7 +99,7 @@ export const isLoggedIn = (state) => state.user && state.user.login_token && sta
 ************************************************** */
 export const isFirstSection = (state, moduleNum, sectionNum) =>
   // check if sectionNum is the first entry in array of sections for the module in question
-  state.orderOfSections[moduleNum].indexOf(sectionNum) === 0
+  state.orderOfSections[moduleNum].indexOf(sectionNum) === 0;
 
 /* ***********************************************
    getNextModuleSection()
@@ -109,126 +113,164 @@ export const isFirstSection = (state, moduleNum, sectionNum) =>
    return -- { moduleNum, sectionNum }
 ************************************************** */
 export const getNextModuleSection = (userRD, currModuleNum, currSectionNum) => {
-  const { orderOfSections } = userRD
-  const sections = orderOfSections[currModuleNum]
+  const { orderOfSections } = userRD;
+  const sections = orderOfSections[currModuleNum];
 
-  const idx = sections.indexOf(currSectionNum) || 0
+  const idx = sections.indexOf(currSectionNum) || 0;
 
-  let newModuleNum = currModuleNum
-  let newSectionNum = 0
+  let newModuleNum = currModuleNum;
+  let newSectionNum = 0;
   if (idx < sections.length - 1) {
-    newSectionNum = sections[idx + 1]
+    newSectionNum = sections[idx + 1];
   } else {
-    newModuleNum = currModuleNum + 1
-    newSectionNum = 0
+    newModuleNum = currModuleNum + 1;
+    newSectionNum = 0;
   }
 
   return {
     moduleNum: newModuleNum,
     sectionNum: newSectionNum,
+  };
+};
+
+/* ***********************************************
+   getNextModuleSection()
+
+   Get the next Module and Section
+
+   userRD -- user reducer
+   currModuleNu -- integer
+   currSectionNum -- integer
+
+   return -- { moduleNum, sectionNum }
+************************************************** */
+export const getModuleSection = (currModuleNum, currSectionNum) => {
+  const mod = MODULES.find((m) => m.id === currModuleNum);
+  if (mod) {
+    const currSect = mod.sections.find((s) => s.id === parseInt(currSectionNum, 10));
+    return currSect;
   }
-}
+  return null;
+};
 
 // is this module the user's current section
-export const isCurrentSection = (currentModule, moduleNum, currentSection, sectionNum) => currentModule === +moduleNum && currentSection === +sectionNum
+export const isCurrentSection = (currentModule, moduleNum, currentSection, sectionNum) => currentModule === +moduleNum && currentSection === +sectionNum;
 
 // can we show the next section
-export const showNextSection = (currentModule, moduleNum, currentSection, sectionNum) => (currentModule > +moduleNum ||
-    (currentModule === +moduleNum && currentSection > +sectionNum))
+export const showNextSection = (currentModule, moduleNum, currentSection, sectionNum) => currentModule > +moduleNum || (currentModule === +moduleNum && currentSection > +sectionNum);
 
 /* ***********************************************
   userRD
 ************************************************** */
 export const userRD = (state = initialState, action) => {
-  const { type, payload } = action
+  const { type, payload } = action;
 
   switch (type) {
   case AUTH_CHECK_COMPLETE:
-    return { ...state, authCheckPending: false }
+    return { ...state, authCheckPending: false };
 
   case USER_UPDATE_CURR_SECTION: {
-    const { moduleNum, sectionNum } = payload
+    const { moduleNum, sectionNum } = payload;
     const newUser = {
       ...state.user,
       curr_module: moduleNum,
       curr_section: sectionNum,
-    }
+    };
     return {
       ...state,
       user: newUser,
-    }
+    };
   }
   case FIRSTNAME_CHANGED:
     const user = {
       ...state.user,
       fname: payload,
-    }
-    return { ...state, user }
+    };
+    return { ...state, user };
   case LASTNAME_CHANGED:
     const last = {
       ...state.user,
       lname: payload,
-    }
-    return { ...state, user: last }
+    };
+    return { ...state, user: last };
   case EMAIL_CHANGED:
     const email = {
       ...state.user,
       email: payload,
-    }
-    return { ...state, user: email }
+    };
+    return { ...state, user: email };
   case PASSWORD_CHANGED:
     const password = {
       ...state.user,
-      password: payload
-    }
-    return { ...state, user: password }
+      password: payload,
+    };
+    return { ...state, user: password };
 
   case LOGIN_USER:
     return {
-      ...state, loading: true, errorMessage: '', message: ''
-    }
+      ...state,
+      loading: true,
+      errorMessage: '',
+      message: '',
+    };
 
   case USER_UPDATE_SUCCESS:
   case LOGIN_USER_SUCCESS:
-    return { ...state, user: { ...payload }, loading: false }
+    return { ...state, user: { ...payload }, loading: false };
 
   case LOGIN_USER_FAIL:
     return {
-      ...state, user: {}, errorMessage: 'Authentication Failed. Please check username/password.', password: '', loading: false
-    }
+      ...state,
+      user: {},
+      errorMessage: 'Authentication Failed. Please check username/password.',
+      password: '',
+      loading: false,
+    };
   case FORGOT_PASSWORD:
     return {
-      ...state, loading: true, errorMessage: '', message: ''
-    }
+      ...state,
+      loading: true,
+      errorMessage: '',
+      message: '',
+    };
   case FORGOT_PASSWORD_SUCCESS:
     return {
-      ...state, loading: false, errorMessage: '', message: 'Please check your email for reset instructions.'
-    }
+      ...state,
+      loading: false,
+      errorMessage: '',
+      message: 'Please check your email for reset instructions.',
+    };
   case FORGOT_PASSWORD_FAIL:
     return {
-      ...state, loading: false, errorMessage: payload.errorMessage, message: ''
-    }
+      ...state,
+      loading: false,
+      errorMessage: payload.errorMessage,
+      message: '',
+    };
   case USER_UPDATE_CURR_SECTION_NO_CHANGE:
-    return state
+    return state;
   case USER_UPDATE_ERROR:
-    return state
+    return state;
   case LOGOUT: {
-    return { ...state, user: {}, errorMessage: '' }
+    return { ...state, user: {}, errorMessage: '' };
   }
   case SIGNUP: {
     return {
-      ...state, loading: true, message: '', errorMessage: ''
-    }
+      ...state,
+      loading: true,
+      message: '',
+      errorMessage: '',
+    };
   }
   case SIGNUP_FAIL: {
-    return { ...state, loading: false, errorMessage: payload.errorMessage }
+    return { ...state, loading: false, errorMessage: payload.errorMessage };
   }
   case REMOVE_TOKEN: {
-    return { ...state, user: { ...user, login_token: undefined } }
+    return { ...state, user: { ...user, login_token: undefined } };
   }
   default:
-    return state
+    return state;
   }
-}
+};
 
-export default userRD
+export default userRD;

@@ -23,7 +23,7 @@ import {
      deleteTransitionCB -- callback when user clicks the Delete button
 ***************************************************** */
 export default function Transition(props) {
-  const { transition, isDynamic } = props
+  const { transition, isDynamic, onSubComponentChange } = props
 
   const [to, setTo] = useState(transition.to)
   const [from, setFrom] = useState(transition.from)
@@ -48,6 +48,20 @@ export default function Transition(props) {
     deleteTransitionCB(id)
   }
 
+  const handleFromChange = (e) => {
+    setFrom(e.target.value);
+    if (onSubComponentChange) {
+      onSubComponentChange();
+    }
+  };
+
+  const handleToChange = (e) => {
+    setTo(e.target.value);
+    if (onSubComponentChange) {
+      onSubComponentChange();
+    }
+  };
+
   if (!isDynamic) {
     // nothing to display
     if (!transition.from.length) {
@@ -71,7 +85,7 @@ export default function Transition(props) {
           {'From this '}
           <FormControl
             type="text"
-            onChange={ (e) => setFrom(e.target.value) }
+            onChange={handleFromChange}
             value={from}
             style={style.width}
             placeholder="Please enter a from"
@@ -79,7 +93,7 @@ export default function Transition(props) {
           {' to '}
           <FormControl
             type="text"
-            onChange={ (e) => setTo(e.target.value) }
+            onChange={handleToChange}
             value={to}
             style={style.width}
             placeholder="Please enter a to"

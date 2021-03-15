@@ -4,7 +4,7 @@ import {
   ANSWERS_UPDATE,
   ANSWERS_ERROR_DB,
   ANSWERS_PERSIST,
-} from './constants'
+} from './constants';
 
 /*
   answersRD: {
@@ -25,30 +25,30 @@ const initialState = {
   isError: false,
   errorMessage: '',
   questions: {},
-}
+};
 
 // helpers for switching between array and object format
 export const hydrater = (shape) =>
   // shape = {key: attr, ...}
-  (answer) => (
+  (answer) =>
     // answer = ['value1', 'value2']
     Object.keys(shape).reduce((obj, key) => {
-      const attr = shape[key]
-      obj[attr] = answer[key]
-      return obj
-    }, {})
-  )
+      const rObj = { ...obj };
+      const attr = shape[key];
+      rObj[attr] = answer[key];
+      return rObj;
+    }, {});
 
 export const dehydrater = (shape) =>
   // shape = {key: attr, ...}
-  (item) => (
+  (item) =>
     // item = {attr1: value1, attr2: value2}
     Object.keys(shape).reduce((arr, key) => {
-      const attr = shape[key]
-      arr[key] = item[attr]
-      return arr
-    }, [])
-  )
+      const rArr = { ...arr };
+      const attr = shape[key];
+      rArr[key] = item[attr];
+      return rArr;
+    }, []);
 
 /* ***********************************************
    getAnswers()
@@ -60,13 +60,13 @@ export const dehydrater = (shape) =>
 
    return array of array of answer strings or []
 ************************************************** */
-export const getAnswers = (state, question_code) => state.questions[question_code] || []
+export const getAnswers = (state, question_code) => state.questions[question_code] || [];
 
 /* ***********************************************
     answersRD
  ************************************************** */
 export const answersRD = (state = initialState, action) => {
-  const { type, payload } = action
+  const { type, payload } = action;
 
   switch (type) {
   // Reset the reducer to initial state, could be
@@ -80,7 +80,7 @@ export const answersRD = (state = initialState, action) => {
     //         [ 'east', 'west' ]
     //       ]
     //  }
-    return initialState
+    return initialState;
 
   case ANSWERS_LOAD:
     // console.log( "answersRD::LOAD" )
@@ -88,36 +88,37 @@ export const answersRD = (state = initialState, action) => {
       ...state,
       isLoading: false,
       questions: payload,
-    }
+    };
 
-    // Payload: todo: add example
+  // Payload: todo: add example
   case ANSWERS_UPDATE:
     // console.log( "answersRD::UPDATE" )
-    const newQuestions = { ...state.questions }
-    newQuestions[payload.question_code] = payload.answers
+    // eslint-disable-next-line no-case-declarations
+    const newQuestions = { ...state.questions };
+    newQuestions[payload.question_code] = payload.answers;
     return {
       ...state,
       questions: newQuestions,
-    }
+    };
 
-    // Fetch error
+  // Fetch error
   case ANSWERS_ERROR_DB:
-    console.log('answersRD::ERROR_DB')
+    console.log('answersRD::ERROR_DB');
     return {
       ...state,
       isLoading: false,
       isError: true,
       errorMessage: payload || 'Error fetching answers',
-    }
+    };
 
-    // answers for a question were successfully persisted
+  // answers for a question were successfully persisted
   case ANSWERS_PERSIST:
-    console.log('answersRD::PERSIST')
-    return state
+    console.log('answersRD::PERSIST');
+    return state;
 
   default:
-    return state
+    return state;
   }
-}
+};
 
-export default answersRD
+export default answersRD;

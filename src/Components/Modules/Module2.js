@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React from 'react'
 import InfluencesCT from '../Exercises/Influences/InfluencesCT'
 import InfluencesTop5CT from '../Exercises/InfluencesTop5/InfluencesTop5CT'
@@ -7,7 +8,6 @@ import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
 import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
 
 import {
-  QUESTION_TYPE_INFLUENCES,
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
 } from '../../store/answers/constants'
@@ -126,48 +126,57 @@ const exercise_270 = (
   />)
 
 // interim refactor, needs to be in a DB
-export const MODULE2_SECTIONS =
+const MODULE2_SECTIONS =
 [
   {
     id: 210,
     module_id: 2,
     title: 'Contextual Influences',
-    exercise: exercise_210
+    exercise: exercise_210,
+    reference_sections: []
   },
   {
     id: 220,
     module_id: 2,
     title: 'Top 5 Supportive Influences',
     exercise: exercise_220,
-    section_ids: [210] // hack so completion looks at parent
+    section_ids: [210], // hack so completion looks at parent
+    reference_sections: []
   },
   {
     id: 230,
     module_id: 2,
     title: 'Top 5 Inhibiting Influences',
     exercise: exercise_230,
-    section_ids: [210]
+    section_ids: [210],
+    reference_sections: []
   },
   {
     id: 240,
     title: 'Relate Your Supportive Influences to Your Authentic Values and Beliefs',
     exercise: exercise_240,
+    reference_sections: []
   },
   {
     id: 250,
     title: 'Relate Your Inhibiting Influences to Your Authentic Values and Beliefs',
     exercise: exercise_250,
+    reference_sections: []
   },
   {
     id: 260,
-    title: "Reflect on Your Core Values and Beliefs",
+    title: 'Reflect on Your Core Values and Beliefs',
     exercise: exercise_260,
-    section_ids: [261, 262, 263, 264, 265, 266]
+    section_ids: [261, 262, 263, 264, 265, 266],
+    reference_sections: [240, 250]
   },
   {
     id: 270,
     title: 'Breaking and Building',
     exercise: exercise_270,
-    section_ids: [271, 272, 273, 274]
+    section_ids: [271, 272, 273, 274],
+    reference_sections: [240, 250]
   },
 ]
+
+export default MODULE2_SECTIONS;

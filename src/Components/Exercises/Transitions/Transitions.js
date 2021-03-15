@@ -90,7 +90,7 @@ export default class Transitions extends React.Component {
   render() {
     // console.log("Transitions::render()")
 
-    const { number, question, isDynamic } = this.props
+    const { number, question, isDynamic, onSubComponentChange } = this.props
     const { transitionsWithKeys } = this.state
 
     // console.log("transitionsWithKeys", transitionsWithKeys)
@@ -106,6 +106,7 @@ export default class Transitions extends React.Component {
             isDynamic={isDynamic}
             updateTransitionCB={this.updateTransition}
             deleteTransitionCB={this.deleteTransition}
+            onSubComponentChange={onSubComponentChange}
           >
           </Transition>)}
         </>
@@ -124,6 +125,7 @@ export default class Transitions extends React.Component {
           isDynamic={isDynamic}
           updateTransitionCB={this.updateTransition}
           deleteTransitionCB={this.deleteTransition}
+          onSubComponentChange={onSubComponentChange}
         >
         </Transition>)}
         <div className="text-center">
@@ -146,6 +148,7 @@ Transitions.propTypes = {
   }).isRequired,
   previousTransitions: PropTypes.array.isRequired,
   isDynamic: PropTypes.bool,
+  onSubComponentChange: PropTypes.func,
 }
 
 /// /////////////////////////////////////////////////////////////

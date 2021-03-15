@@ -34,7 +34,6 @@
       "import/newline-after-import": ["warn"],
       "import/no-cycle": ["warn"],
       "import/no-duplicates": ["warn"],
-      "import/no-named-as-default": ["warn"],
       "import/no-useless-path-segments": ["warn"],
       "import/order": ["warn"],
       "import/prefer-default-export": ["warn"],

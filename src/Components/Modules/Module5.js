@@ -323,112 +323,130 @@ export const MODULE5_SECTIONS =
     module_id: 5,
     title: 'Review and Revise Your Current Situation Statement',
     exercise: EXERCISE_510,
+    reference_sections: []
   },
   {
     id: 511,
     module_id: 5,
     title: 'Determine Your Key Themes',
     exercise: EXERCISE_511,
+    reference_sections: []
   },
   {
     id: 512,
     module_id: 5,
     title: 'Summarize the Themes of Your Life',
     exercise: EXERCISE_512,
+    reference_sections: []
   },
   {
     id: 520,
     module_id: 5,
     title: 'Determine Your Key Insights About Meaning',
-    exercise: EXERCISE_520
+    exercise: EXERCISE_520,
+    reference_sections: []
   },
   {
     id: 521,
     module_id: 5,
     title: 'Desires Statement',
-    exercise: EXERCISE_521
+    exercise: EXERCISE_521,
+    reference_sections: []
   },
   {
     id: 522,
     module_id: 5,
     title: 'Strengths',
-    exercise: EXERCISE_522
+    exercise: EXERCISE_522,
+    reference_sections: []
   },
   {
     id: 523,
     module_id: 5,
     title: 'Strength Embodiments',
-    exercise: EXERCISE_523
+    exercise: EXERCISE_523,
+    reference_sections: []
   },
   {
     id: 524,
     module_id: 5,
     title: 'Strength Impediments',
-    exercise: EXERCISE_524
+    exercise: EXERCISE_524,
+    reference_sections: []
   },
   {
     id: 530,
     module_id: 5,
     title: 'Determine Your Insights About Beyond-the-Self Service',
     exercise: EXERCISE_530,
+    reference_sections: []
   },
   {
     id: 531,
     module_id: 5,
     title: 'Summarize the "What" of Your Life',
-    exercise: EXERCISE_531
+    exercise: EXERCISE_531,
+    reference_sections: []
   },
   {
     id: 540,
     module_id: 5,
     title: 'Personal Life Purpose Statement',
     exercise: EXERCISE_540,
-    section_ids: [541, 542, 543, 544]
+    section_ids: [541, 542, 543, 544],
+    reference_sections: []
   },
   {
     id: 550,
     module_id: 5,
     title: 'Personal Growth',
     exercise: EXERCISE_550,
+    reference_sections: [540]
   },
   {
     id: 551,
     module_id: 5,
     title: 'Relationships',
     exercise: EXERCISE_551,
+    reference_sections: [540]
   },
   {
     id: 552,
     module_id: 5,
     title: 'Engagement Mastery',
     exercise: EXERCISE_552,
+    reference_sections: [540]
   },
   {
     id: 560,
     module_id: 5,
     title: 'Breaking and Building',
     exercise: EXERCISE_560,
-    section_ids: [561, 562, 563, 564]
+    section_ids: [561, 562, 563, 564],
+    reference_sections: [540]
   },
   {
     id: 565,
     module_id: 5,
     title: 'Future Desired Situation Statement',
     exercise: EXERCISE_565,
+    reference_sections: []
   },
   {
     id: 570,
     module_id: 5,
     title: 'Dashboard',
     exercise: EXERCISE_570,
-    section_ids: [565] // if 565 is done, then this is done
+    section_ids: [565], // if 565 is done, then this is done
+    reference_sections: []
   },
   {
     id: 580,
     module_id: 5,
     title: 'MAPPERS Model',
     exercise: EXERCISE_580,
-    section_ids: [565] // if 565 is done, then this is done
+    section_ids: [565], // if 565 is done, then this is done
+    reference_sections: []
   },
   {
     id: 590,
@@ -436,6 +454,7 @@ export const MODULE5_SECTIONS =
     title: 'Conclusion',
     exercise: EXERCISE_590,
     section_ids: [565], // if 565 is done, then this is done
-    theEnd: true
+    theEnd: true,
+    reference_sections: []
   }
 ]

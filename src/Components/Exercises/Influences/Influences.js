@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { UUID } from '../../Utils/UUID'
 import {
   GROUP_PERSONAL,
@@ -7,7 +8,6 @@ import {
 } from '../../../constants'
 import { QUESTION_TYPE_INFLUENCES } from '../../../store/answers/constants'
 import InfluenceGroup from './InfluenceGroup'
-import PropTypes from 'prop-types'
 import QuestionsCT from '../../Framework/QuestionsCT'
 
 /* **************************************************
@@ -142,7 +142,7 @@ export default class Influences extends React.Component {
   }
 
   render() {
-    const { beliefs, relationships, social_influences, wider_influences, question, description } = this.props
+    const { beliefs, relationships, social_influences, wider_influences, question, description, onSubComponentChange } = this.props
     const { isDynamic, influencesWithKeys } = this.state
 
     const groups = [
@@ -175,6 +175,7 @@ export default class Influences extends React.Component {
         updateInfluenceCB={this.updateInfluence}
         deleteInfluenceCB={this.deleteInfluence}
         addInfluenceCB={this.addInfluence}
+        onSubComponentChange={onSubComponentChange}
       />
     ))
 

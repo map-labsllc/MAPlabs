@@ -1,15 +1,16 @@
-import React from 'react'
-import QuestionsCT from '../Framework/QuestionsCT'
-import ReflectionsTop5CT from '../Exercises/ReflectionsTop5/ReflectionsTop5CT'
-import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT'
-import StrengthsCT from '../Exercises/Strengths/StrengthsCT'
-import StrengthsEmImWrapperCT from '../Exercises/StrengthsEmIm/StrengthsEmImWrapperCT'
-import TransitionsCT from '../Exercises/Transitions/TransitionsCT'
+/* eslint-disable import/no-cycle */
+import React from 'react';
+import QuestionsCT from '../Framework/QuestionsCT';
+import ReflectionsTop5CT from '../Exercises/ReflectionsTop5/ReflectionsTop5CT';
+import ShortAnswersCT from '../Exercises/ShortAnswers/ShortAnswersCT';
+import StrengthsCT from '../Exercises/Strengths/StrengthsCT';
+import StrengthsEmImWrapperCT from '../Exercises/StrengthsEmIm/StrengthsEmImWrapperCT';
+import TransitionsCT from '../Exercises/Transitions/TransitionsCT';
 
 import {
   QUESTION_TYPE_SHORT_ANSWERS,
   QUESTION_TYPE_TRANSITIONS,
-} from '../../store/answers/constants'
+} from '../../store/answers/constants';
 
 import {
   QUES_410_DESC,
@@ -18,123 +19,171 @@ import {
   QUES_440_DESC,
   QUES_450_DESC,
   QUES_460_DESC,
-} from './Module4Text'
+} from './Module4Text';
 
-import { EFFECT_EMBODIMENT, EFFECT_IMPEDIMENT } from '../../constants'
+import { EFFECT_EMBODIMENT, EFFECT_IMPEDIMENT } from '../../constants';
 
 const exercise_410 = (
   <StrengthsCT
-    question = { { code: 410, text: 'Determine your top strengths' } }
-    description = { QUES_410_DESC }
-    instructions = "Enter your top 5 strengths using the drop down menu provided."
-  />)
+    question={{ code: 410, text: 'Determine your top strengths' }}
+    description={QUES_410_DESC}
+    instructions="Enter your top 5 strengths using the drop down menu provided."
+  />
+);
 
 const exercise_420 = (
   <StrengthsEmImWrapperCT
-    question = { { code: 420, text: 'Embodiments and Impediments' } }
-    description = { QUES_420_DESC }
-    promptQuestionCode = { 410 }
-  />)
+    question={{ code: 420, text: 'Embodiments and Impediments' }}
+    description={QUES_420_DESC}
+    promptQuestionCode={410}
+  />
+);
 
 // -------------------------
 // Top5 Embodiments
 // Module
 const exercise_430 = (
   <ReflectionsTop5CT
-    question = { { code: 430, text: 'Choose your most important embodiments of strength.' } }
-    promptQuestionCode = { 420 }
-    filter = { EFFECT_EMBODIMENT }
-    description = { QUES_430_DESC }
-    saveToPrompt = { true }
-  />)
+    question={{ code: 430, text: 'Choose your most important embodiments of strength.' }}
+    promptQuestionCode={420}
+    filter={EFFECT_EMBODIMENT}
+    description={QUES_430_DESC}
+    saveToPrompt={true}
+  />
+);
 
 // -------------------------
 // Top 5 Impediments
 // Module
 const exercise_440 = (
   <ReflectionsTop5CT
-    question = { { code: 440, text: 'Choose your most important impediments of strength.' } }
-    promptQuestionCode = { 420 }
-    filter = { EFFECT_IMPEDIMENT }
-    description = { QUES_440_DESC }
-    saveToPrompt = { true }
-  />)
+    question={{ code: 440, text: 'Choose your most important impediments of strength.' }}
+    promptQuestionCode={420}
+    filter={EFFECT_IMPEDIMENT}
+    description={QUES_440_DESC}
+    saveToPrompt={true}
+  />
+);
 
 // -------------------------
 // Module 4 compare
 const shortAnswers_450 = [
-  <ShortAnswersCT question={ { code: 451, text: 'List the most important overarching themes that impact how your life is most well lived from your strengths.' } } />,
-  <ShortAnswersCT question={ { code: 452, text: 'Which embodiments provide you with the greatest sense of meaning in your life?' } } />,
-  <ShortAnswersCT question={ { code: 453, text: 'What people or things beyond yourself would you like to serve if you more intentionally lived through your signature strengths?' } } />,
-  <ShortAnswersCT question={ { code: 454, text: 'What areas of personal growth are needed for you to be able to live more from your signature strengths?' } } />,
-  <ShortAnswersCT question={ { code: 455, text: 'Which relationships that you either currently have or need to develop in the future (to any people, groups, etc.) are most needed to support your living from your signature strengths?' } } />,
-  <ShortAnswersCT question={ { code: 456, text: 'What areas of engagement could your signature strengths lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?' } } />,
-]
+  <ShortAnswersCT
+    question={{
+      code: 451,
+      text:
+        'List the most important overarching themes that impact how your life is most well lived from your strengths.',
+    }}
+  />,
+  <ShortAnswersCT
+    question={{
+      code: 452,
+      text: 'Which embodiments provide you with the greatest sense of meaning in your life?',
+    }}
+  />,
+  <ShortAnswersCT
+    question={{
+      code: 453,
+      text:
+        'What people or things beyond yourself would you like to serve if you more intentionally lived through your signature strengths?',
+    }}
+  />,
+  <ShortAnswersCT
+    question={{
+      code: 454,
+      text:
+        'What areas of personal growth are needed for you to be able to live more from your signature strengths?',
+    }}
+  />,
+  <ShortAnswersCT
+    question={{
+      code: 455,
+      text:
+        'Which relationships that you either currently have or need to develop in the future (to any people, groups, etc.) are most needed to support your living from your signature strengths?',
+    }}
+  />,
+  <ShortAnswersCT
+    question={{
+      code: 456,
+      text:
+        'What areas of engagement could your signature strengths lead you to master (either in your life’s work or avocationally) in order to create a more meaningful and purposeful life?',
+    }}
+  />,
+];
 
 const exercise_450 = (
   <QuestionsCT
-    questionType = {QUESTION_TYPE_SHORT_ANSWERS}
-    subComponents = {shortAnswers_450}
-    description = { QUES_450_DESC }
-  />)
+    questionType={QUESTION_TYPE_SHORT_ANSWERS}
+    subComponents={shortAnswers_450}
+    description={QUES_450_DESC}
+  />
+);
 
 // -------------------------
 // Module 4: transitions
 const transitions_460 = [
-  <TransitionsCT question = { { code: 461, text: 'Strengths' } } />,
-  <TransitionsCT question = { { code: 462, text: 'Embodiments' } } />,
-  <TransitionsCT question = { { code: 463, text: 'Impediments' } } />,
-  <TransitionsCT question = { { code: 464, text: 'Goals' } } />,
-]
+  <TransitionsCT question={{ code: 461, text: 'Strengths' }} />,
+  <TransitionsCT question={{ code: 462, text: 'Embodiments' }} />,
+  <TransitionsCT question={{ code: 463, text: 'Impediments' }} />,
+  <TransitionsCT question={{ code: 464, text: 'Goals' }} />,
+];
 
 const exercise_460 = (
   <QuestionsCT
-    questionType = {QUESTION_TYPE_TRANSITIONS}
-    subComponents = {transitions_460}
-    description = { QUES_460_DESC }
-  />)
+    questionType={QUESTION_TYPE_TRANSITIONS}
+    subComponents={transitions_460}
+    description={QUES_460_DESC}
+  />
+);
 
 // interim refactor, needs to be in a DB
-export const MODULE4_SECTIONS =
-[
+const MODULE4_SECTIONS = [
   {
     id: 410,
     module_id: 4,
     title: 'Determine Your Top 5 Strengths',
-    exercise: exercise_410
+    exercise: exercise_410,
+    reference_sections: []
   },
   {
     id: 420,
     module_id: 4,
     title: 'Embodiments and Impediments',
-    exercise: exercise_420
+    exercise: exercise_420,
+    reference_sections: []
   },
   {
     id: 430,
     module_id: 4,
     title: 'Top 5 Embodiments of Strength',
     exercise: exercise_430,
-    section_ids: [420]
+    section_ids: [420],
+    reference_sections: []
   },
   {
     id: 440,
     module_id: 4,
     title: 'Top 5 Impediments to Strength',
     exercise: exercise_440,
-    section_ids: [420]
+    section_ids: [420],
+    reference_sections: []
   },
   {
     id: 450,
     module_id: 4,
-    title: "Reflect on Your Personal Strengths",
+    title: 'Reflect on Your Personal Strengths',
     exercise: exercise_450,
-    section_ids: [451, 452, 453, 454, 455, 456]
+    section_ids: [451, 452, 453, 454, 455, 456],
+    reference_sections: [410, 430, 440]
   },
   {
     id: 460,
     module_id: 4,
     title: 'Breaking and Building',
     exercise: exercise_460,
-    section_ids: [461, 462, 463, 464]
+    section_ids: [461, 462, 463, 464],
+    reference_sections: [410, 430, 440]
   },
-]
+];
+
+export default MODULE4_SECTIONS;

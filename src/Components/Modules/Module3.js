@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React from 'react'
 import BracketCT from '../Exercises/Bracket/BracketCT'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
@@ -78,7 +79,7 @@ const exercise_330 = (
 
 // -------------------------
 // Module 3: 4B
-const  exercise_340 = (
+const exercise_340 = (
   <NarrativeCT
     question = { { code: 340, text: 'Synthesize into a Desires Statement.' } }
     promptQuestionCode = { 320 } // should the prompt be all of the winners from 320 or just 330?
@@ -120,47 +121,54 @@ const exercise_360 = (
   />)
 
 // interim refactor, needs to be in a DB
-export const MODULE3_SECTIONS =
+const MODULE3_SECTIONS =
 [
   {
     id: 310,
     module_id: 3,
     title: 'Deep Desires',
     exercise: exercise_310,
-    section_ids: [311, 312, 313, 314, 315, 316, 317, 318]
+    section_ids: [311, 312, 313, 314, 315, 316, 317, 318],
+    reference_sections: []
   },
   {
     id: 320,
     module_id: 3,
     title: 'Make Tradeoffs Within Each Category',
     exercise: exercise_320,
-    section_ids: [321, 322, 323, 324, 325, 326, 327, 328]
+    section_ids: [321, 322, 323, 324, 325, 326, 327, 328],
+    reference_sections: []
   },
   {
     id: 330,
     module_id: 3,
     title: 'Make Tradeoffs Between Each Category',
-    exercise: exercise_330
+    exercise: exercise_330,
+    reference_sections: []
   },
   {
     id: 340,
     module_id: 3,
     title: 'Synthesize Into a Desires Statement',
-    exercise: exercise_340
+    exercise: exercise_340,
+    reference_sections: [320, 330]
   },
   {
     id: 350,
     module_id: 3,
     title: 'Reflect on Your Stated Desires',
     exercise: exercise_350,
-    section_ids: [351, 352, 353, 354, 355, 356]
+    section_ids: [351, 352, 353, 354, 355, 356],
+    reference_sections: [320, 330, 340]
   },
   {
     id: 360,
     module_id: 3,
     title: 'Breaking and Building',
     exercise: exercise_360,
-    section_ids: [361, 362, 363]
+    section_ids: [361, 362, 363],
+    reference_sections: [320, 330, 340]
   },
 ]
 
+export default MODULE3_SECTIONS;

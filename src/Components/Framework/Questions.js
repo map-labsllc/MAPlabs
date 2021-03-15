@@ -1,6 +1,6 @@
-import React from 'react'
-import { Alert, Button, ProgressBar } from 'react-bootstrap'
-import ErrorAlert from '../Utils/ErrorAlert'
+import React from 'react';
+import { Alert, Button, ProgressBar } from 'react-bootstrap';
+import ErrorAlert from '../Utils/ErrorAlert';
 
 /* **************************************************
    Questions component
@@ -26,98 +26,109 @@ export default class Questions extends React.Component {
   state = {
     currIdx: 0,
     errorMessage: '',
-    disableNext: false
-  }
+    disableNext: false,
+  };
 
   clearError = () => {
-    this.setState({ errorMessage: '' })
-  }
+    this.setState({ errorMessage: '' });
+  };
 
   setDisableNext = (value) => {
     // TODO ... fix
     // console.log('setDisableNext called', value)
     // this.setState({disableNext: value})
-  }
+  };
 
   // ******************************************
   // persist the current question before moving off of it
   persistCurrent = () => {
-    const { subComponents, onPersistQuestionCB } = this.props
-    const { currIdx } = this.state
+    const { subComponents, onPersistQuestionCB } = this.props;
+    const { currIdx } = this.state;
 
-    onPersistQuestionCB(subComponents[currIdx].props.question)
-  }
+    onPersistQuestionCB(subComponents[currIdx].props.question);
+  };
 
   // ******************************************
   // called when close button is clicked
   onclickClose = () => {
     // console.log( "Questions::onclickClose()" )
 
-    const { onCloseModalCB } = this.props
+    const { onCloseModalCB } = this.props;
 
-    this.persistCurrent()
+    this.persistCurrent();
 
-    onCloseModalCB()
-  }
+    onCloseModalCB();
+  };
+
+  onSubComponentChange = () => {
+    this.clearError();
+
+    const { currIdx } = this.state;
+    const { subComponents } = this.props;
+
+    // aready at the end, do nothing
+    if (currIdx === subComponents.length - 1) return;
+
+    this.persistCurrent();
+    this.isValid();
+  };
 
   // ******************************************
   // called when left button clicked
   onclickLeft = () => {
     // console.log( "Questions::onclickLeft()" )
-    this.clearError()
+    this.clearError();
 
-    const { currIdx } = this.state
+    const { currIdx } = this.state;
 
     // already at the start, do nothing
-    if (currIdx === 0) return
+    if (currIdx === 0) return;
 
-    this.persistCurrent()
-    this.setState({ currIdx: currIdx - 1 })
-  }
+    this.persistCurrent();
+    this.setState({ currIdx: currIdx - 1 });
+  };
 
   // ******************************************
   // called when right button clicked
   onclickRight = () => {
     // console.log( "Questions::onclickRight()" )
-    this.clearError()
+    this.clearError();
 
-    const { currIdx } = this.state
-    const { subComponents } = this.props
+    const { currIdx } = this.state;
+    const { subComponents } = this.props;
 
     // aready at the end, do nothing
-    if (currIdx === (subComponents.length - 1)) return
+    if (currIdx === subComponents.length - 1) return;
 
-    this.persistCurrent()
+    this.persistCurrent();
 
-    if (this.isValid()) {
-      this.setState({ currIdx: currIdx + 1 })
-    }
-  }
+    this.setState({ currIdx: currIdx + 1 });
+  };
 
   isValid = () => {
-    const { currIdx } = this.state
-    const { subComponents, getAnswersForCodeCB } = this.props
-    const currentCode = subComponents[currIdx].props.question.code
+    const { currIdx } = this.state;
+    const { subComponents, getAnswersForCodeCB } = this.props;
+    const currentCode = subComponents[currIdx].props.question.code;
 
-    this.clearError()
+    this.clearError();
 
-    const currentAnswers = getAnswersForCodeCB(currentCode)
+    const currentAnswers = getAnswersForCodeCB(currentCode);
 
     if (currentAnswers.length) {
-      this.clearError()
-      return true
+      this.clearError();
+      return true;
     }
 
-    this.setState({errorMessage: 'Please complete answers.'})
-    return false
-  }
+    this.setState({ errorMessage: 'Please complete answers.' });
+    return false;
+  };
 
   // ******************************************
   render() {
     // console.log( 'ShortAnswers::render()" )
 
-    const { subComponents, isDynamic, showNumbers = false } = this.props
-    const { currIdx, errorMessage, disableNext } = this.state
+    const { subComponents, isDynamic, showNumbers = false } = this.props;
+    const { currIdx, errorMessage, disableNext } = this.state;
 
     // ******************************************
     // render static version in <Popup>
@@ -126,60 +137,57 @@ export default class Questions extends React.Component {
         <>
           {subComponents.map((subComponent, idx) => (
             <div className="text-left" key={idx}>
-              <h4>{showNumbers ? `${idx + 1}. ` : ''} {subComponent.props.question.text}</h4>
+              <h4>
+                {showNumbers ? `${idx + 1}. ` : ''} {subComponent.props.question.text}
+              </h4>
               {subComponent}
             </div>
           ))}
         </>
-      )
+      );
     }
 
     // ******************************************
 
     // inject isDynamic into props so the subCompoent will render its dynamic version
-    const subComponentsWithIsDynamic = subComponents.map((subComponent, idx) => React.cloneElement(
-      subComponent,
-      {
+    const subComponentsWithIsDynamic = subComponents.map((subComponent, idx) =>
+      React.cloneElement(subComponent, {
         isDynamic: true,
         number: idx + 1,
-        setDisableNext: this.setDisableNext
-      }
-    ))
+        setDisableNext: this.setDisableNext,
+        onSubComponentChange: this.onSubComponentChange,
+      }));
 
-    const progressAmount = Math.round(100 * (currIdx + 1) / subComponents.length)
+    const progressAmount = Math.round((100 * (currIdx + 1)) / subComponents.length);
     return (
       <>
         <ProgressBar variant="success" now={progressAmount} label={`${progressAmount}%`} />
         {subComponentsWithIsDynamic.map((subComponent, idx) => (
-          <div key={idx}>
-            {(idx === currIdx) && (
-              <>
-                {subComponent}
-              </>
-            )}
-          </div>
+          <div key={idx}>{idx === currIdx && <>{subComponent}</>}</div>
         ))}
 
         <br />
 
-        {errorMessage &&
-          <ErrorAlert>
-            {errorMessage}
-          </ErrorAlert>
-        }
+        {errorMessage && <ErrorAlert>{errorMessage}</ErrorAlert>}
 
         <div className="bgButton text-center">
-          {currIdx > 0 &&
-            <Button className="previousButton" onClick={this.onclickLeft}>&larr; Previous</Button>
-          }
+          {currIdx > 0 && (
+            <Button className="previousButton" onClick={this.onclickLeft}>
+              &larr; Previous
+            </Button>
+          )}
 
-          <Button className="closeButton" type="button" onClick={this.onclickClose}>Save</Button>
+          <Button className="closeButton" type="button" onClick={this.onclickClose}>
+            Save
+          </Button>
 
-          {currIdx < subComponentsWithIsDynamic.length - 1 &&
-            <Button className="nextButton" onClick={this.onclickRight} disabled={!!disableNext}>Next &rarr;</Button>
-          }
+          {currIdx < subComponentsWithIsDynamic.length - 1 && (
+            <Button className="nextButton" onClick={this.onclickRight} disabled={!!disableNext}>
+              Next &rarr;
+            </Button>
+          )}
         </div>
       </>
-    )
+    );
   }
 }

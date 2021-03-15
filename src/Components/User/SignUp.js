@@ -53,10 +53,10 @@ class SignUp extends Component {
 
   render() {
     const { errorMessage } = this.state
-    const { isLoggedIn } = this.props
+    const { userLoggedIn } = this.props
 
     return (
-      isLoggedIn ? <Redirect to="/modules/list"/> :
+      userLoggedIn ? <Redirect to="/modules/list"/> :
         <FormCard title="Sign up for an account">
           <div>
             <form onSubmit={ this.userSignup }>
@@ -130,7 +130,7 @@ class SignUp extends Component {
                       autoCapitalize="none"
                       onChange={(e) => { this.clearError(); this.setState({ password: e.target.value.trim() }) }}
                       value={ this.props.password }
-                      pattern="(?=^.{10,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" 
+                      pattern="(?=^.{10,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                       title="Ten or more characters with a combo of uppercase, lowercase and numbers or special characters"
                       required
                     />
@@ -197,7 +197,7 @@ function mapStateToProps(state) {
     email: userRD.user.email,
     password: userRD.user.password,
     error: userRD.errorMessage,
-    isLoggedIn: isLoggedIn(state.userRD),
+    userLoggedIn: isLoggedIn(state.userRD),
   }
 }
 

@@ -11,10 +11,10 @@ const SectionCompleteButton = ({ user, onClick }) => {
 
   const onComplete = () => {
     // save data
-    onClick()
+    onClick();
 
     // save next section
-    sectionCompletedAC(user, currentModule, currentSection)
+    sectionCompletedAC(user, currentModule, currentSection);
   }
 
   return (
