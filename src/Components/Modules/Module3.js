@@ -167,7 +167,8 @@ const MODULE3_SECTIONS =
     title: 'Breaking and Building',
     exercise: exercise_360,
     section_ids: [361, 362, 363],
-    reference_sections: [320, 330, 340]
+    reference_sections: [320, 330, 340],
+    feedbackUrl: 'https://forms.gle/5xnVC9Kygrr9tSCHA',
   },
 ]
 

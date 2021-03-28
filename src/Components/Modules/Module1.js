@@ -180,7 +180,8 @@ const MODULE1_SECTIONS = [
     title: 'Breaking and Building',
     exercise: exercise_160,
     section_ids: [161, 162, 163, 164],
-    reference_sections: [120, 140]
+    reference_sections: [120, 140],
+    feedbackUrl: 'https://forms.gle/HLd8FDqCm8Wr4Z7C8',
   },
 ];
 

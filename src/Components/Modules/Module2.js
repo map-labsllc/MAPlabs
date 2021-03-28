@@ -175,7 +175,8 @@ const MODULE2_SECTIONS =
     title: 'Breaking and Building',
     exercise: exercise_270,
     section_ids: [271, 272, 273, 274],
-    reference_sections: [240, 250]
+    reference_sections: [240, 250],
+    feedbackUrl: 'https://forms.gle/D3nxH4Zuq245jq6EA',
   },
 ]
 

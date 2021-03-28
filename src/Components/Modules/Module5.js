@@ -455,6 +455,7 @@ export const MODULE5_SECTIONS =
     exercise: EXERCISE_590,
     section_ids: [565], // if 565 is done, then this is done
     theEnd: true,
-    reference_sections: []
+    reference_sections: [],
+    feedbackUrl: 'https://forms.gle/aKTAhNGFY8i7iiGq6',
   }
 ]

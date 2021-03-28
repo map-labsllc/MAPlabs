@@ -32,6 +32,12 @@ const SideBar = ({ isLoggedIn }) => {
 
         {isLoggedIn ?
           <ul className="nav ml-auto">
+            <li>
+              <a className="nav-link" target="_blank" rel="noreferrer" href="https://forms.gle/GkTC59Xyije4b2L58">
+                <i className="nc-icon nc-notification-70"></i>
+                Feedback
+              </a>
+            </li>
             <li className={activeModClass('/infopage')}>
               <NavLink className="nav-link" to="/infopage">
                 <i className="nc-icon nc-explore-2"></i>

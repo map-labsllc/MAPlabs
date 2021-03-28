@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { getAnswers } from '../../store/answers/reducer';
 import SectionCompleteButton from './SectionCompleteButton';
 import { getModuleSection, getNextModuleSection, showNextSection } from '../../store/user/reducer';
-
+import { MadLibHtml } from '../Exercises/MadLibs/MadLibHtml';
 /* **************************************************
    SectionExercise component
 
@@ -131,12 +131,82 @@ class SectionExercise extends React.Component {
                   {curr?.reference_sections?.map((rsId) => {
                     const ref_section = getModuleSection(moduleNum, rsId);
                     const answerRef = getAnswers(answersRD, rsId);
-                    return <>
-                      <hr className="divider" />
-                      <span className="reading">{rsId} - {ref_section.title}</span>
-                      <hr className="divider" />
-                      <span className="reading">{answerRef}</span>
-                    </>
+                    if (typeof answerRef === 'string') {
+                      return (
+                        <>
+                          <hr className="divider" />
+                          <span className="reading">
+                            {rsId} - {ref_section.title}
+                          </span>
+                          <hr className="divider" />
+                          <span className="reading">{answerRef}</span>
+                        </>
+                      );
+                    }
+                    if (Array.isArray(answerRef)) {
+                      return (
+                        <>
+                          <hr className="divider" />
+                          <span className="reading">
+                            {rsId} - {ref_section.title}
+                          </span>
+                          {answerRef
+                            .filter((a) => a !== '')
+                            .map((aws) => {
+                              let awsValue = '';
+                              try {
+                                awsValue = JSON.parse(aws);
+                              } catch (e) {
+                                console.log(e);
+                              }
+                              if (typeof awsValue === 'object') {
+                                return (
+                                  <>
+                                    <hr className="divider" />
+                                    <span className="reading">{MadLibHtml(JSON.parse(aws))}</span>
+                                  </>
+                                );
+                              }
+                              if (Array.isArray(aws)) {
+                                return aws
+                                  .filter((a) => a !== '')
+                                  .map((a) => {
+                                    let anValue = '';
+                                    try {
+                                      anValue = JSON.parse(a);
+                                    } catch (e) {
+                                      console.log(e);
+                                    }
+                                    if (typeof anValue === 'object') {
+                                      return (
+                                        <>
+                                          <hr className="divider" />
+                                          <span className="reading">{MadLibHtml(anValue)}</span>
+                                        </>
+                                      );
+                                    }
+                                    return (
+                                      <>
+                                        <hr className="divider" />
+                                        <span className="reading">{a}</span>
+                                      </>
+                                    );
+                                  });
+                              }
+                              if (typeof awsValue === 'string') {
+                                return (
+                                  <>
+                                    <hr className="divider" />
+                                    <span className="reading">{awsValue}</span>
+                                  </>
+                                );
+                              }
+                              return null;
+                            })}
+                        </>
+                      );
+                    }
+                    return null;
                   })}
                 </>
               )}
@@ -161,11 +231,29 @@ class SectionExercise extends React.Component {
               )}
 
               {!theEnd && showNextSection(currentModule, moduleNum, currentSection, sectionNum) && (
-                <div className="text-right">
-                  <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>
-                    Next Exercise &rarr;
-                  </Link>
-                </div>
+                <>
+                  <div className="text-center">
+                    <h3>Module {moduleNum} Feedback</h3>
+                    <p>
+                      Congratulations on completing Module {moduleNum}! Let us know your thoughts by
+                      filling out this short survey.
+                    </p>
+                    <a
+                      className="nav-link"
+                      target="_blank"
+                      rel="noreferrer"
+                      href={curr.feedbackUrl}
+                    >
+                      <i className="nc-icon nc-notification-70"></i>
+                      Feedback
+                    </a>
+                  </div>
+                  <div className="text-right">
+                    <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>
+                      Next Exercise &rarr;
+                    </Link>
+                  </div>
+                </>
               )}
             </div>
           </>
