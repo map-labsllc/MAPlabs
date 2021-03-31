@@ -29,7 +29,7 @@ const Label = FormLabel
 
 ***************************************************** */
 export default function MadLib(props) {
-  const { madlib, isDynamic } = props
+  const { madlib, isDynamic, isSupportive } = props
 
   const [name, setName] = useState(madlib.name);
   const [belief, setBelief] = useState(madlib.belief);
@@ -65,27 +65,23 @@ export default function MadLib(props) {
 
   // static
   if (!isDynamic) {
-    return MadLibHtml(madlib)
+    return MadLibHtml(madlib, isSupportive)
   }
-  // My influence, <span className="madlib">{name || BLANK}</span>, has supported my sense of{' '}
-  // <span className="madlib">{belief || BLANK}</span>. The effect of this influence is that{' '}
-  // <span className="madlib">{impact || BLANK}</span>. In order to keep growing, I would like to{' '}
-  // <span className="madlib">{change || BLANK}</span>.
 
   // dynamic render
   return (
     <Form className="text-left" onChange={onChange}>
       <Label className="madlib-label" style={style.label}>My influence, </Label>
-      <FormControl disabled={true} id="name" placeholder="name" value={name} onChange={ (e) => setName(e.target.value) }/>
+      <FormControl disabled={true} id="name" placeholder="name" defaultValue={name} onKeyUp={ (e) => setName(e.target.value) }/>
 
-      <Label className="madlib-label"style={style.label}>, has supported my sense of</Label>
-      <FormControl disabled={true} id="belief" placeholder="belief" value={belief} onChange={ (e) => setBelief(e.target.value) }/>
+      <Label className="madlib-label"style={style.label}>, has{isSupportive ? ' supported ' : ' inhibited '}my sense of</Label>
+      <FormControl disabled={true} id="belief" placeholder="belief" defaultValue={belief} onKeyUp={ (e) => setBelief(e.target.value) }/>
 
       <Label className="madlib-label" style={style.label}>. The effect of this influence is that</Label>
-      <FormControl disabled={true} id="impact" placeholder="impact" value={impact} onChange={ (e) => setImpact(e.target.value) }/>
+      <FormControl id="impact" placeholder="impact on my life" defaultValue={impact} onKeyUp={ (e) => setImpact(e.target.value) }/>
 
       <Label className="madlib-label" style={style.label}>. In order to keep growing, I would like to</Label>
-      <FormControl id="change" placeholder="desired change" value={change} onChange={ (e) => setChange(e.target.value) }/>
+      <FormControl id="change" placeholder="desired change" defaultValue={change} onKeyUp={ (e) => { setChange(e.target.value); } }/>
 
     </Form>
   )
@@ -102,5 +98,6 @@ MadLib.propTypes = {
   }).isRequired,
   madlib: PropTypes.object.isRequired,
   isDynamic: PropTypes.bool,
-  onUpdateStoreCB: PropTypes.func.isRequired
+  onUpdateStoreCB: PropTypes.func.isRequired,
+  isSupportive: PropTypes.bool,
 }

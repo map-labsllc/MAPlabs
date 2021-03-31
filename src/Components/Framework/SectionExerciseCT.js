@@ -31,7 +31,8 @@ const mapStateToProps = (state, passedProps) => {
     sectionTitle,
     exercise,
     answersRD: state.answersRD,
-    userRD: state.userRD
+    userRD: state.userRD,
+    strengthsRD: state.listsRD.lists.strengths
   }
 }
 

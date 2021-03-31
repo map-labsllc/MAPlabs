@@ -44,6 +44,103 @@ class SectionExercise extends React.Component {
     this.setState({ isVisible: false });
   };
 
+  renderRefSection = (ref_section, answerRef, rsId, isMainSection = true) => {
+    if (typeof answerRef === 'string') {
+      return (
+        <>
+          {isMainSection && (
+            <>
+              <hr className="divider" />
+              <span className="reading">
+                {rsId} - {ref_section.title}
+              </span>
+              <hr className="divider" />
+            </>
+          )}
+          <span className="reading">{answerRef}</span>
+        </>
+      );
+    }
+    if (Array.isArray(answerRef)) {
+      return (
+        <>
+          {isMainSection && (
+            <>
+              <hr className="divider" />
+              <span className="reading">
+                {rsId} - {ref_section.title}
+              </span>
+            </>
+          )}
+          {answerRef
+            .filter((a) => a !== '')
+            .map((aws) => {
+              let awsValue = '';
+              try {
+                awsValue = JSON.parse(aws);
+              } catch (e) {
+                console.log(e);
+              }
+              if (typeof awsValue === 'object') {
+                return (
+                  <>
+                    <hr className="divider" />
+                    <span className="reading">{MadLibHtml(JSON.parse(aws))}</span>
+                  </>
+                );
+              }
+              if (Array.isArray(aws)) {
+                return aws
+                  .filter((a) => a !== '' && a !== 'selected')
+                  .map((a) => {
+                    let anValue = '';
+                    try {
+                      anValue = JSON.parse(a);
+                    } catch (e) {
+                      console.log(e);
+                    }
+                    if (typeof anValue === 'object') {
+                      return (
+                        <>
+                          <hr className="divider" />
+                          <span className="reading">{MadLibHtml(anValue)}</span>
+                        </>
+                      );
+                    }
+                    if (Number.isSafeInteger(anValue)) {
+                      const { strengthsRD } = this.props;
+                      const strength = strengthsRD.find((s) => s.id === anValue);
+                      return (
+                        <>
+                          <hr className="divider" />
+                          <span className="reading">{strength?.value || ''}</span>
+                        </>
+                      );
+                    }
+                    return (
+                      <>
+                        <hr className="divider" />
+                        <span className="reading">{a}</span>
+                      </>
+                    );
+                  });
+              }
+              if (typeof awsValue === 'string') {
+                return (
+                  <>
+                    <hr className="divider" />
+                    <span className="reading">{awsValue}</span>
+                  </>
+                );
+              }
+              return null;
+            })}
+        </>
+      );
+    }
+    return null;
+  };
+
   // **************************************************
   // render!
   render() {
@@ -130,83 +227,22 @@ class SectionExercise extends React.Component {
                 <>
                   {curr?.reference_sections?.map((rsId) => {
                     const ref_section = getModuleSection(moduleNum, rsId);
+                    if (ref_section.section_ids) {
+                      return (
+                        <>
+                          <hr className="divider" />
+                          <span className="reading">
+                            {rsId} - {ref_section.title}
+                          </span>
+                          {ref_section.section_ids.map((sId) => {
+                            const answerRef = getAnswers(answersRD, sId);
+                            return this.renderRefSection(ref_section, answerRef, rsId, false);
+                          })}
+                        </>
+                      );
+                    }
                     const answerRef = getAnswers(answersRD, rsId);
-                    if (typeof answerRef === 'string') {
-                      return (
-                        <>
-                          <hr className="divider" />
-                          <span className="reading">
-                            {rsId} - {ref_section.title}
-                          </span>
-                          <hr className="divider" />
-                          <span className="reading">{answerRef}</span>
-                        </>
-                      );
-                    }
-                    if (Array.isArray(answerRef)) {
-                      return (
-                        <>
-                          <hr className="divider" />
-                          <span className="reading">
-                            {rsId} - {ref_section.title}
-                          </span>
-                          {answerRef
-                            .filter((a) => a !== '')
-                            .map((aws) => {
-                              let awsValue = '';
-                              try {
-                                awsValue = JSON.parse(aws);
-                              } catch (e) {
-                                console.log(e);
-                              }
-                              if (typeof awsValue === 'object') {
-                                return (
-                                  <>
-                                    <hr className="divider" />
-                                    <span className="reading">{MadLibHtml(JSON.parse(aws))}</span>
-                                  </>
-                                );
-                              }
-                              if (Array.isArray(aws)) {
-                                return aws
-                                  .filter((a) => a !== '')
-                                  .map((a) => {
-                                    let anValue = '';
-                                    try {
-                                      anValue = JSON.parse(a);
-                                    } catch (e) {
-                                      console.log(e);
-                                    }
-                                    if (typeof anValue === 'object') {
-                                      return (
-                                        <>
-                                          <hr className="divider" />
-                                          <span className="reading">{MadLibHtml(anValue)}</span>
-                                        </>
-                                      );
-                                    }
-                                    return (
-                                      <>
-                                        <hr className="divider" />
-                                        <span className="reading">{a}</span>
-                                      </>
-                                    );
-                                  });
-                              }
-                              if (typeof awsValue === 'string') {
-                                return (
-                                  <>
-                                    <hr className="divider" />
-                                    <span className="reading">{awsValue}</span>
-                                  </>
-                                );
-                              }
-                              return null;
-                            })}
-                        </>
-                      );
-                    }
-                    return null;
+                    return this.renderRefSection(ref_section, answerRef, rsId);
                   })}
                 </>
               )}
@@ -230,30 +266,25 @@ class SectionExercise extends React.Component {
                 </div>
               )}
 
+              {curr.feedbackUrl && (
+                <div className="text-center">
+                  <h3>Module {moduleNum} Feedback</h3>
+                  <p>
+                    Congratulations on completing Module {moduleNum}! Let us know your thoughts by
+                    filling out this short survey.
+                  </p>
+                  <a className="nav-link" target="_blank" rel="noreferrer" href={curr.feedbackUrl}>
+                    <i className="nc-icon nc-notification-70"></i>
+                    Feedback
+                  </a>
+                </div>
+              )}
               {!theEnd && showNextSection(currentModule, moduleNum, currentSection, sectionNum) && (
-                <>
-                  <div className="text-center">
-                    <h3>Module {moduleNum} Feedback</h3>
-                    <p>
-                      Congratulations on completing Module {moduleNum}! Let us know your thoughts by
-                      filling out this short survey.
-                    </p>
-                    <a
-                      className="nav-link"
-                      target="_blank"
-                      rel="noreferrer"
-                      href={curr.feedbackUrl}
-                    >
-                      <i className="nc-icon nc-notification-70"></i>
-                      Feedback
-                    </a>
-                  </div>
-                  <div className="text-right">
-                    <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>
-                      Next Exercise &rarr;
-                    </Link>
-                  </div>
-                </>
+                <div className="text-right">
+                  <Link className="btn" to={`/modules/${nextModule}/section/${nextSection}`}>
+                    Next Exercise &rarr;
+                  </Link>
+                </div>
               )}
             </div>
           </>

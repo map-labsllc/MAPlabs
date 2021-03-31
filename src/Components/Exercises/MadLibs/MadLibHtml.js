@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const MadLibHtml = (madlib) => {
+export const MadLibHtml = (madlib, isSupportive) => {
   const {
     name,
     belief,
@@ -14,7 +14,7 @@ export const MadLibHtml = (madlib) => {
 
   return (
     <p>
-      My influence, <span className="madlib">{name || BLANK}</span>, has supported my sense of{' '}
+      My influence, <span className="madlib">{name || BLANK}</span>, has{isSupportive ? ' supported ' : ' inhibited '}my sense of{' '}
       <span className="madlib">{belief || BLANK}</span>. The effect of this influence is that{' '}
       <span className="madlib">{impact || BLANK}</span>. In order to keep growing, I would like to{' '}
       <span className="madlib">{change || BLANK}</span>.

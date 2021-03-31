@@ -1,2 +1,2 @@
-react-scripts build
+npm run build
 firebase deploy

@@ -46,7 +46,7 @@ const MadLibs = (props) => {
               {impactFilter}
             </h3>
             <div>
-              <MadLib question={question} madlib={madlibs[i]} onUpdateStoreCB={onUpdateStoreCB} />
+              <MadLib isSupportive={impactFilter.toLowerCase() === 'supportive'} question={question} madlib={madlibs[i]} onUpdateStoreCB={onUpdateStoreCB} />
             </div>
           </ListGroupItem>
         ))
