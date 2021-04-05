@@ -40,6 +40,7 @@
       "key-spacing": ["warn"],
       "keyword-spacing": ["warn"],
       "lines-between-class-members": ["warn"],
+      "linebreak-style": ["error", "windows"],
       "max-len": ["off"],
       "no-case-declarations": ["warn"],
       "no-confusing-arrow": ["warn"],

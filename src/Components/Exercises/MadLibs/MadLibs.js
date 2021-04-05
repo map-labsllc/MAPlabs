@@ -56,7 +56,7 @@ const MadLibs = (props) => {
   }
 
   const MadLibComponents = madlibs.reduce((acc, madlib, idx) => {
-    acc.push(<MadLib id={idx} question={question} madlib={madlibs[idx]} onUpdateStoreCB={onUpdateStoreCB}/>)
+    acc.push(<MadLib id={idx} isSupportive={impactFilter.toLowerCase() === 'supportive'} question={question} madlib={madlibs[idx]} onUpdateStoreCB={onUpdateStoreCB}/>)
     return acc
   }, [])
 
