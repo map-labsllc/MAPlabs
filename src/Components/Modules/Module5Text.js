@@ -91,7 +91,7 @@ Your Dashboard now contains many elements of a purposeful life: the thematic ele
 It is now time for you to bring these elements together into a Purpose Statement.
 </p>
 <p>
-Take some time to consider all of the elements on your Dashboard. Then articulate your own personal Life Purpose Statement based on how who you are can meaningfully connect to what you care about in order to better serve yourself and something beyond yourself. Complete the following statement in the most authentic and precise way you can.</p>`
+Take some time to consider all of the elements you've submitted so far in Module 5. Then articulate your own personal Life Purpose Statement based on how who you are can meaningfully connect to what you care about in order to better serve yourself and something beyond yourself. Complete the following statement in the most authentic and precise way you can.</p>`
 
 export const QUES_550_DESC = `
 <h3>The How of Purpose</h3>
