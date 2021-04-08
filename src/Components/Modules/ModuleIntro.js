@@ -15,7 +15,7 @@ const ModuleIntro = ({
 
   return (
     <div className="text-center">
-      {/* <p className="reading" dangerouslySetInnerHTML={{ __html: description }} /> */}
+      <p className="reading" dangerouslySetInnerHTML={{ __html: description }} />
       { showLink &&
         <div className="text-center">
           <Link to={firstSectionHref} className="btn btn-primary" onClick={advanceSection}>
