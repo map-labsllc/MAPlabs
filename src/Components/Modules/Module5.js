@@ -1,6 +1,6 @@
 import React from 'react'
 import Mappers from '../Exercises/Mappers/Mappers'
-import ModuleIntro from './ModuleIntro'
+import ModuleConclusion from './ModuleConclusion'
 import NarrativeCT from '../Exercises/Narrative/NarrativeCT'
 import QuestionsCT from '../Framework/QuestionsCT'
 import ReflectionsTop5CT from '../Exercises/ReflectionsTop5/ReflectionsTop5CT'
@@ -308,7 +308,7 @@ const EXERCISE_580 = (
 )
 
 const EXERCISE_590 = (
-  <ModuleIntro
+  <ModuleConclusion
     description = { QUES_590_DESC }
     moduleId = {5}
     showLink = {false}
