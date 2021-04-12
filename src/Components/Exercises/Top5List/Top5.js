@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { Form, FormControl } from 'react-bootstrap'
-import { SELECTED } from '../../../constants'
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { Form, FormControl } from 'react-bootstrap';
+import { SELECTED } from '../../../constants';
 
 /* **************************************************
    Top5 Checkbox component
@@ -18,61 +18,58 @@ import { SELECTED } from '../../../constants'
      updateCB -- call for all changes
 ***************************************************** */
 export default function Top5(props) {
-  const {
-    id, updateCB, data, isDynamic, fields, selectedAttribute, editFields = []
-  } = props
+  const { id, updateCB, data, isDynamic, fields, selectedAttribute, editFields = [] } = props;
 
   const [formData, setData] = useState(data);
+
+  useEffect(() => {
+    updateCB(id, formData);
+  }, [id, updateCB, formData]);
 
   const onCheck = (e) => {
     const newData = {
       ...props.data,
-      selected: (e.target.checked ? SELECTED : '')
-    }
+      selected: e.target.checked ? SELECTED : '',
+    };
 
-    setData(newData)
-    updateCB(id, newData)
-  }
+    setData(newData);
+  };
 
   const onChange = (e, attribute) => {
-    const { value } = e.target
+    const { value } = e.target;
     const newData = {
       ...formData,
       [attribute]: value,
-    }
+    };
 
-    setData(newData)
-    updateCB(id, newData)
-  }
+    setData(newData);
+  };
 
   if (!editFields.length) {
-    editFields.push(selectedAttribute)
+    editFields.push(selectedAttribute);
   }
 
   const fieldsToCells = () => (
     <>
-      { fields.map((field, idx) => <td className="text-left" key={idx}>
-        {isDynamic && editFields.includes(field) ?
-          <FormControl
-            onChange={(e) => onChange(e, field)}
-            type="text"
-            value={formData[field]}
-          />
-          : <>{formData[field]}</> }
-      </td>)
-      }
+      {fields.map((field, idx) => (
+        <td className="text-left" key={idx}>
+          {isDynamic && editFields.includes(field) ? (
+            <FormControl onChange={(e) => onChange(e, field)} type="text" value={formData[field]} />
+          ) : (
+            <>{formData[field]}</>
+          )}
+        </td>
+      ))}
     </>
-  )
+  );
 
   // static
   if (!isDynamic) {
     return (
       <>
-        <tr>
-          { fieldsToCells() }
-        </tr>
+        <tr>{fieldsToCells()}</tr>
       </>
-    )
+    );
   }
 
   // dynamic render
@@ -80,16 +77,12 @@ export default function Top5(props) {
     <>
       <tr>
         <td className="text-left" key="-1">
-          <input
-            onChange={onCheck}
-            type="checkbox"
-            checked={!!formData.selected}
-          />
+          <input onChange={onCheck} type="checkbox" checked={!!formData.selected} />
         </td>
-        { fieldsToCells() }
+        {fieldsToCells()}
       </tr>
     </>
-  )
+  );
 }
 
 Top5.propTypes = {
@@ -99,5 +92,5 @@ Top5.propTypes = {
   isDynamic: PropTypes.bool,
   updateCB: PropTypes.func,
   selectedAttribute: PropTypes.string,
-  editFields: PropTypes.array
-}
+  editFields: PropTypes.array,
+};
