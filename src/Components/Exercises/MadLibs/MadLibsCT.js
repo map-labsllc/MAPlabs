@@ -82,16 +82,16 @@ const mapDispatchToProps = (dispatch, passedProps) => {
       const data = parentAnswers
         .map(answer => {
           let impact
-          switch (answer[IDX_IMPACT]) {
-          case IMPACT_SUPPORTIVE:
-            impact = IMPACT_SUPPORTS
-            break
-          case IMPACT_INHIBITING:
-            impact = IMPACT_INHIBITS
-            break
-          default:
-            break;
-          }
+          // switch (answer[IDX_IMPACT]) {
+          // case IMPACT_SUPPORTIVE:
+          //   impact = IMPACT_SUPPORTS
+          //   break
+          // case IMPACT_INHIBITING:
+          //   impact = IMPACT_INHIBITS
+          //   break
+          // default:
+          //   break;
+          // }
 
           return JSON.stringify({
             belief: answer[IDX_BELIEF],
