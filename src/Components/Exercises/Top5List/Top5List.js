@@ -62,8 +62,6 @@ export default class Top5List extends React.Component {
     const { onUpdateCB } = this.props;
     const { allItemsWithKeys } = this.state;
 
-    console.log('Items', allItemsWithKeys);
-
     const newSelections = this.uuid.stripKeys(allItemsWithKeys);
 
     await onUpdateCB(newSelections);

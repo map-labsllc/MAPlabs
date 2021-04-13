@@ -77,7 +77,7 @@ export default function Top5(props) {
     <>
       <tr>
         <td className="text-left" key="-1">
-          <input onChange={onCheck} type="checkbox" checked={!!formData.selected} />
+          <input onChange={(e) => onCheck(e)} type="checkbox" checked={!!formData.selected} />
         </td>
         {fieldsToCells()}
       </tr>
