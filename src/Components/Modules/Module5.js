@@ -401,21 +401,21 @@ export const MODULE5_SECTIONS =
     module_id: 5,
     title: 'Personal Growth',
     exercise: EXERCISE_550,
-    reference_sections: [540]
+    reference_sections: []
   },
   {
     id: 551,
     module_id: 5,
     title: 'Relationships',
     exercise: EXERCISE_551,
-    reference_sections: [540]
+    reference_sections: []
   },
   {
     id: 552,
     module_id: 5,
     title: 'Engagement Mastery',
     exercise: EXERCISE_552,
-    reference_sections: [540]
+    reference_sections: []
   },
   {
     id: 560,
@@ -423,7 +423,7 @@ export const MODULE5_SECTIONS =
     title: 'Breaking and Building',
     exercise: EXERCISE_560,
     section_ids: [561, 562, 563, 564],
-    reference_sections: [540]
+    reference_sections: []
   },
   {
     id: 565,

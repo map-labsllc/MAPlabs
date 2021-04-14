@@ -174,7 +174,7 @@ const MODULE4_SECTIONS = [
     title: 'Reflect on Your Personal Strengths',
     exercise: exercise_450,
     section_ids: [451, 452, 453, 454, 455, 456],
-    reference_sections: [410, 430, 440]
+    reference_sections: [410]
   },
   {
     id: 460,
@@ -182,7 +182,7 @@ const MODULE4_SECTIONS = [
     title: 'Breaking and Building',
     exercise: exercise_460,
     section_ids: [461, 462, 463, 464],
-    reference_sections: [410, 430, 440],
+    reference_sections: [410],
     feedbackUrl: 'https://forms.gle/5SE2MMQvdkqY5XmJ7',
   },
 ];
