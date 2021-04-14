@@ -23,7 +23,9 @@ export default function Top5(props) {
   const [formData, setData] = useState(data);
 
   useEffect(() => {
-    updateCB(id, formData);
+    if (data !== formData) {
+      updateCB(id, formData);
+    }
   }, [id, updateCB, formData]);
 
   const onCheck = (e) => {
@@ -32,7 +34,9 @@ export default function Top5(props) {
       selected: e.target.checked ? SELECTED : '',
     };
 
-    setData(newData);
+    if (newData !== formData) {
+      setData(newData);
+    }
   };
 
   const onChange = (e, attribute) => {
@@ -42,7 +46,9 @@ export default function Top5(props) {
       [attribute]: value,
     };
 
-    setData(newData);
+    if (newData !== formData) {
+      setData(newData);
+    }
   };
 
   if (!editFields.length) {

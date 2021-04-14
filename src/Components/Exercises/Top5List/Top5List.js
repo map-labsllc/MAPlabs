@@ -79,9 +79,11 @@ export default class Top5List extends React.Component {
       item.key === key ? { key, item: data } : item
     );
 
-    this.setState({
-      allItemsWithKeys: newAllItemsWithKeys,
-    });
+    if (allItemsWithKeys !== newAllItemsWithKeys) {
+      this.setState({
+        allItemsWithKeys: newAllItemsWithKeys,
+      });
+    }
   };
 
   render() {
