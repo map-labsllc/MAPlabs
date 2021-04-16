@@ -37,7 +37,7 @@ export const QUES_430_DESC = `Now that you see them all together, determine whic
 
 export const QUES_440_DESC = `This exercise will follow the same general format as the previous exercise, but now you will focus on the impediments that most hinder your strengths. Select only your most important 5 impediments.`
 
-export const QUES_450_DESC = `Review your signature strengths, along with your top embodiments and impediments of these strengths, and allow them to guide you as you answer the questions below.`
+export const QUES_450_DESC = `Review your signature strengths, and allow them to guide you as you answer the questions below.`
 
 export const QUES_460_DESC = `In order to create more personal Environmental mastery, consider which impediments are working against your strengths and need to be “broken from,” and which embodiments are most expressive of your strengths and need to be “built toward.” Fill in the following blanks with your responses.
 <br><br>
